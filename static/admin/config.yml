@@ -1,0 +1,146 @@
+# Development configuration (local backend)
+local_backend: true
+
+backend:
+  name: proxy
+  proxy_url: http://localhost:8081/api/v1
+  branch: main
+
+# Media management
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+# Site settings
+site_url: "http://localhost:1313"
+display_url: "http://localhost:1313"
+logo_url: "/images/logo.png"
+
+# Publishing workflow
+publish_mode: editorial_workflow
+search: false
+
+# Collections configuration for Andromeda theme
+collections:
+  # Blog posts (typically in content/english/blog/)
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "content/english/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Author", name: "author", widget: "string", required: false }
+      - { label: "Summary/Description", name: "description", widget: "text", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Categories", name: "categories", widget: "list", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # About page content
+  - name: "about"
+    label: "About Page"
+    folder: "content/english/about"
+    create: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Page Description", name: "description", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # Services (if your Andromeda version includes this)
+  - name: "services"
+    label: "Services"
+    folder: "content/english/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Icon", name: "icon", widget: "string", hint: "FontAwesome icon class" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # Data files for dynamic content
+  - name: "data"
+    label: "Site Data"
+    files:
+      # Homepage sections
+      - label: "Homepage"
+        name: "homepage"
+        file: "data/en/homepage.yml"
+        fields:
+          - label: "Banner Section"
+            name: "banner"
+            widget: "object"
+            fields:
+              - { label: "Enable", name: "enable", widget: "boolean" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Content", name: "content", widget: "text" }
+              - { label: "Button Text", name: "button", widget: "string" }
+              - { label: "Button Link", name: "button_link", widget: "string" }
+              - { label: "Image", name: "image", widget: "image" }
+
+      # Team members
+      - label: "Team"
+        name: "team"
+        file: "data/en/team.yml"
+        fields:
+          - label: "Team Members"
+            name: "team"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Position", name: "position", widget: "string" }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Bio", name: "bio", widget: "text" }
+              - label: "Social Links"
+                name: "social"
+                widget: "object"
+                fields:
+                  - { label: "Facebook", name: "facebook", widget: "string", required: false }
+                  - { label: "Twitter", name: "twitter", widget: "string", required: false }
+                  - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
+
+      # Testimonials
+      - label: "Testimonials"
+        name: "testimonials"
+        file: "data/en/testimonial.yml"
+        fields:
+          - label: "Testimonials"
+            name: "testimonial"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Company", name: "company", widget: "string" }
+              - { label: "Quote", name: "quote", widget: "text" }
+              - { label: "Rating", name: "rating", widget: "number", min: 1, max: 5 }
+              - { label: "Image", name: "image", widget: "image" }
+
+  # Site configuration
+  - name: "config"
+    label: "Site Configuration"
+    files:
+      - label: "General Settings"
+        name: "config"
+        file: "config/_default/config.toml"
+        fields:
+          - { label: "Site Title", name: "title", widget: "string" }
+          - { label: "Base URL", name: "baseURL", widget: "string" }
+          - { label: "Language Code", name: "languageCode", widget: "string" }
+          - { label: "Theme", name: "theme", widget: "hidden", default: "andromeda-hugo" }
+
+      - label: "Site Parameters"
+        name: "params"
+        file: "config/_default/params.toml"
+        fields:
+          - { label: "Logo", name: "logo", widget: "image" }
+          - { label: "Logo Width", name: "logo_width", widget: "string" }
+          - { label: "Site Description", name: "description", widget: "text" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Phone", name: "phone", widget: "string" }
+          - { label: "Address", name: "address", widget: "text" }

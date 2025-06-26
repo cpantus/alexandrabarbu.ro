@@ -1,0 +1,75 @@
+# Production configuration for GitHub OAuth
+backend:
+  name: github
+  repo: cpantus/alexandrabarbu.ro  # Replace with your GitHub username
+  branch: main
+
+# Media management
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+# Site settings (replace YOUR_USERNAME with your actual GitHub username)
+site_url: "https://cpantus.github.io/alexandrabarbu.ro"
+display_url: "https://cpantus.github.io/alexandrabarbu.ro"
+logo_url: "/images/logo.png"
+
+# Publishing workflow
+publish_mode: editorial_workflow
+search: false
+
+# Collections (same as your working local config)
+collections:
+  # Romanian Blog Posts (Primary language)
+  - name: "blog_ro"
+    label: "Blog Posts (Română)"
+    folder: "content/romanian/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - { label: "Titlu", name: "title", widget: "string" }
+      - { label: "Data", name: "date", widget: "datetime" }
+      - { label: "Ciornă", name: "draft", widget: "boolean", default: false }
+      - { label: "Imagine Principală", name: "image", widget: "image", required: false }
+      - { label: "Autor", name: "author", widget: "string", required: false }
+      - { label: "Descriere", name: "description", widget: "text", required: false }
+      - { label: "Etichete", name: "tags", widget: "list", required: false }
+      - { label: "Categorii", name: "categories", widget: "list", required: false }
+      - { label: "Conținut", name: "body", widget: "markdown" }
+
+  # English Blog Posts
+  - name: "blog_en"
+    label: "Blog Posts (English)"
+    folder: "content/english/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Author", name: "author", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Categories", name: "categories", widget: "list", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # Include other collections as needed...
+
+  # Site configuration
+  - name: "config"
+    label: "Site Configuration"
+    files:
+      - label: "Main Settings"
+        name: "hugo_config"
+        file: "hugo.toml"
+        fields:
+          - { label: "Site Title", name: "title", widget: "string" }
+          - { label: "Base URL", name: "baseURL", widget: "string" }
+          - { label: "Theme", name: "theme", widget: "hidden", default: "andromeda-hugo" }
+          - { label: "Default Language", name: "defaultContentLanguage", widget: "select", options: ["ro", "en"] }
+EOF
+
