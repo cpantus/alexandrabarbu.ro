@@ -1,14 +1,14 @@
 # Production configuration for GitHub OAuth
 backend:
   name: github
-  repo: cpantus/alexandrabarbu.ro  # Replace with your GitHub username
+  repo: cpantus/alexandrabarbu.ro
   branch: main
 
-# Media management
+# Media management  
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
 
-# Site settings (replace YOUR_USERNAME with your actual GitHub username)
+# Site settings
 site_url: "https://cpantus.github.io/alexandrabarbu.ro"
 display_url: "https://cpantus.github.io/alexandrabarbu.ro"
 logo_url: "/images/logo.png"
@@ -17,30 +17,11 @@ logo_url: "/images/logo.png"
 publish_mode: editorial_workflow
 search: false
 
-# Collections (same as your working local config)
+# Collections (matching your working local configuration)
 collections:
-  # Romanian Blog Posts (Primary language)
-  - name: "blog_ro"
-    label: "Blog Posts (Română)"
-    folder: "content/romanian/blog"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    editor:
-      preview: true
-    fields:
-      - { label: "Titlu", name: "title", widget: "string" }
-      - { label: "Data", name: "date", widget: "datetime" }
-      - { label: "Ciornă", name: "draft", widget: "boolean", default: false }
-      - { label: "Imagine Principală", name: "image", widget: "image", required: false }
-      - { label: "Autor", name: "author", widget: "string", required: false }
-      - { label: "Descriere", name: "description", widget: "text", required: false }
-      - { label: "Etichete", name: "tags", widget: "list", required: false }
-      - { label: "Categorii", name: "categories", widget: "list", required: false }
-      - { label: "Conținut", name: "body", widget: "markdown" }
-
-  # English Blog Posts
-  - name: "blog_en"
-    label: "Blog Posts (English)"
+  # Blog posts
+  - name: "blog"
+    label: "Blog Posts"
     folder: "content/english/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
@@ -52,24 +33,101 @@ collections:
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Featured Image", name: "image", widget: "image", required: false }
       - { label: "Author", name: "author", widget: "string", required: false }
-      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Summary/Description", name: "description", widget: "text", required: false }
       - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Categories", name: "categories", widget: "list", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
 
-  # Include other collections as needed...
+  # About page content
+  - name: "about"
+    label: "About Page"
+    folder: "content/english/about"
+    create: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Page Description", name: "description", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # Services
+  - name: "services"
+    label: "Services"
+    folder: "content/english/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Icon", name: "icon", widget: "string", hint: "FontAwesome icon class" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # Data files for dynamic content
+  - name: "data"
+    label: "Site Data"
+    files:
+      # Homepage sections
+      - label: "Homepage"
+        name: "homepage"
+        file: "data/en/homepage.yml"
+        fields:
+          - label: "Banner Section"
+            name: "banner"
+            widget: "object"
+            fields:
+              - { label: "Enable", name: "enable", widget: "boolean" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Content", name: "content", widget: "text" }
+              - { label: "Button Text", name: "button", widget: "string" }
+              - { label: "Button Link", name: "button_link", widget: "string" }
+              - { label: "Image", name: "image", widget: "image" }
+
+      # Team members
+      - label: "Team"
+        name: "team"
+        file: "data/en/team.yml"
+        fields:
+          - label: "Team Members"
+            name: "team"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Position", name: "position", widget: "string" }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Bio", name: "bio", widget: "text" }
+              - label: "Social Links"
+                name: "social"
+                widget: "object"
+                fields:
+                  - { label: "Facebook", name: "facebook", widget: "string", required: false }
+                  - { label: "Twitter", name: "twitter", widget: "string", required: false }
+                  - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
+
+      # Testimonials
+      - label: "Testimonials"
+        name: "testimonials"
+        file: "data/en/testimonial.yml"
+        fields:
+          - label: "Testimonials"
+            name: "testimonial"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Company", name: "company", widget: "string" }
+              - { label: "Quote", name: "quote", widget: "text" }
+              - { label: "Rating", name: "rating", widget: "number", min: 1, max: 5 }
+              - { label: "Image", name: "image", widget: "image" }
 
   # Site configuration
   - name: "config"
     label: "Site Configuration"
     files:
-      - label: "Main Settings"
-        name: "hugo_config"
+      - label: "General Settings"
+        name: "config"
         file: "hugo.toml"
         fields:
           - { label: "Site Title", name: "title", widget: "string" }
           - { label: "Base URL", name: "baseURL", widget: "string" }
           - { label: "Theme", name: "theme", widget: "hidden", default: "andromeda-hugo" }
           - { label: "Default Language", name: "defaultContentLanguage", widget: "select", options: ["ro", "en"] }
-EOF
-
