@@ -1,0 +1,13 @@
+
+################################### RO language #####################################
+[ro]
+languageName = "Ro"
+languageCode = "ro"
+contentDir = "content/romanian"
+weight = 0
+################################### EN language #####################################
+[en]
+languageName = "En"
+languageCode = "en-us"
+contentDir = "content/english"
+weight = 2
