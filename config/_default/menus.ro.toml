@@ -3,22 +3,22 @@
 # main menu
 [[main]]
 name = "Acasa"
-url = ""
+url = "alexandrabarbu.ro/"
 weight = 1
 
 [[main]]
 name = "Despre"
-url = "despre/"
+url = "alexandrabarbu.ro/despre/"
 weight = 4
 
 [[main]]
 name = "Terapii"
-url = "terapii/"
+url = "alexandrabarbu.ro/terapii/"
 weight = 5
 
 [[main]]
 name = "Blog"
-url = "blog/"
+url = "alexandrabarbu.ro/blog/"
 weight = 7
 
 [[main]]
@@ -29,92 +29,92 @@ hasChildren = true
   [[main]]
   parent = "Pages"
   name = "Career"
-  url = "career/"
+  url = "alexandrabarbu.ro/career/"
   weight = 1
 
   [[main]]
   parent = "Pages"
   name = "Pricing"
-  url = "pricing/"
+  url = "alexandrabarbu.ro/pricing/"
   weight = 2
 
   [[main]]
   parent = "Pages"
   name = "Blog Details"
-  url = "blog/post-1/"
+  url = "alexandrabarbu.ro/blog/post-1/"
   weight = 3
 
   [[main]]
   parent = "Pages"
   name = "Alexandra Barbu"
-  url = "autor/Alesxandra-Barbu/"
+  url = "alexandrabarbu.ro/autor/Alexandra-Barbu/"
   weight = 4
 
   [[main]]
   parent = "Pages"
   name = "Job Details"
-  url = "career/job-post-1/"
+  url = "alexandrabarbu.ro/career/job-post-1/"
   weight = 5
 
   [[main]]
   parent = "Pages"
   name = "Case Studies"
-  url = "case-studies/"
+  url = "alexandrabarbu.ro/case-studies/"
   weight = 6
 
   [[main]]
   parent = "Pages"
   name = "Case Studies Details"
-  url = "case-studies/case-1/"
+  url = "alexandrabarbu.ro/case-studies/case-1/"
   weight = 7
 
   [[main]]
   parent = "Pages"
   name = "Terms & Conditions"
-  url = "terms-and-conditions/"
+  url = "alexandrabarbu.ro/terms-and-conditions/"
   weight = 8
 
   [[main]]
   parent = "Pages"
   name = "Changelog"
-  url = "changelog/"
+  url = "alexandrabarbu.ro/changelog/"
   weight = 9
 
   [[main]]
   parent = "Pages"
   name = "Sign In"
-  url = "signin/"
+  url = "alexandrabarbu.ro/signin/"
   weight = 10
 
   [[main]]
   parent = "Pages"
   name = "Elements"
-  url = "elements/"
+  url = "alexandrabarbu.ro/alexandrabarbu.ro/elements/"
   weight = 11
 
 [[main]]
 name = "Contact"
-url = "contact/"
+url = "alexandrabarbu.ro/alexandrabarbu.ro/contact/"
 weight = 15
 
 
 # footer menu
 [[footer]]
 name = "About"
-url = "about/"
+url = "alexandrabarbu.ro/about/"
 weight = 1
 
 [[footer]]
 name = "How It Works"
-url = "how-it-works/"
+url = "alexandrabarbu.ro/how-it-works/"
 weight = 2
 
 [[footer]]
 name = "Terms & Conditions"
-url = "terms-and-conditions/"
+url = "alexandrabarbu.ro/terms-and-conditions/"
 weight = 3
 
 [[footer]]
 name = "Changelog"
-url = "changelog/"
+url = "alexandrabarbu.ro/changelog/"
 weight = 4
