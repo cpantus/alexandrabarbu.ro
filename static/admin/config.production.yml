@@ -4,7 +4,7 @@ backend:
   repo: cpantus/alexandrabarbu.ro
   branch: main
 
-# Media management  
+# Media management
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
 
@@ -14,7 +14,7 @@ display_url: "https://cpantus.github.io/alexandrabarbu.ro"
 logo_url: "/images/logo.png"
 
 # Publishing workflow
-publish_mode: editorial_workflow
+#publish_mode: editorial_workflow
 search: false
 
 # Collections (matching your working local configuration)
