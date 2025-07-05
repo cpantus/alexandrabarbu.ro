@@ -50,9 +50,12 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
+          cache-dependency-path: 'themes/andromeda-hugo/package-lock.json'
 
       - name: Install Node.js dependencies
-        run: npm ci
+        run: |
+          cd themes/andromeda-hugo
+          npm ci
 
       - name: Download Go modules
         run: |
@@ -66,12 +69,13 @@ jobs:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
         run: |
+          cd themes/andromeda-hugo
           hugo --gc --minify --baseURL "https://alexandrabarbu.ro"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./themes/andromeda-hugo/public
 
   deploy:
     environment:
