@@ -108,15 +108,20 @@ rel = "manifest"
 ######################### site variables ##############################
 # customize your color and font from here.
 [params.variables]
-color_primary = "#FE6019"
-border_color = "#e4e4e4"
+color_primary = "#059669"        # Deep emerald (growth, healing)
+color_secondary = "#7C3AED"      # Complementary violet (balance)
+body_color = "#FDFDFD"           # Pure clean white
+text_color = "#374151"           # Warm gray (approachable)
+text_dark = "#111827"            # Near black (clarity)
+text_light = "#9CA3AF"           # Medium gray (hierarchy)
+border_color = "#D1D5DB"         # Neutral borders
 white = "#ffffff"
 black = "#000000"
-light = "#FAFAFA"
+light = "#F9FAFB"                # Subtle background
 
 # font variables
 # base font size for full website,
-font_size = "16px" # default is 16px
+font_size = "17px" # Increased for better accessibility
 
 # Font Scale Sizes
 # "minorSecond": 1.067,
@@ -127,15 +132,15 @@ font_size = "16px" # default is 16px
 # "augmentedFourth": 1.414,
 # "perfectFifth": 1.5,
 # "goldenRatio": 1.618
-font_scale = "1.2" # default is "minorThird": 1.2
+font_scale = "1.2" # minorThird - gentle hierarchy for readability
 
 
 # go to https://fonts.google.com/ to find the font you want to use. select your font and copy only the bold part from the URL. and paste it here.
-# example: "Work+Sans:wght@400;500;600"
-font_primary = "Poppins:wght@400;500;600"
+# Modern healing typography combination
+font_primary = "Plus+Jakarta+Sans:wght@300;400;500;600;700"
 font_primary_type = "sans-serif" # [serif/sans-serif]
-font_secondary = ""
-font_secondary_type = "" # [serif/sans-serif]
+font_secondary = "Lora:ital,wght@0,400;0,500;1,400"
+font_secondary_type = "serif" # [serif/sans-serif]
 font_icon = "Line Awesome Free"
 
 
