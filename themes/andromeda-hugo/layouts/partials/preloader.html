@@ -1,151 +1,71 @@
 {{/*
 =============================================================================
-  Beautiful "Blooming Growth + Healing Waves" Therapeutic Loading Animation
-  Created for Alexandra Barbu Therapy Website
-  Colors: Emerald Green (#059669) + Violet (#7C3AED)
+  Minimal, Fast Therapeutic Loading Circle
+  Non-obtrusive, performance-focused approach
+  Only shows during actual loading (AJAX, forms, etc.)
 =============================================================================
 */}}
 
-<div class="preloader" id="preloader">
-  <!-- Healing Loader Container -->
-  <div class="healing-loader">
-    
-    <!-- Healing Waves (expanding violet circles) -->
-    <div class="healing-waves"></div>
-    
-    <!-- Floating Particles -->
-    <div class="healing-particles"></div>
-    
-    <!-- Blooming Flower (emerald petals) -->
-    <div class="blooming-flower">
-      <div class="flower-petal"></div>
-      <div class="flower-petal"></div>
-      <div class="flower-petal"></div>
-      <div class="flower-petal"></div>
-      <div class="flower-petal"></div>
-      <div class="flower-petal"></div>
-      <div class="flower-petal"></div>
-      <div class="flower-petal"></div>
-      
-      <!-- Flower Center (violet pulse) -->
-      <div class="flower-center"></div>
-    </div>
-    
-  </div>
-  
-  <!-- Therapeutic Loading Text -->
-  <div class="healing-text" id="healingText">
-    <span class="text-phase" data-text="Growing...">Growing...</span>
-  </div>
-  
+<!-- Small therapeutic circle (hidden by default, shows only when loading) -->
+<div class="healing-circle" id="healingCircle">
+  <div class="healing-circle-inner"></div>
 </div>
 
-{{/* Enhanced JavaScript for text cycling and smooth interactions */}}
+{{/* Lightweight JavaScript for loading states */}}
 <script>
 (function() {
   'use strict';
   
-  // Therapeutic loading text phases
-  const textPhases = [
-    'Growing...',
-    'Healing...',
-    'Transforming...',
-    'Blooming...',
-    'Nurturing...',
-    'Evolving...'
-  ];
+  const healingCircle = document.getElementById('healingCircle');
+  let loadingTimeout;
   
-  let currentPhase = 0;
-  let textCycleInterval;
-  
-  // Initialize the beautiful therapeutic loader
-  function initHealingLoader() {
-    const healingText = document.getElementById('healingText');
-    const textSpan = healingText?.querySelector('.text-phase');
-    
-    if (!textSpan) return;
-    
-    // Cycle through therapeutic messages
-    textCycleInterval = setInterval(() => {
-      currentPhase = (currentPhase + 1) % textPhases.length;
-      
-      // Smooth text transition
-      textSpan.style.opacity = '0';
-      
-      setTimeout(() => {
-        textSpan.textContent = textPhases[currentPhase];
-        textSpan.setAttribute('data-text', textPhases[currentPhase]);
-        textSpan.style.opacity = '1';
-      }, 300);
-      
-    }, 2000); // Change text every 2 seconds
-  }
-  
-  // Enhanced preloader hiding with beautiful fade-out
-  function hideHealingLoader() {
-    const preloader = document.getElementById('preloader');
-    if (!preloader) return;
-    
-    // Clear text cycling
-    if (textCycleInterval) {
-      clearInterval(textCycleInterval);
+  // Show loading circle for specific events
+  function showLoading() {
+    if (healingCircle) {
+      healingCircle.classList.add('loading');
     }
-    
-    // Beautiful fade out transition
-    preloader.style.opacity = '0';
-    preloader.style.transform = 'scale(1.1)';
-    
-    setTimeout(() => {
-      preloader.classList.add('preloader-hide');
-      preloader.style.visibility = 'hidden';
-      preloader.style.pointerEvents = 'none';
-    }, 800);
   }
   
-  // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initHealingLoader);
-  } else {
-    initHealingLoader();
+  // Hide loading circle
+  function hideLoading() {
+    if (healingCircle) {
+      healingCircle.classList.remove('loading');
+    }
   }
   
-  // Hide loader when page is fully loaded
-  window.addEventListener('load', () => {
-    // Minimum display time for aesthetic appreciation
-    setTimeout(hideHealingLoader, 1500);
+  // Auto-hide after reasonable time
+  function autoHideLoading() {
+    clearTimeout(loadingTimeout);
+    loadingTimeout = setTimeout(hideLoading, 3000); // Max 3 seconds
+  }
+  
+  // Show loading for form submissions
+  document.addEventListener('submit', function(e) {
+    showLoading();
+    autoHideLoading();
   });
   
-  // Fallback: Hide after maximum time
-  setTimeout(hideHealingLoader, 8000);
+  // Show loading for AJAX requests (if jQuery available)
+  if (window.jQuery) {
+    $(document).ajaxStart(showLoading);
+    $(document).ajaxStop(hideLoading);
+  }
+  
+  // Show loading for fetch requests
+  const originalFetch = window.fetch;
+  window.fetch = function(...args) {
+    showLoading();
+    return originalFetch.apply(this, args)
+      .finally(() => {
+        setTimeout(hideLoading, 300); // Small delay for visual feedback
+      });
+  };
+  
+  // Manual control for developers
+  window.therapeuticLoading = {
+    show: showLoading,
+    hide: hideLoading
+  };
   
 })();
 </script>
-
-{{/* Inline CSS for immediate styling (prevents flash) */}}
-<style>
-  .preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    z-index: 99999;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .healing-text .text-phase {
-    transition: opacity 0.3s ease-in-out;
-  }
-  
-  /* Ensure smooth transitions */
-  .preloader-hide {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-  }
-</style>
