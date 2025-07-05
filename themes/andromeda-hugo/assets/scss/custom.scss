@@ -291,7 +291,160 @@ $color-secondary: #7C3AED;
   color: #059669 !important;
 }
 
-// CSS custom properties override
+/*------------------------------------------------------------------
+  # SVG Elements & Graphics Override
+-------------------------------------------------------------------*/
+
+// Override SVG fill and stroke colors
+svg [fill*="#FE6019"],
+svg [fill*="#fe6019"],
+svg [fill*="rgb(254, 96, 25)"],
+svg [fill*="254 96 25"] {
+  fill: #059669 !important; // Our emerald green
+}
+
+svg [stroke*="#FE6019"],
+svg [stroke*="#fe6019"], 
+svg [stroke*="rgb(254, 96, 25)"],
+svg [stroke*="254 96 25"] {
+  stroke: #059669 !important; // Our emerald green
+}
+
+// Generic SVG color overrides
+svg circle[stroke*="#FE6019"],
+svg circle[stroke*="#fe6019"],
+svg circle[fill*="#FE6019"],
+svg circle[fill*="#fe6019"] {
+  stroke: #059669 !important;
+  fill: #059669 !important;
+}
+
+// Progress circle specific overrides
+.progress-circle,
+circle.progress,
+[class*="progress"] circle,
+[class*="loader"] circle,
+.loading circle {
+  stroke: #059669 !important;
+  fill: none !important;
+  stroke-width: 3 !important;
+}
+
+// Any animated circles (likely the culprit)
+circle[class*="animate"],
+circle[class*="spin"],
+.animate circle,
+.spin circle {
+  stroke: #059669 !important;
+  stroke-dasharray: 126 !important;
+  transform-origin: center !important;
+}
+
+// Canvas elements (if any progress bars are drawn with canvas)
+canvas {
+  filter: hue-rotate(140deg) !important; // Convert orange to green
+}
+
+/*------------------------------------------------------------------
+  # Image and Logo Color Filters
+-------------------------------------------------------------------*/
+
+// Apply color filter to any images that might contain orange elements
+img[src*="logo"],
+img[src*="progress"],
+img[src*="loader"],
+.preloader img,
+.loading img {
+  filter: hue-rotate(140deg) saturate(1.2) !important;
+}
+
+/*------------------------------------------------------------------
+  # JavaScript Generated Elements
+-------------------------------------------------------------------*/
+
+// Override any dynamically created progress elements
+[style*="background: #FE6019"],
+[style*="background: #fe6019"],
+[style*="background-color: #FE6019"],
+[style*="background-color: #fe6019"],
+[style*="border-color: #FE6019"],
+[style*="border-color: #fe6019"] {
+  background: #059669 !important;
+  background-color: #059669 !important;
+  border-color: #059669 !important;
+}
+
+// Override CSS custom properties that might be set via JavaScript
+* {
+  --orange-color: #059669 !important;
+  --primary-orange: #059669 !important;
+  --brand-color: #059669 !important;
+  --theme-color: #059669 !important;
+}
+
+/*------------------------------------------------------------------
+  # Animation & Keyframe Overrides
+-------------------------------------------------------------------*/
+
+// Override any animation colors
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1;
+    background-color: #059669 !important;
+  }
+  50% { 
+    opacity: 0.5;
+    background-color: #059669 !important;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Plugin-Specific Overrides
+-------------------------------------------------------------------*/
+
+// Line Awesome icon colors
+.la-spin {
+  color: #059669 !important;
+}
+
+// AOS (Animate On Scroll) elements
+[data-aos] {
+  background-color: inherit !important;
+}
+
+// Swiper progress bars
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+  background: #059669 !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #059669 !important;
+}
+
+/*------------------------------------------------------------------
+  # Final Catch-All with Higher Specificity
+-------------------------------------------------------------------*/
+
+// Ultra high specificity override for stubborn elements
+html body div[style*="#FE6019"] {
+  background-color: #059669 !important;
+  border-color: #059669 !important;
+  color: #059669 !important;
+}
+
+html body div[style*="#fe6019"] {
+  background-color: #059669 !important;
+  border-color: #059669 !important;
+  color: #059669 !important;
+}
+
+// Override CSS custom properties (root level)
 :root {
   --bs-primary: #059669 !important;
   --bs-secondary: #7C3AED !important;
