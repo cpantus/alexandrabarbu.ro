@@ -25,28 +25,25 @@ brands_carousel:
 # features
 features:
   enable: true
-  subtitle: "Special Features"
-  title: "Elements to <br> get you started"
-  description: "Lorem ipsum dolor sit amet, consecteturre adipiscing elit. Morbi egestas <br> Werat viverra id et aliquet. vulputate egestas sollicitudin."
+  subtitle: "Therapy Types / Self Assessment Tests"
+  title: "Getting Started <br> on the Right Path"
+  description: "Professional therapy services and interactive assessments for your mental health journey."
   features_blocks:
     - icon: "las la-lock"
-      title: "Updated Security"
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque enim id diam ornare volutpat in sagitis, aliquet. Arcu cursus"
+      title: "ADHD Assessment"
+      content: "Take our comprehensive interactive ADHD self-assessment to better understand your attention patterns and cognitive function."
+      button: "Start Test"
+      button_link: "/games/adhd-assessment.html"
     - icon: "las la-magnet"
-      title: "Magnetic Turning"
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque enim id diam ornare volutpat in sagitis, aliquet. Arcu cursus"
+      title: "Therapy Services"
+      content: "Evidence-based therapy approaches including CBT, family therapy, and innovative psychedelic-assisted treatments."
+      button: "View Services"
+      button_link: "/en/services/"
     - icon: "las la-tachometer-alt"
-      title: "Secured &amp; upto date"
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque enim id diam ornare volutpat in sagitis, aliquet. Arcu cursus"
-    - icon: "las la-link"
-      title: "Instant Link Shareing"
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque enim id diam ornare volutpat in sagitis, aliquet. Arcu cursus"
-    - icon: "las la-lock"
-      title: "Updated Security"
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque enim id diam ornare volutpat in sagitis, aliquet. Arcu cursus"
-    - icon: "las la-magnet"
-      title: "Magnetic Turning"
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque enim id diam ornare volutpat in sagitis, aliquet. Arcu cursus"
+      title: "Professional Testing"
+      content: "Comprehensive psychological assessments and evaluations conducted by licensed mental health professionals."
+      button: "Explore Tests"
+      button_link: "/en/tests/"
 
 # intro_video
 intro_video:

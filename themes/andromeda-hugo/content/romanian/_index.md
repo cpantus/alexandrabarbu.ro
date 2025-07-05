@@ -32,12 +32,18 @@ features:
     - icon: "las la-lock"
       title: "Test ADHD"
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque enim id diam ornare volutpat in sagitis, aliquet. Arcu cursus"
+      button: "Începe Testul"
+      button_link: "/games/adhd-assessment-ro.html"
     - icon: "las la-magnet"
       title: "Test de pitici pe creier"
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque enim id diam ornare volutpat in sagitis, aliquet. Arcu cursus"
+      button: "Vezi Teste"
+      button_link: "/test/"
     - icon: "las la-tachometer-alt"
       title: "Sécurisé et à jour"
       content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque enim id diam ornare volutpat in sagitis, aliquet. Arcu cursus"
+      button: "Explorează"
+      button_link: "/test/"
 
 # intro_video
 intro_video:

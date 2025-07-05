@@ -134,6 +134,13 @@
                           </div>
                           <h3 class="title">{{ .title | markdownify }}</h3>
                           <p class="mb-0">{{ .content | markdownify }}</p>
+                          {{ if .button }}
+                            <div class="mt-3">
+                              <a href="{{ .button_link | relURL }}" class="btn btn-primary btn-sm">
+                                {{ .button }}
+                              </a>
+                            </div>
+                          {{ end }}
                         </div>
                       </div>
                     {{ end }}
