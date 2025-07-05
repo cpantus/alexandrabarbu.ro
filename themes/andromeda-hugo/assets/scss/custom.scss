@@ -5,10 +5,8 @@
 ========================================================================
 */
 
-// Import secondary color variable from Hugo configuration
-{{ with site.Params.variables }}
-$color-secondary: {{.color_secondary | default "#7C3AED"}};
-{{ end }}
+// Secondary color variable (matches hugo.toml configuration)
+$color-secondary: #7C3AED;
 
 /*------------------------------------------------------------------
   # Secondary Buttons & Button Variants
