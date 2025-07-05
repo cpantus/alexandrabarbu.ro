@@ -226,3 +226,75 @@ $color-secondary: #7C3AED;
     border-color: $color-secondary;
   }
 }
+
+/*------------------------------------------------------------------
+  # Progress Bars & Loading Elements Override
+-------------------------------------------------------------------*/
+
+// Override any progress bars to use our emerald green
+.progress-bar,
+.progress .progress-bar,
+.progress-bar-striped,
+.progress-bar-animated {
+  background-color: #059669 !important; // Our emerald green
+}
+
+// Preloader and loading elements
+.preloader,
+.loader,
+.loading,
+.spinner {
+  .progress-bar,
+  .progress,
+  [class*="progress"] {
+    background-color: #059669 !important;
+    border-color: #059669 !important;
+  }
+}
+
+// Override hardcoded orange in team images and similar elements
+.team-image::before,
+.team-member::before,
+[class*="team"]::before {
+  background: #059669 !important; // Replace hardcoded orange with emerald
+  opacity: 0.15;
+}
+
+// Generic loaders and spinners
+.la-spin,
+.spinner-border,
+.spinner-grow,
+[class*="spin"],
+[class*="loader"] {
+  color: #059669 !important;
+  border-color: #059669 !important;
+  background-color: #059669 !important;
+}
+
+// Bootstrap progress components
+.progress {
+  .progress-bar {
+    background-color: #059669 !important;
+  }
+  
+  .progress-bar-secondary {
+    background-color: #7C3AED !important;
+  }
+}
+
+// Any remaining orange elements - catch-all
+[style*="#FE6019"],
+[style*="#fe6019"],
+[style*="rgb(254, 96, 25)"] {
+  background-color: #059669 !important;
+  border-color: #059669 !important;
+  color: #059669 !important;
+}
+
+// CSS custom properties override
+:root {
+  --bs-primary: #059669 !important;
+  --bs-secondary: #7C3AED !important;
+  --primary-color: #059669 !important;
+  --secondary-color: #7C3AED !important;
+}
