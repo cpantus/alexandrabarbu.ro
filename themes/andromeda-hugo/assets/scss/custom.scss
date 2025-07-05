@@ -1,0 +1,230 @@
+/*
+========================================================================
+  Custom SCSS - Modern Healing Design System
+  Adding strategic secondary color usage for therapy website
+========================================================================
+*/
+
+// Import secondary color variable from Hugo configuration
+{{ with site.Params.variables }}
+$color-secondary: {{.color_secondary | default "#7C3AED"}};
+{{ end }}
+
+/*------------------------------------------------------------------
+  # Secondary Buttons & Button Variants
+-------------------------------------------------------------------*/
+
+// Secondary button style for less important actions
+.btn-secondary {
+  background-color: $color-secondary !important;
+  border: 0;
+  color: $white !important;
+  
+  &:hover, &:active, &:focus {
+    background-color: darken($color-secondary, 8%) !important;
+    color: $white !important;
+    transform: translateY(-1px);
+  }
+}
+
+// Outline secondary button for subtle actions
+.btn-outline-secondary {
+  color: $color-secondary;
+  border: 1px solid $color-secondary;
+  background-color: transparent !important;
+  
+  &::after {
+    background-color: $color-secondary !important;
+  }
+  
+  &:hover, &:active, &:focus {
+    color: $white !important;
+    border-color: transparent !important;
+    background-color: $color-secondary !important;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Feature Cards & Interactive Elements
+-------------------------------------------------------------------*/
+
+// Alternating feature card accents for visual variety
+.features .card {
+  transition: all 0.3s ease;
+  
+  &:nth-child(even) {
+    border-top: 3px solid $color-secondary;
+    
+    &:hover {
+      border-top-width: 4px;
+      transform: translateY(-2px);
+    }
+  }
+  
+  // Feature card icons with secondary color
+  .icon {
+    color: $color-secondary;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Typography & Text Accents
+-------------------------------------------------------------------*/
+
+// Secondary color text utility
+.text-secondary {
+  color: $color-secondary !important;
+}
+
+// Highlighted text within content
+.highlight-secondary {
+  color: $color-secondary;
+  font-weight: 600;
+}
+
+// Section subtitles with secondary color
+.section-subtitle {
+  color: $color-secondary;
+  font-weight: 500;
+}
+
+/*------------------------------------------------------------------
+  # Navigation & Links
+-------------------------------------------------------------------*/
+
+// Navigation active states
+.navbar-nav .nav-link {
+  &:hover, &:focus {
+    color: $color-secondary !important;
+  }
+  
+  &.active {
+    color: $color-secondary !important;
+    font-weight: 500;
+  }
+}
+
+// Content links with secondary color
+.content a {
+  color: $color-secondary;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    color: darken($color-secondary, 10%);
+    text-decoration: underline;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Form Elements & Interactive States
+-------------------------------------------------------------------*/
+
+// Form focus states with secondary color
+.form-control {
+  &:focus {
+    border-color: $color-secondary;
+    box-shadow: 0 0 0 0.2rem rgba($color-secondary, 0.25);
+  }
+}
+
+// Checkbox and radio focus states
+.form-check-input {
+  &:checked {
+    background-color: $color-secondary;
+    border-color: $color-secondary;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba($color-secondary, 0.25);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Background & Border Utilities
+-------------------------------------------------------------------*/
+
+// Secondary background utility
+.bg-secondary {
+  background-color: $color-secondary !important;
+}
+
+// Secondary border utility  
+.border-secondary {
+  border-color: $color-secondary !important;
+}
+
+// Gradient backgrounds for hero sections
+.bg-gradient-secondary {
+  background: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
+}
+
+/*------------------------------------------------------------------
+  # Therapy-Specific Enhancements
+-------------------------------------------------------------------*/
+
+// Assessment test cards with secondary accents
+.test-card {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: $color-secondary;
+    box-shadow: 0 4px 15px rgba($color-secondary, 0.15);
+  }
+  
+  .test-icon {
+    color: $color-secondary;
+  }
+}
+
+// Therapy service highlights
+.service-highlight {
+  border-left: 4px solid $color-secondary;
+  padding-left: 1rem;
+  
+  .service-title {
+    color: $color-secondary;
+  }
+}
+
+// Progress indicators and status elements
+.progress-bar {
+  background-color: $color-secondary;
+}
+
+.badge-secondary {
+  background-color: $color-secondary;
+  color: $white;
+}
+
+/*------------------------------------------------------------------
+  # Hover Effects & Micro-interactions
+-------------------------------------------------------------------*/
+
+// Card hover effects with secondary color hints
+.card {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    .card-title {
+      color: $color-secondary;
+    }
+  }
+}
+
+// Icon hover effects
+.icon-hover {
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: $color-secondary !important;
+  }
+}
+
+// Button group with mixed primary/secondary
+.btn-group-mixed {
+  .btn:nth-child(even) {
+    background-color: $color-secondary;
+    border-color: $color-secondary;
+  }
+}
