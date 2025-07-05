@@ -428,26 +428,353 @@ img[src*="loader"],
 }
 
 /*------------------------------------------------------------------
-  # Final Catch-All with Higher Specificity
+  # Beautiful "Blooming Growth + Healing Waves" Loading Animation
 -------------------------------------------------------------------*/
 
-// Ultra high specificity override for stubborn elements
-html body div[style*="#FE6019"] {
-  background-color: #059669 !important;
-  border-color: #059669 !important;
-  color: #059669 !important;
+// Replace the existing preloader with our beautiful therapeutic animation
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+  transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+  
+  // Hide the old spinning image
+  img {
+    display: none !important;
+  }
 }
 
-html body div[style*="#fe6019"] {
-  background-color: #059669 !important;
-  border-color: #059669 !important;
-  color: #059669 !important;
+// Preloader container for our animation
+.healing-loader {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-// Override CSS custom properties (root level)
-:root {
-  --bs-primary: #059669 !important;
-  --bs-secondary: #7C3AED !important;
-  --primary-color: #059669 !important;
-  --secondary-color: #7C3AED !important;
+// Healing waves that expand outward (violet)
+.healing-waves {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid rgba(124, 60, 237, 0.3); // Violet with transparency
+    border-radius: 50%;
+    animation: healingWaves 4s ease-in-out infinite;
+  }
+  
+  &::before {
+    animation-delay: 0s;
+  }
+  
+  &::after {
+    animation-delay: 2s;
+  }
+}
+
+// Blooming flower in the center (emerald)
+.blooming-flower {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  animation: breathe 4s ease-in-out infinite;
+}
+
+// Individual flower petals
+.flower-petal {
+  position: absolute;
+  width: 20px;
+  height: 40px;
+  background: linear-gradient(45deg, #059669, #10B981);
+  border-radius: 50% 10px 50% 10px;
+  transform-origin: 50% 80%;
+  
+  &:nth-child(1) { 
+    transform: rotate(0deg) translateY(-15px);
+    animation: petalBloom 3s ease-in-out infinite, petalRotate 12s linear infinite;
+  }
+  &:nth-child(2) { 
+    transform: rotate(45deg) translateY(-15px);
+    animation: petalBloom 3s ease-in-out infinite 0.2s, petalRotate 12s linear infinite;
+  }
+  &:nth-child(3) { 
+    transform: rotate(90deg) translateY(-15px);
+    animation: petalBloom 3s ease-in-out infinite 0.4s, petalRotate 12s linear infinite;
+  }
+  &:nth-child(4) { 
+    transform: rotate(135deg) translateY(-15px);
+    animation: petalBloom 3s ease-in-out infinite 0.6s, petalRotate 12s linear infinite;
+  }
+  &:nth-child(5) { 
+    transform: rotate(180deg) translateY(-15px);
+    animation: petalBloom 3s ease-in-out infinite 0.8s, petalRotate 12s linear infinite;
+  }
+  &:nth-child(6) { 
+    transform: rotate(225deg) translateY(-15px);
+    animation: petalBloom 3s ease-in-out infinite 1s, petalRotate 12s linear infinite;
+  }
+  &:nth-child(7) { 
+    transform: rotate(270deg) translateY(-15px);
+    animation: petalBloom 3s ease-in-out infinite 1.2s, petalRotate 12s linear infinite;
+  }
+  &:nth-child(8) { 
+    transform: rotate(315deg) translateY(-15px);
+    animation: petalBloom 3s ease-in-out infinite 1.4s, petalRotate 12s linear infinite;
+  }
+}
+
+// Flower center (violet accent)
+.flower-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle, #7C3AED, #8B5CF6);
+  border-radius: 50%;
+  animation: centerPulse 2s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(124, 60, 237, 0.4);
+}
+
+// Therapeutic loading text
+.healing-text {
+  margin-top: 40px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #374151;
+  animation: textCycle 12s ease-in-out infinite;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+// Subtle particles floating around
+.healing-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(16, 185, 129, 0.6);
+    border-radius: 50%;
+    animation: floatParticles 8s ease-in-out infinite;
+  }
+  
+  &::before {
+    top: 20%;
+    left: 20%;
+    animation-delay: 1s;
+  }
+  
+  &::after {
+    top: 80%;
+    left: 80%;
+    animation-delay: 3s;
+    background: rgba(124, 60, 237, 0.6);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Animation Keyframes - Therapeutic Timing
+-------------------------------------------------------------------*/
+
+@keyframes healingWaves {
+  0% {
+    width: 40px;
+    height: 40px;
+    opacity: 1;
+    border-width: 3px;
+  }
+  50% {
+    width: 120px;
+    height: 120px;
+    opacity: 0.7;
+    border-width: 2px;
+  }
+  100% {
+    width: 160px;
+    height: 160px;
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+@keyframes petalBloom {
+  0%, 100% {
+    transform: scale(0.8) translateY(-15px);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1) translateY(-18px);
+    opacity: 1;
+  }
+}
+
+@keyframes petalRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes centerPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 20px rgba(124, 60, 237, 0.4);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    box-shadow: 0 0 30px rgba(124, 60, 237, 0.6);
+  }
+}
+
+@keyframes textCycle {
+  0%, 33.33% {
+    opacity: 1;
+  }
+  35%, 65% {
+    opacity: 0;
+  }
+  66.66%, 100% {
+    opacity: 1;
+  }
+}
+
+@keyframes floatParticles {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.4;
+  }
+  33% {
+    transform: translateY(-20px) rotate(120deg);
+    opacity: 1;
+  }
+  66% {
+    transform: translateY(-10px) rotate(240deg);
+    opacity: 0.7;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Responsive Design for Loading Animation
+-------------------------------------------------------------------*/
+
+@media (max-width: 768px) {
+  .healing-loader {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .healing-text {
+    font-size: 16px;
+    margin-top: 30px;
+  }
+  
+  .flower-petal {
+    width: 16px;
+    height: 32px;
+  }
+  
+  .flower-center {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .healing-loader {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .healing-text {
+    font-size: 14px;
+    margin-top: 25px;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Integration with Existing Preloader System
+-------------------------------------------------------------------*/
+
+// Override any existing preloader content
+.preloader {
+  // Remove old content, add our beautiful animation
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+// Inject our HTML structure via CSS content (fallback)
+.preloader:empty::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(5, 150, 105, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(124, 60, 237, 0.3) 0%, transparent 50%);
+  border-radius: 50%;
+  animation: simpleHealing 3s ease-in-out infinite;
+}
+
+@keyframes simpleHealing {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+// Ultra high specificity override for CSS custom properties that might be set via JavaScript
+* {
+  --orange-color: #059669 !important;
+  --primary-orange: #059669 !important;
+  --brand-color: #059669 !important;
+  --theme-color: #059669 !important;
 }

@@ -40,8 +40,8 @@ features:
       button: "Vezi Teste"
       button_link: "/test/"
     - icon: "las la-tachometer-alt"
-      title: "Sécurisé et à jour"
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque enim id diam ornare volutpat in sagitis, aliquet. Arcu cursus"
+      title: "Dezvoltare Personala"
+      content: "Sa fie bine sa nu fie raut :) "
       button: "Explorează"
       button_link: "/test/"
 
