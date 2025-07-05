@@ -1,0 +1,107 @@
+# Production configuration for GitHub OAuth
+backend:
+  name: github
+  repo: cpantus/alexandrabarbu.ro
+  branch: main
+
+# Media management
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+# Site settings
+site_url: "https://alexandrabarbu.ro"
+display_url: "https://alexandrabarbu.ro"
+logo_url: "/images/logo.png"
+
+# Publishing workflow
+publish_mode: editorial_workflow
+search: false
+
+# Collections (only managing files that actually exist)
+collections:
+  # Blog posts (EXISTS ✅)
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "content/english/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Author", name: "author", widget: "string", required: false }
+      - { label: "Summary/Description", name: "description", widget: "text", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Categories", name: "categories", widget: "list", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # About page (EXISTS ✅)
+  - name: "about"
+    label: "About Page"
+    file: "content/english/about.md"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Page Description", name: "description", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # Services (EXISTS ✅)
+  - name: "services"
+    label: "Services"
+    folder: "content/english/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Icon", name: "icon", widget: "string", hint: "FontAwesome icon class" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # Contact page (EXISTS ✅)
+  - name: "contact"
+    label: "Contact Page"
+    file: "content/english/contact.md"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Page Description", name: "description", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # Site configuration (EXISTS ✅)
+  - name: "config"
+    label: "Site Configuration"
+    files:
+      - label: "Main Settings"
+        name: "main_config"
+        file: "hugo.toml"
+        fields:
+          - { label: "Site Title", name: "title", widget: "string" }
+          - { label: "Base URL", name: "baseURL", widget: "string" }
+          - { label: "Theme", name: "theme", widget: "hidden", default: "andromeda-hugo" }
+          - { label: "Default Language", name: "defaultContentLanguage", widget: "select", options: ["ro", "en"] }
+          - { label: "Time Zone", name: "timeZone", widget: "string", hint: "Use IANA format like Europe/Bucharest" }
+
+      - label: "Site Parameters"
+        name: "params"
+        file: "config/_default/params.toml"
+        fields:
+          - { label: "Site Description", name: "description", widget: "text" }
+          - { label: "Author", name: "author", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Phone", name: "phone", widget: "string" }
+
+  # Social media data (EXISTS ✅)
+  - name: "social"
+    label: "Social Media"
+    file: "data/social.json"
+    fields:
+      - { label: "Social Links", name: "social", widget: "list", fields: [
+          { label: "Platform", name: "name", widget: "string" },
+          { label: "URL", name: "link", widget: "string" },
+          { label: "Icon", name: "icon", widget: "string" }
+        ]}

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenDone Self-Assessment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #e2f4f8;
+            --text-color: #1a202c;
+            --grid-color: rgba(0, 0, 0, 0.08);
+            --option-hover-bg: #d1e8ee;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 1.5rem;
+            overflow: hidden;
+        }
+
+        #background-effects {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; overflow: hidden;
+        }
+
+        #ethereal-wave {
+            position: absolute; top: 0; left: 0; right: 0; height: 40%;
+            background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.7), transparent 70%);
+            opacity: 0.8;
+        }
+
+        #grid-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image:
+                repeating-linear-gradient(var(--grid-color) 0 1px, transparent 1px 100%),
+                repeating-linear-gradient(90deg, var(--grid-color) 0 1px, transparent 1px 100%);
+            background-size: 5rem 5rem;
+            mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+            opacity: 0.5;
+        }
+
+        .game-container {
+            width: 100%; max-width: 900px; position: relative; z-index: 1;
+        }
+
+        .btn {
+            padding: 12px 28px; border: none; background-color: var(--text-color);
+            color: #ffffff; cursor: pointer; transition: all 0.2s ease;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-weight: 600; border-radius: 0.5rem; letter-spacing: 0.025em;
+        }
+        .btn:hover:not(:disabled) { background-color: #3f4a5c; }
+        .btn:active:not(:disabled) { transform: scale(0.97); }
+
+        /* --- Custom Dropdown Styling --- */
+        .custom-select-container { position: relative; }
+        .custom-select-button {
+            display: flex; justify-content: space-between; align-items: center;
+            font-weight: 600; background-color: transparent;
+            border: 2px solid rgba(0, 0, 0, 0.1); color: var(--text-color);
+            padding: 10px 14px; width: 100%; border-radius: 0.5rem;
+            transition: all 0.2s ease; cursor: pointer;
+        }
+        .custom-select-button.open, .custom-select-button:hover {
+            border-color: var(--text-color);
+        }
+        .custom-select-button svg {
+            transition: transform 0.3s ease;
+        }
+        .custom-select-button.open svg {
+            transform: rotate(180deg);
+        }
+        .custom-select-options {
+            position: absolute; left: 0; width: 100%;
+            background-color: white; border-radius: 0.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem; z-index: 10;
+            opacity: 0;
+            transform: scale(0.98) translateY(-10px);
+            pointer-events: none;
+            transition: all 0.2s ease-out;
+            max-height: 280px; /* Add max-height for very small screens */
+            overflow-y: auto;
+        }
+        /* --- FIX: New classes for positioning --- */
+        .custom-select-options.opens-down {
+            top: calc(100% + 8px);
+            transform-origin: top center;
+        }
+        .custom-select-options.opens-up {
+            bottom: calc(100% + 8px);
+            transform-origin: bottom center;
+        }
+        .custom-select-options.open {
+            opacity: 1; transform: scale(1) translateY(0); pointer-events: auto;
+        }
+        .custom-select-option {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.75rem; border-radius: 0.25rem;
+            cursor: pointer; transition: background-color 0.1s ease;
+            font-weight: 600;
+        }
+        .custom-select-option:hover {
+            background-color: var(--option-hover-bg);
+        }
+        .custom-select-option.selected {
+            color: var(--text-color); background-color: var(--option-hover-bg);
+        }
+
+        .progress-bar-container {
+            width: 100%; height: 4px; background-color: rgba(0, 0, 0, 0.07);
+            border-radius: 99px; margin-top: 1rem;
+        }
+        .progress-bar-fill {
+            height: 100%; background-color: var(--text-color);
+            border-radius: 99px; transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            width: 0%;
+        }
+
+        .content-screen { min-height: 500px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-15px); } }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        .animate-fade-out { animation: fadeOut 0.4s ease-in forwards; }
+
+    </style>
+</head>
+<body>
+    <div id="background-effects">
+        <div id="ethereal-wave"></div>
+        <div id="grid-overlay"></div>
+    </div>
+
+    <div class="game-container">
+        <!-- Header -->
+        <header class="pt-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L14.0625 9.9375L22 12L14.0625 14.0625L12 22L9.9375 14.0625L2 12L9.9375 9.9375L12 2Z" fill="#1a202c"/>
+                    </svg>
+                    <div class="font-bold text-2xl text-slate-800">ZenDone</div>
+                </div>
+                <div class="font-semibold text-lg text-slate-600">
+                    <span id="questionCounter">1 / 31</span>
+                </div>
+            </div>
+            <div class="progress-bar-container"><div id="progressBar" class="progress-bar-fill"></div></div>
+        </header>
+
+        <!-- Question Screen -->
+        <main id="challengeScreen" class="content-screen pt-20">
+            <div id="question-wrapper" class="animate-fade-in">
+                <h2 id="questionCategory" class="text-2xl font-bold mb-4 text-slate-700" style="font-size: 26px;">Category</h2>
+                <div class="font-semibold leading-snug mb-10 flex items-start gap-4 text-slate-800" style="font-size: 20px;">
+                    <span id="questionNumber" class="text-slate-400"></span>
+                    <p id="questionContent" style="max-width: 90%;"></p>
+                </div>
+            </div>
+
+            <div class="w-full md:w-7/10 lg:w-1/2">
+                <p class="mb-2 text-sm font-semibold text-slate-500">Your rating (1=Never, 10=Very Frequently)</p>
+                <!-- Custom Select HTML Structure -->
+                <div class="custom-select-container mb-6">
+                    <div id="custom-select-button" class="custom-select-button">
+                        <span id="selected-value-text">1</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.5 8.25L12 15.75L4.5 8.25" stroke="#1a202c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div id="custom-select-options" class="custom-select-options">
+                        <!-- Options will be populated by JS -->
+                    </div>
+                </div>
+                <button id="nextBtn" class="btn">NEXT</button>
+            </div>
+        </main>
+
+        <!-- End Screen -->
+        <div id="endScreen" class="hidden content-screen flex flex-col justify-center items-center text-center">
+            <div class="animate-fade-in">
+                <h2 class="text-6xl font-bold mb-4">Complete</h2>
+                <p id="finalResultText" class="text-xl text-slate-600 mb-12 leading-relaxed max-w-lg">Calculating results...</p>
+                <button id="restartBtn" class="btn">TAKE AGAIN</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const flatQuestions = Object.entries({ /* Data from previous version */
+            "Attention & Concentration": [ "Do you frequently find your mind wandering during conversations, meetings, or while reading, even when you're trying to pay attention?", "When watching movies or TV shows, do you often realize you've missed important plot points because your attention drifted, requiring you to rewind or ask others what happened?", "During work tasks that require sustained focus, how often do you find yourself mentally 'checking out' and having to re-read emails, documents, or instructions multiple times?", "Do you struggle to maintain attention during lengthy tasks even when they're important or interesting to you?", "How often do you start listening to someone speak but find that by the end of their sentence, you haven't retained what they said?", ],
+            "Organization & Task Management": [ "Do you frequently start multiple projects or tasks but struggle to complete them, leaving you with a collection of half-finished endeavors?", "How often do you avoid or procrastinate on tasks that require sustained mental effort, such as completing paperwork, preparing reports, or organizing finances?", "Do you find it challenging to break down large projects into manageable steps, often feeling overwhelmed by where to begin?", "Is your workspace, home, or digital files chronically disorganized despite your best intentions to maintain order?", "Do you frequently underestimate how long tasks will take, leading to missed deadlines or rushed work?", ],
+            "Memory & Follow-Through": [ "How often do you forget appointments, commitments, or deadlines despite having reminder systems in place?", "Do you frequently lose or misplace important items like keys, phone, wallet, documents, or glasses?", "When given multi-step instructions, do you often forget steps in the middle or need to ask for clarification repeatedly?", "Do you start tasks with good intentions but forget about them entirely until someone reminds you or a deadline approaches?", "How often do you forget to return phone calls, respond to emails, or follow up on commitments within a reasonable timeframe?", ],
+            "Daily Life & Routine Management": [ "Do you struggle with maintaining consistent daily routines, such as regular meal times, sleep schedules, or household maintenance?", "How often do you make careless mistakes in work, finances, or important documents due to not paying close attention to details?", "Do you frequently run late for appointments or commitments, despite planning to be on time?", "Is it difficult for you to keep track of bills, important documents, or personal responsibilities without external reminders?", "Do you often feel like you're 'winging it' through daily life rather than having organized systems that work consistently?", ],
+            "Workplace & Academic Impact": [ "At work or in educational settings, do you find it hard to sustain attention during meetings, lectures, or training sessions?", "Do colleagues or supervisors frequently need to repeat instructions or information because you missed details the first time?", "How often do you procrastinate on important work projects until the last minute, despite knowing the stress this causes?", "Do you feel like you're underperforming at work relative to your intelligence or capabilities due to attention and organization challenges?", "Have you received feedback about being 'absent-minded,' 'scattered,' or 'not detail-oriented' in professional settings?", ],
+            "Relationships & Social Impact": [ "Do family members or friends complain that you don't listen when they're talking or that you seem 'elsewhere' during conversations?", "How often do you forget social commitments, birthdays, or important events in the lives of people you care about?", "Do you struggle to maintain household responsibilities (cleaning, cooking, maintenance) in ways that affect your relationships or living situation?", "Have romantic partners expressed frustration about your forgetfulness, disorganization, or seeming lack of attention to relationship details?", ],
+            "Self-Awareness & Impact": [ "Looking back to childhood and adolescence, do you remember having similar attention, organization, or completion difficulties, even if they weren't identified as ADHD at the time?" ]
+        }).flatMap(([category, qs]) => qs.map(question => ({ category, question })));
+
+        // --- DOM Elements & State ---
+        const questionCounterDisplay = document.getElementById('questionCounter');
+        const challengeScreen = document.getElementById('challengeScreen');
+        const endScreen = document.getElementById('endScreen');
+        const nextBtn = document.getElementById('nextBtn');
+        const finalResultText = document.getElementById('finalResultText');
+        const restartBtn = document.getElementById('restartBtn');
+        const questionCategoryDisplay = document.getElementById('questionCategory');
+        const questionNumberDisplay = document.getElementById('questionNumber');
+        const questionContentDisplay = document.getElementById('questionContent');
+        const questionWrapper = document.getElementById('question-wrapper');
+        const progressBar = document.getElementById('progressBar');
+        const selectContainer = document.querySelector('.custom-select-container');
+        const selectButton = document.getElementById('custom-select-button');
+        const selectedValueText = document.getElementById('selected-value-text');
+        const selectOptions = document.getElementById('custom-select-options');
+        let totalScore = 0;
+        let currentQuestionIndex = 0;
+        let currentRating = 1;
+        const totalQuestions = flatQuestions.length;
+
+        // --- Sound & Core Logic ---
+        const clickSynth = new Tone.PluckSynth({ attackNoise: 0.05, dampening: 8000, resonance: 0.1 }).toDestination();
+        clickSynth.volume.value = -12;
+        const winSynth = new Tone.PluckSynth({ attackNoise: 0.2, dampening: 4000, resonance: 0.7 }).toDestination();
+        winSynth.volume.value = -8;
+        function playSound(type) { if (Tone.context.state !== 'running') { Tone.start().then(() => _playSoundInternal(type)); } else { _playSoundInternal(type); } }
+        function _playSoundInternal(type) { const now = Tone.now(); if (type === 'next') clickSynth.triggerAttackRelease("C4", now); else if (type === 'win') winSynth.triggerAttackRelease("C5", now); }
+
+        // --- Custom Dropdown Logic ---
+        function initializeCustomDropdown() {
+            if (selectOptions.children.length > 0) return;
+            for (let i = 1; i <= 10; i++) {
+                const option = document.createElement('div');
+                option.classList.add('custom-select-option');
+                option.dataset.value = i;
+                option.innerHTML = `<span>${i}</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0"><path d="M20 6L9 17L4 12" stroke="#1a202c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+                option.addEventListener('click', () => {
+                    currentRating = parseInt(option.dataset.value);
+                    selectedValueText.textContent = currentRating;
+                    updateSelectedOptionStyle();
+                    selectButton.classList.remove('open');
+                    selectOptions.classList.remove('open');
+                });
+                selectOptions.appendChild(option);
+            }
+        }
+
+        function updateSelectedOptionStyle() {
+            Array.from(selectOptions.children).forEach(opt => {
+                const isSelected = parseInt(opt.dataset.value) === currentRating;
+                opt.classList.toggle('selected', isSelected);
+                opt.querySelector('svg').style.opacity = isSelected ? '1' : '0';
+            });
+        }
+
+        selectButton.addEventListener('click', () => {
+            // --- FIX: Smart positioning logic ---
+            const buttonRect = selectButton.getBoundingClientRect();
+            const spaceBelow = window.innerHeight - buttonRect.bottom;
+            const menuHeightEstimate = 300; // A safe estimate for the menu's height in pixels
+
+            // Check if there's enough space below, and if not, check if there's enough space above.
+            if (spaceBelow < menuHeightEstimate && buttonRect.top > menuHeightEstimate) {
+                // Not enough space below, open upwards
+                selectOptions.classList.add('opens-up');
+                selectOptions.classList.remove('opens-down');
+            } else {
+                // Default to opening downwards
+                selectOptions.classList.add('opens-down');
+                selectOptions.classList.remove('opens-up');
+            }
+
+            selectButton.classList.toggle('open');
+            selectOptions.classList.toggle('open');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!selectContainer.contains(e.target)) {
+                selectButton.classList.remove('open');
+                selectOptions.classList.remove('open');
+            }
+        });
+
+        // --- Game Logic ---
+        function showScreen(screenName) {
+            challengeScreen.classList.add('hidden'); endScreen.classList.add('hidden');
+            if (screenName === 'challenge') challengeScreen.classList.remove('hidden'); else if (screenName === 'end') endScreen.classList.remove('hidden');
+        }
+
+        function initializeGame() {
+            totalScore = 0; currentQuestionIndex = 0; currentRating = 1;
+            initializeCustomDropdown();
+            selectedValueText.textContent = currentRating;
+            updateSelectedOptionStyle();
+            updateDisplays(); loadChallenge(true); showScreen('challenge');
+        }
+
+        function loadChallenge(isInitial = false) {
+            if (currentQuestionIndex >= totalQuestions) { endGame(); return; }
+            const challenge = flatQuestions[currentQuestionIndex];
+            questionCategoryDisplay.textContent = challenge.category;
+            questionNumberDisplay.textContent = `${currentQuestionIndex + 1}.`;
+            questionContentDisplay.textContent = challenge.question;
+            nextBtn.textContent = (currentQuestionIndex === totalQuestions - 1) ? 'FINISH' : 'NEXT';
+            updateDisplays();
+            if (!isInitial) { questionWrapper.classList.remove('animate-fade-out'); questionWrapper.classList.add('animate-fade-in'); }
+        }
+
+        function processAnswer() {
+            playSound('next');
+            totalScore += currentRating;
+            currentQuestionIndex++;
+            questionWrapper.classList.remove('animate-fade-in');
+            questionWrapper.classList.add('animate-fade-out');
+            setTimeout(() => {
+                currentRating = 1;
+                selectedValueText.textContent = currentRating;
+                updateSelectedOptionStyle();
+                loadChallenge();
+            }, 400);
+        }
+
+        function updateDisplays() {
+            const displayIndex = Math.min(currentQuestionIndex + 1, totalQuestions);
+            questionCounterDisplay.textContent = `${displayIndex} / ${totalQuestions}`;
+            progressBar.style.width = `${(currentQuestionIndex / totalQuestions) * 100}%`;
+        }
+
+        function animateValue(obj, start, end, duration, isFloat = false) { /* ... unchanged ... */ } // (Collapsed for brevity)
+
+        function endGame() {
+            playSound('win'); showScreen('end'); progressBar.style.width = '100%';
+            const averageScore = totalScore / totalQuestions;
+            if (averageScore > 6 && totalQuestions >= 14) {
+                finalResultText.innerHTML = `You have averaged <strong class="text-2xl font-bold text-slate-800">0.0</strong> points over more than ${totalQuestions - 1} questions.`;
+                animateValue(finalResultText.querySelector('strong'), 0, averageScore, 1000, true);
+            } else {
+                finalResultText.innerHTML = `Your assessment is complete.<br>You scored a total of <strong class="text-2xl font-bold text-slate-800">0</strong> points across ${totalQuestions} questions.`;
+                animateValue(finalResultText.querySelector('strong'), 0, totalScore, 1000, false);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeGame);
+        document.body.addEventListener('click', () => { if (Tone.context.state !== 'running') { Tone.start(); } }, { once: true });
+        nextBtn.addEventListener('click', processAnswer);
+        restartBtn.addEventListener('click', initializeGame);
+
+        animateValue=(t,e,n,o,a=!1)=>{let r=null;const l=c=>{r||(r=c);const s=Math.min((c-r)/o,1),d=s*(n-e)+e;t.textContent=a?d.toFixed(1):Math.floor(d),s<1&&window.requestAnimationFrame(l)};window.requestAnimationFrame(l)};
+    </script>
+</body>
+</html>

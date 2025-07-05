@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friendly Self-Assessment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <style>
+        :root {
+            --bg-page: #FEF8F0;
+            --outline: #2A2A2A;
+            --computer-blue: #6B89E1;
+            --computer-screen: #F3EFE4;
+            --progress-base: #F3D47B;
+            --progress-fill: #E9665A;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            background-image: radial-gradient(var(--outline) 0.5px, transparent 0.5px);
+            background-size: 15px 15px; background-position: -7px -7px; opacity: 0.8;
+            font-family: 'Nunito', sans-serif;
+            color: var(--outline);
+            display: flex; align-items: center; justify-content: center;
+            min-height: 100vh; padding: 1rem; overflow: hidden;
+        }
+
+        .assessment-container {
+            position: relative; width: 100%; max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            align-items: center; justify-content: center; gap: 2rem;
+        }
+
+        .options-column {
+            position: relative;
+            height: 600px;
+        }
+        .computer-column { display: flex; flex-direction: column; align-items: center; }
+
+        .computer {
+            position: relative;
+            width: 585px;
+            height: 455px;
+            background-color: var(--computer-blue);
+            border: 3px solid var(--outline);
+            border-radius: 2.5rem 2.5rem 0.75rem 0.75rem;
+            flex-shrink: 0;
+        }
+        .computer::after {
+            content: ''; position: absolute; bottom: -28px; left: 50%;
+            transform: translateX(-50%) perspective(65px) rotateX(10deg);
+            width: 650px; height: 45px;
+            background-color: var(--computer-blue);
+            border: 3px solid var(--outline); border-radius: 0.75rem;
+        }
+
+        .screen {
+            position: absolute; top: 2rem; left: 2rem; right: 2rem; bottom: 2rem;
+            background-color: var(--computer-screen);
+            border: 3px solid var(--outline); border-radius: 2rem;
+            padding: 2rem;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center;
+        }
+        #questionContent {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 2.2rem;
+            line-height: 1.3;
+            flex-grow: 1;
+            display: flex; align-items: center; justify-content: center;
+            padding-bottom: 1rem;
+        }
+        #questionNumber {
+            font-size: 1rem; color: #b0a89a; font-weight: 700; margin-bottom: 0.5rem;
+        }
+
+        .rating-option {
+            position: absolute;
+            width: 80px; height: 80px;
+            border: 3px solid var(--outline);
+            border-radius: 20% 35% 25% 40%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.75rem; font-weight: 900;
+            cursor: pointer; transition: all 0.2s ease;
+            animation: float 8s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+        .rating-option:hover { transform: scale(1.1); }
+        .rating-option.selected {
+            border-width: 5px;
+            border-color: var(--progress-fill);
+            animation: wiggle 0.5s ease-in-out;
+        }
+
+        .btn {
+            margin-top: 3.5rem; padding: 10px 24px;
+            font-size: 1.25rem; font-weight: 900;
+            border: 3px solid var(--outline); border-radius: 12px;
+            background: white;
+            box-shadow: 5px 5px 0 0 var(--outline);
+            cursor: pointer; transition: all 0.1s ease-in-out;
+        }
+        .btn:active { transform: translate(5px, 5px); box-shadow: 0 0 0 0 var(--outline); }
+
+        .progress-bar-container {
+            position: fixed; bottom: 2rem; left: 10%; right: 10%;
+            height: 20px; background-color: var(--progress-base);
+            border: 3px solid var(--outline); border-radius: 99px; padding: 4px;
+        }
+        .progress-bar-fill {
+            height: 100%; background-color: var(--progress-fill);
+            border-radius: 99px; transition: width 0.5s ease-out; width: 0%;
+        }
+
+        /* Doodles & Particles */
+        .doodle { position: fixed; animation: float 10s ease-in-out infinite; }
+        .doodle-sun { background: #F3A93B; width: 80px; height: 80px; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); border: 3px solid var(--outline); }
+        .doodle-heart { background: #E9665A; width: 50px; height: 50px; clip-path: path("M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"); border: 3px solid var(--outline); }
+        .doodle-face { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.2rem;}
+        .doodle-q { font-family: 'Patrick Hand', cursive; font-size: 3rem; animation-duration: 12s;}
+        .particle {
+            position: fixed; width: 10px; height: 10px;
+            border: 2px solid var(--outline);
+            border-radius: 50%; pointer-events: none; z-index: 9999;
+            opacity: 1; transition: transform 0.8s cubic-bezier(.17,.67,.5,1.28), opacity 0.8s ease;
+        }
+        .encouragement-toast {
+            position: fixed; top: 2rem; left: 50%;
+            transform: translateX(-50%);
+            background: white; border: 3px solid var(--outline);
+            padding: 0.75rem 1.5rem; border-radius: 99px;
+            font-family: 'Patrick Hand', cursive; font-size: 1.5rem;
+            box-shadow: 5px 5px 0 0 var(--outline);
+            animation: pop-in-out 4s ease-in-out forwards;
+        }
+
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        @keyframes wiggle { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+        @keyframes pop-in-out { 0% { transform: translate(-50%, -100%); opacity: 0; } 10% { transform: translate(-50%, 0); opacity: 1; } 90% { transform: translate(-50%, 0); opacity: 1; } 100% { transform: translate(-50%, -100%); opacity: 0; } }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        .animate-fade-out { animation: fadeOut 0.4s ease-in forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.9); } }
+    </style>
+</head>
+<body>
+    <div id="doodle-layer"></div>
+    <div id="challengeScreen">
+        <div class="assessment-container">
+            <div class="computer-column">
+                <h2 id="questionCategory" class="text-3xl font-black mb-4">Category</h2>
+                <div class="computer">
+                    <div class="screen">
+                        <div id="screen-text-wrapper" class="w-full h-full flex flex-col items-center justify-center">
+                            <p id="questionNumber"></p>
+                            <p id="questionContent"></p>
+                        </div>
+                    </div>
+                </div>
+                <button id="nextBtn" class="btn">Next!</button>
+            </div>
+            <div id="options-column" class="options-column">
+                <!-- Options will be populated here by JS -->
+            </div>
+        </div>
+    </div>
+
+    <div id="endScreen" class="hidden absolute inset-0 flex flex-col items-center justify-center text-center animate-fade-in">
+        <h2 class="text-6xl font-black mb-4" style="font-family:'Patrick Hand',cursive;">All done!</h2>
+        <p id="finalResultText" class="text-xl font-bold mb-8 max-w-lg"></p>
+        <button id="restartBtn" class="btn">Play Again?</button>
+    </div>
+
+    <div class="progress-bar-container">
+        <div id="progressBar" class="progress-bar-fill"></div>
+    </div>
+
+    <script>
+        const flatQuestions = Object.entries({
+            "Attention & Concentration": [ "Do you frequently find your mind wandering during conversations, meetings, or while reading, even when you're trying to pay attention?", "When watching movies or TV shows, do you often realize you've missed important plot points because your attention drifted, requiring you to rewind or ask others what happened?", "During work tasks that require sustained focus, how often do you find yourself mentally 'checking out' and having to re-read emails, documents, or instructions multiple times?", "Do you struggle to maintain attention during lengthy tasks even when they're important or interesting to you?", "How often do you start listening to someone speak but find that by the end of their sentence, you haven't retained what they said?", ],
+            "Organization & Task Management": [ "Do you frequently start multiple projects or tasks but struggle to complete them, leaving you with a collection of half-finished endeavors?", "How often do you avoid or procrastinate on tasks that require sustained mental effort, such as completing paperwork, preparing reports, or organizing finances?", "Do you find it challenging to break down large projects into manageable steps, often feeling overwhelmed by where to begin?", "Is your workspace, home, or digital files chronically disorganized despite your best intentions to maintain order?", "Do you frequently underestimate how long tasks will take, leading to missed deadlines or rushed work?", ],
+            "Memory & Follow-Through": [ "How often do you forget appointments, commitments, or deadlines despite having reminder systems in place?", "Do you frequently lose or misplace important items like keys, phone, wallet, documents, or glasses?", "When given multi-step instructions, do you often forget steps in the middle or need to ask for clarification repeatedly?", "Do you start tasks with good intentions but forget about them entirely until someone reminds you or a deadline approaches?", "How often do you forget to return phone calls, respond to emails, or follow up on commitments within a reasonable timeframe?", ],
+            "Daily Life & Routine Management": [ "Do you struggle with maintaining consistent daily routines, such as regular meal times, sleep schedules, or household maintenance?", "How often do you make careless mistakes in work, finances, or important documents due to not paying close attention to details?", "Do you frequently run late for appointments or commitments, despite planning to be on time?", "Is it difficult for you to keep track of bills, important documents, or personal responsibilities without external reminders?", "Do you often feel like you're 'winging it' through daily life rather than having organized systems that work consistently?", ],
+            "Workplace & Academic Impact": [ "At work or in educational settings, do you find it hard to sustain attention during meetings, lectures, or training sessions?", "Do colleagues or supervisors frequently need to repeat instructions or information because you missed details the first time?", "How often do you procrastinate on important work projects until the last minute, despite knowing the stress this causes?", "Do you feel like you're underperforming at work relative to your intelligence or capabilities due to attention and organization challenges?", "Have you received feedback about being 'absent-minded,' 'scattered,' or 'not detail-oriented' in professional settings?", ],
+            "Relationships & Social Impact": [ "Do family members or friends complain that you don't listen when they're talking or that you seem 'elsewhere' during conversations?", "How often do you forget social commitments, birthdays, or important events in the lives of people you care about?", "Do you struggle to maintain household responsibilities (cleaning, cooking, maintenance) in ways that affect your relationships or living situation?", "Have romantic partners expressed frustration about your forgetfulness, disorganization, or seeming lack of attention to relationship details?", ],
+            "Self-Awareness & Impact": [ "Looking back to childhood and adolescence, do you remember having similar attention, organization, or completion difficulties, even if they weren't identified as ADHD at the time?" ]
+        }).flatMap(([category, qs]) => qs.map(question => ({ category, question })));
+
+        // --- DOM Elements & State ---
+        const challengeScreen = document.getElementById('challengeScreen');
+        const endScreen = document.getElementById('endScreen');
+        const nextBtn = document.getElementById('nextBtn');
+        const finalResultText = document.getElementById('finalResultText');
+        const restartBtn = document.getElementById('restartBtn');
+        const questionCategoryDisplay = document.getElementById('questionCategory');
+        const questionNumberDisplay = document.getElementById('questionNumber');
+        const questionContentDisplay = document.getElementById('questionContent');
+        const screenTextWrapper = document.getElementById('screen-text-wrapper');
+        const optionsContainer = document.getElementById('options-column');
+        const progressBar = document.getElementById('progressBar');
+        const doodleLayer = document.getElementById('doodle-layer');
+        let totalScore = 0, currentQuestionIndex = 0, currentRating = 0;
+        const totalQuestions = flatQuestions.length;
+
+        // --- Sound & Decorative Logic ---
+        const confirmSynth = new Tone.FMSynth({
+            harmonicity: 3, modulationIndex: 10, envelope: { attack: 0.01, decay: 0.2 },
+        }).toDestination();
+        confirmSynth.volume.value = -12;
+        const winSynth = new Tone.MembraneSynth().toDestination(); winSynth.volume.value = -8;
+        function playSound(type) { if (Tone.context.state !== 'running') { Tone.start().then(() => _playSoundInternal(type)); } else { _playSoundInternal(type); } }
+        function _playSoundInternal(type) { const now = Tone.now(); if (type === 'next') confirmSynth.triggerAttackRelease("C4", "8n", now); else if (type === 'win') winSynth.triggerAttackRelease("G2", "8n", now); }
+
+        function createDoodles() {
+            doodleLayer.innerHTML = '';
+            // --- FIX: Updated doodle positions ---
+            const doodles = [
+                { type: 'sun', top: '10%', left: '90%' },
+                { type: 'heart', top: '75%', left: '90%' },
+                { type: 'q', text: '?', top: '15%', left: '80%' },
+                { type: 'q', text: '?', top: '70%', left: '80%' },
+            ];
+            doodles.forEach(d => {
+                const el = document.createElement('div');
+                if (d.type === 'sun' || d.type === 'heart') {
+                    el.className = `doodle doodle-${d.type}`;
+                    el.innerHTML = `<div class="doodle-face">: )</div>`;
+                } else {
+                    el.className = 'doodle doodle-q';
+                    el.textContent = d.text;
+                }
+                el.style.top = d.top; el.style.left = d.left;
+                el.style.animationDelay = `${Math.random() * 5}s`;
+                doodleLayer.appendChild(el);
+            });
+        }
+
+        function createClickParticles(e) { /* ... unchanged ... */ }
+        function showEncouragement() { /* ... unchanged ... */ }
+
+        // --- Game Logic ---
+        function showScreen(screenName) {
+            challengeScreen.classList.add('hidden'); endScreen.classList.add('hidden');
+            if (screenName === 'challenge') challengeScreen.classList.remove('hidden');
+            else if (screenName === 'end') endScreen.classList.remove('hidden');
+        }
+
+        function initializeGame() {
+            totalScore = 0; currentQuestionIndex = 0; currentRating = 0;
+            updateDisplays(); loadChallenge(true); showScreen('challenge');
+            createDoodles();
+        }
+
+        function loadChallenge(isInitial = false) {
+            if (currentQuestionIndex >= totalQuestions) { endGame(); return; }
+            const challenge = flatQuestions[currentQuestionIndex];
+            questionCategoryDisplay.textContent = challenge.category;
+            questionNumberDisplay.textContent = `Question ${currentQuestionIndex + 1}/${totalQuestions}`;
+            questionContentDisplay.textContent = challenge.question;
+            createRatingOptions();
+            updateDisplays();
+
+            if (isInitial) {
+                 challengeScreen.classList.add('animate-fade-in');
+            } else {
+                screenTextWrapper.classList.remove('animate-fade-out');
+                screenTextWrapper.classList.add('animate-fade-in');
+            }
+        }
+
+        function createRatingOptions() {
+            optionsContainer.innerHTML = '';
+            const colors = ['#F3D4D6', '#E3DFF7', '#D3E3F5', '#D4EAE3', '#F3A93B'];
+            // --- FIX: Pre-defined positions for a scattered but ordered layout ---
+            const positions = [
+                { top: '0%', left: '30%' },    // 1
+                { top: '10%', left: '65%' },   // 2
+                { top: '22%', left: '15%' },   // 3
+                { top: '32%', left: '70%' },   // 4
+                { top: '45%', left: '25%' },   // 5
+                { top: '55%', left: '60%' },   // 6
+                { top: '68%', left: '10%' },   // 7
+                { top: '75%', left: '75%' },   // 8
+                { top: '88%', left: '20%' },   // 9
+                { top: '90%', left: '60%' }    // 10
+            ];
+
+            for (let i = 1; i <= 10; i++) {
+                const option = document.createElement('div');
+                option.className = 'rating-option';
+                option.textContent = i;
+                option.dataset.value = i;
+                const pos = positions[i-1];
+                option.style.top = pos.top;
+                option.style.left = pos.left;
+                option.style.backgroundColor = colors[i % colors.length];
+                option.style.animationDelay = `${(i * 0.05) + 0.1}s`;
+                option.addEventListener('click', () => {
+                    currentRating = i;
+                    document.querySelectorAll('.rating-option').forEach(o => o.classList.remove('selected'));
+                    option.classList.add('selected');
+                });
+                optionsContainer.appendChild(option);
+            }
+        }
+
+        function processAnswer() {
+            if (currentRating === 0) return;
+            playSound('next');
+            totalScore += currentRating;
+            currentQuestionIndex++;
+            currentRating = 0;
+
+            screenTextWrapper.classList.remove('animate-fade-in');
+            screenTextWrapper.classList.add('animate-fade-out');
+
+            if (currentQuestionIndex % 5 === 0 && currentQuestionIndex < totalQuestions) {
+                showEncouragement();
+            }
+
+            setTimeout(loadChallenge, 400);
+        }
+
+        function updateDisplays() {
+            const progress = (currentQuestionIndex / totalQuestions) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        function animateValue(obj, start, end, duration, isFloat = false) { /* ... unchanged ... */ }
+
+        function endGame() {
+            playSound('win'); showScreen('end'); progressBar.style.width = '100%';
+            const averageScore = totalScore / totalQuestions;
+            if (averageScore > 6 && totalQuestions >= 14) {
+                finalResultText.innerHTML = `You have averaged <strong class="text-2xl text-black">0.0</strong> points over more than ${totalQuestions - 1} questions.`;
+                animateValue(finalResultText.querySelector('strong'), 0, averageScore, 1000, true);
+            } else {
+                finalResultText.innerHTML = `Your assessment is complete.<br>You scored a total of <strong class="text-2xl text-black">0</strong> points across ${totalQuestions} questions.`;
+                animateValue(finalResultText.querySelector('strong'), 0, totalScore, 1000, false);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeGame);
+        nextBtn.addEventListener('click', (e) => {
+            if (currentRating === 0) return;
+            createClickParticles(e);
+            processAnswer();
+        });
+        restartBtn.addEventListener('click', initializeGame);
+
+        // --- Collapsed Helper Functions for brevity ---
+        createDoodles=()=>{doodleLayer.innerHTML="";const e=[{type:"sun",top:"10%",left:"90%"},{type:"heart",top:"75%",left:"90%"},{type:"q",text:"?",top:"15%",left:"80%"},{type:"q",text:"?",top:"70%",left:"80%"}];e.forEach(e=>{const t=document.createElement("div");"sun"===e.type||"heart"===e.type?(t.className=`doodle doodle-${e.type}`,t.innerHTML='<div class="doodle-face">: )</div>'):(t.className="doodle doodle-q",t.textContent=e.text),t.style.top=e.top,t.style.left=e.left,t.style.animationDelay=`${5*Math.random()}s`,doodleLayer.appendChild(t)})};
+        createClickParticles=e=>{const t=["#F3A93B","#E9665A","#6B89E1","#85E0C2","#D3E3F5"];for(let o=0;o<20;o++){const s=document.createElement("div");s.className="particle",document.body.appendChild(s),s.style.background=t[o%t.length],s.style.left=`${e.clientX}px`,s.style.top=`${e.clientY}px`;const l=300*(Math.random()-.5),n=300*(Math.random()-.5);requestAnimationFrame(()=>{s.style.transform=`translate(${l}px, ${n}px)`,s.style.opacity="0"}),setTimeout(()=>s.remove(),800)}};
+        showEncouragement=()=>{const e=["Great job!","Keep it up!","You're doing amazing!","Awesome!","Halfway there!","Almost done!"],t=document.createElement("div");t.className="encouragement-toast",t.textContent=e[Math.floor(Math.random()*e.length)],document.body.appendChild(t),setTimeout(()=>t.remove(),4e3)};
+        animateValue=(e,t,n,o,s=!1)=>{let l=null;const c=a=>{l||(l=a);const d=Math.min((a-l)/o,1),r=d*(n-t)+t;e.textContent=s?r.toFixed(1):Math.floor(r),d<1&&window.requestAnimationFrame(c)};window.requestAnimationFrame(c)};
+    </script>
+</body>
+</html>

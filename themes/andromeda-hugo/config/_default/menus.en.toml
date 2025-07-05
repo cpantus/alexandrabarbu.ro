@@ -1,0 +1,90 @@
+############# English navigation ##############
+
+# main menu
+[[main]]
+name = "Home"
+url = ""
+weight = 1
+
+[[main]]
+name = "About"
+url = "about/"
+weight = 2
+
+[[main]]
+name = "Services"
+url = "services/"
+weight = 3
+
+[[main]]
+weight = 4
+name = "Psychotherapy"
+hasChildren = true
+
+  [[main]]
+  parent = "Psychotherapy"
+  name = "CBT"
+  url = "cbt/"
+  weight = 1
+
+  [[main]]
+  parent = "Psychotherapy"
+  name = "Family Therapy"
+  url = "family-therapy/"
+  weight = 2
+
+  [[main]]
+  parent = "Psychotherapy"
+  name = "Psychedelic Therapy"
+  url = "psychedelic-therapy/"
+  weight = 3
+
+[[main]]
+name = "Blog"
+url = "blog/"
+weight = 5
+
+[[main]]
+weight = 6
+name = "Resources"
+hasChildren = true
+
+  [[main]]
+  parent = "Resources"
+  name = "Tests"
+  url = "tests/"
+  weight = 1
+
+  [[main]]
+  parent = "Resources"
+  name = "Articles"
+  url = "articles/"
+  weight = 2
+
+  [[main]]
+  parent = "Resources"
+  name = "FAQ"
+  url = "faq/"
+  weight = 3
+
+[[main]]
+name = "Contact"
+url = "contact/"
+weight = 7
+
+
+# footer menu
+[[footer]]
+name = "About"
+url = "about/"
+weight = 1
+
+[[footer]]
+name = "Services"
+url = "services/"
+weight = 2
+
+[[footer]]
+name = "Terms & Conditions"
+url = "terms-and-conditions/"
+weight = 3

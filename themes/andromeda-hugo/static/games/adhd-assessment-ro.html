@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-evaluare Prietenoasă</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <style>
+        :root {
+            --bg-page: #FEF8F0;
+            --outline: #2A2A2A;
+            --computer-blue: #6B89E1;
+            --computer-screen: #F3EFE4;
+            --progress-base: #F3D47B;
+            --progress-fill: #E9665A;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            background-image: radial-gradient(var(--outline) 0.5px, transparent 0.5px);
+            background-size: 15px 15px; background-position: -7px -7px; opacity: 0.8;
+            font-family: 'Nunito', sans-serif;
+            color: var(--outline);
+            display: flex; align-items: center; justify-content: center;
+            min-height: 100vh; padding: 1rem; overflow: hidden;
+        }
+
+        .assessment-container {
+            position: relative; width: 100%; max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            align-items: center; justify-content: center; gap: 2rem;
+        }
+
+        .options-column {
+            position: relative;
+            height: 600px;
+        }
+        .computer-column { display: flex; flex-direction: column; align-items: center; }
+
+        .computer {
+            position: relative;
+            width: 585px;
+            height: 455px;
+            background-color: var(--computer-blue);
+            border: 3px solid var(--outline);
+            border-radius: 2.5rem 2.5rem 0.75rem 0.75rem;
+            flex-shrink: 0;
+        }
+        .computer::after {
+            content: ''; position: absolute; bottom: -28px; left: 50%;
+            transform: translateX(-50%) perspective(65px) rotateX(10deg);
+            width: 650px; height: 45px;
+            background-color: var(--computer-blue);
+            border: 3px solid var(--outline); border-radius: 0.75rem;
+        }
+
+        .screen {
+            position: absolute; top: 2rem; left: 2rem; right: 2rem; bottom: 2rem;
+            background-color: var(--computer-screen);
+            border: 3px solid var(--outline); border-radius: 2rem;
+            padding: 2rem;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center;
+        }
+        #questionContent {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 2.2rem;
+            line-height: 1.3;
+            flex-grow: 1;
+            display: flex; align-items: center; justify-content: center;
+            padding-bottom: 1rem;
+        }
+        #questionNumber {
+            font-size: 1rem; color: #b0a89a; font-weight: 700; margin-bottom: 0.5rem;
+        }
+
+        .rating-option {
+            position: absolute;
+            width: 80px; height: 80px;
+            border: 3px solid var(--outline);
+            border-radius: 20% 35% 25% 40%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; font-weight: 900;
+            cursor: pointer; transition: all 0.2s ease;
+            animation: float 8s ease-in-out infinite;
+            flex-shrink: 0;
+            color: var(--outline);
+        }
+        .rating-option:hover { transform: scale(1.1); }
+        .rating-option.selected {
+            border-width: 5px;
+            border-color: var(--progress-fill);
+            animation: wiggle 0.5s ease-in-out;
+        }
+
+        .btn {
+            margin-top: 3.5rem; padding: 10px 24px;
+            font-size: 1.25rem; font-weight: 900;
+            border: 3px solid var(--outline); border-radius: 12px;
+            background: white;
+            box-shadow: 5px 5px 0 0 var(--outline);
+            cursor: pointer; transition: all 0.1s ease-in-out;
+        }
+        .btn:active { transform: translate(5px, 5px); box-shadow: 0 0 0 0 var(--outline); }
+
+        .progress-bar-container {
+            position: fixed; bottom: 2rem; left: 10%; right: 10%;
+            height: 20px; background-color: var(--progress-base);
+            border: 3px solid var(--outline); border-radius: 99px; padding: 4px;
+        }
+        .progress-bar-fill {
+            height: 100%; background-color: var(--progress-fill);
+            border-radius: 99px; transition: width 0.5s ease-out; width: 0%;
+        }
+
+        /* Doodles & Particles */
+        .doodle { position: fixed; animation: float 10s ease-in-out infinite; }
+        .doodle-sun { background: #F3A93B; width: 80px; height: 80px; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); border: 3px solid var(--outline); }
+        .doodle-heart { background: #E9665A; width: 50px; height: 50px; clip-path: path("M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"); border: 3px solid var(--outline); }
+        .doodle-face { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.2rem;}
+        .doodle-q { font-family: 'Patrick Hand', cursive; font-size: 3rem; animation-duration: 12s;}
+        .particle {
+            position: fixed; width: 10px; height: 10px;
+            border: 2px solid var(--outline);
+            border-radius: 50%; pointer-events: none; z-index: 9999;
+            opacity: 1; transition: transform 0.8s cubic-bezier(.17,.67,.5,1.28), opacity 0.8s ease;
+        }
+        .encouragement-toast {
+            position: fixed; top: 2rem; left: 50%;
+            transform: translateX(-50%);
+            background: white; border: 3px solid var(--outline);
+            padding: 0.75rem 1.5rem; border-radius: 99px;
+            font-family: 'Patrick Hand', cursive; font-size: 1.5rem;
+            box-shadow: 5px 5px 0 0 var(--outline);
+            animation: pop-in-out 4s ease-in-out forwards;
+        }
+
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        @keyframes wiggle { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+        @keyframes pop-in-out { 0% { transform: translate(-50%, -100%); opacity: 0; } 10% { transform: translate(-50%, 0); opacity: 1; } 90% { transform: translate(-50%, 0); opacity: 1; } 100% { transform: translate(-50%, -100%); opacity: 0; } }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        .animate-fade-out { animation: fadeOut 0.4s ease-in forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.9); } }
+    </style>
+</head>
+<body>
+    <div id="doodle-layer"></div>
+    <div id="challengeScreen">
+        <div class="assessment-container">
+            <div class="computer-column">
+                <h2 id="questionCategory" class="text-3xl font-black mb-4">Categorie</h2>
+                <div class="computer">
+                    <div class="screen">
+                        <div id="screen-text-wrapper" class="w-full h-full flex flex-col items-center justify-center">
+                            <p id="questionNumber"></p>
+                            <p id="questionContent"></p>
+                        </div>
+                    </div>
+                </div>
+                <button id="nextBtn" class="btn">Următoarea!</button>
+            </div>
+            <div id="options-column" class="options-column">
+                <!-- Options will be populated here by JS -->
+            </div>
+        </div>
+    </div>
+
+    <div id="endScreen" class="hidden absolute inset-0 flex flex-col items-center justify-center text-center animate-fade-in">
+        <h2 class="text-6xl font-black mb-4" style="font-family:'Patrick Hand',cursive;">Gata!</h2>
+        <p id="finalResultText" class="text-xl font-bold mb-8 max-w-lg"></p>
+        <button id="restartBtn" class="btn">Mai joci o dată?</button>
+    </div>
+
+    <div class="progress-bar-container">
+        <div id="progressBar" class="progress-bar-fill"></div>
+    </div>
+    <script>
+        const flatQuestions = Object.entries({
+            "Atenție și Concentrare": [ 
+                "Îți rătăcește frecvent mintea în timpul conversațiilor, întâlnirilor sau în timp ce citești, chiar și când încerci să fii atent/ă?", 
+                "Când vizionezi filme sau emisiuni TV, îți dai des seama că ai ratat puncte importante ale intrigii pentru că atenția ți-a fugit, fiind nevoit/ă să dai înapoi sau să întrebi pe alții ce s-a întâmplat?", 
+                "În timpul sarcinilor de lucru care necesită atenție susținută, cât de des îți dai seama că 'te deconectezi' mental și trebuie să recitești emailuri, documente sau instrucțiuni de mai multe ori?", 
+                "Îți este greu să menții atenția în timpul sarcinilor îndelungate, chiar și când sunt importante sau interesante pentru tine?", 
+                "Cât de des începi să asculți pe cineva vorbind, dar îți dai seama că până la sfârșitul propoziției lor, nu ai reținut ce au spus?", 
+            ],
+            "Organizare și Gestionarea Sarcinilor": [ 
+                "Începi frecvent mai multe proiecte sau sarcini, dar îți este greu să le termini, rămânând cu o colecție de activități pe jumătate finalizate?", 
+                "Cât de des eviți sau amâni sarcinile care necesită efort mental susținut, cum ar fi completarea documentelor, pregătirea rapoartelor sau organizarea finanțelor?", 
+                "Îți este dificil să împarți proiectele mari în pași realizabili, simțindu-te adesea copleșit/ă de unde să începi?", 
+                "Sunt spațiul tău de lucru, casa sau fișierele digitale cronic dezorganizate, în ciuda bunelor intenții de a menține ordinea?", 
+                "Subestimezi frecvent cât timp vor dura sarcinile, ducând la termene ratate sau muncă grăbită?", 
+            ],
+            "Memorie și Urmărire": [ 
+                "Cât de des uiți programări, angajamente sau termene, în ciuda sistemelor de memento pe care le ai?", 
+                "Pierzi sau rătăcești frecvent obiecte importante precum cheile, telefonul, portofelul, documentele sau ochelarii?", 
+                "Când primești instrucțiuni cu mai mulți pași, uiți adesea pașii din mijloc sau ai nevoie să ceri clarificări în mod repetat?", 
+                "Începi sarcini cu intenții bune, dar uiți complet de ele până când cineva îți amintește sau se apropie un termen limită?", 
+                "Cât de des uiți să returnezi apeluri telefonice, să răspunzi la emailuri sau să urmărești angajamentele într-un termen rezonabil?", 
+            ],
+            "Viața Zilnică și Gestionarea Rutinei": [ 
+                "Îți este greu să menții rutine zilnice consistente, cum ar fi orele regulate de masă, programul de somn sau întreținerea casei?", 
+                "Cât de des faci greșeli de neatenție în muncă, finanțe sau documente importante din cauza că nu acordi atenție suficientă detaliilor?", 
+                "Întârzii frecvent la programări sau angajamente, în ciuda planificării să ajungi la timp?", 
+                "Îți este dificil să ții evidența facturilor, documentelor importante sau responsabilităților personale fără mementouri externe?", 
+                "Simți adesea că 'improvizezi' prin viața de zi cu zi, în loc să ai sisteme organizate care funcționează în mod consistent?", 
+            ],
+            "Impact în Muncă și Academic": [ 
+                "La muncă sau în medii educaționale, îți este greu să menții atenția în timpul întâlnirilor, cursurilor sau sesiunilor de formare?", 
+                "Colegii sau supervizarii trebuie frecvent să repete instrucțiuni sau informații pentru că ai ratat detalii prima dată?", 
+                "Cât de des amâni proiecte importante de muncă până în ultimul moment, în ciuda cunoașterii stresului pe care îl cauzează?", 
+                "Simți că perforezi sub nivelul inteligenței sau capacităților tale la muncă din cauza provocărilor cu atenția și organizarea?", 
+                "Ai primit feedback despre faptul că ești 'absent/ă', 'împrăștiat/ă' sau 'nu orientat/ă pe detalii' în medii profesionale?", 
+            ],
+            "Relații și Impact Social": [ 
+                "Membrii familiei sau prietenii se plâng că nu asculți când vorbesc sau că pari 'altundeva' în timpul conversațiilor?", 
+                "Cât de des uiți angajamente sociale, zile de naștere sau evenimente importante din viețile oamenilor cărora le pasă?", 
+                "Îți este greu să menții responsabilitățile casnice (curățenie, gătit, întreținere) în moduri care afectează relațiile sau situația locativă?", 
+                "Partenerii romantici și-au exprimat frustrarea față de uitucișenia ta, dezorganizarea sau aparenta lipsă de atenție la detaliile relației?", 
+            ],
+            "Auto-conștientizare și Impact": [ 
+                "Privind înapoi la copilărie și adolescență, îți amintești să fi avut dificultăți similare cu atenția, organizarea sau finalizarea, chiar dacă nu au fost identificate ca ADHD la acel moment?"
+            ]
+        }).flatMap(([category, qs]) => qs.map(question => ({ category, question })));
+
+        // --- DOM Elements & State ---
+        const challengeScreen = document.getElementById('challengeScreen');
+        const endScreen = document.getElementById('endScreen');
+        const nextBtn = document.getElementById('nextBtn');
+        const finalResultText = document.getElementById('finalResultText');
+        const restartBtn = document.getElementById('restartBtn');
+        const optionsColumn = document.getElementById('options-column');
+        const questionCategory = document.getElementById('questionCategory');
+        const questionContent = document.getElementById('questionContent');
+        const questionNumber = document.getElementById('questionNumber');
+        const progressBar = document.getElementById('progressBar');
+
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let currentAnswer = null;
+
+        // Initialize game
+        function initializeGame() {
+            userAnswers = [];
+            currentQuestionIndex = 0;
+            currentAnswer = null;
+            showQuestion();
+            setupOptionsLayout();
+            createBackgroundDoodles();
+        }
+
+        // Display current question
+        function showQuestion() {
+            const question = flatQuestions[currentQuestionIndex];
+            questionCategory.textContent = question.category;
+            questionContent.textContent = question.question;
+            questionNumber.textContent = `Întrebarea ${currentQuestionIndex + 1} din ${flatQuestions.length}`;
+            
+            // Update progress bar
+            const progress = ((currentQuestionIndex) / flatQuestions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            
+            // Reset selection
+            currentAnswer = null;
+            updateOptionsDisplay();
+            nextBtn.disabled = true;
+            nextBtn.textContent = currentQuestionIndex === flatQuestions.length - 1 ? "Finalizează!" : "Următoarea!";
+        }
+
+        // Setup rating options layout (1-10 numeric system)
+        function setupOptionsLayout() {
+            optionsColumn.innerHTML = '';
+            const colors = ['#F3D4D6', '#E3DFF7', '#D3E3F5', '#D4EAE3', '#F3A93B'];
+            
+            // Pre-defined positions for scattered layout
+            const positions = [
+                { top: '0%', left: '30%' },    // 1
+                { top: '10%', left: '65%' },   // 2
+                { top: '22%', left: '15%' },   // 3
+                { top: '32%', left: '70%' },   // 4
+                { top: '45%', left: '25%' },   // 5
+                { top: '55%', left: '60%' },   // 6
+                { top: '68%', left: '10%' },   // 7
+                { top: '75%', left: '75%' },   // 8
+                { top: '88%', left: '20%' },   // 9
+                { top: '90%', left: '60%' }    // 10
+            ];
+
+            for (let i = 1; i <= 10; i++) {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'rating-option';
+                optionElement.textContent = i;
+                optionElement.setAttribute('data-value', i);
+                
+                const pos = positions[i-1];
+                optionElement.style.top = pos.top;
+                optionElement.style.left = pos.left;
+                optionElement.style.backgroundColor = colors[i % colors.length];
+                optionElement.style.animationDelay = `${(i * 0.05) + 0.1}s`;
+                
+                optionElement.addEventListener('click', () => selectOption(i));
+                optionsColumn.appendChild(optionElement);
+            }
+        }
+
+        // Handle option selection
+        function selectOption(value) {
+            currentAnswer = value;
+            updateOptionsDisplay();
+            nextBtn.disabled = false;
+            
+            // Create particles effect
+            createParticles();
+            
+            // Show encouragement message
+            if (Math.random() < 0.3) {
+                showEncouragementToast();
+            }
+            
+            // Play sound effect
+            if (window.Tone) {
+                const synth = new Tone.Synth().toDestination();
+                synth.triggerAttackRelease("C5", "8n");
+            }
+        }
+
+        // Update visual display of options
+        function updateOptionsDisplay() {
+            const options = document.querySelectorAll('.rating-option');
+            options.forEach(option => {
+                const value = parseInt(option.getAttribute('data-value'));
+                if (value === currentAnswer) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+        }
+
+        // Move to next question or show results
+        function nextQuestion() {
+            if (currentAnswer === null) return;
+            
+            userAnswers.push(currentAnswer);
+            
+            if (currentQuestionIndex < flatQuestions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // Show final results
+        function showResults() {
+            challengeScreen.classList.add('hidden');
+            endScreen.classList.remove('hidden');
+            
+            const totalScore = userAnswers.reduce((sum, answer) => sum + answer, 0);
+            const maxScore = flatQuestions.length * 10;
+            const percentage = Math.round((totalScore / maxScore) * 100);
+            
+            let resultText = '';
+            if (percentage < 25) {
+                resultText = `Scorul tău: ${totalScore}/${maxScore} (${percentage}%) - Puține simptome ADHD raportate. Continuă să te monitorizezi și consideră consultarea unui specialist pentru orice preocupări.`;
+            } else if (percentage < 50) {
+                resultText = `Scorul tău: ${totalScore}/${maxScore} (${percentage}%) - Unele simptome ADHD prezente. Ar putea fi util să discuți aceste rezultate cu un profesionist în sănătatea mintală.`;
+            } else if (percentage < 75) {
+                resultText = `Scorul tău: ${totalScore}/${maxScore} (${percentage}%) - Simptome moderate-ridicate de ADHD. Se recomandă evaluarea de către un clinician calificat pentru o evaluare profesională.`;
+            } else {
+                resultText = `Scorul tău: ${totalScore}/${maxScore} (${percentage}%) - Simptome semnificative de ADHD raportate. Consultația cu un specialist ADHD este foarte recomandată pentru evaluare și opțiuni de tratament.`;
+            }
+            
+            finalResultText.textContent = resultText;
+        }
+
+        // Create floating particles effect
+        function createParticles() {
+            const colors = ['#F3D4D6', '#E3DFF7', '#D3E3F5', '#D4EAE3', '#F3A93B'];
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + 'vw';
+                    particle.style.top = Math.random() * 100 + 'vh';
+                    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    document.body.appendChild(particle);
+                    
+                    setTimeout(() => {
+                        particle.style.transform = `translateY(-${Math.random() * 200 + 100}px) scale(0)`;
+                        particle.style.opacity = '0';
+                    }, 50);
+                    
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 1000);
+                }, i * 100);
+            }
+        }
+
+        // Show encouragement toast
+        function showEncouragementToast() {
+            const encouragementMessages = [
+                "Merge grozav! 🌟", "Ești pe drumul cel bun! 💪", "Fantastic! 🎉", 
+                "Continui excelent! ✨", "Bravo! 👏", "Ești minunat/ă! 🌈", 
+                "Progresezi fantastic! 🚀", "Perfect! 💫", "Extraordinar! 🎊", "Incredibil! 🌟"
+            ];
+            
+            const toast = document.createElement('div');
+            toast.className = 'encouragement-toast';
+            toast.textContent = encouragementMessages[Math.floor(Math.random() * encouragementMessages.length)];
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 4000);
+        }
+
+        // Create background doodles
+        function createBackgroundDoodles() {
+            const doodleLayer = document.getElementById('doodle-layer');
+            
+            // Create various doodles
+            const doodles = [
+                { class: 'doodle-sun', count: 2 },
+                { class: 'doodle-heart', count: 3 },
+                { class: 'doodle-q', content: '?', count: 4 }
+            ];
+            
+            doodles.forEach(doodleType => {
+                for (let i = 0; i < doodleType.count; i++) {
+                    const doodle = document.createElement('div');
+                    doodle.className = `doodle ${doodleType.class}`;
+                    
+                    if (doodleType.content) {
+                        doodle.textContent = doodleType.content;
+                    }
+                    
+                    doodle.style.top = Math.random() * 100 + 'vh';
+                    doodle.style.left = Math.random() * 100 + 'vw';
+                    doodle.style.animationDelay = Math.random() * 10 + 's';
+                    
+                    doodleLayer.appendChild(doodle);
+                }
+            });
+        }
+
+        // Event listeners
+        nextBtn.addEventListener('click', nextQuestion);
+        restartBtn.addEventListener('click', initializeGame);
+
+        // Start the game
+        initializeGame();
+    </script>
+</body>
+</html>

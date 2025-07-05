@@ -1,0 +1,96 @@
+############# Romanian navigation ##############
+
+# main menu
+[[main]]
+name = "Acasa"
+url = ""
+weight = 1
+
+[[main]]
+name = "Despre"
+url = "about/"
+weight = 2
+
+[[main]]
+name = "Servicii"
+url = "servicii/"
+weight = 3
+
+
+[[main]]
+weight = 5
+name = "Psihoterapie"
+hasChildren = true
+
+  [[main]]
+  parent = "Psihoterapie"
+  name = "CBT"
+  url = "cbt/"
+  weight = 1
+
+  [[main]]
+  parent = "Psihoterapie"
+  name = "Familie"
+  url = "familie/"
+  weight = 2
+
+  [[main]]
+  parent = "Psihoterapie"
+  name = "Psihedelice"
+  url = "psihedelice/"
+  weight = 3
+
+
+
+[[main]]
+name = "Blog"
+url = "blog/"
+weight = 6
+
+[[main]]
+weight = 9
+name = "Resurse"
+hasChildren = true
+
+  [[main]]
+  parent = "Resurse"
+  name = "Teste"
+  url = "test/"
+  weight = 1
+
+  [[main]]
+  parent = "Resurse"
+  name = "Articole"
+  url = "articole/"
+  weight = 5
+
+  [[main]]
+  parent = "Resurse"
+  name = "Intrebari frecvente"
+  url = "intrebari/"
+  weight = 10
+
+
+[[main]]
+name = "Contact"
+url = "contact/"
+weight = 7
+
+
+# footer menu
+[[footer]]
+name = "Despre"
+url = "about/"
+weight = 1
+
+[[footer]]
+name = "Servicii"
+url = "servicii/"
+weight = 2
+
+[[footer]]
+name = "Termeni & Conditii"
+url = "terms-and-conditions/"
+weight = 3
+
+

@@ -1,0 +1,19 @@
+{
+  "main": [
+    {
+      "title": "facebook",
+      "icon": "lab la-facebook-f",
+      "link": "https://facebook.com/cristipantus"
+    },
+    {
+      "title": "instagram",
+      "icon": "lab la-instagram",
+      "link": "https://instagram.com/alx_asert"
+    },
+    {
+      "title": "pinterest",
+      "icon": "lab la-pinterest",
+      "link": "!#"
+    }
+  ]
+}

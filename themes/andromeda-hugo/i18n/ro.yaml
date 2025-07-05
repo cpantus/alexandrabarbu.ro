@@ -1,0 +1,110 @@
+- id: socials
+  translation: Social Media
+
+- id: social_media
+  translation: Social Media
+
+- id: quick_links
+  translation: Link-uri Rapide
+
+- id: location_contact
+  translation: Locație și Contact
+
+- id: recent_posts
+  translation: Postări Recente de
+
+- id: related_articles
+  translation: Articole Similare
+
+- id: view_listing
+  translation: Vezi Listarea
+
+- id: read_more
+  translation: Citește Mai Mult
+
+- id: about_the_role
+  translation: Despre acest rol
+
+- id: fname
+  translation: Prenume
+
+- id: full_name
+  translation: Nume Complet
+
+- id: lname
+  translation: Nume de Familie
+
+- id: name_re
+  translation: Numele este obligatoriu!
+
+- id: email
+  translation: Adresa de Email
+
+- id: email_re
+  translation: Email-ul este obligatoriu!
+
+- id: upload_cv
+  translation: Încarcă CV
+
+- id: cv_note
+  translation: doar fișiere doc, pdf sunt permise &amp; dimensiunea fișierului trebuie să fie mai mică de 2MB
+
+- id: cv_re
+  translation: CV-ul este obligatoriu!
+
+- id: apply_job
+  translation: Aplică pentru Acest Job
+
+- id: lets_meet
+  translation: Să Ne Întâlnim
+
+- id: year
+  translation: An
+
+- id: location
+  translation: Locație
+
+- id: company_size
+  translation: Mărimea Companiei
+
+- id: send_a_message
+  translation: Trimite un Mesaj
+
+- id: send_message
+  translation: Trimite Mesajul
+
+- id: comment_re
+  translation: Comentariul este obligatoriu!
+
+- id: your_message
+  translation: Mesajul Tău
+
+- id: phone
+  translation: Telefon
+
+- id: contact_us
+  translation: Contactează-ne
+
+- id: get_in_touch
+  translation: Intră în Legătură
+
+- id: form_thanks_message
+  translation: Mulțumim pentru mesajul tău!
+
+- id: form_error_message
+  translation: Ops! A apărut o problemă la trimiterea formularului
+
+- id: min_read
+  translation: Min citire
+
+- id: monthly
+  translation: Facturat Lunar
+
+- id: yearly
+  translation: Facturat Anual
+
+- id: month
+  translation: Lună
+
+- id: year
+  translation: An
