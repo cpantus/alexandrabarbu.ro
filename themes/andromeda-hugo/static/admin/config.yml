@@ -602,13 +602,14 @@ collections:
             required: false
             hint: "Full Twitter profile URL (e.g., https://twitter.com/yourprofile)"
 
-  # SEO & Analytics Configuration
-  - name: "seo_metadata"
-    label: "🔍 SEO Metadata"
+  # SEO & Analytics Management (Consolidated)
+  - name: "seo_analytics"
+    label: "🔍 SEO & Analytics"
     icon: "search_insights"
     files:
+      # SEO Metadata & Most Analytics
       - name: "seo_metadata_config"
-        label: "SEO Metadata Settings"
+        label: "SEO Metadata & Site Settings"
         file: "themes/andromeda-hugo/config/_default/params.toml"
         fields:
           - label: "Website Metadata"
@@ -658,8 +659,8 @@ collections:
                 widget: "string"
                 required: false
                 hint: "Facebook domain verification code"
-          - label: "Analytics Configurations"
-            name: "analytics_params"
+          - label: "Alternative Analytics Platforms"
+            name: "analytics_other"
             widget: "object"
             collapsed: true
             fields:
@@ -724,17 +725,13 @@ collections:
                     widget: "string"
                     required: false
                     hint: "Your counter.dev username"
-
-  # Google Analytics Configuration (Separate from params.toml)
-  - name: "google_analytics"
-    label: "📊 Google Analytics"
-    icon: "analytics"
-    files:
+      
+      # Google Analytics (Separate file due to Hugo structure)
       - name: "google_analytics_config"
         label: "Google Analytics Settings"
         file: "themes/andromeda-hugo/hugo.toml"
         fields:
-          - label: "Google Analytics Configuration"
+          - label: "Google Analytics"
             name: "services"
             widget: "object"
             collapsed: false
@@ -742,6 +739,7 @@ collections:
               - label: "Google Analytics"
                 name: "googleAnalytics"
                 widget: "object"
+                collapsed: false
                 fields:
                   - label: "Analytics ID"
                     name: "ID"

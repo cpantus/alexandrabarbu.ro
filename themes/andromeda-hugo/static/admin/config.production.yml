@@ -865,8 +865,8 @@ collections:
             hint: "Full Twitter profile URL (e.g., https://twitter.com/yourprofile)"
 
   # SEO & Analytics Configuration
-  - name: "seo_metadata"
-    label: "🔍 SEO Metadata"
+  - name: "seo_analytics"
+    label: "🔍 SEO & Analytics"
     icon: "search_insights"
     files:
       - name: "seo_metadata_config"
@@ -920,9 +920,96 @@ collections:
                 widget: "string"
                 required: false
                 hint: "Facebook domain verification code"
+          - label: "Alternative Analytics Platforms"
+            name: "analytics_other"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Matomo Analytics"
+                name: "matomo"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - label: "Enable Matomo"
+                    name: "enable"
+                    widget: "boolean"
+                    default: false
+                  - label: "Matomo URL"
+                    name: "url"
+                    widget: "string"
+                    required: false
+                    hint: "Your Matomo instance URL"
+                  - label: "Site ID"
+                    name: "id"
+                    widget: "string"
+                    required: false
+                    hint: "Your Matomo site ID"
+              - label: "Baidu Analytics"
+                name: "baidu"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - label: "Enable Baidu"
+                    name: "enable"
+                    widget: "boolean"
+                    default: false
+                  - label: "Analytics ID"
+                    name: "analytics_id"
+                    widget: "string"
+                    required: false
+                    hint: "Baidu Analytics ID"
+              - label: "Plausible Analytics"
+                name: "plausible"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - label: "Enable Plausible"
+                    name: "enable"
+                    widget: "boolean"
+                    default: false
+                  - label: "Domain"
+                    name: "domain"
+                    widget: "string"
+                    required: false
+                    hint: "Your domain for Plausible (e.g., alexandrabarbu.ro)"
+              - label: "Counter Analytics"
+                name: "counter"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - label: "Enable Counter"
+                    name: "enable"
+                    widget: "boolean"
+                    default: false
+                  - label: "Username"
+                    name: "username"
+                    widget: "string"
+                    required: false
+                    hint: "Your counter.dev username"
+      
+      # Google Analytics (Separate file due to Hugo structure)
+      - name: "google_analytics_config"
+        label: "Google Analytics Settings"
+        file: "themes/andromeda-hugo/hugo.toml"
+        fields:
+          - label: "Google Analytics"
+            name: "services"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Google Analytics"
+                name: "googleAnalytics"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Analytics ID"
+                    name: "ID"
+                    widget: "string"
+                    required: false
+                    hint: "Google Analytics 4 measurement ID (G-XXXXXXXXXX) or Universal Analytics (UA-XXXXXXX-X)"
 
-  # Google Analytics Configuration (Separate from params.toml)
-  - name: "google_analytics"
+  # This collection has been consolidated into SEO & Analytics above
+  # - name: "google_analytics"
     label: "📊 Google Analytics"
     icon: "analytics"
     files:
