@@ -1,14 +1,40 @@
-# Production configuration for GitHub OAuth
+# Enhanced Sveltia CMS Configuration for Alexandra Barbu Therapy Website
+# Bilingual Romanian/English Support with Advanced Features
+
+# Backend Configuration (GitHub with Cloudflare Access compatibility)
 backend:
   name: github
   repo: cpantus/alexandrabarbu.ro
   branch: main
+  # Note: Cloudflare Access will continue to protect /admin path
 
-# Media management
+# Advanced Bilingual Support (Sveltia CMS Superior i18n)
+i18n:
+  structure: multiple_folders
+  locales: [ro, en]
+  default_locale: ro
+  # Save all locales by default (can disable per content item)
+  save_all_locales: true
+
+# Media Management with WebP Optimization
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
 
-# Site settings
+# Advanced Media Libraries (Sveltia Feature)
+media_libraries:
+  default:
+    config:
+      max_file_size: 10485760 # 10MB limit
+      transformations:
+        raster_image:
+          format: webp          # Convert to WebP for performance
+          quality: 85           # High quality for therapy images
+          width: 2048           # Max width for responsive images
+          height: 2048          # Max height
+        svg:
+          optimize: true        # Optimize SVG files
+
+# Site Settings
 site_url: "https://alexandrabarbu.ro"
 display_url: "https://alexandrabarbu.ro"
 logo_url: "/images/logo.png"
@@ -17,64 +43,377 @@ logo_url: "/images/logo.png"
 publish_mode: editorial_workflow
 search: false
 
-# Collections (only managing files that actually exist)
+# Enhanced Collections with Bilingual Support
 collections:
-  # Blog posts (EXISTS ✅)
+  # Bilingual Blog Posts
   - name: "blog"
-    label: "Blog Posts"
-    folder: "content/english/blog"
+    label: "📰 Blog Posts"
+    icon: "article"
+    folder: "content/{{locale}}/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    i18n: true
     editor:
       preview: true
     fields:
-      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Title", name: "title", widget: "string", i18n: true }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
-      - { label: "Featured Image", name: "image", widget: "image", required: false }
-      - { label: "Author", name: "author", widget: "string", required: false }
-      - { label: "Summary/Description", name: "description", widget: "text", required: false }
-      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Featured Image", name: "image", widget: "image", required: false, 
+          hint: "Recommended size: 1200x630px for social sharing" }
+      - { label: "Author", name: "author", widget: "string", required: false, 
+          hint: "Leave empty to use site default author" }
+      - { label: "Description", name: "description", widget: "text", required: false, i18n: true,
+          hint: "SEO description and social media preview" }
+      - { label: "Tags", name: "tags", widget: "list", required: false,
+          hint: "Therapy-related tags for categorization" }
       - { label: "Categories", name: "categories", widget: "list", required: false }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Content", name: "body", widget: "markdown", i18n: true }
 
-  # About page (EXISTS ✅)
-  - name: "about"
-    label: "About Page"
-    file: "content/english/about.md"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Draft", name: "draft", widget: "boolean", default: false }
-      - { label: "Page Description", name: "description", widget: "text" }
-      - { label: "Body", name: "body", widget: "markdown" }
-
-  # Services (EXISTS ✅)
+  # Therapy Services (Bilingual)
   - name: "services"
-    label: "Services"
-    folder: "content/english/services"
+    label: "🧠 Therapy Services"
+    icon: "psychology"
+    folder: "content/{{locale}}/services"
     create: true
     slug: "{{slug}}"
+    i18n: true
+    editor:
+      preview: true
     fields:
-      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Title", name: "title", widget: "string", i18n: true }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
-      - { label: "Icon", name: "icon", widget: "string", hint: "FontAwesome icon class" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Service Icon", name: "icon", widget: "string", required: false,
+          hint: "Material Symbols icon name (e.g. psychology, healing, self_improvement)" }
+      - { label: "Short Description", name: "description", widget: "text", i18n: true,
+          hint: "Brief description for service cards and SEO" }
+      - { label: "Service Price", name: "price", widget: "string", required: false,
+          hint: "e.g. '350 RON/sedință' or 'Contact for pricing'" }
+      - { label: "Duration", name: "duration", widget: "string", required: false,
+          hint: "e.g. '50 minutes' or '1.5 hours'" }
+      - { label: "Content", name: "body", widget: "markdown", i18n: true }
 
-  # Contact page (EXISTS ✅)
+  # About Pages (Bilingual)
+  - name: "about"
+    label: "👩‍⚕️ About Pages"
+    icon: "person"
+    files:
+      - name: "about_ro"
+        label: "About (Romanian)"
+        file: "content/romanian/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Page Description", name: "description", widget: "text",
+              hint: "SEO description for about page" }
+          - { label: "Profile Image", name: "image", widget: "image", required: false,
+              hint: "Professional headshot for about page" }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      - name: "about_en"
+        label: "About (English)"
+        file: "content/english/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Page Description", name: "description", widget: "text",
+              hint: "SEO description for about page" }
+          - { label: "Profile Image", name: "image", widget: "image", required: false,
+              hint: "Professional headshot for about page" }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+  # Contact Pages (Bilingual)
   - name: "contact"
-    label: "Contact Page"
-    file: "content/english/contact.md"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Draft", name: "draft", widget: "boolean", default: false }
-      - { label: "Page Description", name: "description", widget: "text" }
-      - { label: "Body", name: "body", widget: "markdown" }
+    label: "📞 Contact Pages"
+    icon: "contact_page"
+    files:
+      - name: "contact_ro"
+        label: "Contact (Romanian)"
+        file: "content/romanian/contact.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Page Description", name: "description", widget: "text" }
+          - { label: "Content", name: "body", widget: "markdown" }
 
-  # Site configuration (EXISTS ✅)
+      - name: "contact_en"
+        label: "Contact (English)"
+        file: "content/english/contact.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Page Description", name: "description", widget: "text" }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+  # Homepage Content Management (Bilingual)
+  - name: "homepage"
+    label: "🏠 Homepage Content"
+    icon: "home"
+    files:
+      - name: "homepage_ro"
+        label: "Homepage (Romanian)"
+        file: "content/romanian/_index.md"
+        fields:
+          - label: "Banner Section"
+            name: "banner"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Title", name: "title", widget: "string",
+                  hint: "Main headline on homepage banner" }
+              - { label: "Button Text", name: "button", widget: "string",
+                  hint: "Call-to-action button text" }
+              - { label: "Button Link", name: "button_link", widget: "string",
+                  hint: "URL for the main CTA button" }
+              - { label: "Banner Image", name: "image", widget: "image",
+                  hint: "Hero image for homepage banner" }
+
+          - label: "Brand Carousel"
+            name: "brands_carousel"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Enable Brands", name: "enable", widget: "boolean", default: false }
+              - label: "Brand Images"
+                name: "brand_images"
+                widget: "list"
+                required: false
+                field: { label: "Brand Image", name: "image", widget: "image" }
+
+          - label: "Features Section"
+            name: "features"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Enable Features", name: "enable", widget: "boolean", default: true }
+              - { label: "Subtitle", name: "subtitle", widget: "string",
+                  hint: "Small text above main title" }
+              - { label: "Title", name: "title", widget: "string",
+                  hint: "Main features section title (supports HTML)" }
+              - { label: "Description", name: "description", widget: "text",
+                  hint: "Brief description of your therapy services" }
+              - label: "Feature List"
+                name: "feature_list"
+                widget: "list"
+                required: false
+                label_singular: "Feature"
+                fields:
+                  - { label: "Feature Title", name: "title", widget: "string" }
+                  - { label: "Feature Content", name: "content", widget: "text" }
+                  - { label: "Button Text", name: "button", widget: "string", required: false,
+                      hint: "Text for feature button (optional)" }
+                  - { label: "Button Link", name: "button_link", widget: "string", required: false,
+                      hint: "URL for feature button (optional)" }
+                  - { label: "Feature Icon", name: "icon", widget: "string", required: false,
+                      hint: "Material Symbols icon name" }
+
+      - name: "homepage_en"
+        label: "Homepage (English)"
+        file: "content/english/_index.md"
+        fields:
+          - label: "Banner Section"
+            name: "banner"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Title", name: "title", widget: "string",
+                  hint: "Main headline on homepage banner" }
+              - { label: "Button Text", name: "button", widget: "string",
+                  hint: "Call-to-action button text" }
+              - { label: "Button Link", name: "button_link", widget: "string",
+                  hint: "URL for the main CTA button" }
+              - { label: "Banner Image", name: "image", widget: "image",
+                  hint: "Hero image for homepage banner" }
+
+          - label: "Brand Carousel"
+            name: "brands_carousel"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Enable Brands", name: "enable", widget: "boolean", default: false }
+              - label: "Brand Images"
+                name: "brand_images"
+                widget: "list"
+                required: false
+                field: { label: "Brand Image", name: "image", widget: "image" }
+
+          - label: "Features Section"
+            name: "features"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Enable Features", name: "enable", widget: "boolean", default: true }
+              - { label: "Subtitle", name: "subtitle", widget: "string",
+                  hint: "Small text above main title" }
+              - { label: "Title", name: "title", widget: "string",
+                  hint: "Main features section title (supports HTML)" }
+              - { label: "Description", name: "description", widget: "text",
+                  hint: "Brief description of your therapy services" }
+              - label: "Feature List"
+                name: "feature_list"
+                widget: "list"
+                required: false
+                label_singular: "Feature"
+                fields:
+                  - { label: "Feature Title", name: "title", widget: "string" }
+                  - { label: "Feature Content", name: "content", widget: "text" }
+                  - { label: "Button Text", name: "button", widget: "string", required: false,
+                      hint: "Text for feature button (optional)" }
+                  - { label: "Button Link", name: "button_link", widget: "string", required: false,
+                      hint: "URL for feature button (optional)" }
+                  - { label: "Feature Icon", name: "icon", widget: "string", required: false,
+                      hint: "Material Symbols icon name" }
+
+  # Therapy Types Management (Bilingual)
+  - name: "therapy_types"
+    label: "🔬 Therapy Types"
+    icon: "science"
+    files:
+      # CBT Therapy
+      - name: "cbt_ro"
+        label: "CBT Therapy (Romanian)"
+        file: "content/romanian/cbt.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Description", name: "description", widget: "text",
+              hint: "SEO description for CBT therapy page" }
+          - { label: "Therapy Price", name: "price", widget: "string", required: false,
+              hint: "e.g. '350 RON/sedință'" }
+          - { label: "Session Duration", name: "duration", widget: "string", required: false,
+              hint: "e.g. '50 de minute'" }
+          - { label: "Featured Image", name: "image", widget: "image", required: false,
+              hint: "Image representing CBT therapy" }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      - name: "cbt_en"
+        label: "CBT Therapy (English)"
+        file: "content/english/cbt.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Description", name: "description", widget: "text",
+              hint: "SEO description for CBT therapy page" }
+          - { label: "Therapy Price", name: "price", widget: "string", required: false,
+              hint: "e.g. '350 RON/session'" }
+          - { label: "Session Duration", name: "duration", widget: "string", required: false,
+              hint: "e.g. '50 minutes'" }
+          - { label: "Featured Image", name: "image", widget: "image", required: false,
+              hint: "Image representing CBT therapy" }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      # Family Therapy
+      - name: "family_ro"
+        label: "Family Therapy (Romanian)"
+        file: "content/romanian/familie.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Therapy Price", name: "price", widget: "string", required: false }
+          - { label: "Session Duration", name: "duration", widget: "string", required: false }
+          - { label: "Featured Image", name: "image", widget: "image", required: false }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      - name: "family_en"
+        label: "Family Therapy (English)"
+        file: "content/english/family-therapy.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Therapy Price", name: "price", widget: "string", required: false }
+          - { label: "Session Duration", name: "duration", widget: "string", required: false }
+          - { label: "Featured Image", name: "image", widget: "image", required: false }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      # Psychedelic Therapy
+      - name: "psychedelic_ro"
+        label: "Psychedelic Therapy (Romanian)"
+        file: "content/romanian/psihedelice.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Therapy Price", name: "price", widget: "string", required: false }
+          - { label: "Session Duration", name: "duration", widget: "string", required: false }
+          - { label: "Featured Image", name: "image", widget: "image", required: false }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      - name: "psychedelic_en"
+        label: "Psychedelic Therapy (English)"
+        file: "content/english/psychedelic-therapy.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Therapy Price", name: "price", widget: "string", required: false }
+          - { label: "Session Duration", name: "duration", widget: "string", required: false }
+          - { label: "Featured Image", name: "image", widget: "image", required: false }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+  # Case Studies (Bilingual)
+  - name: "case_studies"
+    label: "📋 Case Studies"
+    icon: "clinical_notes"
+    folder: "content/{{locale}}/case-studies"
+    create: true
+    slug: "{{slug}}"
+    i18n: true
+    editor:
+      preview: true
+    fields:
+      - { label: "Case Title", name: "title", widget: "string", i18n: true,
+          hint: "Anonymized case study title" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Client Type", name: "client_type", widget: "select", 
+          options: [
+            { label: "Adult Individual", value: "adult" },
+            { label: "Child/Adolescent", value: "child" },
+            { label: "Family", value: "family" },
+            { label: "Couple", value: "couple" },
+            { label: "Group", value: "group" }
+          ], hint: "Type of client(s) in this case study" }
+      - { label: "Therapy Method", name: "therapy_method", widget: "string", i18n: true,
+          hint: "Primary therapeutic approach used" }
+      - { label: "Treatment Duration", name: "duration", widget: "string",
+          hint: "e.g. '6 months, weekly sessions'" }
+      - { label: "Age Range", name: "age_range", widget: "string", required: false,
+          hint: "e.g. '25-35' (keep general for privacy)" }
+      - { label: "Case Summary", name: "description", widget: "text", i18n: true,
+          hint: "Brief, anonymized summary for SEO and previews" }
+      - { label: "Case Content", name: "body", widget: "markdown", i18n: true,
+          hint: "Full case study content (ensure client anonymity)" }
+
+  # FAQ Management (Bilingual)
+  - name: "faq"
+    label: "❓ FAQ Pages"
+    icon: "help"
+    files:
+      - name: "faq_ro"
+        label: "FAQ (Romanian)"
+        file: "content/romanian/intrebari.md"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Page Description", name: "description", widget: "text" }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      - name: "faq_en"
+        label: "FAQ (English)"
+        file: "content/english/faq.md"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Page Description", name: "description", widget: "text" }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+  # Site Configuration
   - name: "config"
-    label: "Site Configuration"
+    label: "⚙️ Site Configuration"
+    icon: "settings"
     files:
       - label: "Main Settings"
         name: "main_config"
@@ -83,25 +422,22 @@ collections:
           - { label: "Site Title", name: "title", widget: "string" }
           - { label: "Base URL", name: "baseURL", widget: "string" }
           - { label: "Theme", name: "theme", widget: "hidden", default: "andromeda-hugo" }
-          - { label: "Default Language", name: "defaultContentLanguage", widget: "select", options: ["ro", "en"] }
-          - { label: "Time Zone", name: "timeZone", widget: "string", hint: "Use IANA format like Europe/Bucharest" }
+          - { label: "Default Language", name: "defaultContentLanguage", widget: "select", 
+              options: [
+                { label: "Romanian", value: "RO" },
+                { label: "English", value: "EN" }
+              ]}
+          - { label: "Time Zone", name: "timeZone", widget: "string", 
+              hint: "IANA format like Europe/Bucharest" }
+          - { label: "Posts Per Page", name: "pagination.pagerSize", widget: "number", 
+              default: 6, min: 1, max: 20 }
 
-      - label: "Site Parameters"
-        name: "params"
-        file: "config/_default/params.toml"
-        fields:
-          - { label: "Site Description", name: "description", widget: "text" }
-          - { label: "Author", name: "author", widget: "string" }
-          - { label: "Email", name: "email", widget: "string" }
-          - { label: "Phone", name: "phone", widget: "string" }
-
-  # Social media data (EXISTS ✅)
-  - name: "social"
-    label: "Social Media"
-    file: "data/social.json"
-    fields:
-      - { label: "Social Links", name: "social", widget: "list", fields: [
-          { label: "Platform", name: "name", widget: "string" },
-          { label: "URL", name: "link", widget: "string" },
-          { label: "Icon", name: "icon", widget: "string" }
-        ]}
+# Advanced Output Options (Sveltia Feature)
+output:
+  omit_empty_optional_fields: false
+  json:
+    indent_style: space
+    indent_size: 2
+  yaml:
+    quote: none
+    indent_size: 2
