@@ -52,80 +52,88 @@ collections:
             name: "banner"
             widget: "object"
             collapsed: false
+            required: false
             fields:
-              - { label: "Titlu", name: "title", widget: "string" }
-              - { label: "Text Buton", name: "button", widget: "string" }
-              - { label: "Link Buton", name: "button_link", widget: "string" }
-              - { label: "Imagine", name: "image", widget: "image" }
+              - { label: "Titlu", name: "title", widget: "string", required: false }
+              - { label: "Text Buton", name: "button", widget: "string", required: false }
+              - { label: "Link Buton", name: "button_link", widget: "string", required: false }
+              - { label: "Imagine", name: "image", widget: "image", required: false }
           - label: "Caracteristici/Teste"
             name: "features"
             widget: "object"
             collapsed: false
+            required: false
             fields:
-              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true }
-              - { label: "Subtitlu", name: "subtitle", widget: "string" }
-              - { label: "Titlu", name: "title", widget: "string" }
-              - { label: "Descriere", name: "description", widget: "text" }
+              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+              - { label: "Titlu", name: "title", widget: "string", required: false }
+              - { label: "Descriere", name: "description", widget: "text", required: false }
               - label: "Blocuri Caracteristici"
                 name: "features_blocks"
                 widget: "list"
+                required: false
                 label_singular: "Test/Caracteristică"
                 fields:
-                  - { label: "Iconiță", name: "icon", widget: "string", hint: "Exemplu: las la-lock" }
-                  - { label: "Titlu", name: "title", widget: "string" }
-                  - { label: "Conținut", name: "content", widget: "text" }
+                  - { label: "Iconiță", name: "icon", widget: "string", hint: "Exemplu: las la-lock", required: false }
+                  - { label: "Titlu", name: "title", widget: "string", required: false }
+                  - { label: "Conținut", name: "content", widget: "text", required: false }
                   - { label: "Text Buton", name: "button", widget: "string", required: false }
                   - { label: "Link Buton", name: "button_link", widget: "string", required: false }
           - label: "Cum Funcționează"
             name: "how_it_works"
             widget: "object"
             collapsed: true
+            required: false
             fields:
-              - { label: "Secțiune", name: "section", widget: "string", default: "how-it-works" }
-              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true }
+              - { label: "Secțiune", name: "section", widget: "string", default: "how-it-works", required: false }
+              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true, required: false }
           - label: "Video Intro"
             name: "intro_video"
             widget: "object"
             collapsed: true
+            required: false
             fields:
-              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true }
-              - { label: "Titlu", name: "title", widget: "string" }
-              - { label: "Subtitlu", name: "subtitle", widget: "string" }
-              - { label: "Descriere", name: "description", widget: "text" }
-              - { label: "Thumbnail Video", name: "video_thumbnail", widget: "image" }
-              - { label: "URL Video", name: "video_url", widget: "string", hint: "YouTube embed URL" }
+              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Titlu", name: "title", widget: "string", required: false }
+              - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+              - { label: "Descriere", name: "description", widget: "text", required: false }
+              - { label: "Thumbnail Video", name: "video_thumbnail", widget: "image", required: false }
+              - { label: "URL Video", name: "video_url", widget: "string", hint: "YouTube embed URL", required: false }
           - label: "Carusel Branduri"
             name: "brands_carousel"
             widget: "object"
             collapsed: true
+            required: false
             fields:
-              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: false }
+              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: false, required: false }
               - label: "Imagini Branduri"
                 name: "brand_images"
                 widget: "list"
+                required: false
                 label_singular: "Imagine Brand"
-                fields:
-                  - { label: "Imagine", name: "image", widget: "image" }
+                field: { label: "Cale Imagine", widget: "string" }
           - label: "Testimoniale"
             name: "testimonials"
             widget: "object"
             collapsed: true
+            required: false
             fields:
-              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true }
-              - { label: "Subtitlu", name: "subtitle", widget: "string" }
-              - { label: "Titlu", name: "title", widget: "string" }
-              - { label: "Descriere", name: "description", widget: "text" }
-              - { label: "Imagine Stânga", name: "image_left", widget: "image" }
-              - { label: "Imagine Dreapta", name: "image_right", widget: "image" }
+              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+              - { label: "Titlu", name: "title", widget: "string", required: false }
+              - { label: "Descriere", name: "description", widget: "text", required: false }
+              - { label: "Imagine Stânga", name: "image_left", widget: "image", required: false }
+              - { label: "Imagine Dreapta", name: "image_right", widget: "image", required: false }
               - label: "Lista Testimoniale"
                 name: "testimonials_quotes"
                 widget: "list"
+                required: false
                 label_singular: "Testimonial"
                 fields:
-                  - { label: "Citat", name: "quote", widget: "text" }
-                  - { label: "Nume", name: "name", widget: "string" }
-                  - { label: "Funcție", name: "designation", widget: "string" }
-                  - { label: "Poză", name: "image", widget: "image" }
+                  - { label: "Citat", name: "quote", widget: "text", required: false }
+                  - { label: "Nume", name: "name", widget: "string", required: false }
+                  - { label: "Funcție", name: "designation", widget: "string", required: false }
+                  - { label: "Poză", name: "image", widget: "image", required: false }
 
       # About Page
       - name: "about_ro"
