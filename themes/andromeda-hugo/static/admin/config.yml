@@ -471,6 +471,95 @@ collections:
               - { label: "Title", name: "title", widget: "string", required: false }
               - { label: "Description", name: "description", widget: "text", required: false }
               - { label: "Image", name: "image", widget: "image", required: false }
+          - label: "What We Do"
+            name: "what_we_do"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Enable", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - label: "Service Blocks"
+                name: "block"
+                widget: "list"
+                required: false
+                label_singular: "Service Block"
+                fields:
+                  - { label: "Title", name: "title", widget: "string", required: false }
+                  - { label: "Content", name: "content", widget: "text", required: false }
+          - label: "Our Mission"
+            name: "our_mission"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Enable", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+          - label: "About Video"
+            name: "about_video"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Enable", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Video URL", name: "video_url", widget: "string", hint: "YouTube embed URL", required: false }
+              - { label: "Video Thumbnail", name: "video_thumbnail", widget: "image", required: false }
+          - label: "Brands Carousel"
+            name: "brands_carousel"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Enable", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Section", name: "section", widget: "string", default: "/", hint: "Brand images reference", required: false }
+          - label: "Our Team"
+            name: "our_team"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Enable", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - label: "Team Members"
+                name: "team"
+                widget: "list"
+                required: false
+                label_singular: "Team Member"
+                fields:
+                  - { label: "Name", name: "name", widget: "string", required: false }
+                  - { label: "Photo", name: "image", widget: "image", required: false }
+                  - { label: "Position", name: "designation", widget: "string", required: false }
+          - label: "Our Office"
+            name: "our_office"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Enable", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - label: "Office Locations"
+                name: "office_locations"
+                widget: "list"
+                required: false
+                label_singular: "Office Location"
+                fields:
+                  - { label: "City", name: "city", widget: "string", required: false }
+                  - { label: "Country Flag", name: "country_flag", widget: "image", required: false }
+                  - { label: "Address Line 1", name: "address_line_one", widget: "string", required: false }
+                  - { label: "Address Line 2", name: "address_line_two", widget: "string", required: false }
 
       # Contact Page
       - name: "contact_en"

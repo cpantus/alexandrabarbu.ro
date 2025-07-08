@@ -1,10 +1,7 @@
 ############# Romanian navigation ##############
 
 # main menu
-[[main]]
-name = "Acasa"
-url = ""
-weight = 1
+
 
 [[main]]
 name = "Despre"
