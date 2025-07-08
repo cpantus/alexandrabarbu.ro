@@ -786,6 +786,55 @@ collections:
               - { label: "Video URL", name: "video_url", widget: "string", hint: "YouTube embed URL", required: false }
               - { label: "Video Thumbnail", name: "video_thumbnail", widget: "image", required: false }
 
+      # Articles/Resources Page
+      - name: "articles_en"
+        label: "📚 Articles & Resources"
+        file: "themes/andromeda-hugo/content/english/articles.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Layout", name: "layout", widget: "string", default: "about" }
+          - label: "SEO Description"
+            name: "description"
+            widget: "text"
+            required: false
+            hint: "📏 150-160 characters | 🎯 Formula: [Articles] + [Mental health] + [Expert] + [Resources] | 💡 Example: 'Professional articles and mental health resources from licensed psychologist in Bucharest. Evidence-based insights, research, and practical guides for wellbeing.' | 🔍 Include: mental health articles, psychology resources, expert insights"
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      # Pricing Page
+      - name: "pricing_en"
+        label: "💰 Pricing"
+        file: "themes/andromeda-hugo/content/english/pricing.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Layout", name: "layout", widget: "string", default: "pricing" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "SEO Description"
+            name: "description"
+            widget: "text"
+            required: false
+            hint: "📏 150-160 characters | 🎯 Formula: [Therapy pricing] + [Transparent rates] + [Bucharest] + [Value] | 💡 Example: 'Transparent therapy pricing in Bucharest. Affordable rates for CBT, family therapy, and psychedelic treatments. Quality mental healthcare that fits your budget.' | 🔍 Include: therapy pricing, affordable rates, mental healthcare costs"
+          - { label: "Special Offer", name: "offer", widget: "string", required: false }
+          - { label: "Monthly/Yearly Toggle", name: "monthly_yearly_toggle", widget: "select", options: ["monthly", "yearly", "toggle"], default: "toggle" }
+          - label: "Pricing Cards"
+            name: "pricing_card"
+            widget: "list"
+            collapsed: false
+            label_singular: "Pricing Option"
+            fields:
+              - { label: "Service Name", name: "name", widget: "string" }
+              - { label: "Description", name: "content", widget: "text" }
+              - { label: "Currency", name: "currency", widget: "string", default: "$" }
+              - { label: "Monthly Price", name: "monthly_price", widget: "string" }
+              - { label: "Yearly Price", name: "yearly_price", widget: "string" }
+              - { label: "Featured Option", name: "featured", widget: "boolean", default: false }
+              - { label: "Button Text", name: "button_label", widget: "string" }
+              - { label: "Button Link", name: "button_link", widget: "string" }
+              - label: "Included Services"
+                name: "services"
+                widget: "list"
+                field: { label: "Service", widget: "string" }
+
   # ===========================================
   # 🌐 SITE CONFIGURATION
   # ===========================================
