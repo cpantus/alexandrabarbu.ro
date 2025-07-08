@@ -1,20 +1,11 @@
-# Enhanced Sveltia CMS Configuration for Alexandra Barbu Therapy Website
-# Bilingual Romanian/English Support with Advanced Features
+# Sveltia CMS Production Configuration - Language-Based Structure
+# Enhanced bilingual therapy content management for Alexandra Barbu
 
 # Backend Configuration (GitHub with Cloudflare Access compatibility)
 backend:
   name: github
   repo: cpantus/alexandrabarbu.ro
   branch: main
-  # Note: Cloudflare Access will continue to protect /admin path
-
-# Advanced Bilingual Support (Sveltia CMS Superior i18n)
-i18n:
-  structure: multiple_folders
-  locales: [ro, en]
-  default_locale: ro
-  # Save all locales by default (can disable per content item)
-  save_all_locales: true
 
 # Media Management with WebP Optimization
 media_folder: "themes/andromeda-hugo/static/images/uploads"
@@ -43,372 +34,359 @@ logo_url: "/images/logo.png"
 publish_mode: editorial_workflow
 search: false
 
-# Enhanced Collections with Bilingual Support
+# Language-Based Collections Structure
 collections:
-  # Bilingual Blog Posts
-  - name: "blog"
-    label: "📰 Blog Posts"
-    icon: "article"
-    folder: "themes/andromeda-hugo/content/{{locale}}/blog"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    i18n: true
-    editor:
-      preview: true
-    fields:
-      - { label: "Title", name: "title", widget: "string", i18n: true }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Draft", name: "draft", widget: "boolean", default: false }
-      - { label: "Featured Image", name: "image", widget: "image", required: false, 
-          hint: "Recommended size: 1200x630px for social sharing" }
-      - { label: "Author", name: "author", widget: "string", required: false, 
-          hint: "Leave empty to use site default author" }
-      - { label: "Description", name: "description", widget: "text", required: false, i18n: true,
-          hint: "SEO description and social media preview" }
-      - { label: "Tags", name: "tags", widget: "list", required: false,
-          hint: "Therapy-related tags for categorization" }
-      - { label: "Categories", name: "categories", widget: "list", required: false }
-      - { label: "Content", name: "body", widget: "markdown", i18n: true }
-
-  # Therapy Services (Bilingual)
-  - name: "services"
-    label: "🧠 Therapy Services"
-    icon: "psychology"
-    folder: "themes/andromeda-hugo/content/{{locale}}/services"
-    create: true
-    slug: "{{slug}}"
-    i18n: true
-    editor:
-      preview: true
-    fields:
-      - { label: "Title", name: "title", widget: "string", i18n: true }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Draft", name: "draft", widget: "boolean", default: false }
-      - { label: "Service Icon", name: "icon", widget: "string", required: false,
-          hint: "Material Symbols icon name (e.g. psychology, healing, self_improvement)" }
-      - { label: "Short Description", name: "description", widget: "text", i18n: true,
-          hint: "Brief description for service cards and SEO" }
-      - { label: "Service Price", name: "price", widget: "string", required: false,
-          hint: "e.g. '350 RON/sedință' or 'Contact for pricing'" }
-      - { label: "Duration", name: "duration", widget: "string", required: false,
-          hint: "e.g. '50 minutes' or '1.5 hours'" }
-      - { label: "Content", name: "body", widget: "markdown", i18n: true }
-
-  # About Pages (Bilingual)
-  - name: "about"
-    label: "👩‍⚕️ About Pages"
-    icon: "person"
+  # ===========================================
+  # 🇷🇴 ROMANIAN CONTENT (DEFAULT)
+  # ===========================================
+  - name: "romanian_content"
+    label: "🇷🇴 Conținut Română (RO)"
+    icon: "translate"
     files:
+      # Homepage
+      - name: "homepage_ro"
+        label: "🏠 Pagina Principală"
+        file: "themes/andromeda-hugo/content/romanian/_index.md"
+        fields:
+          - label: "Banner"
+            name: "banner"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Titlu", name: "title", widget: "string" }
+              - { label: "Text Buton", name: "button", widget: "string" }
+              - { label: "Link Buton", name: "button_link", widget: "string" }
+              - { label: "Imagine", name: "image", widget: "image" }
+          - label: "Caracteristici"
+            name: "features"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Activează", name: "enable", widget: "boolean" }
+              - { label: "Subtitlu", name: "subtitle", widget: "string" }
+              - { label: "Titlu", name: "title", widget: "string" }
+              - { label: "Descriere", name: "description", widget: "text" }
+              - label: "Lista Caracteristici"
+                name: "feature_list"
+                widget: "list"
+                required: false
+                label_singular: "Caracteristică"
+                fields:
+                  - { label: "Titlu Caracteristică", name: "title", widget: "string" }
+                  - { label: "Conținut", name: "content", widget: "text" }
+                  - { label: "Text Buton", name: "button", widget: "string", required: false }
+                  - { label: "Link Buton", name: "button_link", widget: "string", required: false }
+
+      # About Page
       - name: "about_ro"
-        label: "About (Romanian)"
+        label: "👩‍⚕️ Despre Mine"
         file: "themes/andromeda-hugo/content/romanian/about.md"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Titlu", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
-          - { label: "Page Description", name: "description", widget: "text",
-              hint: "SEO description for about page" }
-          - { label: "Profile Image", name: "image", widget: "image", required: false,
-              hint: "Professional headshot for about page" }
-          - { label: "Content", name: "body", widget: "markdown" }
+          - { label: "Descriere SEO", name: "description", widget: "text", hint: "Pentru motoarele de căutare" }
+          - { label: "Imagine Profil", name: "image", widget: "image", required: false }
+          - { label: "Conținut", name: "body", widget: "markdown" }
 
+      # Contact Page
+      - name: "contact_ro"
+        label: "📞 Contact"
+        file: "themes/andromeda-hugo/content/romanian/contact.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+      # Test/Resurse Page
+      - name: "test_ro"
+        label: "📋 Teste/Resurse"
+        file: "themes/andromeda-hugo/content/romanian/test.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+      # FAQ Page
+      - name: "faq_ro"
+        label: "❓ Întrebări Frecvente"
+        file: "themes/andromeda-hugo/content/romanian/intrebari.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+      # CBT Therapy
+      - name: "cbt_ro"
+        label: "🧠 Terapie CBT"
+        file: "themes/andromeda-hugo/content/romanian/cbt.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Preț", name: "price", widget: "string", required: false, hint: "ex: '350 RON/ședință'" }
+          - { label: "Durată", name: "duration", widget: "string", required: false, hint: "ex: '50 minute'" }
+          - { label: "Imagine", name: "image", widget: "image", required: false }
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+      # Family Therapy
+      - name: "family_ro"
+        label: "👨‍👩‍👧‍👦 Terapie de Familie"
+        file: "themes/andromeda-hugo/content/romanian/familie.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Preț", name: "price", widget: "string", required: false }
+          - { label: "Durată", name: "duration", widget: "string", required: false }
+          - { label: "Imagine", name: "image", widget: "image", required: false }
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+      # Psychedelic Therapy
+      - name: "psychedelic_ro"
+        label: "🌿 Terapie Psihedelică"
+        file: "themes/andromeda-hugo/content/romanian/psihedelice.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Preț", name: "price", widget: "string", required: false }
+          - { label: "Durată", name: "duration", widget: "string", required: false }
+          - { label: "Imagine", name: "image", widget: "image", required: false }
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+  # Romanian Blog Posts
+  - name: "blog_ro"
+    label: "🇷🇴 📰 Blog Română"
+    icon: "article"
+    folder: "themes/andromeda-hugo/content/romanian/blog"
+    create: true
+    slug: "{{slug}}"
+    filter: { field: "draft", value: false }
+    editor:
+      preview: true
+    fields:
+      - { label: "Titlu", name: "title", widget: "string" }
+      - { label: "Data", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Imagine Principală", name: "image", widget: "image", required: false, hint: "1200x630px pentru social media" }
+      - { label: "Autor", name: "author", widget: "string", required: false }
+      - { label: "Descriere SEO", name: "description", widget: "text", required: false }
+      - { label: "Etichete", name: "tags", widget: "list", required: false }
+      - { label: "Categorii", name: "categories", widget: "list", required: false }
+      - { label: "Conținut", name: "body", widget: "markdown" }
+
+  # Romanian Services
+  - name: "services_ro"
+    label: "🇷🇴 🔬 Servicii Română"
+    icon: "medical_services"
+    folder: "themes/andromeda-hugo/content/romanian/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titlu", name: "title", widget: "string" }
+      - { label: "Data", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Iconiță", name: "icon", widget: "string", required: false, hint: "Nume icon Material Symbols" }
+      - { label: "Descriere", name: "description", widget: "text" }
+      - { label: "Preț", name: "price", widget: "string", required: false }
+      - { label: "Durată", name: "duration", widget: "string", required: false }
+      - { label: "Conținut", name: "body", widget: "markdown" }
+
+  # Romanian Case Studies
+  - name: "case_studies_ro"
+    label: "🇷🇴 📋 Studii de Caz Română"
+    icon: "clinical_notes"
+    folder: "themes/andromeda-hugo/content/romanian/case-studies"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titlu Caz", name: "title", widget: "string", hint: "Titlu anonimizat" }
+      - { label: "Data", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Tip Client", name: "client_type", widget: "select", options: ["Adult", "Copil/Adolescent", "Familie", "Cuplu", "Grup"] }
+      - { label: "Metodă Terapeutică", name: "therapy_method", widget: "string" }
+      - { label: "Durată Tratament", name: "duration", widget: "string" }
+      - { label: "Rezumat", name: "description", widget: "text" }
+      - { label: "Conținut Caz", name: "body", widget: "markdown", hint: "Asigurați-vă anonimizarea clientului" }
+
+  # ===========================================
+  # 🇺🇸 ENGLISH CONTENT
+  # ===========================================
+  - name: "english_content"
+    label: "🇺🇸 English Content (EN)"
+    icon: "language"
+    files:
+      # Homepage
+      - name: "homepage_en"
+        label: "🏠 Homepage"
+        file: "themes/andromeda-hugo/content/english/_index.md"
+        fields:
+          - label: "Banner"
+            name: "banner"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Button Text", name: "button", widget: "string" }
+              - { label: "Button Link", name: "button_link", widget: "string" }
+              - { label: "Image", name: "image", widget: "image" }
+          - label: "Features"
+            name: "features"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Enable", name: "enable", widget: "boolean" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Feature List"
+                name: "feature_list"
+                widget: "list"
+                required: false
+                label_singular: "Feature"
+                fields:
+                  - { label: "Feature Title", name: "title", widget: "string" }
+                  - { label: "Content", name: "content", widget: "text" }
+                  - { label: "Button Text", name: "button", widget: "string", required: false }
+                  - { label: "Button Link", name: "button_link", widget: "string", required: false }
+
+      # About Page
       - name: "about_en"
-        label: "About (English)"
+        label: "👩‍⚕️ About"
         file: "themes/andromeda-hugo/content/english/about.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
-          - { label: "Page Description", name: "description", widget: "text",
-              hint: "SEO description for about page" }
-          - { label: "Profile Image", name: "image", widget: "image", required: false,
-              hint: "Professional headshot for about page" }
+          - { label: "SEO Description", name: "description", widget: "text", hint: "For search engines" }
+          - { label: "Profile Image", name: "image", widget: "image", required: false }
           - { label: "Content", name: "body", widget: "markdown" }
 
-  # Contact Pages (Bilingual)
-  - name: "contact"
-    label: "📞 Contact Pages"
-    icon: "contact_page"
-    files:
-      - name: "contact_ro"
-        label: "Contact (Romanian)"
-        file: "themes/andromeda-hugo/content/romanian/contact.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Draft", name: "draft", widget: "boolean", default: false }
-          - { label: "Page Description", name: "description", widget: "text" }
-          - { label: "Content", name: "body", widget: "markdown" }
-
+      # Contact Page
       - name: "contact_en"
-        label: "Contact (English)"
+        label: "📞 Contact"
         file: "themes/andromeda-hugo/content/english/contact.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
-          - { label: "Page Description", name: "description", widget: "text" }
+          - { label: "Description", name: "description", widget: "text" }
           - { label: "Content", name: "body", widget: "markdown" }
 
-  # Homepage Content Management (Bilingual)
-  - name: "homepage"
-    label: "🏠 Homepage Content"
-    icon: "home"
-    files:
-      - name: "homepage_ro"
-        label: "Homepage (Romanian)"
-        file: "themes/andromeda-hugo/content/romanian/_index.md"
-        fields:
-          - label: "Banner Section"
-            name: "banner"
-            widget: "object"
-            collapsed: false
-            fields:
-              - { label: "Title", name: "title", widget: "string",
-                  hint: "Main headline on homepage banner" }
-              - { label: "Button Text", name: "button", widget: "string",
-                  hint: "Call-to-action button text" }
-              - { label: "Button Link", name: "button_link", widget: "string",
-                  hint: "URL for the main CTA button" }
-              - { label: "Banner Image", name: "image", widget: "image",
-                  hint: "Hero image for homepage banner" }
-
-          - label: "Brand Carousel"
-            name: "brands_carousel"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Enable Brands", name: "enable", widget: "boolean", default: false }
-              - label: "Brand Images"
-                name: "brand_images"
-                widget: "list"
-                required: false
-                field: { label: "Brand Image", name: "image", widget: "image" }
-
-          - label: "Features Section"
-            name: "features"
-            widget: "object"
-            collapsed: false
-            fields:
-              - { label: "Enable Features", name: "enable", widget: "boolean", default: true }
-              - { label: "Subtitle", name: "subtitle", widget: "string",
-                  hint: "Small text above main title" }
-              - { label: "Title", name: "title", widget: "string",
-                  hint: "Main features section title (supports HTML)" }
-              - { label: "Description", name: "description", widget: "text",
-                  hint: "Brief description of your therapy services" }
-              - label: "Feature List"
-                name: "feature_list"
-                widget: "list"
-                required: false
-                label_singular: "Feature"
-                fields:
-                  - { label: "Feature Title", name: "title", widget: "string" }
-                  - { label: "Feature Content", name: "content", widget: "text" }
-                  - { label: "Button Text", name: "button", widget: "string", required: false,
-                      hint: "Text for feature button (optional)" }
-                  - { label: "Button Link", name: "button_link", widget: "string", required: false,
-                      hint: "URL for feature button (optional)" }
-                  - { label: "Feature Icon", name: "icon", widget: "string", required: false,
-                      hint: "Material Symbols icon name" }
-
-      - name: "homepage_en"
-        label: "Homepage (English)"
-        file: "themes/andromeda-hugo/content/english/_index.md"
-        fields:
-          - label: "Banner Section"
-            name: "banner"
-            widget: "object"
-            collapsed: false
-            fields:
-              - { label: "Title", name: "title", widget: "string",
-                  hint: "Main headline on homepage banner" }
-              - { label: "Button Text", name: "button", widget: "string",
-                  hint: "Call-to-action button text" }
-              - { label: "Button Link", name: "button_link", widget: "string",
-                  hint: "URL for the main CTA button" }
-              - { label: "Banner Image", name: "image", widget: "image",
-                  hint: "Hero image for homepage banner" }
-
-          - label: "Brand Carousel"
-            name: "brands_carousel"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Enable Brands", name: "enable", widget: "boolean", default: false }
-              - label: "Brand Images"
-                name: "brand_images"
-                widget: "list"
-                required: false
-                field: { label: "Brand Image", name: "image", widget: "image" }
-
-          - label: "Features Section"
-            name: "features"
-            widget: "object"
-            collapsed: false
-            fields:
-              - { label: "Enable Features", name: "enable", widget: "boolean", default: true }
-              - { label: "Subtitle", name: "subtitle", widget: "string",
-                  hint: "Small text above main title" }
-              - { label: "Title", name: "title", widget: "string",
-                  hint: "Main features section title (supports HTML)" }
-              - { label: "Description", name: "description", widget: "text",
-                  hint: "Brief description of your therapy services" }
-              - label: "Feature List"
-                name: "feature_list"
-                widget: "list"
-                required: false
-                label_singular: "Feature"
-                fields:
-                  - { label: "Feature Title", name: "title", widget: "string" }
-                  - { label: "Feature Content", name: "content", widget: "text" }
-                  - { label: "Button Text", name: "button", widget: "string", required: false,
-                      hint: "Text for feature button (optional)" }
-                  - { label: "Button Link", name: "button_link", widget: "string", required: false,
-                      hint: "URL for feature button (optional)" }
-                  - { label: "Feature Icon", name: "icon", widget: "string", required: false,
-                      hint: "Material Symbols icon name" }
-
-  # Therapy Types Management (Bilingual)
-  - name: "therapy_types"
-    label: "🔬 Therapy Types"
-    icon: "science"
-    files:
-      # CBT Therapy
-      - name: "cbt_ro"
-        label: "CBT Therapy (Romanian)"
-        file: "themes/andromeda-hugo/content/romanian/cbt.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Draft", name: "draft", widget: "boolean", default: false }
-          - { label: "Description", name: "description", widget: "text",
-              hint: "SEO description for CBT therapy page" }
-          - { label: "Therapy Price", name: "price", widget: "string", required: false,
-              hint: "e.g. '350 RON/sedință'" }
-          - { label: "Session Duration", name: "duration", widget: "string", required: false,
-              hint: "e.g. '50 de minute'" }
-          - { label: "Featured Image", name: "image", widget: "image", required: false,
-              hint: "Image representing CBT therapy" }
-          - { label: "Content", name: "body", widget: "markdown" }
-
-      - name: "cbt_en"
-        label: "CBT Therapy (English)"
-        file: "themes/andromeda-hugo/content/english/cbt.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Draft", name: "draft", widget: "boolean", default: false }
-          - { label: "Description", name: "description", widget: "text",
-              hint: "SEO description for CBT therapy page" }
-          - { label: "Therapy Price", name: "price", widget: "string", required: false,
-              hint: "e.g. '350 RON/session'" }
-          - { label: "Session Duration", name: "duration", widget: "string", required: false,
-              hint: "e.g. '50 minutes'" }
-          - { label: "Featured Image", name: "image", widget: "image", required: false,
-              hint: "Image representing CBT therapy" }
-          - { label: "Content", name: "body", widget: "markdown" }
-
-      # Family Therapy
-      - name: "family_ro"
-        label: "Family Therapy (Romanian)"
-        file: "themes/andromeda-hugo/content/romanian/familie.md"
+      # Tests/Resources Page
+      - name: "tests_en"
+        label: "📋 Tests/Resources"
+        file: "themes/andromeda-hugo/content/english/tests.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
           - { label: "Description", name: "description", widget: "text" }
-          - { label: "Therapy Price", name: "price", widget: "string", required: false }
-          - { label: "Session Duration", name: "duration", widget: "string", required: false }
-          - { label: "Featured Image", name: "image", widget: "image", required: false }
           - { label: "Content", name: "body", widget: "markdown" }
 
+      # FAQ Page
+      - name: "faq_en"
+        label: "❓ FAQ"
+        file: "themes/andromeda-hugo/content/english/faq.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      # CBT Therapy
+      - name: "cbt_en"
+        label: "🧠 CBT Therapy"
+        file: "themes/andromeda-hugo/content/english/cbt.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Price", name: "price", widget: "string", required: false, hint: "e.g. '350 RON/session'" }
+          - { label: "Duration", name: "duration", widget: "string", required: false, hint: "e.g. '50 minutes'" }
+          - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      # Family Therapy
       - name: "family_en"
-        label: "Family Therapy (English)"
+        label: "👨‍👩‍👧‍👦 Family Therapy"
         file: "themes/andromeda-hugo/content/english/family-therapy.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
           - { label: "Description", name: "description", widget: "text" }
-          - { label: "Therapy Price", name: "price", widget: "string", required: false }
-          - { label: "Session Duration", name: "duration", widget: "string", required: false }
-          - { label: "Featured Image", name: "image", widget: "image", required: false }
+          - { label: "Price", name: "price", widget: "string", required: false }
+          - { label: "Duration", name: "duration", widget: "string", required: false }
+          - { label: "Image", name: "image", widget: "image", required: false }
           - { label: "Content", name: "body", widget: "markdown" }
 
       # Psychedelic Therapy
-      - name: "psychedelic_ro"
-        label: "Psychedelic Therapy (Romanian)"
-        file: "themes/andromeda-hugo/content/romanian/psihedelice.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Draft", name: "draft", widget: "boolean", default: false }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Therapy Price", name: "price", widget: "string", required: false }
-          - { label: "Session Duration", name: "duration", widget: "string", required: false }
-          - { label: "Featured Image", name: "image", widget: "image", required: false }
-          - { label: "Content", name: "body", widget: "markdown" }
-
       - name: "psychedelic_en"
-        label: "Psychedelic Therapy (English)"
+        label: "🌿 Psychedelic Therapy"
         file: "themes/andromeda-hugo/content/english/psychedelic-therapy.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
           - { label: "Description", name: "description", widget: "text" }
-          - { label: "Therapy Price", name: "price", widget: "string", required: false }
-          - { label: "Session Duration", name: "duration", widget: "string", required: false }
-          - { label: "Featured Image", name: "image", widget: "image", required: false }
+          - { label: "Price", name: "price", widget: "string", required: false }
+          - { label: "Duration", name: "duration", widget: "string", required: false }
+          - { label: "Image", name: "image", widget: "image", required: false }
           - { label: "Content", name: "body", widget: "markdown" }
 
-  # Case Studies (Bilingual)
-  - name: "case_studies"
-    label: "📋 Case Studies"
-    icon: "clinical_notes"
-    folder: "themes/andromeda-hugo/content/{{locale}}/case-studies"
+  # English Blog Posts
+  - name: "blog_en"
+    label: "🇺🇸 📰 Blog English"
+    icon: "article"
+    folder: "themes/andromeda-hugo/content/english/blog"
     create: true
     slug: "{{slug}}"
-    i18n: true
+    filter: { field: "draft", value: false }
     editor:
       preview: true
     fields:
-      - { label: "Case Title", name: "title", widget: "string", i18n: true,
-          hint: "Anonymized case study title" }
+      - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
-      - { label: "Client Type", name: "client_type", widget: "select", 
-          options: [
-            { label: "Adult Individual", value: "adult" },
-            { label: "Child/Adolescent", value: "child" },
-            { label: "Family", value: "family" },
-            { label: "Couple", value: "couple" },
-            { label: "Group", value: "group" }
-          ], hint: "Type of client(s) in this case study" }
-      - { label: "Therapy Method", name: "therapy_method", widget: "string", i18n: true,
-          hint: "Primary therapeutic approach used" }
-      - { label: "Treatment Duration", name: "duration", widget: "string",
-          hint: "e.g. '6 months, weekly sessions'" }
-      - { label: "Age Range", name: "age_range", widget: "string", required: false,
-          hint: "e.g. '25-35' (keep general for privacy)" }
-      - { label: "Case Summary", name: "description", widget: "text", i18n: true,
-          hint: "Brief, anonymized summary for SEO and previews" }
-      - { label: "Case Content", name: "body", widget: "markdown", i18n: true,
-          hint: "Full case study content (ensure client anonymity)" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false, hint: "1200x630px for social media" }
+      - { label: "Author", name: "author", widget: "string", required: false }
+      - { label: "SEO Description", name: "description", widget: "text", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Categories", name: "categories", widget: "list", required: false }
+      - { label: "Content", name: "body", widget: "markdown" }
 
-  # FAQ Management (Bilingual)
-  - name: "faq"
-    label: "❓ FAQ Pages"
-    icon: "help"
-    files:
-      - name: "faq_ro"
-        label: "FAQ (Romanian)"
-        file: "themes/andromeda-hugo/content/romanian/intrebari.md"
-        fields:
-          - { label: "Page Title", name: "title", widget: "string" }
-          - { label: "Draft", name: "draft", widget: "boolean", default: false }
-          - { label: "Page Description", name: "description", widget: "text" }
-          - { label: "Content", name: "body", widget: "markdown" }
+  # English Services
+  - name: "services_en"
+    label: "🇺🇸 🔬 Services English"
+    icon: "medical_services"
+    folder: "themes/andromeda-hugo/content/english/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Icon", name: "icon", widget: "string", required: false, hint: "Material Symbols icon name" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Price", name: "price", widget: "string", required: false }
+      - { label: "Duration", name: "duration", widget: "string", required: false }
+      - { label: "Content", name: "body", widget: "markdown" }
 
-      - name: "faq_en"
-        label: "FAQ (English)"
-        file: "themes/andromeda-hugo/content/english/faq.md"
-        fields:
-          - { label: "Page Title", name: "title", widget: "string" }
-          - { label: "Draft", name: "draft", widget: "boolean", default: false }
-          - { label: "Page Description", name: "description", widget: "text" }
-          - { label: "Content", name: "body", widget: "markdown" }
+  # English Case Studies
+  - name: "case_studies_en"
+    label: "🇺🇸 📋 Case Studies English"
+    icon: "clinical_notes"
+    folder: "themes/andromeda-hugo/content/english/case-studies"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Case Title", name: "title", widget: "string", hint: "Anonymized case title" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Client Type", name: "client_type", widget: "select", options: ["Adult", "Child/Adolescent", "Family", "Couple", "Group"] }
+      - { label: "Therapy Method", name: "therapy_method", widget: "string" }
+      - { label: "Treatment Duration", name: "duration", widget: "string" }
+      - { label: "Summary", name: "description", widget: "text" }
+      - { label: "Case Content", name: "body", widget: "markdown", hint: "Ensure client anonymity" }
 
   # Site Configuration
   - name: "config"
@@ -417,7 +395,7 @@ collections:
     files:
       - label: "Main Settings"
         name: "main_config"
-        file: "hugo.toml"
+        file: "themes/andromeda-hugo/hugo.toml"
         fields:
           - { label: "Site Title", name: "title", widget: "string" }
           - { label: "Base URL", name: "baseURL", widget: "string" }
@@ -427,10 +405,8 @@ collections:
                 { label: "Romanian", value: "RO" },
                 { label: "English", value: "EN" }
               ]}
-          - { label: "Time Zone", name: "timeZone", widget: "string", 
-              hint: "IANA format like Europe/Bucharest" }
-          - { label: "Posts Per Page", name: "pagination.pagerSize", widget: "number", 
-              default: 6, min: 1, max: 20 }
+          - { label: "Time Zone", name: "timeZone", widget: "string", hint: "IANA format like Europe/Bucharest" }
+          - { label: "Posts Per Page", name: "pagination.pagerSize", widget: "number", default: 6, min: 1, max: 20 }
 
 # Advanced Output Options (Sveltia Feature)
 output:

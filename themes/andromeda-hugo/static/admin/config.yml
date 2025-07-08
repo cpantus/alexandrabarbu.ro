@@ -1,18 +1,11 @@
-# Sveltia CMS Local Development Configuration
-# Fixed paths to match actual content structure
+# Sveltia CMS Configuration - Organized by Language
+# RO (default) and EN collections with all actual content
 
 # Backend Configuration for Local Development
 backend:
   name: github
   repo: cpantus/alexandrabarbu.ro
   branch: main
-
-# Advanced Bilingual Support
-i18n:
-  structure: multiple_folders
-  locales: [ro, en]
-  default_locale: ro
-  save_all_locales: true
 
 # Media Management 
 media_folder: "themes/andromeda-hugo/static/images/uploads"
@@ -27,36 +20,164 @@ logo_url: "/images/logo.png"
 publish_mode: editorial_workflow
 search: false
 
-# Collections with CORRECT PATHS to your existing content
+# Language-Based Collections Structure
 collections:
-  # Homepage Content (Your existing _index.md files)
-  - name: "homepage"
-    label: "🏠 Homepage"
-    icon: "home"
+  # ===========================================
+  # 🇷🇴 ROMANIAN CONTENT (DEFAULT)
+  # ===========================================
+  - name: "romanian_content"
+    label: "🇷🇴 Conținut Română (RO)"
+    icon: "translate"
     files:
+      # Homepage
       - name: "homepage_ro"
-        label: "Homepage (Romanian)"
+        label: "🏠 Pagina Principală"
         file: "themes/andromeda-hugo/content/romanian/_index.md"
         fields:
           - label: "Banner"
             name: "banner"
             widget: "object"
             fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Button Text", name: "button", widget: "string" }
-              - { label: "Button Link", name: "button_link", widget: "string" }
-              - { label: "Image", name: "image", widget: "image" }
-          - label: "Features"
+              - { label: "Titlu", name: "title", widget: "string" }
+              - { label: "Text Buton", name: "button", widget: "string" }
+              - { label: "Link Buton", name: "button_link", widget: "string" }
+              - { label: "Imagine", name: "image", widget: "image" }
+          - label: "Caracteristici"
             name: "features"
             widget: "object"
             fields:
-              - { label: "Enable", name: "enable", widget: "boolean" }
-              - { label: "Subtitle", name: "subtitle", widget: "string" }
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Activează", name: "enable", widget: "boolean" }
+              - { label: "Subtitlu", name: "subtitle", widget: "string" }
+              - { label: "Titlu", name: "title", widget: "string" }
+              - { label: "Descriere", name: "description", widget: "text" }
 
+      # About Page
+      - name: "about_ro"
+        label: "👩‍⚕️ Despre Mine"
+        file: "themes/andromeda-hugo/content/romanian/about.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+      # Contact Page
+      - name: "contact_ro"
+        label: "📞 Contact"
+        file: "themes/andromeda-hugo/content/romanian/contact.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+      # Test/Resurse Page
+      - name: "test_ro"
+        label: "📋 Teste/Resurse"
+        file: "themes/andromeda-hugo/content/romanian/test.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+      # FAQ Page
+      - name: "faq_ro"
+        label: "❓ Întrebări Frecvente"
+        file: "themes/andromeda-hugo/content/romanian/intrebari.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+      # CBT Therapy
+      - name: "cbt_ro"
+        label: "🧠 Terapie CBT"
+        file: "themes/andromeda-hugo/content/romanian/cbt.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+      # Family Therapy
+      - name: "family_ro"
+        label: "👨‍👩‍👧‍👦 Terapie de Familie"
+        file: "themes/andromeda-hugo/content/romanian/familie.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+      # Psychedelic Therapy
+      - name: "psychedelic_ro"
+        label: "🌿 Terapie Psihedelică"
+        file: "themes/andromeda-hugo/content/romanian/psihedelice.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+  # Romanian Blog Posts
+  - name: "blog_ro"
+    label: "🇷🇴 📰 Blog Română"
+    icon: "article"
+    folder: "themes/andromeda-hugo/content/romanian/blog"
+    create: true
+    slug: "{{slug}}"
+    filter: { field: "draft", value: false }
+    fields:
+      - { label: "Titlu", name: "title", widget: "string" }
+      - { label: "Data", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Imagine Principală", name: "image", widget: "image", required: false }
+      - { label: "Autor", name: "author", widget: "string", required: false }
+      - { label: "Descriere", name: "description", widget: "text", required: false }
+      - { label: "Etichete", name: "tags", widget: "list", required: false }
+      - { label: "Categorii", name: "categories", widget: "list", required: false }
+      - { label: "Conținut", name: "body", widget: "markdown" }
+
+  # Romanian Services
+  - name: "services_ro"
+    label: "🇷🇴 🔬 Servicii Română"
+    icon: "medical_services"
+    folder: "themes/andromeda-hugo/content/romanian/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titlu", name: "title", widget: "string" }
+      - { label: "Data", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Descriere", name: "description", widget: "text" }
+      - { label: "Conținut", name: "body", widget: "markdown" }
+
+  # Romanian Case Studies
+  - name: "case_studies_ro"
+    label: "🇷🇴 📋 Studii de Caz Română"
+    icon: "clinical_notes"
+    folder: "themes/andromeda-hugo/content/romanian/case-studies"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titlu", name: "title", widget: "string" }
+      - { label: "Data", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Descriere", name: "description", widget: "text" }
+      - { label: "Conținut", name: "body", widget: "markdown" }
+
+  # ===========================================
+  # 🇺🇸 ENGLISH CONTENT
+  # ===========================================
+  - name: "english_content"
+    label: "🇺🇸 English Content (EN)"
+    icon: "language"
+    files:
+      # Homepage
       - name: "homepage_en"
-        label: "Homepage (English)"
+        label: "🏠 Homepage"
         file: "themes/andromeda-hugo/content/english/_index.md"
         fields:
           - label: "Banner"
@@ -76,22 +197,9 @@ collections:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
 
-  # About Pages (Your existing about.md files)
-  - name: "about"
-    label: "👩‍⚕️ About Pages"
-    icon: "person"
-    files:
-      - name: "about_ro"
-        label: "About (Romanian)"
-        file: "themes/andromeda-hugo/content/romanian/about.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Draft", name: "draft", widget: "boolean", default: false }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Content", name: "body", widget: "markdown" }
-
+      # About Page
       - name: "about_en"
-        label: "About (English)" 
+        label: "👩‍⚕️ About"
         file: "themes/andromeda-hugo/content/english/about.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
@@ -99,23 +207,39 @@ collections:
           - { label: "Description", name: "description", widget: "text" }
           - { label: "Content", name: "body", widget: "markdown" }
 
-  # Therapy Pages (Your existing therapy files)
-  - name: "therapy_pages"
-    label: "🧠 Therapy Pages"
-    icon: "psychology"
-    files:
-      # CBT Therapy
-      - name: "cbt_ro"
-        label: "CBT (Romanian)"
-        file: "themes/andromeda-hugo/content/romanian/cbt.md"
+      # Contact Page
+      - name: "contact_en"
+        label: "📞 Contact"
+        file: "themes/andromeda-hugo/content/english/contact.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
           - { label: "Description", name: "description", widget: "text" }
           - { label: "Content", name: "body", widget: "markdown" }
 
+      # Tests/Resources Page
+      - name: "tests_en"
+        label: "📋 Tests/Resources"
+        file: "themes/andromeda-hugo/content/english/tests.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      # FAQ Page
+      - name: "faq_en"
+        label: "❓ FAQ"
+        file: "themes/andromeda-hugo/content/english/faq.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      # CBT Therapy
       - name: "cbt_en"
-        label: "CBT (English)"
+        label: "🧠 CBT Therapy"
         file: "themes/andromeda-hugo/content/english/cbt.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
@@ -124,17 +248,8 @@ collections:
           - { label: "Content", name: "body", widget: "markdown" }
 
       # Family Therapy
-      - name: "family_ro"
-        label: "Family Therapy (Romanian)"
-        file: "themes/andromeda-hugo/content/romanian/familie.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Draft", name: "draft", widget: "boolean", default: false }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Content", name: "body", widget: "markdown" }
-
       - name: "family_en"
-        label: "Family Therapy (English)"
+        label: "👨‍👩‍👧‍👦 Family Therapy"
         file: "themes/andromeda-hugo/content/english/family-therapy.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
@@ -143,17 +258,8 @@ collections:
           - { label: "Content", name: "body", widget: "markdown" }
 
       # Psychedelic Therapy
-      - name: "psychedelic_ro"
-        label: "Psychedelic Therapy (Romanian)"
-        file: "themes/andromeda-hugo/content/romanian/psihedelice.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Draft", name: "draft", widget: "boolean", default: false }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Content", name: "body", widget: "markdown" }
-
       - name: "psychedelic_en"
-        label: "Psychedelic Therapy (English)"
+        label: "🌿 Psychedelic Therapy"
         file: "themes/andromeda-hugo/content/english/psychedelic-therapy.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
@@ -161,76 +267,49 @@ collections:
           - { label: "Description", name: "description", widget: "text" }
           - { label: "Content", name: "body", widget: "markdown" }
 
-  # Contact Pages
-  - name: "contact"
-    label: "📞 Contact Pages"
-    icon: "contact_page"
-    files:
-      - name: "contact_ro"
-        label: "Contact (Romanian)"
-        file: "themes/andromeda-hugo/content/romanian/contact.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Draft", name: "draft", widget: "boolean", default: false }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Content", name: "body", widget: "markdown" }
-
-      - name: "contact_en"
-        label: "Contact (English)"
-        file: "themes/andromeda-hugo/content/english/contact.md"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Draft", name: "draft", widget: "boolean", default: false }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Content", name: "body", widget: "markdown" }
-
-  # Blog Posts (Your existing blog folders)
-  - name: "blog"
-    label: "📰 Blog Posts"
+  # English Blog Posts
+  - name: "blog_en"
+    label: "🇺🇸 📰 Blog English"
     icon: "article"
-    folder: "themes/andromeda-hugo/content/{{locale}}/blog"
+    folder: "themes/andromeda-hugo/content/english/blog"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    i18n: true
-    editor:
-      preview: true
+    slug: "{{slug}}"
+    filter: { field: "draft", value: false }
     fields:
-      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Featured Image", name: "image", widget: "image", required: false }
       - { label: "Author", name: "author", widget: "string", required: false }
-      - { label: "Description", name: "description", widget: "text", required: false, i18n: true }
+      - { label: "Description", name: "description", widget: "text", required: false }
       - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Categories", name: "categories", widget: "list", required: false }
-      - { label: "Content", name: "body", widget: "markdown", i18n: true }
+      - { label: "Content", name: "body", widget: "markdown" }
 
-  # Services (Your existing services folders)
-  - name: "services"
-    label: "🔬 Services"
+  # English Services
+  - name: "services_en"
+    label: "🇺🇸 🔬 Services English"
     icon: "medical_services"
-    folder: "themes/andromeda-hugo/content/{{locale}}/services"
+    folder: "themes/andromeda-hugo/content/english/services"
     create: true
     slug: "{{slug}}"
-    i18n: true
     fields:
-      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
-      - { label: "Description", name: "description", widget: "text", i18n: true }
-      - { label: "Content", name: "body", widget: "markdown", i18n: true }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Content", name: "body", widget: "markdown" }
 
-  # Case Studies (Your existing case-studies folders)
-  - name: "case_studies"
-    label: "📋 Case Studies"
+  # English Case Studies
+  - name: "case_studies_en"
+    label: "🇺🇸 📋 Case Studies English"
     icon: "clinical_notes"
-    folder: "themes/andromeda-hugo/content/{{locale}}/case-studies"
+    folder: "themes/andromeda-hugo/content/english/case-studies"
     create: true
     slug: "{{slug}}"
-    i18n: true
     fields:
-      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
-      - { label: "Description", name: "description", widget: "text", i18n: true }
-      - { label: "Content", name: "body", widget: "markdown", i18n: true }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Content", name: "body", widget: "markdown" }
