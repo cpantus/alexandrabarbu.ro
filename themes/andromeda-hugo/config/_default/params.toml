@@ -1,110 +1,70 @@
-#################### default parameters ################################
-# favicon module: https://github.com/gethugothemes/hugo-modules/tree/master/images#favicon-implementation
-favicon = "images/favicon.png"
-# logo module: https://github.com/gethugothemes/hugo-modules/tree/master/images#logo-implementation
-logo = "images/logo.svg"
-# use `px` or `x` with logo_width, example: "100px".
-# Note: logo_width is not work with .svg file
-logo_width = "257px"
-# if logo_webp set false, it will not generate WEBP version of logo | default is true
-logo_webp = true
-# logo text will only show when logo is missing.
-logo_text = "Alexandra Barbu"
-
-# footer information
 footer_info = "Chestii din footer"
-# Social media - de vazut cum se configureaza
-#[params.social]
-#    facebook = "https://facebook.com/cristipantus"
-# contact form action
-contact_form_action = "https://formspree.io/f/xgernlzd" # contact form works with https://formspree.io
+custom_script = ""
+contact_form_action = "https://formspree.io/f/xgernlzd"
+logo_text = "Alexandra Barbu"
+logo_webp = true
+logo_width = "257px"
+logo = "images/logo.svg"
+favicon = "images/favicon.png"
+career_form_action = "#"
+mainSections = [ "blog" ]
 
-# career form action
-career_form_action = "#" # career form works with https://formspree.io
-
-# custom script on header, example: custom_script= "<script>console.log(\"Hello World\")</script>"
-custom_script= ""
-
-# Main Sections
-mainSections= ["blog"]
-
-# contact information
 [contact_info]
 address = "Bucuresti"
-phone = ["+5435432545204-555-0127", "+999902-569-6969"]
-email = ["buna@dimineata.melc"]
+phone = [ "+1111111-555-0127", "+999902-569-6969" ]
+email = [ "buna@dimineata.melc" ]
 
-# Preloader
-# module: https://github.com/gethugothemes/hugo-modules/tree/master/components/preloader
-[preloader]
+[cta]
+button_link = "/"
+button = "Buna Dimineata Melc!"
+content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas <br> Werat viverra id et aliquet. vulputate egestas sollicitudin."
+title = "Helping teams in the world with focus"
 enable = true
-preloader = "images/favicon.png" # use jpg, png, svg or gif format.
 
-# Navigation button
+[cookies]
+button = "I Accept"
+content = "This site uses cookies. By continuing to use this website, you agree to their use."
+expire_days = 2
+enable = true
+
+[crisp_chat]
+crisp_website_id = "9aa449e1-9999-422a-938f-8567982eec6d"
+enable = false
+
+[counter]
+username = ""
+enable = false
+
+[preloader]
+preloader = "images/favicon.png"
+enable = true
+
 [navigation_button]
 enable = true
 label = "Fa o rpogramare!"
 link = "signup/"
 
-# seo meta data for OpenGraph / Twitter Card
-# seo module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/basic-seo
 [metadata]
-keywords = ["Psihoterapie", "Terapie CBT", "Terapie de familie"]
+keywords = [ "Psihoterapie", "Terapie CBT", "Terapie de familie" ]
 description = "Cabinet Alexandra Barbu"
 author = "Alexandra Barbu"
-image = "images/og-image.jpg" # this image will be used as fallback if a page has no image of its own
+image = "images/og-image.jpg"
 
-# matomo tracking: see https://matomo.org/
-# matomo module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/matomo-analytics
 [matomo]
 enable = false
-url = "" # your matomo url
-id = "" # your matomo id
+url = ""
+id = ""
 
-# baidu analytics: see https://tongji.baidu.com/
-# baidu module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/baidu-analytics
 [baidu]
 enable = false
-analytics_id = "" # Your ID
+analytics_id = ""
 
-# plausible analytics: see https://plausible.io/
-# plausible module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/plausible-analytics
 [plausible]
 enable = false
-domain = "" # yourdomain.com
+domain = ""
 
-# counter analytics: see https://counter.dev/setup.html
-# counter module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/counter-analytics
-[counter]
-enable = false
-username = "" # your username
-
-# site verifications
-# verification module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/site-verifications
 [site_verification]
-google = "" # Your verification code
-bing = "" # Your verification code
-baidu = "" # Your verification code
-facebook = "" # Your verification code
-
-# crisp chat - module: https://github.com/gethugothemes/hugo-modules/tree/master/components/crisp-chat
-[crisp_chat]
-enable = false
-crisp_website_id = "9aa449e1-9999-422a-938f-8567982eec6d" # replace this code with yours
-# Check this video tutorial to get your crisp website ID - https://www.youtube.com/watch?v=nW5UX6iVdFc
-
-# cookies
-# cookies module: https://github.com/gethugothemes/hugo-modules/tree/master/components/cookie-consent
-[cookies]
-enable = true
-expire_days = 2
-content = "This site uses cookies. By continuing to use this website, you agree to their use."
-button = "I Accept"
-
-# call-to-action
-[cta]
-enable = true
-title = "Helping teams in the world with focus"
-content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas <br> Werat viverra id et aliquet. vulputate egestas sollicitudin."
-button = "Buna Dimineata Melc!"
-button_link = "/"
+google = ""
+bing = ""
+baidu = ""
+facebook = ""

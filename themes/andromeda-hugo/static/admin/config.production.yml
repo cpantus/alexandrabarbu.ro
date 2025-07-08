@@ -277,6 +277,35 @@ collections:
               - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true }
           - { label: "Ofertă Specială", name: "offer", widget: "string", required: false }
           - { label: "Toggle Lunar/Anual", name: "monthly_yearly_toggle", widget: "select", options: ["monthly", "yearly", "toggle"], default: "toggle" }
+          - label: "Carduri Prețuri"
+            name: "pricing_card"
+            widget: "list"
+            collapsed: false
+            label_singular: "Card Preț"
+            fields:
+              - { label: "Nume Serviciu", name: "name", widget: "string" }
+              - { label: "Descriere", name: "content", widget: "text" }
+              - { label: "Monedă", name: "currency", widget: "string", default: "RON" }
+              - { label: "Preț Lunar", name: "monthly_price", widget: "string" }
+              - { label: "Preț Anual", name: "yearly_price", widget: "string" }
+              - { label: "Card Evidențiat", name: "featured", widget: "boolean", default: false }
+              - { label: "Text Buton", name: "button_label", widget: "string" }
+              - { label: "Link Buton", name: "button_link", widget: "string" }
+              - label: "Lista Servicii"
+                name: "services"
+                widget: "list"
+                field: { label: "Serviciu", widget: "string" }
+          - label: "Video Cum Funcționează"
+            name: "how_it_works_video"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true }
+              - { label: "Subtitlu", name: "subtitle", widget: "string" }
+              - { label: "Titlu", name: "title", widget: "string" }
+              - { label: "Descriere", name: "description", widget: "text" }
+              - { label: "URL Video", name: "video_url", widget: "string", hint: "YouTube embed URL" }
+              - { label: "Thumbnail Video", name: "video_thumbnail", widget: "image" }
 
       # Contact Page
       - name: "contact_ro"
@@ -716,6 +745,46 @@ collections:
                   - { label: "Title", name: "title", widget: "string", required: false }
                   - { label: "Description", name: "description", widget: "text", required: false }
                   - { label: "Image", name: "image", widget: "image", required: false }
+          - label: "Pricing"
+            name: "pricing"
+            widget: "object"
+            collapsed: false
+            required: false
+            fields:
+              - { label: "Enable Section", name: "enable", widget: "boolean", default: true, required: false }
+          - { label: "Special Offer", name: "offer", widget: "string", required: false }
+          - { label: "Monthly/Yearly Toggle", name: "monthly_yearly_toggle", widget: "select", options: ["monthly", "yearly", "toggle"], default: "toggle", required: false }
+          - label: "Pricing Cards"
+            name: "pricing_card"
+            widget: "list"
+            collapsed: false
+            required: false
+            label_singular: "Pricing Card"
+            fields:
+              - { label: "Service Name", name: "name", widget: "string" }
+              - { label: "Description", name: "content", widget: "text" }
+              - { label: "Currency", name: "currency", widget: "string", default: "EUR" }
+              - { label: "Monthly Price", name: "monthly_price", widget: "string" }
+              - { label: "Yearly Price", name: "yearly_price", widget: "string" }
+              - { label: "Featured Card", name: "featured", widget: "boolean", default: false }
+              - { label: "Button Text", name: "button_label", widget: "string" }
+              - { label: "Button Link", name: "button_link", widget: "string" }
+              - label: "Services List"
+                name: "services"
+                widget: "list"
+                field: { label: "Service", widget: "string" }
+          - label: "How It Works Video"
+            name: "how_it_works_video"
+            widget: "object"
+            collapsed: false
+            required: false
+            fields:
+              - { label: "Enable Section", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Video URL", name: "video_url", widget: "string", hint: "YouTube embed URL", required: false }
+              - { label: "Video Thumbnail", name: "video_thumbnail", widget: "image", required: false }
 
   # ===========================================
   # 🌐 SITE CONFIGURATION
@@ -794,6 +863,87 @@ collections:
             widget: "string"
             required: false
             hint: "Full Twitter profile URL (e.g., https://twitter.com/yourprofile)"
+
+  # SEO & Analytics Configuration
+  - name: "seo_metadata"
+    label: "🔍 SEO Metadata"
+    icon: "search_insights"
+    files:
+      - name: "seo_metadata_config"
+        label: "SEO Metadata Settings"
+        file: "themes/andromeda-hugo/config/_default/params.toml"
+        fields:
+          - label: "Website Metadata"
+            name: "metadata"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Global Keywords"
+                name: "keywords"
+                widget: "list"
+                field: { label: "Keyword", widget: "string" }
+                hint: "Main keywords for the entire website"
+              - label: "Global Description"
+                name: "description"
+                widget: "text"
+                hint: "Default meta description for the website (150-160 characters)"
+              - label: "Author"
+                name: "author"
+                widget: "string"
+                hint: "Website author name"
+              - label: "Open Graph Image"
+                name: "image"
+                widget: "image"
+                hint: "Default social sharing image (1200x630px recommended)"
+          - label: "Site Verifications"
+            name: "site_verification"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Google Search Console"
+                name: "google"
+                widget: "string"
+                required: false
+                hint: "Google Search Console verification code"
+              - label: "Bing Webmaster Tools"
+                name: "bing"
+                widget: "string"
+                required: false
+                hint: "Bing verification code"
+              - label: "Baidu Webmaster"
+                name: "baidu"
+                widget: "string"
+                required: false
+                hint: "Baidu verification code"
+              - label: "Facebook Domain Verification"
+                name: "facebook"
+                widget: "string"
+                required: false
+                hint: "Facebook domain verification code"
+
+  # Google Analytics Configuration (Separate from params.toml)
+  - name: "google_analytics"
+    label: "📊 Google Analytics"
+    icon: "analytics"
+    files:
+      - name: "google_analytics_config"
+        label: "Google Analytics Settings"
+        file: "themes/andromeda-hugo/hugo.toml"
+        fields:
+          - label: "Google Analytics Configuration"
+            name: "services"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Google Analytics"
+                name: "googleAnalytics"
+                widget: "object"
+                fields:
+                  - label: "Analytics ID"
+                    name: "ID"
+                    widget: "string"
+                    required: false
+                    hint: "Google Analytics 4 measurement ID (G-XXXXXXXXXX) or Universal Analytics (UA-XXXXXXX-X)"
 
 # Advanced Output Options (Sveltia Feature)
 output:
