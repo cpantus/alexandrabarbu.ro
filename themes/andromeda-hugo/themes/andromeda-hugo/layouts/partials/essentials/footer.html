@@ -79,16 +79,59 @@
           {{ end }}
 
           <ul class="social-links list-inline">
-            {{ range site.Data.social.main }}
-              <li class="list-inline-item">
-                <a
-                  target="_blank"
-                  aria-label="{{ .title }}"
-                  rel="nofollow noopener"
-                  href="{{ .link | safeURL }}">
-                  <i class="{{ .icon }}"></i>
-                </a>
-              </li>
+            {{ with site.Data.social.facebook }}
+              {{ if . }}
+                <li class="list-inline-item">
+                  <a target="_blank" aria-label="Facebook" rel="nofollow noopener" href="{{ . | safeURL }}">
+                    <i class="lab la-facebook-f"></i>
+                  </a>
+                </li>
+              {{ end }}
+            {{ end }}
+            {{ with site.Data.social.instagram }}
+              {{ if . }}
+                <li class="list-inline-item">
+                  <a target="_blank" aria-label="Instagram" rel="nofollow noopener" href="{{ . | safeURL }}">
+                    <i class="lab la-instagram"></i>
+                  </a>
+                </li>
+              {{ end }}
+            {{ end }}
+            {{ with site.Data.social.tiktok }}
+              {{ if . }}
+                <li class="list-inline-item">
+                  <a target="_blank" aria-label="TikTok" rel="nofollow noopener" href="{{ . | safeURL }}">
+                    <i class="lab la-tiktok"></i>
+                  </a>
+                </li>
+              {{ end }}
+            {{ end }}
+            {{ with site.Data.social.youtube }}
+              {{ if . }}
+                <li class="list-inline-item">
+                  <a target="_blank" aria-label="YouTube" rel="nofollow noopener" href="{{ . | safeURL }}">
+                    <i class="lab la-youtube"></i>
+                  </a>
+                </li>
+              {{ end }}
+            {{ end }}
+            {{ with site.Data.social.linkedin }}
+              {{ if . }}
+                <li class="list-inline-item">
+                  <a target="_blank" aria-label="LinkedIn" rel="nofollow noopener" href="{{ . | safeURL }}">
+                    <i class="lab la-linkedin"></i>
+                  </a>
+                </li>
+              {{ end }}
+            {{ end }}
+            {{ with site.Data.social.twitter }}
+              {{ if . }}
+                <li class="list-inline-item">
+                  <a target="_blank" aria-label="Twitter" rel="nofollow noopener" href="{{ . | safeURL }}">
+                    <i class="lab la-twitter"></i>
+                  </a>
+                </li>
+              {{ end }}
             {{ end }}
           </ul>
         </div>

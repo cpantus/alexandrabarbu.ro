@@ -295,7 +295,25 @@ collections:
       - { label: "Categorii", name: "categories", widget: "list", required: false }
       - { label: "Conținut", name: "body", widget: "markdown" }
 
-
+  # Romanian Services
+  - name: "services_ro"
+    label: "🇷🇴 🔬 Servicii Română"
+    icon: "medical_services"
+    folder: "themes/andromeda-hugo/content/romanian/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titlu", name: "title", widget: "string" }
+      - { label: "Data", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Iconiță", name: "icon", widget: "string", required: false, hint: "Nume icon Material Symbols" }
+      - label: "Descriere SEO"
+        name: "description"
+        widget: "text"
+        hint: "📏 150-160 caractere | 🎯 Formula: [Serviciu] + [Beneficii] + [București] + [Detalii] | 💡 Exemplu: 'Consiliere psihologică individuală în București. Tratament personalizat pentru anxietate, depresie, trauma. Ședințe 50 min cu psiholog licențiat. Programează acum.' | 🔍 Include: consiliere psihologică București, tratament personalizat, programează"
+      - { label: "Preț", name: "price", widget: "string", required: false }
+      - { label: "Durată", name: "duration", widget: "string", required: false }
+      - { label: "Conținut", name: "body", widget: "markdown" }
 
   # Romanian Case Studies
   - name: "case_studies_ro"
@@ -473,7 +491,25 @@ collections:
       - { label: "Categories", name: "categories", widget: "list", required: false }
       - { label: "Content", name: "body", widget: "markdown" }
 
-
+  # English Services
+  - name: "services_en"
+    label: "🇺🇸 🔬 Services English"
+    icon: "medical_services"
+    folder: "themes/andromeda-hugo/content/english/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Icon", name: "icon", widget: "string", required: false, hint: "Material Symbols icon name" }
+      - label: "SEO Description"
+        name: "description"
+        widget: "text"
+        hint: "📏 150-160 characters | 🎯 Formula: [Service] + [Benefits] + [Bucharest] + [Details] | 💡 Example: 'Individual psychological counseling in Bucharest. Personalized treatment for anxiety, depression, trauma. 50-min sessions with licensed psychologist. Book now.' | 🔍 Include: psychological counseling Bucharest, personalized treatment, book appointment"
+      - { label: "Price", name: "price", widget: "string", required: false }
+      - { label: "Duration", name: "duration", widget: "string", required: false }
+      - { label: "Content", name: "body", widget: "markdown" }
 
   # English Case Studies
   - name: "case_studies_en"
@@ -494,92 +530,3 @@ collections:
         widget: "text"
         hint: "📏 150-160 characters | 🎯 Formula: [Case study] + [Method] + [Outcome] + [Anonymous] | 💡 Example: 'CBT case study for adult anxiety treatment. 6-month therapy with excellent results. Anonymized case by licensed psychologist in Bucharest.' | ⚠️ IMPORTANT: Ensure complete anonymity"
       - { label: "Case Content", name: "body", widget: "markdown", hint: "Ensure client anonymity" }
-
-  # ===========================================
-  # 🌐 SITE CONFIGURATION
-  # ===========================================
-  
-  # Footer Configuration
-  - name: "footer_config"
-    label: "🦶 Footer Configuration"
-    icon: "footer"
-    files:
-      - name: "footer_settings"
-        label: "Footer Settings"
-        file: "themes/andromeda-hugo/config/_default/params.toml"
-        fields:
-          - label: "Footer Information"
-            name: "footer_info"
-            widget: "string"
-            hint: "Short description text in footer"
-            default: "Professional psychological therapy services"
-          - label: "Contact Information"
-            name: "contact_info"
-            widget: "object"
-            fields:
-              - label: "Address"
-                name: "address"
-                widget: "string"
-                hint: "Practice location"
-                default: "București, România"
-              - label: "Phone Numbers"
-                name: "phone"
-                widget: "list"
-                field: { label: "Phone", widget: "string" }
-                hint: "List of contact phone numbers"
-              - label: "Email Addresses"
-                name: "email"
-                widget: "list"
-                field: { label: "Email", widget: "string" }
-                hint: "List of contact email addresses"
-          - label: "Footer Section Titles"
-            name: "footer_sections"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Social Media Section Title (RO)", name: "socials_title_ro", widget: "string", default: "Social Media", hint: "Romanian title for social media section" }
-              - { label: "Social Media Section Title (EN)", name: "socials_title_en", widget: "string", default: "Social Media", hint: "English title for social media section" }
-              - { label: "Quick Links Section Title (RO)", name: "quick_links_title_ro", widget: "string", default: "Link-uri Rapide", hint: "Romanian title for quick links section" }
-              - { label: "Quick Links Section Title (EN)", name: "quick_links_title_en", widget: "string", default: "Quick Links", hint: "English title for quick links section" }
-              - { label: "Location Section Title (RO)", name: "location_title_ro", widget: "string", default: "Locație și Contact", hint: "Romanian title for location section" }
-              - { label: "Location Section Title (EN)", name: "location_title_en", widget: "string", default: "Location & Contact", hint: "English title for location section" }
-
-  # Social Media Configuration
-  - name: "social_media"
-    label: "📱 Social Media Links"
-    icon: "share"
-    files:
-      - name: "social_settings"
-        label: "Social Media Settings"
-        file: "themes/andromeda-hugo/data/social.yml"
-        fields:
-          - label: "Facebook"
-            name: "facebook"
-            widget: "string"
-            required: false
-            hint: "Full Facebook page URL (e.g., https://facebook.com/yourpage)"
-          - label: "Instagram"
-            name: "instagram"
-            widget: "string"
-            required: false
-            hint: "Full Instagram profile URL (e.g., https://instagram.com/yourprofile)"
-          - label: "TikTok"
-            name: "tiktok"
-            widget: "string"
-            required: false
-            hint: "Full TikTok profile URL (e.g., https://tiktok.com/@yourprofile)"
-          - label: "YouTube"
-            name: "youtube"
-            widget: "string"
-            required: false
-            hint: "Full YouTube channel URL (e.g., https://youtube.com/yourchannel)"
-          - label: "LinkedIn"
-            name: "linkedin"
-            widget: "string"
-            required: false
-            hint: "Full LinkedIn profile URL (e.g., https://linkedin.com/in/yourprofile)"
-          - label: "Twitter"
-            name: "twitter"
-            widget: "string"
-            required: false
-            hint: "Full Twitter profile URL (e.g., https://twitter.com/yourprofile)"
