@@ -17,7 +17,7 @@ i18n:
   save_all_locales: true
 
 # Media Management with WebP Optimization
-media_folder: "static/images/uploads"
+media_folder: "themes/andromeda-hugo/static/images/uploads"
 public_folder: "/images/uploads"
 
 # Advanced Media Libraries (Sveltia Feature)
@@ -49,7 +49,7 @@ collections:
   - name: "blog"
     label: "📰 Blog Posts"
     icon: "article"
-    folder: "content/{{locale}}/blog"
+    folder: "themes/andromeda-hugo/content/{{locale}}/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     i18n: true
@@ -74,7 +74,7 @@ collections:
   - name: "services"
     label: "🧠 Therapy Services"
     icon: "psychology"
-    folder: "content/{{locale}}/services"
+    folder: "themes/andromeda-hugo/content/{{locale}}/services"
     create: true
     slug: "{{slug}}"
     i18n: true
@@ -101,7 +101,7 @@ collections:
     files:
       - name: "about_ro"
         label: "About (Romanian)"
-        file: "content/romanian/about.md"
+        file: "themes/andromeda-hugo/content/romanian/about.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
@@ -113,7 +113,7 @@ collections:
 
       - name: "about_en"
         label: "About (English)"
-        file: "content/english/about.md"
+        file: "themes/andromeda-hugo/content/english/about.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
@@ -130,7 +130,7 @@ collections:
     files:
       - name: "contact_ro"
         label: "Contact (Romanian)"
-        file: "content/romanian/contact.md"
+        file: "themes/andromeda-hugo/content/romanian/contact.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
@@ -139,7 +139,7 @@ collections:
 
       - name: "contact_en"
         label: "Contact (English)"
-        file: "content/english/contact.md"
+        file: "themes/andromeda-hugo/content/english/contact.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
@@ -153,7 +153,7 @@ collections:
     files:
       - name: "homepage_ro"
         label: "Homepage (Romanian)"
-        file: "content/romanian/_index.md"
+        file: "themes/andromeda-hugo/content/romanian/_index.md"
         fields:
           - label: "Banner Section"
             name: "banner"
@@ -210,7 +210,7 @@ collections:
 
       - name: "homepage_en"
         label: "Homepage (English)"
-        file: "content/english/_index.md"
+        file: "themes/andromeda-hugo/content/english/_index.md"
         fields:
           - label: "Banner Section"
             name: "banner"
@@ -273,7 +273,7 @@ collections:
       # CBT Therapy
       - name: "cbt_ro"
         label: "CBT Therapy (Romanian)"
-        file: "content/romanian/cbt.md"
+        file: "themes/andromeda-hugo/content/romanian/cbt.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
@@ -289,7 +289,7 @@ collections:
 
       - name: "cbt_en"
         label: "CBT Therapy (English)"
-        file: "content/english/cbt.md"
+        file: "themes/andromeda-hugo/content/english/cbt.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
@@ -306,7 +306,7 @@ collections:
       # Family Therapy
       - name: "family_ro"
         label: "Family Therapy (Romanian)"
-        file: "content/romanian/familie.md"
+        file: "themes/andromeda-hugo/content/romanian/familie.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
@@ -318,7 +318,7 @@ collections:
 
       - name: "family_en"
         label: "Family Therapy (English)"
-        file: "content/english/family-therapy.md"
+        file: "themes/andromeda-hugo/content/english/family-therapy.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
@@ -331,7 +331,7 @@ collections:
       # Psychedelic Therapy
       - name: "psychedelic_ro"
         label: "Psychedelic Therapy (Romanian)"
-        file: "content/romanian/psihedelice.md"
+        file: "themes/andromeda-hugo/content/romanian/psihedelice.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
@@ -343,7 +343,7 @@ collections:
 
       - name: "psychedelic_en"
         label: "Psychedelic Therapy (English)"
-        file: "content/english/psychedelic-therapy.md"
+        file: "themes/andromeda-hugo/content/english/psychedelic-therapy.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
@@ -357,7 +357,7 @@ collections:
   - name: "case_studies"
     label: "📋 Case Studies"
     icon: "clinical_notes"
-    folder: "content/{{locale}}/case-studies"
+    folder: "themes/andromeda-hugo/content/{{locale}}/case-studies"
     create: true
     slug: "{{slug}}"
     i18n: true
@@ -394,7 +394,7 @@ collections:
     files:
       - name: "faq_ro"
         label: "FAQ (Romanian)"
-        file: "content/romanian/intrebari.md"
+        file: "themes/andromeda-hugo/content/romanian/intrebari.md"
         fields:
           - { label: "Page Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
@@ -403,7 +403,7 @@ collections:
 
       - name: "faq_en"
         label: "FAQ (English)"
-        file: "content/english/faq.md"
+        file: "themes/andromeda-hugo/content/english/faq.md"
         fields:
           - { label: "Page Title", name: "title", widget: "string" }
           - { label: "Draft", name: "draft", widget: "boolean", default: false }
