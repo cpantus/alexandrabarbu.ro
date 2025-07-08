@@ -2,7 +2,7 @@
 date: "2021-07-09"
 title: "Drogurile "
 image: "images/blog/06.jpg"
-author: "alexandra barbu"
+author: "alexandra-barbu"
 draft: false
 ---
 

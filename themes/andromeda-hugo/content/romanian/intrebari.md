@@ -1,24 +1,22 @@
 ---
-date: "2021-07-14"
+title: Intrebari frecvente
 draft: false
-title: "Intrebari frecvente"
-logo: "images/case-studies/01.svg"
-
+description: intrebari frecvente
+logo: images/case-studies/01.svg
+date: 2021-07-14
 ---
+{{< collapse "Cat de des merg la terapie?" >}}
 
-
-{{< collapse "Cat de des merg al terapie?" >}}
-
-- Lorem ipsum dolor sit amet consectetur adipisicing elit.
-- Lorem ipsum dolor sit amet consectetur adipisicing elit.
+- saptamanal
+- zilnic
 - Lorem ipsum dolor sit amet consectetur
   {{< /collapse >}}
 
 {{< collapse "Cat dureaza o sedinta" >}}
 
-1. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-2. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-3. Lorem ipsum dolor sit amet consectetur
+1. 50 de mniute
+2. 2 ore
+3. cat este nevoie
   {{< /collapse >}}
 
 {{< collapse "Cat dureaza terapia?" >}}

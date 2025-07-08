@@ -1,12 +1,13 @@
 ---
-date: "2021-07-14"
-title: "Depresie "
-image: "images/blog/01.jpg"
-author: "Alexandra Barbu"
+title: Depresie
+date: 2021-07-14
 draft: false
+image: /images/uploads/download-2-.jpeg
+author: Alexandra Barbu
+description: depresie
 ---
-
 ## Nu Ești Singur În Această Luptă
+
 Dimineața pare mai grea decât înainte? Sentimentul că nimic nu mai are sens te însoțește zilnic? Nu ești singur. Depresia afectează milioane de oameni din întreaga lume și poate lovi pe oricine, indiferent de vârstă, statut social sau realizări profesionale.
 
 Depresia nu e doar "tristețe" sau o zi proastă. Este o afecțiune medicală reală care influențează modul în care gândești, simți și funcționezi zilnic. Simptomele includ: oboseală persistentă, pierderea interesului pentru activități plăcute, sentimente de vinovăție sau inutilitate, probleme de concentrare și schimbări în apetit sau somn.

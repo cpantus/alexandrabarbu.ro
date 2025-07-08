@@ -2,7 +2,7 @@
 date: "2021-07-13"
 title: "Anxietate"
 image: "images/blog/02.jpg"
-author: "Alexandra Barbu"
+author: "alexandra-barbu"
 draft: false
 ---
 

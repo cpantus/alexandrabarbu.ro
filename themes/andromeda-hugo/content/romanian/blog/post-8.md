@@ -2,7 +2,7 @@
 date: "2021-07-07"
 title: "What to consider before starting a business – Inside The Studio"
 image: "images/blog/03.jpg"
-author: "abdullah-al-shifat"
+author: "alexandra-barbu"
 draft: false
 ---
 

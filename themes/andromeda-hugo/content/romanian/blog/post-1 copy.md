@@ -1,8 +1,8 @@
 ---
 date: "2021-07-14"
-title: "Depresie "
+title: "Depresie"
 image: "images/blog/01.jpg"
-author: "Alexandra Barbu"
+author: "alexandra-barbu"
 draft: false
 ---
 
