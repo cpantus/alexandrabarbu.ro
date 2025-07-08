@@ -1,0 +1,27 @@
+{{/* Simple image partial for Hugo non-extended version */}}
+{{- $src := .Src -}}
+{{- $alt := .Alt | default "image" -}}
+{{- $class := .Class | default "" -}}
+{{- $size := .Size | default "" -}}
+
+{{/* Handle different image sources */}}
+{{- if hasPrefix $src "http" -}}
+  {{/* External URL */}}
+  <img src="{{ $src }}" alt="{{ $alt }}" class="{{ $class }}" loading="lazy">
+{{- else -}}
+  {{/* Local image */}}
+  {{- $image := "" -}}
+  {{- if fileExists (printf "assets/%s" $src) -}}
+    {{/* Image exists in assets - use resources.Get */}}
+    {{- $image = resources.Get $src -}}
+    {{- if $image -}}
+      <img src="{{ $image.RelPermalink }}" alt="{{ $alt }}" class="{{ $class }}" loading="lazy">
+    {{- else -}}
+      {{/* Fallback if resource can't be processed */}}
+      <img src="{{ $src | relURL }}" alt="{{ $alt }}" class="{{ $class }}" loading="lazy">
+    {{- end -}}
+  {{- else -}}
+    {{/* Image in static folder or relative path */}}
+    <img src="{{ $src | relURL }}" alt="{{ $alt }}" class="{{ $class }}" loading="lazy">
+  {{- end -}}
+{{- end -}}

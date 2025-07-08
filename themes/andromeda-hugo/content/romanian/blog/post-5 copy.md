@@ -2,7 +2,7 @@
 title: "Alcoolismul"
 date: "2021-07-10"
 draft: false
-image: "/images/uploads/download-2-.jpeg"
+image: "images/blog/05-alcoolism.jpg"
 author: "alexandra-barbu"
 description: "Recunoașterea unei probleme ascunse"
 ---

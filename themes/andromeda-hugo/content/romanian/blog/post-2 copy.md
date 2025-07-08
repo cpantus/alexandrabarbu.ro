@@ -2,7 +2,7 @@
 title: "Anxietate"
 date: "2021-07-13"
 draft: false
-image: "/images/uploads/anxietate-blog.png"
+image: "images/blog/02-anxietate.jpg"
 author: "alexandra-barbu"
 description: "Când grijile preiau controlul"
 ---
