@@ -6,8 +6,7 @@ backend:
   name: github
   repo: cpantus/alexandrabarbu.ro
   branch: main
-
-# Media Management 
+# Media Management
 media_folder: "themes/andromeda-hugo/static/images/uploads"
 public_folder: "/images/uploads"
 
@@ -811,7 +810,7 @@ collections:
   # ===========================================
   # 🌐 SITE CONFIGURATION
   # ===========================================
-  
+
   # Footer Configuration
   - name: "footer_config"
     label: "🦶 Footer Configuration"
@@ -1009,7 +1008,7 @@ collections:
                     widget: "string"
                     required: false
                     hint: "Your counter.dev username"
-      
+
       # Google Analytics (Separate file due to Hugo structure)
       - name: "google_analytics_config"
         label: "Google Analytics Settings"

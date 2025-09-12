@@ -6,7 +6,6 @@ backend:
   name: github
   repo: cpantus/alexandrabarbu.ro
   branch: main
-
 # Media Management with WebP Optimization
 media_folder: "themes/andromeda-hugo/static/images/uploads"
 public_folder: "/images/uploads"
@@ -641,7 +640,7 @@ collections:
           - { label: "Site Title", name: "title", widget: "string" }
           - { label: "Base URL", name: "baseURL", widget: "string" }
           - { label: "Theme", name: "theme", widget: "hidden", default: "andromeda-hugo" }
-          - { label: "Default Language", name: "defaultContentLanguage", widget: "select", 
+          - { label: "Default Language", name: "defaultContentLanguage", widget: "select",
               options: [
                 { label: "Romanian", value: "RO" },
                 { label: "English", value: "EN" }
@@ -809,7 +808,7 @@ collections:
                   - { label: "Address Line 1", name: "address_line_one", widget: "string", required: false }
                   - { label: "Address Line 2", name: "address_line_two", widget: "string", required: false }
 
-      # Services Page - English  
+      # Services Page - English
       - name: "services_en"
         label: "🔬 Services Therapy"
         file: "themes/andromeda-hugo/content/english/services.md"
@@ -927,7 +926,7 @@ collections:
   # ===========================================
   # 🌐 SITE CONFIGURATION
   # ===========================================
-  
+
   # Footer Configuration
   - name: "footer_config"
     label: "🦶 Footer Configuration"
@@ -1124,7 +1123,7 @@ collections:
                     widget: "string"
                     required: false
                     hint: "Your counter.dev username"
-      
+
       # Google Analytics (Separate file due to Hugo structure)
       - name: "google_analytics_config"
         label: "Google Analytics Settings"
