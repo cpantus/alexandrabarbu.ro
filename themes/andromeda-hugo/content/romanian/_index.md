@@ -8,7 +8,7 @@ features:
   enable: true
   subtitle: Tipuri de Terapii/Teste self assessment
   title: Pentru a porni <br> cu dreptul
-  description: CA sa fie bine sa nu fie rau.
+  description: CA sa fie bine sa nu fie rau.!!!!
   features_blocks:
     - icon: las la-lock
       title: Test ADHD
@@ -29,13 +29,14 @@ how_it_works:
   section: how-it-works
   enable: true
 intro_video:
-  video_thumbnail: images/video-popup.jpg
-  video_url: https://www.youtube.com/embed/EOEajC2ndjk
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas <br> Werat viverra id et aliquet. vulputate egestas sollicitudin.
+  enable: true
   title: Sa manifestam ceva bun
   subtitle: Video explicativ cu chestii
-  enable: true
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas <br> Werat viverra id et aliquet. vulputate egestas sollicitudin.
+  video_thumbnail: images/video-popup.jpg
+  video_url: https://www.youtube.com/embed/EOEajC2ndjk
 brands_carousel:
+  enable: false
   brand_images:
     - images/brands/01-colored.png
     - images/brands/02-colored.png
@@ -48,7 +49,6 @@ brands_carousel:
     - images/brands/01-colored.png
     - images/brands/06-colored.png
     - images/brands/05-colored.png
-  enable: false
 testimonials:
   enable: true
   subtitle: Ce zic altii?
