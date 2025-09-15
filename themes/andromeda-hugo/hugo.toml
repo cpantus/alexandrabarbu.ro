@@ -2,7 +2,7 @@
 # The base URL of your site (required). This will be prepended to all relative URLs.
 baseURL = "https://alexandrabarbu.ro"
 # Title of your website (required).
-title = "Alexandra Barbu - 1 Terapie"
+title = "Alexandra Barbu - Psihoterapeut - Terapie CBT, Terapie de familie"
 # Your theme name
 theme = "andromeda-hugo"
 # Default time zone for time stamps; use any valid tz database name: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
@@ -108,8 +108,8 @@ rel = "manifest"
 ######################### site variables ##############################
 # customize your color and font from here.
 [params.variables]
-color_primary = "#059669"        # Deep emerald (growth, healing)
-color_secondary = "#7C3AED"      # Complementary violet (balance)
+color_primary = "#4DB380"        # Deep emerald (growth, healing)
+color_secondary = "#CC6B49"      # Complementary violet (balance)
 body_color = "#FDFDFD"           # Pure clean white
 text_color = "#374151"           # Warm gray (approachable)
 text_dark = "#111827"            # Near black (clarity)
@@ -136,11 +136,11 @@ font_scale = "1.2" # minorThird - gentle hierarchy for readability
 
 
 # go to https://fonts.google.com/ to find the font you want to use. select your font and copy only the bold part from the URL. and paste it here.
-# Modern healing typography combination
-font_primary = "Plus+Jakarta+Sans:wght@300;400;500;600;700"
+# Modern healing typography combination - Poppins Headlines + Open Sans Body
+font_primary = "Poppins:wght@300;400;500;600;700"
 font_primary_type = "sans-serif" # [serif/sans-serif]
-font_secondary = "Lora:ital,wght@0,400;0,500;1,400"
-font_secondary_type = "serif" # [serif/sans-serif]
+font_secondary = "Open+Sans:wght@300;400;500;600;700"
+font_secondary_type = "sans-serif" # [serif/sans-serif]
 font_icon = "Line Awesome Free"
 
 

@@ -349,13 +349,17 @@ canvas {
   # Image and Logo Color Filters
 -------------------------------------------------------------------*/
 
-// Apply color filter to any images that might contain orange elements
-img[src*="logo"],
+// Apply color filter to progress/loader images only (exclude logos)
 img[src*="progress"],
 img[src*="loader"],
-.preloader img,
-.loading img {
+.preloader img:not([src*="logo"]),
+.loading img:not([src*="logo"]) {
   filter: hue-rotate(140deg) saturate(1.2) !important;
+}
+
+// Ensure logo images maintain their original colors
+img[src*="logo"] {
+  filter: none !important; // Remove any color filters from logo
 }
 
 /*------------------------------------------------------------------
@@ -532,18 +536,48 @@ img[src*="loader"],
 .blooming-flower,
 .flower-petal,
 .flower-center,
-.healing-text,
-.healing-particles {
-  display: none !important;
+/*------------------------------------------------------------------
+  # Custom Typography - Poppins Headlines & Open Sans Body  
+-------------------------------------------------------------------*/
+
+// Ensure headlines use Poppins (primary font)
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: $font-primary !important;
 }
 
-// Ultra high specificity override for CSS custom properties that might be set via JavaScript
-* {
-  --orange-color: #059669 !important;
-  --primary-orange: #059669 !important;
-  --brand-color: #059669 !important;
-  --theme-color: #059669 !important;
+// Ensure body text uses Open Sans (secondary font)
+body,
+p,
+.content,
+.card-text,
+.text-body,
+ul, ol, li,
+.btn,
+.form-control,
+.form-label,
+input, textarea, select {
+  font-family: $font-secondary !important;
 }
+
+// Navigation uses Poppins for consistency with headlines
+.navbar,
+.navbar-nav,
+.nav-link {
+  font-family: $font-primary !important;
+}
+
+// Ensure buttons use body font for consistency
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn-outline-secondary {
+  font-family: $font-secondary !important;
+}
+
+/*------------------------------------------------------------------
+  # Performance Cleanup & Color Overrides
+-------------------------------------------------------------------*/
 
 // Ultra high specificity override for CSS custom properties that might be set via JavaScript
 * {
