@@ -1,12 +1,12 @@
 ---
-title: Terapeut clinician
+title: Bună, sunt Alexandra Barbu"
 layout: about
 draft: false
 description: ''
 who_we_are:
   enable: true
   subtitle: Cine sunt?
-  title: Sunt aici sa va ajut sa va reveniti cu caputul
+  title: Ghidul tău în călătoria către echilibru interior
   description: Va ghidez prin toata terapia planetei de la manifestare la melc la CBT si psihedelice
   image: images/about/01.jpg
 our_office:
@@ -61,21 +61,21 @@ about_video:
 our_mission:
   image: images/about/02.jpg
   description: Nous étions des concepteurs et des développeurs indépendants, nous trouvant constamment de vagues retours profonds. en laissant une note du morceau de post-it.
-  title: Poate m,isiune sau ceva mai important
+  title: Pregătire și Certificări
   subtitle: inca ceva
   enable: true
 what_we_do:
   enable: true
   subtitle: Tipuri de terapii
-  title: Cum va ajut?
+  title: Filosofia Mea Terapeutică
   block:
-    - title: CBT
-      content: Decade of engineering under his belt, Jeremie is responsible for technical infrastructure and feature development. In Flow, wherever things just work is understanding developing complex systems
-    - title: Familie
-      content: Decade of engineering under his belt, Jeremie is responsible for technical infrastructure and feature development. In Flow, wherever things just work is understanding developing complex systems
-    - title: Constelatii
-      content: Decade of engineering under his belt, Jeremie is responsible for technical infrastructure and feature development. In Flow, wherever things just work is understanding developing complex systems
-    - title: Produits de construction
-      content: Decade of engineering under his belt, Jeremie is responsible for technical infrastructure and feature development. In Flow, wherever things just work is understanding developing complex systems
+    - title: AUTENTICITATE
+      content: Cred că vindecarea începe când avem curajul să fim autentici - să ne arătăm vulnerabilitățile fără mască.
+    - title: COMPASIUNE
+      content: Abordez fiecare poveste cu empatie profundă, știind că în spatele fiecărui comportament există o nevoie neîmplinită.
+    - title: ȘTIINȚĂ
+      content: Integrez doar metode validate științific, pentru că meriti terapie care funcționează, nu doar una care sună bine
+    - title: CREȘTERE
+      content: Tu ești expertul propriei tale vieți. Eu sunt doar ghidul care îți luminează calea.
 ---
 

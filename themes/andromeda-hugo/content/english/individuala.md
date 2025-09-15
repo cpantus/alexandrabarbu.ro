@@ -1,7 +1,7 @@
 ---
 date: "2021-07-14"
 draft: false
-title: "Psychedelic Therapy"
+title: "Psihoterapie individuala"
 logo: "images/case-studies/01.svg"
 year: "2011"
 location: "Specialized Clinical Setting"

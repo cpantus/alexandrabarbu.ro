@@ -5,32 +5,28 @@ description: intrebari frecvente
 logo: images/case-studies/01.svg
 date: 2021-07-14
 ---
-{{< collapse "Cat de des merg la terapie?" >}}
+{{< collapse "Cum știu dacă terapia funcționează?" >}}
 
-- saptamanal
-- zilnic
-- Lorem ipsum dolor sit amet consectetur
+Veți observa schimbări graduale în gândire, emoții și comportamente. 
+Folosim scale de evaluare pentru a măsura progresul obiectiv.
   {{< /collapse >}}
 
 {{< collapse "Cat dureaza o sedinta" >}}
 
-1. 50 de mniute
-2. 2 ore
-3. cat este nevoie
+Fiecare ședință durează 50 de minute. Prima ședință poate dura 60-75 minute 
+pentru evaluare completă.
   {{< /collapse >}}
 
-{{< collapse "Cat dureaza terapia?" >}}
+{{< collapse "Pot face terapie online?" >}}
 
-1.  you appeared for an instant to be in two places at once.
-2.  We have a saboteur aboard.
-3.  you appeared for an instant to be in two places at once.
+Da! Oferim ședințe online securizate prin Zoom sau Google Meet, 
+la fel de eficiente ca cele față în față.
 {{< /collapse >}}
 
 {{< collapse "Este confidential?" >}}
 
-- Lorem ipsum dolor sit amet consectetur adipisicing elit.
-- Lorem ipsum dolor sit amet consectetur adipisicing elit.
-- Lorem ipsum dolor sit amet consectetur
+Absolut. Confidențialitatea este sacră în terapie, 
+cu excepția situațiilor de risc iminent (conform legii).
 {{< /collapse >}}
 
 ### Cliente

@@ -8,29 +8,93 @@ location: "Bizli, Canada"
 company_size: "100+ Members"
 ---
 
-## Terapie de familie
+## Terapie de Familie: Construim Punți Între Inimi
 
 We are looking for a personal financial planning pro (Certified Financial Planner™ preferred) who will lead our client advising efforts. You will be a fiduciary who works with clients providing holistic advice on areas including: saving, retirement, debt management, investments. You’ll be on the front lines helping clients in what is arguably the most important position at the company.
 
-### Défi
+### Reconectarea și vindecarea relațiilor care contează cel mai mult
 
-We are especially interested in finding developers with experience either building web APIs with Go or experience with functional programming (e.g. Elixir, NodeJS, Clojure, F#). You might not have experience with all the technologies in our stack, but you are motivated to learn deeply. You will get the opportunity to work with both Go and Elixir with experienced team mates who can teach and pair with you to learn whatever you have less experience with.You care about security, code quality, scalability, performance, and simplicity. Above all, you seek operational excellence and apply the best engineering practices possible. Not everything that you or your team do can be perfect, but you make sure that you always know the trade-offs.
+Format Options:
+👨‍👩‍👧 Familie Completă | 👫 Cuplu | 👨‍👧 Părinte-Copil
 
 {{< image c="img-fluid" title="We are especially interested in finding developers with experience" src="/images/banner-app.png" alt="Case Challenge">}}
 
-### Concept
+### Când Este Momentul pentru Terapie de Familie?
 
-1. must keep passwords secure and confidential;
-2. are solely responsible for User Data and all activity in their account while using the Service;
-3. must use commercially reasonable efforts to prevent unauthorized access to their account, and notify Conclude promptly of any such unauthorized access; and
-4. may use the Service only in accordance with Conclude's online user guide and all applicable laws and regulations.
 
-### Solution
+#### COMUNICARE ÎNTRERUPTĂ 
+- Certurile se repetă fără rezolvare
+- Membrii familiei evită conversațiile importante
+- Nimeni nu se simte ascultat sau înțeles
+- Comunicarea s-a transformat în critică constantă
 
-- Enhance or improve User experience, our Site, or our Service.
-- Process transactions.
-- Send emails about our Site or respond to inquiries.
-- As this Privacy Policy and our Terms of Service.
+#### TRANZIȚII DIFICILE
+- Divorț sau separare
+- Familie recompusă
+- Pierderea unui membru al familiei
+- Mutări sau schimbări majore
+
+#### PROBLEME CU COPIII/ADOLESCENȚII
+- Comportamente rebele sau retragere
+- Dificultăți școlare sau sociale
+- Conflicte între frați
+- Adaptare la vârste noi
+
+#### DINAMICI TOXICE
+- Roluri rigide și nesănătoase
+- Limite inexistente sau prea rigide
+- Secretele familiei
+- Modele intergeneraționale negative
+
+"Dacă ați bifat 2+ situații, terapia de familie vă poate ajuta"
+
+#### Cum Arată o Ședință de Familie:
+
+{{< collapse "ÎNAINTE DE ȘEDINȚĂ (10 min)" >}}
+
+- Check-in individual cu fiecare membru
+- Stabilirea agendei comune
+- Reguli de comunicare sigură
+
+  {{< /collapse >}}
+
+{{< collapse "TIMPUL ÎMPREUNĂ (60-75 min)" >}}
+
+- 15 min: Deschidere și conectare
+- 30 min: Explorarea temei principale
+- 20 min: Practică și exerciții
+- 10 min: Planificare și homework
+
+  {{< /collapse >}}
+
+{{< collapse "DUPĂ ȘEDINȚĂ" >}}
+
+- Jurnal de familie (opțional)
+- Exerciții pentru acasă
+- Practică între ședințe
+{{< /collapse >}}
+<hr>
+
+
+### Abordarea Sistemică: Familia ca Ecosistem
+#### PRINCIPIILE NOASTRE:
+
+1. NEUTRALITATE COMPASIONALĂ
+"Nu luăm partea nimănui, suntem de partea relației"
+2. RESURSE EXISTENTE
+"Fiecare familie are puncte forte pe care le amplificăm"
+3. PATTERN-URI, NU PERSOANE
+"Schimbăm dinamici, nu învinovățim indivizi"
+4. COMUNICARE SIGURĂ
+"Creăm un spațiu unde toți pot fi auziți"
+
+#### Tehnici Utilizate:
+- Genograma familiei (3 generații)
+- Sculptura familială
+- Jocuri de rol terapeutice
+- Comunicare non-violentă
+- Tehnici de mindfulness familial
+
 
  {{< image c="img-fluid text-center" src="/images/features-01.png" alt="Case Result" >}}
 
@@ -48,23 +112,7 @@ We are especially interested in finding developers with experience either buildi
 8. <u>[http://www.example.com](http://www.example.com)</u> and sometimes example.com (but not on Github, for example).
 
 
-<hr>
-
-### Ordered list
-
-1.  you appeared for an instant to be in two places at once.
-2.  We have a saboteur aboard.
-3.  you appeared for an instant to be in two places at once.
-
-</hr>
-
-### Unordered list
-
-- Quisque sem ipsum, placerat nec tortor vel, blandit vestibulum libero. Morbi sollicitudin viverra justo
-- Blandit vestibulum libero. Morbi sollicitudin viverra justo
-- Placerat nec tortor vel, blandit vestibulum libero. Morbi sollicitudin viverra justo
-<hr>
-
+<
 
 ### Buttons
 
@@ -137,29 +185,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 <hr>
 
-### Collapse :
 
-{{< collapse "pe locuri" >}}
-
-- Lorem ipsum dolor sit amet consectetur adipisicing elit.
-- Lorem ipsum dolor sit amet consectetur adipisicing elit.
-- Lorem ipsum dolor sit amet consectetur
-  {{< /collapse >}}
-
-{{< collapse "fiti gata" >}}
-
-- Lorem ipsum dolor sit amet consectetur adipisicing elit.
-- Lorem ipsum dolor sit amet consectetur adipisicing elit.
-- Lorem ipsum dolor sit amet consectetur
-  {{< /collapse >}}
-
-{{< collapse "start" >}}
-
-- Lorem ipsum dolor sit amet consectetur adipisicing elit.
-- Lorem ipsum dolor sit amet consectetur adipisicing elit.
-- Lorem ipsum dolor sit amet consectetur
-{{< /collapse >}}
-<hr>
 
 ### Image
 

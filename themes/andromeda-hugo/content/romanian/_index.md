@@ -1,28 +1,27 @@
 ---
 banner:
-  title: Terapia face bine la caput
-  button: Programeaza! o sedinta
+  title: Găsim Nordul Interior
+  button: Programeaza o sedinta
   button_link: https://facebook.com
-  image: /images/uploads/21780552.jpg
 features:
   enable: true
-  subtitle: Tipuri de Terapii/Teste self assessment
-  title: Pentru a porni <br> cu dreptul
-  description: CA sa fie bine sa nu fie rau.!!!!
+  subtitle: Tipuri de Terapie/Teste self assessment
+  title: Începe Călătoria Ta
+  description: Când știi unde ești, poți merge oriunde. Descoperim resursele interioare și construim o viață echilibrată!
   features_blocks:
-    - icon: las la-lock
-      title: Test ADHD
-      content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque enim id diam ornare volutpat in sagitis, aliquet. Arcu cursus
+    - icon: las la-compass
+      title: TERAPIE INDIVIDUALĂ
+      content: Descoperă resursele din tine
       button: Începe Testul
       button_link: /games/adhd-assessment-ro.html
     - icon: las la-magnet
-      title: Test de pitici pe creier
-      content: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque enim id diam ornare volutpat in sagitis, aliquet. Arcu cursus
-      button: Vezi Teste
+      title: TERAPIE DE FAMILIE
+      content: Construim punți între suflete si reconectăm relațiile
+      button: Descopera procesul
       button_link: /test/
-    - icon: las la-tachometer-alt
-      title: Dezvoltare Personala
-      content: Sa fie bine sa nu fie raut :)
+    - icon: las la-weight
+      title: PSIHOLOGIE ORGANIZAȚIONALĂ
+      content: Echilibru în mediul corporate si Soluții pentru companii
       button: Explorează
       button_link: /test/
 how_it_works:
@@ -57,13 +56,13 @@ testimonials:
   image_left: images/testimonials-01.png
   image_right: images/testimonials-02.png
   testimonials_quotes:
-    - quote: Testimonial 1
-      name: David Cameron
-      designation: CEO, Nexuspay
+    - quote: Alexandra m-a ajutat să găsesc claritate într-o perioadă de confuzie totală. Abordarea ei caldă și profesională m-a făcut să mă simt în siguranță.
+      name: Maria T. 
+      designation: Consilier superior, 35 de ani
       image: images/user-img/05-i.jpg
-    - quote: Testimonial 2
-      name: David Cameron
-      designation: CEO, Nexuspay
+    - quote: După 6 luni de terapie, anxietatea nu mai controlează viața mea. Am învățat tehnici practice pe care le folosesc zilnic.
+      name: Andrei P.
+      designation: Software Engineer, 42 de ani
       image: images/user-img/06-i.jpg
     - quote: Testiomanial 45
       name: David Cameron

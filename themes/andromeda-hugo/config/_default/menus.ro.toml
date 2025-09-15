@@ -23,19 +23,18 @@ hasChildren = true
   parent = "Psihoterapie"
   name = "CBT"
   url = "cbt/"
-  weight = 1
-
+  weight = 2
   [[main]]
   parent = "Psihoterapie"
   name = "Familie"
   url = "familie/"
-  weight = 2
+  weight = 3
 
   [[main]]
   parent = "Psihoterapie"
-  name = "Psihedelice"
-  url = "psihedelice/"
-  weight = 3
+  name = "Individuala"
+  url = "individuala/"
+  weight = 1
 
 
 

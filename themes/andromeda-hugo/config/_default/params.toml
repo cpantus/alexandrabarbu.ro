@@ -1,4 +1,4 @@
-footer_info = "Chestii din footer"
+footer_info = "Psiholog clinician dedicat transformării vieților prin terapie profesională și empatie"
 custom_script = ""
 contact_form_action = "https://formspree.io/f/xgernlzd"
 logo_text = "Alexandra Barbu"
@@ -10,20 +10,20 @@ career_form_action = "#"
 mainSections = [ "blog" ]
 
 [contact_info]
-address = "Bucuresti"
+address = "Bucuresti, Sector 3, L-V: 10:00-20:00"
 phone = [ "+1111111-555-0127", "+999902-569-6969" ]
-email = [ "buna@dimineata.melc" ]
+email = [ "alexandra.barbu@gmail.com" ]
 
 [cta]
 button_link = "/"
-button = "Buna Dimineata Melc!"
-content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi egestas <br> Werat viverra id et aliquet. vulputate egestas sollicitudin."
-title = "Helping teams in the world with focus"
+button = "Programeaza o evaluare de 15 minute"
+content = "Înțelegem nevoile tale specifice, Creăm un plan terapeutic personalizat, Ședințe săptămânale de terapie, Menținerea progresului pe termen lung. "
+title = "O Hartă Personalizată pentru Fiecare Călătorie"
 enable = true
 
 [cookies]
-button = "I Accept"
-content = "This site uses cookies. By continuing to use this website, you agree to their use."
+button = "De Acord"
+content = "Acest site NU foloseste cookies. Continuand stii ca nu te urmarim."
 expire_days = 2
 enable = true
 
@@ -41,7 +41,7 @@ enable = true
 
 [navigation_button]
 enable = true
-label = "Fa o rpogramare!"
+label = "Fa o programare!"
 link = "signup/"
 
 [metadata]

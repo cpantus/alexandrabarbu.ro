@@ -8,11 +8,11 @@ location: "Online & In-Person"
 company_size: "100+ families helped"
 ---
 
-## Family Therapy & Couples Counseling
+## Terapie de Familie: Construim Punți Între Inimi
 
 We provide comprehensive family therapy services designed to strengthen relationships, improve communication, and resolve conflicts within families and couples. Our systemic approach recognizes that individual challenges often reflect broader family dynamics. You'll work with a skilled therapist to create healthier patterns of interaction and build stronger emotional connections.
 
-### Our Approach
+### Our Approach Reconectarea și vindecarea relațiilor care contează cel mai mult
 
 We utilize evidence-based family therapy modalities including Structural Family Therapy, Emotionally Focused Therapy (EFT), and Solution-Focused Brief Therapy. Our approach emphasizes understanding family systems, improving communication patterns, and fostering emotional intimacy. We create a safe, non-judgmental space where all family members can express their needs and work toward mutual understanding.
 
