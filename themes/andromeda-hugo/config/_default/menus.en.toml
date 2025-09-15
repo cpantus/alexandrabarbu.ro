@@ -9,9 +9,9 @@ url = "about/"
 weight = 2
 
 [[main]]
-name = "Services"
-url = "services/"
-weight = 3
+name = "Corporate"
+url = "corporate-en/"
+weight = 5
 
 [[main]]
 weight = 4
@@ -36,10 +36,6 @@ hasChildren = true
   url = "psychedelic-therapy/"
   weight = 3
 
-[[main]]
-name = "Blog"
-url = "blog/"
-weight = 5
 
 [[main]]
 weight = 6
@@ -50,19 +46,25 @@ hasChildren = true
   parent = "Resources"
   name = "Tests"
   url = "tests/"
+  weight = 2
+
+  [[main]]
+  parent = "Resources"
+  name = "Blog"
+  url = "blog/"
   weight = 1
 
   [[main]]
   parent = "Resources"
   name = "Articles"
   url = "articles/"
-  weight = 2
+  weight = 3
 
   [[main]]
   parent = "Resources"
   name = "FAQ"
   url = "faq/"
-  weight = 3
+  weight = 4
 
 [[main]]
 name = "Contact"

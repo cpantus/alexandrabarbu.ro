@@ -9,13 +9,13 @@ url = "about/"
 weight = 2
 
 [[main]]
-name = "Servicii"
-url = "servicii/"
-weight = 3
+name = "Corporate"
+url = "corporate/"
+weight = 5
 
 
 [[main]]
-weight = 5
+weight = 3
 name = "Psihoterapie"
 hasChildren = true
 
@@ -39,10 +39,7 @@ hasChildren = true
 
 
 
-[[main]]
-name = "Blog"
-url = "blog/"
-weight = 6
+
 
 [[main]]
 weight = 9
@@ -53,6 +50,12 @@ hasChildren = true
   parent = "Resurse"
   name = "Teste"
   url = "test/"
+  weight = 2
+
+  [[main]]
+  parent = "Resurse"
+  name = "Blog"
+  url = "blog/"
   weight = 1
 
   [[main]]
