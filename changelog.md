@@ -176,3 +176,60 @@ Enhanced Contact and Signup pages with trust-building elements and improved user
 - Created 6 new section partials for enhanced functionality
 
 ---
+
+## 2025-01-26 15:45:00 UTC - FEATURE: Visual Enhancements and FAQ for Contact/Signup
+
+### Implementation Overview:
+Added comprehensive visual enhancements and FAQ section to improve user experience and trust-building on Contact and Signup pages.
+
+### Contact Page Visual Enhancements (3A):
+#### CSS Styling Added:
+- **Gradient backgrounds**: Linear gradient from light blue to mint green
+- **Contact card animations**: Hover effects with transform and shadow transitions
+- **Floating animations**: Gentle float effect for contact image
+- **Trust badge pulse**: Subtle pulsing animation for credibility badges
+- **Form enhancements**: Custom focus states, rounded corners, gradient buttons
+- **Icon styling**: Circular gradient backgrounds with hover rotations
+
+### Mini FAQ Section (4A):
+#### Features:
+- **Bootstrap accordion**: Collapsible FAQ with smooth transitions
+- **6 Common questions**: 
+  - Free consultation details
+  - Session duration
+  - Cancellation policy
+  - Online sessions availability
+  - When therapy is needed
+  - Confidentiality assurance
+- **Custom styling**: Rounded cards, gradient accents on active items
+- **Mobile responsive**: Stacks nicely on small screens
+
+### Signup Page Psychology (3B):
+#### Visual Enhancements:
+- **Progress visualization**: Connected steps with gradient line
+- **Step animations**: Hover effects and completion checkmarks
+- **Form validation feedback**: Visual checkmarks for valid fields
+- **Privacy shield**: Animated pulse ring around security icon
+- **Button ripple effect**: Expanding circle on hover
+- **Fade-in animations**: Sequential appearance of benefit items
+
+### Technical Details:
+- **478 lines of custom CSS** added to `assets/scss/custom.scss`
+- **Keyframe animations**: float, pulse, checkmark, fadeInUp, pulse-ring
+- **Gradient utilities**: Linear gradients for backgrounds and text
+- **Mobile optimizations**: Responsive breakpoints and touch-friendly targets
+- **Accessibility**: High contrast ratios, focus indicators
+
+### Performance Considerations:
+- CSS animations use GPU-accelerated properties (transform, opacity)
+- Smooth transitions capped at 0.3s for responsiveness
+- Hover effects disabled on mobile for better performance
+- Minimal DOM manipulation for animations
+
+### Files Modified:
+- `/assets/scss/custom.scss` - Added comprehensive styling
+- `/content/romanian/contact.md` - Added FAQ data
+- `/layouts/partials/sections/faq-mini.html` - Created FAQ accordion
+- Updated multiple section partials with enhanced CSS classes
+
+---
