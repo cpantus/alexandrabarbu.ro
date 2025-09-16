@@ -1,0 +1,39 @@
+{{/* Video Popup Section - Originally from Services */}}
+{{ $video := .Params.video_section }}
+{{ if not $video }}
+  {{ $video = .Params.how_it_works_video }}
+{{ end }}
+
+{{ with $video }}
+  {{ if .enable }}
+    <section class="section pb-0 video-popup">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-12">
+            <div class="block">
+              <div class="section-title text-center" data-aos="fade-up">
+                <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
+                <h2 class="title">{{ .title | markdownify }}</h2>
+                <p>{{ .description | markdownify }}</p>
+              </div>
+
+              <div
+                class="video-block"
+                data-aos="fade-up"
+                data-aos-delay="100">
+                <button
+                  type="button"
+                  title="Play Video Button"
+                  class="video-play-btn"
+                  data-src="{{ .video_url }}">
+                  <i class="las la-play"></i>
+                </button>
+                {{ partial "image.html" (dict "Src" .video_thumbnail "Alt" "Video Thumbnail" "Class" "video-thumb" "Size" "700x") }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {{ end }}
+{{ end }}

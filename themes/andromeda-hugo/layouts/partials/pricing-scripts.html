@@ -1,0 +1,54 @@
+{{/* Pricing Toggle JavaScript */}}
+{{ $jquery := resources.Get "plugins/jquery/jquery.min.js" | resources.Fingerprint }}
+<script crossorigin="anonymous" src="{{ $jquery.RelPermalink }}"></script>
+<script>
+  // pricing toggle functionality
+  if ($(".pricing-check").length !== 0) {
+    // pricing init
+    var toggleSwitch = $(".pricing-check");
+    var dataCount = $(".data-count");
+    $(toggleSwitch).change(function () {
+      if ($(toggleSwitch).is(":checked")) {
+        dataCount.each(function () {
+          $(this).html($(this).data("count-annually"));
+          $(this)
+            .prop("Counter", 999)
+            .animate(
+              {
+                Counter: $(this).text(),
+              },
+              {
+                duration: 250,
+                easing: "swing",
+                step: function (now) {
+                  $(this).text(Math.ceil(now));
+                },
+              }
+            );
+        });
+        $(".text-monthly").addClass("d-none").removeClass("d-inline");
+        $(".text-annually").addClass("d-inline").removeClass("d-none");
+      } else if ($(toggleSwitch).is(":not(:checked)")) {
+        dataCount.each(function () {
+          $(this).html($(this).data("count-monthly"));
+          $(this)
+            .prop("Counter", 999)
+            .animate(
+              {
+                Counter: $(this).text(),
+              },
+              {
+                duration: 250,
+                easing: "swing",
+                step: function (now) {
+                  $(this).text(Math.ceil(now));
+                },
+              }
+            );
+        });
+        $(".text-monthly").addClass("d-inline").removeClass("d-none");
+        $(".text-annually").addClass("d-none").removeClass("d-inline");
+      }
+    });
+  }
+</script>

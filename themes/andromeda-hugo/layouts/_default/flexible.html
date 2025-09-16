@@ -1,0 +1,49 @@
+{{/* Flexible Layout Template - Mix and match sections */}}
+{{ define "main" }}
+  
+  {{/* Process sections defined in front matter */}}
+  {{ range .Params.sections }}
+    {{ $sectionType := .type }}
+    {{ $sectionData := . }}
+    
+    {{/* Hero Breadcrumb */}}
+    {{ if eq $sectionType "hero-breadcrumb" }}
+      {{ partial "sections/hero-breadcrumb.html" $ }}
+    
+    {{/* Feature Blocks */}}
+    {{ else if eq $sectionType "feature-blocks" }}
+      {{ partial "sections/feature-blocks.html" $ }}
+    
+    {{/* Pricing Tables */}}
+    {{ else if eq $sectionType "pricing-tables" }}
+      {{ partial "sections/pricing-tables.html" $ }}
+    
+    {{/* Values Introduction */}}
+    {{ else if eq $sectionType "values-intro" }}
+      {{ partial "sections/values-intro.html" $ }}
+    
+    {{/* Benefits Grid */}}
+    {{ else if eq $sectionType "benefits-grid" }}
+      {{ partial "sections/benefits-grid.html" $ }}
+    
+    {{/* Video Popup */}}
+    {{ else if eq $sectionType "video-popup" }}
+      {{ partial "sections/video-popup.html" $ }}
+    
+    {{/* Job Listings */}}
+    {{ else if eq $sectionType "job-listings" }}
+      {{ partial "sections/job-listings.html" $ }}
+    
+    {{/* Call to Action */}}
+    {{ else if eq $sectionType "cta-standard" }}
+      {{ partial "components/call-to-action.html" $ }}
+    
+    {{ end }}
+  {{ end }}
+  
+  {{/* Include pricing JavaScript if pricing section is used */}}
+  {{ if in (printf "%v" .Params.sections) "pricing-tables" }}
+    {{ partial "pricing-scripts.html" . }}
+  {{ end }}
+  
+{{ end }}

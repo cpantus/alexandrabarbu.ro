@@ -1,0 +1,36 @@
+{{/* Feature Blocks Section - Originally from Services */}}
+{{ $data := .Params.feature_blocks }}
+{{ if not $data }}
+  {{ with .Site.Data.services }}
+    {{ $data = .feature_blocks }}
+  {{ end }}
+{{ end }}
+
+<section class="section-sm">
+  <div class="container">
+    {{ $.Scratch.Set "counter" 0 }}
+    {{ range $data }}
+      {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+      {{ $n := $.Scratch.Get "counter" }}
+      <div class="row justify-content-center align-items-center mb-4">
+        <div
+          class="col-lg-5 {{ if (modBool $n 2) }}order-lg-1{{ end }}"
+          data-aos="fade-up">
+          <div class="section-title mb-0">
+            <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
+            <h2 class="title text-break">{{ .title | markdownify }}</h2>
+            <p>{{ .description | markdownify }}</p>
+          </div>
+        </div>
+        <div
+          class="col-lg-6 mt-3 mt-lg-0"
+          data-aos="fade-up"
+          data-aos-delay="100">
+          <div class="ps-0 ps-lg-3">
+            {{ partial "image.html" (dict "Src" .image "Alt" "feature" "Size" "575x") }}
+          </div>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</section>

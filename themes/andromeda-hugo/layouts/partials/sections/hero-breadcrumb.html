@@ -1,0 +1,32 @@
+{{/* Hero Breadcrumb Section - Shared across pages */}}
+<section class="page-header">
+  <div class="container-xxl position-relative">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="section-title text-center text-lg-start mb-0">
+          <h1 class="mb-3">{{ .Title }}</h1>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center justify-content-lg-start">
+              <li class="breadcrumb-item">
+                <a href="{{ "/" | relLangURL }}">{{ i18n "home" | default "Home" }}</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                {{ .Title }}
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-shapes">
+          {{ with .Params.hero_image }}
+          <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="img-fluid">
+          {{ else }}
+          <img src="{{ "images/shapes/shape-1.svg" | relURL }}" alt="shape" class="shape-1">
+          <img src="{{ "images/shapes/shape-2.svg" | relURL }}" alt="shape" class="shape-2">
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

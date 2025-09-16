@@ -72,3 +72,59 @@
 - **Solution**: Added SVG detection before resize: `(ne $image.MediaType.SubType "svg")`
 - **Result**: SVG images used as-is, raster images resized properly, lazy loading preserved
 
+
+## 2025-01-26 14:45:00 UTC - FEATURE: Modular Layout Mixing System Implemented
+
+### Implementation Overview:
+Created a flexible layout system allowing mix-and-match of sections between services and career pages. This enables content reuse and consistent design patterns across different page types.
+
+### Technical Changes:
+
+#### 1. **Created Modular Section Partials** (`layouts/partials/sections/`)
+- `hero-breadcrumb.html` - Shared page header with breadcrumbs
+- `feature-blocks.html` - Alternating image/text blocks from services
+- `pricing-tables.html` - Pricing cards with monthly/yearly toggle
+- `values-intro.html` - Introduction section from career page
+- `benefits-grid.html` - Icon grid from career page
+- `video-popup.html` - Video section with popup player
+- `job-listings.html` - Career opportunities grid
+
+#### 2. **Flexible Page Builder** (`layouts/_default/flexible.html`)
+- Dynamic section renderer based on front matter configuration
+- Supports all section types with fallback handling
+- Automatic JavaScript inclusion for interactive elements
+
+#### 3. **Content Updates**
+- Modified `content/romanian/servicii.md` to use flexible layout
+- Modified `content/romanian/corporate/_index.md` to use flexible layout
+- Added section mixing configuration in front matter
+
+#### 4. **Shared Data Structure** (`data/shared_sections.yaml`)
+- Centralized content storage for reusable sections
+- Therapy and corporate content variants
+- Configurable benefits, values, and feature blocks
+
+### Benefits:
+- ✅ **DRY Principle**: Sections defined once, used anywhere
+- ✅ **Easy Maintenance**: Update sections in one place
+- ✅ **CMS Compatible**: Works with Sveltia CMS
+- ✅ **Performance**: Hugo's partial caching ensures fast builds
+- ✅ **Flexibility**: Mix any combination of sections
+
+### Usage:
+Set `layout: "flexible"` in front matter and define sections array:
+```yaml
+sections:
+  - type: "hero-breadcrumb"
+  - type: "feature-blocks"
+  - type: "pricing-tables"
+```
+
+### Files Modified:
+- Created 7 new section partials
+- Created flexible layout template
+- Created shared data configuration
+- Updated services and corporate content files
+- Created layout mixing guide documentation
+
+---

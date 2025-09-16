@@ -1,0 +1,71 @@
+# Shared content sections that can be used across pages
+# Reference these in your content files using .Site.Data.shared_sections
+
+feature_blocks:
+  therapy:
+    - subtitle: "Terapie Cognitivă"
+      title: "CBT - Schimbă Gândurile, Schimbă Viața"
+      description: "Terapia cognitiv-comportamentală te ajută să identifici și să modifici tiparele de gândire negative care îți afectează starea emoțională și comportamentul."
+      image: "images/features-01.png"
+      
+    - subtitle: "Pentru Familie"
+      title: "Reconectare și Armonie Familială"
+      description: "Construim punți între membri familiei, îmbunătățim comunicarea și rezolvăm conflictele într-un mod sănătos și constructiv."
+      image: "images/features-02.png"
+      
+  corporate:
+    - subtitle: "Wellness Corporativ"
+      title: "Echipe Sănătoase, Business de Succes"
+      description: "Programe complete de wellness pentru angajați care cresc productivitatea și reduc burnout-ul."
+      image: "images/office-wellness.png"
+      
+    - subtitle: "Leadership Development"
+      title: "Dezvoltă Lideri Autentici"
+      description: "Coaching executiv și programe de dezvoltare pentru lideri care vor să inspire și să motiveze echipele."
+      image: "images/leadership.png"
+
+values_content:
+  therapy:
+    subtitle: "Filosofia Noastră"
+    title: "Găsește-ți Nordul Interior"
+    description: "Credem că fiecare persoană are resursele necesare pentru schimbare. Rolul nostru este să te ghidăm în această călătorie de descoperire personală."
+    button_label: "Programează Evaluare"
+    button_link: "/contact"
+    image: "images/values-therapy.png"
+    
+  corporate:
+    subtitle: "Misiunea Noastră"  
+    title: "Transformăm Cultura Organizațională"
+    description: "Ajutăm companiile să creeze medii de lucru sănătoase unde angajații pot performa la potențialul maxim."
+    button_label: "Solicită Ofertă"
+    button_link: "/contact"
+    image: "images/values-corporate.png"
+
+benefits:
+  therapy:
+    - title: "Reducerea Stresului"
+      icon: "las la-spa la-3x"
+    - title: "Claritate Mentală"
+      icon: "las la-brain la-3x"
+    - title: "Echilibru Emoțional"  
+      icon: "las la-balance-scale la-3x"
+    - title: "Relații Îmbunătățite"
+      icon: "las la-heart la-3x"
+    - title: "Dezvoltare Personală"
+      icon: "las la-seedling la-3x"
+    - title: "Reziliență"
+      icon: "las la-shield-alt la-3x"
+      
+  corporate:
+    - title: "Productivitate Crescută"
+      icon: "las la-chart-line la-3x"
+    - title: "Retenție Angajați"
+      icon: "las la-users la-3x"
+    - title: "Cultură Pozitivă"
+      icon: "las la-smile la-3x"
+    - title: "Reducere Burnout"
+      icon: "las la-fire-extinguisher la-3x"
+    - title: "Comunicare Eficientă"
+      icon: "las la-comments la-3x"
+    - title: "Leadership Autentic"
+      icon: "las la-crown la-3x"

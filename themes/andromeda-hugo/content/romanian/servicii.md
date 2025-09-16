@@ -1,7 +1,46 @@
 ---
 title: "Servicii"
-layout: "services"
+layout: "flexible"
 draft: false
+
+# Define which sections to use and in what order
+sections:
+  - type: "hero-breadcrumb"
+  - type: "feature-blocks"
+  - type: "values-intro"      # Borrowed from career page  
+  - type: "pricing-tables"
+  - type: "benefits-grid"      # Borrowed from career page
+  - type: "video-popup"
+
+# Values section borrowed from career page
+values_section:
+  enable: true
+  subtitle: "De ce să alegi terapia noastră"
+  title: "Transformăm Viețile prin Empatie și Profesionalism"
+  description: "Oferim un spațiu sigur pentru explorare personală și creștere, unde fiecare persoană este întâmpinată cu înțelegere și respect."
+  button_link: "#pricing"
+  button_label: "Vezi Pachetele"
+  image: "images/vectors/career.png"
+
+# Benefits section borrowed from career page  
+benefits_section:
+  enable: true
+  subtitle: "Beneficiile Terapiei"
+  title: "REZULTATE DEMONSTRATE"
+  description: "Clienții noștri experimentează îmbunătățiri semnificative în calitatea vieții"
+  benefits:
+    - title: "REDUCEREA ANXIETĂȚII"
+      icon: "las la-lock la-3x"
+    - title: "MANAGEMENT EMOȚIONAL"
+      icon: "las la-magnet la-3x"
+    - title: "RELAȚII ÎMBUNĂTĂȚITE"
+      icon: "las la-hamburger la-3x"
+    - title: "CLARITATE MENTALĂ"
+      icon: "las la-plane-departure la-3x"
+    - title: "REZILIENȚĂ CRESCUTĂ"
+      icon: "las la-medkit la-3x"
+    - title: "ECHILIBRU INTERIOR"
+      icon: "las la-stroopwafel la-3x"
 
 # === HOW-IT-WORKS FEATURES (Will display first) ===
 how_it_works:
@@ -84,3 +123,32 @@ how_it_works_video:
   video_url: "https://www.youtube.com/embed/EOEajC2ndjk"
   video_thumbnail: "images/video-popup.jpg"
 ---
+---
+title: "Servicii"
+layout: "flexible"
+draft: false
+
+# Define which sections to use and in what order
+sections:
+  - type: "hero-breadcrumb"
+  - type: "feature-blocks"
+  - type: "values-intro"      # Borrowed from career page
+  - type: "pricing-tables"
+  - type: "video-popup"
+
+# Original feature blocks data
+feature_blocks:
+  - subtitle: "incearca"
+    title: "Terapie CBT"
+    description: "Protect your design vision and leave nothing up to interpretation with interaction recipes. Quickly share and access all your team members interactions by using libraries, ensuring consistency throughout the."
+    image: "images/features-01.png"
+
+  - subtitle: "Spécialité secondaire"
+    title: "STerapie de familie"
+    description: "From the simplest of interactions to those that use Excel-gradeing formulas, ProtoPie can handle them all. Make mind-blowing of New interactions everyday without ever having to write any new code."
+    image: "images/features-02.png"
+
+  - subtitle: "daca ai traume"
+    title: "Hipnoza si psihedelice"
+    description: "From the simplest of interactions to those that use Excel-gradeing formulas, ProtoPie can handle them all. Make mind-blowing of New interactions everyday without ever having to write any new code."
+    image: "images/features-02.png"
