@@ -1,0 +1,80 @@
+{{/* Enhanced Signup Form Section */}}
+<section class="section user-access">
+  <div class="container">
+    <div class="row justify-content-around align-items-center">
+      <div class="col-lg-4 col-md-7 col-sm-10 col-11" data-aos="fade-up">
+        <div class="text-center">
+          <h3 class="mb-4">{{ .Params.welcome_title | default "Bun venit în spațiul tău sigur" }}</h3>
+          <p class="mb-4">{{ .Content }}</p>
+          
+          {{/* Account benefits */}}
+          {{ with .Params.account_benefits }}
+          <div class="text-start bg-light rounded p-4 mb-4">
+            <h5 class="mb-3">Ce vei primi:</h5>
+            <ul class="list-unstyled">
+              {{ range . }}
+              <li class="mb-2">
+                <i class="las la-check text-primary"></i> {{ . }}
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+          {{ end }}
+          
+          <div class="mt-4">
+            {{ partial "image.html" (dict "Src" .Params.image "Alt" "sign up banner" "Size" "475x") }}
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 col-md-8 col-sm-10 col-11 user-access-form" data-aos="fade-up" data-aos-delay="150">
+        <h3 class="text-center mb-4">Creează-ți Contul</h3>
+        
+        {{ with site.Params.career_form_action }}
+        <form action="{{ . }}" method="POST">
+          <div class="form-group mb-3">
+            <label for="fname" class="mb-2">Nume complet</label>
+            <input type="text" class="form-control shadow-none" id="fname" name="fname" required>
+          </div>
+          
+          <div class="form-group mb-3">
+            <label for="email" class="mb-2">Email</label>
+            <input type="email" class="form-control shadow-none" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group mb-3">
+            <label for="password" class="mb-2">Parolă</label>
+            <input type="password" class="form-control shadow-none" id="password" name="password" required>
+            <small class="text-muted">Minim 8 caractere</small>
+          </div>
+          
+          <div class="form-group mb-3">
+            <label for="phone" class="mb-2">Telefon (opțional)</label>
+            <input type="tel" class="form-control shadow-none" id="phone" name="phone">
+          </div>
+          
+          <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="terms" required>
+            <label class="form-check-label" for="terms">
+              Accept <a href="/terms-and-conditions/">termenii și condițiile</a> și <a href="/privacy/">politica de confidențialitate</a>
+            </label>
+          </div>
+          
+          <div class="form-check mb-4">
+            <input type="checkbox" class="form-check-input" id="newsletter">
+            <label class="form-check-label" for="newsletter">
+              Doresc să primesc resurse și sfaturi terapeutice (opțional)
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary w-100">Creează Cont</button>
+        </form>
+        {{ end }}
+        
+        <div class="text-center mt-4">
+          <small>Ai deja cont? <a href="/signin/">Conectează-te aici</a></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

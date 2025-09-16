@@ -1,0 +1,18 @@
+{{/* Confidentiality Notice Section */}}
+{{ with .Params.confidentiality }}
+<section class="section pt-0">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="alert alert-soft-primary d-flex align-items-center" role="alert">
+          <i class="las la-lock me-3" style="font-size: 2rem;"></i>
+          <div>
+            <strong>{{ .title | default "Confidențialitate Garantată" }}</strong><br>
+            {{ .description | default "Toate comunicările sunt protejate de secretul profesional conform Codului Deontologic al Psihologilor din România. Informațiile tale sunt în siguranță." }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

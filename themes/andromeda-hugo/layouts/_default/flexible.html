@@ -38,6 +38,30 @@
     {{ else if eq $sectionType "cta-standard" }}
       {{ partial "components/call-to-action.html" $ }}
     
+    {{/* Contact Form Enhanced */}}
+    {{ else if eq $sectionType "contact-form-enhanced" }}
+      {{ partial "sections/contact-form-enhanced.html" $ }}
+    
+    {{/* Contact Info Cards */}}
+    {{ else if eq $sectionType "contact-info-cards" }}
+      {{ partial "sections/contact-info-cards.html" $ }}
+    
+    {{/* Confidentiality Notice */}}
+    {{ else if eq $sectionType "confidentiality-notice" }}
+      {{ partial "sections/confidentiality-notice.html" $ }}
+    
+    {{/* Onboarding Steps */}}
+    {{ else if eq $sectionType "onboarding-steps" }}
+      {{ partial "sections/onboarding-steps.html" $ }}
+    
+    {{/* Signup Form Enhanced */}}
+    {{ else if eq $sectionType "signup-form-enhanced" }}
+      {{ partial "sections/signup-form-enhanced.html" $ }}
+    
+    {{/* Privacy Guarantee */}}
+    {{ else if eq $sectionType "privacy-guarantee" }}
+      {{ partial "sections/privacy-guarantee.html" $ }}
+    
     {{ end }}
   {{ end }}
   

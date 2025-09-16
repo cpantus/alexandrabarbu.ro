@@ -1,0 +1,59 @@
+{{/* Enhanced Contact Form with Trust Elements */}}
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-5 col-md-8 text-center mb-5 mb-lg-0" data-aos="fade-up">
+        <div class="pe-0 pe-lg-5">
+          {{ partial "image.html" (dict "Src" .Params.contact_image "Alt" "contact image" "Size" "575x") }}
+          
+          {{/* Trust badges below image */}}
+          {{ with .Params.trust_badges }}
+          <div class="mt-4">
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+              {{ range . }}
+              <span class="badge bg-light text-primary px-3 py-2">
+                <i class="las la-check-circle"></i> {{ . }}
+              </span>
+              {{ end }}
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      
+      {{ with site.Params.contact_form_action }}
+      <div class="col-lg-5 col-md-10" data-aos="fade-up">
+        <div class="contact-form">
+          <div class="mb-4">
+            <h3>{{ T `send_a_message` | default "Trimite un mesaj" }}</h3>
+            {{ with $.Params.first_consultation }}
+            <div class="alert alert-info mt-3">
+              <strong>{{ .title }}:</strong> {{ .duration }}<br>
+              <small>{{ .description }}</small>
+            </div>
+            {{ end }}
+          </div>
+          <form id="contact-form" action="{{ . }}" method="POST">
+            <p id="form-status" class="form-status"></p>
+            <div class="form-group mb-4">
+              <label class="mb-2" for="name">{{ T `full_name` | default "Nume complet" }}</label>
+              <input class="form-control shadow-none" id="name" name="name" type="text" required />
+            </div>
+            <div class="form-group mb-4">
+              <label class="mb-2" for="email">{{ T `email` | default "Email" }}</label>
+              <input class="form-control shadow-none" id="email" name="email" type="email" required />
+            </div>
+            <div class="form-group mb-4">
+              <label class="mb-2" for="message">{{ T `your_message` | default "Mesajul tău" }}</label>
+              <textarea class="form-control shadow-none" id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button class="btn btn-primary w-100 mt-4" type="submit">
+              {{ T `send_message` | default "Trimite mesaj" }}
+            </button>
+          </form>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
