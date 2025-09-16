@@ -1,0 +1,30 @@
+{{/* FAQ Section - Hugo Way with Shortcodes */}}
+{{ with .Params.faq_section }}
+<section class="section pt-0">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        {{ with .title }}
+        <div class="text-center mb-5">
+          <h3 class="gradient-text">{{ . }}</h3>
+          {{ with $.Params.faq_section.subtitle }}
+          <p class="text-muted">{{ . }}</p>
+          {{ end }}
+        </div>
+        {{ end }}
+        
+        <div class="accordion faq-accordion" id="faqAccordion">
+          {{/* FAQ content will be rendered from markdown using shortcodes */}}
+          {{ $.Content }}
+        </div>
+        
+        {{ with .footer_text }}
+        <div class="text-center mt-4">
+          <p class="text-muted">{{ . | markdownify }}</p>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

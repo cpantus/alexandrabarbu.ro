@@ -1,16 +1,16 @@
 ---
-date: "2021-07-14"
+date: "2025-07-14"
 draft: false
 title: "familie"
 logo: "images/case-studies/01.svg"
-year: "2011"
+year: "2025"
 location: "Bizli, Canada"
 company_size: "100+ Members"
 ---
 
 ## Terapie de Familie: Construim Punți Între Inimi
 
-We are looking for a personal financial planning pro (Certified Financial Planner™ preferred) who will lead our client advising efforts. You will be a fiduciary who works with clients providing holistic advice on areas including: saving, retirement, debt management, investments. You’ll be on the front lines helping clients in what is arguably the most important position at the company.
+Reconectarea și vindecarea relațiilor care contează cel mai mult
 
 ### Reconectarea și vindecarea relațiilor care contează cel mai mult
 

@@ -1,0 +1,145 @@
+{{ define "main" }}
+  {{/* Hero Section */}}
+  {{ partial "components/page-header.html" . }}
+  
+  {{/* Enhanced Contact Form Section */}}
+  <section class="section contact-enhanced">
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-lg-5 col-md-8 text-center mb-5 mb-lg-0" data-aos="fade-up">
+          <div class="pe-0 pe-lg-5">
+            <div class="floating">
+              {{ partial "image.html" (dict "Src" .Params.contact_image "Alt" "contact image" "Size" "575x") }}
+            </div>
+            
+            {{/* Trust badges below image */}}
+            {{ with .Params.trust_badges }}
+            <div class="mt-4">
+              <div class="d-flex flex-wrap justify-content-center gap-2">
+                {{ range . }}
+                <span class="badge bg-light text-primary px-3 py-2 trust-badge">
+                  <i class="las la-check-circle"></i> {{ . }}
+                </span>
+                {{ end }}
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+        
+        {{ with site.Params.contact_form_action }}
+        <div class="col-lg-5 col-md-10" data-aos="fade-up" data-aos-delay="100">
+          <div class="contact-form contact-form-enhanced" id="contact-form">
+            <div class="mb-4">
+              <h3 class="gradient-text">{{ T `send_a_message` | default "Trimite un mesaj" }}</h3>
+              {{ with $.Params.first_consultation }}
+              <div class="consultation-info-box">
+                <strong>{{ .title }}:</strong> {{ .duration }}<br>
+                <small>{{ .description }}</small>
+              </div>
+              {{ end }}
+            </div>
+            <form id="contact-form" action="{{ . }}" method="POST">
+              <p id="form-status" class="form-status"></p>
+              <div class="form-group mb-4">
+                <label class="mb-2" for="name">{{ T `full_name` | default "Nume complet" }}</label>
+                <input class="form-control shadow-none" id="name" name="name" type="text" required />
+              </div>
+              <div class="form-group mb-4">
+                <label class="mb-2" for="email">{{ T `email` | default "Email" }}</label>
+                <input class="form-control shadow-none" id="email" name="email" type="email" required />
+              </div>
+              <div class="form-group mb-4">
+                <label class="mb-2" for="message">{{ T `your_message` | default "Mesajul tău" }}</label>
+                <textarea class="form-control shadow-none" id="message" name="message" rows="4" required></textarea>
+              </div>
+              <button class="btn btn-primary w-100 mt-4" type="submit">
+                {{ T `send_message` | default "Trimite mesaj" }}
+              </button>
+            </form>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  
+  {{/* Contact Info Cards */}}
+  {{ with .Params.contact_methods }}
+  <section class="section pt-0">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="row">
+            {{ range . }}
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+              <div class="contact-method-card">
+                <div class="text-center">
+                  <div class="contact-icon">
+                    <i class="{{ .icon }}"></i>
+                  </div>
+                  <h4 class="mb-2">{{ .title }}</h4>
+                  <p class="text-dark mb-1 fw-bold">{{ .info }}</p>
+                  <small class="text-muted">{{ .subtitle }}</small>
+                </div>
+              </div>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+  
+  {{/* FAQ Section - Hugo Way */}}
+  {{ with .Params.faq_section }}
+  <section class="section pt-0">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          {{ with .title }}
+          <div class="text-center mb-5">
+            <h3 class="gradient-text">{{ . }}</h3>
+            {{ with $.Params.faq_section.subtitle }}
+            <p class="text-muted">{{ . }}</p>
+            {{ end }}
+          </div>
+          {{ end }}
+          
+          <div class="accordion faq-accordion" id="contactFaqAccordion">
+            {{/* FAQ content from markdown with shortcodes */}}
+            {{ $.Content }}
+          </div>
+          
+          {{ with .footer_text }}
+          <div class="text-center mt-4">
+            <p class="text-muted">{{ . | markdownify }}</p>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+  
+  {{/* Confidentiality Notice */}}
+  {{ with .Params.confidentiality }}
+  <section class="section pt-0">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="alert alert-soft-primary d-flex align-items-center" role="alert">
+            <i class="las la-lock me-3" style="font-size: 2rem;"></i>
+            <div>
+              <strong>{{ .title | default "Confidențialitate Garantată" }}</strong><br>
+              {{ .description | default "Toate comunicările sunt protejate de secretul profesional." }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+  
+{{ end }}

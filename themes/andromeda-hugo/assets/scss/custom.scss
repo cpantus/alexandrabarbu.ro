@@ -702,7 +702,7 @@ input, textarea, select {
   }
 }
 
-/* FAQ Accordion Styling */
+/* FAQ Accordion Styling - Hugo Way */
 .faq-accordion {
   .accordion-item {
     border: none;
@@ -715,7 +715,21 @@ input, textarea, select {
     
     &:hover {
       box-shadow: 0 5px 20px rgba(77, 179, 128, 0.1);
+      transform: translateY(-2px);
     }
+    
+    &.faq-item {
+      /* Special styling for FAQ items from shortcode */
+      border-left: 3px solid transparent;
+      
+      &:hover {
+        border-left-color: #4DB380;
+      }
+    }
+  }
+  
+  .accordion-header {
+    margin: 0 !important;
   }
   
   .accordion-button {
@@ -725,6 +739,11 @@ input, textarea, select {
     padding: 1.25rem 1.5rem;
     border: none;
     box-shadow: none;
+    font-size: 1.05rem;
+    
+    &::after {
+      transition: transform 0.3s ease;
+    }
     
     &:not(.collapsed) {
       background: linear-gradient(135deg, #f0f9f5 0%, #e8f5ef 100%);
@@ -732,18 +751,34 @@ input, textarea, select {
       
       &::after {
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%234DB380'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        transform: rotate(180deg);
       }
     }
     
     &:focus {
       box-shadow: none;
+      border-color: transparent;
     }
+    
+    &:hover {
+      color: #4DB380;
+    }
+  }
+  
+  .accordion-collapse {
+    transition: all 0.35s ease;
   }
   
   .accordion-body {
     padding: 1.5rem;
     color: #5a6c7d;
     line-height: 1.7;
+    font-size: 0.95rem;
+    background: #fafbfc;
+    
+    p:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 

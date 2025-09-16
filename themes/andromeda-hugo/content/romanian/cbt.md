@@ -8,7 +8,7 @@ location: "Bizli, Canada"
 company_size: "100+ cazuri pana acum"
 ---
 
-## Terapie CBT
+## Terapie Cognitiv Comportamentala
 
 We are looking for a personal financial planning pro (Certified Financial Planner™ preferred) who will lead our client advising efforts. You will be a fiduciary who works with clients providing holistic advice on areas including: saving, retirement, debt management, investments. You’ll be on the front lines helping clients in what is arguably the most important position at the company.
 
