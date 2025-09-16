@@ -128,3 +128,51 @@ sections:
 - Created layout mixing guide documentation
 
 ---
+
+## 2025-01-26 15:15:00 UTC - FEATURE: Contact and Signup Page Enhancements
+
+### Implementation Overview:
+Enhanced Contact and Signup pages with trust-building elements and improved user experience, following therapeutic design principles.
+
+### Contact Page Enhancements (1A):
+#### New Sections Created:
+- **contact-form-enhanced.html** - Enhanced form with first consultation info and trust badges
+- **contact-info-cards.html** - Three info cards showing contact methods
+- **confidentiality-notice.html** - Privacy and confidentiality guarantee section
+
+#### Features Added:
+- ✅ First consultation info box (15 minutes free evaluation)
+- ✅ Trust badges (Authorized Psychologist, 10+ Years, GDPR Compliant)
+- ✅ Contact method cards with icons and availability info
+- ✅ Confidentiality guarantee message
+- ✅ Professional presentation with structured layout
+
+### Signup Page Transformation (2A):
+#### New Sections Created:
+- **onboarding-steps.html** - 4-step visual onboarding process
+- **signup-form-enhanced.html** - Enhanced registration form with benefits
+- **privacy-guarantee.html** - Security and privacy assurance section
+
+#### Features Added:
+- ✅ 4-step onboarding visualization (Account → Assessment → Schedule → Therapy)
+- ✅ Account benefits list in sidebar
+- ✅ Enhanced form with optional phone and newsletter
+- ✅ Terms and privacy policy checkboxes
+- ✅ GDPR compliance messaging
+- ✅ Security features display (encryption, EU servers, audit)
+- ✅ Reused benefits-grid section for consistency
+
+### Technical Implementation:
+- Both pages now use `layout: "flexible"` for modular section management
+- Sections can be reordered or reused across pages
+- Maintains design consistency with existing theme
+- Mobile-responsive card layouts
+- Accessibility-friendly form labels and structure
+
+### Files Modified:
+- `/content/romanian/contact.md` - Converted to flexible layout with trust elements
+- `/content/romanian/signup.md` - Transformed into onboarding portal
+- `/layouts/_default/flexible.html` - Added support for new section types
+- Created 6 new section partials for enhanced functionality
+
+---
