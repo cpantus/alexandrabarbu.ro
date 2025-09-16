@@ -4,15 +4,17 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <div class="bg-light rounded p-5 text-center">
-          <i class="las la-shield-alt text-primary mb-3" style="font-size: 4rem;"></i>
-          <h4 class="mb-3">{{ .title | default "Confidențialitate 100%" }}</h4>
+        <div class="bg-light rounded p-5 text-center" data-aos="fade-up">
+          <div class="privacy-shield">
+            <i class="las la-shield-alt text-primary mb-3" style="font-size: 4rem;"></i>
+          </div>
+          <h4 class="mb-3 gradient-text">{{ .title | default "Confidențialitate 100%" }}</h4>
           <p class="mb-4">{{ .description | default "Datele tale sunt protejate conform GDPR și sunt utilizate exclusiv pentru procesul terapeutic. Nu împărtășim niciodată informațiile tale personale cu terți." }}</p>
           
           {{ with .features }}
           <div class="row justify-content-center mt-4">
             {{ range . }}
-            <div class="col-md-4 mb-3">
+            <div class="col-md-4 mb-3" data-aos="fade-up" data-aos-delay="100">
               <div class="d-flex align-items-center justify-content-center">
                 <i class="las la-check-circle text-primary me-2"></i>
                 <span>{{ . }}</span>

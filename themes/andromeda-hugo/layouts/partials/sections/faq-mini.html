@@ -1,0 +1,46 @@
+{{/* Mini FAQ Section */}}
+{{ with .Params.faq_items }}
+<section class="section pt-0">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center mb-5">
+          <h3>Întrebări Frecvente</h3>
+          <p class="text-muted">Răspunsuri la cele mai comune întrebări</p>
+        </div>
+        
+        <div class="accordion faq-accordion" id="faqAccordion">
+          {{ range $index, $item := . }}
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeading{{ $index }}">
+              <button class="accordion-button {{ if ne $index 0 }}collapsed{{ end }}" 
+                      type="button" 
+                      data-bs-toggle="collapse" 
+                      data-bs-target="#faqCollapse{{ $index }}" 
+                      aria-expanded="{{ if eq $index 0 }}true{{ else }}false{{ end }}" 
+                      aria-controls="faqCollapse{{ $index }}">
+                {{ $item.question }}
+              </button>
+            </h2>
+            <div id="faqCollapse{{ $index }}" 
+                 class="accordion-collapse collapse {{ if eq $index 0 }}show{{ end }}" 
+                 aria-labelledby="faqHeading{{ $index }}" 
+                 data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                {{ $item.answer | markdownify }}
+              </div>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+        
+        <div class="text-center mt-4">
+          <p class="text-muted">Ai alte întrebări? 
+            <a href="#contact-form" class="text-primary">Contactează-ne direct</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

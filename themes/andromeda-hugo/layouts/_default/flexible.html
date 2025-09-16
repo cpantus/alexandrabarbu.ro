@@ -50,6 +50,10 @@
     {{ else if eq $sectionType "confidentiality-notice" }}
       {{ partial "sections/confidentiality-notice.html" $ }}
     
+    {{/* FAQ Mini Section */}}
+    {{ else if eq $sectionType "faq-mini" }}
+      {{ partial "sections/faq-mini.html" $ }}
+    
     {{/* Onboarding Steps */}}
     {{ else if eq $sectionType "onboarding-steps" }}
       {{ partial "sections/onboarding-steps.html" $ }}

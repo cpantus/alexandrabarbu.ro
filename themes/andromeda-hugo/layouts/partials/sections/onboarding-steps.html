@@ -4,15 +4,15 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <div class="row">
-          {{ range . }}
-          <div class="col-md-3 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="row onboarding-steps">
+          {{ range $index, $step := . }}
+          <div class="col-md-3 col-sm-6 mb-4 onboarding-step" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
             <div class="text-center">
-              <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px; font-size: 1.5rem; font-weight: bold;">
-                {{ .number }}
+              <div class="step-number">
+                {{ $step.number }}
               </div>
-              <h5 class="mb-2">{{ .title }}</h5>
-              <p class="text-muted small mb-0">{{ .description }}</p>
+              <h5 class="mb-2">{{ $step.title }}</h5>
+              <p class="text-muted small mb-0">{{ $step.description }}</p>
             </div>
           </div>
           {{ end }}

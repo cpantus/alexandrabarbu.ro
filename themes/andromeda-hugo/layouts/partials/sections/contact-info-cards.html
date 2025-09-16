@@ -7,11 +7,13 @@
         <div class="row">
           {{ range . }}
           <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="card h-100 border-0 shadow-sm text-center p-4">
-              <div class="card-body">
-                <i class="{{ .icon }} text-primary mb-3" style="font-size: 3rem;"></i>
+            <div class="contact-method-card">
+              <div class="text-center">
+                <div class="contact-icon">
+                  <i class="{{ .icon }}"></i>
+                </div>
                 <h4 class="mb-2">{{ .title }}</h4>
-                <p class="text-dark mb-1">{{ .info }}</p>
+                <p class="text-dark mb-1 fw-bold">{{ .info }}</p>
                 <small class="text-muted">{{ .subtitle }}</small>
               </div>
             </div>

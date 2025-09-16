@@ -1,17 +1,19 @@
 {{/* Enhanced Contact Form with Trust Elements */}}
-<section class="section">
+<section class="section contact-enhanced">
   <div class="container">
     <div class="row justify-content-center align-items-center">
       <div class="col-lg-5 col-md-8 text-center mb-5 mb-lg-0" data-aos="fade-up">
         <div class="pe-0 pe-lg-5">
-          {{ partial "image.html" (dict "Src" .Params.contact_image "Alt" "contact image" "Size" "575x") }}
+          <div class="floating">
+            {{ partial "image.html" (dict "Src" .Params.contact_image "Alt" "contact image" "Size" "575x") }}
+          </div>
           
           {{/* Trust badges below image */}}
           {{ with .Params.trust_badges }}
           <div class="mt-4">
             <div class="d-flex flex-wrap justify-content-center gap-2">
               {{ range . }}
-              <span class="badge bg-light text-primary px-3 py-2">
+              <span class="badge bg-light text-primary px-3 py-2 trust-badge">
                 <i class="las la-check-circle"></i> {{ . }}
               </span>
               {{ end }}
@@ -22,12 +24,12 @@
       </div>
       
       {{ with site.Params.contact_form_action }}
-      <div class="col-lg-5 col-md-10" data-aos="fade-up">
-        <div class="contact-form">
+      <div class="col-lg-5 col-md-10" data-aos="fade-up" data-aos-delay="100">
+        <div class="contact-form contact-form-enhanced" id="contact-form">
           <div class="mb-4">
-            <h3>{{ T `send_a_message` | default "Trimite un mesaj" }}</h3>
+            <h3 class="gradient-text">{{ T `send_a_message` | default "Trimite un mesaj" }}</h3>
             {{ with $.Params.first_consultation }}
-            <div class="alert alert-info mt-3">
+            <div class="consultation-info-box">
               <strong>{{ .title }}:</strong> {{ .duration }}<br>
               <small>{{ .description }}</small>
             </div>
