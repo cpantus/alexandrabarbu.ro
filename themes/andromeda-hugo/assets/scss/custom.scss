@@ -621,14 +621,24 @@ input, textarea, select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   background: linear-gradient(135deg, #4DB380 0%, #3d9066 100%);
   color: white;
-  font-size: 2rem;
+  font-size: 2.75rem;
   margin-bottom: 1rem;
   transition: transform 0.3s ease;
+}
+
+/* Contact Info Hover Links */
+.hover-link {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: #4DB380 !important;
+    transform: translateY(-2px);
+  }
 }
 
 /* Trust Badges Animation */

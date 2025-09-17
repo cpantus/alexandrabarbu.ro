@@ -79,7 +79,11 @@
                     <i class="{{ .icon }}"></i>
                   </div>
                   <h4 class="mb-2">{{ .title }}</h4>
-                  <p class="text-dark mb-1 fw-bold">{{ .info }}</p>
+                  {{ if .link }}
+                    <a href="{{ .link }}" class="text-dark mb-1 fw-bold text-decoration-none d-block hover-link">{{ .info }}</a>
+                  {{ else }}
+                    <p class="text-dark mb-1 fw-bold">{{ .info }}</p>
+                  {{ end }}
                   <small class="text-muted">{{ .subtitle }}</small>
                 </div>
               </div>

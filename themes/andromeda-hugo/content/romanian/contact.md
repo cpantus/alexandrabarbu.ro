@@ -10,18 +10,21 @@ contact_image: "images/vectors/contact.png"
 contact_methods:
   - icon: "las la-phone la-3x"
     title: "Telefon Direct"
-    info: "+40 XXX XXX XXX"
+    info: "+40 722.123.456"
     subtitle: "Lun-Vin: 10:00-20:00"
+    link: "tel:+40722123456"
     
-  - icon: "las la-envelope la-3x"
-    title: "Email Confidențial"
-    info: "alexandra.barbu@gmail.com"
-    subtitle: "Răspuns în maxim 24h"
+  - icon: "lab la-whatsapp la-3x"
+    title: "WhatsApp Direct"
+    info: "+40 770.123.456"
+    subtitle: "Răspuns rapid și confidențial"
+    link: "https://wa.me/40770200834"
     
   - icon: "las la-map-marker la-3x"
     title: "Cabinet București"
     info: "Sector 3, București"
     subtitle: "Parcare gratuită disponibilă"
+    link: "https://www.google.com/maps/search/Sector+3+București"
 
 # First consultation info
 first_consultation:

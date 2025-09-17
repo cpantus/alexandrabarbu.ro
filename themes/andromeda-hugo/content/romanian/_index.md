@@ -2,7 +2,7 @@
 banner:
   title: Găsim Nordul Interior
   button: Programeaza o sedinta
-  button_link: https://facebook.com
+  button_link: https://calendly.com/cpninesix1/30min
 features:
   enable: true
   subtitle: Tipuri de Terapie/Teste self assessment

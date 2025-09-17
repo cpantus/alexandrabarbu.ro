@@ -15,11 +15,14 @@ phone = [ "+1111111-555-0127", "+999902-569-6969" ]
 email = [ "alexandra.barbu@gmail.com" ]
 
 [cta]
-button_link = "/"
+button_link = "https://calendly.com/cpninesix1/terapie-online"
 button = "Programeaza o evaluare de 15 minute"
 content = "Înțelegem nevoile tale specifice, Creăm un plan terapeutic personalizat, Ședințe săptămânale de terapie, Menținerea progresului pe termen lung. "
 title = "O Hartă Personalizată pentru Fiecare Călătorie"
 enable = true
+calendly_enabled = true
+calendly_url = "https://calendly.com/cpninesix1/terapie-online"
+calendly_primary_color = "#4DB380"
 
 [cookies]
 button = "De Acord"
@@ -42,7 +45,7 @@ enable = true
 [navigation_button]
 enable = true
 label = "Fa o programare!"
-link = "signup/"
+link = "https://calendly.com/cpninesix1/30min"
 
 [metadata]
 keywords = [ "Psihoterapie", "Terapie CBT", "Terapie de familie" ]
