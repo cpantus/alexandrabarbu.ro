@@ -1106,3 +1106,52 @@ input, textarea, select {
     padding: 1.5rem;
   }
 }
+
+
+/* ===============================================
+   reCAPTCHA v3 Badge Styling
+   =============================================== */
+
+/* Hide reCAPTCHA badge (invisible mode) - Default */
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
+
+/* Optional: Show reCAPTCHA badge 
+   Uncomment below to display the badge */
+/*
+.grecaptcha-badge {
+  visibility: visible !important;
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 999 !important;
+  transform: scale(0.9);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.grecaptcha-badge:hover {
+  opacity: 1;
+}
+*/
+
+/* Alternative: Show badge only on contact page */
+/*
+.page-contact .grecaptcha-badge {
+  visibility: visible !important;
+}
+*/
+
+/* Privacy text for reCAPTCHA (add to form if needed) */
+.recaptcha-privacy {
+  font-size: 0.75rem;
+  color: #6c757d;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.recaptcha-privacy a {
+  color: #4DB380;
+  text-decoration: underline;
+}

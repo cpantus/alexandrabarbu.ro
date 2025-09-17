@@ -2,7 +2,7 @@
 # The base URL of your site (required). This will be prepended to all relative URLs.
 baseURL = "https://alexandrabarbu.ro"
 # Title of your website (required).
-title = "Alexandra Barbu - Psihoterapeut - Terapie CBT, Terapie de familie"
+title = "Alexandra Barbu - Psihoterapeut - Terapie Cognitiv Comportammentala, Terapie de familie"
 # Your theme name
 theme = "andromeda-hugo"
 # Default time zone for time stamps; use any valid tz database name: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
@@ -35,10 +35,6 @@ shortname = 'themefisher-template' # we use disqus to show comments in blog post
 [[module.mounts]]
 source = "assets"
 target = "assets"
-
-[[module.mounts]]
-source = "hugo_stats.json"
-target = "assets/watching/hugo_stats.json"
 
 
 ############################# Build ##############################

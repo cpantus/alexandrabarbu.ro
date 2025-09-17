@@ -670,7 +670,7 @@ collections:
                 widget: "list"
                 required: false
                 field: { label: "Adresă Email", widget: "string" }
-          - { label: "Contact Form Action", name: "contact_form_action", widget: "string", required: false, hint: "URL Formspree sau similar" }
+          - { label: "Contact Form Action", name: "contact_form_action", widget: "string", required: false, hint: "URL Google Apps Script sau handler email" }
           - label: "Call to Action"
             name: "cta"
             widget: "object"
