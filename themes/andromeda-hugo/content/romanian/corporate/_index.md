@@ -132,3 +132,16 @@ open_position:
   subtitle: "Join Team"
   title: "Join Our Growing Team"
 ---
+
+{{< collapse "Cum știu dacă terapia funcționează?" >}}
+Progresul în terapie se manifestă prin schimbări graduale în mai multe aspecte: gândirea devine mai echilibrată și mai puțin negativă, emoțiile sunt mai ușor de gestionat, comportamentele disfuncționale se reduc, iar relațiile se îmbunătățesc. Folosim scale de evaluare validate științific pentru a măsura progresul obiectiv și adaptăm abordarea terapeutică în funcție de rezultate.
+{{< /collapse >}}
+
+
+{{< collapse "Este prima consultație cu adevărat gratuită?" >}}
+Da, oferim 15 minute gratuite de evaluare inițială pentru a ne cunoaște și a discuta despre nevoile tale. Această sesiune nu implică nicio obligație de a continua.
+{{< /collapse >}}
+
+{{< collapse "Cât durează o ședință de terapie standard?" >}}
+O ședință standard de terapie individuală durează 50 de minute. Pentru terapia de cuplu sau familie, ședințele pot dura între 60-90 minute, în funcție de complexitatea situației.
+{{< /collapse >}}

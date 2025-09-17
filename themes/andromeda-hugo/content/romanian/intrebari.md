@@ -1,59 +1,44 @@
 ---
-title: Intrebari frecvente
+title: "Întrebări Frecvente"
+layout: "faq"
 draft: false
-description: intrebari frecvente
-logo: images/case-studies/01.svg
-date: 2021-07-14
+description: "Răspunsuri la cele mai comune întrebări despre terapie psihologică și serviciile oferite de Alexandra Barbu"
+
+# FAQ section configuration (same structure as contact page)
+faq_section:
+  title: "Întrebări Frecvente"
+  subtitle: "Găsește răspunsuri la cele mai comune întrebări despre terapie"
+  footer_text: "Ai alte întrebări? [Contactează-ne direct](/contact/)"
 ---
+
 {{< collapse "Cum știu dacă terapia funcționează?" >}}
+Progresul în terapie se manifestă prin schimbări graduale în mai multe aspecte: gândirea devine mai echilibrată și mai puțin negativă, emoțiile sunt mai ușor de gestionat, comportamentele disfuncționale se reduc, iar relațiile se îmbunătățesc. Folosim scale de evaluare validate științific pentru a măsura progresul obiectiv și adaptăm abordarea terapeutică în funcție de rezultate.
+{{< /collapse >}}
 
-Veți observa schimbări graduale în gândire, emoții și comportamente. 
-Folosim scale de evaluare pentru a măsura progresul obiectiv.
-  {{< /collapse >}}
-
-{{< collapse "Cat dureaza o sedinta" >}}
-
-Fiecare ședință durează 50 de minute. Prima ședință poate dura 60-75 minute 
-pentru evaluare completă.
-  {{< /collapse >}}
+{{< collapse "Cât durează o ședință de terapie?" >}}
+O ședință standard de terapie individuală durează 50 de minute. Prima ședință (evaluarea inițială) poate dura între 60-75 de minute pentru a înțelege complet situația ta și pentru a stabili obiectivele terapeutice. Pentru terapia de cuplu sau familie, ședințele durează între 60-90 de minute.
+{{< /collapse >}}
 
 {{< collapse "Pot face terapie online?" >}}
-
-Da! Oferim ședințe online securizate prin Zoom sau Google Meet, 
-la fel de eficiente ca cele față în față.
+Da! Oferim ședințe online securizate prin platforme profesionale (Zoom, Google Meet) cu funcții de confidențialitate avansate. Eficacitatea terapiei online este demonstrată științific a fi egală cu cea a terapiei față în față, oferind același nivel de suport și rezultate terapeutice.
 {{< /collapse >}}
 
-{{< collapse "Este confidential?" >}}
-
-Absolut. Confidențialitatea este sacră în terapie, 
-cu excepția situațiilor de risc iminent (conform legii).
+{{< collapse "Este totul confidențial?" >}}
+Absolut. Confidențialitatea este fundamentul terapiei și este protejată de secretul profesional conform Codului Deontologic al Psihologilor din România. Informațiile sunt păstrate strict confidențiale, cu excepția situațiilor extreme prevăzute de lege (risc iminent pentru siguranța ta sau a altora).
 {{< /collapse >}}
 
-### Cliente
+{{< collapse "De câte ședințe am nevoie?" >}}
+Durata terapiei depinde de complexitatea problemelor și obiectivele personale. În general, pentru probleme specifice (anxietate, depresie ușoară) sunt necesare 8-12 ședințe, iar pentru probleme complexe poate dura 6 luni - 1 an. Evaluăm progresul regulat și ajustăm durata în funcție de nevoile tale.
+{{< /collapse >}}
 
-We are looking for a personal financial planning pro (Certified Financial Planner™ preferred) who will lead our client advising efforts. You will be a fiduciary who works with clients providing holistic advice on areas including: saving, retirement, debt management, investments. You’ll be on the front lines helping clients in what is arguably the most important position at the company.
+{{< collapse "Care este diferența dintre psiholog și psihiatru?" >}}
+Psihologul se focusează pe terapie prin vorbire, tehnici cognitive-comportamentale și instrumente psihologice pentru a te ajuta să dezvolți abilități de gestionare. Psihiatrul poate prescrie medicamente și se focusează pe aspectele medicale. Adesea colaborăm pentru o abordare completă a sănătății mentale.
+{{< /collapse >}}
 
-### Défi
+{{< collapse "Cum mă pregătesc pentru prima ședință?" >}}
+Nu este nevoie de o pregătire specială. Vino așa cum te simți confortabil și gândește-te la ce te-a determinat să cauți ajutor. Prima ședință este despre cunoaștere mutuală, evaluarea situației și stabilirea obiectivelor. Este normal să te simți nervos - acest sentiment va dispărea odată ce începem să vorbim.
+{{< /collapse >}}
 
-We are especially interested in finding developers with experience either building web APIs with Go or experience with functional programming (e.g. Elixir, NodeJS, Clojure, F#). You might not have experience with all the technologies in our stack, but you are motivated to learn deeply. You will get the opportunity to work with both Go and Elixir with experienced team mates who can teach and pair with you to learn whatever you have less experience with.You care about security, code quality, scalability, performance, and simplicity. Above all, you seek operational excellence and apply the best engineering practices possible. Not everything that you or your team do can be perfect, but you make sure that you always know the trade-offs.
-
-{{< image c="img-fluid" title="We are especially interested in finding developers with experience" src="/images/banner-app.png" alt="Case Challenge">}}
-
-### Concept
-
-1. must keep passwords secure and confidential;
-2. are solely responsible for User Data and all activity in their account while using the Service;
-3. must use commercially reasonable efforts to prevent unauthorized access to their account, and notify Conclude promptly of any such unauthorized access; and
-4. may use the Service only in accordance with Conclude's online user guide and all applicable laws and regulations.
-
-### Solution
-
-- Enhance or improve User experience, our Site, or our Service.
-- Process transactions.
-- Send emails about our Site or respond to inquiries.
-- As this Privacy Policy and our Terms of Service.
-  {{< image c="img-fluid text-center" src="/images/features-01.png" alt="Case Result" >}}
-
-### Résultats
-
-We are looking for a personal financial planning pro (Certified Financial Planner™ preferred) who will lead our client advising efforts. You will be a fiduciary who works with clients providing holistic advice on areas including: saving, retirement, debt
+{{< collapse "Cât costă o ședință și acceptați asigurare?" >}}
+Tarifele sunt transparente și disponibile la secțiunea [Contact](/contact/). Oferim prima consultație de 15 minute gratuit pentru a vedea dacă suntem potrivirea potrivită. Acceptăm plata cu cardul, transfer bancar sau numerar. Pentru informații despre asigurări de sănătate, contactați-ne direct.
+{{< /collapse >}}

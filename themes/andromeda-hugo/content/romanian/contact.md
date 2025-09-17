@@ -37,7 +37,7 @@ trust_badges:
   - "Psiholog Autorizat"
   - "10+ Ani Experiență"
   - "GDPR Compliant"
-  - "Terapie CBT Certificată"
+  - "Terapie Cognitiv Comportamentala"
 
 # Confidentiality section
 confidentiality:

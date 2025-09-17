@@ -9,9 +9,17 @@
           <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
             <div class="contact-method-card">
               <div class="text-center">
-                <div class="contact-icon">
-                  <i class="{{ .icon }}"></i>
-                </div>
+                {{ if .link }}
+                  <a href="{{ .link }}" class="contact-icon-link">
+                    <div class="contact-icon">
+                      <i class="{{ .icon }}"></i>
+                    </div>
+                  </a>
+                {{ else }}
+                  <div class="contact-icon">
+                    <i class="{{ .icon }}"></i>
+                  </div>
+                {{ end }}
                 <h4 class="mb-2">{{ .title }}</h4>
                 {{ if .link }}
                   <a href="{{ .link }}" class="text-dark mb-1 fw-bold text-decoration-none d-block hover-link">{{ .info }}</a>

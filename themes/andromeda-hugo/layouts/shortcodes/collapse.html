@@ -10,12 +10,13 @@
             data-bs-toggle="collapse" 
             data-bs-target="#collapse-{{ $hash }}" 
             aria-expanded="false" 
-            aria-controls="{{ $hash }}">
+            aria-controls="collapse-{{ $hash }}">
       {{ $title }}
     </button>
   </h2>
   <div id="collapse-{{ $hash }}" 
        class="accordion-collapse collapse" 
+       data-bs-parent="#faqAccordion"
        aria-labelledby="title-{{ $id }}">
     <div class="accordion-body">
       {{ .Inner | markdownify }}

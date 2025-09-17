@@ -18,6 +18,22 @@ disableLanguages = [] # example: ["fr"] for disable french language. see https:/
 
 defaultContentLanguage = 'RO'
 
+############################# Security ##############################
+[security]
+# Allow tel: protocol for phone links
+allowedSchemes = ["http", "https", "ftp", "mailto", "tel"]
+
+[security.funcs]
+getenv = ['^HUGO_', '^WC_']
+
+[security.http]
+methods = ['(?i)GET|POST']
+urls = ['.*']
+
+[security.exec]
+allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^npx$', '^postcss$', '^tailwindcss$']
+osEnv = ['(?i)^((HTTPS?|NO)_PROXY|PATH(EXT)?|APPDATA|TE?MP|TERM|GO\w+|(XDG_)?CACHE_HOME|YARN_CACHE_FOLDER)$']
+
 # GitHub Pages configuration
 relativeURLs = false
 canonifyURLs = false
