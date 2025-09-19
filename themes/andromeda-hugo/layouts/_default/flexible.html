@@ -1,72 +1,68 @@
-{{/* Flexible Layout Template - Mix and match sections */}}
+{{/* Flexible Layout Template - Sequential Section Rendering */}}
 {{ define "main" }}
   
-  {{/* Process sections defined in front matter */}}
+  {{/* ALWAYS render page header first - regardless of section order */}}
+  {{ $hasHeroBreadcrumb := false }}
   {{ range .Params.sections }}
-    {{ $sectionType := .type }}
-    {{ $sectionData := . }}
-    
-    {{/* Hero Breadcrumb */}}
-    {{ if eq $sectionType "hero-breadcrumb" }}
-      {{ partial "sections/hero-breadcrumb.html" $ }}
-    
-    {{/* Feature Blocks */}}
-    {{ else if eq $sectionType "feature-blocks" }}
-      {{ partial "sections/feature-blocks.html" $ }}
-    
-    {{/* Pricing Tables */}}
-    {{ else if eq $sectionType "pricing-tables" }}
-      {{ partial "sections/pricing-tables.html" $ }}
-    
-    {{/* Values Introduction */}}
-    {{ else if eq $sectionType "values-intro" }}
-      {{ partial "sections/values-intro.html" $ }}
-    
-    {{/* Benefits Grid */}}
-    {{ else if eq $sectionType "benefits-grid" }}
-      {{ partial "sections/benefits-grid.html" $ }}
-    
-    {{/* Video Popup */}}
-    {{ else if eq $sectionType "video-popup" }}
-      {{ partial "sections/video-popup.html" $ }}
-    
-    {{/* Job Listings */}}
-    {{ else if eq $sectionType "job-listings" }}
-      {{ partial "sections/job-listings.html" $ }}
-    
-    {{/* Call to Action */}}
-    {{ else if eq $sectionType "cta-standard" }}
-      {{ partial "components/call-to-action.html" $ }}
-    
-    {{/* Contact Form Enhanced */}}
-    {{ else if eq $sectionType "contact-form-enhanced" }}
-      {{ partial "sections/contact-form-enhanced.html" $ }}
-    
-    {{/* Contact Info Cards */}}
-    {{ else if eq $sectionType "contact-info-cards" }}
-      {{ partial "sections/contact-info-cards.html" $ }}
-    
-    {{/* Confidentiality Notice */}}
-    {{ else if eq $sectionType "confidentiality-notice" }}
-      {{ partial "sections/confidentiality-notice.html" $ }}
-    
-    {{/* FAQ Mini Section */}}
-    {{ else if eq $sectionType "faq-mini" }}
-      {{ partial "sections/faq-mini.html" $ }}
-    
-    {{/* Onboarding Steps */}}
-    {{ else if eq $sectionType "onboarding-steps" }}
-      {{ partial "sections/onboarding-steps.html" $ }}
-    
-    {{/* Signup Form Enhanced */}}
-    {{ else if eq $sectionType "signup-form-enhanced" }}
-      {{ partial "sections/signup-form-enhanced.html" $ }}
-    
-    {{/* Privacy Guarantee */}}
-    {{ else if eq $sectionType "privacy-guarantee" }}
-      {{ partial "sections/privacy-guarantee.html" $ }}
-    
+    {{ if eq .type "hero-breadcrumb" }}
+      {{ $hasHeroBreadcrumb = true }}
     {{ end }}
+  {{ end }}
+  
+  {{/* Render page header - either from sections or default */}}
+  {{ if $hasHeroBreadcrumb }}
+    <!-- Page Header: hero-breadcrumb (from sections) -->
+    {{ partial "sections/hero-breadcrumb.html" . }}
+  {{ else }}
+    <!-- Page Header: default (auto-generated) -->
+    {{ partial "sections/hero-breadcrumb.html" . }}
+  {{ end }}
+  
+  {{/* Process remaining sections in the EXACT order defined in front matter */}}
+  {{ range $index, $section := .Params.sections }}
+    {{ $sectionType := $section.type }}
+    
+    {{/* Skip hero-breadcrumb since it's already rendered above */}}
+    {{ if ne $sectionType "hero-breadcrumb" }}
+      {{/* Debug comment - visible in HTML source for troubleshooting */}}
+      <!-- Section {{ add $index 1 }}: {{ $sectionType }} -->
+      
+      {{/* Sequential Section Rendering - Preserves Front Matter Order */}}
+      {{ if eq $sectionType "values-intro" }}
+        {{ partial "sections/values-intro.html" $ }}
+      {{ else if eq $sectionType "feature-blocks" }}
+        {{ partial "sections/feature-blocks.html" $ }}
+      {{ else if eq $sectionType "feature-details" }}
+        {{ partial "sections/feature-details.html" $ }}
+      {{ else if eq $sectionType "benefits-grid" }}
+        {{ partial "sections/benefits-grid.html" $ }}
+      {{ else if eq $sectionType "pricing-tables" }}
+        {{ partial "sections/pricing-tables.html" $ }}
+      {{ else if eq $sectionType "job-listings" }}
+        {{ partial "sections/job-listings.html" $ }}
+      {{ else if eq $sectionType "video-popup" }}
+        {{ partial "sections/video-popup.html" $ }}
+      {{ else if eq $sectionType "cta-standard" }}
+        {{ partial "components/call-to-action.html" $ }}
+      {{ else if eq $sectionType "contact-form-enhanced" }}
+        {{ partial "sections/contact-form-enhanced.html" $ }}
+      {{ else if eq $sectionType "contact-info-cards" }}
+        {{ partial "sections/contact-info-cards.html" $ }}
+      {{ else if eq $sectionType "confidentiality-notice" }}
+        {{ partial "sections/confidentiality-notice.html" $ }}
+      {{ else if eq $sectionType "faq-mini" }}
+        {{ partial "sections/faq-mini.html" $ }}
+      {{ else if eq $sectionType "onboarding-steps" }}
+        {{ partial "sections/onboarding-steps.html" $ }}
+      {{ else if eq $sectionType "signup-form-enhanced" }}
+        {{ partial "sections/signup-form-enhanced.html" $ }}
+      {{ else if eq $sectionType "privacy-guarantee" }}
+        {{ partial "sections/privacy-guarantee.html" $ }}
+      {{ else }}
+        <!-- Unknown section type: {{ $sectionType }} at position {{ add $index 1 }} -->
+      {{ end }}
+    {{ end }}
+    
   {{ end }}
   
   {{/* Include pricing JavaScript if pricing section is used */}}
