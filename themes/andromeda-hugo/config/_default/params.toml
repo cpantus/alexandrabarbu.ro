@@ -30,9 +30,7 @@ content = "Acest site NU foloseste cookies. Continuand stii ca nu te urmarim."
 expire_days = 2
 enable = true
 
-[crisp_chat]
-crisp_website_id = "9aa449e1-9999-422a-938f-8567982eec6d"
-enable = false
+
 
 [counter]
 username = ""

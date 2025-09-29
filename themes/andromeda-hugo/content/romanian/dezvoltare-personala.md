@@ -1,5 +1,5 @@
 ---
-title: "Servicii de Psihologie Organizațională!!"
+title: "Mindfulness și Dezvoltare Personală"
 description: "meta description"
 layout: "flexible"
 draft: false
@@ -15,20 +15,20 @@ sections:
   - type: "job-listings"
 
 feature_details:
-  - title: "Cognitive Behavioral Therapy!!!"
-    subtitle: "EVIDENCE-BASED APPROACH"
-    description: "Transform negative thought patterns with proven CBT techniques."
+  - title: "Cultivă Conștiința, Creează Schimbarea"
+    subtitle: "Prezență și Potențial"
+    description: "Mindfulness nu e doar meditație - e o tehnologie mentală pentru era modernă. Programele mele integrate combină practici contemplative cu neuroplasticitate aplicată."
+
     image: "images/services/cbt-therapy.jpg"
     markdown: |
       ## Comprehensive Program
       
-      Our **Cognitive Behavioral Therapy** approach includes:
+      Vei experimenta:
       
-      - **Thought Record Exercises** - Identify and challenge negative thoughts
-      - **Behavioral Activation** - Increase positive activities and engagement
-      - **Exposure Therapy** - Gradually face fears in a safe environment
-      - **Mindfulness Integration** - Present-moment awareness techniques
-      
+      - Tehnici MBSR pentru reducerea stresului
+      - Exerciții de coherență cardiacă pentru reglare emoțională
+      - Practici de self-compassion pentru vindecare interioară
+      - Strategii de neuroplasticitate pentru obiceiuri noi
       ### What to Expect:
       
       > "CBT is a collaborative process where we work together to identify patterns that may be keeping you stuck and develop practical strategies for change."

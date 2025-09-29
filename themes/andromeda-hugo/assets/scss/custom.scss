@@ -1155,3 +1155,360 @@ input, textarea, select {
   color: #4DB380;
   text-decoration: underline;
 }
+
+
+/* ===============================================
+   FEATURE-DETAILS: Markdown Content Styling
+   =============================================== */
+
+/* Styling for markdown content within feature-details blocks */
+.feature-markdown-content {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(77, 179, 128, 0.2);
+  
+  /* Typography for markdown content */
+  font-family: $font-secondary !important; /* Open Sans for body text */
+  line-height: 1.7;
+  color: #5a6c7d;
+  
+  /* Markdown headings within features */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-primary !important; /* Poppins for headlines */
+    color: #4DB380;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    
+    &:first-child {
+      margin-top: 0; /* Remove top margin for first heading */
+    }
+  }
+  
+  /* Paragraph spacing */
+  p {
+    margin-bottom: 1rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  /* Lists styling */
+  ul, ol {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+    
+    li {
+      margin-bottom: 0.5rem;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  /* Unordered list bullets */
+  ul li {
+    position: relative;
+    
+    &::marker {
+      color: #4DB380; /* Verde Eucalipt bullet points */
+    }
+  }
+  
+  /* Links within markdown */
+  a {
+    color: #4DB380;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      color: darken(#4DB380, 15%);
+      text-decoration: underline;
+    }
+  }
+  
+  /* Strong and emphasis */
+  strong {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  em {
+    font-style: italic;
+    color: #6c757d;
+  }
+  
+  /* Blockquotes */
+  blockquote {
+    border-left: 4px solid #4DB380;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #6c757d;
+    background: rgba(77, 179, 128, 0.05);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem;
+  }
+  
+  /* Code styling */
+  code {
+    background: rgba(77, 179, 128, 0.1);
+    color: #4DB380;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  
+  pre {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+    
+    code {
+      background: none;
+      color: #495057;
+      padding: 0;
+    }
+  }
+  
+  /* Tables if used in markdown */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    
+    th, td {
+      border: 1px solid #e9ecef;
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+    }
+    
+    th {
+      background: rgba(77, 179, 128, 0.1);
+      font-weight: 600;
+      color: #4DB380;
+    }
+    
+    tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+  }
+  
+  /* HR separator styling */
+  hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #4DB380, transparent);
+    margin: 2rem 0;
+  }
+  
+  /* Image styling within markdown */
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
+  }
+}
+
+/* Responsive adjustments for feature-details */
+@media (max-width: 768px) {
+  .feature-markdown-content {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    ul, ol {
+      padding-left: 1rem;
+    }
+    
+    blockquote {
+      margin: 1rem 0;
+      padding: 0.75rem;
+    }
+  }
+}
+/* ===============================================
+   GLOBAL HEADINGS BRAND COLOR SYSTEM
+   Controlled by params.design.headings_brand_color
+   =============================================== */
+
+/* Default heading colors (when headings_brand_color = false) */
+body:not(.headings-brand-color) {
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: #111827 !important; /* text_dark from config */
+  }
+  
+  /* Specific overrides for sections that should maintain brand colors regardless */
+  .section-title h1,
+  .section-title h2,
+  .section-title h3,
+  .page-title,
+  .hero-title {
+    color: #111827 !important;
+  }
+}
+
+/* Brand colored headings (when headings_brand_color = true) */
+body.headings-brand-color {
+  /* H1 headings always BLACK for hierarchy */
+  h1, .h1 {
+    color: #111827 !important; /* text_dark - black for primary hierarchy */
+  }
+  
+  /* H2-H6 headings use MAIN brand color only */
+  h2, h3, h4, h5, h6,
+  .h2, .h3, .h4, .h5, .h6 {
+    color: #4DB380 !important; /* color_primary - main brand color */
+  }
+  
+  /* Section titles - H1 black, others main brand color */
+  .section-title h1,
+  .page-title,
+  .hero-title {
+    color: #111827 !important; /* H1 hierarchy - black */
+  }
+  
+  .section-title h2,
+  .section-title h3,
+  .section-title h4,
+  .section-title h5,
+  .section-title h6 {
+    color: #4DB380 !important; /* Main brand color */
+  }
+  
+  /* Card titles - main brand color only */
+  .card-title,
+  .feature-title {
+    color: #4DB380 !important;
+  }
+  
+  /* Navigation titles - main brand color */
+  .navbar-brand,
+  .nav-title {
+    color: #4DB380 !important;
+  }
+  
+  /* Blog post titles - main brand color */
+  .post-title,
+  .blog-title {
+    color: #4DB380 !important;
+  }
+  
+  /* Footer headings - H1 black, others main brand color */
+  .footer h1 {
+    color: #111827 !important;
+  }
+  .footer h2, .footer h3, .footer h4, .footer h5, .footer h6 {
+    color: #4DB380 !important;
+  }
+  
+  /* Sidebar headings - H1 black, others main brand color */
+  .sidebar h1 {
+    color: #111827 !important;
+  }
+  .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5, .sidebar h6 {
+    color: #4DB380 !important;
+  }
+  
+  /* Widget titles - main brand color */
+  .widget-title {
+    color: #4DB380 !important;
+  }
+  
+  /* Form field labels - main brand color */
+  .form-label,
+  .form-legend {
+    color: #4DB380 !important;
+  }
+  
+  /* Accordion headers - main brand color */
+  .accordion-button {
+    color: #4DB380 !important;
+    
+    &:not(.collapsed) {
+      color: #4DB380 !important;
+    }
+  }
+  
+  /* Breadcrumb titles - main brand color */
+  .breadcrumb-title {
+    color: #4DB380 !important;
+  }
+  
+  /* Content area headings in markdown - H1 black, others main brand color */
+  .content h1 {
+    color: #111827 !important;
+  }
+  .content h2, .content h3, .content h4, .content h5, .content h6 {
+    color: #4DB380 !important;
+  }
+  
+  /* Feature-details markdown content headings - H1 black, others main brand color */
+  .feature-markdown-content h1 {
+    color: #111827 !important;
+  }
+  .feature-markdown-content h2,
+  .feature-markdown-content h3,
+  .feature-markdown-content h4,
+  .feature-markdown-content h5,
+  .feature-markdown-content h6 {
+    color: #4DB380 !important;
+  }
+  
+  /* Service titles and section headings - main brand color */
+  .service-title,
+  .section-heading {
+    color: #4DB380 !important;
+  }
+  
+  /* Pricing table titles - main brand color */
+  .pricing-title {
+    color: #4DB380 !important;
+  }
+  
+  /* Testimonial names/titles - main brand color */
+  .testimonial-author,
+  .testimonial-title {
+    color: #4DB380 !important;
+  }
+  
+  /* Team member names - main brand color */
+  .team-name,
+  .team-title {
+    color: #4DB380 !important;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body.headings-brand-color {
+    /* Ensure mobile headings maintain hierarchy */
+    h1, .h1 {
+      color: #111827 !important; /* H1 stays black */
+    }
+    h2, h3, h4, h5, h6,
+    .h2, .h3, .h4, .h5, .h6 {
+      color: #4DB380 !important; /* Others main brand color */
+    }
+  }
+}
+
+/* Print styles - revert to dark for printing */
+@media print {
+  body.headings-brand-color {
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      color: #111827 !important; /* Dark for print readability */
+    }
+  }
+}

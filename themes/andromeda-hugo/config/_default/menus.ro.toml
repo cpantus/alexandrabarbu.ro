@@ -21,20 +21,25 @@ hasChildren = true
 
   [[main]]
   parent = "Psihoterapie"
-  name = "CBT"
-  url = "cbt/"
+  name = "Psihoterapie Individuala"
+  url = "terapie-individuala/"
   weight = 2
   [[main]]
   parent = "Psihoterapie"
-  name = "Familie"
-  url = "familie/"
+  name = "Psihoterapie de Familie"
+  url = "terapie-de-familie/"
+  weight = 5
+  [[main]]
+  parent = "Psihoterapie"
+  name = "Psihoterapie de Cuplu"
+  url = "terapie-de-cuplu/"
   weight = 3
 
   [[main]]
   parent = "Psihoterapie"
-  name = "Individuala"
-  url = "individuala/"
-  weight = 1
+  name = "Dezvoltare Personala"
+  url = "dezvoltare-personala/"
+  weight = 8
 
 
 
