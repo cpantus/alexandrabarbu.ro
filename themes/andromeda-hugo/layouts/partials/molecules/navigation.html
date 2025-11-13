@@ -1,0 +1,80 @@
+{{/*
+  Navigation Molecule
+
+  Displays main navigation menu with dropdown support
+  Handles active states and multilingual URLs
+
+  Usage:
+    {{ partial "molecules/navigation.html" . }}
+*/}}
+
+<ul class="navbar-nav mx-auto">
+  {{ $currentPage := . }}
+  {{ range site.Menus.main }}
+    {{ $menuURL := .URL | absLangURL }}
+    {{ $pageURL:= $currentPage.Permalink | absLangURL }}
+    {{ $active := eq $menuURL $pageURL }}
+
+    {{ if .HasChildren }}
+      {{/* Dropdown Menu */}}
+      <li
+        class="nav-item dropdown
+      {{ range .Children }}
+          {{ $childURL := .URL | absLangURL }}
+          {{ $active := eq $childURL $pageURL }}
+          {{ if $active }}active{{ end }}
+        {{ end }}
+        ">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">
+          {{ .Name }}
+        </a>
+        <ul class="dropdown-menu" style="height:auto">
+          {{ range .Children }}
+            {{ $childURL := .URL | absLangURL }}
+            {{ $active := eq $childURL $pageURL }}
+            <li>
+              <a
+                class="dropdown-item {{ if $active }}active{{ end }}"
+                {{ if findRE `^http` .URL }}
+                  target="_blank" rel="noopener"
+                {{ end }}
+                href="{{ if findRE `^#` .URL }}
+                  {{ if not $.IsHome }}
+                    {{ site.BaseURL | relLangURL }}
+                  {{ end }}{{ .URL }}
+                {{ else }}
+                  {{ .URL | relLangURL }}
+                {{ end }}">
+                {{ .Name }}
+              </a>
+            </li>
+          {{ end }}
+        </ul>
+      </li>
+    {{ else }}
+      {{/* Single Menu Item */}}
+      <li class="nav-item {{ if $active }}active{{ end }}">
+        <a
+          class="nav-link"
+          {{ if findRE `^http` .URL }}
+            target="_blank" rel="noopener"
+          {{ end }}
+          href="{{ if findRE `^#` .URL }}
+            {{ if not $.IsHome }}
+              {{ site.BaseURL | relLangURL }}
+            {{ end }}{{ .URL }}
+          {{ else }}
+            {{ .URL | relLangURL }}
+          {{ end }}">
+          {{ .Name }}
+        </a>
+      </li>
+    {{ end }}
+  {{ end }}
+</ul>

@@ -1,0 +1,36 @@
+{{/*
+  Header Organism
+
+  Main site header composition using atomic design molecules
+  - Logo molecule
+  - Navigation molecule
+  - Language selector molecule
+  - Mobile menu molecule
+
+  Usage:
+    {{ partial "organisms/header.html" . }}
+    {{ partialCached "organisms/header.html" . .Language }} // With caching
+*/}}
+
+<!-- Header Height Fix -->
+<div class="header-height-fix"></div>
+
+<!-- Navigation -->
+<header class="header-nav">
+  <div class="container-xxl">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+          {{/* Logo */}}
+          <a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}">
+            {{ partial "molecules/logo.html" . }}
+          </a>
+
+          {{/* Mobile Menu (includes mobile language selector & toggle button) */}}
+          {{ partial "molecules/mobile-menu.html" . }}
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- /Navigation -->
