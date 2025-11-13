@@ -39,7 +39,12 @@
                 <div class="col-lg-4 col-md-6 mt-4">
                   <div class="card pricing-card border-0">
                     <div class="card-body">
-                      <h3 class="fw-600 mb-1">{{ .name }}</h3>
+                      {{ partial "atoms/heading.html" (dict
+                        "text" .name
+                        "level" 3
+                        "variant" "bold"
+                        "class" "mb-1"
+                      ) }}
 
                       <span class="h2 font-weight-bold d-inline-flex">
                         {{ .currency }}
@@ -82,24 +87,25 @@
                       <ul class="list-unstyled check-list-2 mt-3 mb-4">
                         {{ range .services }}
                           <li class="mb-2">
-                            <i class="las la-thumbtack me-2 text-primary"></i
-                            >{{ . |markdownify }}
+                            {{ partial "atoms/icon.html" (dict "name" "thumbtack" "color" "primary" "class" "me-2") }}{{ . |markdownify }}
                           </li>
                         {{ end }}
                       </ul>
 
                       {{ if .featured }}
-                        <a
-                          href="{{ .button_link | absLangURL }}"
-                          class="btn btn-primary d-block"
-                          >{{ .button_label }}</a
-                        >
+                        {{ partial "atoms/button.html" (dict
+                          "text" .button_label
+                          "href" (.button_link | absLangURL)
+                          "variant" "primary"
+                          "fullWidth" true
+                        ) }}
                       {{ else }}
-                        <a
-                          href="{{ .button_link | absLangURL }}"
-                          class="btn btn-outline-primary d-block"
-                          >{{ .button_label }}</a
-                        >
+                        {{ partial "atoms/button.html" (dict
+                          "text" .button_label
+                          "href" (.button_link | absLangURL)
+                          "variant" "outline-primary"
+                          "fullWidth" true
+                        ) }}
                       {{ end }}
                     </div>
                   </div>

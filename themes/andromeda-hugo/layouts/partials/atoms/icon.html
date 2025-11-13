@@ -1,0 +1,114 @@
+{{/*
+  Icon Atom - Icon component with Line Awesome icons
+
+  Usage:
+    {{ partial "atoms/icon.html" (dict
+      "name" "check-circle"
+      "size" "2rem"
+      "color" "primary"
+      "class" "me-2"
+    )}}
+
+  Parameters:
+    name (required) - Icon name (without "la-" prefix, e.g., "check-circle", "arrow-right")
+    size (optional) - Icon size: xs|sm|md|lg|xl|2x|3x or custom size (e.g., "2rem", "24px")
+    color (optional) - Color class: primary|secondary|success|danger|warning|info|light|dark|muted
+    class (optional) - Additional CSS classes
+    style (optional) - Inline styles (for custom sizing or positioning)
+    prefix (optional) - Icon library prefix (default: "las" for Line Awesome Solid)
+    ariaLabel (optional) - Accessibility label for screen readers
+    ariaHidden (optional) - Hide from screen readers (default: false)
+    attributes (optional) - Additional HTML attributes as dict
+
+  Icon Libraries:
+    - las: Line Awesome Solid (default)
+    - lar: Line Awesome Regular
+    - lab: Line Awesome Brands
+    - la: Line Awesome base
+
+  Size Presets:
+    - xs: 0.75rem
+    - sm: 0.875rem
+    - md: 1rem (default)
+    - lg: 1.25rem
+    - xl: 1.5rem
+    - 2x: 2rem
+    - 3x: 3rem
+    - 4x: 4rem
+
+  Examples:
+    Check icon: {{ partial "atoms/icon.html" (dict "name" "check-circle" "color" "success") }}
+    Large shield: {{ partial "atoms/icon.html" (dict "name" "shield-alt" "size" "4x" "color" "primary") }}
+    Arrow right: {{ partial "atoms/icon.html" (dict "name" "arrow-right" "class" "ms-2") }}
+*/}}
+
+{{ $name := .name }}
+{{ $size := .size | default "" }}
+{{ $color := .color }}
+{{ $class := .class | default "" }}
+{{ $style := .style | default "" }}
+{{ $prefix := .prefix | default "las" }}
+{{ $ariaLabel := .ariaLabel }}
+{{ $ariaHidden := .ariaHidden | default false }}
+{{ $attributes := .attributes | default dict }}
+
+{{/* Validate required parameter */}}
+{{ if not $name }}
+  {{ errorf "Icon atom requires 'name' parameter" }}
+{{ end }}
+
+{{/* Build icon classes */}}
+{{ $iconClass := printf "%s la-%s" $prefix $name }}
+
+{{/* Add color class */}}
+{{ if $color }}
+  {{ $iconClass = printf "%s text-%s" $iconClass $color }}
+{{ end }}
+
+{{/* Add custom classes */}}
+{{ if $class }}
+  {{ $iconClass = printf "%s %s" $iconClass $class }}
+{{ end }}
+
+{{/* Build inline styles */}}
+{{ $inlineStyle := "" }}
+
+{{/* Handle size parameter */}}
+{{ if $size }}
+  {{/* Check if size is a preset */}}
+  {{ if eq $size "xs" }}
+    {{ $inlineStyle = "font-size: 0.75rem;" }}
+  {{ else if eq $size "sm" }}
+    {{ $inlineStyle = "font-size: 0.875rem;" }}
+  {{ else if eq $size "md" }}
+    {{ $inlineStyle = "font-size: 1rem;" }}
+  {{ else if eq $size "lg" }}
+    {{ $inlineStyle = "font-size: 1.25rem;" }}
+  {{ else if eq $size "xl" }}
+    {{ $inlineStyle = "font-size: 1.5rem;" }}
+  {{ else if eq $size "2x" }}
+    {{ $inlineStyle = "font-size: 2rem;" }}
+  {{ else if eq $size "3x" }}
+    {{ $inlineStyle = "font-size: 3rem;" }}
+  {{ else if eq $size "4x" }}
+    {{ $inlineStyle = "font-size: 4rem;" }}
+  {{ else }}
+    {{/* Custom size value (e.g., "2.5rem", "24px") */}}
+    {{ $inlineStyle = printf "font-size: %s;" $size }}
+  {{ end }}
+{{ end }}
+
+{{/* Append custom style */}}
+{{ if $style }}
+  {{ $inlineStyle = printf "%s %s" $inlineStyle $style }}
+{{ end }}
+
+{{/* Trim spaces */}}
+{{ $inlineStyle = trim $inlineStyle " " }}
+
+{{/* Render icon */}}
+<i class="{{ $iconClass }}"
+  {{- if $inlineStyle }} style="{{ $inlineStyle }}"{{ end }}
+  {{- if $ariaLabel }} aria-label="{{ $ariaLabel }}"{{ end }}
+  {{- if $ariaHidden }} aria-hidden="true"{{ end }}
+  {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}></i>
