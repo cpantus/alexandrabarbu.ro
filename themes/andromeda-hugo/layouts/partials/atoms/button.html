@@ -1,0 +1,80 @@
+{{/*
+  Button Atom - Reusable button component
+
+  Usage:
+    {{ partial "atoms/button.html" (dict
+      "text" "Click Me"
+      "href" "/link"
+      "variant" "primary"
+      "size" "md"
+      "type" "link"
+      "class" "mt-4"
+      "fullWidth" false
+      "icon" "las la-arrow-right"
+      "iconPosition" "right"
+    )}}
+
+  Parameters:
+    text (required) - Button text/label
+    href (optional) - Link URL (for link buttons)
+    variant (optional) - primary|secondary|outline-primary|outline-secondary (default: primary)
+    size (optional) - sm|md|lg (default: md)
+    type (optional) - link|button|submit (default: link if href exists, else button)
+    class (optional) - Additional CSS classes
+    fullWidth (optional) - true|false (default: false)
+    icon (optional) - Icon class (e.g., "las la-arrow-right")
+    iconPosition (optional) - left|right (default: right)
+    attributes (optional) - Additional HTML attributes as dict
+*/}}
+
+{{ $text := .text }}
+{{ $href := .href }}
+{{ $variant := .variant | default "primary" }}
+{{ $size := .size | default "md" }}
+{{ $type := .type | default (cond (isset . "href") "link" "button") }}
+{{ $class := .class | default "" }}
+{{ $fullWidth := .fullWidth | default false }}
+{{ $icon := .icon }}
+{{ $iconPosition := .iconPosition | default "right" }}
+{{ $attributes := .attributes | default dict }}
+
+{{/* Build button classes */}}
+{{ $btnClass := printf "btn btn-%s" $variant }}
+{{ if eq $size "sm" }}
+  {{ $btnClass = printf "%s btn-sm" $btnClass }}
+{{ else if eq $size "lg" }}
+  {{ $btnClass = printf "%s btn-lg" $btnClass }}
+{{ end }}
+{{ if $fullWidth }}
+  {{ $btnClass = printf "%s w-100" $btnClass }}
+{{ end }}
+{{ if $class }}
+  {{ $btnClass = printf "%s %s" $btnClass $class }}
+{{ end }}
+
+{{/* Render button content with optional icon */}}
+{{ define "button-content" }}
+  {{ if and .icon (eq .iconPosition "left") }}
+    <i class="{{ .icon }} me-2"></i>
+  {{ end }}
+  {{ .text }}
+  {{ if and .icon (eq .iconPosition "right") }}
+    <i class="{{ .icon }} ms-2"></i>
+  {{ end }}
+{{ end }}
+
+{{/* Render as link or button */}}
+{{ if eq $type "link" }}
+  <a href="{{ $href | relURL }}" class="{{ $btnClass }}"
+    {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}>
+    {{- template "button-content" (dict "icon" $icon "iconPosition" $iconPosition "text" $text) -}}
+  </a>
+{{ else }}
+  <button
+    {{- if eq $type "submit" }} type="submit"
+    {{- else }} type="button"{{ end }}
+    class="{{ $btnClass }}"
+    {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}>
+    {{- template "button-content" (dict "icon" $icon "iconPosition" $iconPosition "text" $text) -}}
+  </button>
+{{ end }}

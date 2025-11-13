@@ -6,7 +6,7 @@
 */
 
 // Secondary color variable (matches hugo.toml configuration)
-$color-secondary: #7C3AED;
+$color-secondary: #CC6B49; // Terracotta - warmth, balance (healing design)
 
 /*------------------------------------------------------------------
   # Secondary Buttons & Button Variants
@@ -278,7 +278,7 @@ $color-secondary: #7C3AED;
   }
   
   .progress-bar-secondary {
-    background-color: #7C3AED !important;
+    background-color: #CC6B49 !important; // Terracotta
   }
 }
 
@@ -471,7 +471,7 @@ img[src*="logo"] {
   animation: therapeuticSpin 1.5s linear infinite;
   position: relative;
   
-  // Small violet center dot
+  // Small terracotta center dot
   &::after {
     content: '';
     position: absolute;
@@ -480,7 +480,7 @@ img[src*="logo"] {
     transform: translate(-50%, -50%);
     width: 6px;
     height: 6px;
-    background: #7C3AED; // Violet
+    background: #CC6B49; // Terracotta - warmth, balance
     border-radius: 50%;
     animation: therapeuticPulse 2s ease-in-out infinite;
   }

@@ -1,0 +1,206 @@
+{{ define "main" }}
+<section class="section pb-0">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="content">
+          <h1 class="mb-4">{{ .Title }}</h1>
+          <p class="lead">{{ .Params.description }}</p>
+
+          <!-- Button Atoms Preview -->
+          <div class="component-section mt-5">
+            <h2 class="text-primary mb-4">Button Atom Variants</h2>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Primary Buttons</h3>
+              <div class="d-flex flex-wrap gap-3 align-items-center">
+                {{ partial "atoms/button.html" (dict
+                  "text" "Primary Button"
+                  "href" "#"
+                  "variant" "primary"
+                ) }}
+                {{ partial "atoms/button.html" (dict
+                  "text" "Primary Large"
+                  "href" "#"
+                  "variant" "primary"
+                  "size" "lg"
+                ) }}
+                {{ partial "atoms/button.html" (dict
+                  "text" "Primary Small"
+                  "href" "#"
+                  "variant" "primary"
+                  "size" "sm"
+                ) }}
+                {{ partial "atoms/button.html" (dict
+                  "text" "With Icon"
+                  "href" "#"
+                  "variant" "primary"
+                  "icon" "las la-arrow-right"
+                ) }}
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Secondary Buttons</h3>
+              <div class="d-flex flex-wrap gap-3 align-items-center">
+                {{ partial "atoms/button.html" (dict
+                  "text" "Secondary Button"
+                  "href" "#"
+                  "variant" "secondary"
+                ) }}
+                {{ partial "atoms/button.html" (dict
+                  "text" "Secondary Large"
+                  "href" "#"
+                  "variant" "secondary"
+                  "size" "lg"
+                ) }}
+                {{ partial "atoms/button.html" (dict
+                  "text" "With Left Icon"
+                  "href" "#"
+                  "variant" "secondary"
+                  "icon" "las la-heart"
+                  "iconPosition" "left"
+                ) }}
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Outline Buttons</h3>
+              <div class="d-flex flex-wrap gap-3 align-items-center">
+                {{ partial "atoms/button.html" (dict
+                  "text" "Outline Primary"
+                  "href" "#"
+                  "variant" "outline-primary"
+                ) }}
+                {{ partial "atoms/button.html" (dict
+                  "text" "Outline Secondary"
+                  "href" "#"
+                  "variant" "outline-secondary"
+                ) }}
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Button Types</h3>
+              <div class="d-flex flex-wrap gap-3 align-items-center">
+                {{ partial "atoms/button.html" (dict
+                  "text" "Link Button"
+                  "href" "#"
+                  "type" "link"
+                  "variant" "primary"
+                ) }}
+                {{ partial "atoms/button.html" (dict
+                  "text" "Button Element"
+                  "type" "button"
+                  "variant" "primary"
+                ) }}
+                {{ partial "atoms/button.html" (dict
+                  "text" "Submit Button"
+                  "type" "submit"
+                  "variant" "primary"
+                ) }}
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Full Width Button</h3>
+              {{ partial "atoms/button.html" (dict
+                "text" "Full Width Button"
+                "href" "#"
+                "variant" "primary"
+                "fullWidth" true
+              ) }}
+            </div>
+
+            <!-- Code Example -->
+            <div class="mt-4 p-3 bg-light rounded">
+              <h4 class="h6 mb-2">Code Example:</h4>
+              <pre class="mb-0"><code>{{`{{ partial "atoms/button.html" (dict
+  "text" "Click Me"
+  "href" "/link"
+  "variant" "primary"
+  "icon" "las la-arrow-right"
+) }}`}}</code></pre>
+            </div>
+          </div>
+
+          <!-- Image Atoms Preview -->
+          <div class="component-section mt-5">
+            <h2 class="text-primary mb-4">Image Atom</h2>
+            <p>Advanced image component with Hugo processing, WebP support, responsive srcset, and lazy loading.</p>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Features</h3>
+              <ul class="list-unstyled">
+                <li class="mb-2"><i class="las la-check-circle text-success me-2"></i>Automatic WebP conversion with fallback</li>
+                <li class="mb-2"><i class="las la-check-circle text-success me-2"></i>Responsive srcset (4 sizes: 0.5x, 1x, 1.5x, 2x)</li>
+                <li class="mb-2"><i class="las la-check-circle text-success me-2"></i>Lazy loading by default</li>
+                <li class="mb-2"><i class="las la-check-circle text-success me-2"></i>Hugo image processing (resize, fill, fit)</li>
+                <li class="mb-2"><i class="las la-check-circle text-success me-2"></i>Quality optimization (default: 90)</li>
+              </ul>
+            </div>
+
+            <!-- Code Example -->
+            <div class="mt-4 p-3 bg-light rounded">
+              <h4 class="h6 mb-2">Code Example:</h4>
+              <pre class="mb-0"><code>{{`{{ partial "atoms/image.html" (dict
+  "src" "images/example.jpg"
+  "alt" "Example image"
+  "width" 800
+  "height" 600
+  "responsive" true
+  "webp" true
+  "lazy" true
+) }}`}}</code></pre>
+            </div>
+
+            <div class="alert alert-info mt-3">
+              <i class="las la-info-circle me-2"></i>
+              <strong>Note:</strong> The image atom automatically handles images from assets, page resources, or static directories.
+            </div>
+          </div>
+
+          <!-- Performance Impact -->
+          <div class="component-section mt-5">
+            <h2 class="text-primary mb-4">Performance Impact</h2>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="card border-success">
+                  <div class="card-body">
+                    <h5 class="card-title text-success">Button Atom</h5>
+                    <p class="card-text mb-2"><strong>Code Reduction:</strong> ~80 lines → 1 component call</p>
+                    <p class="card-text mb-2"><strong>Duplication:</strong> 40% → ~10%</p>
+                    <p class="card-text mb-0"><strong>Maintenance:</strong> Single source of truth</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <div class="card border-success">
+                  <div class="card-body">
+                    <h5 class="card-title text-success">Image Atom</h5>
+                    <p class="card-text mb-2"><strong>Image Size:</strong> 8.3MB → ~2MB (WebP)</p>
+                    <p class="card-text mb-2"><strong>Format:</strong> Automatic WebP + fallback</p>
+                    <p class="card-text mb-0"><strong>Loading:</strong> Lazy loading enabled</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Next Steps -->
+          <div class="component-section mt-5 mb-5">
+            <h2 class="text-primary mb-4">Next Phase: Molecules</h2>
+            <p>Phase 2 will create molecular components by combining these atoms:</p>
+            <ul>
+              <li><strong>Card Molecule:</strong> Image + Heading + Text + Button</li>
+              <li><strong>Form Field Molecule:</strong> Label + Input + Error Message</li>
+              <li><strong>Nav Item Molecule:</strong> Icon + Text + Link</li>
+              <li><strong>Social Link Molecule:</strong> Icon + Link + Aria Label</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
