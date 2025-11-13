@@ -1,0 +1,252 @@
+{{/*
+  Form Field Molecule - Enhanced form field with label, input, validation, and error handling
+
+  Usage:
+    {{ partial "molecules/form-field.html" (dict
+      "type" "email"
+      "name" "email"
+      "id" "email"
+      "label" "Email Address"
+      "placeholder" "you@example.com"
+      "required" true
+      "helpText" "We'll never share your email"
+      "errorText" "Please enter a valid email"
+      "class" "mb-4"
+    )}}
+
+  Parameters:
+    All parameters from atoms/input.html, plus:
+    errorText (optional) - Error message to display on validation failure
+    errorId (optional) - ID for error message element (default: "{id}-error")
+    showError (optional) - Whether to show error initially (default: false)
+    validationClass (optional) - Add is-valid or is-invalid class
+    hint (optional) - Hint text displayed below label (different from helpText which goes below input)
+    floatingLabel (optional) - Use floating label style (default: false)
+    icon (optional) - Icon to display inside input (dict with name, position: left|right)
+
+  Examples:
+    Basic text field:
+      {{ partial "molecules/form-field.html" (dict
+        "type" "text"
+        "name" "fullname"
+        "id" "fullname"
+        "label" "Full Name"
+        "required" true
+      )}}
+
+    Email with validation:
+      {{ partial "molecules/form-field.html" (dict
+        "type" "email"
+        "name" "email"
+        "id" "email"
+        "label" "Email"
+        "required" true
+        "errorText" "Invalid email address"
+        "validationClass" "is-invalid"
+      )}}
+
+    Textarea with character count:
+      {{ partial "molecules/form-field.html" (dict
+        "type" "textarea"
+        "name" "message"
+        "id" "message"
+        "label" "Message"
+        "rows" 5
+        "helpText" "Maximum 500 characters"
+      )}}
+*/}}
+
+{{ $type := .type | default "text" }}
+{{ $name := .name }}
+{{ $id := .id }}
+{{ $label := .label }}
+{{ $placeholder := .placeholder }}
+{{ $value := .value }}
+{{ $required := .required | default false }}
+{{ $disabled := .disabled | default false }}
+{{ $readonly := .readonly | default false }}
+{{ $class := .class | default "" }}
+{{ $inputClass := .inputClass | default "" }}
+{{ $labelClass := .labelClass | default "" }}
+{{ $rows := .rows | default 4 }}
+{{ $min := .min }}
+{{ $max := .max }}
+{{ $pattern := .pattern }}
+{{ $helpText := .helpText }}
+{{ $hint := .hint }}
+{{ $options := .options }}
+{{ $attributes := .attributes | default dict }}
+
+{{/* Form field specific params */}}
+{{ $errorText := .errorText }}
+{{ $errorId := .errorId | default (printf "%s-error" $id) }}
+{{ $showError := .showError | default false }}
+{{ $validationClass := .validationClass }}
+{{ $floatingLabel := .floatingLabel | default false }}
+{{ $icon := .icon }}
+
+{{/* Determine if this is a checkbox/radio type */}}
+{{ $isCheckable := or (eq $type "checkbox") (eq $type "radio") }}
+
+{{/* Build wrapper classes */}}
+{{ $wrapperClass := "form-field-molecule" }}
+{{ if $class }}
+  {{ $wrapperClass = printf "%s %s" $wrapperClass $class }}
+{{ end }}
+
+{{/* Add validation class to input */}}
+{{ if $validationClass }}
+  {{ $inputClass = printf "%s %s" $inputClass $validationClass }}
+{{ end }}
+
+{{/* Build input group for icons */}}
+{{ $hasIcon := and $icon (isset $icon "name") }}
+{{ $iconPosition := "" }}
+{{ if $hasIcon }}
+  {{ $iconPosition = ($icon.position | default "left") }}
+{{ end }}
+
+<div class="{{ $wrapperClass }}">
+  {{/* Floating label variant */}}
+  {{ if and $floatingLabel (not $isCheckable) }}
+    <div class="form-floating">
+      {{ if eq $type "textarea" }}
+        <textarea
+          class="form-control shadow-none {{ $inputClass }}"
+          id="{{ $id }}"
+          name="{{ $name }}"
+          placeholder="{{ $placeholder | default $label }}"
+          rows="{{ $rows }}"
+          {{ if $required }}required{{ end }}
+          {{ if $disabled }}disabled{{ end }}
+          {{ if $readonly }}readonly{{ end }}
+          {{ if $showError }}aria-invalid="true" aria-describedby="{{ $errorId }}"{{ end }}
+          {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}
+        >{{ $value }}</textarea>
+      {{ else if eq $type "select" }}
+        <select
+          class="form-select shadow-none {{ $inputClass }}"
+          id="{{ $id }}"
+          name="{{ $name }}"
+          {{ if $required }}required{{ end }}
+          {{ if $disabled }}disabled{{ end }}
+          {{ if $showError }}aria-invalid="true" aria-describedby="{{ $errorId }}"{{ end }}
+          {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}>
+          {{ range $options }}
+            <option value="{{ .value }}"{{ if eq .value $value }} selected{{ end }}>{{ .text }}</option>
+          {{ end }}
+        </select>
+      {{ else }}
+        <input
+          type="{{ $type }}"
+          class="form-control shadow-none {{ $inputClass }}"
+          id="{{ $id }}"
+          name="{{ $name }}"
+          placeholder="{{ $placeholder | default $label }}"
+          {{ if $value }}value="{{ $value }}"{{ end }}
+          {{ if $required }}required{{ end }}
+          {{ if $disabled }}disabled{{ end }}
+          {{ if $readonly }}readonly{{ end }}
+          {{ if $min }}min="{{ $min }}"{{ end }}
+          {{ if $max }}max="{{ $max }}"{{ end }}
+          {{ if $pattern }}pattern="{{ $pattern }}"{{ end }}
+          {{ if $showError }}aria-invalid="true" aria-describedby="{{ $errorId }}"{{ end }}
+          {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}>
+      {{ end }}
+      <label for="{{ $id }}">{{ $label }}{{ if $required }}<span class="text-danger ms-1">*</span>{{ end }}</label>
+    </div>
+
+  {{/* Standard variant with icon support */}}
+  {{ else if $hasIcon }}
+    {{ if and $label (not $isCheckable) }}
+      <label class="mb-2 {{ $labelClass }}" for="{{ $id }}">
+        {{ $label }}{{ if $required }}<span class="text-danger ms-1">*</span>{{ end }}
+      </label>
+      {{ with $hint }}
+        <small class="text-muted d-block mb-2">{{ . }}</small>
+      {{ end }}
+    {{ end }}
+
+    <div class="input-group">
+      {{ if eq $iconPosition "left" }}
+        <span class="input-group-text">
+          {{ partial "atoms/icon.html" (dict "name" $icon.name "size" ($icon.size | default "md")) }}
+        </span>
+      {{ end }}
+
+      {{ partial "atoms/input.html" (dict
+        "type" $type
+        "name" $name
+        "id" $id
+        "placeholder" $placeholder
+        "value" $value
+        "required" $required
+        "disabled" $disabled
+        "readonly" $readonly
+        "inputClass" $inputClass
+        "rows" $rows
+        "min" $min
+        "max" $max
+        "pattern" $pattern
+        "options" $options
+        "attributes" (merge $attributes (dict
+          "aria-invalid" (cond $showError "true" "false")
+          "aria-describedby" (cond $showError $errorId "")
+        ))
+      ) }}
+
+      {{ if eq $iconPosition "right" }}
+        <span class="input-group-text">
+          {{ partial "atoms/icon.html" (dict "name" $icon.name "size" ($icon.size | default "md")) }}
+        </span>
+      {{ end }}
+    </div>
+
+  {{/* Standard variant */}}
+  {{ else }}
+    {{ if and $label (not $isCheckable) }}
+      <label class="mb-2 {{ $labelClass }}" for="{{ $id }}">
+        {{ $label }}{{ if $required }}<span class="text-danger ms-1">*</span>{{ end }}
+      </label>
+      {{ with $hint }}
+        <small class="text-muted d-block mb-2">{{ . }}</small>
+      {{ end }}
+    {{ end }}
+
+    {{ partial "atoms/input.html" (dict
+      "type" $type
+      "name" $name
+      "id" $id
+      "label" (cond $isCheckable $label "")
+      "placeholder" $placeholder
+      "value" $value
+      "required" $required
+      "disabled" $disabled
+      "readonly" $readonly
+      "inputClass" $inputClass
+      "labelClass" $labelClass
+      "rows" $rows
+      "min" $min
+      "max" $max
+      "pattern" $pattern
+      "options" $options
+      "attributes" (merge $attributes (dict
+        "aria-invalid" (cond $showError "true" "false")
+        "aria-describedby" (cond $showError $errorId "")
+      ))
+    ) }}
+  {{ end }}
+
+  {{/* Help text */}}
+  {{ with $helpText }}
+    <small class="form-text text-muted d-block mt-2">{{ . }}</small>
+  {{ end }}
+
+  {{/* Error message */}}
+  {{ if $errorText }}
+    <div class="invalid-feedback{{ if $showError }} d-block{{ end }}" id="{{ $errorId }}" role="alert">
+      {{ partial "atoms/icon.html" (dict "name" "exclamation-circle" "size" "sm" "class" "me-1") }}
+      {{ $errorText }}
+    </div>
+  {{ end }}
+</div>

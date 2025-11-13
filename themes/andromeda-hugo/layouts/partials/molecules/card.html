@@ -1,0 +1,225 @@
+{{/*
+  Card Molecule - Flexible card component with multiple variants
+
+  Usage:
+    {{ partial "molecules/card.html" (dict
+      "variant" "feature"
+      "icon" "check-circle"
+      "title" "Card Title"
+      "description" "Card description text"
+      "class" "mb-4"
+    )}}
+
+  Parameters:
+    variant (required) - feature|pricing|testimonial (default: feature)
+    title (required) - Card title/heading
+    description (optional) - Card description/content
+    class (optional) - Additional CSS classes
+    aos (optional) - AOS animation name (e.g., "fade-up")
+    aosDelay (optional) - AOS delay in ms (e.g., 100)
+
+  Feature variant:
+    icon (optional) - Icon name for feature card
+    iconSize (optional) - Icon size (default: "3x")
+    iconColor (optional) - Icon color (default: "primary")
+    button (optional) - Button dict (text, href, variant)
+
+  Pricing variant:
+    currency (optional) - Currency symbol (default: "$")
+    price (optional) - Price value
+    priceMonthly (optional) - Monthly price (for toggle)
+    priceYearly (optional) - Yearly price (for toggle)
+    period (optional) - Price period text (e.g., "/month")
+    features (optional) - Array of feature strings
+    button (optional) - Button dict (text, href, variant, fullWidth)
+    featured (optional) - true|false (applies special styling)
+
+  Testimonial variant:
+    quote (required) - Testimonial quote text
+    author (required) - Author name
+    role (optional) - Author role/title
+    avatar (optional) - Avatar image path
+    rating (optional) - Star rating (1-5)
+*/}}
+
+{{ $variant := .variant | default "feature" }}
+{{ $title := .title }}
+{{ $description := .description }}
+{{ $class := .class | default "" }}
+{{ $aos := .aos }}
+{{ $aosDelay := .aosDelay }}
+
+{{/* Feature variant params */}}
+{{ $icon := .icon }}
+{{ $iconSize := .iconSize | default "3x" }}
+{{ $iconColor := .iconColor | default "primary" }}
+
+{{/* Pricing variant params */}}
+{{ $currency := .currency | default "$" }}
+{{ $price := .price }}
+{{ $priceMonthly := .priceMonthly }}
+{{ $priceYearly := .priceYearly }}
+{{ $period := .period }}
+{{ $features := .features }}
+{{ $featured := .featured | default false }}
+
+{{/* Testimonial variant params */}}
+{{ $quote := .quote }}
+{{ $author := .author }}
+{{ $role := .role }}
+{{ $avatar := .avatar }}
+{{ $rating := .rating }}
+
+{{/* Button params */}}
+{{ $button := .button }}
+
+{{/* Build wrapper classes */}}
+{{ $wrapperClass := "" }}
+{{ if $class }}
+  {{ $wrapperClass = $class }}
+{{ end }}
+
+{{/* Build AOS attributes */}}
+{{ $aosAttrs := "" }}
+{{ if $aos }}
+  {{ $aosAttrs = printf `data-aos="%s"` $aos }}
+  {{ if $aosDelay }}
+    {{ $aosAttrs = printf `%s data-aos-delay="%d"` $aosAttrs $aosDelay }}
+  {{ end }}
+{{ end }}
+
+{{/* Render card based on variant */}}
+{{ if eq $variant "feature" }}
+  {{/* Feature Card - Icon + Title + Description + Optional Button */}}
+  <div class="career-benefits-item text-center {{ $wrapperClass }}" {{ $aosAttrs | safeHTMLAttr }}>
+    {{ if $icon }}
+      {{ partial "atoms/icon.html" (dict "name" $icon "size" $iconSize "color" $iconColor "class" "mb-3") }}
+    {{ end }}
+
+    {{ if $title }}
+      {{ partial "atoms/heading.html" (dict "text" $title "level" 4 "markdown" true) }}
+    {{ end }}
+
+    {{ if $description }}
+      <p>{{ $description | markdownify }}</p>
+    {{ end }}
+
+    {{ with $button }}
+      {{ partial "atoms/button.html" (dict
+        "text" .text
+        "href" .href
+        "variant" (.variant | default "outline-primary")
+        "size" (.size | default "md")
+        "class" (.class | default "mt-3")
+      ) }}
+    {{ end }}
+  </div>
+
+{{ else if eq $variant "pricing" }}
+  {{/* Pricing Card - Title + Price + Features + Button */}}
+  <div class="card pricing-card border-0 {{ if $featured }}pricing-card-featured{{ end }} {{ $wrapperClass }}" {{ $aosAttrs | safeHTMLAttr }}>
+    <div class="card-body">
+      {{ if $title }}
+        {{ partial "atoms/heading.html" (dict
+          "text" $title
+          "level" 3
+          "variant" "bold"
+          "class" "mb-1"
+        ) }}
+      {{ end }}
+
+      {{ if or $price $priceMonthly $priceYearly }}
+        <span class="h2 font-weight-bold d-inline-flex">
+          {{ $currency }}
+          {{ if or $priceMonthly $priceYearly }}
+            <span class="data-count"
+              {{ if $priceMonthly }}data-count-monthly="{{ $priceMonthly }}"{{ end }}
+              {{ if $priceYearly }}data-count-annually="{{ $priceYearly }}"{{ end }}>
+              {{ if $priceYearly }}{{ $priceYearly }}{{ else }}{{ $priceMonthly }}{{ end }}
+            </span>
+          {{ else }}
+            {{ $price }}
+          {{ end }}
+        </span>
+
+        {{ if $period }}
+          <span class="text-muted">{{ $period }}</span>
+        {{ end }}
+      {{ end }}
+
+      {{ if $description }}
+        <p class="border-bottom pb-3">{{ $description | markdownify }}</p>
+      {{ end }}
+
+      {{ if $features }}
+        <ul class="list-unstyled check-list-2 mt-3 mb-4">
+          {{ range $features }}
+            <li class="mb-2">
+              {{ partial "atoms/icon.html" (dict "name" "thumbtack" "color" "primary" "class" "me-2") }}{{ . | markdownify }}
+            </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+
+      {{ with $button }}
+        {{ $btnVariant := cond $featured "primary" "outline-primary" }}
+        {{ partial "atoms/button.html" (dict
+          "text" .text
+          "href" .href
+          "variant" (.variant | default $btnVariant)
+          "fullWidth" (cond (isset . "fullWidth") .fullWidth true)
+          "class" (.class | default "")
+        ) }}
+      {{ end }}
+    </div>
+  </div>
+
+{{ else if eq $variant "testimonial" }}
+  {{/* Testimonial Card - Quote + Author + Avatar + Rating */}}
+  <div class="card testimonial-card border-0 {{ $wrapperClass }}" {{ $aosAttrs | safeHTMLAttr }}>
+    <div class="card-body">
+      {{ if $rating }}
+        <div class="rating mb-3">
+          {{ range seq (int $rating) }}
+            {{ partial "atoms/icon.html" (dict "name" "star" "color" "warning" "size" "sm" "prefix" "las") }}
+          {{ end }}
+          {{ range seq (sub 5 (int $rating)) }}
+            {{ partial "atoms/icon.html" (dict "name" "star" "color" "muted" "size" "sm" "prefix" "lar") }}
+          {{ end }}
+        </div>
+      {{ end }}
+
+      {{ if $quote }}
+        <blockquote class="mb-4">
+          <p class="mb-0">{{ $quote | markdownify }}</p>
+        </blockquote>
+      {{ end }}
+
+      <div class="testimonial-author d-flex align-items-center">
+        {{ if $avatar }}
+          <div class="avatar me-3">
+            {{ partial "atoms/image.html" (dict
+              "src" $avatar
+              "alt" $author
+              "class" "rounded-circle"
+              "width" "48"
+              "height" "48"
+            ) }}
+          </div>
+        {{ end }}
+
+        <div>
+          {{ if $author }}
+            <strong class="d-block">{{ $author }}</strong>
+          {{ end }}
+          {{ if $role }}
+            <small class="text-muted">{{ $role }}</small>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{{ else }}
+  {{ errorf "Card molecule: Invalid variant '%s'. Must be 'feature', 'pricing', or 'testimonial'." $variant }}
+{{ end }}

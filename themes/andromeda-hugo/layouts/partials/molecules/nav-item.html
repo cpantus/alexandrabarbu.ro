@@ -1,0 +1,174 @@
+{{/*
+  Nav Item Molecule - Navigation link with active state support
+
+  Usage:
+    {{ partial "molecules/nav-item.html" (dict
+      "text" "Services"
+      "url" "/services/"
+      "active" true
+    )}}
+
+  Parameters:
+    text (required) - Link text
+    url (required) - Link URL
+    active (optional) - Mark as active/current (default: auto-detect from current page)
+    icon (optional) - Icon name to display before text
+    iconPosition (optional) - Icon position: left|right (default: left)
+    badge (optional) - Badge text (e.g., "New", "3")
+    badgeVariant (optional) - Badge color variant (default: primary)
+    dropdown (optional) - Dropdown items array (converts to dropdown nav-item)
+    class (optional) - Additional CSS classes
+    target (optional) - Link target attribute (e.g., "_blank")
+    rel (optional) - Link rel attribute (e.g., "noopener noreferrer")
+
+  Dropdown structure:
+    dropdown: [
+      { text: "Item 1", url: "/item1/" },
+      { text: "Item 2", url: "/item2/", divider: true }
+    ]
+
+  Examples:
+    Basic nav item:
+      {{ partial "molecules/nav-item.html" (dict
+        "text" "About"
+        "url" "/about/"
+      )}}
+
+    With icon:
+      {{ partial "molecules/nav-item.html" (dict
+        "text" "Contact"
+        "url" "/contact/"
+        "icon" "envelope"
+      )}}
+
+    With badge:
+      {{ partial "molecules/nav-item.html" (dict
+        "text" "Notifications"
+        "url" "/notifications/"
+        "badge" "5"
+        "badgeVariant" "danger"
+      )}}
+
+    Dropdown nav item:
+      {{ partial "molecules/nav-item.html" (dict
+        "text" "Services"
+        "url" "/services/"
+        "dropdown" (slice
+          (dict "text" "Therapy" "url" "/therapy/")
+          (dict "text" "Coaching" "url" "/coaching/")
+        )
+      )}}
+*/}}
+
+{{ $text := .text }}
+{{ $url := .url }}
+{{ $active := .active }}
+{{ $icon := .icon }}
+{{ $iconPosition := .iconPosition | default "left" }}
+{{ $badge := .badge }}
+{{ $badgeVariant := .badgeVariant | default "primary" }}
+{{ $dropdown := .dropdown }}
+{{ $class := .class | default "" }}
+{{ $target := .target }}
+{{ $rel := .rel }}
+
+{{ if not $text }}
+  {{ errorf "Nav Item molecule requires 'text' parameter" }}
+{{ end }}
+
+{{ if not $url }}
+  {{ errorf "Nav Item molecule requires 'url' parameter" }}
+{{ end }}
+
+{{/* Auto-detect active state if not explicitly set */}}
+{{ if not (isset . "active") }}
+  {{ $currentURL := .RelPermalink | default "" }}
+  {{ if eq $currentURL $url }}
+    {{ $active = true }}
+  {{ else if and (ne $url "/") (hasPrefix $currentURL $url) }}
+    {{ $active = true }}
+  {{ end }}
+{{ end }}
+
+{{/* Build nav item classes */}}
+{{ $navItemClass := "nav-item" }}
+{{ if $dropdown }}
+  {{ $navItemClass = printf "%s dropdown" $navItemClass }}
+{{ end }}
+{{ if $class }}
+  {{ $navItemClass = printf "%s %s" $navItemClass $class }}
+{{ end }}
+
+{{/* Build link classes */}}
+{{ $linkClass := "nav-link" }}
+{{ if $active }}
+  {{ $linkClass = printf "%s active" $linkClass }}
+{{ end }}
+{{ if $dropdown }}
+  {{ $linkClass = printf "%s dropdown-toggle" $linkClass }}
+{{ end }}
+
+{{/* Render navigation item */}}
+<li class="{{ $navItemClass }}">
+  {{ if $dropdown }}
+    {{/* Dropdown nav item */}}
+    <a
+      class="{{ $linkClass }}"
+      href="{{ $url | relLangURL }}"
+      id="navDropdown{{ anchorize $text }}"
+      role="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+      {{ if $active }}aria-current="page"{{ end }}
+    >
+      {{ if and $icon (eq $iconPosition "left") }}
+        {{ partial "atoms/icon.html" (dict "name" $icon "size" "sm" "class" "me-2") }}
+      {{ end }}
+      {{ $text }}
+      {{ if and $icon (eq $iconPosition "right") }}
+        {{ partial "atoms/icon.html" (dict "name" $icon "size" "sm" "class" "ms-2") }}
+      {{ end }}
+      {{ with $badge }}
+        <span class="badge bg-{{ $badgeVariant }} ms-2">{{ . }}</span>
+      {{ end }}
+    </a>
+
+    <ul class="dropdown-menu" aria-labelledby="navDropdown{{ anchorize $text }}">
+      {{ range $dropdown }}
+        {{ if .divider }}
+          <li><hr class="dropdown-divider"></li>
+        {{ else }}
+          <li>
+            <a class="dropdown-item" href="{{ .url | relLangURL }}">
+              {{ if .icon }}
+                {{ partial "atoms/icon.html" (dict "name" .icon "size" "sm" "class" "me-2") }}
+              {{ end }}
+              {{ .text }}
+            </a>
+          </li>
+        {{ end }}
+      {{ end }}
+    </ul>
+
+  {{ else }}
+    {{/* Regular nav item */}}
+    <a
+      class="{{ $linkClass }}"
+      href="{{ $url | relLangURL }}"
+      {{ with $target }}target="{{ . }}"{{ end }}
+      {{ with $rel }}rel="{{ . }}"{{ end }}
+      {{ if $active }}aria-current="page"{{ end }}
+    >
+      {{ if and $icon (eq $iconPosition "left") }}
+        {{ partial "atoms/icon.html" (dict "name" $icon "size" "sm" "class" "me-2") }}
+      {{ end }}
+      {{ $text }}
+      {{ if and $icon (eq $iconPosition "right") }}
+        {{ partial "atoms/icon.html" (dict "name" $icon "size" "sm" "class" "ms-2") }}
+      {{ end }}
+      {{ with $badge }}
+        <span class="badge bg-{{ $badgeVariant }} ms-2">{{ . }}</span>
+      {{ end }}
+    </a>
+  {{ end }}
+</li>

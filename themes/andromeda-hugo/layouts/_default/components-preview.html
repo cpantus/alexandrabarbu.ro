@@ -523,15 +523,175 @@
             </div>
           </div>
 
-          <!-- Next Steps -->
+          <!-- Molecules Section -->
+          <div class="component-section mt-5">
+            <h1 class="text-primary mb-4">Phase 2: Molecular Components</h1>
+            <p class="lead">Molecular components combine atoms into functional UI patterns.</p>
+          </div>
+
+          <!-- Card Molecule -->
+          <div class="component-section mt-5">
+            <h2 class="text-primary mb-4">Card Molecule</h2>
+            <p>Flexible card component with 3 variants: feature, pricing, and testimonial.</p>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Feature Cards</h3>
+              <div class="row">
+                <div class="col-md-4">
+                  {{ partial "molecules/card.html" (dict
+                    "variant" "feature"
+                    "icon" "check-circle"
+                    "title" "Easy to Use"
+                    "description" "Intuitive interface designed for everyone"
+                    "iconColor" "success"
+                  ) }}
+                </div>
+                <div class="col-md-4">
+                  {{ partial "molecules/card.html" (dict
+                    "variant" "feature"
+                    "icon" "shield-alt"
+                    "title" "Secure & Private"
+                    "description" "Your data is protected with enterprise-grade security"
+                    "iconColor" "primary"
+                  ) }}
+                </div>
+                <div class="col-md-4">
+                  {{ partial "molecules/card.html" (dict
+                    "variant" "feature"
+                    "icon" "clock"
+                    "title" "24/7 Support"
+                    "description" "Our team is always here to help you"
+                    "iconColor" "info"
+                  ) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Pricing Card</h3>
+              <div class="row justify-content-center">
+                <div class="col-md-4">
+                  {{ partial "molecules/card.html" (dict
+                    "variant" "pricing"
+                    "title" "Starter"
+                    "price" 19
+                    "currency" "$"
+                    "period" "/month"
+                    "description" "Perfect for individuals"
+                    "features" (slice "5 Projects" "10GB Storage" "Email Support" "Basic Analytics")
+                    "button" (dict "text" "Get Started" "href" "#" "variant" "outline-primary" "fullWidth" true)
+                  ) }}
+                </div>
+                <div class="col-md-4">
+                  {{ partial "molecules/card.html" (dict
+                    "variant" "pricing"
+                    "title" "Professional"
+                    "price" 49
+                    "currency" "$"
+                    "period" "/month"
+                    "description" "Best for professionals"
+                    "features" (slice "Unlimited Projects" "100GB Storage" "Priority Support" "Advanced Analytics" "Custom Domain")
+                    "button" (dict "text" "Get Started" "href" "#")
+                    "featured" true
+                  ) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 p-3 bg-light rounded">
+              <h4 class="h6 mb-2">Code Example:</h4>
+              <pre class="mb-0"><code>{{`{{ partial "molecules/card.html" (dict
+  "variant" "feature"
+  "icon" "check-circle"
+  "title" "Card Title"
+  "description" "Card description"
+) }}`}}</code></pre>
+            </div>
+          </div>
+
+          <!-- Form Field Molecule -->
+          <div class="component-section mt-5">
+            <h2 class="text-primary mb-4">Form Field Molecule</h2>
+            <p>Enhanced form field with label, validation, and error handling.</p>
+
+            <div class="mb-4">
+              <div class="row">
+                <div class="col-md-6">
+                  {{ partial "molecules/form-field.html" (dict
+                    "type" "text"
+                    "name" "fullname"
+                    "id" "fullname-demo"
+                    "label" "Full Name"
+                    "placeholder" "Enter your name"
+                    "required" true
+                    "class" "mb-3"
+                  ) }}
+                </div>
+                <div class="col-md-6">
+                  {{ partial "molecules/form-field.html" (dict
+                    "type" "email"
+                    "name" "email-demo"
+                    "id" "email-demo"
+                    "label" "Email Address"
+                    "placeholder" "you@example.com"
+                    "required" true
+                    "errorText" "Please enter a valid email"
+                    "helpText" "We'll never share your email"
+                    "class" "mb-3"
+                  ) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 p-3 bg-light rounded">
+              <h4 class="h6 mb-2">Code Example:</h4>
+              <pre class="mb-0"><code>{{`{{ partial "molecules/form-field.html" (dict
+  "type" "email"
+  "name" "email"
+  "id" "email"
+  "label" "Email"
+  "required" true
+  "errorText" "Invalid email"
+) }}`}}</code></pre>
+            </div>
+          </div>
+
+          <!-- Accordion Molecule -->
+          <div class="component-section mt-5">
+            <h2 class="text-primary mb-4">Accordion Molecule</h2>
+            <p>Collapsible accordion component for FAQs and content sections.</p>
+
+            <div class="mb-4">
+              {{ partial "molecules/accordion.html" (dict
+                "items" (slice
+                  (dict "question" "What is atomic design?" "answer" "Atomic design is a methodology for creating design systems with reusable components.")
+                  (dict "question" "How do molecules work?" "answer" "Molecules combine atoms to form functional UI patterns like cards, form fields, and navigation items.")
+                  (dict "question" "When should I use this?" "answer" "Use the accordion for FAQs, collapsible content sections, or any expandable information.")
+                )
+                "id" "demoAccordion"
+                "defaultOpen" 0
+              ) }}
+            </div>
+
+            <div class="mt-4 p-3 bg-light rounded">
+              <h4 class="h6 mb-2">Code Example:</h4>
+              <pre class="mb-0"><code>{{`{{ partial "molecules/accordion.html" (dict
+  "items" .Params.faq_items
+  "id" "faqAccordion"
+  "defaultOpen" 0
+) }}`}}</code></pre>
+            </div>
+          </div>
+
+          <!-- Other Molecules -->
           <div class="component-section mt-5 mb-5">
-            <h2 class="text-primary mb-4">Next Phase: Molecules</h2>
-            <p>Phase 2 will create molecular components by combining these atoms:</p>
+            <h2 class="text-primary mb-4">Other Molecules</h2>
             <ul>
-              <li><strong>Card Molecule:</strong> Image + Heading + Text + Button</li>
-              <li><strong>Form Field Molecule:</strong> Label + Input + Error Message</li>
-              <li><strong>Nav Item Molecule:</strong> Icon + Text + Link</li>
-              <li><strong>Social Link Molecule:</strong> Icon + Link + Aria Label</li>
+              <li><strong>Pricing Toggle:</strong> Monthly/yearly pricing switch</li>
+              <li><strong>Social Links:</strong> Icon grid with stagger animation</li>
+              <li><strong>Breadcrumb:</strong> Navigation breadcrumb component</li>
+              <li><strong>Nav Item:</strong> Navigation link with active states</li>
+              <li><strong>Video Embed:</strong> Video player with thumbnail and play button</li>
             </ul>
           </div>
         </div>

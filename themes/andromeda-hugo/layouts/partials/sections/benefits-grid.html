@@ -23,10 +23,13 @@
                   {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
                   {{ $n := $.Scratch.Get "counter" }}
                   <div class="col-lg-3 col-md-6">
-                    <div class="career-benefits-item text-center">
-                      <i class="{{ .icon }} text-primary mb-2"></i>
-                      <h4>{{ .title | markdownify }}</h4>
-                    </div>
+                    {{ partial "molecules/card.html" (dict
+                      "variant" "feature"
+                      "icon" (replace .icon "las la-" "")
+                      "title" .title
+                      "iconSize" "3x"
+                      "iconColor" "primary"
+                    ) }}
                   </div>
                   {{ if (modBool $n 3) }}
                     <div class="col-lg-12 d-none d-lg-block"></div>
