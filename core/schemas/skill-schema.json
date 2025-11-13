@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Skill Schema",
+  "description": "Schema for skill metadata (frontmatter)",
+  "type": "object",
+  "required": ["name", "description", "triggers"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Skill name (kebab-case)",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief skill description"
+    },
+    "triggers": {
+      "type": "array",
+      "description": "Auto-activation keywords",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["tier1", "tier2", "tier3"],
+      "description": "Loading tier"
+    },
+    "category": {
+      "type": "string",
+      "description": "Skill category"
+    },
+    "resources": {
+      "type": "array",
+      "description": "External resource files",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "Required skills",
+      "items": {
+        "type": "string"
+      }
+    },
+    "version": {
+      "type": "string",
+      "description": "Skill version",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MCP Server Schema",
+  "description": "Schema for MCP server configuration",
+  "type": "object",
+  "required": ["name", "command"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "MCP server name",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "command": {
+      "type": "string",
+      "description": "Server executable command"
+    },
+    "args": {
+      "type": "array",
+      "description": "Command-line arguments",
+      "items": {
+        "type": "string"
+      }
+    },
+    "env": {
+      "type": "object",
+      "description": "Environment variables",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "description": {
+      "type": "string",
+      "description": "Server description"
+    },
+    "category": {
+      "type": "string",
+      "description": "Server category (e.g., 'analytics', 'crm', 'database')"
+    },
+    "autoStart": {
+      "type": "boolean",
+      "description": "Start server automatically",
+      "default": true
+    },
+    "timeout": {
+      "type": "number",
+      "description": "Startup timeout in ms",
+      "default": 10000
+    },
+    "healthCheck": {
+      "type": "object",
+      "description": "Health check configuration",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "interval": {
+          "type": "number",
+          "description": "Check interval in ms"
+        },
+        "retries": {
+          "type": "number",
+          "description": "Number of retries before failure"
+        }
+      }
+    },
+    "version": {
+      "type": "string",
+      "description": "Server version",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    }
+  }
+}

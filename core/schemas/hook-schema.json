@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Hook Schema",
+  "description": "Schema for hook metadata (exports)",
+  "type": "object",
+  "required": ["name", "event"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Hook name (kebab-case)",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "event": {
+      "type": "string",
+      "enum": [
+        "user-prompt-submit",
+        "pre-tool-use",
+        "post-tool-use",
+        "stop-event",
+        "session-start",
+        "session-end",
+        "context-bundle",
+        "background-agent",
+        "agent-telemetry",
+        "post-plan-approval",
+        "pre-planning-validation"
+      ],
+      "description": "Hook event type"
+    },
+    "description": {
+      "type": "string",
+      "description": "Hook description"
+    },
+    "priority": {
+      "type": "number",
+      "description": "Execution priority (lower = earlier)",
+      "default": 100
+    },
+    "async": {
+      "type": "boolean",
+      "description": "Whether hook is async",
+      "default": true
+    },
+    "version": {
+      "type": "string",
+      "description": "Hook version",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    }
+  }
+}

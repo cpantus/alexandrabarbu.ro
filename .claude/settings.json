@@ -1,0 +1,231 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-playwright"
+      ],
+      "env": {}
+    }
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx core/infrastructure/hooks/user-prompt-submit.ts"
+          },
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx core/infrastructure/hooks/detect-mcp-opportunity.ts"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx core/infrastructure/hooks/stop-event.ts"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx core/infrastructure/hooks/session-start-command-links.ts"
+          },
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && git status 2>/dev/null || echo '(Not in git repository)'"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx core/infrastructure/hooks/pre-tool-use-write.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx core/infrastructure/hooks/pre-tool-use-edit.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx core/infrastructure/hooks/pre-tool-use-bash.ts"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '\u2713 Content written successfully'"
+          },
+          {
+            "type": "command",
+            "command": "test -f \"$WROTE_FILE\" && git add \"$WROTE_FILE\" 2>/dev/null || true"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx core/infrastructure/hooks/post-tool-use-edit.ts \"$EDITED_FILE\""
+          }
+        ]
+      },
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx core/infrastructure/hooks/post-tool-use-pattern.ts"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && git status 2>/dev/null || echo '(Not in git repository)'"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allowedCommands": [
+      "sed",
+      "git add *",
+      "git commit *",
+      "git push *",
+      "git pull *",
+      "git status",
+      "git log *",
+      "git diff *",
+      "git branch *",
+      "git checkout *",
+      "git tag *",
+      "git remote *",
+      "git show *",
+      "git stash *",
+      "npm install *",
+      "npm run *",
+      "hugo *",
+      "node *",
+      "npx *",
+      "Bash(node_modules/.bin/ts-node:*)",
+      "Bash(node_modules/.bin/tsc:*)",
+      "Bash(find:*)",
+      "Bash(chmod:*)",
+      "Bash(fd:*)",
+      "Bash(exa --git:*)",
+      "Bash(rg:*)",
+      "Bash(for:*)",
+      "Bash(done)",
+      "Bash(exa:*)",
+      "Bash(tree:*)",
+      "Bash(bat:*)",
+      "Bash(xargs:*)",
+      "Bash(comm:*)",
+      "Bash(du:*)",
+      "Bash(test:*)",
+      "Bash(cat:*)",
+      "Bash(npx tsx --version)",
+      "Bash(npx tsx:*)",
+      "Bash(mkdir:*)",
+      "Bash(./scripts/*:*)",
+      "Bash(node -e:*)",
+      "Bash(echo:*)",
+      "Bash(node --version:*)",
+      "Bash(npx --version:*)",
+      "Bash(npx:*)",
+      "Bash(node:*)",
+      "Bash(eza:*)",
+      "Bash(git show:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(npm info:*)",
+      "Bash(jq:*)",
+      "Bash(env)",
+      "Bash(git submodule:*)",
+      "WebFetch(domain:www.claude.com)",
+      "WebSearch",
+      "WebFetch(domain:code.claude.com)",
+      "WebFetch(domain:gohugo.io)",
+      "WebFetch(domain:github.com)"
+    ],
+    "deny": [
+      "Read(.env*)",
+      "Read(*.env)",
+      "Read(.env.*)",
+      "Write(.env*)",
+      "Write(*.env)",
+      "Write(.env.*)",
+      "Read(~/.ssh/*)",
+      "Write(~/.ssh/*)",
+      "Read(*.key)",
+      "Read(*.pem)",
+      "Write(*.key)",
+      "Write(*.pem)",
+      "Read(~/.aws/*)",
+      "Write(~/.aws/*)",
+      "Read(*.prod.*)",
+      "Write(*.prod.*)",
+      "Write(*.config.production.*)",
+      "Write(config/production/*)",
+      "Bash(rm -rf :*)",
+      "Bash(rm -r :*)",
+      "Bash(sudo :*)",
+      "Bash(curl :*)",
+      "Bash(wget :*)",
+      "Bash(nc :*)",
+      "Bash(git reset --hard :*)",
+      "Bash(git push --force :*)",
+      "Bash(git push -f :*)",
+      "Write(package.json)",
+      "Write(package-lock.json)",
+      "Write(yarn.lock)",
+      "Write(requirements.txt)",
+      "Read(/etc/*)",
+      "Write(/etc/*)",
+      "Read(/root/*)",
+      "Write(/root/*)"
+    ]
+  },
+  "settings": {
+    "autoFormatMarkdown": true,
+    "useObsidianLinks": true,
+    "defaultFileExtension": ".md",
+    "autocompact": false
+  }
+}

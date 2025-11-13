@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Command Schema",
+  "description": "Schema for command metadata (frontmatter)",
+  "type": "object",
+  "required": ["name", "description", "category"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Command name (without /)",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief command description"
+    },
+    "category": {
+      "type": "string",
+      "description": "Command category (e.g., 'workflow', 'infrastructure', 'content')"
+    },
+    "syntax": {
+      "type": "string",
+      "description": "Command usage syntax"
+    },
+    "aliases": {
+      "type": "array",
+      "description": "Alternative command names",
+      "items": {
+        "type": "string"
+      }
+    },
+    "permissions": {
+      "type": "array",
+      "description": "Required permissions",
+      "items": {
+        "type": "string"
+      }
+    },
+    "version": {
+      "type": "string",
+      "description": "Command version",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    }
+  }
+}

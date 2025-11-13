@@ -1,0 +1,33 @@
+{
+  "name": "marketing-agent-v5-hooks",
+  "version": "5.0.0",
+  "description": "TypeScript hooks for Marketing Agent v5.0 infrastructure",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run test:user-prompt && npm run test:stop && npm run test:post-tool-use && npm run test:post-plan",
+    "test:user-prompt": "echo 'Create email for Strategic Sarah' | ts-node user-prompt-submit.ts",
+    "test:stop": "ts-node stop-event.ts",
+    "test:post-tool-use": "ts-node post-tool-use-edit.ts '/path/to/test.ts'",
+    "test:post-plan": "ts-node post-plan-approval.ts 'Test task: Implement feature X'"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "claude-code",
+    "hooks",
+    "automation",
+    "marketing-agent",
+    "infrastructure",
+    "typescript",
+    "v5"
+  ],
+  "author": "Marketing Agent Project",
+  "license": "MIT"
+}

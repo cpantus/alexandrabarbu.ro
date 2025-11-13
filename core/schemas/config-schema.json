@@ -1,0 +1,238 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Project Config Schema",
+  "description": "Schema for config.json - Project configuration file",
+  "type": "object",
+  "required": ["project", "extensions"],
+  "properties": {
+    "project": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Project name"
+        },
+        "version": {
+          "type": "string",
+          "description": "Project version",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "description": {
+          "type": "string",
+          "description": "Project description"
+        }
+      }
+    },
+    "extensions": {
+      "type": "array",
+      "description": "Enabled extensions",
+      "items": {
+        "type": "object",
+        "required": ["name", "enabled"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Extension name"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether extension is enabled"
+          },
+          "config": {
+            "type": "object",
+            "description": "Extension-specific configuration",
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "description": "Feature toggles",
+      "properties": {
+        "teaching": {
+          "type": "boolean",
+          "default": true
+        },
+        "demo": {
+          "type": "boolean",
+          "default": true
+        },
+        "workflows": {
+          "type": "boolean",
+          "default": true
+        },
+        "mcp": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "tier": {
+      "type": "object",
+      "description": "Tiered loading settings",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["quick", "balanced", "full"],
+          "default": "balanced",
+          "description": "Loading strategy"
+        },
+        "customTiers": {
+          "type": "object",
+          "description": "Custom tier assignments",
+          "properties": {
+            "tier1": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "tier2": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "tier3": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "description": "Performance settings",
+      "properties": {
+        "caching": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable prompt caching"
+        },
+        "parallelLoading": {
+          "type": "boolean",
+          "default": true,
+          "description": "Load components in parallel"
+        },
+        "lazyLoading": {
+          "type": "boolean",
+          "default": true,
+          "description": "Load on-demand"
+        }
+      }
+    },
+    "cost": {
+      "type": "object",
+      "description": "Cost management settings",
+      "properties": {
+        "budget": {
+          "type": "object",
+          "properties": {
+            "daily": {
+              "type": "number",
+              "description": "Daily budget in USD"
+            },
+            "monthly": {
+              "type": "number",
+              "description": "Monthly budget in USD"
+            }
+          }
+        },
+        "alertThreshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.8,
+          "description": "Alert when budget reaches this fraction"
+        }
+      }
+    },
+    "model": {
+      "type": "object",
+      "description": "Model selection rules",
+      "properties": {
+        "default": {
+          "type": "string",
+          "enum": ["haiku", "sonnet", "opus"],
+          "default": "sonnet"
+        },
+        "rules": {
+          "type": "array",
+          "description": "Task-based model selection",
+          "items": {
+            "type": "object",
+            "required": ["taskType", "model"],
+            "properties": {
+              "taskType": {
+                "type": "string"
+              },
+              "model": {
+                "type": "string",
+                "enum": ["haiku", "sonnet", "opus"]
+              },
+              "thinking": {
+                "type": "string",
+                "enum": ["none", "think", "think-hard", "ultrathink"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "mcpServers": {
+      "type": "array",
+      "description": "Project-specific MCP servers",
+      "items": {
+        "type": "object",
+        "required": ["name", "command"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "command": {
+            "type": "string"
+          },
+          "args": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "env": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "paths": {
+      "type": "object",
+      "description": "Custom path overrides",
+      "properties": {
+        "core": {
+          "type": "string",
+          "description": "Path to core directory"
+        },
+        "extensions": {
+          "type": "string",
+          "description": "Path to extensions directory"
+        },
+        "data": {
+          "type": "string",
+          "description": "Path to data directory"
+        },
+        "cache": {
+          "type": "string",
+          "description": "Path to cache directory"
+        }
+      }
+    }
+  }
+}

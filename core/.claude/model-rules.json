@@ -1,0 +1,83 @@
+{
+  "version": "1.1",
+  "description": "Model selection rules for automated task optimization. Applied during orchestration only. Includes context tier mappings for adaptive loading.",
+
+  "taskTypeRules": {
+    "compress": {
+      "enabled": true,
+      "model": "haiku",
+      "rationale": "Text compression, summarization, and condensing tasks benefit from Haiku's speed and cost efficiency",
+      "keywords": [
+        "compress",
+        "summarize",
+        "condense",
+        "minify",
+        "shrink",
+        "consolidate",
+        "shorten",
+        "reduce",
+        "compact",
+        "distill",
+        "abstract",
+        "brief"
+      ],
+      "caseSensitive": false,
+      "applyTo": "orchestrated-tasks-only"
+    }
+  },
+
+  "contextTierMappings": {
+    "description": "Maps models to default context tiers for adaptive loading. User preferences and task complexity can override.",
+    "modelTiers": {
+      "haiku": {
+        "tier": "minimal",
+        "personas": "card",
+        "skills": "quick",
+        "patterns": "id-only",
+        "rationale": "Haiku excels with minimal context for speed and cost efficiency"
+      },
+      "sonnet": {
+        "tier": "quick",
+        "personas": "card",
+        "skills": "quick",
+        "patterns": "quick",
+        "rationale": "Sonnet balances context depth with performance"
+      },
+      "opus": {
+        "tier": "full",
+        "personas": "full",
+        "skills": "full",
+        "patterns": "full",
+        "rationale": "Opus handles comprehensive context for complex strategic tasks"
+      }
+    },
+    "complexityOverrides": {
+      "description": "Bumps context tier based on task complexity",
+      "rules": [
+        {
+          "if": "model=haiku AND complexity=complex",
+          "then": "tier=quick",
+          "rationale": "Complex tasks need more context even with Haiku"
+        },
+        {
+          "if": "model=sonnet AND complexity=complex",
+          "then": "tier=full",
+          "rationale": "Complex tasks benefit from full context with Sonnet"
+        }
+      ]
+    },
+    "explicitOverrides": {
+      "description": "User can explicitly request tier via prompt keywords",
+      "keywords": {
+        "minimal": ["quick", "minimal", "brief", "fast"],
+        "full": ["detailed", "comprehensive", "full context", "in-depth"]
+      }
+    }
+  },
+
+  "metadata": {
+    "lastUpdated": "2025-01-08",
+    "author": "system",
+    "notes": "v1.1 adds context tier mappings for adaptive loading (Memory Optimization v4.1). Orchestration rules remain unchanged."
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "version": "1.0",
+  "lastUpdated": "2025-11-13",
+  "description": "Auto-activation rules for code plugin skills. Skills trigger based on prompt keywords and intent patterns. Updated with design excellence triggers.",
+
+  "skills": {
+    "frontend-best-practices": {
+      "type": "domain-specific",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Frontend development with design excellence - avoid AI slop aesthetics, distinctive typography, cohesive themes",
+      "skillPath": "code-plugin/skills/frontend-best-practices.md",
+      "promptTriggers": {
+        "keywords": [
+          "frontend", "react", "vue", "component", "hooks", "state", "props",
+          "typescript", "javascript", "jsx", "tsx", "css", "styled-components",
+          "performance", "optimization", "bundle", "lazy load", "code splitting",
+          "accessibility", "a11y", "aria", "wcag", "semantic html",
+          "testing", "jest", "react testing library", "vitest",
+          "ui", "interface", "landing page", "website", "design", "visual design",
+          "aesthetic", "theme", "styling", "typography", "font", "color palette",
+          "animation", "motion", "background", "gradient"
+        ],
+        "intentPatterns": [
+          "(create|build|implement).*?(component|ui|interface)",
+          "(optimize|improve).*?(performance|bundle|render)",
+          "(review|check|validate).*?(accessibility|a11y)",
+          "(add|implement).*?(test|testing)",
+          "state management|context|redux|zustand",
+          "(create|design|build).*?(landing page|website|interface)",
+          "(improve|enhance).*?(design|aesthetic|visual)",
+          "(style|theme).*?(application|component)"
+        ]
+      },
+      "autoActivate": true,
+      "reminderMessage": "💡 Frontend Best Practices skill activated - Design excellence, React/Vue patterns, avoid AI slop aesthetics"
+    },
+
+    "ux-guidelines": {
+      "type": "domain-specific",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "UX and visual design excellence - typography, color psychology, hierarchy, motion for usability",
+      "skillPath": "code-plugin/skills/ux-guidelines.md",
+      "promptTriggers": {
+        "keywords": [
+          "ux", "user experience", "usability", "design", "wireframe", "mockup",
+          "user flow", "user journey", "personas", "user research",
+          "accessibility", "inclusive design", "wcag",
+          "interaction design", "ui design", "visual design",
+          "design system", "component library", "design tokens",
+          "usability testing", "user testing", "feedback",
+          "mobile-first", "responsive", "touch targets",
+          "typography", "font", "color theory", "color psychology", "palette",
+          "layout", "hierarchy", "visual hierarchy", "whitespace",
+          "motion design", "animation", "micro-interactions", "feedback states"
+        ],
+        "intentPatterns": [
+          "(design|create|build).*?(wireframe|mockup|prototype)",
+          "(map|create|document).*?(user flow|user journey)",
+          "(conduct|plan|run).*?(usability test|user test)",
+          "(check|validate|audit).*?(accessibility|usability)",
+          "design system|component library",
+          "user research|user interview",
+          "(choose|select|design).*?(typography|font|color palette)",
+          "(improve|enhance).*?(visual|hierarchy|layout)"
+        ]
+      },
+      "autoActivate": true,
+      "reminderMessage": "💡 UX Guidelines skill activated - Visual design excellence, usability principles, accessibility"
+    },
+
+    "architecture-patterns": {
+      "type": "domain-specific",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "System architecture patterns, API design, and scalability strategies",
+      "skillPath": "code-plugin/skills/architecture-patterns.md",
+      "promptTriggers": {
+        "keywords": [
+          "architecture", "system design", "design patterns",
+          "microservices", "monolith", "api", "rest", "graphql", "grpc",
+          "database", "sql", "nosql", "postgres", "mongodb",
+          "scalability", "scaling", "performance", "load balancing",
+          "caching", "redis", "cdn", "message queue", "kafka",
+          "distributed systems", "event-driven", "cqrs",
+          "clean architecture", "hexagonal", "layered",
+          "adr", "architecture decision"
+        ],
+        "intentPatterns": [
+          "(design|create|build).*?(system|architecture|api)",
+          "(choose|select|evaluate).*?(database|technology|pattern)",
+          "(scale|optimize).*?(system|performance|database)",
+          "(document|create|write).*?(adr|architecture decision)",
+          "microservices vs monolith",
+          "api design|rest api|graphql schema"
+        ]
+      },
+      "autoActivate": true,
+      "reminderMessage": "💡 Architecture Patterns skill activated - System design, APIs, scalability, design patterns"
+    },
+
+    "diagram-drawing": {
+      "type": "domain-specific",
+      "enforcement": "require",
+      "priority": "medium",
+      "description": "Create animated diagrams with design excellence - avoid AI slop, distinctive chart typography, cohesive themes",
+      "skillPath": ".claude/skills/diagram-drawing.md",
+      "promptTriggers": {
+        "keywords": [
+          "diagram", "chart", "graph", "infographic", "visualization",
+          "line chart", "bar chart", "pie chart", "scatter plot", "radar chart",
+          "data visualization", "data viz", "export", "png", "svg", "pdf",
+          "chartjs", "chart.js", "render diagram", "create chart",
+          "chart design", "chart theme", "chart colors", "chart typography",
+          "chart animation", "chart accessibility", "colorblind safe"
+        ],
+        "intentPatterns": [
+          "(create|build|generate|render).*?(diagram|chart|graph|infographic)",
+          "(export|save).*?(png|svg|pdf)",
+          "(visualize|plot|display).*?(data|metrics|statistics)",
+          "line chart|bar chart|pie chart|scatter plot",
+          "(design|style|theme).*?(chart|diagram|infographic)",
+          "(improve|enhance).*?(chart design|visualization)"
+        ]
+      },
+      "autoActivate": true,
+      "reminderMessage": "💡 Diagram Drawing skill activated - Design excellence for data viz, avoid AI slop aesthetics"
+    }
+  },
+
+  "config": {
+    "cacheStrategy": "aggressive",
+    "maxSkillsPerPrompt": 3,
+    "confidenceThreshold": 0.6,
+    "debugMode": false
+  }
+}

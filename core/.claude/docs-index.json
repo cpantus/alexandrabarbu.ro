@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "description": "Infrastructure documentation auto-loading configuration",
+  "docs": {
+    "core-principles": {
+      "path": "CORE.md",
+      "triggers": ["architecture", "infrastructure", "principles", "rules"],
+      "cache": true,
+      "description": "Core behavior rules and infrastructure principles"
+    },
+    "hook-architecture": {
+      "path": "docs/hook-architecture.md",
+      "triggers": ["hooks", "lifecycle", "events"],
+      "cache": true,
+      "description": "Hook system design and implementation guide"
+    },
+    "pattern-system": {
+      "path": "docs/pattern-system.md",
+      "triggers": ["patterns", "workflows", "execution templates"],
+      "cache": true,
+      "description": "Pattern system structure and usage"
+    },
+    "skills-system": {
+      "path": "docs/skills-system.md",
+      "triggers": ["skills", "knowledge", "auto-activation"],
+      "cache": true,
+      "description": "Skills system and auto-activation logic"
+    },
+    "agent-orchestration": {
+      "path": "docs/agent-orchestration.md",
+      "triggers": ["agents", "orchestration", "coordination"],
+      "cache": true,
+      "description": "Multi-agent coordination patterns"
+    },
+    "workflow-system": {
+      "path": "docs/workflow-system.md",
+      "triggers": ["workflow", "scout", "plan", "build"],
+      "cache": true,
+      "description": "Scout/Plan/Build workflow system"
+    },
+    "cli-tool-standards": {
+      "path": "docs/cli-tool-standards.md",
+      "triggers": ["cli", "tools", "bash", "commands"],
+      "cache": true,
+      "description": "Modern CLI tool usage standards"
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2025-11-12",
+    "author": "system",
+    "notes": "Infrastructure-only documentation. No domain-specific docs included."
+  }
+}

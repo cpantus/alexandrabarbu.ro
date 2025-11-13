@@ -1,0 +1,21 @@
+# Hugo build artifacts
+public/
+resources/
+.hugo_build.lock
+
+# Dev docs (committed for team visibility)
+# dev/
+
+# Dependencies
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

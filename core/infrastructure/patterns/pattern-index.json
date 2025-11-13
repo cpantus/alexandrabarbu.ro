@@ -1,0 +1,493 @@
+{
+  "version": "5.0",
+  "lastUpdated": "2025-11-11",
+  "totalPatterns": 20,
+  "patterns": {
+    "component_agent": {
+      "category": "meta",
+      "complexity": "simple",
+      "thinking": "think",
+      "estimatedTokens": 800,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["agent", "create agent", "new agent", "specialist"],
+        "intentPatterns": [
+          "(create|build|generate).*?agent",
+          "new.*?specialist"
+        ]
+      },
+      "avgExecutionTime": "30 seconds",
+      "usageCount": 0,
+      "description": "Creates a new agent component with standard structure",
+      "exampleArgs": "--name=\"agent-name\" --description=\"agent description\""
+    },
+    "component_pattern": {
+      "category": "meta",
+      "complexity": "simple",
+      "thinking": "think",
+      "estimatedTokens": 800,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["pattern", "create pattern", "new pattern", "template"],
+        "intentPatterns": [
+          "(create|build|generate).*?pattern",
+          "new.*?template"
+        ]
+      },
+      "avgExecutionTime": "30 seconds",
+      "usageCount": 0,
+      "description": "Creates a new pattern component with standard structure",
+      "exampleArgs": "--name=\"pattern-name\" --category=\"category\""
+    },
+    "component_skill": {
+      "category": "meta",
+      "complexity": "simple",
+      "thinking": "think",
+      "estimatedTokens": 800,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["skill", "create skill", "new skill", "knowledge"],
+        "intentPatterns": [
+          "(create|build|generate).*?skill",
+          "new.*?knowledge.*?module"
+        ]
+      },
+      "avgExecutionTime": "30 seconds",
+      "usageCount": 0,
+      "description": "Creates a new skill component with standard structure",
+      "exampleArgs": "--name=\"skill-name\" --description=\"skill description\""
+    },
+    "component_command": {
+      "category": "meta",
+      "complexity": "simple",
+      "thinking": "think",
+      "estimatedTokens": 800,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["command", "create command", "new command", "slash command"],
+        "intentPatterns": [
+          "(create|build|generate).*?command",
+          "new.*?slash.*?command"
+        ]
+      },
+      "avgExecutionTime": "30 seconds",
+      "usageCount": 0,
+      "description": "Creates a new command component with standard structure",
+      "exampleArgs": "--name=\"command-name\" --description=\"command description\""
+    },
+    "component_hook": {
+      "category": "meta",
+      "complexity": "medium",
+      "thinking": "think",
+      "estimatedTokens": 1200,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["hook", "create hook", "new hook", "event handler"],
+        "intentPatterns": [
+          "(create|build|generate).*?hook",
+          "new.*?event.*?handler"
+        ],
+        "negativeKeywords": ["documentation", "document", "readme", "architecture", "how to", "test", "testing", "example", "guide", "explain", "what is", "false positive"]
+      },
+      "avgExecutionTime": "45 seconds",
+      "usageCount": 0,
+      "description": "Creates a new TypeScript hook with standard structure",
+      "exampleArgs": "--name=\"hook-name\" --event=\"event-name\"",
+      "minConfidence": 2
+    },
+    "component_workflow": {
+      "category": "meta",
+      "complexity": "medium",
+      "thinking": "think",
+      "estimatedTokens": 1200,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["workflow", "create workflow", "new workflow", "process"],
+        "intentPatterns": [
+          "(create|build|generate).*?workflow",
+          "new.*?process"
+        ],
+        "negativeKeywords": ["documentation", "document", "readme", "architecture", "how to", "test", "testing", "example", "guide", "explain", "existing workflow", "use workflow"]
+      },
+      "avgExecutionTime": "45 seconds",
+      "usageCount": 0,
+      "description": "Creates a new workflow pattern with standard structure",
+      "exampleArgs": "--name=\"workflow-name\" --stages=\"stage1,stage2\"",
+      "minConfidence": 2
+    },
+    "component_resource": {
+      "category": "meta",
+      "complexity": "simple",
+      "thinking": "think",
+      "estimatedTokens": 800,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["resource", "create resource", "new resource", "documentation"],
+        "intentPatterns": [
+          "(create|build|generate).*?resource",
+          "new.*?documentation"
+        ]
+      },
+      "avgExecutionTime": "30 seconds",
+      "usageCount": 0,
+      "description": "Creates a new resource documentation file",
+      "exampleArgs": "--name=\"resource-name\" --type=\"guide\""
+    },
+    "component_mcp_server": {
+      "category": "meta",
+      "complexity": "complex",
+      "thinking": "think-hard",
+      "estimatedTokens": 2000,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["mcp", "mcp server", "create mcp", "model context protocol"],
+        "intentPatterns": [
+          "(create|build|generate).*?mcp.*?server",
+          "new.*?model.*?context.*?protocol"
+        ]
+      },
+      "avgExecutionTime": "90 seconds",
+      "usageCount": 0,
+      "description": "Creates a new MCP server configuration",
+      "exampleArgs": "--name=\"server-name\" --type=\"api\""
+    },
+    "compress_documentation": {
+      "category": "meta",
+      "complexity": "simple",
+      "thinking": "think",
+      "estimatedTokens": 600,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["compress", "compress documentation", "reduce tokens", "optimize docs"],
+        "intentPatterns": [
+          "compress.*?documentation",
+          "(reduce|optimize).*?tokens"
+        ]
+      },
+      "avgExecutionTime": "20 seconds",
+      "usageCount": 0,
+      "description": "Compresses documentation to reduce token usage",
+      "exampleArgs": "--file=\"path/to/doc.md\""
+    },
+    "pre_creation_check": {
+      "category": "meta",
+      "complexity": "simple",
+      "thinking": "think",
+      "estimatedTokens": 600,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["check", "validate", "verify", "pre-creation"],
+        "intentPatterns": [
+          "pre.*?creation.*?check",
+          "(validate|verify).*?before.*?(creating|building)"
+        ]
+      },
+      "avgExecutionTime": "20 seconds",
+      "usageCount": 0,
+      "description": "Validates requirements before creating new components",
+      "exampleArgs": "--component=\"component-name\""
+    },
+    "scout_workflow": {
+      "category": "workflow",
+      "complexity": "medium",
+      "thinking": "think",
+      "estimatedTokens": 1500,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["scout", "research", "explore", "investigate"],
+        "intentPatterns": [
+          "scout.*?workflow",
+          "(research|explore|investigate).*?(codebase|system)"
+        ]
+      },
+      "avgExecutionTime": "60 seconds",
+      "usageCount": 0,
+      "description": "Research and context gathering workflow",
+      "exampleArgs": "--task=\"task description\""
+    },
+    "plan_workflow": {
+      "category": "workflow",
+      "complexity": "medium",
+      "thinking": "think-hard",
+      "estimatedTokens": 1800,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["plan", "strategy", "breakdown", "approach"],
+        "intentPatterns": [
+          "plan.*?workflow",
+          "(strategy|breakdown|approach).*?task"
+        ]
+      },
+      "avgExecutionTime": "75 seconds",
+      "usageCount": 0,
+      "description": "Strategic planning and task breakdown workflow",
+      "exampleArgs": "--task=\"task description\""
+    },
+    "build_workflow": {
+      "category": "workflow",
+      "complexity": "complex",
+      "thinking": "think-hard",
+      "estimatedTokens": 2500,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["build", "implement", "execute", "create"],
+        "intentPatterns": [
+          "build.*?workflow",
+          "(implement|execute).*?plan"
+        ]
+      },
+      "avgExecutionTime": "120 seconds",
+      "usageCount": 0,
+      "description": "Implementation and quality assurance workflow",
+      "exampleArgs": "--task=\"task description\" --plan=\"plan.md\""
+    },
+    "enhanced_planning": {
+      "category": "workflow",
+      "complexity": "complex",
+      "thinking": "think-hard (stage 2), standard (stages 3-4)",
+      "estimatedTokens": 18000,
+      "dependencies": {
+        "skills": [],
+        "agents": ["research-scout", "system-architect"],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["enhanced planning", "comprehensive planning", "research-first planning", "deep planning"],
+        "intentPatterns": [
+          "enhanced.*?plan",
+          "comprehensive.*?plan",
+          "research.*?first.*?plan"
+        ]
+      },
+      "avgExecutionTime": "43-65 minutes",
+      "usageCount": 0,
+      "description": "Research-first comprehensive planning with parallel research, think-hard architecture, and validated implementation plan",
+      "exampleArgs": "\"implement GraphQL API for e-commerce\"",
+      "requiredOutputs": {
+        "stages": [
+          {
+            "name": "research",
+            "description": "Parallel research scouts gather best practices",
+            "outputs": [
+              {
+                "pattern": "research/*.md",
+                "minCount": 2,
+                "minSize": 5000,
+                "description": "Research reports with 5-10 sources each"
+              }
+            ]
+          },
+          {
+            "name": "architecture",
+            "description": "System architecture design with think-hard",
+            "outputs": [
+              {
+                "pattern": "dev/active/*/architecture-proposal.md",
+                "minCount": 1,
+                "minSize": 3000,
+                "description": "Architecture proposal (3-10 pages)"
+              },
+              {
+                "pattern": "dev/active/*/OVERVIEW.md",
+                "minCount": 1,
+                "minSize": 500,
+                "description": "Dev docs overview for session continuity"
+              }
+            ]
+          },
+          {
+            "name": "validation",
+            "description": "Architecture validation with 9-point checklist",
+            "outputs": [
+              {
+                "pattern": "dev/active/*/validation-report.md",
+                "minCount": 1,
+                "minSize": 1000,
+                "description": "Validation report with APPROVED/REVISE decision"
+              }
+            ]
+          },
+          {
+            "name": "planning",
+            "description": "Implementation plan creation",
+            "outputs": [
+              {
+                "pattern": "dev/active/*/*-plan.md",
+                "minCount": 1,
+                "minSize": 2000,
+                "description": "Phased implementation plan"
+              }
+            ]
+          }
+        ],
+        "enforceSequential": true,
+        "validateOnCompletion": true
+      }
+    },
+    "two_stage_content_sonnet_haiku": {
+      "category": "workflow",
+      "complexity": "medium",
+      "thinking": "think",
+      "estimatedTokens": 1000,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["two stage", "two-stage", "sonnet haiku", "cost optimize"],
+        "intentPatterns": [
+          "two.*?stage.*?sonnet.*?haiku",
+          "cost.*?optim.*?workflow"
+        ]
+      },
+      "avgExecutionTime": "45 seconds",
+      "usageCount": 0,
+      "description": "Cost-optimized two-stage workflow (Sonnet → Haiku)",
+      "exampleArgs": "--task=\"task description\" --optimize=\"cost\""
+    },
+    "two_stage_content_sonnet_sonnet": {
+      "category": "workflow",
+      "complexity": "complex",
+      "thinking": "think-hard",
+      "estimatedTokens": 2000,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["two stage", "two-stage", "sonnet sonnet", "quality optimize"],
+        "intentPatterns": [
+          "two.*?stage.*?sonnet.*?sonnet",
+          "quality.*?optim.*?workflow"
+        ]
+      },
+      "avgExecutionTime": "90 seconds",
+      "usageCount": 0,
+      "description": "Quality-optimized two-stage workflow (Sonnet → Sonnet)",
+      "exampleArgs": "--task=\"task description\" --optimize=\"quality\""
+    },
+    "analysis_bundle": {
+      "category": "bundles",
+      "complexity": "complex",
+      "thinking": "think-hard",
+      "estimatedTokens": 3000,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["analysis bundle", "analyze multiple", "comprehensive analysis"],
+        "intentPatterns": [
+          "analysis.*?bundle",
+          "(comprehensive|complete).*?analysis"
+        ]
+      },
+      "avgExecutionTime": "180 seconds",
+      "usageCount": 0,
+      "description": "Bundled analysis patterns for comprehensive insights",
+      "exampleArgs": "--data=\"data-source\""
+    },
+    "content_bundle": {
+      "category": "bundles",
+      "complexity": "complex",
+      "thinking": "think-hard",
+      "estimatedTokens": 3000,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["content bundle", "content suite", "comprehensive content"],
+        "intentPatterns": [
+          "content.*?bundle",
+          "(comprehensive|complete).*?content.*?suite"
+        ]
+      },
+      "avgExecutionTime": "180 seconds",
+      "usageCount": 0,
+      "description": "Bundled content patterns for comprehensive campaigns",
+      "exampleArgs": "--campaign=\"campaign-name\""
+    },
+    "optimization_bundle": {
+      "category": "bundles",
+      "complexity": "complex",
+      "thinking": "think-hard",
+      "estimatedTokens": 3000,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["optimization bundle", "optimize multiple", "comprehensive optimization"],
+        "intentPatterns": [
+          "optimization.*?bundle",
+          "(comprehensive|complete).*?optimization"
+        ]
+      },
+      "avgExecutionTime": "180 seconds",
+      "usageCount": 0,
+      "description": "Bundled optimization patterns for performance improvement",
+      "exampleArgs": "--target=\"optimization-target\""
+    },
+    "strategy_bundle": {
+      "category": "bundles",
+      "complexity": "complex",
+      "thinking": "think-hard",
+      "estimatedTokens": 3000,
+      "dependencies": {
+        "skills": [],
+        "knowledgeFiles": []
+      },
+      "triggers": {
+        "keywords": ["strategy bundle", "strategic planning", "comprehensive strategy"],
+        "intentPatterns": [
+          "strategy.*?bundle",
+          "(comprehensive|complete).*?strateg"
+        ]
+      },
+      "avgExecutionTime": "180 seconds",
+      "usageCount": 0,
+      "description": "Bundled strategy patterns for comprehensive planning",
+      "exampleArgs": "--goal=\"strategic-goal\""
+    }
+  }
+}

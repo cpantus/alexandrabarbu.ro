@@ -1,0 +1,158 @@
+# HAL-10K .gitignore
+# Marketing Agent v5.0 - Clean Architecture
+
+# ============================================
+# Node.js
+# ============================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Package locks (hooks use local dependencies)
+**/hooks/package-lock.json
+
+# ============================================
+# TypeScript / Build
+# ============================================
+*.tsbuildinfo
+dist/
+build/
+*.js.map
+lib/
+
+# ============================================
+# Caches
+# ============================================
+.cache/
+*.cache
+.eslintcache
+.stylelintcache
+__pycache__/
+.pytest_cache/
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# ============================================
+# Security - Environment & Credentials
+# (Per CLAUDE.md security standards v5.0.3)
+# ============================================
+.env
+.env.*
+*.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.staging
+
+# Credentials
+*.key
+*.pem
+*.p12
+*.pfx
+credentials.json
+secrets.*
+*.secret
+
+# SSH & Cloud
+.ssh/
+.aws/
+.gcp/
+.azure/
+
+# Production configs
+*.prod.*
+*.config.production.*
+
+# ============================================
+# IDE and Editors
+# ============================================
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.vs/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+.settings/
+.project
+.classpath
+.factorypath
+
+# ============================================
+# Logs
+# ============================================
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# ============================================
+# Temporary Files
+# ============================================
+*.tmp
+*.temp
+tmp/
+temp/
+.temp/
+
+# ============================================
+# Archives (Historical Context Excluded)
+# See dev/archive/README.md for details
+# ============================================
+dev/archive/
+
+# ============================================
+# OS Files
+# ============================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ============================================
+# Testing
+# ============================================
+coverage/
+*.cover
+.coverage
+.coverage.*
+htmlcov/
+.nyc_output/
+
+# ============================================
+# Documentation Build
+# ============================================
+docs/_build/
+docs/.doctrees/
+site/
+
+# ============================================
+# Plugin Runtime State
+# (Per plugin toggle system v5.0.5)
+# ============================================
+.claude/.plugin-state
+
+# ============================================
+# Optional: Development Artifacts
+# ============================================
+*.bak
+*.swp
+*~.nib
+*.orig
+core-backup/

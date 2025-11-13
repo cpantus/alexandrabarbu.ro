@@ -1,0 +1,353 @@
+{
+  "comment": "Documentation Dependency Mapping - Maps file patterns to required doc updates",
+  "version": "1.0",
+  "last_updated": "2025-11-11",
+  "patterns": [
+    {
+      "pattern": "core/infrastructure/hooks/*.ts",
+      "exclude": ["*.test.ts", "utils/*.ts"],
+      "docs": [
+        {
+          "file": "core/docs/hook-architecture.md",
+          "section": "Current Hooks",
+          "reason": "Hook table must reflect all active hooks",
+          "priority": "high"
+        },
+        {
+          "file": ".claude/CLAUDE.md",
+          "section": "Core Principles or Hook Architecture",
+          "reason": "Document if hook enforces a new behavior rule",
+          "priority": "medium"
+        },
+        {
+          "file": ".claude/settings.json",
+          "section": "hooks",
+          "reason": "Hook must be registered to execute",
+          "priority": "high"
+        }
+      ]
+    },
+    {
+      "pattern": "core/infrastructure/hooks/utils/*.ts",
+      "exclude": ["*.test.ts"],
+      "docs": [
+        {
+          "file": "core/docs/hook-architecture.md",
+          "section": "Utility Modules",
+          "reason": "Document shared utilities for other hook developers",
+          "priority": "medium"
+        }
+      ]
+    },
+    {
+      "pattern": ".claude/patterns/meta/*.md",
+      "exclude": ["*-TEMPLATE.md"],
+      "docs": [
+        {
+          "file": "README.md",
+          "section": "Pattern System (component counts)",
+          "reason": "Pattern count must be accurate",
+          "priority": "high"
+        },
+        {
+          "file": "core/docs/pattern-system.md",
+          "section": "Available Patterns",
+          "reason": "Central pattern registry for discovery",
+          "priority": "high"
+        }
+      ]
+    },
+    {
+      "pattern": "marketing-plugin/patterns/**/*.md",
+      "exclude": [],
+      "docs": [
+        {
+          "file": "README.md",
+          "section": "Pattern System (component counts)",
+          "reason": "Pattern count must be accurate",
+          "priority": "high"
+        },
+        {
+          "file": "marketing-plugin/README.md",
+          "section": "Patterns",
+          "reason": "Plugin pattern list must be current",
+          "priority": "high"
+        }
+      ]
+    },
+    {
+      "pattern": "core/infrastructure/agents/*.md",
+      "exclude": ["*-TEMPLATE.md"],
+      "docs": [
+        {
+          "file": "README.md",
+          "section": "Agent System (component counts)",
+          "reason": "Agent count must be accurate",
+          "priority": "high"
+        },
+        {
+          "file": "core/docs/agent-orchestration.md",
+          "section": "Available Agents",
+          "reason": "Central agent registry with capabilities",
+          "priority": "high"
+        },
+        {
+          "file": "ARCHITECTURE.md",
+          "section": "Agent System",
+          "reason": "Track infrastructure agent capabilities",
+          "priority": "medium"
+        }
+      ]
+    },
+    {
+      "pattern": "marketing-plugin/agents/*.md",
+      "exclude": ["*-TEMPLATE.md"],
+      "docs": [
+        {
+          "file": "README.md",
+          "section": "Agent System (component counts)",
+          "reason": "Agent count must be accurate",
+          "priority": "high"
+        },
+        {
+          "file": "marketing-plugin/README.md",
+          "section": "Agents",
+          "reason": "Plugin agent list must be current",
+          "priority": "high"
+        }
+      ]
+    },
+    {
+      "pattern": ".claude/skills/*.md",
+      "exclude": ["*-TEMPLATE.md", "resources/**"],
+      "docs": [
+        {
+          "file": "README.md",
+          "section": "Skills System (component counts)",
+          "reason": "Skill count must be accurate",
+          "priority": "high"
+        },
+        {
+          "file": "core/docs/skills-system.md",
+          "section": "Available Skills",
+          "reason": "Central skill registry with triggers",
+          "priority": "high"
+        },
+        {
+          "file": ".claude/skill-rules.json",
+          "section": "auto-activation rules",
+          "reason": "Enable skill auto-loading on keywords",
+          "priority": "high"
+        }
+      ]
+    },
+    {
+      "pattern": "marketing-plugin/skills/*.md",
+      "exclude": ["resources/**"],
+      "docs": [
+        {
+          "file": "README.md",
+          "section": "Skills System (component counts)",
+          "reason": "Skill count must be accurate",
+          "priority": "high"
+        },
+        {
+          "file": "marketing-plugin/README.md",
+          "section": "Skills",
+          "reason": "Plugin skill list must be current",
+          "priority": "high"
+        }
+      ]
+    },
+    {
+      "pattern": ".claude/commands/**/*.md",
+      "exclude": [],
+      "docs": [
+        {
+          "file": "README.md",
+          "section": "Commands (quick reference)",
+          "reason": "Command list must be complete",
+          "priority": "high"
+        },
+        {
+          "file": ".claude/CLAUDE.md",
+          "section": "Commands & Discovery",
+          "reason": "Document command usage and discovery",
+          "priority": "medium"
+        }
+      ]
+    },
+    {
+      "pattern": "marketing-plugin/commands/*.md",
+      "exclude": [],
+      "docs": [
+        {
+          "file": "marketing-plugin/README.md",
+          "section": "Commands",
+          "reason": "Plugin command list must be current",
+          "priority": "high"
+        },
+        {
+          "file": "README.md",
+          "section": "Commands (component counts)",
+          "reason": "Total command count includes plugin commands",
+          "priority": "medium"
+        }
+      ]
+    },
+    {
+      "pattern": ".claude/settings.json",
+      "exclude": [],
+      "docs": [
+        {
+          "file": "README.md",
+          "section": "Configuration",
+          "reason": "Document configuration changes",
+          "priority": "medium"
+        },
+        {
+          "file": "ARCHITECTURE.md",
+          "section": "Configuration System",
+          "reason": "Explain architectural impact of config changes",
+          "priority": "medium"
+        },
+        {
+          "file": ".claude/CLAUDE.md",
+          "section": "Configuration Standards",
+          "reason": "Update config standards if structure changes",
+          "priority": "low"
+        }
+      ]
+    },
+    {
+      "pattern": ".claude/settings.local.json",
+      "exclude": [],
+      "docs": [
+        {
+          "file": "core/docs/configuration-guide.md",
+          "section": "Local Overrides",
+          "reason": "Document local configuration options",
+          "priority": "low"
+        }
+      ]
+    },
+    {
+      "pattern": ".claude/model-rules.json",
+      "exclude": [],
+      "docs": [
+        {
+          "file": ".claude/CLAUDE.md",
+          "section": "Cost Optimization",
+          "reason": "Document model selection rules",
+          "priority": "medium"
+        },
+        {
+          "file": "core/docs/cost-optimization.md",
+          "section": "Model Rules",
+          "reason": "Explain model selection strategy",
+          "priority": "medium"
+        }
+      ]
+    },
+    {
+      "pattern": ".claude/skill-rules.json",
+      "exclude": [],
+      "docs": [
+        {
+          "file": "core/docs/skills-system.md",
+          "section": "Auto-Activation Rules",
+          "reason": "Document skill trigger configuration",
+          "priority": "high"
+        }
+      ]
+    },
+    {
+      "pattern": ".claude/docs-index.json",
+      "exclude": [],
+      "docs": [
+        {
+          "file": "core/docs/documentation-system.md",
+          "section": "Auto-Loading Configuration",
+          "reason": "Explain doc loading triggers",
+          "priority": "medium"
+        }
+      ]
+    },
+    {
+      "pattern": "scripts/*.sh",
+      "exclude": [],
+      "docs": [
+        {
+          "file": "README.md",
+          "section": "Scripts & Utilities",
+          "reason": "Document available automation scripts",
+          "priority": "low"
+        },
+        {
+          "file": "CONTRIBUTING.md",
+          "section": "Testing Guidelines",
+          "reason": "Update validation script documentation",
+          "priority": "low"
+        }
+      ]
+    },
+    {
+      "pattern": "ARCHITECTURE.md",
+      "exclude": [],
+      "docs": [
+        {
+          "file": "README.md",
+          "section": "Architecture",
+          "reason": "Keep high-level architecture summary in sync",
+          "priority": "medium"
+        }
+      ]
+    },
+    {
+      "pattern": ".claude/CLAUDE.md",
+      "exclude": [],
+      "docs": [
+        {
+          "file": "README.md",
+          "section": "Core Principles",
+          "reason": "Major principle changes should reflect in README",
+          "priority": "low"
+        }
+      ]
+    },
+    {
+      "pattern": "marketing-plugin/.claude-plugin/plugin.json",
+      "exclude": [],
+      "docs": [
+        {
+          "file": "marketing-plugin/README.md",
+          "section": "Plugin Manifest",
+          "reason": "Plugin manifest changes should be documented",
+          "priority": "medium"
+        }
+      ]
+    },
+    {
+      "pattern": "dev/active/**/*",
+      "exclude": [],
+      "docs": []
+    },
+    {
+      "pattern": "*.test.ts",
+      "exclude": [],
+      "docs": []
+    },
+    {
+      "pattern": "*.test.js",
+      "exclude": [],
+      "docs": []
+    }
+  ],
+  "notes": [
+    "Patterns are checked in order - first match wins",
+    "Use exclude to prevent false positives on utility/test files",
+    "Priority: high = critical for system function, medium = important for discovery, low = nice to have",
+    "Empty docs array means no documentation update needed",
+    "This mapping is conservative - only high-confidence relationships included"
+  ]
+}

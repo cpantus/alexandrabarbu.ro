@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Agent Schema",
+  "description": "Schema for agent metadata (frontmatter)",
+  "type": "object",
+  "required": ["name", "description", "model"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Agent name (kebab-case)",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief agent description"
+    },
+    "model": {
+      "type": "string",
+      "enum": ["haiku", "sonnet", "opus"],
+      "description": "Default model"
+    },
+    "thinking": {
+      "type": "string",
+      "enum": ["none", "think", "think-hard", "ultrathink"],
+      "description": "Thinking mode"
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["tier1", "tier2", "tier3"],
+      "description": "Loading tier"
+    },
+    "category": {
+      "type": "string",
+      "description": "Agent category (e.g., 'strategy', 'execution')"
+    },
+    "tools": {
+      "type": "array",
+      "description": "Available tools",
+      "items": {
+        "type": "string"
+      }
+    },
+    "caching": {
+      "type": "boolean",
+      "description": "Enable prompt caching",
+      "default": true
+    },
+    "version": {
+      "type": "string",
+      "description": "Agent version",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    }
+  }
+}

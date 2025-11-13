@@ -1,0 +1,170 @@
+{
+  "version": "1.0.0",
+  "description": "Documentation enforcement rules for git pre-commit hook",
+  "timestampWindow": 86400,
+  "rules": [
+    {
+      "name": "Core Hooks",
+      "pattern": "core/infrastructure/hooks/**/*.ts",
+      "excludePattern": "core/infrastructure/hooks/utils/**",
+      "docs": [
+        "core/docs/hook-architecture.md",
+        "ARCHITECTURE.md"
+      ],
+      "severity": "major",
+      "message": "Hook changes require updates to hook-architecture.md and ARCHITECTURE.md"
+    },
+    {
+      "name": "Core Agents",
+      "pattern": "core/infrastructure/agents/**/*.md",
+      "docs": [
+        "core/docs/agent-orchestration.md",
+        "ARCHITECTURE.md",
+        "README.md"
+      ],
+      "severity": "major",
+      "message": "Agent changes require updates to agent-orchestration.md, ARCHITECTURE.md, and README.md"
+    },
+    {
+      "name": "Core Patterns",
+      "pattern": "core/infrastructure/patterns/**/*.md",
+      "docs": [
+        "core/docs/pattern-system.md",
+        "ARCHITECTURE.md"
+      ],
+      "severity": "major",
+      "message": "Pattern changes require updates to pattern-system.md and ARCHITECTURE.md"
+    },
+    {
+      "name": "Core Skills",
+      "pattern": "core/infrastructure/skills/**/*.md",
+      "docs": [
+        "core/docs/skills-system.md",
+        "ARCHITECTURE.md"
+      ],
+      "severity": "major",
+      "message": "Skill changes require updates to skills-system.md and ARCHITECTURE.md"
+    },
+    {
+      "name": "Core Commands",
+      "pattern": "core/infrastructure/commands/**/*.md",
+      "excludePattern": null,
+      "docs": [
+        "ARCHITECTURE.md",
+        "README.md"
+      ],
+      "severity": "major",
+      "message": "Command changes require updates to ARCHITECTURE.md and README.md"
+    },
+    {
+      "name": "Hook Utilities",
+      "pattern": "core/infrastructure/hooks/utils/**/*.ts",
+      "docs": [
+        "core/docs/hook-architecture.md"
+      ],
+      "severity": "minor",
+      "message": "Hook utility changes should update hook-architecture.md"
+    },
+    {
+      "name": "Core Documentation",
+      "pattern": "core/docs/**/*.md",
+      "docs": [
+        "ARCHITECTURE.md"
+      ],
+      "severity": "minor",
+      "message": "Core documentation changes should be reflected in ARCHITECTURE.md"
+    },
+    {
+      "name": "Marketing Plugin Agents",
+      "pattern": "marketing-plugin/agents/**/*.md",
+      "docs": [
+        "marketing-plugin/README.md",
+        "README.md"
+      ],
+      "severity": "major",
+      "message": "Marketing agent changes require updates to plugin README and project README"
+    },
+    {
+      "name": "Marketing Plugin Patterns",
+      "pattern": "marketing-plugin/patterns/**/*.md",
+      "docs": [
+        "marketing-plugin/README.md"
+      ],
+      "severity": "minor",
+      "message": "Marketing pattern changes should update plugin README"
+    },
+    {
+      "name": "Marketing Plugin Skills",
+      "pattern": "marketing-plugin/skills/**/*.md",
+      "docs": [
+        "marketing-plugin/README.md"
+      ],
+      "severity": "minor",
+      "message": "Marketing skill changes should update plugin README"
+    },
+    {
+      "name": "Marketing Plugin Commands",
+      "pattern": "marketing-plugin/commands/**/*.md",
+      "docs": [
+        "marketing-plugin/README.md",
+        "README.md"
+      ],
+      "severity": "minor",
+      "message": "Marketing command changes should update plugin README and project README"
+    },
+    {
+      "name": "Infrastructure Scripts",
+      "pattern": "scripts/**/*.{sh,ts,js}",
+      "excludePattern": "scripts/playwright/**",
+      "docs": [
+        "ARCHITECTURE.md"
+      ],
+      "severity": "minor",
+      "message": "Infrastructure script changes should be documented in ARCHITECTURE.md"
+    },
+    {
+      "name": "Project Configuration",
+      "pattern": ".claude/{settings,model-rules,skill-rules,component-registry}.json",
+      "docs": [
+        "ARCHITECTURE.md",
+        ".claude/CLAUDE.md"
+      ],
+      "severity": "major",
+      "message": "Configuration changes require updates to ARCHITECTURE.md and CLAUDE.md"
+    },
+    {
+      "name": "Plugin Manifest",
+      "pattern": "**/.claude-plugin/plugin.json",
+      "docs": [
+        "ARCHITECTURE.md"
+      ],
+      "severity": "major",
+      "message": "Plugin manifest changes require ARCHITECTURE.md updates"
+    },
+    {
+      "name": "Component Counts Update",
+      "pattern": "scripts/validate-component-counts.sh",
+      "docs": [
+        "README.md",
+        "ARCHITECTURE.md"
+      ],
+      "severity": "major",
+      "message": "Component count validator changes require README and ARCHITECTURE updates"
+    }
+  ],
+  "excludeFiles": [
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/.gitignore",
+    "**/package-lock.json",
+    "**/yarn.lock",
+    "**/*.log"
+  ],
+  "bypassPatterns": [
+    "^WIP:",
+    "^wip:",
+    "^TEMP:",
+    "^temp:"
+  ],
+  "bypassMessage": "Commit message starts with WIP/TEMP - documentation enforcement skipped"
+}

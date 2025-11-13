@@ -1,0 +1,24 @@
+{
+  "name": "hal-10k-core",
+  "version": "5.5.0",
+  "type": "infrastructure",
+  "description": "Claude Code infrastructure - domain-agnostic core components for reuse across all projects",
+  "repository": "git@github.com:cpantus/hal-10k-core.git",
+  "components": {
+    "agents": 6,
+    "patterns": 25,
+    "skills": 3,
+    "hooks": 15,
+    "commands": 33
+  },
+  "features": {
+    "standalone": true,
+    "pluginSystem": false,
+    "enhancedPlanning": true,
+    "mcpOptimization": true,
+    "costTracking": true
+  },
+  "usage": "standalone-workspace",
+  "plugins": "none",
+  "lastUpdated": "2025-11-12"
+}

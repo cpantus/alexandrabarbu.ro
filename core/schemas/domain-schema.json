@@ -1,0 +1,312 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Domain Manifest Schema",
+  "description": "Schema for domain.json - Extension manifest file",
+  "type": "object",
+  "required": ["name", "version", "type", "description", "components"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Domain name (e.g., 'marketing', 'sales')",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "version": {
+      "type": "string",
+      "description": "Semantic version (e.g., '1.0.0')",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["extension", "core"],
+      "description": "Domain type"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief domain description"
+    },
+    "author": {
+      "type": "string",
+      "description": "Extension author/organization"
+    },
+    "license": {
+      "type": "string",
+      "description": "License type (e.g., 'MIT', 'Apache-2.0')"
+    },
+    "components": {
+      "type": "object",
+      "description": "Component definitions",
+      "properties": {
+        "agents": {
+          "type": "array",
+          "description": "List of agent files",
+          "items": {
+            "type": "object",
+            "required": ["name", "path"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Agent name (kebab-case)",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "path": {
+                "type": "string",
+                "description": "Relative path from domain root"
+              },
+              "description": {
+                "type": "string",
+                "description": "Brief agent description"
+              },
+              "tier": {
+                "type": "string",
+                "enum": ["tier1", "tier2", "tier3"],
+                "description": "Loading tier"
+              },
+              "model": {
+                "type": "string",
+                "enum": ["haiku", "sonnet", "opus"],
+                "description": "Default model"
+              }
+            }
+          }
+        },
+        "skills": {
+          "type": "array",
+          "description": "List of skill files",
+          "items": {
+            "type": "object",
+            "required": ["name", "path"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Skill name (kebab-case)",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "path": {
+                "type": "string",
+                "description": "Relative path from domain root"
+              },
+              "description": {
+                "type": "string"
+              },
+              "tier": {
+                "type": "string",
+                "enum": ["tier1", "tier2", "tier3"]
+              },
+              "triggers": {
+                "type": "array",
+                "description": "Auto-activation keywords",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "patterns": {
+          "type": "array",
+          "description": "List of pattern files",
+          "items": {
+            "type": "object",
+            "required": ["name", "path", "category"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Pattern name (snake_case)",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              },
+              "path": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string",
+                "description": "Pattern category"
+              },
+              "description": {
+                "type": "string"
+              },
+              "tier": {
+                "type": "string",
+                "enum": ["tier1", "tier2", "tier3"]
+              },
+              "model": {
+                "type": "string",
+                "enum": ["haiku", "sonnet", "opus"]
+              }
+            }
+          }
+        },
+        "commands": {
+          "type": "array",
+          "description": "List of command files",
+          "items": {
+            "type": "object",
+            "required": ["name", "path"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Command name (kebab-case, without /)",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "path": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string",
+                "description": "Command category"
+              }
+            }
+          }
+        },
+        "hooks": {
+          "type": "array",
+          "description": "List of hook files",
+          "items": {
+            "type": "object",
+            "required": ["name", "path", "event"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Hook name (kebab-case)",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "path": {
+                "type": "string"
+              },
+              "event": {
+                "type": "string",
+                "enum": [
+                  "user-prompt-submit",
+                  "pre-tool-use",
+                  "post-tool-use",
+                  "stop-event",
+                  "session-start",
+                  "session-end",
+                  "context-bundle",
+                  "background-agent",
+                  "agent-telemetry",
+                  "post-plan-approval",
+                  "pre-planning-validation"
+                ]
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "description": "Feature flags",
+      "properties": {
+        "teaching": {
+          "type": "boolean",
+          "description": "Has teaching system"
+        },
+        "demo": {
+          "type": "boolean",
+          "description": "Has demo capability"
+        },
+        "workflows": {
+          "type": "boolean",
+          "description": "Has custom workflows"
+        },
+        "mcp": {
+          "type": "boolean",
+          "description": "Has MCP integrations"
+        }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "description": "Extension dependencies",
+      "properties": {
+        "core": {
+          "type": "string",
+          "description": "Required core version (semver)",
+          "pattern": "^[><=~^]*\\d+\\.\\d+\\.\\d+$"
+        },
+        "extensions": {
+          "type": "array",
+          "description": "Required extensions",
+          "items": {
+            "type": "object",
+            "required": ["name", "version"],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string",
+                "pattern": "^[><=~^]*\\d+\\.\\d+\\.\\d+$"
+              }
+            }
+          }
+        }
+      }
+    },
+    "tier": {
+      "type": "object",
+      "description": "Tiered loading configuration",
+      "properties": {
+        "tier1": {
+          "type": "array",
+          "description": "Always load (critical)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tier2": {
+          "type": "array",
+          "description": "Load on demand (common)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tier3": {
+          "type": "array",
+          "description": "Load on explicit request (specialized)",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "mcpServers": {
+      "type": "array",
+      "description": "MCP server configurations",
+      "items": {
+        "type": "object",
+        "required": ["name", "command"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "MCP server name"
+          },
+          "command": {
+            "type": "string",
+            "description": "Server executable"
+          },
+          "args": {
+            "type": "array",
+            "description": "Command arguments",
+            "items": {
+              "type": "string"
+            }
+          },
+          "env": {
+            "type": "object",
+            "description": "Environment variables",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
