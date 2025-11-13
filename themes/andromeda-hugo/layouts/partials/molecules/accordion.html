@@ -1,0 +1,111 @@
+{{/*
+  Accordion Molecule - Collapsible accordion component (Bootstrap 5 based)
+
+  Usage:
+    {{ partial "molecules/accordion.html" (dict
+      "items" (slice
+        (dict "question" "Question 1" "answer" "Answer 1")
+        (dict "question" "Question 2" "answer" "Answer 2")
+      )
+      "id" "myAccordion"
+      "defaultOpen" 0
+    )}}
+
+  Parameters:
+    items (required) - Array of accordion items with:
+      - question (required): Accordion item title/question
+      - answer (required): Accordion item content/answer
+      - markdown (optional): Apply markdownify to answer (default: true)
+    id (required) - Unique ID for the accordion
+    defaultOpen (optional) - Index of item to open by default (default: 0, -1 for none)
+    class (optional) - Additional CSS classes for accordion wrapper
+    flush (optional) - Use flush variant (removes borders) (default: false)
+    alwaysOpen (optional) - Allow multiple items to stay open (default: false)
+
+  Examples:
+    Basic FAQ accordion:
+      {{ partial "molecules/accordion.html" (dict
+        "items" .Params.faq_items
+        "id" "faqAccordion"
+        "defaultOpen" 0
+      )}}
+
+    Flush variant:
+      {{ partial "molecules/accordion.html" (dict
+        "items" .items
+        "id" "infoAccordion"
+        "flush" true
+        "alwaysOpen" true
+      )}}
+*/}}
+
+{{ $items := .items }}
+{{ $id := .id }}
+{{ $defaultOpen := .defaultOpen }}
+{{ if not (isset . "defaultOpen") }}
+  {{ $defaultOpen = 0 }}
+{{ end }}
+{{ $class := .class | default "" }}
+{{ $flush := .flush | default false }}
+{{ $alwaysOpen := .alwaysOpen | default false }}
+
+{{ if not $items }}
+  {{ errorf "Accordion molecule requires 'items' parameter" }}
+{{ end }}
+
+{{ if not $id }}
+  {{ errorf "Accordion molecule requires 'id' parameter" }}
+{{ end }}
+
+{{/* Build accordion classes */}}
+{{ $accordionClass := "accordion" }}
+{{ if $flush }}
+  {{ $accordionClass = printf "%s accordion-flush" $accordionClass }}
+{{ end }}
+{{ if $class }}
+  {{ $accordionClass = printf "%s %s" $accordionClass $class }}
+{{ end }}
+
+<div class="{{ $accordionClass }}" id="{{ $id }}">
+  {{ range $index, $item := $items }}
+    {{ $question := $item.question }}
+    {{ $answer := $item.answer }}
+    {{ $markdown := $item.markdown }}
+    {{ if not (isset $item "markdown") }}
+      {{ $markdown = true }}
+    {{ end }}
+
+    {{ $isOpen := eq $index $defaultOpen }}
+    {{ $headingId := printf "%sHeading%d" $id $index }}
+    {{ $collapseId := printf "%sCollapse%d" $id $index }}
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="{{ $headingId }}">
+        <button
+          class="accordion-button{{ if not $isOpen }} collapsed{{ end }}"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#{{ $collapseId }}"
+          aria-expanded="{{ if $isOpen }}true{{ else }}false{{ end }}"
+          aria-controls="{{ $collapseId }}"
+        >
+          {{ $question }}
+        </button>
+      </h2>
+      <div
+        id="{{ $collapseId }}"
+        class="accordion-collapse collapse{{ if $isOpen }} show{{ end }}"
+        aria-labelledby="{{ $headingId }}"
+        {{ if not $alwaysOpen }}data-bs-parent="#{{ $id }}"{{ end }}
+      >
+        <div class="accordion-body">
+          {{ if $markdown }}
+            {{ $answer | markdownify }}
+          {{ else }}
+            {{ $answer | safeHTML }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  {{ end }}
+</div>

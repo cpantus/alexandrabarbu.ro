@@ -17,19 +17,14 @@
                 <p>{{ .description | markdownify }}</p>
               </div>
 
-              <div
-                class="video-block"
-                data-aos="fade-up"
-                data-aos-delay="100">
-                <button
-                  type="button"
-                  title="Play Video Button"
-                  class="video-play-btn"
-                  data-src="{{ .video_url }}">
-                  <i class="las la-play"></i>
-                </button>
-                {{ partial "image.html" (dict "Src" .video_thumbnail "Alt" "Video Thumbnail" "Class" "video-thumb" "Size" "700x") }}
-              </div>
+              {{ partial "molecules/video-embed.html" (dict
+                "url" .video_url
+                "thumbnail" .video_thumbnail
+                "title" .title
+                "size" "700x"
+                "aos" "fade-up"
+                "aosDelay" 100
+              ) }}
             </div>
           </div>
         </div>

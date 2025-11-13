@@ -1,0 +1,160 @@
+{{/*
+  Video Embed Molecule - Video player with thumbnail and play button
+
+  Usage:
+    {{ partial "molecules/video-embed.html" (dict
+      "url" "https://www.youtube.com/watch?v=..."
+      "thumbnail" "images/video-thumb.jpg"
+      "title" "Watch Video"
+    )}}
+
+  Parameters:
+    url (required) - Video URL (YouTube, Vimeo, or direct video link)
+    thumbnail (optional) - Thumbnail image path (auto-generated for YouTube/Vimeo if not provided)
+    title (optional) - Video title for accessibility (default: "Play Video")
+    class (optional) - Additional CSS classes for wrapper
+    aspectRatio (optional) - Aspect ratio: 16-9|4-3|1-1 (default: 16-9)
+    autoplay (optional) - Autoplay video (default: false)
+    controls (optional) - Show video controls (default: true)
+    loop (optional) - Loop video (default: false)
+    muted (optional) - Mute video (default: false)
+    size (optional) - Thumbnail size for image processing (default: "700x")
+    playIconSize (optional) - Play icon size (default: "3x")
+    aos (optional) - AOS animation name
+    aosDelay (optional) - AOS delay
+
+  Examples:
+    YouTube video:
+      {{ partial "molecules/video-embed.html" (dict
+        "url" "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        "thumbnail" "images/video-thumb.jpg"
+      )}}
+
+    Vimeo video:
+      {{ partial "molecules/video-embed.html" (dict
+        "url" "https://vimeo.com/123456789"
+        "title" "Product Demo"
+      )}}
+
+    Direct video:
+      {{ partial "molecules/video-embed.html" (dict
+        "url" "/videos/intro.mp4"
+        "thumbnail" "images/intro-thumb.jpg"
+        "autoplay" true
+      )}}
+*/}}
+
+{{ $url := .url }}
+{{ $thumbnail := .thumbnail }}
+{{ $title := .title | default "Play Video" }}
+{{ $class := .class | default "" }}
+{{ $aspectRatio := .aspectRatio | default "16-9" }}
+{{ $autoplay := .autoplay | default false }}
+{{ $controls := .controls }}
+{{ if not (isset . "controls") }}
+  {{ $controls = true }}
+{{ end }}
+{{ $loop := .loop | default false }}
+{{ $muted := .muted | default false }}
+{{ $size := .size | default "700x" }}
+{{ $playIconSize := .playIconSize | default "3x" }}
+{{ $aos := .aos }}
+{{ $aosDelay := .aosDelay }}
+
+{{ if not $url }}
+  {{ errorf "Video Embed molecule requires 'url' parameter" }}
+{{ end }}
+
+{{/* Detect video platform */}}
+{{ $isYouTube := false }}
+{{ $isVimeo := false }}
+{{ if findRE "youtube\\.com|youtu\\.be" $url }}
+  {{ $isYouTube = true }}
+{{ else if findRE "vimeo\\.com" $url }}
+  {{ $isVimeo = true }}
+{{ end }}
+
+{{/* Build wrapper classes */}}
+{{ $wrapperClass := printf "video-block ratio ratio-%s" $aspectRatio }}
+{{ if $class }}
+  {{ $wrapperClass = printf "%s %s" $wrapperClass $class }}
+{{ end }}
+
+{{/* Build AOS attributes */}}
+{{ $aosAttrs := "" }}
+{{ if $aos }}
+  {{ $aosAttrs = printf `data-aos="%s"` $aos }}
+  {{ if $aosDelay }}
+    {{ $aosAttrs = printf `%s data-aos-delay="%d"` $aosAttrs $aosDelay }}
+  {{ end }}
+{{ end }}
+
+<div class="{{ $wrapperClass }}" {{ $aosAttrs | safeHTMLAttr }}>
+  {{/* Play button overlay */}}
+  <button
+    type="button"
+    class="video-play-btn"
+    data-src="{{ $url }}"
+    aria-label="{{ $title }}"
+    title="{{ $title }}"
+  >
+    {{ partial "atoms/icon.html" (dict "name" "play" "size" $playIconSize "prefix" "las") }}
+  </button>
+
+  {{/* Video thumbnail */}}
+  {{ if $thumbnail }}
+    {{ partial "atoms/image.html" (dict
+      "src" $thumbnail
+      "alt" $title
+      "class" "video-thumb"
+      "size" $size
+    ) }}
+  {{ else if $isYouTube }}
+    {{/* Auto-generate YouTube thumbnail */}}
+    {{ $videoId := "" }}
+    {{ if findRE "youtube\\.com/watch\\?v=" $url }}
+      {{ $videoId = index (last 1 (split $url "v=")) 0 }}
+      {{ $videoId = index (split $videoId "&") 0 }}
+    {{ else if findRE "youtu\\.be/" $url }}
+      {{ $videoId = index (last 1 (split $url "/")) 0 }}
+      {{ $videoId = index (split $videoId "?") 0 }}
+    {{ end }}
+    {{ if $videoId }}
+      <img
+        src="https://img.youtube.com/vi/{{ $videoId }}/maxresdefault.jpg"
+        alt="{{ $title }}"
+        class="video-thumb"
+        loading="lazy"
+      />
+    {{ end }}
+  {{ else if $isVimeo }}
+    {{/* Vimeo requires API call for thumbnail, use placeholder */}}
+    <div class="video-thumb-placeholder bg-dark d-flex align-items-center justify-content-center">
+      {{ partial "atoms/icon.html" (dict "name" "video" "size" "4x" "color" "light") }}
+    </div>
+  {{ else }}
+    {{/* Direct video or unknown - show placeholder */}}
+    <div class="video-thumb-placeholder bg-dark d-flex align-items-center justify-content-center">
+      {{ partial "atoms/icon.html" (dict "name" "video" "size" "4x" "color" "light") }}
+    </div>
+  {{ end }}
+
+  {{/* Modal for video playback (JavaScript will handle this) */}}
+  <div class="video-modal" style="display: none;">
+    {{ if or $isYouTube $isVimeo }}
+      {{/* Embed code will be generated by JavaScript */}}
+    {{ else }}
+      {{/* Direct video */}}
+      <video
+        class="w-100"
+        {{ if $controls }}controls{{ end }}
+        {{ if $autoplay }}autoplay{{ end }}
+        {{ if $loop }}loop{{ end }}
+        {{ if $muted }}muted{{ end }}
+      >
+        <source src="{{ $url | relURL }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    {{ end }}
+  </div>
+</div>

@@ -1,0 +1,43 @@
+{{/*
+  Pricing Toggle Molecule - Monthly/Yearly pricing toggle switch
+
+  Usage:
+    {{ partial "molecules/pricing-toggle.html" (dict
+      "monthlyLabel" "Monthly"
+      "yearlyLabel" "Yearly"
+      "defaultYearly" false
+      "class" "mb-4"
+    )}}
+
+  Parameters:
+    monthlyLabel (optional) - Label for monthly option (default: i18n "monthly")
+    yearlyLabel (optional) - Label for yearly option (default: i18n "yearly")
+    defaultYearly (optional) - Start with yearly selected (default: false)
+    class (optional) - Additional CSS classes
+    id (optional) - Custom ID for the toggle input (default: "pricing-toggle")
+*/}}
+
+{{ $monthlyLabel := .monthlyLabel | default (T "monthly") }}
+{{ $yearlyLabel := .yearlyLabel | default (T "yearly") }}
+{{ $defaultYearly := .defaultYearly | default false }}
+{{ $class := .class | default "" }}
+{{ $id := .id | default "pricing-toggle" }}
+
+<div class="pricing-switch d-flex align-items-center justify-content-center w-100 {{ $class }}">
+  <label class="h5 m-0" for="{{ $id }}-monthly" id="monthly">
+    {{ $monthlyLabel }}
+  </label>
+  <div class="toggle">
+    <input
+      class="pricing-check"
+      type="checkbox"
+      id="{{ $id }}"
+      {{ if $defaultYearly }}checked{{ end }}
+      aria-label="Toggle between monthly and yearly pricing"
+    />
+    <b class="switch"></b>
+  </div>
+  <label class="h5 m-0" for="{{ $id }}-annually" id="annually">
+    {{ $yearlyLabel }}
+  </label>
+</div>

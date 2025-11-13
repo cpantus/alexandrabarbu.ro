@@ -1,0 +1,98 @@
+{{/*
+  Social Links Molecule - Social media links grid with icons and stagger animation
+
+  Usage:
+    {{ partial "molecules/social-links.html" (dict
+      "links" (slice
+        (dict "name" "facebook" "url" "https://facebook.com/...")
+        (dict "name" "twitter" "url" "https://twitter.com/...")
+      )
+      "class" "mb-4"
+      "stagger" true
+    )}}
+
+  Parameters:
+    links (required) - Array of social link dicts with:
+      - name (required): Social platform name (facebook, twitter, linkedin, instagram, etc.)
+      - url (required): Link URL
+      - icon (optional): Custom icon name (default: uses name as icon)
+      - label (optional): Custom aria-label (default: "Follow us on {name}")
+    class (optional) - Additional CSS classes for wrapper
+    size (optional) - Icon size: sm|md|lg|xl|2x|3x (default: "lg")
+    stagger (optional) - Enable stagger animation (default: true)
+    staggerDelay (optional) - Delay between items in ms (default: 100)
+    inline (optional) - Display inline instead of grid (default: false)
+    color (optional) - Icon color class (default: "primary")
+
+  Examples:
+    Basic social links:
+      {{ partial "molecules/social-links.html" (dict
+        "links" site.Params.social
+      )}}
+
+    Custom styled:
+      {{ partial "molecules/social-links.html" (dict
+        "links" .links
+        "size" "2x"
+        "color" "dark"
+        "inline" true
+      )}}
+*/}}
+
+{{ $links := .links }}
+{{ $class := .class | default "" }}
+{{ $size := .size | default "lg" }}
+{{ $stagger := .stagger | default true }}
+{{ $staggerDelay := .staggerDelay | default 100 }}
+{{ $inline := .inline | default false }}
+{{ $color := .color | default "primary" }}
+
+{{ if not $links }}
+  {{ errorf "Social Links molecule requires 'links' parameter" }}
+{{ end }}
+
+{{/* Build wrapper classes */}}
+{{ $wrapperClass := "social-links" }}
+{{ if $inline }}
+  {{ $wrapperClass = printf "%s d-flex gap-3" $wrapperClass }}
+{{ else }}
+  {{ $wrapperClass = printf "%s d-flex flex-wrap gap-3" $wrapperClass }}
+{{ end }}
+{{ if $class }}
+  {{ $wrapperClass = printf "%s %s" $wrapperClass $class }}
+{{ end }}
+
+<div class="{{ $wrapperClass }}">
+  {{ $index := 0 }}
+  {{ range $links }}
+    {{ $name := .name }}
+    {{ $url := .url }}
+    {{ $icon := .icon | default $name }}
+    {{ $label := .label | default (printf "Follow us on %s" (title $name)) }}
+
+    {{ if and $name $url }}
+      {{ $aosDelay := 0 }}
+      {{ if $stagger }}
+        {{ $aosDelay = mul $index $staggerDelay }}
+      {{ end }}
+
+      <a
+        href="{{ $url }}"
+        class="social-link"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="{{ $label }}"
+        {{ if $stagger }}data-aos="fade-up" data-aos-delay="{{ $aosDelay }}"{{ end }}
+      >
+        {{ partial "atoms/icon.html" (dict
+          "name" $icon
+          "size" $size
+          "color" $color
+          "prefix" "lab"
+        ) }}
+      </a>
+
+      {{ $index = add $index 1 }}
+    {{ end }}
+  {{ end }}
+</div>
