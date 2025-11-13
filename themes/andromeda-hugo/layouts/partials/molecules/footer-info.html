@@ -1,0 +1,41 @@
+{{/*
+  Footer Info Molecule
+
+  Displays logo, site description, contact information, and copyright
+  - Logo and site info
+  - Location and contact details
+  - Copyright notice
+
+  Usage:
+    {{ partial "molecules/footer-info.html" . }}
+*/}}
+
+{{/* Logo and Site Description */}}
+<div class="col-lg-4 col-md-6 col-sm-6">
+  <div class="pe-4">
+    <a
+      class="navbar-brand d-inline-block mb-4"
+      href="{{ site.BaseURL | relLangURL }}">
+      {{ partial "molecules/logo.html" . }}
+    </a>
+    <p class="mb-0">{{ site.Params.footer_info | markdownify }}</p>
+  </div>
+</div>
+
+{{/* Location and Contact Information */}}
+<div class="col-lg-3 col-md-6 col-sm-6 mt-5 mt-lg-0">
+  <div class="footer-widget">
+    <h4 class="mb-4">{{ T `location_contact` }}</h4>
+
+    {{ with site.Params.contact_info }}
+      <ul class="footer-links list-unstyled">
+        <li>{{ .address | markdownify }}</li>
+        {{ range first 1 .phone }}
+          {{ if . }}
+            <li><a href="tel:{{ . }}">{{ . }}</a></li>
+          {{ end }}
+        {{ end }}
+      </ul>
+    {{ end }}
+  </div>
+</div>

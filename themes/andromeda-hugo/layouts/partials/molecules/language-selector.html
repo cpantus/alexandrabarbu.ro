@@ -1,0 +1,71 @@
+{{/*
+  Language Selector Molecule
+
+  Displays language switcher for multilingual sites
+  Supports both desktop and mobile variants
+
+  Usage:
+    {{ partial "molecules/language-selector.html" (dict "variant" "desktop" "context" .) }}
+    {{ partial "molecules/language-selector.html" (dict "variant" "mobile" "context" .) }}
+
+  Params:
+    - variant: "desktop" or "mobile" (default: "desktop")
+    - context: page context (required)
+*/}}
+
+{{ $variant := .variant | default "desktop" }}
+{{ $context := .context | default . }}
+
+{{ if $context.IsTranslated }}
+  {{ if eq $variant "mobile" }}
+    {{/* Mobile Language Selector */}}
+    <div class="d-block d-lg-none text-center">
+      <select
+        class="mx-3 border-0 font-weight-bold"
+        id="select-language-mobile"
+        onchange="location = this.value;"
+        aria-label="{{ T `select_language` }}">
+        {{ $siteLanguages := site.Languages }}
+        {{ $pageLang := $context.Page.Lang }}
+        {{ range $context.Page.AllTranslations }}
+          {{ $translation := . }}
+          {{ range $siteLanguages }}
+            {{ if eq $translation.Lang .Lang }}
+              <option
+                id="{{ $translation.Language }}-mobile"
+                value="{{ $translation.RelPermalink }}"
+                {{ if eq $pageLang .Lang }}selected{{ end }}>
+                {{ .LanguageName }}
+              </option>
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      </select>
+    </div>
+  {{ else }}
+    {{/* Desktop Language Selector */}}
+    <div class="d-none d-lg-inline text-center">
+      <select
+        class="mx-3 border-0 font-weight-bold"
+        id="select-language-desktop"
+        onchange="location = this.value;"
+        aria-label="{{ T `select_language` }}">
+        {{ $siteLanguages := site.Languages }}
+        {{ $pageLang := $context.Page.Lang }}
+        {{ range $context.Page.AllTranslations }}
+          {{ $translation := . }}
+          {{ range $siteLanguages }}
+            {{ if eq $translation.Lang .Lang }}
+              <option
+                id="{{ $translation.Language }}-desktop"
+                value="{{ $translation.RelPermalink }}"
+                {{ if eq $pageLang .Lang }}selected{{ end }}>
+                {{ .LanguageName }}
+              </option>
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      </select>
+    </div>
+  {{ end }}
+{{ end }}
