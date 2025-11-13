@@ -1,0 +1,154 @@
+{{/*
+  Image Atom - Responsive image with Hugo processing
+
+  Usage:
+    {{ partial "atoms/image.html" (dict
+      "src" "images/hero.jpg"
+      "alt" "Hero image"
+      "width" 800
+      "height" 600
+      "class" "img-fluid"
+      "lazy" true
+      "webp" true
+      "responsive" true
+      "sizes" "(min-width: 768px) 800px, 100vw"
+    )}}
+
+  Parameters:
+    src (required) - Image source path (relative to assets or static)
+    alt (required) - Alt text for accessibility
+    width (optional) - Target width in pixels (default: 800)
+    height (optional) - Target height in pixels (default: auto)
+    class (optional) - CSS classes (default: "img-fluid")
+    lazy (optional) - Enable lazy loading (default: true)
+    webp (optional) - Generate WebP format (default: true)
+    responsive (optional) - Generate responsive srcset (default: true)
+    sizes (optional) - Sizes attribute for responsive images
+    quality (optional) - Image quality 1-100 (default: 90)
+    fit (optional) - Resize method: resize|fill|fit (default: resize)
+*/}}
+
+{{ $src := .src }}
+{{ $alt := .alt | default "Image" }}
+{{ $width := .width | default 800 }}
+{{ $height := .height }}
+{{ $class := .class | default "img-fluid" }}
+{{ $lazy := .lazy | default true }}
+{{ $webp := .webp | default true }}
+{{ $responsive := .responsive | default true }}
+{{ $sizes := .sizes | default "(min-width: 768px) 800px, 100vw" }}
+{{ $quality := .quality | default 90 }}
+{{ $fit := .fit | default "resize" }}
+
+{{/* Try to load image from assets first, fallback to static */}}
+{{ $image := "" }}
+{{ $imageResource := false }}
+
+{{/* Check if it's a page resource */}}
+{{ with $.Page }}
+  {{ $image = .Resources.GetMatch $src }}
+  {{ if $image }}
+    {{ $imageResource = true }}
+  {{ end }}
+{{ end }}
+
+{{/* Try assets directory */}}
+{{ if not $imageResource }}
+  {{ $image = resources.Get $src }}
+  {{ if $image }}
+    {{ $imageResource = true }}
+  {{ end }}
+{{ end }}
+
+{{/* If image is a resource, process it */}}
+{{ if $imageResource }}
+
+  {{/* Determine resize options */}}
+  {{ $resizeSpec := printf "%dx%d q%d" $width (int $height) $quality }}
+  {{ if not $height }}
+    {{ $resizeSpec = printf "%dx q%d" $width $quality }}
+  {{ end }}
+
+  {{/* Process image based on fit method */}}
+  {{ $processedImage := $image }}
+  {{ if eq $fit "fill" }}
+    {{ $processedImage = $image.Fill $resizeSpec }}
+  {{ else if eq $fit "fit" }}
+    {{ $processedImage = $image.Fit $resizeSpec }}
+  {{ else }}
+    {{ $processedImage = $image.Resize $resizeSpec }}
+  {{ end }}
+
+  {{/* Generate WebP version if requested */}}
+  {{ $webpImage := "" }}
+  {{ if $webp }}
+    {{ $webpImage = $processedImage.Process "webp" }}
+  {{ end }}
+
+  {{/* Generate responsive srcset */}}
+  {{ $srcset := "" }}
+  {{ $srcsetWebp := "" }}
+  {{ if $responsive }}
+    {{ $widths := slice (mul $width 0.5) $width (mul $width 1.5) (mul $width 2) }}
+    {{ $srcsetParts := slice }}
+    {{ $srcsetWebpParts := slice }}
+
+    {{ range $widths }}
+      {{ $w := int . }}
+      {{ $resizeSpecResponsive := printf "%dx q%d" $w $quality }}
+      {{ if $height }}
+        {{ $h := int (mul $height (div (float $w) (float $width))) }}
+        {{ $resizeSpecResponsive = printf "%dx%d q%d" $w $h $quality }}
+      {{ end }}
+
+      {{ $responsiveImg := $image.Resize $resizeSpecResponsive }}
+      {{ $srcsetParts = $srcsetParts | append (printf "%s %dw" $responsiveImg.RelPermalink $w) }}
+
+      {{ if $webp }}
+        {{ $responsiveWebp := $responsiveImg.Process "webp" }}
+        {{ $srcsetWebpParts = $srcsetWebpParts | append (printf "%s %dw" $responsiveWebp.RelPermalink $w) }}
+      {{ end }}
+    {{ end }}
+
+    {{ $srcset = delimit $srcsetParts ", " }}
+    {{ $srcsetWebp = delimit $srcsetWebpParts ", " }}
+  {{ end }}
+
+  {{/* Render picture element with WebP and fallback */}}
+  {{ if and $webp $webpImage }}
+    <picture>
+      {{ if $responsive }}
+        <source type="image/webp" srcset="{{ $srcsetWebp }}" sizes="{{ $sizes }}">
+        <source type="{{ $processedImage.MediaType }}" srcset="{{ $srcset }}" sizes="{{ $sizes }}">
+      {{ else }}
+        <source type="image/webp" srcset="{{ $webpImage.RelPermalink }}">
+      {{ end }}
+      <img
+        src="{{ $processedImage.RelPermalink }}"
+        alt="{{ $alt }}"
+        class="{{ $class }}"
+        width="{{ $processedImage.Width }}"
+        height="{{ $processedImage.Height }}"
+        {{- if $lazy }} loading="lazy"{{ end }}
+        {{- if $responsive }} srcset="{{ $srcset }}" sizes="{{ $sizes }}"{{ end }}>
+    </picture>
+  {{ else }}
+    {{/* Render standard img element */}}
+    <img
+      src="{{ $processedImage.RelPermalink }}"
+      alt="{{ $alt }}"
+      class="{{ $class }}"
+      width="{{ $processedImage.Width }}"
+      height="{{ $processedImage.Height }}"
+      {{- if $lazy }} loading="lazy"{{ end }}
+      {{- if and $responsive $srcset }} srcset="{{ $srcset }}" sizes="{{ $sizes }}"{{ end }}>
+  {{ end }}
+
+{{ else }}
+  {{/* Fallback for static images (no processing) */}}
+  <img
+    src="{{ $src | relURL }}"
+    alt="{{ $alt }}"
+    class="{{ $class }}"
+    {{- if $lazy }} loading="lazy"{{ end }}>
+{{ end }}

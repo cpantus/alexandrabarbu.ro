@@ -1,27 +1,41 @@
-{{/* Simple image partial for Hugo non-extended version */}}
+{{/*
+  Image partial wrapper - Backwards compatible with legacy API
+  Now uses atoms/image.html for advanced Hugo image processing
+
+  Legacy API:
+    {{ partial "image.html" (dict "Src" "path" "Alt" "text" "Class" "classes" "Size" "800x") }}
+*/}}
 {{- $src := .Src -}}
 {{- $alt := .Alt | default "image" -}}
-{{- $class := .Class | default "" -}}
+{{- $class := .Class | default "img-fluid" -}}
 {{- $size := .Size | default "" -}}
 
-{{/* Handle different image sources */}}
+{{/* Parse size parameter (e.g., "800x", "800x600") */}}
+{{- $width := 800 -}}
+{{- $height := 0 -}}
+{{- if $size -}}
+  {{- $sizeParts := split $size "x" -}}
+  {{- if ge (len $sizeParts) 1 -}}
+    {{- $width = int (index $sizeParts 0) -}}
+  {{- end -}}
+  {{- if ge (len $sizeParts) 2 -}}
+    {{- $height = int (index $sizeParts 1) -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Handle external URLs - no processing */}}
 {{- if hasPrefix $src "http" -}}
-  {{/* External URL */}}
   <img src="{{ $src }}" alt="{{ $alt }}" class="{{ $class }}" loading="lazy">
 {{- else -}}
-  {{/* Local image */}}
-  {{- $image := "" -}}
-  {{- if fileExists (printf "assets/%s" $src) -}}
-    {{/* Image exists in assets - use resources.Get */}}
-    {{- $image = resources.Get $src -}}
-    {{- if $image -}}
-      <img src="{{ $image.RelPermalink }}" alt="{{ $alt }}" class="{{ $class }}" loading="lazy">
-    {{- else -}}
-      {{/* Fallback if resource can't be processed */}}
-      <img src="{{ $src | relURL }}" alt="{{ $alt }}" class="{{ $class }}" loading="lazy">
-    {{- end -}}
-  {{- else -}}
-    {{/* Image in static folder or relative path */}}
-    <img src="{{ $src | relURL }}" alt="{{ $alt }}" class="{{ $class }}" loading="lazy">
-  {{- end -}}
+  {{/* Use advanced atoms/image.html for local images */}}
+  {{- partial "atoms/image.html" (dict
+    "src" $src
+    "alt" $alt
+    "width" $width
+    "height" (cond (gt $height 0) $height nil)
+    "class" $class
+    "lazy" true
+    "webp" true
+    "responsive" true
+  ) -}}
 {{- end -}}

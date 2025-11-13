@@ -15,9 +15,12 @@
               <h2 class="title">{{ .title | markdownify }}</h2>
               <p>{{ .description | markdownify }}</p>
               {{ if .button_link }}
-                <a href="{{ .button_link }}" class="btn btn-primary mt-4"
-                  >{{ .button_label }}</a
-                >
+                {{ partial "atoms/button.html" (dict
+                  "text" .button_label
+                  "href" .button_link
+                  "variant" "primary"
+                  "class" "mt-4"
+                ) }}
               {{ end }}
             </div>
           </div>
