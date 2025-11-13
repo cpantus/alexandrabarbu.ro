@@ -16,48 +16,46 @@
           <div class="col-lg-5 col-md-10" data-aos="fade-up">
             <div class="contact-form">
               <div class="mb-4">
-                <h3>{{ T `send_a_message` }}</h3>
+                {{ partial "atoms/heading.html" (dict "text" (T `send_a_message`) "level" 3) }}
               </div>
               <form id="contact-form" action="{{ . }}" method="POST">
                 <p id="form-status" class="form-status"></p>
-                <div class="form-group mb-4">
-                  <label class="mb-2" for="name">{{ T `full_name` }}</label>
-                  <input
-                    class="form-control shadow-none"
-                    id="name"
-                    name="{{ T `full_name` }}"
-                    type="text"
-                    placeholder="{{ T `full_name` }}"
-                    required />
-                </div>
-                <div class="form-group mb-4">
-                  <label class="mb-2" for="email">{{ T `email` }}</label>
-                  <input
-                    class="form-control shadow-none"
-                    id="email"
-                    name="{{ T `email` }}"
-                    type="email"
-                    placeholder="{{ T `email` }}"
-                    required />
-                </div>
-                <div class="form-group mb-4">
-                  <label class="mb-2" for="message"
-                    >{{ T `your_message` }}</label
-                  >
-                  <textarea
-                    class="form-control shadow-none h-auto"
-                    id="message"
-                    name="Comment"
-                    rows="4"
-                    required></textarea>
-                </div>
+                {{ partial "molecules/form-field.html" (dict
+                  "type" "text"
+                  "name" (T `full_name`)
+                  "id" "name"
+                  "label" (T `full_name`)
+                  "placeholder" (T `full_name`)
+                  "required" true
+                  "class" "mb-4"
+                ) }}
+                {{ partial "molecules/form-field.html" (dict
+                  "type" "email"
+                  "name" (T `email`)
+                  "id" "email"
+                  "label" (T `email`)
+                  "placeholder" (T `email`)
+                  "required" true
+                  "class" "mb-4"
+                ) }}
+                {{ partial "molecules/form-field.html" (dict
+                  "type" "textarea"
+                  "name" "Comment"
+                  "id" "message"
+                  "label" (T `your_message`)
+                  "rows" 4
+                  "required" true
+                  "class" "mb-4"
+                ) }}
 
-                <button
-                  class="btn btn-primary w-100 mt-4"
-                  type="submit"
-                  aria-label="Send Message">
-                  {{ T `send_message` }}
-                </button>
+                {{ partial "atoms/button.html" (dict
+                  "text" (T `send_message`)
+                  "type" "submit"
+                  "variant" "primary"
+                  "fullWidth" true
+                  "class" "mt-4"
+                  "attributes" (dict "aria-label" "Send Message")
+                ) }}
               </form>
             </div>
           </div>
@@ -91,7 +89,7 @@
           <div class="col-12">
             <div class="section-title text-center" data-aos="fade-up">
               <p class="text-uppercase">{{ T `contact_us` }}</p>
-              <h2 class="title">{{ T `get_in_touch` }}</h2>
+              {{ partial "atoms/heading.html" (dict "text" (T `get_in_touch`) "level" 2 "variant" "section") }}
             </div>
           </div>
 
@@ -100,13 +98,13 @@
               class="col-xl-3 col-lg-4 col-md-6 contact-widget"
               data-aos="fade-up">
               <div class="block text-center">
-                <h3 class="mb-4">{{ T `phone` }}</h3>
+                {{ partial "atoms/heading.html" (dict "text" (T `phone`) "level" 3 "class" "mb-4") }}
                 <ul class="list-unstyled">
                   {{ range . }}
                     {{ if . }}
                       <li>
                         <a href="tel:{{ . }}"
-                          ><i class="las la-phone"></i>{{ . }}</a
+                          >{{ partial "atoms/icon.html" (dict "name" "phone" "prefix" "las") }}{{ . }}</a
                         >
                       </li>
                     {{ end }}
@@ -122,13 +120,13 @@
               data-aos="fade-up"
               data-aos-delay="100">
               <div class="block text-center">
-                <h3 class="mb-4">{{ T `email` }}</h3>
+                {{ partial "atoms/heading.html" (dict "text" (T `email`) "level" 3 "class" "mb-4") }}
                 <ul class="list-unstyled">
                   {{ range . }}
                     {{ if . }}
                       <li>
                         <a href="mailto:{{ . }}"
-                          ><i class="las la-envelope-open-text"></i>{{ . }}</a
+                          >{{ partial "atoms/icon.html" (dict "name" "envelope-open-text" "prefix" "las") }}{{ . }}</a
                         >
                       </li>
                     {{ end }}
@@ -144,7 +142,7 @@
               data-aos="fade-up"
               data-aos-delay="200">
               <div class="block text-center">
-                <h3 class="mb-4">{{ T `social_media` }}</h3>
+                {{ partial "atoms/heading.html" (dict "text" (T `social_media`) "level" 3 "class" "mb-4") }}
                 <ul class="list-unstyled">
                   {{ range . }}
                     {{ if . }}

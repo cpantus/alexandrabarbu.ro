@@ -59,60 +59,56 @@ AUTHOR WEBSITE: https://gethugothemes.com
               data-aos="fade-up"
               data-aos-delay="150">
               <div class="section-title text-center">
-                <h2 class="title">Sign Up</h2>
+                {{ partial "atoms/heading.html" (dict "text" "Sign Up" "level" 2 "variant" "section") }}
               </div>
               <form method="POST" class="needs-validation" novalidate>
-                <div class="form-group mb-4">
-                  <label class="mb-2" for="name">Full Name</label>
-                  <input
-                    class="form-control shadow-none"
-                    id="name"
-                    type="text"
-                    placeholder="Your Full Name"
-                    required />
-                  <p class="font-weight-bold invalid-feedback">
-                    Your name is required!
-                  </p>
-                </div>
-                <div class="form-group mb-4">
-                  <label class="mb-2" for="email">Email Address</label>
-                  <input
-                    class="form-control shadow-none"
-                    id="email"
-                    type="email"
-                    placeholder="Type Your Email Address"
-                    required />
-                  <p class="font-weight-bold invalid-feedback">
-                    Your Email is required!
-                  </p>
-                </div>
-                <div class="form-group mb-4">
-                  <label class="mb-2" for="password">Password</label>
-                  <input
-                    class="form-control shadow-none"
-                    id="password"
-                    type="password"
-                    placeholder="Enter Your Password"
-                    required />
-                  <p class="font-weight-bold invalid-feedback">
-                    Your Password is required!
-                  </p>
-                </div>
-                <button
-                  class="btn btn-primary w-100 mt-4 text-uppercase"
-                  type="submit"
-                  aria-label="Sign Up">
-                  Sign Up
-                </button>
+                {{ partial "molecules/form-field.html" (dict
+                  "type" "text"
+                  "name" "name"
+                  "id" "name"
+                  "label" "Full Name"
+                  "placeholder" "Your Full Name"
+                  "required" true
+                  "errorText" "Your name is required!"
+                  "class" "mb-4"
+                ) }}
+                {{ partial "molecules/form-field.html" (dict
+                  "type" "email"
+                  "name" "email"
+                  "id" "email"
+                  "label" "Email Address"
+                  "placeholder" "Type Your Email Address"
+                  "required" true
+                  "errorText" "Your Email is required!"
+                  "class" "mb-4"
+                ) }}
+                {{ partial "molecules/form-field.html" (dict
+                  "type" "password"
+                  "name" "password"
+                  "id" "password"
+                  "label" "Password"
+                  "placeholder" "Enter Your Password"
+                  "required" true
+                  "errorText" "Your Password is required!"
+                  "class" "mb-4"
+                ) }}
+                {{ partial "atoms/button.html" (dict
+                  "text" "Sign Up"
+                  "type" "submit"
+                  "variant" "primary"
+                  "fullWidth" true
+                  "class" "mt-4 text-uppercase"
+                  "attributes" (dict "aria-label" "Sign Up")
+                ) }}
               </form>
 
-              <p class="text-center my-3 h5">Otherwise Log In With</p>
+              {{ partial "atoms/heading.html" (dict "text" "Otherwise Log In With" "level" 5 "class" "text-center my-3") }}
               <div class="d-block d-sm-flex">
                 <a
                   href="#!"
                   class="btn w-100 me-0 me-sm-2"
                   style="background:#4064AD;color:#fff"
-                  ><i class="lab la-facebook-f me-1"></i>Facebook</a
+                  >{{ partial "atoms/icon.html" (dict "name" "facebook-f" "prefix" "lab" "class" "me-1") }}Facebook</a
                 >
                 <a
                   href="#!"
