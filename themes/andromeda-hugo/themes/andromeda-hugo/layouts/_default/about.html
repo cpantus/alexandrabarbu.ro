@@ -9,7 +9,7 @@
             <div class="col-lg-4 col-md-6" data-aos="fade-up">
               <div class="section-title">
                 <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
-                <h2 class="title">{{ .title | markdownify }}</h2>
+                {{ partial "atoms/heading.html" (dict "text" .title "level" 2 "class" "title" "markdown" true) }}
                 <p>{{ .description | markdownify }}</p>
               </div>
             </div>
@@ -49,14 +49,14 @@
             <div class="col-12">
               <div class="section-title text-center">
                 <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
-                <h2 class="title">{{ .title | markdownify }}</h2>
+                {{ partial "atoms/heading.html" (dict "text" .title "level" 2 "class" "title" "markdown" true) }}
               </div>
             </div>
 
             {{ range .block }}
               <div class="col-xl-5 col-lg-6">
                 <div class="text-center px-0 px-md-5 mt-4">
-                  <h3 class="text-capitalize">{{ .title | markdownify }}</h3>
+                  {{ partial "atoms/heading.html" (dict "text" .title "level" 3 "class" "text-capitalize" "markdown" true) }}
                   <p>{{ .content | markdownify }}</p>
                 </div>
               </div>
@@ -98,7 +98,7 @@
               data-aos-delay="150">
               <div class="section-title">
                 <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
-                <h2 class="title">{{ .title | markdownify }}</h2>
+                {{ partial "atoms/heading.html" (dict "text" .title "level" 2 "class" "title" "markdown" true) }}
                 <p>{{ .description | markdownify }}</p>
               </div>
             </div>
@@ -121,7 +121,7 @@
                       <p class="text-uppercase">
                         {{ .subtitle | markdownify }}
                       </p>
-                      <h2 class="title">{{ .title | markdownify }}</h2>
+                      {{ partial "atoms/heading.html" (dict "text" .title "level" 2 "class" "title" "markdown" true) }}
                       <p>{{ .description | markdownify }}</p>
                     </div>
                   </div>
@@ -136,7 +136,7 @@
                         title="Play Video Button"
                         class="video-play-btn"
                         data-src="{{ .video_url }}">
-                        <i class="las la-play"></i>
+                        {{ partial "atoms/icon.html" (dict "name" "play" "prefix" "las") }}
                       </button>
                       {{ partial "image.html" (dict "Src" .video_thumbnail "Alt" "Video Thumbnail" "Class" "video-thumb"
                         "Size" "700x")
@@ -191,7 +191,7 @@
             <div class="col-12">
               <div class="section-title text-center" data-aos="fade-in">
                 <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
-                <h2 class="title">{{ .title | markdownify }}</h2>
+                {{ partial "atoms/heading.html" (dict "text" .title "level" 2 "class" "title" "markdown" true) }}
               </div>
             </div>
             {{ with site.GetPage (string .Params.clients.section) }}
@@ -225,7 +225,7 @@
             <div class="col-12">
               <div class="section-title text-center" data-aos="fade-in">
                 <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
-                <h2 class="title">{{ .title | markdownify }}</h2>
+                {{ partial "atoms/heading.html" (dict "text" .title "level" 2 "class" "title" "markdown" true) }}
                 <p>{{ .description | markdownify }}</p>
               </div>
             </div>
@@ -239,7 +239,7 @@
                       "175x")
                     }}
                   </div>
-                  <h3>{{ .name | markdownify }}</h3>
+                  {{ partial "atoms/heading.html" (dict "text" .name "level" 3 "markdown" true) }}
                   <p>{{ .designation | markdownify }}</p>
                 </div>
               </div>
@@ -258,7 +258,7 @@
             <div class="col-xl-6 col-lg-8 col-md-10">
               <div class="section-title text-center mb-0" data-aos="fade-in">
                 <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
-                <h2 class="title">{{ .title | markdownify }}</h2>
+                {{ partial "atoms/heading.html" (dict "text" .title "level" 2 "class" "title" "markdown" true) }}
                 <p>{{ .description | markdownify }}</p>
               </div>
             </div>
@@ -270,7 +270,7 @@
                   <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="office-loc-item">
                       {{ partial "image.html" (dict "Src" .country_flag "Alt" "Flags" "Size" "80x") }}
-                      <h3>{{ .city | markdownify }}</h3>
+                      {{ partial "atoms/heading.html" (dict "text" .city "level" 3 "markdown" true) }}
                       <p>{{ .address_line_one | markdownify }}</p>
                       <p>{{ .address_line_two | markdownify }}</p>
                     </div>

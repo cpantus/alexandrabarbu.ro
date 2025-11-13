@@ -73,8 +73,20 @@ Tasks:
 ---
 
 ### Phase 4: Legacy Migration (Week 7-10, 40h)
-**Status**: ⚪ PENDING
-**Progress**: 0/40 hours
+**Status**: 🔄 IN PROGRESS
+**Progress**: 8/40 hours (20%)
+
+Tasks:
+- [x] Refactor about.html to use atomic design (8h) ✅
+- [ ] Refactor services.html to use atomic design (6h)
+- [ ] Refactor pricing.html to use atomic design (4h)
+- [ ] Refactor contact.html to use atomic design (4h)
+- [ ] Refactor signup.html to use atomic design (3h)
+- [ ] Refactor signin.html to use atomic design (3h)
+- [ ] Test all refactored pages (4h)
+- [ ] Document Phase 4 changes (2h)
+
+**Deliverable**: 6 legacy pages refactored to use atomic design system ⚪
 
 ---
 
@@ -85,7 +97,7 @@ Tasks:
 ---
 
 ## Overall Progress
-**Total**: 74/130 hours (57%)
+**Total**: 82/130 hours (63%)
 
 ## Week 1 Quick Wins (First 8 hours) ✅ COMPLETED
 - [x] Create git branch (5min) ✅
@@ -229,21 +241,70 @@ organisms/
 
 ---
 
-## Next Session Resume Point
-**Phase 3 Complete! ✅**
-**Start here**: Begin Phase 4 - Legacy Migration (Week 7-10)
+## What Was Accomplished - Phase 4 (In Progress) 🔄
 
-**Migration targets** (HIGH PRIORITY):
-1. `about.html` (287 lines) → 8h - Most complex, high-traffic
-2. `services.html` (237 lines) → 6h - Core conversion page
-3. `pricing.html` (164 lines) → 4h - Important for business
-4. `contact.html` (166 lines) → 4h - Already have enhanced version
-5. `signup.html` (155 lines) → 3h - Already have enhanced section
-6. `signin.html` (129 lines) → 3h - Similar to signup
+### Week 7: about.html Migration (8 hours)
+
+#### Refactored Elements
+1. **All Section Titles (h2)**: Replaced 7 inline h2 elements with heading atom
+   - who_we_are section title
+   - what_we_do section title
+   - our_mission section title
+   - about_video section title
+   - brands_carousel section title
+   - our_team section title
+   - our_office section title
+
+2. **Content Headings (h3)**: Replaced 3 inline h3 elements with heading atom
+   - what_we_do block titles (dynamic)
+   - Team member names
+   - Office location cities
+
+3. **Video Play Button Icon**: Replaced inline `<i class="las la-play"></i>` with icon atom
+   - Maintains consistent icon rendering across all components
+
+4. **Image Components**: Already using image atom (no changes needed)
+   - Image partial is the image atom
+   - All 5 sections using images maintained
+
+#### Code Quality Improvements
+- **Consistency**: All headings now use the same component with standardized markup
+- **Maintainability**: Heading styles can be changed in one place (atoms/heading.html)
+- **Accessibility**: Proper semantic HTML and ARIA support enforced by atoms
+- **Reusability**: heading atom and icon atom usage count increased significantly
+
+#### Sections Maintained (No Over-Engineering)
+- Decorative circles and SVG paths (unique to about page)
+- Layout structure (two-column, grid layouts)
+- Animation attributes (AOS)
+- Swiper carousel for brands (specific implementation)
+
+### Impact - Phase 4 (So Far)
+- **File**: about.html (287 lines maintained)
+- **Atoms Used**: heading (10 instances), icon (1 instance), image (maintained existing)
+- **Code Quality**: ✅ Improved consistency without over-engineering
+- **Structure**: ✅ Maintained existing layout and functionality
+- **Time**: 8 hours (on schedule)
+
+---
+
+## Next Session Resume Point
+**Phase 4 In Progress! 🔄** (about.html Complete ✅)
+**Continue**: Phase 4 - Legacy Migration (Week 7-10)
+
+**Next migration target**: `services.html` (237 lines) → 6h - Core conversion page
+
+**Remaining targets** (HIGH PRIORITY):
+1. ✅ `about.html` (287 lines) → 8h - COMPLETED
+2. ⏭️ `services.html` (237 lines) → 6h - NEXT
+3. `pricing.html` (164 lines) → 4h
+4. `contact.html` (166 lines) → 4h
+5. `signup.html` (155 lines) → 3h
+6. `signin.html` (129 lines) → 3h
 
 **Command to resume**:
 ```
 Resume Hugo refactor at /home/user/alexandrabarbu.ro/themes/andromeda-hugo
-Read REFACTOR-PLAN-v2.md and dev/active/refactor-atomic-design/PROGRESS.md
-Start Phase 4: Legacy Migration
+Read dev/active/refactor-atomic-design/PROGRESS.md
+Continue Phase 4: Refactor services.html next
 ```
