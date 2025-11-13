@@ -1,0 +1,159 @@
+{{/*
+  Input Atom - Form input component with various types
+
+  Usage:
+    {{ partial "atoms/input.html" (dict
+      "type" "text"
+      "name" "username"
+      "id" "username"
+      "label" "Username"
+      "placeholder" "Enter your username"
+      "required" true
+      "class" "mb-4"
+    )}}
+
+  Parameters:
+    type (required) - Input type: text|email|password|tel|url|number|date|time|textarea|checkbox|radio|select
+    name (required) - Input name attribute
+    id (required) - Input id attribute
+    label (optional) - Label text (displayed above input for text types, after for checkbox/radio)
+    placeholder (optional) - Placeholder text
+    value (optional) - Input value
+    required (optional) - Mark as required (default: false)
+    disabled (optional) - Mark as disabled (default: false)
+    readonly (optional) - Mark as readonly (default: false)
+    class (optional) - Additional CSS classes for wrapper
+    inputClass (optional) - Additional CSS classes for input element
+    labelClass (optional) - Additional CSS classes for label
+    rows (optional) - Rows for textarea (default: 4)
+    min (optional) - Min value for number type
+    max (optional) - Max value for number type
+    pattern (optional) - Validation pattern
+    helpText (optional) - Help text displayed below input
+    options (optional) - Options for select type (slice of dicts with "value" and "text")
+    attributes (optional) - Additional HTML attributes as dict
+
+  Types:
+    - text, email, password, tel, url, number, date, time: Standard text inputs
+    - textarea: Multi-line text input
+    - checkbox, radio: Checkbox or radio input with label after
+    - select: Dropdown select with options
+*/}}
+
+{{ $type := .type | default "text" }}
+{{ $name := .name }}
+{{ $id := .id }}
+{{ $label := .label }}
+{{ $placeholder := .placeholder }}
+{{ $value := .value }}
+{{ $required := .required | default false }}
+{{ $disabled := .disabled | default false }}
+{{ $readonly := .readonly | default false }}
+{{ $class := .class | default "" }}
+{{ $inputClass := .inputClass | default "" }}
+{{ $labelClass := .labelClass | default "" }}
+{{ $rows := .rows | default 4 }}
+{{ $min := .min }}
+{{ $max := .max }}
+{{ $pattern := .pattern }}
+{{ $helpText := .helpText }}
+{{ $options := .options }}
+{{ $attributes := .attributes | default dict }}
+
+{{/* Determine if this is a checkbox/radio type */}}
+{{ $isCheckable := or (eq $type "checkbox") (eq $type "radio") }}
+
+{{/* Build wrapper classes */}}
+{{ $wrapperClass := "" }}
+{{ if $isCheckable }}
+  {{ $wrapperClass = "form-check" }}
+{{ else }}
+  {{ $wrapperClass = "form-group" }}
+{{ end }}
+{{ if $class }}
+  {{ $wrapperClass = printf "%s %s" $wrapperClass $class }}
+{{ end }}
+
+{{/* Build input classes */}}
+{{ $inputClassFinal := "" }}
+{{ if $isCheckable }}
+  {{ $inputClassFinal = "form-check-input" }}
+{{ else if eq $type "select" }}
+  {{ $inputClassFinal = "form-select shadow-none" }}
+{{ else }}
+  {{ $inputClassFinal = "form-control shadow-none" }}
+{{ end }}
+{{ if $inputClass }}
+  {{ $inputClassFinal = printf "%s %s" $inputClassFinal $inputClass }}
+{{ end }}
+
+{{/* Build label classes */}}
+{{ $labelClassFinal := "" }}
+{{ if $isCheckable }}
+  {{ $labelClassFinal = "form-check-label" }}
+{{ else }}
+  {{ $labelClassFinal = "mb-2" }}
+{{ end }}
+{{ if $labelClass }}
+  {{ $labelClassFinal = printf "%s %s" $labelClassFinal $labelClass }}
+{{ end }}
+
+{{/* Build common attributes */}}
+{{ $commonAttrs := dict }}
+{{ if $required }}{{ $commonAttrs = merge $commonAttrs (dict "required" "required") }}{{ end }}
+{{ if $disabled }}{{ $commonAttrs = merge $commonAttrs (dict "disabled" "disabled") }}{{ end }}
+{{ if $readonly }}{{ $commonAttrs = merge $commonAttrs (dict "readonly" "readonly") }}{{ end }}
+{{ if $placeholder }}{{ $commonAttrs = merge $commonAttrs (dict "placeholder" $placeholder) }}{{ end }}
+{{ if $value }}{{ $commonAttrs = merge $commonAttrs (dict "value" $value) }}{{ end }}
+{{ if $min }}{{ $commonAttrs = merge $commonAttrs (dict "min" (string $min)) }}{{ end }}
+{{ if $max }}{{ $commonAttrs = merge $commonAttrs (dict "max" (string $max)) }}{{ end }}
+{{ if $pattern }}{{ $commonAttrs = merge $commonAttrs (dict "pattern" $pattern) }}{{ end }}
+{{ $commonAttrs = merge $commonAttrs $attributes }}
+
+<div class="{{ $wrapperClass }}">
+  {{/* Render label before input for non-checkable types */}}
+  {{ if and $label (not $isCheckable) }}
+    <label class="{{ $labelClassFinal }}" for="{{ $id }}">{{ $label }}</label>
+  {{ end }}
+
+  {{/* Render input based on type */}}
+  {{ if eq $type "textarea" }}
+    <textarea
+      class="{{ $inputClassFinal }}"
+      id="{{ $id }}"
+      name="{{ $name }}"
+      rows="{{ $rows }}"
+      {{- range $key, $value := $commonAttrs }} {{ $key }}="{{ $value }}"{{ end -}}
+    >{{ $value }}</textarea>
+
+  {{ else if eq $type "select" }}
+    <select
+      class="{{ $inputClassFinal }}"
+      id="{{ $id }}"
+      name="{{ $name }}"
+      {{- range $key, $value := $commonAttrs }} {{ $key }}="{{ $value }}"{{ end -}}>
+      {{ range $options }}
+        <option value="{{ .value }}"{{ if eq .value $value }} selected{{ end }}>{{ .text }}</option>
+      {{ end }}
+    </select>
+
+  {{ else }}
+    {{/* Standard input (text, email, password, checkbox, radio, etc.) */}}
+    <input
+      type="{{ $type }}"
+      class="{{ $inputClassFinal }}"
+      id="{{ $id }}"
+      name="{{ $name }}"
+      {{- range $key, $value := $commonAttrs }} {{ $key }}="{{ $value }}"{{ end -}}>
+  {{ end }}
+
+  {{/* Render label after input for checkable types */}}
+  {{ if and $label $isCheckable }}
+    <label class="{{ $labelClassFinal }}" for="{{ $id }}">{{ $label | safeHTML }}</label>
+  {{ end }}
+
+  {{/* Help text */}}
+  {{ with $helpText }}
+    <small class="form-text text-muted d-block mt-1">{{ . }}</small>
+  {{ end }}
+</div>

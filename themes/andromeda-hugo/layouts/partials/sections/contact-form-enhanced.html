@@ -14,7 +14,7 @@
             <div class="d-flex flex-wrap justify-content-center gap-2">
               {{ range . }}
               <span class="badge bg-light text-primary px-3 py-2 trust-badge">
-                <i class="las la-check-circle"></i> {{ . }}
+                {{ partial "atoms/icon.html" (dict "name" "check-circle") }} {{ . }}
               </span>
               {{ end }}
             </div>
@@ -27,7 +27,11 @@
       <div class="col-lg-5 col-md-10" data-aos="fade-up" data-aos-delay="100">
         <div class="contact-form contact-form-enhanced" id="contact-form">
           <div class="mb-4">
-            <h3 class="gradient-text">{{ T `send_a_message` | default "Trimite un mesaj" }}</h3>
+            {{ partial "atoms/heading.html" (dict
+              "text" (T `send_a_message` | default "Trimite un mesaj")
+              "level" 3
+              "variant" "gradient"
+            ) }}
             {{ with $.Params.first_consultation }}
             <div class="consultation-info-box">
               <strong>{{ .title }}:</strong> {{ .duration }}<br>
@@ -37,21 +41,38 @@
           </div>
           <form id="contact-form" action="{{ . }}" method="POST">
             <p id="form-status" class="form-status"></p>
-            <div class="form-group mb-4">
-              <label class="mb-2" for="name">{{ T `full_name` | default "Nume complet" }}</label>
-              <input class="form-control shadow-none" id="name" name="name" type="text" required />
-            </div>
-            <div class="form-group mb-4">
-              <label class="mb-2" for="email">{{ T `email` | default "Email" }}</label>
-              <input class="form-control shadow-none" id="email" name="email" type="email" required />
-            </div>
-            <div class="form-group mb-4">
-              <label class="mb-2" for="message">{{ T `your_message` | default "Mesajul tău" }}</label>
-              <textarea class="form-control shadow-none" id="message" name="message" rows="4" required></textarea>
-            </div>
-            <button class="btn btn-primary w-100 mt-4" type="submit">
-              {{ T `send_message` | default "Trimite mesaj" }}
-            </button>
+            {{ partial "atoms/input.html" (dict
+              "type" "text"
+              "name" "name"
+              "id" "name"
+              "label" (T `full_name` | default "Nume complet")
+              "required" true
+              "class" "mb-4"
+            ) }}
+            {{ partial "atoms/input.html" (dict
+              "type" "email"
+              "name" "email"
+              "id" "email"
+              "label" (T `email` | default "Email")
+              "required" true
+              "class" "mb-4"
+            ) }}
+            {{ partial "atoms/input.html" (dict
+              "type" "textarea"
+              "name" "message"
+              "id" "message"
+              "label" (T `your_message` | default "Mesajul tău")
+              "rows" 4
+              "required" true
+              "class" "mb-4"
+            ) }}
+            {{ partial "atoms/button.html" (dict
+              "text" (T `send_message` | default "Trimite mesaj")
+              "type" "submit"
+              "variant" "primary"
+              "fullWidth" true
+              "class" "mt-4"
+            ) }}
           </form>
         </div>
       </div>

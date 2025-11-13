@@ -124,6 +124,342 @@
             </div>
           </div>
 
+          <!-- Heading Atoms Preview -->
+          <div class="component-section mt-5">
+            <h2 class="text-primary mb-4">Heading Atom</h2>
+            <p>Semantic heading component with multiple variants and alignment options.</p>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Default Headings</h3>
+              <div class="mb-3">
+                {{ partial "atoms/heading.html" (dict "text" "H1 Heading" "level" 1 "class" "mb-2") }}
+                {{ partial "atoms/heading.html" (dict "text" "H2 Heading" "level" 2 "class" "mb-2") }}
+                {{ partial "atoms/heading.html" (dict "text" "H3 Heading" "level" 3 "class" "mb-2") }}
+                {{ partial "atoms/heading.html" (dict "text" "H4 Heading" "level" 4 "class" "mb-2") }}
+                {{ partial "atoms/heading.html" (dict "text" "H5 Heading" "level" 5 "class" "mb-2") }}
+                {{ partial "atoms/heading.html" (dict "text" "H6 Heading" "level" 6) }}
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Gradient Heading</h3>
+              {{ partial "atoms/heading.html" (dict
+                "text" "Beautiful Gradient Heading"
+                "level" 2
+                "variant" "gradient"
+                "align" "center"
+                "class" "mb-3"
+              ) }}
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Section Title (with wrapper)</h3>
+              {{ partial "atoms/heading.html" (dict
+                "text" "Section Title with Subtitle"
+                "level" 2
+                "variant" "section"
+                "align" "center"
+                "subtitle" "This is a subtitle that appears below the heading"
+                "class" "mb-4"
+              ) }}
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Bold Heading</h3>
+              {{ partial "atoms/heading.html" (dict
+                "text" "Extra Bold Heading"
+                "level" 3
+                "variant" "bold"
+                "class" "mb-3"
+              ) }}
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Alignment Options</h3>
+              {{ partial "atoms/heading.html" (dict
+                "text" "Left Aligned (default)"
+                "level" 4
+                "align" "left"
+                "class" "mb-2"
+              ) }}
+              {{ partial "atoms/heading.html" (dict
+                "text" "Center Aligned"
+                "level" 4
+                "align" "center"
+                "class" "mb-2"
+              ) }}
+              {{ partial "atoms/heading.html" (dict
+                "text" "Right Aligned"
+                "level" 4
+                "align" "right"
+                "class" "mb-2"
+              ) }}
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">With Markdown Support</h3>
+              {{ partial "atoms/heading.html" (dict
+                "text" "Heading with **bold** and *italic*"
+                "level" 3
+                "markdown" true
+                "class" "mb-3"
+              ) }}
+            </div>
+
+            <!-- Code Example -->
+            <div class="mt-4 p-3 bg-light rounded">
+              <h4 class="h6 mb-2">Code Examples:</h4>
+              <pre class="mb-3"><code>{{`{{ partial "atoms/heading.html" (dict
+  "text" "Page Title"
+  "level" 1
+  "variant" "gradient"
+  "align" "center"
+) }}`}}</code></pre>
+              <pre class="mb-0"><code>{{`{{ partial "atoms/heading.html" (dict
+  "text" "Section Title"
+  "level" 2
+  "variant" "section"
+  "subtitle" "Optional subtitle text"
+) }}`}}</code></pre>
+            </div>
+
+            <div class="alert alert-info mt-3">
+              <i class="las la-info-circle me-2"></i>
+              <strong>Variants:</strong> default | gradient | section | bold
+            </div>
+          </div>
+
+          <!-- Input Atoms Preview -->
+          <div class="component-section mt-5">
+            <h2 class="text-primary mb-4">Input Atom</h2>
+            <p>Flexible form input component supporting various types (text, email, textarea, checkbox, select, etc.).</p>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Text Inputs</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  {{ partial "atoms/input.html" (dict
+                    "type" "text"
+                    "name" "username"
+                    "id" "username"
+                    "label" "Username"
+                    "placeholder" "Enter your username"
+                    "class" "mb-3"
+                  ) }}
+                </div>
+                <div class="col-md-6">
+                  {{ partial "atoms/input.html" (dict
+                    "type" "email"
+                    "name" "email"
+                    "id" "email"
+                    "label" "Email Address"
+                    "placeholder" "your@email.com"
+                    "required" true
+                    "class" "mb-3"
+                  ) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Password & Phone</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  {{ partial "atoms/input.html" (dict
+                    "type" "password"
+                    "name" "password"
+                    "id" "password"
+                    "label" "Password"
+                    "required" true
+                    "class" "mb-3"
+                  ) }}
+                </div>
+                <div class="col-md-6">
+                  {{ partial "atoms/input.html" (dict
+                    "type" "tel"
+                    "name" "phone"
+                    "id" "phone"
+                    "label" "Phone Number"
+                    "placeholder" "+40 123 456 789"
+                    "class" "mb-3"
+                  ) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Textarea</h3>
+              {{ partial "atoms/input.html" (dict
+                "type" "textarea"
+                "name" "message"
+                "id" "message"
+                "label" "Message"
+                "placeholder" "Enter your message..."
+                "rows" 4
+                "class" "mb-3"
+              ) }}
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Checkbox</h3>
+              {{ partial "atoms/input.html" (dict
+                "type" "checkbox"
+                "name" "terms"
+                "id" "terms"
+                "label" "I agree to the terms and conditions"
+                "class" "mb-2"
+              ) }}
+              {{ partial "atoms/input.html" (dict
+                "type" "checkbox"
+                "name" "newsletter"
+                "id" "newsletter"
+                "label" "Subscribe to newsletter"
+                "class" "mb-3"
+              ) }}
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Select Dropdown</h3>
+              {{ partial "atoms/input.html" (dict
+                "type" "select"
+                "name" "country"
+                "id" "country"
+                "label" "Country"
+                "options" (slice
+                  (dict "value" "" "text" "Select a country")
+                  (dict "value" "ro" "text" "România")
+                  (dict "value" "us" "text" "United States")
+                  (dict "value" "uk" "text" "United Kingdom")
+                )
+                "class" "mb-3"
+              ) }}
+            </div>
+
+            <!-- Code Example -->
+            <div class="mt-4 p-3 bg-light rounded">
+              <h4 class="h6 mb-2">Code Examples:</h4>
+              <pre class="mb-3"><code>{{`{{ partial "atoms/input.html" (dict
+  "type" "email"
+  "name" "email"
+  "id" "email"
+  "label" "Email Address"
+  "required" true
+) }}`}}</code></pre>
+              <pre class="mb-0"><code>{{`{{ partial "atoms/input.html" (dict
+  "type" "checkbox"
+  "name" "terms"
+  "id" "terms"
+  "label" "I agree"
+) }}`}}</code></pre>
+            </div>
+
+            <div class="alert alert-info mt-3">
+              <i class="las la-info-circle me-2"></i>
+              <strong>Supported Types:</strong> text, email, password, tel, url, number, date, time, textarea, checkbox, radio, select
+            </div>
+          </div>
+
+          <!-- Icon Atoms Preview -->
+          <div class="component-section mt-5">
+            <h2 class="text-primary mb-4">Icon Atom</h2>
+            <p>Icon component using Line Awesome icons with size, color, and accessibility options.</p>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Basic Icons</h3>
+              <div class="d-flex flex-wrap gap-4 align-items-center">
+                {{ partial "atoms/icon.html" (dict "name" "check-circle" "color" "success") }}
+                {{ partial "atoms/icon.html" (dict "name" "times-circle" "color" "danger") }}
+                {{ partial "atoms/icon.html" (dict "name" "info-circle" "color" "info") }}
+                {{ partial "atoms/icon.html" (dict "name" "exclamation-triangle" "color" "warning") }}
+                {{ partial "atoms/icon.html" (dict "name" "shield-alt" "color" "primary") }}
+                {{ partial "atoms/icon.html" (dict "name" "lock" "color" "secondary") }}
+                {{ partial "atoms/icon.html" (dict "name" "heart" "color" "danger") }}
+                {{ partial "atoms/icon.html" (dict "name" "star" "color" "warning") }}
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Size Variants</h3>
+              <div class="d-flex flex-wrap gap-4 align-items-center">
+                {{ partial "atoms/icon.html" (dict "name" "check-circle" "size" "xs" "color" "success") }}
+                {{ partial "atoms/icon.html" (dict "name" "check-circle" "size" "sm" "color" "success") }}
+                {{ partial "atoms/icon.html" (dict "name" "check-circle" "size" "md" "color" "success") }}
+                {{ partial "atoms/icon.html" (dict "name" "check-circle" "size" "lg" "color" "success") }}
+                {{ partial "atoms/icon.html" (dict "name" "check-circle" "size" "xl" "color" "success") }}
+                {{ partial "atoms/icon.html" (dict "name" "check-circle" "size" "2x" "color" "success") }}
+                {{ partial "atoms/icon.html" (dict "name" "check-circle" "size" "3x" "color" "success") }}
+                {{ partial "atoms/icon.html" (dict "name" "check-circle" "size" "4x" "color" "success") }}
+              </div>
+              <small class="text-muted d-block mt-2">Sizes: xs, sm, md (default), lg, xl, 2x, 3x, 4x</small>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Color Variants</h3>
+              <div class="d-flex flex-wrap gap-3 align-items-center">
+                {{ partial "atoms/icon.html" (dict "name" "circle" "size" "2x" "color" "primary") }}
+                {{ partial "atoms/icon.html" (dict "name" "circle" "size" "2x" "color" "secondary") }}
+                {{ partial "atoms/icon.html" (dict "name" "circle" "size" "2x" "color" "success") }}
+                {{ partial "atoms/icon.html" (dict "name" "circle" "size" "2x" "color" "danger") }}
+                {{ partial "atoms/icon.html" (dict "name" "circle" "size" "2x" "color" "warning") }}
+                {{ partial "atoms/icon.html" (dict "name" "circle" "size" "2x" "color" "info") }}
+                {{ partial "atoms/icon.html" (dict "name" "circle" "size" "2x" "color" "dark") }}
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Common Use Cases</h3>
+              <div class="mb-3">
+                <p>
+                  {{ partial "atoms/icon.html" (dict "name" "check-circle" "color" "success" "class" "me-2") }}
+                  Success message with check icon
+                </p>
+                <p>
+                  {{ partial "atoms/icon.html" (dict "name" "arrow-right" "color" "primary" "class" "ms-2") }}
+                  Button with arrow icon
+                </p>
+                <p>
+                  {{ partial "atoms/icon.html" (dict "name" "lock" "size" "lg" "color" "primary" "class" "me-2") }}
+                  Security feature indicator
+                </p>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <h3 class="h5 mb-3">Custom Size</h3>
+              <div class="d-flex gap-3 align-items-center">
+                {{ partial "atoms/icon.html" (dict "name" "shield-alt" "size" "2.5rem" "color" "primary") }}
+                {{ partial "atoms/icon.html" (dict "name" "shield-alt" "size" "48px" "color" "success") }}
+                {{ partial "atoms/icon.html" (dict "name" "shield-alt" "size" "5rem" "color" "info") }}
+              </div>
+              <small class="text-muted d-block mt-2">Custom sizes: "2.5rem", "48px", "5rem", etc.</small>
+            </div>
+
+            <!-- Code Example -->
+            <div class="mt-4 p-3 bg-light rounded">
+              <h4 class="h6 mb-2">Code Examples:</h4>
+              <pre class="mb-3"><code>{{`{{ partial "atoms/icon.html" (dict
+  "name" "check-circle"
+  "color" "success"
+  "class" "me-2"
+) }}`}}</code></pre>
+              <pre class="mb-3"><code>{{`{{ partial "atoms/icon.html" (dict
+  "name" "shield-alt"
+  "size" "4x"
+  "color" "primary"
+) }}`}}</code></pre>
+              <pre class="mb-0"><code>{{`{{ partial "atoms/icon.html" (dict
+  "name" "arrow-right"
+  "size" "1.5rem"
+  "class" "ms-2"
+) }}`}}</code></pre>
+            </div>
+
+            <div class="alert alert-info mt-3">
+              <i class="las la-info-circle me-2"></i>
+              <strong>Icon Library:</strong> Uses Line Awesome (las prefix). Browse icons at <a href="https://icons8.com/line-awesome" target="_blank">Line Awesome</a>
+            </div>
+          </div>
+
           <!-- Image Atoms Preview -->
           <div class="component-section mt-5">
             <h2 class="text-primary mb-4">Image Atom</h2>
