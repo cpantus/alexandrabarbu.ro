@@ -1,0 +1,343 @@
+# Blueprint Schema - Site Builder Wizard
+# Version: 1.0.0
+# This file defines the structure for industry-specific site blueprints
+
+# METADATA
+# ========
+name: "Example Industry"             # Display name
+slug: "example-industry"             # URL-safe identifier
+description: "Brief description of this industry type"
+icon: "🏢"                           # Emoji for CLI display
+tags: ["tag1", "tag2"]               # For filtering/search
+
+# MENU STRUCTURE
+# ==============
+menu:
+  # Suggested menu structure for this industry
+  suggested:
+    - name: "Home"
+      slug: "home"
+      weight: 1
+      # Default sections for this page
+      sections:
+        - type: "hero-cta"
+          default_config:
+            cta_text: "Get Started"
+        - type: "values-intro"
+        - type: "services-overview"
+        - type: "testimonials"
+          default_config:
+            count: 3
+        - type: "faq-mini"
+          default_config:
+            count: 5
+        - type: "contact-form"
+
+    - name: "About"
+      slug: "about"
+      weight: 2
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "bio"
+        - type: "credentials"
+        - type: "approach"
+
+    # Example of submenu
+    - name: "Services"
+      slug: "services"
+      weight: 3
+      has_submenu: true
+      submenu:
+        # Templates for submenu items
+        count:
+          suggested: 4
+          min: 2
+          max: 8
+        templates:
+          - name: "Service Template 1"
+            sections:
+              - type: "hero-breadcrumb"
+              - type: "service-intro"
+              - type: "benefits-grid"
+              - type: "process"
+              - type: "faq"
+              - type: "cta"
+
+  # Optional pages that can be added
+  optional_pages:
+    - name: "Blog"
+      slug: "blog"
+      suggested: false
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "blog-grid"
+
+    - name: "FAQ"
+      slug: "faq"
+      suggested: true
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "faq-comprehensive"
+
+# DESIGN PRESETS
+# ==============
+design:
+  # Color scheme presets for this industry
+  color_schemes:
+    - name: "Preset Name"
+      slug: "preset-slug"
+      primary: "#4DB380"      # Hex color
+      secondary: "#CC6B49"    # Hex color
+      accent: "#F4A460"       # Hex color
+      description: "Brief description of this color scheme's mood/purpose"
+      default: true           # Mark one as default
+
+    - name: "Alternative Preset"
+      slug: "alternative"
+      primary: "#2C3E50"
+      secondary: "#95A5A6"
+      accent: "#3498DB"
+      description: "Another option"
+      default: false
+
+  # Typography presets
+  typography:
+    - name: "Classic"
+      slug: "classic"
+      heading:
+        font: "Poppins"
+        fallback: "sans-serif"
+        weights: [400, 600, 700]
+      body:
+        font: "Open Sans"
+        fallback: "sans-serif"
+        weights: [400, 600]
+      description: "Professional and readable"
+      default: true
+
+    - name: "Editorial"
+      slug: "editorial"
+      heading:
+        font: "Playfair Display"
+        fallback: "serif"
+        weights: [400, 700]
+      body:
+        font: "Lato"
+        fallback: "sans-serif"
+        weights: [400, 600]
+      description: "Elegant and sophisticated"
+      default: false
+
+  # Animation settings
+  animation:
+    default_intensity: "subtle"  # subtle | moderate | bold
+    recommended_effects:
+      - "fade-up"
+      - "fade-in"
+      - "scale"
+    prefers_reduced_motion: true  # Respect accessibility
+
+  # Photography/imagery style
+  imagery:
+    style: "authentic"  # professional | authentic | minimal | vibrant
+    mood: ["warm", "inviting", "trustworthy"]
+
+# CONTENT GENERATION
+# ==================
+content:
+  # What content is suitable for AI generation
+  ai_suitable:
+    - section_type: "service-descriptions"
+      max_words: 250
+      tone: "professional"
+    - section_type: "faq-answers"
+      max_words: 150
+      tone: "helpful"
+    - section_type: "benefits-lists"
+      max_words: 100
+      tone: "persuasive"
+
+  # What content requires user input
+  user_required:
+    - section_type: "personal-bio"
+      reason: "Too personal for AI"
+    - section_type: "credentials"
+      reason: "Factual information required"
+    - section_type: "pricing-details"
+      reason: "Business-specific"
+
+  # What content can use placeholders
+  placeholders:
+    - section_type: "testimonials"
+      count: 5
+      template: "Great service! Highly recommend."
+    - section_type: "team-bios"
+      count: 3
+      template: "Team member with X years of experience."
+
+  # Word count targets by section
+  word_counts:
+    hero_subtitle: 30
+    service_intro: 150
+    about_bio: 300
+    faq_answer: 100
+
+# IMAGE CURATION
+# ==============
+images:
+  # Unsplash collections/searches for this industry
+  unsplash:
+    collections:
+      - id: "hero-images"
+        query: "professional office interior"
+        count: 5
+        orientation: "landscape"
+        purpose: "hero"
+
+      - id: "service-images"
+        query: "people working together"
+        count: 8
+        orientation: "landscape"
+        purpose: "section-backgrounds"
+
+      - id: "team-photos"
+        query: "professional headshot"
+        count: 5
+        orientation: "portrait"
+        purpose: "team"
+
+  # Stock photo style guidance
+  stock_style: "authentic"  # professional | authentic | minimal | vibrant
+
+  # Required images by type
+  required:
+    - type: "hero"
+      count: 5
+      aspect_ratio: "16:9"
+    - type: "service"
+      count: 4
+      aspect_ratio: "4:3"
+    - type: "logo"
+      count: 1
+      aspect_ratio: "1:1"
+
+# INTEGRATIONS
+# ============
+integrations:
+  # Recommended integrations for this industry
+  recommended:
+    - type: "booking"
+      priority: "high"
+      options:
+        - "calendly"
+        - "cal.com"
+      default: "calendly"
+
+    - type: "analytics"
+      priority: "high"
+      options:
+        - "google-analytics"
+        - "plausible"
+      default: "plausible"
+
+    - type: "forms"
+      priority: "high"
+      options:
+        - "contact-form"
+        - "google-sheets"
+      default: "contact-form"
+
+  # Optional integrations
+  optional:
+    - type: "newsletter"
+      priority: "medium"
+      options:
+        - "mailchimp"
+        - "convertkit"
+
+    - type: "chat"
+      priority: "low"
+      options:
+        - "intercom"
+        - "drift"
+
+# SEO CONFIGURATION
+# =================
+seo:
+  # Schema.org types for this industry
+  schema_types:
+    - "LocalBusiness"
+    - "Organization"
+    - "WebSite"
+
+  # Meta description templates
+  meta_templates:
+    home_title: "{siteName} - {tagline}"
+    home_description: "{siteName} offers {primaryService} in {location}. {cta}"
+    service_title: "{serviceName} | {siteName}"
+    service_description: "Professional {serviceName} services. {benefits}"
+
+  # Suggested keywords by page type
+  keywords:
+    home:
+      - "primary service"
+      - "industry type"
+      - "location"
+    services:
+      - "service name"
+      - "service benefits"
+      - "service process"
+
+# WIZARD BEHAVIOR
+# ===============
+wizard:
+  # Quick defaults for users who want to skip customization
+  quick_mode:
+    enabled: true
+    pages_to_generate: 8
+    sections_per_page: 5
+    use_ai_content: true
+    use_stock_images: true
+
+  # Recommended phases to customize for this industry
+  customize_phases:
+    - phase: 3  # Page customization
+      pages: ["home", "services"]
+      reason: "These pages drive conversions"
+
+    - phase: 4  # Design customization
+      elements: ["colors", "logo"]
+      reason: "Branding is critical for trust"
+
+# EXAMPLE SITES
+# =============
+examples:
+  # Reference sites for inspiration
+  - name: "Example Site 1"
+    url: "https://example.com"
+    description: "Great use of color and typography"
+
+  - name: "Example Site 2"
+    url: "https://example2.com"
+    description: "Excellent service page structure"
+
+# VALIDATION
+# ==========
+validation:
+  # Minimum required pages
+  min_pages: 4
+
+  # Required pages
+  required_pages:
+    - "home"
+    - "contact"
+
+  # Recommended page count
+  recommended_pages: 8
+
+# VERSION HISTORY
+# ===============
+version: "1.0.0"
+created: "2025-11-14"
+updated: "2025-11-14"
+author: "Claude Code"

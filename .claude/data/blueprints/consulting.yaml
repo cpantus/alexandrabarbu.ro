@@ -1,0 +1,502 @@
+# Consulting Blueprint
+# Business consulting, coaching, advisory services
+
+name: "Consulting & Coaching"
+slug: "consulting"
+description: "Business consulting, coaching, advisory services - innovative, results-driven, strategic"
+icon: "💼"
+tags: ["consulting", "coaching", "business", "professional-services", "strategy"]
+
+menu:
+  suggested:
+    - name: "Home"
+      slug: "home"
+      weight: 1
+      sections:
+        - type: "hero-cta"
+          default_config:
+            cta_text: "Get Started"
+            subtitle: "Transform your business with expert guidance"
+        - type: "values-intro"
+          default_config:
+            title: "Strategic Solutions for Growth"
+        - type: "services-overview"
+          default_config:
+            columns: 3
+            show_icons: true
+        - type: "results-metrics"
+          default_config:
+            metrics: ["clients", "roi", "years", "satisfaction"]
+        - type: "process-preview"
+          default_config:
+            steps: 4
+        - type: "testimonials"
+          default_config:
+            count: 4
+            style: "cards"
+        - type: "cta"
+
+    - name: "About"
+      slug: "about"
+      weight: 2
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "founder-story"
+          default_config:
+            max_words: 300
+        - type: "mission-vision"
+        - type: "team-grid"
+          default_config:
+            show_expertise: true
+            show_credentials: true
+        - type: "credentials-certifications"
+
+    - name: "Services"
+      slug: "services"
+      weight: 3
+      has_submenu: true
+      submenu:
+        count:
+          suggested: 3
+          min: 2
+          max: 6
+        templates:
+          - name: "Strategic Planning"
+            slug: "strategic-planning"
+            sections:
+              - type: "hero-breadcrumb"
+              - type: "service-intro"
+              - type: "benefits-grid"
+              - type: "methodology"
+                default_config:
+                  framework_name: "Strategic Framework"
+              - type: "case-studies"
+                default_config:
+                  count: 3
+              - type: "deliverables"
+              - type: "cta"
+
+          - name: "Leadership Development"
+            slug: "leadership-development"
+            sections:
+              - type: "hero-breadcrumb"
+              - type: "service-intro"
+              - type: "program-overview"
+              - type: "benefits-grid"
+              - type: "testimonials"
+                default_config:
+                  count: 3
+              - type: "cta"
+
+          - name: "Business Transformation"
+            slug: "business-transformation"
+            sections:
+              - type: "hero-breadcrumb"
+              - type: "service-intro"
+              - type: "transformation-process"
+              - type: "case-studies"
+              - type: "results-metrics"
+              - type: "cta"
+
+    - name: "Our Process"
+      slug: "process"
+      weight: 4
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "process-comprehensive"
+          default_config:
+            steps: 5
+            style: "detailed"
+        - type: "methodology-overview"
+        - type: "tools-frameworks"
+        - type: "faq"
+        - type: "cta"
+
+    - name: "Results"
+      slug: "results"
+      weight: 5
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "case-studies-grid"
+          default_config:
+            filterable: true
+            categories: ["Strategy", "Leadership", "Transformation"]
+        - type: "results-metrics"
+          default_config:
+            show_charts: true
+        - type: "testimonials"
+          default_config:
+            count: 6
+            show_company: true
+        - type: "cta"
+
+    - name: "Resources"
+      slug: "resources"
+      weight: 6
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "blog-featured"
+        - type: "resources-library"
+          default_config:
+            types: ["guides", "templates", "webinars"]
+        - type: "newsletter-signup"
+
+    - name: "Contact"
+      slug: "contact"
+      weight: 7
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "contact-form-enhanced"
+          default_config:
+            fields: ["name", "email", "phone", "company", "service_interest", "message"]
+        - type: "office-info"
+        - type: "social-links"
+
+  optional_pages:
+    - name: "Blog"
+      slug: "blog"
+      suggested: true
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "blog-grid"
+          default_config:
+            categories: ["Strategy", "Leadership", "Innovation", "Case Studies"]
+
+    - name: "Speaking"
+      slug: "speaking"
+      suggested: false
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "speaking-topics"
+        - type: "past-engagements"
+        - type: "booking-form"
+
+    - name: "Book a Call"
+      slug: "book"
+      suggested: true
+      sections:
+        - type: "hero-simple"
+        - type: "calendly-embed"
+        - type: "what-to-expect"
+
+design:
+  color_schemes:
+    - name: "Modern & Vibrant"
+      slug: "modern-vibrant"
+      primary: "#2563EB"      # Blue (trust, innovation)
+      secondary: "#F97316"    # Orange (energy, growth)
+      accent: "#8B5CF6"       # Purple (creativity)
+      description: "Contemporary and energetic - for innovative, forward-thinking consultants"
+      default: true
+
+    - name: "Professional Bold"
+      slug: "professional-bold"
+      primary: "#1E40AF"      # Navy (authority)
+      secondary: "#DC2626"    # Red (action)
+      accent: "#059669"       # Green (success)
+      description: "Bold and confident - for results-driven consultants"
+      default: false
+
+    - name: "Sophisticated Minimal"
+      slug: "sophisticated"
+      primary: "#374151"      # Charcoal (sophisticated)
+      secondary: "#10B981"    # Emerald (growth)
+      accent: "#6366F1"       # Indigo (strategic)
+      description: "Clean and sophisticated - for high-end strategic advisory"
+      default: false
+
+  typography:
+    - name: "Modern"
+      slug: "modern"
+      heading:
+        font: "Inter"
+        fallback: "sans-serif"
+        weights: [400, 600, 700, 800]
+      body:
+        font: "Work Sans"
+        fallback: "sans-serif"
+        weights: [400, 500, 600]
+      description: "Contemporary and clean - appeals to modern businesses"
+      default: true
+
+    - name: "Professional"
+      slug: "professional"
+      heading:
+        font: "Montserrat"
+        fallback: "sans-serif"
+        weights: [400, 600, 700]
+      body:
+        font: "Open Sans"
+        fallback: "sans-serif"
+        weights: [400, 600]
+      description: "Professional and trustworthy - broad appeal"
+      default: false
+
+    - name: "Bold & Dynamic"
+      slug: "bold"
+      heading:
+        font: "Bebas Neue"
+        fallback: "sans-serif"
+        weights: [400]
+      body:
+        font: "Roboto"
+        fallback: "sans-serif"
+        weights: [400, 500, 700]
+      description: "Bold and impactful - for disruptive consultants"
+      default: false
+
+  animation:
+    default_intensity: "bold"
+    recommended_effects:
+      - "slide-in"
+      - "fade-up"
+      - "scale"
+      - "parallax"
+    prefers_reduced_motion: true
+
+  imagery:
+    style: "vibrant"
+    mood: ["dynamic", "innovative", "strategic", "confident", "results-driven"]
+
+content:
+  ai_suitable:
+    - section_type: "service-descriptions"
+      max_words: 250
+      tone: "professional, results-focused"
+    - section_type: "methodology-explanations"
+      max_words: 200
+      tone: "clear, strategic"
+    - section_type: "benefits-lists"
+      max_words: 100
+      tone: "persuasive, confident"
+    - section_type: "process-explanations"
+      max_words: 150
+      tone: "clear, professional"
+
+  user_required:
+    - section_type: "founder-story"
+      reason: "Personal journey and credentials required"
+    - section_type: "case-studies"
+      reason: "Actual client results and specific outcomes"
+    - section_type: "methodology"
+      reason: "Proprietary frameworks and approaches"
+    - section_type: "credentials"
+      reason: "Specific certifications and experience"
+
+  placeholders:
+    - section_type: "testimonials"
+      count: 6
+      template: "Working with [Consultant Name] transformed our business. Their strategic insight and hands-on approach delivered measurable results."
+
+    - section_type: "metrics"
+      items:
+        - "500+ Clients Served"
+        - "250% Average ROI"
+        - "15+ Years Experience"
+        - "98% Client Satisfaction"
+
+    - section_type: "services"
+      items:
+        - "Strategic Planning"
+        - "Leadership Development"
+        - "Business Transformation"
+
+  word_counts:
+    hero_subtitle: 40
+    service_intro: 200
+    founder_story: 300
+    case_study: 400
+    methodology: 250
+
+images:
+  unsplash:
+    collections:
+      - id: "hero-business"
+        query: "business strategy meeting modern office"
+        count: 5
+        orientation: "landscape"
+        purpose: "hero"
+
+      - id: "growth-success"
+        query: "business growth charts success upward"
+        count: 5
+        orientation: "landscape"
+        purpose: "backgrounds"
+
+      - id: "team-collaboration"
+        query: "business team collaboration workshop"
+        count: 6
+        orientation: "landscape"
+        purpose: "service-pages"
+
+      - id: "professional-headshots"
+        query: "professional executive headshot"
+        count: 5
+        orientation: "portrait"
+        purpose: "team-photos"
+
+      - id: "innovation"
+        query: "innovation technology strategy digital"
+        count: 5
+        orientation: "landscape"
+        purpose: "process-methodology"
+
+  stock_style: "vibrant"
+
+  required:
+    - type: "hero"
+      count: 5
+      aspect_ratio: "16:9"
+      description: "Dynamic hero images for main pages"
+    - type: "service"
+      count: 3
+      aspect_ratio: "4:3"
+      description: "One per service offering"
+    - type: "team"
+      count: 5
+      aspect_ratio: "3:4"
+      description: "Professional team photos"
+    - type: "case-study"
+      count: 6
+      aspect_ratio: "16:9"
+      description: "Visual representations of client results"
+
+integrations:
+  recommended:
+    - type: "booking"
+      priority: "high"
+      options:
+        - "calendly"
+        - "cal.com"
+        - "acuity"
+      default: "calendly"
+      config:
+        suggested_url: "https://calendly.com/yourname"
+
+    - type: "newsletter"
+      priority: "high"
+      options:
+        - "mailchimp"
+        - "convertkit"
+        - "substack"
+      default: "convertkit"
+      note: "Thought leadership and content marketing"
+
+    - type: "analytics"
+      priority: "high"
+      options:
+        - "google-analytics"
+        - "plausible"
+        - "fathom"
+      default: "google-analytics"
+
+    - type: "forms"
+      priority: "high"
+      options:
+        - "contact-form-enhanced"
+        - "typeform"
+        - "google-sheets"
+      default: "contact-form-enhanced"
+
+  optional:
+    - type: "crm"
+      priority: "medium"
+      options:
+        - "hubspot"
+        - "pipedrive"
+      note: "Client relationship management"
+
+    - type: "chat"
+      priority: "medium"
+      options:
+        - "intercom"
+        - "drift"
+
+    - type: "webinar"
+      priority: "low"
+      options:
+        - "zoom"
+        - "livestorm"
+
+seo:
+  schema_types:
+    - "ProfessionalService"
+    - "Consultant"
+    - "Organization"
+    - "Person"
+
+  meta_templates:
+    home_title: "{firmName} | {tagline} | Business Consulting"
+    home_description: "Transform your business with expert consulting from {firmName}. Specializing in {services}. {results}."
+    service_title: "{serviceName} Consulting | {firmName}"
+    service_description: "Expert {serviceName} consulting services. {benefits}. Proven results with {clientCount}+ clients."
+    case_study_title: "{clientName} Case Study | {results} | {firmName}"
+    case_study_description: "How {firmName} helped {clientName} achieve {results}. {methodology}."
+
+  keywords:
+    home:
+      - "business consulting"
+      - "management consulting"
+      - "[specialty] consultant"
+      - "strategic advisor"
+    services:
+      - "[service name] consulting"
+      - "[service name] services"
+      - "business [service name]"
+    results:
+      - "[industry] case studies"
+      - "consulting results"
+      - "[methodology] framework"
+
+wizard:
+  quick_mode:
+    enabled: true
+    pages_to_generate: 10
+    sections_per_page: 5
+    use_ai_content: true
+    use_stock_images: true
+    default_services: 3
+
+  customize_phases:
+    - phase: 2
+      focus: "services"
+      reason: "Service offerings vary significantly - customization recommended"
+
+    - phase: 3
+      pages: ["home", "services", "results"]
+      reason: "These pages drive client acquisition and credibility"
+
+    - phase: 4
+      elements: ["colors", "logo", "typography"]
+      reason: "Strong branding critical for consultants to stand out"
+
+    - phase: 5
+      focus: "content"
+      reason: "Thought leadership content is key differentiator"
+
+examples:
+  - name: "McKinsey & Company"
+    url: "https://www.mckinsey.com"
+    description: "Excellent thought leadership and insights presentation"
+
+  - name: "Simon Sinek"
+    url: "https://simonsinek.com"
+    description: "Strong personal brand with clear methodology"
+
+  - name: "BCG"
+    url: "https://www.bcg.com"
+    description: "Professional design with compelling case studies"
+
+validation:
+  min_pages: 5
+  required_pages:
+    - "home"
+    - "about"
+    - "services"
+    - "contact"
+  recommended_pages: 10
+
+version: "1.0.0"
+created: "2025-11-14"
+updated: "2025-11-14"
+author: "Claude Code"
