@@ -1,0 +1,473 @@
+# Psychology Practice Blueprint
+# Therapeutic practice, counseling, mental health services
+
+name: "Psychology Practice"
+slug: "psychology-practice"
+description: "Therapeutic practice, counseling, mental health services - warm, trustworthy, healing-focused"
+icon: "🧠"
+tags: ["healthcare", "therapy", "mental-health", "counseling"]
+
+menu:
+  suggested:
+    - name: "Home"
+      slug: "home"
+      weight: 1
+      sections:
+        - type: "hero-cta"
+          default_config:
+            cta_text: "Book Free Consultation"
+            subtitle: "Professional, compassionate therapy to help you thrive"
+        - type: "values-intro"
+          default_config:
+            title: "A Safe Space for Healing"
+        - type: "services-overview"
+          default_config:
+            columns: 3
+            show_icons: true
+        - type: "testimonials"
+          default_config:
+            count: 5
+            style: "cards"
+        - type: "video-intro"
+          default_config:
+            optional: true
+        - type: "faq-mini"
+          default_config:
+            count: 5
+            expandable: true
+        - type: "contact-form"
+          default_config:
+            fields: ["name", "email", "phone", "message"]
+
+    - name: "About"
+      slug: "about"
+      weight: 2
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "bio"
+          default_config:
+            max_words: 300
+        - type: "credentials"
+          default_config:
+            display_style: "timeline"
+        - type: "approach"
+          default_config:
+            max_words: 200
+        - type: "office-tour"
+          default_config:
+            optional: true
+
+    - name: "Services"
+      slug: "services"
+      weight: 3
+      has_submenu: true
+      submenu:
+        count:
+          suggested: 4
+          min: 2
+          max: 6
+        templates:
+          - name: "Individual Therapy"
+            slug: "individual-therapy"
+            sections:
+              - type: "hero-breadcrumb"
+              - type: "service-intro"
+                default_config:
+                  max_words: 150
+              - type: "modalities"
+                default_config:
+                  suggested: ["CBT", "EMDR", "Trauma-focused"]
+              - type: "benefits-grid"
+                default_config:
+                  columns: 3
+                  icons: true
+              - type: "process"
+                default_config:
+                  steps: 4
+                  style: "timeline"
+              - type: "faq"
+                default_config:
+                  count: 5
+              - type: "cta"
+                default_config:
+                  text: "Schedule Your First Session"
+
+          - name: "Couples Therapy"
+            slug: "couples-therapy"
+            sections:
+              - type: "hero-breadcrumb"
+              - type: "service-intro"
+              - type: "benefits-grid"
+              - type: "process"
+              - type: "testimonials"
+                default_config:
+                  count: 3
+              - type: "cta"
+
+          - name: "Group Therapy"
+            slug: "group-therapy"
+            sections:
+              - type: "hero-breadcrumb"
+              - type: "service-intro"
+              - type: "benefits-grid"
+              - type: "schedule"
+                default_config:
+                  show_availability: true
+              - type: "faq"
+              - type: "cta"
+
+          - name: "Corporate Wellness"
+            slug: "corporate-wellness"
+            sections:
+              - type: "hero-breadcrumb"
+              - type: "service-intro"
+              - type: "benefits-grid"
+              - type: "case-studies"
+                default_config:
+                  count: 2
+              - type: "process"
+              - type: "cta"
+
+    - name: "Pricing"
+      slug: "pricing"
+      weight: 4
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "pricing-tables"
+          default_config:
+            tiers: 3
+            toggle: false
+            show_insurance: true
+        - type: "insurance-info"
+          default_config:
+            accepted_providers: []
+        - type: "faq-mini"
+          default_config:
+            count: 5
+            focus: "pricing"
+        - type: "cta"
+
+    - name: "Contact"
+      slug: "contact"
+      weight: 5
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "contact-form-enhanced"
+          default_config:
+            fields: ["name", "email", "phone", "preferred_time", "message"]
+            integrations: ["google-sheets", "recaptcha"]
+        - type: "office-info"
+          default_config:
+            show_map: true
+            show_hours: true
+        - type: "social-links"
+
+  optional_pages:
+    - name: "Blog"
+      slug: "blog"
+      suggested: false
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "blog-grid"
+
+    - name: "FAQ"
+      slug: "faq"
+      suggested: true
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "faq-comprehensive"
+          default_config:
+            categories: ["General", "Services", "Pricing", "Insurance"]
+
+    - name: "Resources"
+      slug: "resources"
+      suggested: false
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "resources-grid"
+        - type: "external-links"
+
+design:
+  color_schemes:
+    - name: "Warm & Therapeutic"
+      slug: "warm-therapeutic"
+      primary: "#4DB380"      # Emerald (healing, growth)
+      secondary: "#CC6B49"    # Terracotta (warmth, balance)
+      accent: "#F4A460"       # Sandy brown (comfort)
+      description: "Warm, inviting colors that promote trust and healing"
+      default: true
+
+    - name: "Calm & Professional"
+      slug: "calm-professional"
+      primary: "#2C3E50"      # Navy (professionalism)
+      secondary: "#95A5A6"    # Sage (calm)
+      accent: "#3498DB"       # Sky blue (hope)
+      description: "Professional yet calming palette for clinical settings"
+      default: false
+
+    - name: "Modern & Vibrant"
+      slug: "modern-vibrant"
+      primary: "#E74C3C"      # Coral (energy)
+      secondary: "#1ABC9C"    # Teal (balance)
+      accent: "#F39C12"       # Orange (optimism)
+      description: "Contemporary and energetic for modern practices"
+      default: false
+
+  typography:
+    - name: "Classic"
+      slug: "classic"
+      heading:
+        font: "Poppins"
+        fallback: "sans-serif"
+        weights: [400, 600, 700]
+      body:
+        font: "Open Sans"
+        fallback: "sans-serif"
+        weights: [400, 600]
+      description: "Professional and highly readable - builds trust"
+      default: true
+
+    - name: "Editorial"
+      slug: "editorial"
+      heading:
+        font: "Playfair Display"
+        fallback: "serif"
+        weights: [400, 700]
+      body:
+        font: "Lato"
+        fallback: "sans-serif"
+        weights: [400, 600]
+      description: "Elegant and sophisticated - conveys expertise"
+      default: false
+
+    - name: "Modern"
+      slug: "modern"
+      heading:
+        font: "Inter"
+        fallback: "sans-serif"
+        weights: [400, 600, 700]
+      body:
+        font: "Work Sans"
+        fallback: "sans-serif"
+        weights: [400, 500]
+      description: "Contemporary and clean - appeals to younger demographics"
+      default: false
+
+  animation:
+    default_intensity: "subtle"
+    recommended_effects:
+      - "fade-up"
+      - "fade-in"
+      - "gentle-scale"
+    prefers_reduced_motion: true
+
+  imagery:
+    style: "authentic"
+    mood: ["warm", "inviting", "trustworthy", "calm", "healing"]
+
+content:
+  ai_suitable:
+    - section_type: "service-descriptions"
+      max_words: 250
+      tone: "compassionate, professional"
+    - section_type: "faq-answers"
+      max_words: 150
+      tone: "helpful, reassuring"
+    - section_type: "benefits-lists"
+      max_words: 100
+      tone: "supportive, clear"
+    - section_type: "process-explanations"
+      max_words: 150
+      tone: "clear, welcoming"
+
+  user_required:
+    - section_type: "personal-bio"
+      reason: "Too personal for AI - requires authentic voice"
+    - section_type: "credentials"
+      reason: "Factual information about specific qualifications"
+    - section_type: "pricing-details"
+      reason: "Business-specific pricing and insurance information"
+    - section_type: "contact-info"
+      reason: "Specific office location and contact methods"
+
+  placeholders:
+    - section_type: "testimonials"
+      count: 5
+      template: "Working with [Therapist] has been transformative. Their compassionate approach helped me navigate difficult times."
+
+    - section_type: "modalities"
+      items:
+        - "Cognitive Behavioral Therapy (CBT)"
+        - "Eye Movement Desensitization and Reprocessing (EMDR)"
+        - "Trauma-Focused Therapy"
+        - "Mindfulness-Based Stress Reduction"
+
+  word_counts:
+    hero_subtitle: 30
+    service_intro: 150
+    about_bio: 300
+    faq_answer: 100
+    benefit_description: 75
+
+images:
+  unsplash:
+    collections:
+      - id: "hero-therapy"
+        query: "therapy office warm lighting comfortable"
+        count: 5
+        orientation: "landscape"
+        purpose: "hero"
+
+      - id: "nature-healing"
+        query: "nature peaceful meditation mindfulness"
+        count: 5
+        orientation: "landscape"
+        purpose: "backgrounds"
+
+      - id: "people-authentic"
+        query: "people authentic connection conversation"
+        count: 8
+        orientation: "landscape"
+        purpose: "service-pages"
+
+      - id: "office-interior"
+        query: "modern office interior cozy warm"
+        count: 3
+        orientation: "landscape"
+        purpose: "about-page"
+
+  stock_style: "authentic"
+
+  required:
+    - type: "hero"
+      count: 5
+      aspect_ratio: "16:9"
+      description: "Main hero images for home and key pages"
+    - type: "service"
+      count: 4
+      aspect_ratio: "4:3"
+      description: "One per service page"
+    - type: "about"
+      count: 2
+      aspect_ratio: "1:1"
+      description: "Professional headshot and office photo"
+
+integrations:
+  recommended:
+    - type: "booking"
+      priority: "high"
+      options:
+        - "calendly"
+        - "cal.com"
+      default: "calendly"
+      config:
+        suggested_url: "https://calendly.com/yourname"
+
+    - type: "analytics"
+      priority: "high"
+      options:
+        - "google-analytics"
+        - "plausible"
+      default: "plausible"
+      config:
+        privacy_focused: true
+
+    - type: "forms"
+      priority: "high"
+      options:
+        - "contact-form-enhanced"
+        - "google-sheets"
+        - "recaptcha"
+      default: "contact-form-enhanced"
+      config:
+        spam_protection: "recaptcha-v3"
+
+  optional:
+    - type: "newsletter"
+      priority: "low"
+      options:
+        - "mailchimp"
+        - "convertkit"
+
+    - type: "chat"
+      priority: "low"
+      options:
+        - "intercom"
+        - "drift"
+      note: "Generally not recommended for therapy practices due to privacy"
+
+seo:
+  schema_types:
+    - "LocalBusiness"
+    - "ProfessionalService"
+    - "Person"
+    - "MedicalBusiness"
+
+  meta_templates:
+    home_title: "{siteName} - Compassionate Therapy in {location}"
+    home_description: "Professional therapy services with {therapistName}. Specializing in {primaryServices}. Book your free consultation today."
+    service_title: "{serviceName} Therapy | {siteName}"
+    service_description: "Expert {serviceName} therapy services. {benefits}. Schedule your session today."
+    about_title: "About {therapistName} | {siteName}"
+    about_description: "{credentials} specializing in {specialties}. Compassionate, evidence-based therapy."
+
+  keywords:
+    home:
+      - "therapy"
+      - "counseling"
+      - "mental health"
+      - "psychologist"
+      - "[location]"
+    services:
+      - "[service type] therapy"
+      - "therapy for [issue]"
+      - "counseling services"
+    about:
+      - "about [therapist name]"
+      - "[credentials]"
+      - "therapist [location]"
+
+wizard:
+  quick_mode:
+    enabled: true
+    pages_to_generate: 9
+    sections_per_page: 5
+    use_ai_content: true
+    use_stock_images: true
+    default_services: 4
+
+  customize_phases:
+    - phase: 2
+      focus: "services"
+      reason: "Service count and types vary widely - customize recommended"
+
+    - phase: 3
+      pages: ["home", "services"]
+      reason: "These pages drive client conversions and trust"
+
+    - phase: 4
+      elements: ["colors", "logo", "typography"]
+      reason: "Branding critical for establishing trust and professional credibility"
+
+examples:
+  - name: "Dr. Julie Smith"
+    url: "https://drjuliesmith.com"
+    description: "Excellent use of warm colors and authentic imagery"
+
+  - name: "The Mindful Practice"
+    url: "https://mindfulsf.com"
+    description: "Great service page structure and clear CTAs"
+
+validation:
+  min_pages: 5
+  required_pages:
+    - "home"
+    - "about"
+    - "services"
+    - "contact"
+  recommended_pages: 9
+
+version: "1.0.0"
+created: "2025-11-14"
+updated: "2025-11-14"
+author: "Claude Code"

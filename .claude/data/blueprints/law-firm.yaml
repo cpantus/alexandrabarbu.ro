@@ -1,0 +1,486 @@
+# Law Firm Blueprint
+# Legal services, attorneys, law practice
+
+name: "Law Firm"
+slug: "law-firm"
+description: "Legal services, attorneys, law practice - professional, authoritative, trustworthy"
+icon: "⚖️"
+tags: ["legal", "law", "attorney", "professional-services"]
+
+menu:
+  suggested:
+    - name: "Home"
+      slug: "home"
+      weight: 1
+      sections:
+        - type: "hero-cta"
+          default_config:
+            cta_text: "Free Consultation"
+            subtitle: "Experienced legal representation you can trust"
+        - type: "values-intro"
+          default_config:
+            title: "Your Advocates in Law"
+        - type: "services-overview"
+          default_config:
+            columns: 3
+            show_icons: true
+        - type: "case-results"
+          default_config:
+            count: 4
+            show_amounts: true
+        - type: "testimonials"
+          default_config:
+            count: 3
+            style: "professional"
+        - type: "team-preview"
+          default_config:
+            count: 4
+        - type: "contact-form"
+
+    - name: "About"
+      slug: "about"
+      weight: 2
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "firm-history"
+          default_config:
+            max_words: 250
+        - type: "mission-values"
+        - type: "team-full"
+          default_config:
+            show_credentials: true
+            show_bar_numbers: true
+        - type: "awards-recognition"
+
+    - name: "Practice Areas"
+      slug: "practice-areas"
+      weight: 3
+      has_submenu: true
+      submenu:
+        count:
+          suggested: 6
+          min: 3
+          max: 10
+        templates:
+          - name: "Personal Injury"
+            slug: "personal-injury"
+            sections:
+              - type: "hero-breadcrumb"
+              - type: "practice-intro"
+              - type: "case-types"
+                default_config:
+                  expandable: true
+              - type: "process"
+                default_config:
+                  steps: 5
+              - type: "case-results"
+                default_config:
+                  count: 5
+                  related_only: true
+              - type: "faq"
+              - type: "cta"
+
+          - name: "Business Law"
+            slug: "business-law"
+            sections:
+              - type: "hero-breadcrumb"
+              - type: "practice-intro"
+              - type: "services-detailed"
+              - type: "industries-served"
+              - type: "case-studies"
+              - type: "cta"
+
+          - name: "Estate Planning"
+            slug: "estate-planning"
+            sections:
+              - type: "hero-breadcrumb"
+              - type: "practice-intro"
+              - type: "services-detailed"
+              - type: "process"
+              - type: "faq"
+              - type: "cta"
+
+          - name: "Family Law"
+            slug: "family-law"
+            sections:
+              - type: "hero-breadcrumb"
+              - type: "practice-intro"
+              - type: "case-types"
+              - type: "process"
+              - type: "testimonials"
+              - type: "cta"
+
+          - name: "Criminal Defense"
+            slug: "criminal-defense"
+            sections:
+              - type: "hero-breadcrumb"
+              - type: "practice-intro"
+              - type: "case-types"
+              - type: "process"
+              - type: "rights-information"
+              - type: "cta"
+
+          - name: "Real Estate"
+            slug: "real-estate"
+            sections:
+              - type: "hero-breadcrumb"
+              - type: "practice-intro"
+              - type: "services-detailed"
+              - type: "process"
+              - type: "faq"
+              - type: "cta"
+
+    - name: "Our Team"
+      slug: "team"
+      weight: 4
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "team-grid"
+          default_config:
+            show_credentials: true
+            show_practice_areas: true
+            show_contact: true
+        - type: "support-staff"
+          default_config:
+            optional: true
+
+    - name: "Results"
+      slug: "results"
+      weight: 5
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "case-results-comprehensive"
+          default_config:
+            filterable: true
+            show_amounts: true
+        - type: "testimonials"
+          default_config:
+            count: 6
+        - type: "cta"
+
+    - name: "Blog"
+      slug: "blog"
+      weight: 6
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "blog-grid"
+          default_config:
+            categories: ["Legal Updates", "Practice Areas", "Client Resources"]
+            pagination: true
+
+    - name: "Contact"
+      slug: "contact"
+      weight: 7
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "contact-form-enhanced"
+          default_config:
+            fields: ["name", "email", "phone", "practice_area", "case_description"]
+            privacy_notice: true
+        - type: "office-locations"
+          default_config:
+            show_maps: true
+            show_hours: true
+        - type: "emergency-contact"
+
+  optional_pages:
+    - name: "FAQ"
+      slug: "faq"
+      suggested: true
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "faq-comprehensive"
+          default_config:
+            categories: ["General", "Practice Areas", "Fees", "Process"]
+
+    - name: "Resources"
+      slug: "resources"
+      suggested: true
+      sections:
+        - type: "hero-breadcrumb"
+        - type: "legal-resources"
+        - type: "downloadable-guides"
+
+design:
+  color_schemes:
+    - name: "Classic Professional"
+      slug: "classic-professional"
+      primary: "#1E3A5F"      # Deep navy (authority)
+      secondary: "#C9A961"    # Gold (prestige)
+      accent: "#2C5F8D"       # Royal blue (trust)
+      description: "Traditional, authoritative palette that conveys trust and professionalism"
+      default: true
+
+    - name: "Modern Authority"
+      slug: "modern-authority"
+      primary: "#2C3E50"      # Slate (contemporary)
+      secondary: "#E74C3C"    # Red (power)
+      accent: "#95A5A6"       # Silver (sophistication)
+      description: "Contemporary and bold - for modern law practices"
+      default: false
+
+    - name: "Approachable Professional"
+      slug: "approachable"
+      primary: "#34495E"      # Charcoal (professional)
+      secondary: "#3498DB"    # Blue (accessible)
+      accent: "#16A085"       # Teal (progressive)
+      description: "Professional yet approachable - for client-focused practices"
+      default: false
+
+  typography:
+    - name: "Editorial"
+      slug: "editorial"
+      heading:
+        font: "Playfair Display"
+        fallback: "serif"
+        weights: [400, 700]
+      body:
+        font: "Lato"
+        fallback: "sans-serif"
+        weights: [400, 600, 700]
+      description: "Elegant and authoritative - conveys expertise and tradition"
+      default: true
+
+    - name: "Modern Professional"
+      slug: "modern-professional"
+      heading:
+        font: "Montserrat"
+        fallback: "sans-serif"
+        weights: [400, 600, 700]
+      body:
+        font: "Open Sans"
+        fallback: "sans-serif"
+        weights: [400, 600]
+      description: "Contemporary and clean - for forward-thinking practices"
+      default: false
+
+    - name: "Classic"
+      slug: "classic"
+      heading:
+        font: "Merriweather"
+        fallback: "serif"
+        weights: [400, 700]
+      body:
+        font: "Source Sans Pro"
+        fallback: "sans-serif"
+        weights: [400, 600]
+      description: "Traditional and readable - timeless appeal"
+      default: false
+
+  animation:
+    default_intensity: "moderate"
+    recommended_effects:
+      - "fade-up"
+      - "slide-in"
+      - "scale"
+    prefers_reduced_motion: true
+
+  imagery:
+    style: "professional"
+    mood: ["authoritative", "trustworthy", "professional", "confident"]
+
+content:
+  ai_suitable:
+    - section_type: "practice-area-descriptions"
+      max_words: 300
+      tone: "professional, authoritative"
+    - section_type: "process-explanations"
+      max_words: 200
+      tone: "clear, informative"
+    - section_type: "faq-answers"
+      max_words: 150
+      tone: "helpful, precise"
+    - section_type: "legal-information"
+      max_words: 250
+      tone: "informative, cautious"
+
+  user_required:
+    - section_type: "attorney-bios"
+      reason: "Specific credentials and experience required"
+    - section_type: "case-results"
+      reason: "Actual case outcomes and settlements"
+    - section_type: "firm-history"
+      reason: "Specific founding story and milestones"
+    - section_type: "contact-info"
+      reason: "Office locations and bar admissions"
+
+  placeholders:
+    - section_type: "testimonials"
+      count: 6
+      template: "The team at [Firm Name] provided exceptional legal representation. Their expertise and dedication made all the difference."
+
+    - section_type: "practice-areas"
+      items:
+        - "Personal Injury"
+        - "Business Law"
+        - "Estate Planning"
+        - "Family Law"
+        - "Criminal Defense"
+        - "Real Estate Law"
+
+  word_counts:
+    hero_subtitle: 40
+    practice_intro: 200
+    firm_history: 300
+    attorney_bio: 250
+    faq_answer: 150
+
+images:
+  unsplash:
+    collections:
+      - id: "hero-legal"
+        query: "law office professional interior modern"
+        count: 5
+        orientation: "landscape"
+        purpose: "hero"
+
+      - id: "justice-authority"
+        query: "justice scales courthouse architecture"
+        count: 5
+        orientation: "landscape"
+        purpose: "backgrounds"
+
+      - id: "business-professional"
+        query: "business meeting professional handshake"
+        count: 6
+        orientation: "landscape"
+        purpose: "practice-areas"
+
+      - id: "team-professional"
+        query: "professional headshot business portrait"
+        count: 8
+        orientation: "portrait"
+        purpose: "attorney-photos"
+
+  stock_style: "professional"
+
+  required:
+    - type: "hero"
+      count: 5
+      aspect_ratio: "16:9"
+      description: "Professional hero images for main pages"
+    - type: "practice-area"
+      count: 6
+      aspect_ratio: "4:3"
+      description: "One per practice area"
+    - type: "attorney"
+      count: 8
+      aspect_ratio: "3:4"
+      description: "Professional headshots"
+
+integrations:
+  recommended:
+    - type: "forms"
+      priority: "high"
+      options:
+        - "contact-form-enhanced"
+        - "case-evaluation-form"
+        - "google-sheets"
+      default: "contact-form-enhanced"
+      config:
+        attorney_client_privilege_notice: true
+        spam_protection: "recaptcha-v3"
+
+    - type: "analytics"
+      priority: "high"
+      options:
+        - "google-analytics"
+        - "plausible"
+      default: "google-analytics"
+
+    - type: "chat"
+      priority: "medium"
+      options:
+        - "intercom"
+        - "drift"
+        - "crisp"
+      note: "Live chat for initial consultations"
+
+  optional:
+    - type: "booking"
+      priority: "medium"
+      options:
+        - "calendly"
+        - "acuity"
+
+    - type: "newsletter"
+      priority: "low"
+      options:
+        - "mailchimp"
+        - "sendgrid"
+
+seo:
+  schema_types:
+    - "LegalService"
+    - "Organization"
+    - "Attorney"
+    - "LocalBusiness"
+
+  meta_templates:
+    home_title: "{firmName} | {location} Law Firm | {primaryPractices}"
+    home_description: "Experienced {location} attorneys specializing in {primaryPractices}. {yearsExperience}+ years serving clients. Free consultation."
+    practice_title: "{practiceArea} Attorney {location} | {firmName}"
+    practice_description: "Expert {practiceArea} representation in {location}. {results}. Contact us for a free consultation."
+    attorney_title: "{attorneyName}, {credentials} | {firmName}"
+    attorney_description: "{attorneyName} is a {location} attorney specializing in {specialties}. {barAdmissions}."
+
+  keywords:
+    home:
+      - "law firm [location]"
+      - "attorney [location]"
+      - "[practice area] lawyer"
+      - "legal services"
+    practice:
+      - "[practice area] attorney [location]"
+      - "[practice area] lawyer near me"
+      - "[specific case type]"
+    attorney:
+      - "[attorney name]"
+      - "[practice area] attorney"
+      - "[bar admission] lawyer"
+
+wizard:
+  quick_mode:
+    enabled: true
+    pages_to_generate: 13
+    sections_per_page: 5
+    use_ai_content: true
+    use_stock_images: true
+    default_practice_areas: 6
+
+  customize_phases:
+    - phase: 2
+      focus: "practice-areas"
+      reason: "Practice area count and types vary by firm - customization essential"
+
+    - phase: 3
+      pages: ["home", "practice-areas", "results"]
+      reason: "These pages drive client acquisition and credibility"
+
+    - phase: 4
+      elements: ["colors", "logo"]
+      reason: "Branding critical for professional credibility and recognition"
+
+examples:
+  - name: "Morgan & Morgan"
+    url: "https://www.forthepeople.com"
+    description: "Excellent case results presentation and clear CTAs"
+
+  - name: "Quinn Emanuel"
+    url: "https://www.quinnemanuel.com"
+    description: "Professional design with strong authority and expertise"
+
+validation:
+  min_pages: 6
+  required_pages:
+    - "home"
+    - "about"
+    - "practice-areas"
+    - "team"
+    - "contact"
+  recommended_pages: 13
+
+version: "1.0.0"
+created: "2025-11-14"
+updated: "2025-11-14"
+author: "Claude Code"
