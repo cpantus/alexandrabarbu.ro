@@ -69,3 +69,80 @@ google = ""
 bing = ""
 baidu = ""
 facebook = ""
+
+# Emergency banner for mental health crisis resources
+[emergency_banner]
+enable = false
+
+# Design System Variables (Design Excellence v3.1 - Hugo Way)
+[variables]
+# Typography
+font_primary = "Poppins:wght@300;400;500;600;700;800"
+font_primary_type = "sans-serif"
+font_secondary = "Open Sans:wght@300;400;500;600;700"
+font_secondary_type = "sans-serif"
+font_size = "16px"
+font_scale = "1.25"
+
+# Brand Colors (Alexandra.md)
+color_primary = "#4DB380"      # Verde Eucalipt (Healing Green)
+color_secondary = "#CC6B49"    # Teracotă (Warm Terracotta)
+white = "#ffffff"
+black = "#111827"              # Text primary (not pure black)
+light = "#f9fafb"              # Gray-50
+border_color = "#e5e7eb"       # Gray-200
+
+# Design Excellence - Extended Color Scales
+# Green Scale (Healing)
+green_50 = "#f0fdf6"
+green_100 = "#dcfce8"
+green_200 = "#bbf7d5"
+green_300 = "#86efb3"
+green_400 = "#4DB380"
+green_500 = "#3a9d6a"
+green_600 = "#2d7a52"
+green_700 = "#246143"
+green_800 = "#1e4d36"
+green_900 = "#1a4231"
+
+# Terracotta Scale (Warmth)
+terracotta_50 = "#fef7f3"
+terracotta_100 = "#fceee6"
+terracotta_200 = "#f9dcd0"
+terracotta_300 = "#f5c2aa"
+terracotta_400 = "#CC6B49"
+terracotta_500 = "#b55737"
+terracotta_600 = "#964629"
+terracotta_700 = "#7a3921"
+terracotta_800 = "#5e2d1a"
+terracotta_900 = "#4a2315"
+
+# Gray Scale (Sophisticated Neutrals)
+gray_50 = "#f9fafb"
+gray_100 = "#f3f4f6"
+gray_200 = "#e5e7eb"
+gray_300 = "#d1d5db"
+gray_400 = "#9ca3af"
+gray_500 = "#6b7280"
+gray_600 = "#4b5563"
+gray_700 = "#374151"
+gray_800 = "#1f2937"
+gray_900 = "#111827"
+
+# Motion System (Purposeful Calm)
+duration_fast = "200ms"
+duration_normal = "400ms"
+duration_slow = "600ms"
+ease_in_out = "cubic-bezier(0.4, 0, 0.2, 1)"
+
+# Spacing & Layout
+space_base = "1rem"            # 16px
+radius_base = "0.75rem"        # 12px
+radius_large = "1rem"          # 16px
+
+# Shadow System
+shadow_sm = "0 1px 3px 0 rgba(0, 0, 0, 0.1)"
+shadow_md = "0 10px 15px -3px rgba(0, 0, 0, 0.1)"
+shadow_lg = "0 20px 25px -5px rgba(0, 0, 0, 0.1)"
+shadow_primary = "0 10px 30px -5px rgba(77, 179, 128, 0.2)"
+shadow_secondary = "0 10px 30px -5px rgba(204, 107, 73, 0.2)"

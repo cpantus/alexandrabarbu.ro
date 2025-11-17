@@ -10,6 +10,7 @@ sections:
   - type: "feature-blocks"
   - type: "values-intro"
   - type: "values-compass"
+  - type: "credentials-showcase"
   - type: "video-popup"
   - type: "onboarding-steps"
   - type: "faq-mini"
@@ -62,7 +63,7 @@ problem_empathy:
       index: 1
     - title: "Unresolved Trauma"
       description: "Painful memories that haunt you, flashbacks, intense emotional reactions to seemingly harmless stimuli."
-      icon: "heart-broken"
+      icon: "brain"
       index: 2
     - title: "Decreased Well-being"
       description: "Lack of energy, loss of pleasure in activities, sleep disturbances, feeling of inner emptiness."
@@ -120,9 +121,6 @@ benefits_section:
     - title: "Science-Based"
       icon: "flask"
       description: "I use scientifically validated methods: Cognitive-Behavioral Therapy (CBT), Dialectical Behavior Therapy (DBT), and Acceptance and Commitment Therapy (ACT)."
-    - title: "Personalized"
-      icon: "user-check"
-      description: "Every person is unique. I adapt the therapeutic plan according to your specific needs, context, and goals."
     - title: "Client-Centered"
       icon: "heart"
       description: "You are at the center of the therapeutic process. I prioritize your comfort, pace, and choices in every session."

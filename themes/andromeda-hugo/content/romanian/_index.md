@@ -10,6 +10,7 @@ sections:
   - type: "feature-blocks"
   - type: "values-intro"
   - type: "values-compass"
+  - type: "credentials-showcase"
   - type: "video-popup"
   - type: "onboarding-steps"
   - type: "faq-mini"
@@ -62,7 +63,7 @@ problem_empathy:
       index: 1
     - title: "Traume Nerezolvate"
       description: "Amintiri dureroase care te bântuie, flashback-uri, reacții emoționale intense la stimuli aparent inofensivi."
-      icon: "heart-broken"
+      icon: "brain"
       index: 2
     - title: "Scăderea Stării de Bine"
       description: "Lipsă de energie, pierderea plăcerii în activități, tulburări de somn, sentiment de gol interior."
@@ -120,9 +121,6 @@ benefits_section:
     - title: "Bazată pe Știință"
       icon: "flask"
       description: "Folosesc metode validate științific: Terapie Cognitiv-Comportamentală (CBT), Terapie Dialectic-Comportamentală (DBT), și Terapie de Acceptare și Angajament (ACT)."
-    - title: "Personalizată"
-      icon: "user-check"
-      description: "Fiecare persoană este unică. Adaptez planul terapeutic în funcție de nevoile, contextul și obiectivele tale specifice."
     - title: "Centrată pe Client"
       icon: "heart"
       description: "Tu ești în centrul procesului terapeutic. Prioritizez confortul, ritmul și alegerile tale în fiecare ședință."

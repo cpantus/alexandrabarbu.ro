@@ -1,0 +1,279 @@
+// Problem Empathy Section - Enhanced v4.0
+// Match credentials-showcase styling with glassmorphism, gradient icons, and organic shapes
+
+.problem-empathy {
+  padding: $space-16 0;
+  position: relative;
+  overflow: hidden;
+  background: $gradient-warm-subtle;
+
+  // Organic background blob
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 50%;
+    height: 120%;
+    background: $gradient-radial-secondary;
+    opacity: 0.08;
+    @include organic-blob('smooth');
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// Problem Cards Grid
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $gap-normal;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+
+  // Staggered entrance animations
+  .problem-card {
+    @include staggered-entrance(fade-in-up, 100ms);
+  }
+
+  // Desktop: 2x2 grid
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $gap-spacious;
+  }
+
+  // Tablet: 2 columns
+  @media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  // Mobile: Stack vertically
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+    gap: $gap-tight;
+  }
+}
+
+// Individual Problem Card - Enhanced v4.0
+.problem-card {
+  display: flex;
+  flex-direction: column;
+  padding: $card-padding-lg;
+  background: $gradient-glass-light;
+  @include glassmorphism(16px, 0.9);
+  border-radius: $radius-xl;
+  box-shadow: $shadow-base;
+  transition: all $duration-normal $ease-out;
+  position: relative;
+  overflow: hidden;
+
+  // Gradient border on hover
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: $radius-xl;
+    padding: 2px;
+    background: $gradient-warm-vibrant;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity $duration-normal $ease-out;
+  }
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: $shadow-warm-lg;
+    background: rgba(255, 255, 255, 0.95);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .problem-icon-wrapper {
+      transform: rotate(8deg) scale(1.1);
+    }
+  }
+}
+
+// Icon Wrapper with Gradient Circle
+.problem-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: $icon-lg;
+  height: $icon-lg;
+  border-radius: $radius-full;
+  margin-bottom: $space-4;
+  transition: transform $duration-normal $ease-out;
+  flex-shrink: 0;
+
+  i {
+    color: white !important;
+    font-size: 1.75rem;
+    display: inline-block;
+  }
+
+  // Gradient variants for different problem types
+  &.icon-emerald {
+    background: $gradient-icon-emerald;
+    box-shadow: 0 8px 16px rgba($green-400, 0.25);
+  }
+
+  &.icon-terracotta {
+    background: $gradient-icon-terracotta;
+    box-shadow: 0 8px 16px rgba($terracotta-400, 0.25);
+  }
+
+  &.icon-teal {
+    background: $gradient-icon-teal;
+    box-shadow: 0 8px 16px rgba(#14b8a6, 0.25);
+
+    i {
+      color: white !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      font-family: "Line Awesome Free" !important;
+      font-weight: 900 !important;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+
+  &.icon-amber {
+    background: $gradient-icon-amber;
+    box-shadow: 0 8px 16px rgba(#f59e0b, 0.25);
+  }
+}
+
+// Card Content
+.problem-content {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.problem-title {
+  font-family: $font-primary;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $color-primary;
+  line-height: 1.3;
+  margin: 0;
+  transition: color $duration-fast $ease-out;
+
+  .problem-card:hover & {
+    color: darken($color-primary, 10%);
+  }
+}
+
+.problem-description {
+  font-family: $font-secondary;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: $gray-600;
+  margin: 0;
+}
+
+// Section Header
+.problem-empathy-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto $space-12;
+
+  .subtitle {
+    font-family: $font-secondary;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $color-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: $space-2;
+  }
+
+  .title {
+    font-family: $font-primary;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: $gray-900;
+    line-height: 1.2;
+    margin-bottom: $space-4;
+
+    @media (max-width: $breakpoint-md) {
+      font-size: 1.875rem;
+    }
+  }
+
+  .description {
+    font-family: $font-secondary;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: $gray-600;
+  }
+}
+
+// Responsive Adjustments
+@media (max-width: 768px) {
+  .problem-empathy {
+    padding: $space-12 0;
+  }
+
+  .problem-card {
+    padding: $card-padding-base;
+  }
+
+  .problem-icon-wrapper {
+    width: $icon-base;
+    height: $icon-base;
+
+    i {
+      font-size: 1.5rem;
+    }
+  }
+
+  .problem-title {
+    font-size: 1.125rem;
+  }
+
+  .problem-description {
+    font-size: 0.875rem;
+  }
+
+  .problem-empathy-header {
+    margin-bottom: $space-8;
+
+    .title {
+      font-size: 1.75rem;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .problem-card {
+    padding: $space-5;
+  }
+
+  .problem-icon-wrapper {
+    width: $icon-sm;
+    height: $icon-sm;
+    margin-bottom: $space-3;
+
+    i {
+      font-size: 1.25rem;
+    }
+  }
+
+  .problem-title {
+    font-size: 1rem;
+  }
+
+  .problem-description {
+    font-size: 0.8125rem;
+  }
+}
