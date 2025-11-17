@@ -16,7 +16,8 @@
 {{ $variant := .variant | default "desktop" }}
 {{ $context := .context | default . }}
 
-{{ if $context.IsTranslated }}
+{{/* Check if site has multiple languages */}}
+{{ if gt (len site.Languages) 1 }}
   {{ if eq $variant "mobile" }}
     {{/* Mobile Language Selector */}}
     <div class="d-block d-lg-none text-center">
@@ -24,19 +25,25 @@
         class="mx-3 border-0 font-weight-bold"
         id="select-language-mobile"
         onchange="location = this.value;"
-        aria-label="{{ T `select_language` }}">
-        {{ $siteLanguages := site.Languages }}
-        {{ $pageLang := $context.Page.Lang }}
-        {{ range $context.Page.AllTranslations }}
-          {{ $translation := . }}
-          {{ range $siteLanguages }}
-            {{ if eq $translation.Lang .Lang }}
-              <option
-                id="{{ $translation.Language }}-mobile"
-                value="{{ $translation.RelPermalink }}"
-                {{ if eq $pageLang .Lang }}selected{{ end }}>
-                {{ .LanguageName }}
-              </option>
+        aria-label="{{ i18n `select_language` | default `Select Language` }}">
+        {{ $pageLang := $context.Lang }}
+        {{/* Loop through all site languages */}}
+        {{ range site.Languages }}
+          {{ $langCode := .Lang }}
+          {{ $langName := .LanguageName }}
+          {{/* Check if this is the current language */}}
+          {{ if eq $langCode $pageLang }}
+            <option value="{{ $context.RelPermalink }}" selected>
+              {{ $langName }}
+            </option>
+          {{ else }}
+            {{/* Find translation for this language */}}
+            {{ range $context.Translations }}
+              {{ if eq .Lang $langCode }}
+                <option value="{{ .RelPermalink }}">
+                  {{ $langName }}
+                </option>
+              {{ end }}
             {{ end }}
           {{ end }}
         {{ end }}
@@ -49,19 +56,25 @@
         class="mx-3 border-0 font-weight-bold"
         id="select-language-desktop"
         onchange="location = this.value;"
-        aria-label="{{ T `select_language` }}">
-        {{ $siteLanguages := site.Languages }}
-        {{ $pageLang := $context.Page.Lang }}
-        {{ range $context.Page.AllTranslations }}
-          {{ $translation := . }}
-          {{ range $siteLanguages }}
-            {{ if eq $translation.Lang .Lang }}
-              <option
-                id="{{ $translation.Language }}-desktop"
-                value="{{ $translation.RelPermalink }}"
-                {{ if eq $pageLang .Lang }}selected{{ end }}>
-                {{ .LanguageName }}
-              </option>
+        aria-label="{{ i18n `select_language` | default `Select Language` }}">
+        {{ $pageLang := $context.Lang }}
+        {{/* Loop through all site languages */}}
+        {{ range site.Languages }}
+          {{ $langCode := .Lang }}
+          {{ $langName := .LanguageName }}
+          {{/* Check if this is the current language */}}
+          {{ if eq $langCode $pageLang }}
+            <option value="{{ $context.RelPermalink }}" selected>
+              {{ $langName }}
+            </option>
+          {{ else }}
+            {{/* Find translation for this language */}}
+            {{ range $context.Translations }}
+              {{ if eq .Lang $langCode }}
+                <option value="{{ .RelPermalink }}">
+                  {{ $langName }}
+                </option>
+              {{ end }}
             {{ end }}
           {{ end }}
         {{ end }}

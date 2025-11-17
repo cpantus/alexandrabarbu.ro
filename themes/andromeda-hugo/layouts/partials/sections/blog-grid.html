@@ -1,0 +1,88 @@
+{{/* Blog Grid Section - Articles/resources with filtering */}}
+{{ $section := .Params.blog_grid }}
+
+{{ with $section }}
+  {{ if .enable }}
+    <section class="section blog-grid">
+      <div class="container-xxl position-relative">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-title text-center mb-5">
+              {{ if .subtitle }}
+                <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
+              {{ end }}
+              {{ if .title }}
+                <h2 class="title">{{ .title | markdownify }}</h2>
+              {{ end }}
+              {{ if .description }}
+                <p>{{ .description | markdownify }}</p>
+              {{ end }}
+            </div>
+
+            {{/* Category Filter Tabs */}}
+            {{ if .categories }}
+              <ul class="nav nav-pills justify-content-center mb-5" id="blogFilter" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" data-filter="all">
+                    {{ i18n "all" | default "Toate" }}
+                  </button>
+                </li>
+                {{ range .categories }}
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" data-filter="{{ .slug }}">{{ .name }}</button>
+                  </li>
+                {{ end }}
+              </ul>
+            {{ end }}
+
+            {{/* Blog/Resource Grid */}}
+            <div class="row blog-items" id="blogItems">
+              {{ range .items }}
+                <div class="col-lg-4 col-md-6 mb-4 blog-item" data-category="{{ .category | default "all" }}">
+                  <div class="card blog-card h-100 border-0 shadow-sm" data-aos="fade-up">
+                    {{ if .image }}
+                      <div class="blog-card-image">
+                        {{ partial "atoms/image.html" (dict
+                          "src" .image
+                          "alt" .title
+                          "class" "card-img-top"
+                        ) }}
+                        {{ if .type }}
+                          <span class="badge bg-secondary blog-badge">{{ .type }}</span>
+                        {{ end }}
+                      </div>
+                    {{ end }}
+                    <div class="card-body">
+                      {{ if .title }}
+                        <h4 class="card-title">{{ .title | markdownify }}</h4>
+                      {{ end }}
+                      {{ if .description }}
+                        <p class="card-text">{{ .description | markdownify }}</p>
+                      {{ end }}
+                      {{ if .link }}
+                        <a href="{{ .link | relLangURL }}" class="btn btn-outline-primary btn-sm">
+                          {{ i18n "read_more" | default "Citește mai mult" }}
+                        </a>
+                      {{ end }}
+                    </div>
+                  </div>
+                </div>
+              {{ end }}
+            </div>
+
+            {{/* Load More Button */}}
+            {{ if .show_load_more }}
+              <div class="row mt-4">
+                <div class="col-lg-12 text-center">
+                  <button id="loadMoreBtn" class="btn btn-primary">
+                    {{ i18n "load_more" | default "Încarcă mai multe" }}
+                  </button>
+                </div>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </section>
+  {{ end }}
+{{ end }}
