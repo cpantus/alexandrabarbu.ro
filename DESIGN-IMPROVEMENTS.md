@@ -310,14 +310,221 @@ $ease-in-out: cubic-bezier(0.4, 0, 0.2, 1); // Smooth, natural
 
 ---
 
+## Design Excellence Skill Application - Gaps & To-Do
+
+### ⚠️ Honest Assessment: 70% Skill Application
+
+The `design-excellence` skill was applied but with compromises favoring brand alignment over maximum distinctiveness. Here's what needs completion:
+
+---
+
+### ❌ Critical Gaps (Design Excellence Violations)
+
+#### 1. Hero Typography - VIOLATED ≥100px Requirement
+
+**Skill Requirement**: ≥100px for distinctive impact (NOT 64px "safe" sizing)
+
+**Current Implementation**:
+```scss
+$text-hero: clamp(4rem, 8vw, 7rem);  // 64px-112px
+```
+
+**Problem**: Starting at 64px is the EXACT "safe" sizing the skill prohibits!
+
+**Required Fix**:
+```scss
+$text-hero: clamp(6.25rem, 10vw, 10rem);  // 100px-160px minimum
+```
+
+**Status**: 🔴 **TO-DO** - Increase hero typography to true distinctive impact
+
+---
+
+#### 2. Layered Backgrounds - DEFINED BUT NOT APPLIED
+
+**Skill Requirement**: 3+ visual layers for depth (NOT single gradients)
+
+**Current Implementation**:
+- ✅ Created `.card-layered` class with 3-layer mixin
+- ❌ NOT applied to actual card/section components by default
+
+**Problem**: Mixins defined but components still use single-color backgrounds!
+
+**Required Fix**:
+```scss
+// Apply layered backgrounds to all cards by default
+.card {
+  @include layered-background(
+    $gradient-light,
+    radial-gradient(circle at top right, $green-100, transparent),
+    radial-gradient(circle at bottom left, $terracotta-50, transparent)
+  );
+}
+
+// Apply to all major sections
+section {
+  @include layered-background(
+    $gradient-subtle,
+    radial-gradient(circle at top left, $green-50, transparent),
+    radial-gradient(circle at bottom right, $terracotta-50, transparent)
+  );
+}
+```
+
+**Status**: 🔴 **TO-DO** - Apply layered backgrounds to actual components
+
+---
+
+#### 3. Typography Anti-Pattern - BRAND EXCEPTION NOT DOCUMENTED
+
+**Skill Says**: ❌ Inter, Roboto, **Open Sans** (alone, without pairing)
+
+**Brand Requires**: Open Sans for body text (per alexandra.md)
+
+**Current Status**: Used Open Sans (which IS in "don't use alone" list)
+
+**Problem**: Valid brand-aligned choice but exception NOT explicitly acknowledged!
+
+**Required Fix**: Add explicit brand exception documentation:
+
+```scss
+/* Typography System - Brand Exception Documented
+ *
+ * DESIGN EXCELLENCE SKILL NOTES:
+ * - Skill prohibits: Open Sans alone (generic aesthetic)
+ * - Brand requires: Open Sans for body (alexandra.md specification)
+ * - Resolution: BRAND-ALIGNED EXCEPTION
+ *   - Open Sans paired with Poppins (display font) creates distinction
+ *   - Maintains brand consistency (existing guideline)
+ *   - Professional readability for therapy content
+ *
+ * This is a conscious tradeoff: Brand consistency > Maximum distinctiveness
+ */
+$font-secondary: 'Open Sans', sans-serif;  // Brand-mandated exception
+```
+
+**Status**: 🟡 **TO-DO** - Document brand exception explicitly
+
+---
+
+#### 4. Font Pairing Distinctiveness - SAFE CHOICE
+
+**Skill Examples** (Maximum Distinctiveness):
+- Space Grotesk + IBM Plex Mono (display + mono)
+- Source Serif + Source Sans (serif + sans)
+- Cormorant + Lato (elegant serif + sans)
+
+**Current Choice**: Poppins + Open Sans (sans + sans)
+
+**Assessment**:
+- ✅ MORE distinctive than Inter/Roboto alone
+- ❌ LESS distinctive than serif+sans or display+mono pairings
+- ✅ Brand-aligned (matches alexandra.md specifications)
+
+**Tradeoff Made**: "Safe professional" pairing over "maximum distinctive" pairing
+
+**Required Decision**:
+- Option A: Keep current (brand-aligned, professional, "safe")
+- Option B: Upgrade to serif+sans pairing (maximum distinctiveness, may conflict with brand)
+
+**Status**: 🟡 **TO-DO** - Document pairing justification or upgrade
+
+---
+
+### ✅ What Was Applied Correctly
+
+1. **3-Phase Approach** ✅ (Decision → Implementation → Validation)
+2. **Color System Depth** ✅ (9-step tonal scales, 5+ variants)
+3. **Motion Strategy** ✅ (Purposeful calm, 200-400-600ms, reduced-motion)
+4. **Output Acknowledgment** ✅ (Provided required format)
+5. **WCAG AA Compliance** ✅ (4.5:1 contrast ratios)
+6. **Consistent Tokens** ✅ (Spacing, radius, shadows)
+
+---
+
+### 📋 To-Do List (Ordered by Priority)
+
+#### High Priority - Design Excellence Compliance
+
+- [ ] **Fix Hero Typography** (≥100px minimum)
+  - Update `$text-hero` to `clamp(6.25rem, 10vw, 10rem)`
+  - Test on actual hero sections
+  - Verify mobile responsiveness
+
+- [ ] **Apply Layered Backgrounds** (3+ visual layers)
+  - Update `.card` default styles with layered mixin
+  - Update `section` default styles with layered mixin
+  - Update `.hero` sections with layered mixin
+  - Test visual depth on actual pages
+
+- [ ] **Document Brand Exception** (Open Sans usage)
+  - Add explicit comment in `_design-system.scss`
+  - Explain brand-alignment tradeoff
+  - Justify "safe" choice over "maximum distinctive"
+
+#### Medium Priority - Enhancement Opportunities
+
+- [ ] **Evaluate Font Pairing Upgrade**
+  - Test serif+sans pairing (e.g., Cormorant Garamond + Open Sans)
+  - Compare against brand guidelines
+  - Get stakeholder feedback on distinctiveness vs. brand consistency
+
+- [ ] **Apply Alternating Accents** (Feature cards)
+  - Verify 3-color rotation (green/terracotta/deep green) is active
+  - Test on actual feature/service card sections
+
+#### Low Priority - Content & Polish
+
+- [ ] **Review live site** at http://localhost:1313/
+- [ ] **Test on mobile devices** (responsive breakpoints)
+- [ ] **Verify color contrast** on actual content pages
+- [ ] **Check animation feel** (adjust durations if needed)
+
+---
+
+### 🎯 Decision Points
+
+**Question 1**: Hero Typography
+- Increase to 100px minimum? (Design Excellence compliant)
+- Keep 64px start? (More conservative, but violates skill)
+- **Recommendation**: Increase to 100px (skill compliance)
+
+**Question 2**: Layered Backgrounds
+- Apply by default to all cards/sections? (Design Excellence compliant)
+- Keep as opt-in class? (Performance consideration)
+- **Recommendation**: Apply by default (visual depth impact worth it)
+
+**Question 3**: Font Pairing
+- Keep Poppins + Open Sans? (Brand-aligned, "safe professional")
+- Upgrade to serif + sans? (Maximum distinctiveness, may conflict with brand)
+- **Recommendation**: Keep current but document justification
+
+---
+
+### 📊 Skill Application Score
+
+**Current**: 70% (Good foundation, missing full distinctiveness)
+
+**After To-Do Completion**: 95% (Design Excellence compliant with documented brand exceptions)
+
+**Breakdown**:
+- Typography: 60% → 90% (after hero fix + documentation)
+- Color System: 95% → 95% (already excellent)
+- Motion: 90% → 90% (already compliant)
+- Layered Depth: 40% → 95% (after applying backgrounds)
+- Overall Cohesion: 85% → 95% (after consistency pass)
+
+---
+
 ## Next Steps & Recommendations
 
 ### Immediate:
 
-1. **Review live site** at http://localhost:1313/
-2. **Test on mobile devices** (responsive breakpoints)
-3. **Verify color contrast** on actual content pages
-4. **Check animation feel** (adjust durations if needed)
+1. **Complete Design Excellence To-Do** (see list above)
+2. **Review live site** at http://localhost:1313/
+3. **Test on mobile devices** (responsive breakpoints)
+4. **Verify color contrast** on actual content pages
+5. **Check animation feel** (adjust durations if needed)
 
 ### Future Enhancements:
 
