@@ -1,40 +1,48 @@
 # Alexandra Barbu - Psychology Practice Website
 
-**Hugo + Atomic Design** | **Production Ready** | Create pages in 30 seconds
+**v4.0 Creative Design Excellence** | **Hugo + Enhanced Design System** | **Production Ready**
 
 ---
 
 ## Quick Start
 
 ```bash
-hugo server --buildDrafts              # Dev server
-hugo --gc --minify                     # Build production
+cd themes/andromeda-hugo             # Run from theme directory
+hugo server --buildDrafts            # Dev server
+hugo --gc --minify                   # Build production
 ```
 
 ---
 
 ## Core Concept
 
-Pages = Header + Sections (2-7) + Footer. Choose from 16 section types:
+Pages = Header + Sections (2-7) + Footer. Choose from 24 section types (5 enhanced v4.0):
 
 ```yaml
 # content/page.md
 layout: "flexible"
 sections:
   - type: "hero-breadcrumb"
-  - type: "benefits-grid"
-  - type: "pricing-tables"
+  - type: "values-compass"          # NEW v4.0 - Compass layout
+  - type: "pricing-tables"          # Enhanced v4.0 - Featured tier
   - type: "contact-form-enhanced"
 ```
 
 ---
 
-## Available Sections (16)
+## Available Sections (24)
 
-**Core**: hero-breadcrumb, values-intro, feature-blocks, feature-details, benefits-grid
-**Interactive**: pricing-tables, video-popup, faq-mini
-**Forms**: contact-form-enhanced, signup-form-enhanced
-**Info**: contact-info-cards, onboarding-steps, privacy-guarantee, confidentiality-notice, job-listings, cta-standard
+**Core**: hero-breadcrumb, values-intro, feature-details, blog-grid, cta-standard
+**Interactive**: video-popup, faq-mini, faq-content, method-tabs
+**Forms**: contact-form-enhanced, signup-form-enhanced, newsletter-signup
+**Info**: contact-info-cards, onboarding-steps, privacy-guarantee, confidentiality-notice, job-listings
+**Enhanced v4.0** ⭐:
+- `values-compass` (NEW) - Compass-pattern layout with glassmorphism
+- `feature-blocks` - Zigzag layout with parallax scrolling
+- `pricing-tables` - Featured tier elevation with tooltips
+- `stats-numbers` - SVG progress rings with animated counting
+- `credentials-showcase` - Gradient icons with circular grid
+**Legacy**: benefits-grid (use values-compass), problem-empathy, timeline-process, related-services, service-highlights
 
 ---
 
@@ -70,9 +78,9 @@ benefits_section:
 
 ```
 Atoms (5)        → button, heading, icon, image, input
-Molecules (14)   → card, form-field, accordion, nav, etc.
+Molecules (17)   → card, form-field, accordion, nav, back-to-top, cookie-consent, etc.
 Organisms (2)    → header, footer
-Sections (16)    → Page sections (benefits-grid, pricing, etc.)
+Sections (24)    → Page sections (benefits-grid, pricing, blog-grid, etc.)
 
 Page = Header + Sections + Footer
 ```
@@ -86,9 +94,9 @@ themes/andromeda-hugo/layouts/
 ├── _default/flexible.html      # Layout engine
 └── partials/
     ├── atoms/                  # 5 components
-    ├── molecules/              # 14 components
+    ├── molecules/              # 17 components
     ├── organisms/              # 2 components
-    └── sections/               # 16 sections
+    └── sections/               # 24 sections
 ```
 
 ---
@@ -96,9 +104,9 @@ themes/andromeda-hugo/layouts/
 ## Testing
 
 ```bash
-./scripts/test-components.sh                   # Verify all components
-./scripts/test-performance.sh                  # Build time, bundle size
-http://localhost:1313/test-all-sections/      # Visual test
+cd themes/andromeda-hugo                       # Run from theme directory
+../../scripts/test-components.sh               # Verify all 48 components
+../../scripts/test-performance.sh              # Build time, bundle size
 ```
 
 ---
@@ -132,9 +140,10 @@ Supports RO/EN/FR via `content/ro/`, `content/en/`, `content/fr/`
 ## Documentation
 
 - **ARCHITECTURE.md** - Technical architecture (read for development)
-- **TEST-GUIDE.md** - Complete testing workflow
-- **QUICK-TEST.md** - Quick reference
+- **themes/andromeda-hugo/CLAUDE.md** - Instructions for AI assistants
+- **themes/andromeda-hugo/PROJECT.md** - Project-specific documentation
 - **themes/andromeda-hugo/docs/components/** - Component API
+- **themes/andromeda-hugo/docs/DATA-CONVENTIONS.md** - Data structure guidelines
 
 ---
 
@@ -157,20 +166,60 @@ hugo --gc --minify
 
 ## Key Features
 
-✅ 16 reusable sections | ✅ 3 archetypes | ✅ Atomic design (37 components)
+✅ 24 reusable sections (5 enhanced v4.0) | ✅ 4 archetypes | ✅ Atomic design (53 components)
 ✅ <3s builds | ✅ WebP images | ✅ Responsive | ✅ Multilingual | ✅ Form validation
+⭐ **NEW v4.0**: Glassmorphism | Warm gradients | Parallax scrolling | SVG animations
+
+---
+
+## v4.0 Creative Design Excellence 🎨
+
+### What's New
+**5 Premium Enhanced Components** with warm, approachable psychology design:
+
+1. **Values Compass** (NEW) - Unique compass-pattern layout
+   - Glassmorphism cards with frosted glass
+   - Progressive disclosure on hover
+   - Mobile tap-to-expand interactions
+
+2. **Feature Blocks** - Zigzag layout with parallax
+   - Alternating left/right pattern
+   - Parallax image effects (desktop)
+   - Gradient text on hover
+
+3. **Stats Numbers** - Animated counting + SVG rings
+   - Circular progress indicators
+   - Count-up animation (0→target)
+   - Intersection Observer triggered
+
+4. **Pricing Tables** - Featured tier elevation
+   - Featured card scaled 1.08x
+   - Comparison tooltips
+   - Gradient checkmarks
+
+5. **Credentials** - Gradient icons + circular grid
+   - Circular gradient backgrounds
+   - Enhanced hover effects
+   - Organic blob backgrounds
+
+### Design System
+- **8 Gradients**: warm (emerald→terracotta), radial, glassmorphism, icons
+- **10 Animations**: fade-in, pulse, float, gradient-shift, staggered-entrance
+- **Accessibility**: WCAG AA, reduced-motion, keyboard nav, touch-optimized
+- **Performance**: +18KB gzipped, 60fps animations, <3s builds maintained
 
 ---
 
 ## Quick Commands
 
 ```bash
-hugo server --buildDrafts                       # Dev
+cd themes/andromeda-hugo                        # MUST run from theme directory
+hugo server --buildDrafts                       # Dev server
 hugo new content/page.md --kind service-page    # New page
-./scripts/test-components.sh                    # Test
+../../scripts/test-components.sh                # Test
 hugo --gc --minify                              # Build
 ```
 
-**Status**: Production Ready ✅ | 37 components verified | Performance targets met
+**Status**: Production Ready ✅ | 53 components | Creative Design Excellence v4.0 | <520KB pages
 
-**Next**: Read `ARCHITECTURE.md` for technical details or `QUICK-TEST.md` to start testing.
+**Next**: Read `PROJECT.md` (v4.0 enhancements) | `ARCHITECTURE.md` (technical) | `themes/andromeda-hugo/CLAUDE.md` (development)

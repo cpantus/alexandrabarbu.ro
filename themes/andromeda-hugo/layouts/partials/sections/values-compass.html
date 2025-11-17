@@ -1,0 +1,110 @@
+{{/* Values Compass Section - Creative Exploration Design */}}
+{{/* Unique compass-pattern layout for core therapy values */}}
+{{ $values := .Params.values_compass }}
+{{ if not $values }}
+  {{ $values = .Params.benefits_section }}
+{{ end }}
+
+{{ with $values }}
+  {{ if .enable }}
+    <section class="values-compass-section" id="values">
+      <div class="container">
+        {{/* Section Header */}}
+        <div class="values-compass-header">
+          {{ if .subtitle }}
+            <p class="text-uppercase text-muted mb-2">{{ .subtitle | markdownify }}</p>
+          {{ end }}
+          <h2>{{ .title | markdownify }}</h2>
+          {{ if .description }}
+            <p>{{ .description | markdownify }}</p>
+          {{ end }}
+        </div>
+
+        {{/* Compass Container */}}
+        <div class="values-compass-container">
+          {{/* Visual connector lines (SVG) */}}
+          <div class="compass-connectors" aria-hidden="true">
+            <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+              {{/* Center point */}}
+              <circle cx="400" cy="200" r="8" />
+
+              {{/* Connector lines from center to cards */}}
+              <path d="M 400 200 L 200 400" />  {{/* To left card */}}
+              <path d="M 400 200 L 400 400" />  {{/* To center card */}}
+              <path d="M 400 200 L 600 400" />  {{/* To right card */}}
+
+              {{/* Arc connecting bottom cards */}}
+              <path d="M 200 400 Q 400 450 600 400" />
+            </svg>
+          </div>
+
+          {{/* Compass Grid */}}
+          <div class="values-compass-grid">
+            {{ range $index, $item := .benefits }}
+              {{ $n := add $index 1 }}
+              {{ $isFeatured := eq $n 1 }}
+              {{ $iconGradient := "" }}
+
+              {{/* Assign icon gradients based on position */}}
+              {{ if eq $n 1 }}
+                {{ $iconGradient = "icon-emerald" }}
+              {{ else if eq $n 2 }}
+                {{ $iconGradient = "icon-terracotta" }}
+              {{ else if eq $n 3 }}
+                {{ $iconGradient = "icon-teal" }}
+              {{ else if eq $n 4 }}
+                {{ $iconGradient = "icon-amber" }}
+              {{ end }}
+
+              <div class="value-card {{ if $isFeatured }}value-card-featured{{ end }}"
+                   role="article"
+                   tabindex="0"
+                   aria-labelledby="value-{{ $n }}-title">
+
+                {{/* Icon wrapper with gradient background */}}
+                <div class="value-card-icon-wrapper {{ $iconGradient }}">
+                  {{ if $item.icon }}
+                    <i class="las la-{{ replace $item.icon "las la-" "" }}" aria-hidden="true"></i>
+                  {{ end }}
+                </div>
+
+                {{/* Title */}}
+                <h3 class="value-card-title" id="value-{{ $n }}-title">
+                  {{ $item.title | markdownify }}
+                </h3>
+
+                {{/* Description (Progressive Disclosure) */}}
+                {{ if $item.description }}
+                  <p class="value-card-description">
+                    {{ $item.description | markdownify }}
+                  </p>
+                {{ end }}
+              </div>
+            {{ end }}
+          </div>
+        </div>
+
+        {{/* Optional: Call to Action */}}
+        {{ if .cta }}
+          <div class="text-center mt-5">
+            {{ partial "atoms/button.html" (dict
+              "text" .cta.text
+              "url" .cta.url
+              "variant" "primary"
+              "size" "lg"
+            ) }}
+          </div>
+        {{ end }}
+      </div>
+
+      {{/* Mobile interaction JavaScript (inline for performance) */}}
+      {{ $js := resources.Get "js/values-compass-interactions.js" }}
+      {{ if $js }}
+        {{ if hugo.IsProduction }}
+          {{ $js = $js | minify | fingerprint }}
+        {{ end }}
+        <script src="{{ $js.RelPermalink }}" {{ if hugo.IsProduction }}integrity="{{ $js.Data.Integrity }}"{{ end }} defer></script>
+      {{ end }}
+    </section>
+  {{ end }}
+{{ end }}

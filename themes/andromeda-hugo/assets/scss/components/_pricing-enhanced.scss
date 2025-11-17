@@ -1,0 +1,404 @@
+/*
+========================================================================
+  Pricing Tables Enhanced - Featured tier emphasis with warm design
+  Creative elevation and comparison tooltips
+========================================================================
+*/
+
+.pricing-section {
+  padding: $space-16 0;
+  position: relative;
+  overflow: hidden;
+  background: $gradient-warm-subtle;
+
+  // Organic background
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 80%;
+    background: $gradient-radial-warm;
+    opacity: 0.08;
+    @include organic-blob('smooth');
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// Pricing Card - Enhanced Design
+.card-pricing {
+  position: relative;
+  background: $gradient-glass-light;
+  @include glassmorphism(12px, 0.9);
+  border-radius: $radius-xl;
+  padding: $space-8;
+  box-shadow: $shadow-base;
+  transition: all $duration-normal $ease-out;
+  border: 2px solid transparent;
+  @include staggered-entrance(fade-in-up, 150ms);
+
+  // Gradient border on hover
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: $radius-xl;
+    padding: 2px;
+    background: $gradient-warm-medium;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity $duration-normal $ease-out;
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: $shadow-warm-lg;
+    background: rgba(255, 255, 255, 0.95);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  // Featured tier (middle card)
+  &.card-pricing-featured {
+    transform: scale(1.08);
+    background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba($green-50, 0.95) 100%
+    );
+    box-shadow: $shadow-featured;
+    border: 2px solid rgba($green-400, 0.3);
+    z-index: 10;
+
+    &::before {
+      background: $gradient-healing;
+      opacity: 1;
+    }
+
+    // Featured badge
+    &::after {
+      content: attr(data-featured-label);
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: $space-2 $space-5;
+      background: $gradient-warm-vibrant;
+      color: white;
+      font-size: $text-sm;
+      font-weight: $weight-semibold;
+      letter-spacing: 0.5px;
+      border-radius: $radius-full;
+      box-shadow: $shadow-md;
+      white-space: nowrap;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: $shadow-featured, $shadow-warm-lg;
+    }
+  }
+}
+
+// Pricing Header
+.pricing-header {
+  text-align: center;
+  margin-bottom: $space-6;
+  padding-bottom: $space-5;
+  border-bottom: 1px solid rgba($gray-300, 0.5);
+
+  .pricing-title {
+    font-size: $text-2xl;
+    font-weight: $weight-bold;
+    color: $color-text-primary;
+    margin-bottom: $space-2;
+  }
+
+  .pricing-description {
+    font-size: $text-sm;
+    color: $color-text-secondary;
+    line-height: $leading-relaxed;
+  }
+}
+
+// Pricing Price
+.pricing-price {
+  text-align: center;
+  margin-bottom: $space-6;
+
+  .price-wrapper {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-bottom: $space-2;
+  }
+
+  .currency {
+    font-size: $text-xl;
+    font-weight: $weight-semibold;
+    color: $color-primary;
+    margin-right: $space-1;
+  }
+
+  .amount {
+    font-size: $text-6xl;
+    font-weight: $weight-extrabold;
+    line-height: 1;
+    color: $color-primary;
+    font-family: $font-display;
+  }
+
+  .period {
+    font-size: $text-base;
+    color: $color-text-muted;
+    margin-left: $space-2;
+  }
+
+  // Animated price change
+  .amount.changing {
+    animation: price-pulse $duration-fast ease-in-out;
+  }
+}
+
+// Pricing Features List
+.pricing-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 $space-6 0;
+
+  li {
+    padding: $space-3 0;
+    font-size: $text-base;
+    color: $color-text-secondary;
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+
+    // Checkmark icon
+    &::before {
+      content: '✓';
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: $radius-full;
+      background: $gradient-icon-emerald;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: $weight-bold;
+      font-size: $text-sm;
+      margin-right: $space-3;
+    }
+
+    // Comparison tooltip (on hover)
+    &[data-tooltip] {
+      cursor: help;
+
+      &:hover::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: $space-2 $space-3;
+        background: $gray-900;
+        color: white;
+        font-size: $text-xs;
+        white-space: nowrap;
+        border-radius: $radius-md;
+        box-shadow: $shadow-lg;
+        z-index: 100;
+        margin-bottom: $space-1;
+        animation: tooltip-fade-in $duration-fast $ease-out;
+      }
+    }
+  }
+
+  // Featured tier special features
+  .card-pricing-featured & li::before {
+    background: $gradient-healing;
+  }
+}
+
+// Pricing Button
+.pricing-button {
+  width: 100%;
+
+  .btn {
+    width: 100%;
+    padding: $space-4 $space-6;
+    font-size: $text-lg;
+    font-weight: $weight-semibold;
+    border-radius: $radius-lg;
+    transition: all $duration-normal $ease-out;
+
+    .card-pricing-featured & {
+      background: $gradient-warm-vibrant;
+      border: none;
+      box-shadow: $shadow-primary;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: $shadow-primary-lg;
+      }
+    }
+  }
+}
+
+// Pricing Toggle (Monthly/Yearly)
+.pricing-switch {
+  margin-bottom: $space-8;
+
+  label {
+    cursor: pointer;
+    transition: color $duration-fast $ease-out;
+
+    &.active {
+      color: $color-primary;
+      font-weight: $weight-bold;
+    }
+  }
+
+  .toggle {
+    position: relative;
+    margin: 0 $space-4;
+    width: 60px;
+    height: 32px;
+    background: $gray-300;
+    border-radius: $radius-full;
+    transition: background $duration-fast $ease-out;
+    cursor: pointer;
+
+    .pricing-check {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+
+      &:checked + .switch {
+        left: 30px;
+        background: $gradient-warm-vibrant;
+      }
+
+      &:checked ~ {
+        background: $color-primary-light;
+      }
+    }
+
+    .switch {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 28px;
+      height: 28px;
+      background: white;
+      border-radius: $radius-full;
+      box-shadow: $shadow-base;
+      transition: all $duration-fast $ease-out;
+    }
+
+    &:hover .switch {
+      box-shadow: $shadow-md;
+    }
+  }
+}
+
+// Animations
+@keyframes price-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes tooltip-fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+// Responsive Design
+@media (max-width: $breakpoint-lg) {
+  .card-pricing.card-pricing-featured {
+    transform: scale(1.05);
+
+    &:hover {
+      transform: scale(1.07);
+    }
+  }
+
+  .pricing-price .amount {
+    font-size: $text-5xl;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .pricing-section {
+    padding: $space-12 0;
+  }
+
+  .card-pricing {
+    margin-bottom: $space-6;
+
+    &.card-pricing-featured {
+      transform: scale(1);
+      margin-bottom: $space-8;
+
+      &::after {
+        top: -12px;
+      }
+    }
+  }
+
+  .pricing-price .amount {
+    font-size: $text-4xl;
+  }
+
+  .pricing-features li[data-tooltip]:hover::after {
+    white-space: normal;
+    max-width: 200px;
+  }
+}
+
+// Accessibility
+@media (prefers-reduced-motion: reduce) {
+  .card-pricing,
+  .pricing-price .amount,
+  .pricing-button .btn {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// High Contrast
+@media (prefers-contrast: high) {
+  .card-pricing {
+    border: 3px solid currentColor;
+    background: $color-bg-primary !important;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .pricing-features li::before {
+    border: 2px solid currentColor;
+  }
+}
