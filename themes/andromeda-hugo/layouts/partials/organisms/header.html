@@ -12,6 +12,15 @@
     {{ partialCached "organisms/header.html" . .Language }} // With caching
 */}}
 
+<!-- Skip to Content Link (WCAG 2.1 AA - Keyboard Navigation) -->
+<a href="#main-content" class="skip-to-content visually-hidden-focusable">
+  {{ if eq site.Language.Lang "ro" }}
+    Sari la conținut
+  {{ else }}
+    Skip to main content
+  {{ end }}
+</a>
+
 <!-- Header Height Fix -->
 <div class="header-height-fix"></div>
 

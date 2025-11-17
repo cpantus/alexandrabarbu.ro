@@ -1,0 +1,30 @@
+# Taxonomies Configuration
+# Defines custom taxonomies for content organization and SEO
+
+# Therapy modalities taxonomy
+# Used to categorize services by therapeutic approach
+# Examples: CBT, DBT, ACT, EMDR, Schema Therapy
+[taxonomies]
+therapy = "therapies"
+
+# Mental health conditions taxonomy
+# Used to categorize content by conditions treated
+# Examples: anxiety, depression, trauma, OCD
+condition = "conditions"
+
+# Service types taxonomy
+# Used to categorize different service offerings
+# Examples: individual, couples, family, organizational
+service_type = "service_types"
+
+# Blog categories (default Hugo taxonomy)
+category = "categories"
+
+# Blog tags (default Hugo taxonomy)
+tag = "tags"
+
+# Note: Singular form = term, Plural form = taxonomy list
+# Access in templates:
+# - .Site.Taxonomies.therapies (all therapies)
+# - .Params.therapies (therapies for current page)
+# - /therapies/cbt/ (auto-generated list page for CBT)

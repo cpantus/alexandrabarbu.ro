@@ -1,7 +1,7 @@
 {{/*
-  Language Selector Molecule
+  Language Selector Molecule (Enhanced v2.0)
 
-  Displays language switcher for multilingual sites
+  Displays language switcher for multilingual sites with flags and persistence
   Supports both desktop and mobile variants
 
   Usage:
@@ -11,37 +11,47 @@
   Params:
     - variant: "desktop" or "mobile" (default: "desktop")
     - context: page context (required)
+
+  Features:
+    - Flag emojis for visual language identification
+    - localStorage persistence for language preference
+    - ARIA labels for accessibility
+    - Auto-redirect to preferred language on homepage
 */}}
 
 {{ $variant := .variant | default "desktop" }}
 {{ $context := .context | default . }}
 
+{{/* Language flag mapping */}}
+{{ $languageFlags := dict "ro" "🇷🇴" "en" "🇬🇧" }}
+
 {{/* Check if site has multiple languages */}}
 {{ if gt (len site.Languages) 1 }}
   {{ if eq $variant "mobile" }}
     {{/* Mobile Language Selector */}}
-    <div class="d-block d-lg-none text-center">
+    <div class="language-selector-mobile d-block d-lg-none">
       <select
-        class="mx-3 border-0 font-weight-bold"
+        class="language-select-enhanced border-0 font-weight-bold"
         id="select-language-mobile"
-        onchange="location = this.value;"
+        onchange="window.switchLanguage(this.value)"
         aria-label="{{ i18n `select_language` | default `Select Language` }}">
         {{ $pageLang := $context.Lang }}
         {{/* Loop through all site languages */}}
         {{ range site.Languages }}
           {{ $langCode := .Lang }}
           {{ $langName := .LanguageName }}
+          {{ $flag := index $languageFlags $langCode | default "🌐" }}
           {{/* Check if this is the current language */}}
           {{ if eq $langCode $pageLang }}
-            <option value="{{ $context.RelPermalink }}" selected>
-              {{ $langName }}
+            <option value="{{ $context.RelPermalink }}" data-lang="{{ $langCode }}" selected>
+              {{ $flag }} {{ $langName }}
             </option>
           {{ else }}
             {{/* Find translation for this language */}}
             {{ range $context.Translations }}
               {{ if eq .Lang $langCode }}
-                <option value="{{ .RelPermalink }}">
-                  {{ $langName }}
+                <option value="{{ .RelPermalink }}" data-lang="{{ $langCode }}">
+                  {{ $flag }} {{ $langName }}
                 </option>
               {{ end }}
             {{ end }}
@@ -51,28 +61,29 @@
     </div>
   {{ else }}
     {{/* Desktop Language Selector */}}
-    <div class="d-none d-lg-inline text-center">
+    <div class="language-selector-desktop d-none d-lg-inline">
       <select
-        class="mx-3 border-0 font-weight-bold"
+        class="language-select-enhanced border-0 font-weight-bold"
         id="select-language-desktop"
-        onchange="location = this.value;"
+        onchange="window.switchLanguage(this.value)"
         aria-label="{{ i18n `select_language` | default `Select Language` }}">
         {{ $pageLang := $context.Lang }}
         {{/* Loop through all site languages */}}
         {{ range site.Languages }}
           {{ $langCode := .Lang }}
           {{ $langName := .LanguageName }}
+          {{ $flag := index $languageFlags $langCode | default "🌐" }}
           {{/* Check if this is the current language */}}
           {{ if eq $langCode $pageLang }}
-            <option value="{{ $context.RelPermalink }}" selected>
-              {{ $langName }}
+            <option value="{{ $context.RelPermalink }}" data-lang="{{ $langCode }}" selected>
+              {{ $flag }} {{ $langName }}
             </option>
           {{ else }}
             {{/* Find translation for this language */}}
             {{ range $context.Translations }}
               {{ if eq .Lang $langCode }}
-                <option value="{{ .RelPermalink }}">
-                  {{ $langName }}
+                <option value="{{ .RelPermalink }}" data-lang="{{ $langCode }}">
+                  {{ $flag }} {{ $langName }}
                 </option>
               {{ end }}
             {{ end }}
@@ -81,4 +92,52 @@
       </select>
     </div>
   {{ end }}
+
+  {{/* Language Persistence JavaScript */}}
+  <script>
+    (function() {
+      // Switch language and save preference
+      window.switchLanguage = function(url) {
+        const selectedOption = document.querySelector(`option[value="${url}"]`);
+        const langCode = selectedOption ? selectedOption.dataset.lang : null;
+
+        if (langCode) {
+          // Save preference to localStorage
+          try {
+            localStorage.setItem('preferredLanguage', langCode);
+            console.log('Language preference saved:', langCode);
+          } catch (e) {
+            console.warn('Could not save language preference:', e);
+          }
+        }
+
+        // Navigate to selected page
+        window.location.href = url;
+      };
+
+      // Auto-redirect homepage to preferred language
+      window.addEventListener('DOMContentLoaded', function() {
+        try {
+          const preferredLang = localStorage.getItem('preferredLanguage');
+          const currentPath = window.location.pathname;
+          const currentLang = document.documentElement.lang;
+
+          // Only redirect on homepage
+          if (currentPath === '/' && preferredLang && preferredLang !== currentLang) {
+            console.log('Redirecting to preferred language:', preferredLang);
+
+            // Find the translation link for preferred language
+            const selector = `select option[data-lang="${preferredLang}"]`;
+            const preferredOption = document.querySelector(selector);
+
+            if (preferredOption && preferredOption.value) {
+              window.location.href = preferredOption.value;
+            }
+          }
+        } catch (e) {
+          console.warn('Language auto-redirect failed:', e);
+        }
+      });
+    })();
+  </script>
 {{ end }}

@@ -1,0 +1,134 @@
+{{- $section := .Params.contact_options -}}
+{{- if $section -}}
+{{- $sectionID := printf "contact-options-%d" (now.Unix) -}}
+
+<section class="section contact-options" id="{{ $sectionID }}">
+  <div class="container">
+    <!-- Section Header -->
+    {{- if or $section.title $section.subtitle -}}
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center mb-5">
+        {{- if $section.subtitle -}}
+        <p class="text-primary text-uppercase fw-semibold mb-2">{{ $section.subtitle }}</p>
+        {{- end -}}
+        {{- if $section.title -}}
+        {{ partial "atoms/heading.html" (dict "text" $section.title "level" 2 "class" "mb-3") }}
+        {{- end -}}
+        {{- if $section.description -}}
+        <p class="text-muted lead">{{ $section.description }}</p>
+        {{- end -}}
+      </div>
+    </div>
+    {{- end -}}
+
+    <!-- Contact Option Cards -->
+    {{- if $section.options -}}
+    <div class="row g-4 mb-5">
+      {{- range $index, $option := $section.options -}}
+      <div class="col-lg-4 col-md-6">
+        <div class="contact-option-card h-100"
+             data-aos="fade-up"
+             data-aos-delay="{{ mul $index 100 }}">
+
+          <!-- Badge -->
+          {{- if $option.badge -}}
+          <div class="option-badge">{{ $option.badge }}</div>
+          {{- end -}}
+
+          <!-- Icon -->
+          <div class="option-icon {{ if $option.featured }}featured{{ end }}">
+            {{ partial "atoms/icon.html" (dict "icon" $option.icon "size" "48") }}
+          </div>
+
+          <!-- Content -->
+          <div class="option-content">
+            {{ partial "atoms/heading.html" (dict "text" $option.title "level" 4 "class" "mb-2") }}
+
+            {{- if $option.commitment_level -}}
+            <div class="commitment-indicator mb-3">
+              {{- $bars := 3 -}}
+              {{- if eq $option.commitment_level "low" }}{{ $bars = 1 }}{{ end -}}
+              {{- if eq $option.commitment_level "medium" }}{{ $bars = 2 }}{{ end -}}
+              {{- if eq $option.commitment_level "high" }}{{ $bars = 3 }}{{ end -}}
+
+              <div class="commitment-bars">
+                {{- range seq 3 -}}
+                <span class="bar{{ if le . $bars }} active{{ end }}"></span>
+                {{- end -}}
+              </div>
+              <span class="commitment-label">{{ $option.commitment_label | default "Commitment" }}</span>
+            </div>
+            {{- end -}}
+
+            {{- if $option.description -}}
+            <p class="text-muted mb-3">{{ $option.description }}</p>
+            {{- end -}}
+
+            {{- if $option.features -}}
+            <ul class="option-features">
+              {{- range $option.features -}}
+              <li>
+                {{ partial "atoms/icon.html" (dict "icon" "las la-check" "class" "text-success me-2") }}
+                <span>{{ . }}</span>
+              </li>
+              {{- end -}}
+            </ul>
+            {{- end -}}
+
+            {{- if $option.response_time -}}
+            <div class="response-time mt-3">
+              {{ partial "atoms/icon.html" (dict "icon" "las la-clock" "class" "text-primary me-2") }}
+              <span class="text-muted">{{ $option.response_time }}</span>
+            </div>
+            {{- end -}}
+          </div>
+
+          <!-- CTA -->
+          <div class="option-cta mt-auto">
+            {{- $buttonVariant := "outline-primary" -}}
+            {{- if $option.featured -}}
+              {{- $buttonVariant = "primary" -}}
+            {{- end -}}
+            {{ partial "atoms/button.html" (dict
+              "text" $option.button_text
+              "url" $option.button_url
+              "variant" $buttonVariant
+              "icon" $option.button_icon
+              "class" "w-100"
+            ) }}
+          </div>
+        </div>
+      </div>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    <!-- Alternative Contact Methods -->
+    {{- if $section.alternative_methods -}}
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="alternative-methods text-center p-4 rounded-3 bg-light">
+          <h5 class="mb-4">{{ $section.alternative_methods.title | default "Or reach out directly:" }}</h5>
+
+          <div class="method-buttons d-flex flex-wrap justify-content-center gap-3">
+            {{- range $section.alternative_methods.methods -}}
+            <a href="{{ .url }}"
+               class="method-button"
+               {{ if .external }}target="_blank" rel="noopener noreferrer"{{ end }}>
+              {{ partial "atoms/icon.html" (dict "icon" .icon "class" "me-2") }}
+              <span>{{ .label }}</span>
+            </a>
+            {{- end -}}
+          </div>
+
+          {{- if $section.alternative_methods.note -}}
+          <p class="text-muted mt-3 mb-0 small">{{ $section.alternative_methods.note }}</p>
+          {{- end -}}
+        </div>
+      </div>
+    </div>
+    {{- end -}}
+  </div>
+</section>
+
+{{- end -}}

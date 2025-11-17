@@ -21,48 +21,40 @@
   {{/* Process remaining sections in the EXACT order defined in front matter */}}
   {{ range $index, $section := .Params.sections }}
     {{ $sectionType := $section.type }}
-    
+
     {{/* Skip hero-breadcrumb since it's already rendered above */}}
     {{ if ne $sectionType "hero-breadcrumb" }}
       {{/* Debug comment - visible in HTML source for troubleshooting */}}
       <!-- Section {{ add $index 1 }}: {{ $sectionType }} -->
-      
-      {{/* Sequential Section Rendering - Preserves Front Matter Order */}}
-      {{ if eq $sectionType "values-intro" }}
-        {{ partial "sections/values-intro.html" $ }}
-      {{ else if eq $sectionType "feature-blocks" }}
-        {{ partial "sections/feature-blocks.html" $ }}
-      {{ else if eq $sectionType "feature-details" }}
-        {{ partial "sections/feature-details.html" $ }}
-      {{ else if eq $sectionType "benefits-grid" }}
-        {{ partial "sections/benefits-grid.html" $ }}
-      {{ else if eq $sectionType "pricing-tables" }}
-        {{ partial "sections/pricing-tables.html" $ }}
-      {{ else if eq $sectionType "job-listings" }}
-        {{ partial "sections/job-listings.html" $ }}
-      {{ else if eq $sectionType "video-popup" }}
-        {{ partial "sections/video-popup.html" $ }}
-      {{ else if eq $sectionType "cta-standard" }}
-        {{ partial "components/call-to-action.html" $ }}
-      {{ else if eq $sectionType "contact-form-enhanced" }}
-        {{ partial "sections/contact-form-enhanced.html" $ }}
-      {{ else if eq $sectionType "contact-info-cards" }}
-        {{ partial "sections/contact-info-cards.html" $ }}
-      {{ else if eq $sectionType "confidentiality-notice" }}
-        {{ partial "sections/confidentiality-notice.html" $ }}
-      {{ else if eq $sectionType "faq-mini" }}
-        {{ partial "sections/faq-mini.html" $ }}
-      {{ else if eq $sectionType "onboarding-steps" }}
-        {{ partial "sections/onboarding-steps.html" $ }}
-      {{ else if eq $sectionType "signup-form-enhanced" }}
-        {{ partial "sections/signup-form-enhanced.html" $ }}
-      {{ else if eq $sectionType "privacy-guarantee" }}
-        {{ partial "sections/privacy-guarantee.html" $ }}
+
+      {{/* Dynamic Section Lookup with Intelligent Caching */}}
+      {{ $sectionPartial := printf "sections/%s.html" $sectionType }}
+      {{ $componentPartial := printf "components/%s.html" $sectionType }}
+
+      {{/* Cache key strategy: section type + language + content hash (production only) */}}
+      {{ $cacheKey := "" }}
+      {{ if hugo.IsProduction }}
+        {{ $contentHash := md5 (printf "%v%v" $sectionType $.Params) }}
+        {{ $cacheKey = printf "%s-%s-%s" $sectionType $.Language $contentHash }}
+      {{ end }}
+
+      {{ if templates.Exists (printf "partials/%s" $sectionPartial) }}
+        {{ if and hugo.IsProduction $cacheKey }}
+          {{ partialCached $sectionPartial $ $cacheKey }}
+        {{ else }}
+          {{ partial $sectionPartial $ }}
+        {{ end }}
+      {{ else if templates.Exists (printf "partials/%s" $componentPartial) }}
+        {{ if and hugo.IsProduction $cacheKey }}
+          {{ partialCached $componentPartial $ $cacheKey }}
+        {{ else }}
+          {{ partial $componentPartial $ }}
+        {{ end }}
       {{ else }}
-        <!-- Unknown section type: {{ $sectionType }} at position {{ add $index 1 }} -->
+        {{ warnf "Section not found: %s (tried sections/%s.html and components/%s.html) at %s" $sectionType $sectionType $sectionType $.File.Path }}
       {{ end }}
     {{ end }}
-    
+
   {{ end }}
   
   {{/* Include pricing JavaScript if pricing section is used */}}
@@ -83,9 +75,14 @@
         </div>
       </div>
     </section>
-    
+
     {{/* Bootstrap 5 JavaScript for accordion functionality */}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   {{ end }}
-  
+
+  {{/* Global Floating Elements - Appear on all pages */}}
+  {{ partial "molecules/emergency-banner.html" . }}
+  {{ partial "molecules/back-to-top.html" . }}
+  {{ partial "molecules/cookie-consent.html" . }}
+
 {{ end }}

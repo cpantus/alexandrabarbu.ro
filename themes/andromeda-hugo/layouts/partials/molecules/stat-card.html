@@ -1,0 +1,130 @@
+{{/*
+  Stat Card Molecule - Animated statistic/number display with icon and label
+
+  Usage:
+    {{ partial "molecules/stat-card.html" (dict
+      "value" "500"
+      "suffix" "+"
+      "label" "Clients Helped"
+      "icon" "users"
+    )}}
+
+  Parameters:
+    value (required) - The numeric value to display
+    label (required) - Label/description text
+    icon (optional) - Icon name (from Line Awesome)
+    suffix (optional) - Suffix after number (e.g., "+", "%", "K")
+    prefix (optional) - Prefix before number (e.g., "$", "RON")
+    color (optional) - Color variant (primary|secondary|success|info|warning|danger) (default: "primary")
+    animated (optional) - Enable count-up animation (default: true)
+    size (optional) - Display size (sm|md|lg) (default: "md")
+    class (optional) - Additional CSS classes
+    aos (optional) - AOS animation name (e.g., "fade-up")
+    aosDelay (optional) - AOS delay in ms (e.g., 100)
+
+  Size variants:
+    sm: h3 number, icon 2x
+    md: h2 number (display-4), icon 3x
+    lg: h1 number (display-3), icon 4x
+
+  Examples:
+    Simple stat:
+      {{ partial "molecules/stat-card.html" (dict
+        "value" "95"
+        "suffix" "%"
+        "label" "Client Satisfaction"
+      )}}
+
+    Stat with icon and animation:
+      {{ partial "molecules/stat-card.html" (dict
+        "value" "1000"
+        "suffix" "+"
+        "label" "Sessions Completed"
+        "icon" "calendar-check"
+        "color" "success"
+        "aos" "fade-up"
+        "aosDelay" 100
+      )}}
+
+    Large currency stat:
+      {{ partial "molecules/stat-card.html" (dict
+        "value" "50000"
+        "prefix" "RON "
+        "label" "Average Revenue"
+        "size" "lg"
+        "color" "secondary"
+      )}}
+*/}}
+
+{{ $value := .value }}
+{{ $label := .label }}
+{{ $icon := .icon }}
+{{ $suffix := .suffix }}
+{{ $prefix := .prefix }}
+{{ $color := .color | default "primary" }}
+{{ $animated := .animated | default true }}
+{{ $size := .size | default "md" }}
+{{ $class := .class | default "" }}
+{{ $aos := .aos }}
+{{ $aosDelay := .aosDelay }}
+
+{{/* Determine sizes based on size parameter */}}
+{{ $numberClass := "h2 display-4" }}
+{{ $iconSize := "3x" }}
+{{ if eq $size "sm" }}
+  {{ $numberClass = "h3" }}
+  {{ $iconSize = "2x" }}
+{{ else if eq $size "lg" }}
+  {{ $numberClass = "h1 display-3" }}
+  {{ $iconSize = "4x" }}
+{{ end }}
+
+{{/* Build wrapper classes */}}
+{{ $wrapperClass := printf "stat-card text-center %s" $class }}
+
+{{/* Build AOS attributes */}}
+{{ $aosAttrs := "" }}
+{{ if $aos }}
+  {{ $aosAttrs = printf `data-aos="%s"` $aos }}
+  {{ if $aosDelay }}
+    {{ $aosAttrs = printf `%s data-aos-delay="%d"` $aosAttrs $aosDelay }}
+  {{ end }}
+{{ end }}
+
+<div class="{{ $wrapperClass }}" {{ $aosAttrs | safeHTMLAttr }}>
+  {{/* Icon */}}
+  {{ if $icon }}
+    {{ partial "atoms/icon.html" (dict
+      "name" $icon
+      "size" $iconSize
+      "color" $color
+      "class" "mb-3"
+    ) }}
+  {{ end }}
+
+  {{/* Number with animation */}}
+  <div class="stat-number mb-2">
+    {{ if $prefix }}
+      <span class="{{ $numberClass }} font-weight-bold text-{{ $color }}">{{ $prefix }}</span>
+    {{ end }}
+
+    <span class="{{ $numberClass }} font-weight-bold text-{{ $color }}"
+          {{ if $animated }}data-count="{{ $value }}"{{ end }}>
+      {{ $value }}
+    </span>
+
+    {{ if $suffix }}
+      <span class="{{ $numberClass }} text-{{ $color }}">{{ $suffix }}</span>
+    {{ end }}
+  </div>
+
+  {{/* Label */}}
+  {{ if $label }}
+    {{ partial "atoms/heading.html" (dict
+      "text" $label
+      "level" 4
+      "class" "mb-0"
+      "markdown" true
+    ) }}
+  {{ end }}
+</div>

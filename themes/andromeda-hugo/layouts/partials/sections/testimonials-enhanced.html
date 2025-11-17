@@ -1,0 +1,119 @@
+{{/* Enhanced Testimonials Section - Display client testimonials with verification and details */}}
+{{- $section := .Params.testimonials_enhanced -}}
+
+{{- with $section -}}
+  {{- if .enable -}}
+    <section class="section testimonials-enhanced {{ if .background }}bg-{{ .background }}{{ else }}bg-light{{ end }}">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            {{- if or .subtitle .title .description -}}
+              <div class="section-title text-center mb-5" data-aos="fade-up">
+                {{- if .subtitle -}}
+                  <p class="subtitle text-muted">{{ .subtitle | markdownify }}</p>
+                {{- end -}}
+                {{- if .title -}}
+                  {{ partial "atoms/heading.html" (dict
+                    "text" .title
+                    "level" 2
+                    "class" "title mb-3"
+                  ) }}
+                {{- end -}}
+                {{- if .description -}}
+                  <p class="lead text-muted">{{ .description | markdownify }}</p>
+                {{- end -}}
+              </div>
+            {{- end -}}
+
+            <div class="testimonials-grid row g-4">
+              {{- range $index, $testimonial := .testimonials -}}
+                <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+                  <div class="testimonial-card h-100 p-4 bg-white rounded-3 shadow-sm">
+                    {{/* Rating stars */}}
+                    {{- if .rating -}}
+                      <div class="testimonial-rating mb-3">
+                        {{- range seq .rating -}}
+                          {{ partial "atoms/icon.html" (dict "name" "star" "class" "text-warning") }}
+                        {{- end -}}
+                        {{- if lt .rating 5 -}}
+                          {{- range seq (sub 5 .rating) -}}
+                            {{ partial "atoms/icon.html" (dict "name" "star" "class" "text-muted opacity-25") }}
+                          {{- end -}}
+                        {{- end -}}
+                      </div>
+                    {{- end -}}
+
+                    {{/* Quote */}}
+                    {{- if .quote -}}
+                      <blockquote class="testimonial-quote mb-4">
+                        <p class="mb-0 fst-italic">"{{ .quote }}"</p>
+                      </blockquote>
+                    {{- end -}}
+
+                    {{/* Client details */}}
+                    <div class="testimonial-author d-flex align-items-start">
+                      <div class="author-info flex-grow-1">
+                        {{- if .name -}}
+                          <p class="author-name fw-semibold mb-1">{{ .name }}</p>
+                        {{- end -}}
+
+                        <div class="author-meta small text-muted">
+                          {{- if .age_range -}}
+                            <span class="me-2">{{ .age_range }}</span>
+                          {{- end -}}
+                          {{- if .therapy_type -}}
+                            <span class="d-block">{{ .therapy_type }}</span>
+                          {{- end -}}
+                          {{- if .duration -}}
+                            <span class="d-block">{{ .duration }}</span>
+                          {{- end -}}
+                        </div>
+                      </div>
+
+                      {{/* Verification badge */}}
+                      {{- if .verified -}}
+                        <div class="verification-badge ms-2" title="Verified client">
+                          {{ partial "atoms/icon.html" (dict "name" "shield-check" "class" "text-success") }}
+                        </div>
+                      {{- end -}}
+                    </div>
+
+                    {{/* Therapy outcome (optional) */}}
+                    {{- if .outcome -}}
+                      <div class="testimonial-outcome mt-3 pt-3 border-top">
+                        <p class="small text-muted mb-0">
+                          {{ partial "atoms/icon.html" (dict "name" "check-circle" "class" "text-primary me-1") }}
+                          {{ .outcome }}
+                        </p>
+                      </div>
+                    {{- end -}}
+                  </div>
+                </div>
+              {{- end -}}
+            </div>
+
+            {{- if .privacy_note -}}
+              <div class="privacy-note text-center mt-5" data-aos="fade-up">
+                <p class="small text-muted">
+                  {{ partial "atoms/icon.html" (dict "name" "lock" "class" "text-muted me-1") }}
+                  {{ .privacy_note | markdownify }}
+                </p>
+              </div>
+            {{- end -}}
+
+            {{- if .cta_button -}}
+              <div class="testimonials-cta text-center mt-4" data-aos="fade-up">
+                {{ partial "atoms/button.html" (dict
+                  "text" .cta_button.text
+                  "url" .cta_button.url
+                  "variant" (.cta_button.variant | default "primary")
+                  "icon" .cta_button.icon
+                ) }}
+              </div>
+            {{- end -}}
+          </div>
+        </div>
+      </div>
+    </section>
+  {{- end -}}
+{{- end -}}

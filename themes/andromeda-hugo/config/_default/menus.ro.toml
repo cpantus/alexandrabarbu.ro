@@ -5,75 +5,52 @@
 
 [[main]]
 name = "Despre"
-url = "about/"
+url = "despre-mine/"
 weight = 2
 
 [[main]]
-name = "Corporate"
-url = "corporate/"
-weight = 5
-
+name = "Abordare"
+url = "abordare/"
+weight = 4
 
 [[main]]
 weight = 3
-name = "Psihoterapie"
+name = "Servicii"
+url = "servicii/"
 hasChildren = true
 
   [[main]]
-  parent = "Psihoterapie"
-  name = "Psihoterapie Individuala"
-  url = "terapie-individuala/"
+  parent = "Servicii"
+  name = "Terapie Individuală"
+  url = "servicii/terapie-individuala/"
+  weight = 1
+
+  [[main]]
+  parent = "Servicii"
+  name = "Terapie de Cuplu"
+  url = "servicii/terapie-de-cuplu/"
   weight = 2
+
   [[main]]
-  parent = "Psihoterapie"
-  name = "Psihoterapie de Familie"
-  url = "terapie-de-familie/"
-  weight = 5
-  [[main]]
-  parent = "Psihoterapie"
-  name = "Psihoterapie de Cuplu"
-  url = "terapie-de-cuplu/"
+  parent = "Servicii"
+  name = "Terapie de Familie"
+  url = "servicii/terapie-de-familie/"
   weight = 3
 
   [[main]]
-  parent = "Psihoterapie"
-  name = "Dezvoltare Personala"
-  url = "dezvoltare-personala/"
-  weight = 8
+  parent = "Servicii"
+  name = "Psihologie Organizațională"
+  url = "servicii/psihologie-organizationala/"
+  weight = 4
 
 
 
 
 
 [[main]]
-weight = 9
 name = "Resurse"
-hasChildren = true
-
-  [[main]]
-  parent = "Resurse"
-  name = "Teste"
-  url = "test/"
-  weight = 2
-
-  [[main]]
-  parent = "Resurse"
-  name = "Blog"
-  url = "blog/"
-  weight = 1
-
-  [[main]]
-  parent = "Resurse"
-  name = "Articole"
-  url = "articole/"
-  weight = 5
-
-  [[main]]
-  parent = "Resurse"
-  name = "Intrebari frecvente"
-  url = "intrebari/"
-  weight = 10
-
+url = "resurse/"
+weight = 6
 
 [[main]]
 name = "Contact"

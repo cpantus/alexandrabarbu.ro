@@ -63,35 +63,44 @@
 {{/* If image is a resource, process it */}}
 {{ if $imageResource }}
 
+  {{/* Check if image is SVG - SVGs cannot be resized */}}
+  {{ $isSVG := eq $image.MediaType.SubType "svg" }}
+
   {{/* Determine resize options */}}
   {{ $resizeSpec := printf "%dx%d q%d" $width (int $height) $quality }}
   {{ if not $height }}
     {{ $resizeSpec = printf "%dx q%d" $width $quality }}
   {{ end }}
 
-  {{/* Process image based on fit method */}}
+  {{/* Process image based on fit method (skip for SVG) */}}
   {{ $processedImage := $image }}
-  {{ if eq $fit "fill" }}
-    {{ $processedImage = $image.Fill $resizeSpec }}
-  {{ else if eq $fit "fit" }}
-    {{ $processedImage = $image.Fit $resizeSpec }}
-  {{ else }}
-    {{ $processedImage = $image.Resize $resizeSpec }}
+  {{ if not $isSVG }}
+    {{ if eq $fit "fill" }}
+      {{ $processedImage = $image.Fill $resizeSpec }}
+    {{ else if eq $fit "fit" }}
+      {{ $processedImage = $image.Fit $resizeSpec }}
+    {{ else }}
+      {{ $processedImage = $image.Resize $resizeSpec }}
+    {{ end }}
   {{ end }}
 
-  {{/* Generate WebP version if requested */}}
+  {{/* Generate WebP and AVIF versions if requested (skip for SVG) */}}
   {{ $webpImage := "" }}
-  {{ if $webp }}
+  {{ $avifImage := "" }}
+  {{ if and $webp (not $isSVG) }}
     {{ $webpImage = $processedImage.Process "webp" }}
+    {{ $avifImage = $processedImage.Process "avif q85" }}
   {{ end }}
 
-  {{/* Generate responsive srcset */}}
+  {{/* Generate responsive srcset (skip for SVG) */}}
   {{ $srcset := "" }}
   {{ $srcsetWebp := "" }}
-  {{ if $responsive }}
+  {{ $srcsetAvif := "" }}
+  {{ if and $responsive (not $isSVG) }}
     {{ $widths := slice (mul $width 0.5) $width (mul $width 1.5) (mul $width 2) }}
     {{ $srcsetParts := slice }}
     {{ $srcsetWebpParts := slice }}
+    {{ $srcsetAvifParts := slice }}
 
     {{ range $widths }}
       {{ $w := int . }}
@@ -107,20 +116,37 @@
       {{ if $webp }}
         {{ $responsiveWebp := $responsiveImg.Process "webp" }}
         {{ $srcsetWebpParts = $srcsetWebpParts | append (printf "%s %dw" $responsiveWebp.RelPermalink $w) }}
+
+        {{ $responsiveAvif := $responsiveImg.Process "avif q85" }}
+        {{ $srcsetAvifParts = $srcsetAvifParts | append (printf "%s %dw" $responsiveAvif.RelPermalink $w) }}
       {{ end }}
     {{ end }}
 
     {{ $srcset = delimit $srcsetParts ", " }}
     {{ $srcsetWebp = delimit $srcsetWebpParts ", " }}
+    {{ $srcsetAvif = delimit $srcsetAvifParts ", " }}
   {{ end }}
 
-  {{/* Render picture element with WebP and fallback */}}
-  {{ if and $webp $webpImage }}
+  {{/* Render picture element with WebP and fallback (or simple img for SVG) */}}
+  {{ if $isSVG }}
+    {{/* SVG: simple img element without width/height/srcset */}}
+    <img
+      src="{{ $image.RelPermalink }}"
+      alt="{{ $alt }}"
+      class="{{ $class }}"
+      {{- if $lazy }} loading="lazy"{{ end }}>
+  {{ else if and $webp $webpImage }}
+    {{/* Raster with WebP/AVIF: picture element with modern formats */}}
     <picture>
       {{ if $responsive }}
+        {{/* AVIF first (best compression, 76% browser support) */}}
+        <source type="image/avif" srcset="{{ $srcsetAvif }}" sizes="{{ $sizes }}">
+        {{/* WebP second (good compression, 96% browser support) */}}
         <source type="image/webp" srcset="{{ $srcsetWebp }}" sizes="{{ $sizes }}">
+        {{/* Original format fallback (100% browser support) */}}
         <source type="{{ $processedImage.MediaType }}" srcset="{{ $srcset }}" sizes="{{ $sizes }}">
       {{ else }}
+        <source type="image/avif" srcset="{{ $avifImage.RelPermalink }}">
         <source type="image/webp" srcset="{{ $webpImage.RelPermalink }}">
       {{ end }}
       <img
@@ -133,7 +159,7 @@
         {{- if $responsive }} srcset="{{ $srcset }}" sizes="{{ $sizes }}"{{ end }}>
     </picture>
   {{ else }}
-    {{/* Render standard img element */}}
+    {{/* Raster without WebP: standard img element */}}
     <img
       src="{{ $processedImage.RelPermalink }}"
       alt="{{ $alt }}"

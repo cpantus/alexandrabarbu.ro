@@ -1,0 +1,47 @@
+{{/*
+  Hreflang Tags for Multilingual SEO
+
+  Generates alternate language tags for each available translation
+  Helps search engines understand language/region targeting
+
+  Automatically included in <head> via baseof.html
+
+  SEO Benefits:
+    - Prevents duplicate content penalties
+    - Improves regional search rankings
+    - Helps Google serve correct language version
+
+  Reference: https://developers.google.com/search/docs/advanced/crawling/localized-versions
+*/}}
+
+{{- if gt (len site.Languages) 1 -}}
+  {{/* Current page language */}}
+  {{- $currentLang := .Lang -}}
+  {{- $currentURL := .Permalink -}}
+
+  {{/* Self-referencing hreflang for current language */}}
+  <link rel="alternate" hreflang="{{ $currentLang }}" href="{{ $currentURL }}" />
+
+  {{/* Hreflang tags for all translations */}}
+  {{- range .Translations -}}
+    <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
+  {{- end -}}
+
+  {{/* x-default hreflang (fallback for unmatched languages) */}}
+  {{/* Use default language (first in config) */}}
+  {{- range $index, $lang := site.Languages -}}
+    {{- if eq $index 0 -}}
+      {{- if eq $currentLang $lang.Lang -}}
+        {{/* Current page is default language */}}
+        <link rel="alternate" hreflang="x-default" href="{{ $currentURL }}" />
+      {{- else -}}
+        {{/* Find default language translation */}}
+        {{- range $.Translations -}}
+          {{- if eq .Lang $lang.Lang -}}
+            <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

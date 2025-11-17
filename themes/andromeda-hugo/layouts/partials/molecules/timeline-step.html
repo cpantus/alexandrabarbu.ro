@@ -1,0 +1,168 @@
+{{/*
+  Timeline Step Molecule - Timeline/process step with icon/number, title, and description
+
+  Usage:
+    {{ partial "molecules/timeline-step.html" (dict
+      "index" 0
+      "icon" "calendar-check"
+      "title" "Initial Consultation"
+      "description" "We discuss your goals and create a treatment plan."
+      "duration" "50 minutes"
+    )}}
+
+  Parameters:
+    index (required) - Step index (0-based, used for alternating layout and numbering)
+    title (required) - Step title
+    description (optional) - Step description text
+    icon (optional) - Icon name (if not provided, shows step number)
+    number (optional) - Custom number/label (overrides index-based numbering)
+    duration (optional) - Duration/time text (e.g., "50 min", "2 weeks")
+    variant (optional) - Layout variant (standard|alternating|simple) (default: "standard")
+    class (optional) - Additional CSS classes
+    aos (optional) - AOS animation name
+    aosDelay (optional) - AOS delay in ms (auto-calculated from index if not provided)
+
+  Variants:
+    standard: Full timeline with marker and card (timeline-process)
+    alternating: Alternates left/right based on index (timeline-process)
+    simple: Simple numbered step without timeline connector (onboarding-steps)
+
+  Examples:
+    Timeline step with icon:
+      {{ partial "molecules/timeline-step.html" (dict
+        "index" 0
+        "icon" "user-check"
+        "title" "Assessment"
+        "description" "Comprehensive psychological evaluation."
+        "duration" "60 min"
+        "variant" "alternating"
+      )}}
+
+    Simple onboarding step:
+      {{ partial "molecules/timeline-step.html" (dict
+        "index" 0
+        "number" "01"
+        "title" "Sign Up"
+        "description" "Create your account"
+        "variant" "simple"
+      )}}
+
+    Auto-numbered timeline:
+      {{ range $index, $step := .steps }}
+        {{ partial "molecules/timeline-step.html" (dict
+          "index" $index
+          "title" $step.title
+          "description" $step.description
+          "icon" $step.icon
+        )}}
+      {{ end }}
+*/}}
+
+{{ $index := .index | default 0 }}
+{{ $title := .title }}
+{{ $description := .description }}
+{{ $icon := .icon }}
+{{ $number := .number }}
+{{ $duration := .duration }}
+{{ $variant := .variant | default "standard" }}
+{{ $class := .class | default "" }}
+{{ $aos := .aos | default "fade-up" }}
+{{ $aosDelay := .aosDelay | default (mul $index 100) }}
+
+{{/* Calculate step number (1-based display) */}}
+{{ $stepNumber := add $index 1 }}
+{{ if $number }}
+  {{ $stepNumber = $number }}
+{{ end }}
+
+{{/* Determine alignment for alternating variant */}}
+{{ $isRight := false }}
+{{ if eq $variant "alternating" }}
+  {{ $isRight = modBool $index 2 }}
+{{ end }}
+
+{{/* Build AOS attributes */}}
+{{ $aosAttrs := "" }}
+{{ if $aos }}
+  {{ $aosAttrs = printf `data-aos="%s" data-aos-delay="%d"` $aos $aosDelay }}
+{{ end }}
+
+{{ if eq $variant "simple" }}
+  {{/* Simple numbered step (onboarding-steps style) */}}
+  <div class="timeline-step-molecule timeline-step-simple text-center {{ $class }}" {{ $aosAttrs | safeHTMLAttr }}>
+    <div class="step-number-circle mb-3 mx-auto">
+      {{ if $icon }}
+        {{ partial "atoms/icon.html" (dict
+          "name" $icon
+          "size" "2x"
+          "color" "primary"
+        ) }}
+      {{ else }}
+        <span class="step-number-text">{{ $stepNumber }}</span>
+      {{ end }}
+    </div>
+
+    {{ if $title }}
+      {{ partial "atoms/heading.html" (dict
+        "text" $title
+        "level" 5
+        "class" "mb-2"
+        "markdown" true
+      ) }}
+    {{ end }}
+
+    {{ if $description }}
+      <p class="text-muted small mb-0">{{ $description | markdownify }}</p>
+    {{ end }}
+  </div>
+
+{{ else }}
+  {{/* Standard/Alternating timeline (timeline-process style) */}}
+  <div class="timeline-step-molecule timeline-item {{ if $isRight }}timeline-item-right{{ else }}timeline-item-left{{ end }} {{ $class }}"
+       {{ $aosAttrs | safeHTMLAttr }}>
+
+    {{/* Timeline Marker */}}
+    <div class="timeline-marker">
+      <div class="timeline-icon bg-primary">
+        {{ if $icon }}
+          {{ partial "atoms/icon.html" (dict
+            "name" $icon
+            "size" "2x"
+            "color" "white"
+          ) }}
+        {{ else }}
+          <span class="timeline-number text-white font-weight-bold">{{ $stepNumber }}</span>
+        {{ end }}
+      </div>
+    </div>
+
+    {{/* Timeline Content */}}
+    <div class="timeline-content card border-0 shadow-sm">
+      <div class="card-body">
+        {{ if $title }}
+          {{ partial "atoms/heading.html" (dict
+            "text" $title
+            "level" 4
+            "class" "mb-2"
+            "markdown" true
+          ) }}
+        {{ end }}
+
+        {{ if $description }}
+          <p class="mb-0">{{ $description | markdownify }}</p>
+        {{ end }}
+
+        {{ if $duration }}
+          <small class="text-muted d-block mt-2">
+            {{ partial "atoms/icon.html" (dict
+              "name" "clock"
+              "size" "sm"
+              "class" "me-1"
+            ) }}
+            {{ $duration }}
+          </small>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+{{ end }}

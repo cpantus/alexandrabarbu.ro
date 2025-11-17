@@ -1,0 +1,36 @@
+{{/*
+  Back to Top Button
+  
+  Floating button that appears when user scrolls down
+  Smooth scroll to top on click
+  
+  Usage: {{ partial "molecules/back-to-top.html" . }}
+*/}}
+
+<button id="back-to-top" class="back-to-top" aria-label="{{ i18n `back_to_top` | default `Back to top` }}">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+<script>
+// Back to top button functionality
+(function() {
+  const backToTop = document.getElementById('back-to-top');
+  if (!backToTop) return;
+  
+  // Show/hide on scroll
+  window.addEventListener('scroll', function() {
+    if (window.pageYOffset > 300) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  });
+  
+  // Smooth scroll to top
+  backToTop.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>

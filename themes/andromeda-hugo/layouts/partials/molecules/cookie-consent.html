@@ -1,0 +1,62 @@
+{{/*
+  Cookie Consent Banner (GDPR Compliant)
+  
+  Shows banner on first visit, stores preference in localStorage
+  Psychology-practice specific with clear consent options
+  
+  Usage: {{ partial "molecules/cookie-consent.html" . }}
+*/}}
+
+<div id="cookie-consent" class="cookie-consent" style="display: none;">
+  <div class="cookie-consent-content">
+    <div class="cookie-consent-text">
+      <h5>{{ i18n `cookie_title` | default `🍪 Respectăm Confidențialitatea Ta` }}</h5>
+      <p>{{ i18n `cookie_message` | default `Folosim cookies esențiale pentru funcționarea site-ului și cookie-uri de analiză pentru a îmbunătăți experiența ta. Nu folosim cookies de marketing. Datele tale sunt protejate conform GDPR.` }}</p>
+    </div>
+    <div class="cookie-consent-buttons">
+      <button id="cookie-accept" class="btn btn-primary btn-sm">{{ i18n `cookie_accept` | default `Accept` }}</button>
+      <button id="cookie-decline" class="btn btn-outline-secondary btn-sm">{{ i18n `cookie_decline` | default `Doar Esențiale` }}</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Cookie consent functionality
+(function() {
+  const banner = document.getElementById('cookie-consent');
+  const acceptBtn = document.getElementById('cookie-accept');
+  const declineBtn = document.getElementById('cookie-decline');
+  
+  if (!banner || !acceptBtn || !declineBtn) return;
+  
+  // Check if user has already made a choice
+  const consent = localStorage.getItem('cookie-consent');
+  
+  if (!consent) {
+    // Show banner after 1 second
+    setTimeout(() => {
+      banner.style.display = 'block';
+      setTimeout(() => banner.classList.add('visible'), 100);
+    }, 1000);
+  }
+  
+  // Accept all cookies
+  acceptBtn.addEventListener('click', function() {
+    localStorage.setItem('cookie-consent', 'accepted');
+    hideBanner();
+    // Enable analytics here if needed
+    // window.gtag && gtag('consent', 'update', { analytics_storage: 'granted' });
+  });
+  
+  // Accept only essential
+  declineBtn.addEventListener('click', function() {
+    localStorage.setItem('cookie-consent', 'essential-only');
+    hideBanner();
+  });
+  
+  function hideBanner() {
+    banner.classList.remove('visible');
+    setTimeout(() => banner.style.display = 'none', 300);
+  }
+})();
+</script>

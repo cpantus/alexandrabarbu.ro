@@ -108,3 +108,54 @@
 
 - id: year
   translation: An
+
+# New translations for design-2 sections
+- id: what_is
+  translation: Ce este?
+
+- id: how_it_works
+  translation: Cum funcționează?
+
+- id: what_for
+  translation: Pentru ce?
+
+- id: all
+  translation: Toate
+
+- id: read_more
+  translation: Citește mai mult
+
+- id: load_more
+  translation: Încarcă mai multe
+
+- id: learn_more
+  translation: Află mai multe
+
+- id: your_name
+  translation: Numele tău
+
+- id: your_email
+  translation: Adresa ta de email
+
+- id: subscribe
+  translation: Abonează-te
+
+- id: gdpr_consent
+  translation: Sunt de acord cu prelucrarea datelor personale conform GDPR
+# Global floating elements
+- id: back_to_top
+  translation: "Înapoi sus"
+- id: cookie_title
+  translation: "🍪 Respectăm Confidențialitatea Ta"
+- id: cookie_message
+  translation: "Folosim cookies esențiale pentru funcționarea site-ului și cookie-uri de analiză pentru a îmbunătăți experiența ta. Nu folosim cookies de marketing. Datele tale sunt protejate conform GDPR."
+- id: cookie_accept
+  translation: "Accept"
+- id: cookie_decline
+  translation: "Doar Esențiale"
+- id: emergency_title
+  translation: "Criză? Ai nevoie de ajutor urgent?"
+- id: emergency_message
+  translation: "Telefonul Sufletului: 0800 801 200 (gratuit, 24/7)"
+- id: close
+  translation: "Închide"

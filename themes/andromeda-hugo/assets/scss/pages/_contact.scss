@@ -1,0 +1,254 @@
+/* =============================================
+   CONTACT & SIGNUP PAGE ENHANCEMENTS
+   ============================================= */
+
+@import '../design-system';
+
+/* Contact Page Enhanced Styling */
+.contact-enhanced {
+  position: relative;
+  background: linear-gradient(135deg, #f6f9fc 0%, #e9f7ef 100%);
+  padding: 60px 0;
+}
+
+/* Contact Method Cards with Hover Effects */
+.contact-method-card {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(77, 179, 128, 0.1);
+  height: 100%;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(77, 179, 128, 0.15);
+    border-color: rgba(77, 179, 128, 0.3);
+    
+    .contact-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+  }
+}
+
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4DB380 0%, #3d9066 100%);
+  color: white;
+  font-size: 2.75rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+/* Contact Info Hover Links */
+.hover-link {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: #4DB380 !important;
+    transform: translateY(-2px);
+  }
+}
+
+/* Trust Badges Animation */
+.trust-badge {
+  animation: gentle-pulse 3s infinite;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(77, 179, 128, 0.2);
+  }
+}
+
+@keyframes gentle-pulse {
+  0%, 100% { 
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+/* Enhanced Form Styling */
+.contact-form-enhanced {
+  background: white;
+  border-radius: 25px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  
+  .form-control {
+    border-radius: 12px;
+    border: 2px solid #e8f5ef;
+    padding: 12px 20px;
+    transition: all 0.3s ease;
+    
+    &:focus {
+      border-color: #4DB380;
+      background-color: #f8fdfb;
+      box-shadow: 0 0 0 0.2rem rgba(77, 179, 128, 0.1);
+    }
+  }
+  
+  .btn-primary {
+    border-radius: 12px;
+    padding: 14px 30px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #4DB380 0%, #3d9066 100%);
+    border: none;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(77, 179, 128, 0.3);
+    }
+  }
+}
+
+/* First Consultation Info Box */
+.consultation-info-box {
+  background: linear-gradient(135deg, #e8f5ef 0%, #f0f9f5 100%);
+  border-left: 4px solid #4DB380;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  
+  strong {
+    color: #4DB380;
+    font-size: 1.1rem;
+  }
+}
+
+/* FAQ Accordion Styling - Hugo Way */
+.faq-accordion {
+  .accordion-item {
+    border: none;
+    background: white;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      box-shadow: 0 5px 20px rgba(77, 179, 128, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    &.faq-item {
+      /* Special styling for FAQ items from shortcode */
+      border-left: 3px solid transparent;
+      
+      &:hover {
+        border-left-color: #4DB380;
+      }
+    }
+  }
+  
+  .accordion-header {
+    margin: 0 !important;
+  }
+  
+  .accordion-button {
+    background: white;
+    color: #2c3e50;
+    font-weight: 600;
+    padding: 1.25rem 1.5rem;
+    border: none;
+    box-shadow: none;
+    font-size: 1.05rem;
+    
+    &::after {
+      transition: transform 0.3s ease;
+    }
+    
+    &:not(.collapsed) {
+      background: linear-gradient(135deg, #f0f9f5 0%, #e8f5ef 100%);
+      color: #4DB380;
+      
+      &::after {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%234DB380'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        transform: rotate(180deg);
+      }
+    }
+    
+    &:focus {
+      box-shadow: none;
+      border-color: transparent;
+    }
+    
+    &:hover {
+      color: #4DB380;
+    }
+  }
+  
+  .accordion-collapse {
+    transition: all 0.35s ease;
+  }
+  
+  .accordion-body {
+    padding: 1.5rem;
+    color: #5a6c7d;
+    line-height: 1.7;
+    font-size: 0.95rem;
+    background: #fafbfc;
+    
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* Confidentiality Alert Enhanced */
+.alert-soft-primary {
+  background: linear-gradient(135deg, #e8f5ef 0%, #f0f9f5 100%);
+  border: 1px solid rgba(77, 179, 128, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+  
+  i {
+    color: #4DB380;
+  }
+}
+
+/* Mobile Responsive Enhancements */
+@media (max-width: 768px) {
+  .contact-method-card {
+    margin-bottom: 1rem;
+  }
+  
+  .contact-form-enhanced {
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .contact-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+}
+
+/* Floating Animation for Icons */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Gradient Text Effect */
+.gradient-text {
+  background: linear-gradient(135deg, #4DB380 0%, #3d9066 100%);
+  -webkit-background-clip: text;
+}

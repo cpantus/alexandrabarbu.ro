@@ -1,0 +1,51 @@
+# Hugo Configuration File
+# This file contains main Hugo configuration settings
+# Split from theme config for better maintainability
+
+# Base configuration
+baseURL = "https://alexandrabarbu.ro"
+title = "Alexandra Barbu - Psihoterapeut - Terapie Cognitiv Comportammentala, Terapie de familie"
+theme = "andromeda-hugo"
+timeZone = "Europe/Bucharest"
+
+# Language settings
+defaultContentLanguage = "RO"
+defaultContentLanguageInSubdir = false
+disableLanguages = []
+
+# Content settings
+summaryLength = 10
+pagination.pagerSize = 6
+
+# URL settings
+relativeURLs = false
+canonifyURLs = false
+
+# Related content configuration
+# Hugo's built-in algorithm for recommending related pages
+# See: https://gohugo.io/content-management/related/
+[related]
+threshold = 80  # Minimum match score (0-100)
+includeNewer = true  # Include pages newer than current
+toLower = true  # Case-insensitive matching
+
+# Weight indices for similarity calculation
+[[related.indices]]
+name = "therapies"
+weight = 100  # Highest priority: match by therapy type
+
+[[related.indices]]
+name = "conditions"
+weight = 80  # High priority: match by condition treated
+
+[[related.indices]]
+name = "service_type"
+weight = 60
+
+[[related.indices]]
+name = "tags"
+weight = 40  # For blog posts
+
+[[related.indices]]
+name = "date"
+weight = 10  # Slight preference for recent content

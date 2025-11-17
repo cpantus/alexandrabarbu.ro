@@ -1,0 +1,40 @@
+# Image Processing Configuration
+# Controls Hugo's image processing pipeline for optimal quality and performance
+
+# Default image quality (1-100)
+# 90 provides excellent quality with reasonable file sizes
+quality = 90
+
+# Resampling filter for image resizing
+# Options: Box, NearestNeighbor, Linear, Lanczos (best quality, slower)
+# Lanczos produces the sharpest results for downsizing
+resampleFilter = "Lanczos"
+
+# EXIF orientation handling
+# Automatically rotates images based on EXIF data
+exif.includeFields = ""
+exif.excludeFields = ""
+exif.disableDate = false
+exif.disableLatLong = true  # Privacy: don't include GPS coordinates
+
+# Image format settings
+[formats]
+[formats.avif]
+quality = 85  # AVIF supports lower quality with better visual results
+
+[formats.webp]
+quality = 85  # WebP sweet spot for quality/size
+
+[formats.jpeg]
+quality = 90  # Standard JPEG quality
+
+[formats.png]
+compressionLevel = 9  # Maximum PNG compression
+
+# Anchor point for cropping when using .Fill
+# Options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
+anchor = "Smart"  # Automatically detects subject for intelligent cropping
+
+# Preserve aspect ratio warnings
+# Set to true to warn when aspect ratio changes significantly
+hint = "photo"  # Optimizes for photographic content

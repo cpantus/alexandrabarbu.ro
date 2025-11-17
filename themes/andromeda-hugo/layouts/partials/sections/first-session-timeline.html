@@ -1,0 +1,104 @@
+{{- $section := .Params.first_session_timeline -}}
+{{- if $section -}}
+{{- $sectionID := printf "first-session-%d" (now.Unix) -}}
+
+<section class="section first-session-timeline bg-light" id="{{ $sectionID }}">
+  <div class="container">
+    <!-- Section Header -->
+    {{- if or $section.title $section.subtitle -}}
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center mb-5">
+        {{- if $section.subtitle -}}
+        <p class="text-primary text-uppercase fw-semibold mb-2">{{ $section.subtitle }}</p>
+        {{- end -}}
+        {{- if $section.title -}}
+        {{ partial "atoms/heading.html" (dict "text" $section.title "level" 2 "class" "mb-3") }}
+        {{- end -}}
+        {{- if $section.description -}}
+        <p class="text-muted lead">{{ $section.description }}</p>
+        {{- end -}}
+      </div>
+    </div>
+    {{- end -}}
+
+    <!-- Timeline -->
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="timeline-container">
+          {{- range $index, $step := $section.steps -}}
+          {{- $isLast := eq (add $index 1) (len $section.steps) -}}
+
+          <div class="timeline-step{{ if not $isLast }} timeline-step-connected{{ end }}"
+               data-aos="fade-up"
+               data-aos-delay="{{ mul $index 100 }}">
+
+            <!-- Timeline Marker -->
+            <div class="timeline-marker">
+              <div class="timeline-icon">
+                {{- if $step.icon -}}
+                {{ partial "atoms/icon.html" (dict "icon" $step.icon "size" "24") }}
+                {{- else -}}
+                <span class="timeline-number">{{ add $index 1 }}</span>
+                {{- end -}}
+              </div>
+              {{- if $step.duration -}}
+              <div class="timeline-duration">{{ $step.duration }}</div>
+              {{- end -}}
+            </div>
+
+            <!-- Timeline Content -->
+            <div class="timeline-content">
+              {{- if $step.title -}}
+              {{ partial "atoms/heading.html" (dict "text" $step.title "level" 4 "class" "mb-2") }}
+              {{- end -}}
+
+              {{- if $step.description -}}
+              <p class="text-muted mb-3">{{ $step.description | markdownify }}</p>
+              {{- end -}}
+
+              {{- if $step.highlights -}}
+              <ul class="timeline-highlights">
+                {{- range $step.highlights -}}
+                <li>
+                  {{ partial "atoms/icon.html" (dict "icon" "las la-check-circle" "class" "text-primary me-2") }}
+                  <span>{{ . }}</span>
+                </li>
+                {{- end -}}
+              </ul>
+              {{- end -}}
+            </div>
+          </div>
+          {{- end -}}
+        </div>
+      </div>
+    </div>
+
+    {{- if $section.reassurance -}}
+    <!-- Reassurance Note -->
+    <div class="row justify-content-center mt-5">
+      <div class="col-lg-8">
+        <div class="reassurance-box text-center p-4 rounded-3 bg-white border border-primary border-opacity-25">
+          {{ partial "atoms/icon.html" (dict "icon" "las la-heart" "size" "32" "class" "text-primary mb-3") }}
+          <p class="mb-0 text-muted">{{ $section.reassurance }}</p>
+        </div>
+      </div>
+    </div>
+    {{- end -}}
+
+    {{- if $section.cta -}}
+    <!-- Call to Action -->
+    <div class="row justify-content-center mt-4">
+      <div class="col-auto">
+        {{ partial "atoms/button.html" (dict
+          "text" $section.cta.text
+          "url" $section.cta.url
+          "variant" (default "primary" $section.cta.variant)
+          "icon" $section.cta.icon
+        ) }}
+      </div>
+    </div>
+    {{- end -}}
+  </div>
+</section>
+
+{{- end -}}

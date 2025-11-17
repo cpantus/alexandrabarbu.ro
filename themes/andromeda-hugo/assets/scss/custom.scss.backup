@@ -1,0 +1,2268 @@
+/*
+========================================================================
+  Custom SCSS - Modern Healing Design System v2.0
+  Elevated Design Excellence for Therapy Practice
+========================================================================
+*/
+
+// Import comprehensive design system
+@import 'design-system';
+
+/*------------------------------------------------------------------
+  # Global Base Styles - Typography & Layout
+-------------------------------------------------------------------*/
+
+body {
+  font-family: $font-body;
+  font-size: $text-base;
+  line-height: $leading-normal;
+  color: $color-text-primary;
+  font-weight: $weight-normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Headings use elegant serif
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: $font-display;
+  font-weight: $weight-semibold;
+  line-height: $leading-tight;
+  color: $color-text-primary;
+  margin-bottom: $space-4;
+}
+
+// Hero typography (distinctive sizing ≥100px equivalent on desktop)
+h1, .h1 {
+  @include fluid-type($text-4xl, $text-hero);
+  font-weight: $weight-bold;
+}
+
+h2, .h2 {
+  @include fluid-type($text-3xl, $text-5xl);
+}
+
+h3, .h3 {
+  @include fluid-type($text-2xl, $text-4xl);
+}
+
+h4, .h4 {
+  font-size: $text-2xl;
+}
+
+h5, .h5 {
+  font-size: $text-xl;
+}
+
+h6, .h6 {
+  font-size: $text-lg;
+}
+
+// Paragraphs
+p {
+  margin-bottom: $space-4;
+  line-height: $leading-relaxed;
+  color: $color-text-secondary;
+}
+
+// Links
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: $transition-colors;
+
+  &:hover {
+    color: $color-primary-dark;
+  }
+}
+
+// Strong & emphasis
+strong, b {
+  font-weight: $weight-bold;
+  color: $color-text-primary;
+}
+
+em, i {
+  font-style: italic;
+  color: $color-text-secondary;
+}
+
+/*------------------------------------------------------------------
+  # Enhanced Button System - Modern, Distinctive
+-------------------------------------------------------------------*/
+
+// Base button enhancements
+.btn {
+  font-family: $font-body;
+  font-weight: $button-font-weight;
+  border-radius: $button-border-radius;
+  padding: $button-padding-y $button-padding-x;
+  transition: $button-transition;
+  border: 0;
+  position: relative;
+  overflow: hidden;
+
+  // Hover lift effect
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Primary button - gradient with depth
+.btn-primary {
+  background: $gradient-primary;
+  color: white;
+  box-shadow: $shadow-primary;
+
+  &:hover, &:active, &:focus {
+    background: $gradient-primary-vibrant;
+    box-shadow: $shadow-primary-lg;
+    color: white;
+  }
+}
+
+// Secondary button - warm terracotta gradient
+.btn-secondary {
+  background: $gradient-secondary;
+  color: white;
+  box-shadow: $shadow-secondary;
+
+  &:hover, &:active, &:focus {
+    background: $gradient-secondary-vibrant;
+    box-shadow: $shadow-secondary-lg;
+    color: white;
+  }
+}
+
+// Outline buttons - elegant borders
+.btn-outline-primary {
+  color: $color-primary;
+  border: 2px solid $color-primary;
+  background-color: transparent;
+
+  &:hover, &:active, &:focus {
+    color: white;
+    border-color: $color-primary;
+    background: $gradient-primary;
+    box-shadow: $shadow-primary;
+  }
+}
+
+.btn-outline-secondary {
+  color: $color-secondary;
+  border: 2px solid $color-secondary;
+  background-color: transparent;
+
+  &:hover, &:active, &:focus {
+    color: white;
+    border-color: $color-secondary;
+    background: $gradient-secondary;
+    box-shadow: $shadow-secondary;
+  }
+}
+
+// Button sizes
+.btn-sm {
+  padding: $space-2 $space-4;
+  font-size: $text-sm;
+}
+
+.btn-lg {
+  padding: $space-4 $space-8;
+  font-size: $text-lg;
+}
+
+/*------------------------------------------------------------------
+  # Enhanced Card System - Layered Depth
+-------------------------------------------------------------------*/
+
+.card {
+  border-radius: $card-border-radius;
+  border: 1px solid $gray-200;
+  box-shadow: $card-shadow;
+  transition: $card-transition;
+  overflow: hidden;
+  background: $color-bg-primary;
+
+  // Hover lift with enhanced shadow
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $card-shadow-hover;
+    border-color: $gray-300;
+  }
+
+  // Card with layered background
+  &.card-layered {
+    @include layered-background(
+      $gradient-light,
+      radial-gradient(circle at top right, $green-100, transparent),
+      radial-gradient(circle at bottom left, $terracotta-50, transparent)
+    );
+  }
+
+  // Card with gradient background
+  &.card-gradient-primary {
+    background: $gradient-primary-subtle;
+    border-color: $green-200;
+  }
+
+  &.card-gradient-secondary {
+    background: $gradient-secondary-subtle;
+    border-color: $terracotta-200;
+  }
+}
+
+.card-body {
+  padding: $card-padding;
+}
+
+.card-title {
+  font-family: $font-display;
+  font-weight: $weight-semibold;
+  font-size: $text-2xl;
+  margin-bottom: $space-3;
+  color: $color-text-primary;
+}
+
+.card-text {
+  color: $color-text-secondary;
+  line-height: $leading-relaxed;
+}
+
+/*------------------------------------------------------------------
+  # Form Elements - Modern, Accessible
+-------------------------------------------------------------------*/
+
+.form-control, .form-select {
+  font-family: $font-body;
+  border-radius: $input-border-radius;
+  border: 2px solid $input-border-color;
+  padding: $input-padding-y $input-padding-x;
+  transition: $input-transition;
+  font-size: $text-base;
+
+  &:focus {
+    border-color: $input-focus-border-color;
+    box-shadow: $input-focus-shadow;
+    background-color: $green-50;
+    outline: none;
+  }
+
+  &::placeholder {
+    color: $color-text-subtle;
+  }
+}
+
+.form-label {
+  font-weight: $weight-medium;
+  color: $color-text-primary;
+  margin-bottom: $space-2;
+  font-size: $text-sm;
+}
+
+// Checkbox and radio with modern styling
+.form-check-input {
+  border: 2px solid $gray-300;
+  border-radius: $radius-sm;
+
+  &:checked {
+    background-color: $color-primary;
+    border-color: $color-primary;
+    box-shadow: $shadow-primary;
+  }
+
+  &:focus {
+    box-shadow: $focus-ring;
+    border-color: $color-primary;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Feature Cards & Interactive Elements
+-------------------------------------------------------------------*/
+
+// Feature cards with alternating accents
+.features .card,
+.career-benefits-item {
+  @include hover-lift();
+
+  // Alternating color accents
+  &:nth-child(3n+1) {
+    border-top: 4px solid $color-primary;
+
+    .icon, i {
+      color: $color-primary;
+    }
+  }
+
+  &:nth-child(3n+2) {
+    border-top: 4px solid $color-secondary;
+
+    .icon, i {
+      color: $color-secondary;
+    }
+  }
+
+  &:nth-child(3n+3) {
+    border-top: 4px solid $green-600;
+
+    .icon, i {
+      color: $green-600;
+    }
+  }
+
+  &:hover {
+    border-top-width: 6px;
+  }
+}
+
+// Icons with size variants
+.icon, i[class*="la-"] {
+  transition: $transition-transform;
+
+  &.icon-lg {
+    font-size: $text-5xl;
+  }
+
+  &.icon-xl {
+    font-size: $text-6xl;
+  }
+
+  &:hover {
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Typography & Text Accents
+-------------------------------------------------------------------*/
+
+// Secondary color text utility
+.text-secondary {
+  color: $color-secondary !important;
+}
+
+// Highlighted text within content
+.highlight-secondary {
+  color: $color-secondary;
+  font-weight: 600;
+}
+
+// Section subtitles with secondary color
+.section-subtitle {
+  color: $color-secondary;
+  font-weight: 500;
+}
+
+/*------------------------------------------------------------------
+  # Navigation & Links
+-------------------------------------------------------------------*/
+
+// Navigation active states
+.navbar-nav .nav-link {
+  &:hover, &:focus {
+    color: $color-secondary !important;
+  }
+  
+  &.active {
+    color: $color-secondary !important;
+    font-weight: 500;
+  }
+}
+
+// Content links with secondary color
+.content a {
+  color: $color-secondary;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    color: darken($color-secondary, 10%);
+    text-decoration: underline;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Form Elements & Interactive States
+-------------------------------------------------------------------*/
+
+// Form focus states with secondary color
+.form-control {
+  &:focus {
+    border-color: $color-secondary;
+    box-shadow: 0 0 0 0.2rem rgba($color-secondary, 0.25);
+  }
+}
+
+// Checkbox and radio focus states
+.form-check-input {
+  &:checked {
+    background-color: $color-secondary;
+    border-color: $color-secondary;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba($color-secondary, 0.25);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Background & Border Utilities
+-------------------------------------------------------------------*/
+
+// Secondary background utility
+.bg-secondary {
+  background-color: $color-secondary !important;
+}
+
+// Secondary border utility  
+.border-secondary {
+  border-color: $color-secondary !important;
+}
+
+// Gradient backgrounds for hero sections
+.bg-gradient-secondary {
+  background: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
+}
+
+/*------------------------------------------------------------------
+  # Therapy-Specific Enhancements
+-------------------------------------------------------------------*/
+
+// Assessment test cards with secondary accents
+.test-card {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: $color-secondary;
+    box-shadow: 0 4px 15px rgba($color-secondary, 0.15);
+  }
+  
+  .test-icon {
+    color: $color-secondary;
+  }
+}
+
+// Therapy service highlights
+.service-highlight {
+  border-left: 4px solid $color-secondary;
+  padding-left: 1rem;
+  
+  .service-title {
+    color: $color-secondary;
+  }
+}
+
+// Progress indicators and status elements
+.progress-bar {
+  background-color: $color-secondary;
+}
+
+.badge-secondary {
+  background-color: $color-secondary;
+  color: $white;
+}
+
+/*------------------------------------------------------------------
+  # Hover Effects & Micro-interactions
+-------------------------------------------------------------------*/
+
+// Card hover effects with secondary color hints
+.card {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    .card-title {
+      color: $color-secondary;
+    }
+  }
+}
+
+// Icon hover effects
+.icon-hover {
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: $color-secondary !important;
+  }
+}
+
+// Button group with mixed primary/secondary
+.btn-group-mixed {
+  .btn:nth-child(even) {
+    background-color: $color-secondary;
+    border-color: $color-secondary;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Progress Bars & Loading Elements Override
+-------------------------------------------------------------------*/
+
+// Override any progress bars to use our emerald green
+.progress-bar,
+.progress .progress-bar,
+.progress-bar-striped,
+.progress-bar-animated {
+  background-color: #059669 !important; // Our emerald green
+}
+
+// Preloader and loading elements
+.preloader,
+.loader,
+.loading,
+.spinner {
+  .progress-bar,
+  .progress,
+  [class*="progress"] {
+    background-color: #059669 !important;
+    border-color: #059669 !important;
+  }
+}
+
+// Override hardcoded orange in team images and similar elements
+.team-image::before,
+.team-member::before,
+[class*="team"]::before {
+  background: #059669 !important; // Replace hardcoded orange with emerald
+  opacity: 0.15;
+}
+
+// Generic loaders and spinners
+.la-spin,
+.spinner-border,
+.spinner-grow,
+[class*="spin"],
+[class*="loader"] {
+  color: #059669 !important;
+  border-color: #059669 !important;
+  background-color: #059669 !important;
+}
+
+// Bootstrap progress components
+.progress {
+  .progress-bar {
+    background-color: #059669 !important;
+  }
+  
+  .progress-bar-secondary {
+    background-color: #CC6B49 !important; // Terracotta
+  }
+}
+
+// Any remaining orange elements - catch-all
+[style*="#FE6019"],
+[style*="#fe6019"],
+[style*="rgb(254, 96, 25)"] {
+  background-color: #059669 !important;
+  border-color: #059669 !important;
+  color: #059669 !important;
+}
+
+/*------------------------------------------------------------------
+  # SVG Elements & Graphics Override
+-------------------------------------------------------------------*/
+
+// Override SVG fill and stroke colors
+svg [fill*="#FE6019"],
+svg [fill*="#fe6019"],
+svg [fill*="rgb(254, 96, 25)"],
+svg [fill*="254 96 25"] {
+  fill: #059669 !important; // Our emerald green
+}
+
+svg [stroke*="#FE6019"],
+svg [stroke*="#fe6019"], 
+svg [stroke*="rgb(254, 96, 25)"],
+svg [stroke*="254 96 25"] {
+  stroke: #059669 !important; // Our emerald green
+}
+
+// Generic SVG color overrides
+svg circle[stroke*="#FE6019"],
+svg circle[stroke*="#fe6019"],
+svg circle[fill*="#FE6019"],
+svg circle[fill*="#fe6019"] {
+  stroke: #059669 !important;
+  fill: #059669 !important;
+}
+
+// Progress circle specific overrides
+.progress-circle,
+circle.progress,
+[class*="progress"] circle,
+[class*="loader"] circle,
+.loading circle {
+  stroke: #059669 !important;
+  fill: none !important;
+  stroke-width: 3 !important;
+}
+
+// Any animated circles (likely the culprit)
+circle[class*="animate"],
+circle[class*="spin"],
+.animate circle,
+.spin circle {
+  stroke: #059669 !important;
+  stroke-dasharray: 126 !important;
+  transform-origin: center !important;
+}
+
+// Canvas elements (if any progress bars are drawn with canvas)
+canvas {
+  filter: hue-rotate(140deg) !important; // Convert orange to green
+}
+
+/*------------------------------------------------------------------
+  # Image and Logo Color Filters
+-------------------------------------------------------------------*/
+
+// Apply color filter to progress/loader images only (exclude logos)
+img[src*="progress"],
+img[src*="loader"],
+.preloader img:not([src*="logo"]),
+.loading img:not([src*="logo"]) {
+  filter: hue-rotate(140deg) saturate(1.2) !important;
+}
+
+// Ensure logo images maintain their original colors
+img[src*="logo"] {
+  filter: none !important; // Remove any color filters from logo
+}
+
+/*------------------------------------------------------------------
+  # JavaScript Generated Elements
+-------------------------------------------------------------------*/
+
+// Override any dynamically created progress elements
+[style*="background: #FE6019"],
+[style*="background: #fe6019"],
+[style*="background-color: #FE6019"],
+[style*="background-color: #fe6019"],
+[style*="border-color: #FE6019"],
+[style*="border-color: #fe6019"] {
+  background: #059669 !important;
+  background-color: #059669 !important;
+  border-color: #059669 !important;
+}
+
+// Override CSS custom properties that might be set via JavaScript
+* {
+  --orange-color: #059669 !important;
+  --primary-orange: #059669 !important;
+  --brand-color: #059669 !important;
+  --theme-color: #059669 !important;
+}
+
+/*------------------------------------------------------------------
+  # Animation & Keyframe Overrides
+-------------------------------------------------------------------*/
+
+// Override any animation colors
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1;
+    background-color: #059669 !important;
+  }
+  50% { 
+    opacity: 0.5;
+    background-color: #059669 !important;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Plugin-Specific Overrides
+-------------------------------------------------------------------*/
+
+// Line Awesome icon colors
+.la-spin {
+  color: #059669 !important;
+}
+
+// AOS (Animate On Scroll) elements
+[data-aos] {
+  background-color: inherit !important;
+}
+
+// Swiper progress bars
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+  background: #059669 !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #059669 !important;
+}
+
+/*------------------------------------------------------------------
+  # Minimal, Fast Therapeutic Loading Circle
+  # Non-obtrusive, performance-focused approach
+-------------------------------------------------------------------*/
+
+// Remove the heavy full-screen preloader
+.preloader {
+  display: none !important; // Disable the obtrusive overlay
+}
+
+// Small, elegant therapeutic loading circle (only when needed)
+.healing-circle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
+  
+  // Show when loading
+  &.loading {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// Simple therapeutic circle design
+.healing-circle-inner {
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(5, 150, 105, 0.2); // Light emerald
+  border-top: 2px solid #059669; // Emerald green
+  border-radius: 50%;
+  animation: therapeuticSpin 1.5s linear infinite;
+  position: relative;
+  
+  // Small terracotta center dot
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background: #CC6B49; // Terracotta - warmth, balance
+    border-radius: 50%;
+    animation: therapeuticPulse 2s ease-in-out infinite;
+  }
+}
+
+// Fast, smooth animations
+@keyframes therapeuticSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes therapeuticPulse {
+  0%, 100% { 
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+// Loading state for forms and AJAX
+.loading {
+  .healing-circle {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// Responsive sizing
+@media (max-width: 768px) {
+  .healing-circle {
+    top: 15px;
+    right: 15px;
+    width: 28px;
+    height: 28px;
+  }
+  
+  .healing-circle-inner::after {
+    width: 5px;
+    height: 5px;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Remove Heavy Animation CSS (Performance Cleanup)
+-------------------------------------------------------------------*/
+
+// Remove all the complex animations that slow things down
+.healing-loader,
+.healing-waves,
+.blooming-flower,
+.flower-petal,
+.flower-center,
+/*------------------------------------------------------------------
+  # Custom Typography - Poppins Headlines & Open Sans Body  
+-------------------------------------------------------------------*/
+
+// Ensure headlines use Poppins (primary font)
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: $font-primary !important;
+}
+
+// Ensure body text uses Open Sans (secondary font)
+body,
+p,
+.content,
+.card-text,
+.text-body,
+ul, ol, li,
+.btn,
+.form-control,
+.form-label,
+input, textarea, select {
+  font-family: $font-secondary !important;
+}
+
+// Navigation uses Poppins for consistency with headlines
+.navbar,
+.navbar-nav,
+.nav-link {
+  font-family: $font-primary !important;
+}
+
+// Ensure buttons use body font for consistency
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn-outline-secondary {
+  font-family: $font-secondary !important;
+}
+
+/*------------------------------------------------------------------
+  # Performance Cleanup & Color Overrides
+-------------------------------------------------------------------*/
+
+// Ultra high specificity override for CSS custom properties that might be set via JavaScript
+* {
+  --orange-color: #059669 !important;
+  --primary-orange: #059669 !important;
+  --brand-color: #059669 !important;
+  --theme-color: #059669 !important;
+}/* =============================================
+   CONTACT & SIGNUP PAGE ENHANCEMENTS
+   ============================================= */
+
+/* Contact Page Enhanced Styling */
+.contact-enhanced {
+  position: relative;
+  background: linear-gradient(135deg, #f6f9fc 0%, #e9f7ef 100%);
+  padding: 60px 0;
+}
+
+/* Contact Method Cards with Hover Effects */
+.contact-method-card {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(77, 179, 128, 0.1);
+  height: 100%;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(77, 179, 128, 0.15);
+    border-color: rgba(77, 179, 128, 0.3);
+    
+    .contact-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+  }
+}
+
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4DB380 0%, #3d9066 100%);
+  color: white;
+  font-size: 2.75rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+/* Contact Info Hover Links */
+.hover-link {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: #4DB380 !important;
+    transform: translateY(-2px);
+  }
+}
+
+/* Trust Badges Animation */
+.trust-badge {
+  animation: gentle-pulse 3s infinite;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(77, 179, 128, 0.2);
+  }
+}
+
+@keyframes gentle-pulse {
+  0%, 100% { 
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+/* Enhanced Form Styling */
+.contact-form-enhanced {
+  background: white;
+  border-radius: 25px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  
+  .form-control {
+    border-radius: 12px;
+    border: 2px solid #e8f5ef;
+    padding: 12px 20px;
+    transition: all 0.3s ease;
+    
+    &:focus {
+      border-color: #4DB380;
+      background-color: #f8fdfb;
+      box-shadow: 0 0 0 0.2rem rgba(77, 179, 128, 0.1);
+    }
+  }
+  
+  .btn-primary {
+    border-radius: 12px;
+    padding: 14px 30px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #4DB380 0%, #3d9066 100%);
+    border: none;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(77, 179, 128, 0.3);
+    }
+  }
+}
+
+/* First Consultation Info Box */
+.consultation-info-box {
+  background: linear-gradient(135deg, #e8f5ef 0%, #f0f9f5 100%);
+  border-left: 4px solid #4DB380;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  
+  strong {
+    color: #4DB380;
+    font-size: 1.1rem;
+  }
+}
+
+/* FAQ Accordion Styling - Hugo Way */
+.faq-accordion {
+  .accordion-item {
+    border: none;
+    background: white;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      box-shadow: 0 5px 20px rgba(77, 179, 128, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    &.faq-item {
+      /* Special styling for FAQ items from shortcode */
+      border-left: 3px solid transparent;
+      
+      &:hover {
+        border-left-color: #4DB380;
+      }
+    }
+  }
+  
+  .accordion-header {
+    margin: 0 !important;
+  }
+  
+  .accordion-button {
+    background: white;
+    color: #2c3e50;
+    font-weight: 600;
+    padding: 1.25rem 1.5rem;
+    border: none;
+    box-shadow: none;
+    font-size: 1.05rem;
+    
+    &::after {
+      transition: transform 0.3s ease;
+    }
+    
+    &:not(.collapsed) {
+      background: linear-gradient(135deg, #f0f9f5 0%, #e8f5ef 100%);
+      color: #4DB380;
+      
+      &::after {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%234DB380'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        transform: rotate(180deg);
+      }
+    }
+    
+    &:focus {
+      box-shadow: none;
+      border-color: transparent;
+    }
+    
+    &:hover {
+      color: #4DB380;
+    }
+  }
+  
+  .accordion-collapse {
+    transition: all 0.35s ease;
+  }
+  
+  .accordion-body {
+    padding: 1.5rem;
+    color: #5a6c7d;
+    line-height: 1.7;
+    font-size: 0.95rem;
+    background: #fafbfc;
+    
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* Confidentiality Alert Enhanced */
+.alert-soft-primary {
+  background: linear-gradient(135deg, #e8f5ef 0%, #f0f9f5 100%);
+  border: 1px solid rgba(77, 179, 128, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+  
+  i {
+    color: #4DB380;
+  }
+}
+
+/* Mobile Responsive Enhancements */
+@media (max-width: 768px) {
+  .contact-method-card {
+    margin-bottom: 1rem;
+  }
+  
+  .contact-form-enhanced {
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .contact-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+}
+
+/* Floating Animation for Icons */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Gradient Text Effect */
+.gradient-text {
+  background: linear-gradient(135deg, #4DB380 0%, #3d9066 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =============================================
+   SIGNUP PAGE PSYCHOLOGICAL DESIGN
+   ============================================= */
+
+/* Onboarding Steps Visual */
+.onboarding-steps {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, #4DB380 0%, #CC6B49 100%);
+    z-index: 0;
+  }
+}
+
+.onboarding-step {
+  position: relative;
+  z-index: 1;
+  
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4DB380 0%, #3d9066 100%);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    box-shadow: 0 5px 15px rgba(77, 179, 128, 0.3);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+  }
+  
+  &.completed .step-number {
+    background: linear-gradient(135deg, #3d9066 0%, #2d6b4d 100%);
+    
+    &::after {
+      content: '✓';
+      position: absolute;
+      font-size: 2rem;
+      animation: checkmark 0.3s ease;
+    }
+  }
+}
+
+@keyframes checkmark {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Enhanced Signup Form */
+.signup-form-enhanced {
+  background: white;
+  border-radius: 25px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  
+  .form-progress {
+    height: 6px;
+    background: #e8f5ef;
+    border-radius: 3px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #4DB380 0%, #3d9066 100%);
+      border-radius: 3px;
+      transition: width 0.5s ease;
+    }
+  }
+  
+  .benefit-item {
+    padding: 0.5rem 0;
+    opacity: 0;
+    animation: fadeInUp 0.5s forwards;
+    animation-delay: calc(var(--item-index) * 0.1s);
+    
+    i {
+      color: #4DB380;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Privacy Guarantee Visual */
+.privacy-shield {
+  position: relative;
+  display: inline-block;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(135deg, #4DB380 0%, #3d9066 100%);
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: pulse-ring 2s infinite;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.05;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+}
+
+/* Reassuring Microcopy */
+.reassurance-text {
+  color: #4DB380;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  
+  i {
+    margin-right: 0.25rem;
+    font-size: 1rem;
+  }
+}
+
+/* Account Benefits Card */
+.benefits-card {
+  background: linear-gradient(135deg, #f6f9fc 0%, #e9f7ef 100%);
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(77, 179, 128, 0.1);
+  
+  h5 {
+    color: #4DB380;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      padding: 0.5rem 0;
+      position: relative;
+      padding-left: 1.5rem;
+      
+      &::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #4DB380;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+/* Input Field Focus Effects */
+.user-access-form {
+  .form-control {
+    border: 2px solid #e8f5ef;
+    border-radius: 12px;
+    padding: 12px 20px;
+    transition: all 0.3s ease;
+    
+    &:focus {
+      border-color: #4DB380;
+      background-color: #f8fdfb;
+      box-shadow: 0 0 0 0.2rem rgba(77, 179, 128, 0.1);
+      
+      & + label {
+        color: #4DB380;
+        transform: translateY(-2px);
+      }
+    }
+    
+    &:valid {
+      border-color: #4DB380;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%234DB380'%3e%3cpath fill-rule='evenodd' d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right calc(0.375em + 0.1875rem) center;
+      background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    }
+  }
+  
+  .btn-primary {
+    border-radius: 12px;
+    padding: 14px 30px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #4DB380 0%, #3d9066 100%);
+    border: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(77, 179, 128, 0.3);
+      
+      &::before {
+        width: 300px;
+        height: 300px;
+      }
+    }
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .onboarding-steps::before {
+    display: none;
+  }
+  
+  .onboarding-step {
+    margin-bottom: 2rem;
+  }
+  
+  .signup-form-enhanced {
+    padding: 1.5rem;
+  }
+}
+
+
+/* ===============================================
+   reCAPTCHA v3 Badge Styling
+   =============================================== */
+
+/* Hide reCAPTCHA badge (invisible mode) - Default */
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
+
+/* Optional: Show reCAPTCHA badge 
+   Uncomment below to display the badge */
+/*
+.grecaptcha-badge {
+  visibility: visible !important;
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 999 !important;
+  transform: scale(0.9);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.grecaptcha-badge:hover {
+  opacity: 1;
+}
+*/
+
+/* Alternative: Show badge only on contact page */
+/*
+.page-contact .grecaptcha-badge {
+  visibility: visible !important;
+}
+*/
+
+/* Privacy text for reCAPTCHA (add to form if needed) */
+.recaptcha-privacy {
+  font-size: 0.75rem;
+  color: #6c757d;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.recaptcha-privacy a {
+  color: #4DB380;
+  text-decoration: underline;
+}
+
+
+/* ===============================================
+   FEATURE-DETAILS: Markdown Content Styling
+   =============================================== */
+
+/* Styling for markdown content within feature-details blocks */
+.feature-markdown-content {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(77, 179, 128, 0.2);
+  
+  /* Typography for markdown content */
+  font-family: $font-secondary !important; /* Open Sans for body text */
+  line-height: 1.7;
+  color: #5a6c7d;
+  
+  /* Markdown headings within features */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-primary !important; /* Poppins for headlines */
+    color: #4DB380;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    
+    &:first-child {
+      margin-top: 0; /* Remove top margin for first heading */
+    }
+  }
+  
+  /* Paragraph spacing */
+  p {
+    margin-bottom: 1rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  /* Lists styling */
+  ul, ol {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+    
+    li {
+      margin-bottom: 0.5rem;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  /* Unordered list bullets */
+  ul li {
+    position: relative;
+    
+    &::marker {
+      color: #4DB380; /* Verde Eucalipt bullet points */
+    }
+  }
+  
+  /* Links within markdown */
+  a {
+    color: #4DB380;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      color: darken(#4DB380, 15%);
+      text-decoration: underline;
+    }
+  }
+  
+  /* Strong and emphasis */
+  strong {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  em {
+    font-style: italic;
+    color: #6c757d;
+  }
+  
+  /* Blockquotes */
+  blockquote {
+    border-left: 4px solid #4DB380;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #6c757d;
+    background: rgba(77, 179, 128, 0.05);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem;
+  }
+  
+  /* Code styling */
+  code {
+    background: rgba(77, 179, 128, 0.1);
+    color: #4DB380;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  
+  pre {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+    
+    code {
+      background: none;
+      color: #495057;
+      padding: 0;
+    }
+  }
+  
+  /* Tables if used in markdown */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    
+    th, td {
+      border: 1px solid #e9ecef;
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+    }
+    
+    th {
+      background: rgba(77, 179, 128, 0.1);
+      font-weight: 600;
+      color: #4DB380;
+    }
+    
+    tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+  }
+  
+  /* HR separator styling */
+  hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #4DB380, transparent);
+    margin: 2rem 0;
+  }
+  
+  /* Image styling within markdown */
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
+  }
+}
+
+/* Responsive adjustments for feature-details */
+@media (max-width: 768px) {
+  .feature-markdown-content {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    ul, ol {
+      padding-left: 1rem;
+    }
+    
+    blockquote {
+      margin: 1rem 0;
+      padding: 0.75rem;
+    }
+  }
+}
+/* ===============================================
+   GLOBAL HEADINGS BRAND COLOR SYSTEM (Simplified v2.0)
+   Controlled by params.design.headings_brand_color
+   Uses CSS Custom Properties for maintainability
+   =============================================== */
+
+/* Default: All headings dark (when headings_brand_color = false) */
+:root {
+  --heading-h1-color: #111827;  /* Always dark for hierarchy */
+  --heading-h2-h6-color: #111827;  /* Default: all dark */
+}
+
+/* Brand mode: H2-H6 use brand color (when headings_brand_color = true) */
+body.headings-brand-color {
+  --heading-h2-h6-color: #4DB380;  /* Main brand emerald */
+}
+
+/* Apply colors via custom properties */
+h1, .h1,
+.section-title h1, .page-title, .hero-title {
+  color: var(--heading-h1-color);
+}
+
+h2, h3, h4, h5, h6,
+.h2, .h3, .h4, .h5, .h6,
+.card-title, .feature-title, .widget-title,
+.post-title, .blog-title, .service-title, .section-heading,
+.pricing-title, .testimonial-author, .testimonial-title,
+.team-name, .team-title, .breadcrumb-title,
+.navbar-brand, .nav-title, .form-label, .form-legend,
+.section-title h2, .section-title h3, .section-title h4, .section-title h5, .section-title h6,
+.footer h2, .footer h3, .footer h4, .footer h5, .footer h6,
+.sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5, .sidebar h6,
+.content h2, .content h3, .content h4, .content h5, .content h6,
+.feature-markdown-content h2, .feature-markdown-content h3,
+.feature-markdown-content h4, .feature-markdown-content h5, .feature-markdown-content h6 {
+  color: var(--heading-h2-h6-color);
+}
+
+/* Accordion button (needs !important due to Bootstrap specificity) */
+.accordion-button {
+  color: var(--heading-h2-h6-color) !important;
+}
+
+/* Print: All dark for readability */
+@media print {
+  :root {
+    --heading-h2-h6-color: #111827;
+  }
+}
+/*------------------------------------------------------------------
+  # New Sections Styles (design-2.md Implementation)
+-------------------------------------------------------------------*/
+
+/* Problem/Empathy Section */
+.problem-empathy {
+  .challenge-card {
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+    
+    &:hover {
+      border-left-color: $color-secondary;
+      transform: translateX(4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+  }
+  
+  .empathy-message {
+    background: linear-gradient(135deg, #f9fafb 0%, #e8f5ef 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    border-left: 4px solid $color-primary;
+  }
+}
+
+/* Stats/Numbers Section */
+.stats-numbers {
+  .stat-item {
+    position: relative;
+    
+    .stat-number {
+      font-family: $font-primary;
+      font-weight: 700;
+    }
+  }
+}
+
+/* Method Tabs Section */
+.method-tabs {
+  .nav-pills {
+    .nav-link {
+      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: rgba($color-primary, 0.1);
+        transform: translateY(-2px);
+      }
+      
+      &.active {
+        background-color: $color-primary;
+        color: white;
+        box-shadow: 0 4px 12px rgba($color-primary, 0.3);
+      }
+    }
+  }
+  
+  .tab-content {
+    .card {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .check-list-2 {
+      li {
+        padding-left: 0.5rem;
+      }
+    }
+  }
+}
+
+/* Timeline/Process Section */
+.timeline-process {
+  .timeline-wrapper {
+    position: relative;
+    padding: 2rem 0;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, $color-primary, $color-secondary);
+      transform: translateX(-50%);
+      
+      @media (max-width: 768px) {
+        left: 30px;
+      }
+    }
+  }
+  
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    .timeline-marker {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      
+      @media (max-width: 768px) {
+        left: 30px;
+      }
+    }
+    
+    .timeline-icon {
+      width: 60px;
+      height: 60px;
+      background: $color-primary;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba($color-primary, 0.3);
+      
+      .timeline-number {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+    }
+    
+    .timeline-content {
+      width: calc(50% - 50px);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      }
+      
+      @media (max-width: 768px) {
+        width: calc(100% - 80px);
+        margin-left: 80px;
+      }
+    }
+    
+    &.timeline-item-left .timeline-content {
+      margin-right: auto;
+      
+      @media (max-width: 768px) {
+        margin-right: 0;
+      }
+    }
+    
+    &.timeline-item-right .timeline-content {
+      margin-left: auto;
+      
+      @media (max-width: 768px) {
+        margin-left: 80px;
+      }
+    }
+  }
+}
+
+/* Blog Grid Section */
+.blog-grid {
+  .nav-pills {
+    .nav-link {
+      border-radius: 25px;
+      padding: 0.5rem 1.5rem;
+      margin: 0 0.25rem;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: rgba($color-primary, 0.1);
+      }
+      
+      &.active {
+        background-color: $color-primary;
+        color: white;
+      }
+    }
+  }
+  
+  .blog-card {
+    transition: all 0.3s ease;
+    overflow: hidden;
+    
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+    
+    .blog-card-image {
+      position: relative;
+      overflow: hidden;
+      
+      img {
+        transition: transform 0.5s ease;
+      }
+      
+      .blog-badge {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1;
+      }
+    }
+    
+    &:hover .blog-card-image img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+/* Related Services Section */
+.related-services {
+  .related-service-card {
+    transition: all 0.3s ease;
+    border-top: 3px solid transparent;
+    
+    &:hover {
+      border-top-color: $color-primary;
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+  }
+}
+
+/* Newsletter Signup Section */
+.newsletter-signup {
+  background: linear-gradient(135deg, $color-primary 0%, darken($color-primary, 10%) 100%);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  
+  .newsletter-form {
+    background: rgba(255,255,255,0.1);
+    padding: 2rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    
+    .form-control {
+      background: rgba(255,255,255,0.95);
+      border: 2px solid transparent;
+      
+      &:focus {
+        background: white;
+        border-color: $color-secondary;
+        box-shadow: 0 0 0 0.2rem rgba($color-secondary, 0.25);
+      }
+    }
+    
+    .form-check-label {
+      font-size: 0.875rem;
+    }
+  }
+  
+  .check-list-white {
+    li {
+      color: white;
+      
+      i {
+        color: white;
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+/* Service Highlights Section */
+.service-highlights {
+  .highlight-card {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    
+    &:hover {
+      background-color: white !important;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transform: translateX(8px);
+      border-left-width: 6px !important;
+    }
+    
+    .highlight-icon {
+      flex-shrink: 0;
+    }
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .timeline-process {
+    .timeline-wrapper::before {
+      left: 30px;
+    }
+    
+    .timeline-item {
+      .timeline-marker {
+        left: 30px;
+      }
+      
+      .timeline-content {
+        width: calc(100% - 80px);
+        margin-left: 80px !important;
+      }
+    }
+  }
+  
+  .newsletter-signup {
+    .newsletter-content {
+      margin-bottom: 2rem;
+    }
+  }
+  
+  .method-tabs {
+    .nav-pills {
+      flex-wrap: wrap;
+      
+      .nav-link {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
+
+/* ===================================
+   Global Floating Elements
+   =================================== */
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  background: var(--color-primary, #4DB380);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(100px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(77, 179, 128, 0.3);
+  z-index: 1000;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--color-primary-dark, #3a9d6a);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(77, 179, 128, 0.4);
+}
+
+.back-to-top:active {
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transition: opacity 0.3s, visibility 0.3s;
+    transform: none !important;
+  }
+}
+
+/* Cookie Consent Banner */
+.cookie-consent {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 3px solid var(--color-primary, #4DB380);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
+  z-index: 9999;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cookie-consent.visible {
+  transform: translateY(0);
+}
+
+.cookie-consent-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.cookie-consent-text h5 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: var(--color-text-dark, #111827);
+}
+
+.cookie-consent-text p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text, #374151);
+  line-height: 1.5;
+}
+
+.cookie-consent-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .cookie-consent {
+    padding: 1rem;
+  }
+  
+  .cookie-consent-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .cookie-consent-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .cookie-consent-buttons .btn {
+    width: 100%;
+  }
+}
+
+/* Emergency Banner */
+.emergency-banner {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-bottom: 2px solid #f59e0b;
+  padding: 0.75rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1040;
+  transition: all 0.3s ease;
+}
+
+.emergency-banner.hiding {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.emergency-banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.emergency-icon {
+  color: #f59e0b;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.emergency-text {
+  flex: 1;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.emergency-text strong {
+  color: #92400e;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.emergency-text span {
+  color: #78350f;
+}
+
+.emergency-close {
+  background: none;
+  border: none;
+  color: #92400e;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.emergency-close:hover {
+  color: #78350f;
+}
+
+@media (max-width: 768px) {
+  .emergency-banner {
+    padding: 0.5rem 0;
+  }
+  
+  .emergency-text {
+    font-size: 0.85rem;
+  }
+  
+  .emergency-text strong,
+  .emergency-text span {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie-consent,
+  .emergency-banner {
+    transition: opacity 0.3s;
+  }
+}
+
+
+/*------------------------------------------------------------------
+  # Accessibility - Reduced Motion Support
+-------------------------------------------------------------------*/
+
+// Respect user preferences for reduced motion
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  // Keep essential functionality
+  .btn:hover {
+    transform: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Utility Classes - Modern Helpers
+-------------------------------------------------------------------*/
+
+// Layered background utilities
+.bg-layered-healing {
+  @include layered-background(
+    $gradient-light,
+    radial-gradient(circle at top right, $green-100, transparent),
+    radial-gradient(circle at bottom left, $terracotta-50, transparent)
+  );
+}
+
+.bg-gradient-primary {
+  background: $gradient-primary;
+  color: white;
+}
+
+.bg-gradient-secondary {
+  background: $gradient-secondary;
+  color: white;
+}
+
+// Text utilities
+.text-display {
+  font-family: $font-display;
+}
+
+.text-gradient {
+  background: $gradient-healing;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// Shadow utilities
+.shadow-primary {
+  box-shadow: $shadow-primary;
+}
+
+.shadow-secondary {
+  box-shadow: $shadow-secondary;
+}
+
+.shadow-lift {
+  @include hover-lift();
+}

@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html
+  lang="{{ site.LanguageCode | default `en-US` }}"
+  itemscope
+  itemtype="http://schema.org/WebPage">
+  <head>
+    {{ partial "essentials/head.html" . }}
+
+    <!-- Hreflang tags for multilingual SEO -->
+    {{ partial "seo/hreflang-tags.html" . }}
+
+    <!-- Style processing with proper global caching -->
+    {{ if hugo.IsProduction }}
+      {{ partialCached "essentials/style.html" . "global-styles" }}
+    {{ else }}
+      {{ partial "essentials/style.html" . }}
+    {{ end }}
+
+    <!-- Conditional page-specific CSS bundles -->
+    {{- $pageType := .Type -}}
+    {{- $sections := .Params.sections -}}
+
+    {{/* Contact page CSS */}}
+    {{- if or (eq $pageType "contact") (in .RelPermalink "/contact") -}}
+      {{- $contactCSS := resources.Get "scss/pages/_contact.scss" | toCSS | minify | fingerprint -}}
+      <link rel="stylesheet" href="{{ $contactCSS.RelPermalink }}" integrity="{{ $contactCSS.Data.Integrity }}">
+    {{- end -}}
+
+    {{/* Signup page CSS */}}
+    {{- if or (eq $pageType "signup") (in .RelPermalink "/signup") -}}
+      {{- $signupCSS := resources.Get "scss/pages/_signup.scss" | toCSS | minify | fingerprint -}}
+      <link rel="stylesheet" href="{{ $signupCSS.RelPermalink }}" integrity="{{ $signupCSS.Data.Integrity }}">
+    {{- end -}}
+
+    {{/* Sections CSS - load if page uses timeline, blog, newsletter, or service sections */}}
+    {{- $needsSections := false -}}
+    {{- range $sections -}}
+      {{- if in (slice "timeline-process" "blog-grid" "newsletter-signup" "service-highlights" "problem-empathy" "stats-numbers" "related-services") .type -}}
+        {{- $needsSections = true -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if $needsSections -}}
+      {{- $sectionsCSS := resources.Get "scss/components/_sections.scss" | toCSS | minify | fingerprint -}}
+      <link rel="stylesheet" href="{{ $sectionsCSS.RelPermalink }}" integrity="{{ $sectionsCSS.Data.Integrity }}">
+    {{- end -}}
+  </head>
+
+  <body{{ if site.Params.design.headings_brand_color }} class="headings-brand-color"{{ end }}>
+    <!-- Cache partials with proper cache keys -->
+    {{ if hugo.IsProduction }}
+      {{ partialCached "preloader.html" . "global-preloader" }}
+      {{ partialCached "essentials/header.html" . .Language }}
+      {{ partialCached "gtm-noscript.html" . "global-gtm" }}
+    {{ else }}
+      {{ partial "preloader.html" . }}
+      {{ partial "essentials/header.html" . }}
+    {{ end }}
+
+    <main id="main-content">
+      {{ block "main" . }}{{ end }}
+    </main>
+
+    <!-- Cache footer and scripts with proper keys -->
+    {{ if hugo.IsProduction }}
+      {{ partialCached "essentials/script.html" . "global-scripts" }}
+      {{ partialCached "essentials/footer.html" . .Language }}
+    {{ else }}
+      {{ partial "essentials/script.html" . }}
+      {{ partial "essentials/footer.html" . }}
+    {{ end }}
+  </body>
+</html>

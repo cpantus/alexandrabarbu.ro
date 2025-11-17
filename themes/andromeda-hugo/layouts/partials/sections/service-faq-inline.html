@@ -1,0 +1,111 @@
+{{- $section := .Params.service_faq -}}
+{{- if $section -}}
+{{- $sectionID := printf "service-faq-%d" (now.Unix) -}}
+
+<section class="section service-faq-inline bg-light" id="{{ $sectionID }}">
+  <div class="container">
+    <!-- Section Header -->
+    {{- if or $section.title $section.subtitle -}}
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center mb-5">
+        {{- if $section.subtitle -}}
+        <p class="text-primary text-uppercase fw-semibold mb-2">{{ $section.subtitle }}</p>
+        {{- end -}}
+        {{- if $section.title -}}
+        {{ partial "atoms/heading.html" (dict "text" $section.title "level" 2 "class" "mb-3") }}
+        {{- end -}}
+        {{- if $section.description -}}
+        <p class="text-muted lead">{{ $section.description }}</p>
+        {{- end -}}
+      </div>
+    </div>
+    {{- end -}}
+
+    <!-- FAQ Accordion -->
+    {{- if $section.questions -}}
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="accordion service-faq-accordion" id="{{ $sectionID }}-accordion">
+          {{- range $index, $item := $section.questions -}}
+          {{- $itemID := printf "%s-item-%d" $sectionID $index -}}
+          {{- $isFirst := eq $index 0 -}}
+
+          <div class="accordion-item" data-aos="fade-up" data-aos-delay="{{ mul $index 50 }}">
+            <h3 class="accordion-header" id="{{ $itemID }}-heading">
+              <button class="accordion-button{{ if not $isFirst }} collapsed{{ end }}"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#{{ $itemID }}-collapse"
+                      aria-expanded="{{ if $isFirst }}true{{ else }}false{{ end }}"
+                      aria-controls="{{ $itemID }}-collapse">
+
+                {{- if $item.icon -}}
+                {{ partial "atoms/icon.html" (dict "icon" $item.icon "class" "me-3 text-primary") }}
+                {{- end -}}
+
+                <span class="accordion-question">{{ $item.question }}</span>
+
+                {{- if $item.badge -}}
+                <span class="badge bg-primary-subtle text-primary ms-auto me-3">{{ $item.badge }}</span>
+                {{- end -}}
+              </button>
+            </h3>
+
+            <div id="{{ $itemID }}-collapse"
+                 class="accordion-collapse collapse{{ if $isFirst }} show{{ end }}"
+                 aria-labelledby="{{ $itemID }}-heading"
+                 data-bs-parent="#{{ $sectionID }}-accordion">
+              <div class="accordion-body">
+                {{- if $item.answer -}}
+                <div class="faq-answer">{{ $item.answer | markdownify }}</div>
+                {{- end -}}
+
+                {{- if $item.highlights -}}
+                <ul class="faq-highlights mt-3">
+                  {{- range $item.highlights -}}
+                  <li>
+                    {{ partial "atoms/icon.html" (dict "icon" "las la-check-circle" "class" "text-success me-2") }}
+                    <span>{{ . }}</span>
+                  </li>
+                  {{- end -}}
+                </ul>
+                {{- end -}}
+
+                {{- if $item.note -}}
+                <div class="faq-note mt-3">
+                  {{ partial "atoms/icon.html" (dict "icon" "las la-info-circle" "class" "text-primary me-2") }}
+                  <span class="text-muted fst-italic">{{ $item.note }}</span>
+                </div>
+                {{- end -}}
+              </div>
+            </div>
+          </div>
+          {{- end -}}
+        </div>
+      </div>
+    </div>
+    {{- end -}}
+
+    {{- if $section.contact_note -}}
+    <!-- Contact Note -->
+    <div class="row justify-content-center mt-5">
+      <div class="col-lg-8 text-center">
+        <div class="faq-contact-note p-4 rounded-3 bg-white border border-primary border-opacity-25">
+          {{ partial "atoms/icon.html" (dict "icon" "las la-question-circle" "size" "32" "class" "text-primary mb-3") }}
+          <p class="mb-3 text-muted">{{ $section.contact_note }}</p>
+          {{- if $section.contact_cta -}}
+          {{ partial "atoms/button.html" (dict
+            "text" $section.contact_cta.text
+            "url" $section.contact_cta.url
+            "variant" (default "primary" $section.contact_cta.variant)
+            "icon" $section.contact_cta.icon
+          ) }}
+          {{- end -}}
+        </div>
+      </div>
+    </div>
+    {{- end -}}
+  </div>
+</section>
+
+{{- end -}}

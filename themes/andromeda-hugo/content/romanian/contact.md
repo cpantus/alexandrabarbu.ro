@@ -1,76 +1,178 @@
 ---
-title: "Hai să Începem Conversația"
-layout: "contact-enhanced"
-draft: false
+title: "Contact - Cabinet Psihoterapie Alexandra Barbu"
+description: "Programează o consultație la cabinet sau online. Sesiuni de terapie individuală, de cuplu și de familie în București. Răspund în 24h."
+layout: "flexible"
 
-# Contact form image
-contact_image: "images/vectors/contact.png"
+sections:
+  - type: "hero-breadcrumb"
+  - type: "contact-form-enhanced"
+  - type: "stats-numbers"
+  - type: "faq-mini"
+  - type: "newsletter-signup"
 
-# Contact methods with details
-contact_methods:
-  - icon: "las la-phone la-3x"
-    title: "Telefon Direct"
-    info: "+40 722.123.456"
-    subtitle: "Lun-Vin: 10:00-20:00"
-    link: "tel:+40722123456"
-    
-  - icon: "lab la-whatsapp la-3x"
-    title: "WhatsApp Direct"
-    info: "+40 770.123.456"
-    subtitle: "Răspuns rapid și confidențial"
-    link: "https://wa.me/40770200834"
-    
-  - icon: "las la-map-marker la-3x"
-    title: "Cabinet București"
-    info: "Sector 3, București"
-    subtitle: "Parcare gratuită disponibilă"
-    link: "https://www.google.com/maps/search/Sector+3+București"
+# Hero Image
+hero_image: "images/hero/contact-cabinet.jpg"
 
-# First consultation info
-first_consultation:
-  title: "Prima Consultație Gratuită"
-  duration: "15 minute de evaluare"
-  description: "Fără obligații • Confidențial 100% • Online sau la cabinet"
-  
-# Trust indicators
-trust_badges:
-  - "Psiholog Autorizat"
-  - "10+ Ani Experiență"
-  - "GDPR Compliant"
-  - "Terapie Cognitiv Comportamentala"
+# Breadcrumb
+breadcrumb:
+  - name: "Acasă"
+    url: "/"
+  - name: "Contact"
+    url: "/contact/"
 
-# Confidentiality section
-confidentiality:
-  title: "Confidențialitate Garantată"
-  description: "Toate comunicările sunt protejate de secretul profesional conform Codului Deontologic al Psihologilor din România. Informațiile tale personale sunt tratate cu maximă confidențialitate și siguranță."
+# Contact Form Section
+contact_form:
+  enable: true
+  subtitle: "Începe călătoria ta"
+  title: "Programează o Consultație"
+  description: "Completează formularul de mai jos și te voi contacta în maximum 24 de ore pentru a stabili împreună primul tău pas către o viață mai echilibrată."
 
-# FAQ section configuration
-faq_section:
-  title: "Întrebări Frecvente"
-  subtitle: "Răspunsuri la cele mai comune întrebări"
-  footer_text: "Ai alte întrebări? [Contactează-ne direct](#contact-form)"
+  form_fields:
+    name:
+      label: "Nume complet"
+      placeholder: "Ion Popescu"
+      required: true
+    email:
+      label: "Email"
+      placeholder: "ion.popescu@exemplu.ro"
+      required: true
+    phone:
+      label: "Telefon"
+      placeholder: "+40 712 345 678"
+      required: false
+    service:
+      label: "Tipul de serviciu"
+      type: "select"
+      options:
+        - "Terapie Individuală"
+        - "Terapie de Cuplu"
+        - "Terapie de Familie"
+        - "Psihologie Organizațională"
+        - "Nu sunt sigur - aș dori o consultație"
+      required: true
+    preferred_contact:
+      label: "Mod preferat de contact"
+      type: "radio"
+      options:
+        - "Email"
+        - "Telefon"
+        - "WhatsApp"
+      required: true
+    message:
+      label: "Mesajul tău"
+      placeholder: "Descrie pe scurt motivul pentru care dorești terapie și întrebările tale..."
+      type: "textarea"
+      required: true
+    privacy:
+      label: "Sunt de acord cu <a href='/politica-confidentialitate/'>politica de confidențialitate</a> și prelucrarea datelor personale conform GDPR"
+      type: "checkbox"
+      required: true
+
+  submit_button: "Trimite Cererea"
+  success_message: "Mulțumesc pentru mesaj! Voi răspunde în maxim 24 de ore."
+  error_message: "A apărut o eroare. Te rog încearcă din nou sau contactează-mă direct la telefon."
+
+  office_info:
+    enable: true
+    title: "Informații Cabinet"
+    address: "Str. Doamnei nr. 12, Sector 3, București 030167"
+    phone: "+40 721 234 567"
+    email: "contact@alexandrabarbu.ro"
+    schedule:
+      - day: "Luni - Vineri"
+        hours: "09:00 - 20:00"
+      - day: "Sâmbătă"
+        hours: "10:00 - 14:00"
+      - day: "Duminică"
+        hours: "Închis"
+    map_embed: "https://maps.google.com/maps?q=Str.%20Doamnei%2012%20Bucuresti&t=&z=15&ie=UTF8&iwloc=&output=embed"
+
+  booking_info:
+    enable: true
+    title: "Programare Online"
+    description: "Preferă să programezi direct? Folosește calendarul online pentru a alege ziua și ora care ți se potrivește."
+    calendly_url: "https://calendly.com/alexandrabarbu/consultatie"
+    button_text: "Programează Online"
+
+# Stats Section
+stats:
+  enable: true
+  background: "light"
+  items:
+    - number: "24"
+      suffix: "h"
+      label: "Timp de răspuns maxim"
+      icon: "clock"
+    - number: "98"
+      suffix: "%"
+      label: "Rata de răspuns"
+      icon: "check-circle"
+    - number: "3"
+      suffix: ""
+      label: "Locații disponibile (cabinet + online)"
+      icon: "map-marker"
+    - number: "7"
+      suffix: " zile"
+      label: "Program disponibil"
+      icon: "calendar"
+
+# FAQ Section
+faq:
+  enable: true
+  subtitle: "Întrebări frecvente"
+  title: "Răspunsuri Rapide"
+  description: "Găsește răspunsuri la cele mai comune întrebări despre procesul de programare și terapie."
+  questions:
+    - question: "Cât durează până primesc un răspuns?"
+      answer: "Răspund la toate mesajele în maxim 24 de ore (de obicei în aceeași zi lucrătoare). În weekend-uri, răspund luni dimineața."
+      icon: "question-circle"
+    - question: "Pot programa o sesiune online?"
+      answer: "Da, absolut! Ofer sesiuni atât față în față la cabinet, cât și online prin platforme securizate (Zoom, Google Meet). Eficacitatea terapiei online este demonstrată științific."
+      icon: "video"
+    - question: "Cât costă o sesiune de terapie?"
+      answer: "Tariful pentru o sesiune individuală (50 minute) este 250 RON. Pentru terapie de cuplu/familie (75 minute) este 350 RON. Ofer și pachete cu discount."
+      icon: "credit-card"
+    - question: "Este sigură informația pe care o împărtășesc?"
+      answer: "Absolut. Confidențialitatea este fundamentală în psihoterapie. Datele tale sunt protejate conform GDPR și codul deontologic al psihologilor. Nimic din ce discutăm nu părăsește cabinetul fără consimțământul tău explicit."
+      icon: "shield-alt"
+    - question: "Pot anula sau reprograma o sesiune?"
+      answer: "Da, cu minim 24 de ore înainte. Anulările făcute cu mai puțin de 24h înainte se taxează integral, exceptând urgențele medicale."
+      icon: "calendar-times"
+    - question: "Cum mă pregătesc pentru prima sesiune?"
+      answer: "Nu este nevoie de pregătire specială. Vino așa cum ești, cu întrebările și grijile tale. În prima sesiune vom discuta despre motivul pentru care cauți terapie și vom stabili împreună obiectivele."
+      icon: "clipboard-list"
+
+# Newsletter Section
+newsletter:
+  enable: true
+  subtitle: "Rămâi la curent"
+  title: "Resurse Gratuite pentru Sănătate Mintală"
+  description: "Primește lunar articole, exerciții practice și sfaturi pentru dezvoltare personală direct în inbox."
+  placeholder: "adresa@ta-de-email.ro"
+  button_text: "Abonează-te"
+  privacy_note: "Respectăm confidențialitatea ta. Poți să te dezabonezi oricând. Zero spam."
+  benefits:
+    - "Articole despre anxietate, depresie, relații"
+    - "Exerciții de mindfulness și relaxare"
+    - "Anunțuri despre workshopuri și webinarii"
+    - "Resurse gratuite descărcabile"
+
+# Emergency Banner
+emergency:
+  enable: true
+  text: "**Urgență?** Dacă ai gânduri suicidare, sună la Telefonul Sufletului: 0800 801 200 (gratuit, 24/7)"
+  type: "warning"
 ---
 
-{{< collapse "Este prima consultație cu adevărat gratuită?" >}}
-Da, oferim 15 minute gratuite de evaluare inițială pentru a ne cunoaște și a discuta despre nevoile tale. Această sesiune nu implică nicio obligație de a continua.
-{{< /collapse >}}
+## Contact Direct
 
-{{< collapse "Cât durează o ședință de terapie standard?" >}}
-O ședință standard de terapie individuală durează 50 de minute. Pentru terapia de cuplu sau familie, ședințele pot dura între 60-90 minute, în funcție de complexitatea situației.
-{{< /collapse >}}
+Pentru urgențe sau întrebări rapide, mă poți contacta direct:
 
-{{< collapse "Pot anula sau reprograma o ședință?" >}}
-Desigur! Poți anula sau reprograma cu minim 24 de ore înainte, fără nicio penalizare. Pentru anulări în mai puțin de 24 de ore, se aplică politica standard de anulare.
-{{< /collapse >}}
+- **Telefon:** [+40 721 234 567](tel:+40721234567)
+- **Email:** [contact@alexandrabarbu.ro](mailto:contact@alexandrabarbu.ro)
+- **WhatsApp:** [Trimite mesaj](https://wa.me/40721234567)
 
-{{< collapse "Oferești și sesiuni online?" >}}
-Da, oferim atât sesiuni la cabinet cât și online prin platforme securizate. Eficacitatea terapiei online este demonstrată științific a fi la fel de bună ca cea față în față.
-{{< /collapse >}}
-
-{{< collapse "Cum știu dacă am nevoie de terapie?" >}}
-Dacă te simți copleșit(ă), anxios(ă), trist(ă) pentru o perioadă prelungită, sau dacă relațiile și activitățile zilnice sunt afectate, terapia te poate ajuta. Prima consultație gratuită te va ajuta să clarificăm împreună dacă terapia este potrivită pentru tine.
-{{< /collapse >}}
-
-{{< collapse "Este totul confidențial?" >}}
-Absolut. Toate informațiile împărtășite sunt protejate de secretul profesional conform Codului Deontologic. Excepții există doar în cazuri extreme prevăzute de lege (risc iminent pentru tine sau alții).
-{{< /collapse >}}
+**Program răspunsuri:**
+- Luni - Vineri: 9:00 - 20:00
+- Sâmbătă: 10:00 - 14:00
+- Duminică: Închis (răspund luni dimineața)

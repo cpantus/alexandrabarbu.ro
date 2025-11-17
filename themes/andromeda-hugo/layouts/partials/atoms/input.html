@@ -30,6 +30,8 @@
     max (optional) - Max value for number type
     pattern (optional) - Validation pattern
     helpText (optional) - Help text displayed below input
+    error (optional) - Error message (triggers aria-invalid and aria-describedby)
+    ariaLabel (optional) - Custom ARIA label for screen readers
     options (optional) - Options for select type (slice of dicts with "value" and "text")
     attributes (optional) - Additional HTML attributes as dict
 
@@ -59,9 +61,15 @@
 {{ $helpText := .helpText }}
 {{ $options := .options }}
 {{ $attributes := .attributes | default dict }}
+{{ $error := .error }}
+{{ $ariaLabel := .ariaLabel }}
 
 {{/* Determine if this is a checkbox/radio type */}}
 {{ $isCheckable := or (eq $type "checkbox") (eq $type "radio") }}
+
+{{/* Generate unique IDs for ARIA associations */}}
+{{ $helpTextId := printf "%s-help" $id }}
+{{ $errorId := printf "%s-error" $id }}
 
 {{/* Build wrapper classes */}}
 {{ $wrapperClass := "" }}
@@ -100,7 +108,7 @@
 
 {{/* Build common attributes */}}
 {{ $commonAttrs := dict }}
-{{ if $required }}{{ $commonAttrs = merge $commonAttrs (dict "required" "required") }}{{ end }}
+{{ if $required }}{{ $commonAttrs = merge $commonAttrs (dict "required" "required" "aria-required" "true") }}{{ end }}
 {{ if $disabled }}{{ $commonAttrs = merge $commonAttrs (dict "disabled" "disabled") }}{{ end }}
 {{ if $readonly }}{{ $commonAttrs = merge $commonAttrs (dict "readonly" "readonly") }}{{ end }}
 {{ if $placeholder }}{{ $commonAttrs = merge $commonAttrs (dict "placeholder" $placeholder) }}{{ end }}
@@ -108,6 +116,13 @@
 {{ if $min }}{{ $commonAttrs = merge $commonAttrs (dict "min" (string $min)) }}{{ end }}
 {{ if $max }}{{ $commonAttrs = merge $commonAttrs (dict "max" (string $max)) }}{{ end }}
 {{ if $pattern }}{{ $commonAttrs = merge $commonAttrs (dict "pattern" $pattern) }}{{ end }}
+
+{{/* ARIA attributes for accessibility */}}
+{{ if $ariaLabel }}{{ $commonAttrs = merge $commonAttrs (dict "aria-label" $ariaLabel) }}{{ end }}
+{{ if $error }}{{ $commonAttrs = merge $commonAttrs (dict "aria-invalid" "true" "aria-describedby" $errorId) }}{{ end }}
+{{ if and $helpText (not $error) }}{{ $commonAttrs = merge $commonAttrs (dict "aria-describedby" $helpTextId) }}{{ end }}
+{{ if and $helpText $error }}{{ $commonAttrs = merge $commonAttrs (dict "aria-describedby" (printf "%s %s" $errorId $helpTextId)) }}{{ end }}
+
 {{ $commonAttrs = merge $commonAttrs $attributes }}
 
 <div class="{{ $wrapperClass }}">
@@ -152,8 +167,15 @@
     <label class="{{ $labelClassFinal }}" for="{{ $id }}">{{ $label | safeHTML }}</label>
   {{ end }}
 
+  {{/* Error message with ARIA live region */}}
+  {{ with $error }}
+    <div id="{{ $errorId }}" class="invalid-feedback d-block" role="alert" aria-live="polite">
+      {{ . }}
+    </div>
+  {{ end }}
+
   {{/* Help text */}}
   {{ with $helpText }}
-    <small class="form-text text-muted d-block mt-1">{{ . }}</small>
+    <small id="{{ $helpTextId }}" class="form-text text-muted d-block mt-1">{{ . }}</small>
   {{ end }}
 </div>

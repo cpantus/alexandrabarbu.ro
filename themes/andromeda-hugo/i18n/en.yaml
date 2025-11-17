@@ -108,3 +108,54 @@
 
 - id: year
   translation: Year
+
+# New translations for design-2 sections
+- id: what_is
+  translation: What is it?
+
+- id: how_it_works
+  translation: How does it work?
+
+- id: what_for
+  translation: What for?
+
+- id: all
+  translation: All
+
+- id: read_more
+  translation: Read more
+
+- id: load_more
+  translation: Load more
+
+- id: learn_more
+  translation: Learn more
+
+- id: your_name
+  translation: Your name
+
+- id: your_email
+  translation: Your email address
+
+- id: subscribe
+  translation: Subscribe
+
+- id: gdpr_consent
+  translation: I agree to the processing of personal data according to GDPR
+# Global floating elements
+- id: back_to_top
+  translation: "Back to top"
+- id: cookie_title
+  translation: "🍪 We Respect Your Privacy"
+- id: cookie_message
+  translation: "We use essential cookies for site functionality and analytics cookies to improve your experience. We don't use marketing cookies. Your data is GDPR-protected."
+- id: cookie_accept
+  translation: "Accept"
+- id: cookie_decline
+  translation: "Essential Only"
+- id: emergency_title
+  translation: "Crisis? Need urgent help?"
+- id: emergency_message
+  translation: "Telefonul Sufletului (Soul Hotline): 0800 801 200 (free, 24/7)"
+- id: close
+  translation: "Close"

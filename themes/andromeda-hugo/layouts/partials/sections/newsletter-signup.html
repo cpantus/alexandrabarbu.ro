@@ -1,0 +1,78 @@
+{{/* Newsletter Signup Section - Email capture with lead magnet */}}
+{{ $section := .Params.newsletter_signup }}
+
+{{ with $section }}
+  {{ if .enable }}
+    <section class="section newsletter-signup bg-primary text-white">
+      <div class="container-xxl position-relative">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="newsletter-content">
+              {{ if .icon }}
+                {{ partial "atoms/icon.html" (dict
+                  "name" .icon
+                  "size" "3x"
+                  "color" "white"
+                  "class" "mb-3"
+                ) }}
+              {{ end }}
+              {{ if .title }}
+                <h3 class="text-white mb-3">{{ .title | markdownify }}</h3>
+              {{ end }}
+              {{ if .description }}
+                <p class="text-white-50 mb-4">{{ .description | markdownify }}</p>
+              {{ end }}
+              {{ if .benefits }}
+                <ul class="list-unstyled check-list-white mb-4">
+                  {{ range .benefits }}
+                    <li class="mb-2">
+                      {{ partial "atoms/icon.html" (dict "name" "check-circle" "color" "white" "class" "me-2") }}
+                      {{ . | markdownify }}
+                    </li>
+                  {{ end }}
+                </ul>
+              {{ end }}
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="newsletter-form-wrapper">
+              <form class="newsletter-form" action="{{ .form_action | default "#" }}" method="POST">
+                <div class="mb-3">
+                  {{ partial "atoms/input.html" (dict
+                    "type" "text"
+                    "name" "name"
+                    "placeholder" (i18n "your_name" | default "Numele tău")
+                    "required" true
+                    "class" "form-control-lg"
+                  ) }}
+                </div>
+                <div class="mb-3">
+                  {{ partial "atoms/input.html" (dict
+                    "type" "email"
+                    "name" "email"
+                    "placeholder" (i18n "your_email" | default "Adresa ta de email")
+                    "required" true
+                    "class" "form-control-lg"
+                  ) }}
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" id="gdprConsent" name="gdpr" required>
+                  <label class="form-check-label text-white-50 small" for="gdprConsent">
+                    {{ .gdpr_text | default (i18n "gdpr_consent" | default "Sunt de acord cu prelucrarea datelor personale conform GDPR") | markdownify }}
+                  </label>
+                </div>
+                {{ partial "atoms/button.html" (dict
+                  "type" "submit"
+                  "text" (.button_text | default (i18n "subscribe" | default "Abonează-te"))
+                  "variant" "secondary"
+                  "size" "lg"
+                  "fullWidth" true
+                ) }}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {{ end }}
+{{ end }}

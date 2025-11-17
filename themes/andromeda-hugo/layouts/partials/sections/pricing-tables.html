@@ -37,78 +37,21 @@
             <div class="row">
               {{ range $.Params.pricing_card }}
                 <div class="col-lg-4 col-md-6 mt-4">
-                  <div class="card pricing-card border-0">
-                    <div class="card-body">
-                      {{ partial "atoms/heading.html" (dict
-                        "text" .name
-                        "level" 3
-                        "variant" "bold"
-                        "class" "mb-1"
-                      ) }}
-
-                      <span class="h2 font-weight-bold d-inline-flex">
-                        {{ .currency }}
-                        {{ if or .monthly_price .yearly_price }}
-                          <span
-                            class="data-count"
-                            data-count-monthly="{{ .monthly_price }}"
-                            data-count-annually="{{ .yearly_price }}"
-                            >{{ if eq $toggle "yearly" }}
-                              {{ .yearly_price }}
-                            {{ else }}
-                              {{ .monthly_price }}
-                            {{ end }}</span
-                          >
-                        {{ end }}
-                      </span>
-
-                      {{ if .monthly_price }}
-                        <span
-                          class="text-monthly {{ if eq $toggle `yearly` }}
-                            d-none
-                          {{ end }}"
-                          >/{{ T "month" }}</span
-                        >
-                      {{ end }}
-                      {{ if .yearly_price }}
-                        <span
-                          class="text-annually {{ if ne $toggle `yearly` }}
-                            d-none
-                          {{ end }}
-                          "
-                          >/{{ T "year" }}</span
-                        >
-                      {{ end }}
-
-                      <p class="border-bottom pb-3">
-                        {{ .content | markdownify }}
-                      </p>
-
-                      <ul class="list-unstyled check-list-2 mt-3 mb-4">
-                        {{ range .services }}
-                          <li class="mb-2">
-                            {{ partial "atoms/icon.html" (dict "name" "thumbtack" "color" "primary" "class" "me-2") }}{{ . |markdownify }}
-                          </li>
-                        {{ end }}
-                      </ul>
-
-                      {{ if .featured }}
-                        {{ partial "atoms/button.html" (dict
-                          "text" .button_label
-                          "href" (.button_link | absLangURL)
-                          "variant" "primary"
-                          "fullWidth" true
-                        ) }}
-                      {{ else }}
-                        {{ partial "atoms/button.html" (dict
-                          "text" .button_label
-                          "href" (.button_link | absLangURL)
-                          "variant" "outline-primary"
-                          "fullWidth" true
-                        ) }}
-                      {{ end }}
-                    </div>
-                  </div>
+                  {{ partial "molecules/card.html" (dict
+                    "variant" "pricing"
+                    "title" .name
+                    "currency" .currency
+                    "priceMonthly" .monthly_price
+                    "priceYearly" .yearly_price
+                    "period" (cond .monthly_price (printf "/%s" (T "month")) (printf "/%s" (T "year")))
+                    "description" .content
+                    "features" .services
+                    "featured" .featured
+                    "button" (dict
+                      "text" .button_label
+                      "href" (.button_link | absLangURL)
+                    )
+                  ) }}
                 </div>
               {{ end }}
             </div>

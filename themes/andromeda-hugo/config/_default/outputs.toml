@@ -1,0 +1,20 @@
+# Output Formats Configuration
+# Defines what formats Hugo generates for different page types
+
+# Homepage outputs
+# HTML: Main website
+# RSS: Feed for blog/news readers
+# WebAppManifest: Progressive Web App support
+home = ["HTML", "RSS", "WebAppManifest"]
+
+# Section pages (e.g., /services/, /blog/)
+section = ["HTML", "RSS"]
+
+# Taxonomy pages (e.g., /tags/, /categories/)
+taxonomy = ["HTML", "RSS"]
+
+# Term pages (e.g., /tags/anxiety/, /categories/therapy/)
+term = ["HTML", "RSS"]
+
+# Regular pages
+page = ["HTML"]
