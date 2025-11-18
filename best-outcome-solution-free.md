@@ -817,14 +817,43 @@ export { gsap, ScrollTrigger, Flip };
 - ScrollTrigger: $0 ✅
 - All other plugins: $0 ✅
 
-**Other Services (unchanged):**
-- Sanity CMS: $0-199/month
-- Cloudflare Pages: Free
-- Plausible Analytics: $9/month
-- Hotjar: $39/month (optional)
-- Font Licenses: $200-500 one-time
+**Other Services (All Free or One-time):**
+- Sanity CMS: $0/month (free tier, generous limits)
+- Cloudflare Pages: $0/month (free hosting + CDN)
+- Cloudflare Analytics: $0/month (privacy-friendly, included)
+- Font Licenses: $200-500 one-time (or use free alternatives)
 
-**Total Software: ~$1,300-2,800/year** (saved $199!)
+**Free Analytics Alternatives:**
+- Cloudflare Web Analytics (privacy-friendly, GDPR compliant)
+- Google Analytics 4 (free, feature-rich)
+- Umami (free, self-hosted)
+- GoatCounter (free tier available)
+
+**Total Recurring: $0-199/month** (only if you need Sanity paid tier)
+**Total One-time: $0-500** (fonts, or $0 with free fonts)
+
+### Free Font Alternatives (Excellent Quality)
+
+**Instead of paid variable fonts:**
+
+```css
+/* Professional free alternatives */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap');
+```
+
+**All free, all variable, all professional:**
+- **Inter** - Modern, clean (better than paid alternatives)
+- **Crimson Pro** - Elegant serif
+- **Plus Jakarta Sans** - Beautiful display font
+- **Manrope** - Geometric sans-serif
+- **Work Sans** - Professional workhorse
+- **Instrument Sans** - Contemporary, warm
+
+**Download from:** [Google Fonts](https://fonts.google.com) or [Fontsource](https://fontsource.org) (self-host for better performance)
+
+**With free fonts: Total cost = $0 🎉**
 
 ---
 
@@ -947,15 +976,50 @@ The 5% you "lose" can be easily replaced with:
 
 ---
 
-## Final Stack (Free Animation Version)
+## Final Stack (100% Free Version)
 
-✅ Tailwind CSS - Free
-✅ GSAP Core + ScrollTrigger - Free
-✅ Lenis Smooth Scroll - Free
-✅ Custom animation utilities - Free
-✅ Flip plugin - Free
-✅ TextPlugin - Free
+✅ **CSS Framework:** Tailwind CSS - Free
+✅ **Animations:** GSAP Core + ScrollTrigger - Free
+✅ **Smooth Scroll:** Lenis - Free
+✅ **Typography:** Inter, Crimson Pro (Google Fonts) - Free
+✅ **CMS:** Sanity (free tier) - Free
+✅ **Hosting:** Cloudflare Pages - Free
+✅ **Analytics:** Cloudflare Web Analytics - Free
+✅ **CDN:** Cloudflare - Free
+✅ **SSL:** Automatic HTTPS - Free
+✅ **Image Optimization:** Hugo + Cloudflare - Free
+✅ **Forms:** Netlify Forms or Formspree (free tier) - Free
 
-**Result: World-class animations, zero animation costs**
+**Total Recurring Cost: $0/month**
+**Total One-time Cost: $0**
+
+---
+
+## Zero-Cost World-Class Website
+
+You get everything:
+- ✅ Premium animations (GSAP)
+- ✅ Modern design system (Tailwind)
+- ✅ Beautiful typography (Google Fonts)
+- ✅ Global CDN (Cloudflare)
+- ✅ Privacy-friendly analytics
+- ✅ Content management (Sanity)
+- ✅ Automatic deployments
+- ✅ Perfect Lighthouse scores
+- ✅ WCAG AAA accessibility
+- ✅ Enterprise-level SEO
+
+**Cost: $0/month. Quality: World-class.**
+
+---
+
+## When You'd Pay (Optional Upgrades)
+
+**Only if you outgrow free tiers:**
+- Sanity: $199/month if you need >3 users or >10k documents
+- Cloudflare: $20/month for advanced features (99% won't need)
+- Custom domain: $10-15/year (optional, can use free subdomain)
+
+**For 99% of psychology practices: Free tier is more than enough.**
 
 Ready to implement?
