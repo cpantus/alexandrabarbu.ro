@@ -8,11 +8,7 @@ draft: false
 sections:
   - type: "hero-breadcrumb"
   - type: "values-intro"
-  - type: "feature-blocks"      # Borrowed from services page
-  - type: "benefits-grid"
-  - type: "pricing-tables"      # Borrowed from services page
-  - type: "job-listings"
-
+  - type: "feature-blocks"      
 # Feature blocks borrowed from services (example for corporate training)
 feature_blocks:
   - subtitle: "Pentru Echipe"

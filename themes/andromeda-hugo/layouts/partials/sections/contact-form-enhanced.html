@@ -31,6 +31,7 @@
               "text" (T `send_a_message` | default "Trimite un mesaj")
               "level" 3
               "variant" "gradient"
+              "colorVariant" "primary"
             ) }}
             {{ with $.Params.first_consultation }}
             <div class="consultation-info-box">
@@ -69,7 +70,7 @@
             {{ partial "atoms/button.html" (dict
               "text" (T `send_message` | default "Trimite mesaj")
               "type" "submit"
-              "variant" "primary"
+              "variant" ($.Params.button_variant | default "primary")
               "fullWidth" true
               "class" "mt-4"
             ) }}

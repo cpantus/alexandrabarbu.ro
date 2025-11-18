@@ -12,6 +12,13 @@
       "markdown" true
     )}}
 
+    With v4.0 color variant:
+    {{ partial "atoms/heading.html" (dict
+      "text" "Page Title"
+      "level" 2
+      "colorVariant" "secondary"
+    )}}
+
   Parameters:
     text (required) - Heading text content
     level (optional) - Heading level 1-6 (default: 2)
@@ -24,11 +31,20 @@
     id (optional) - HTML id attribute for anchor links
     attributes (optional) - Additional HTML attributes as dict
 
+    colorVariant (optional) - v4.0+ Color variant: primary|secondary|coral|sage|info (default: "")
+
   Variants:
     - default: Standard heading with theme styling
     - gradient: Gradient text effect (gradient-text class)
     - section: Section title with wrapper (section-title)
     - bold: Extra bold heading (fw-600 or font-weight-bold)
+
+  Color Variants (v4.0+):
+    - primary: Emerald green (default brand color)
+    - secondary: Terracotta (warm, approachable)
+    - coral: Coral (compassionate, caring)
+    - sage: Sage green (calm, holistic)
+    - info: Blue (informational, clinical)
 */}}
 
 {{ $text := .text }}
@@ -41,6 +57,9 @@
 {{ $markdown := .markdown | default false }}
 {{ $id := .id }}
 {{ $attributes := .attributes | default dict }}
+
+{{/* v4.0+ Color variant parameter */}}
+{{ $colorVariant := .colorVariant | default "" }}
 
 {{/* Validate heading level */}}
 {{ if or (lt $level 1) (gt $level 6) }}
@@ -56,6 +75,12 @@
   {{ $headingClass = "title" }}
 {{ else if eq $variant "bold" }}
   {{ $headingClass = "fw-600 font-weight-bold" }}
+{{ end }}
+
+{{/* Add v4.0 color variant class */}}
+{{ if $colorVariant }}
+  {{ $colorClass := printf "heading-%s" $colorVariant }}
+  {{ $headingClass = printf "%s %s" $headingClass $colorClass }}
 {{ end }}
 
 {{/* Add alignment class */}}

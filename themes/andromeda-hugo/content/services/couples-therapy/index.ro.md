@@ -5,7 +5,7 @@ layout: "flexible"
 sections:
   - type: "hero-breadcrumb"
   - type: "problem-empathy"
-  - type: "timeline-process"
+
   - type: "stats-numbers"
   - type: "contact-form-enhanced"
 hero_image: "hero.jpg"

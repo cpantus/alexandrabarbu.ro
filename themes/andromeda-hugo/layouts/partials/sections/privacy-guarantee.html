@@ -1,23 +1,38 @@
-{{/* Privacy Guarantee Section */}}
+{{/* Privacy Guarantee Section - v4.0 with gradient icon wrapper */}}
 {{ with .Params.privacy_guarantee }}
 <section class="section pt-0">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <div class="bg-light rounded p-5 text-center" data-aos="fade-up">
-          <div class="privacy-shield">
-            <i class="las la-shield-alt text-primary mb-3" style="font-size: 4rem;"></i>
-          </div>
-          {{ partial "atoms/heading.html" (dict "level" "h4" "text" (.title | default "Confidențialitate 100%") "class" "mb-3 gradient-text") }}
+          {{/* Main icon with gradient circle wrapper */}}
+          {{ partial "atoms/icon.html" (dict
+            "name" "shield-alt"
+            "withWrapper" true
+            "wrapperVariant" "primary"
+            "wrapperSize" "xl"
+            "class" "privacy-shield mb-4"
+          ) }}
+
+          {{ partial "atoms/heading.html" (dict
+            "level" "h4"
+            "text" (.title | default "Confidențialitate 100%")
+            "class" "mb-3"
+            "colorVariant" "primary"
+          ) }}
           <p class="mb-4">{{ .description | default "Datele tale sunt protejate conform GDPR și sunt utilizate exclusiv pentru procesul terapeutic. Nu împărtășim niciodată informațiile tale personale cu terți." }}</p>
-          
+
           {{ with .features }}
           <div class="row justify-content-center mt-4">
-            {{ range . }}
+            {{ range $index, $feature := . }}
             <div class="col-md-4 mb-3" data-aos="fade-up" data-aos-delay="100">
               <div class="d-flex align-items-center justify-content-center">
-                <i class="las la-check-circle text-primary me-2"></i>
-                <span>{{ . }}</span>
+                {{ partial "atoms/icon.html" (dict
+                  "name" "check-circle"
+                  "class" "text-primary me-2"
+                  "size" "20"
+                ) }}
+                <span>{{ $feature }}</span>
               </div>
             </div>
             {{ end }}

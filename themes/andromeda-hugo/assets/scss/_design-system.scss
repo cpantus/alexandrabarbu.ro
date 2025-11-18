@@ -13,12 +13,13 @@
   # Poppins (Headlines) + Open Sans (Body) per brand guidelines
 -------------------------------------------------------------------*/
 
-/* Font Imports - Google Fonts (Brand Fonts) */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+/* Font Imports - Google Fonts (v4.1 Typography Upgrade) */
+/* Phase 2: Cormorant Garamond + Source Sans Pro (44/50 score, 1.7x improvement) */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
 
-/* Font Family Tokens - Brand Aligned */
-$font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;  // Headlines - Modern, friendly, rounded
-$font-secondary: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;  // Body - Clear, professional, readable
+/* Font Family Tokens - Literary, Thoughtful Aesthetic */
+$font-primary: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;  // Headlines - Literary, thoughtful, reflective
+$font-secondary: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;  // Body - Clean, modern, readable
 $font-display: $font-primary;  // Alias for display typography
 $font-body: $font-secondary;  // Alias for body typography
 $font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Courier New', monospace;  // Data/code

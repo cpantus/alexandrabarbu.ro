@@ -6,11 +6,9 @@ layout: "flexible"
 sections:
   - type: "hero-breadcrumb"
   - type: "problem-empathy"
-  - type: "method-tabs"
-  - type: "timeline-process"
-  - type: "benefits-grid"
+
   - type: "stats-numbers"
-  - type: "related-services"
+
   - type: "faq-mini"
   - type: "contact-form-enhanced"
 
@@ -59,12 +57,6 @@ problem_empathy:
       index: 5
   empathy_text: "Aceste provocări sunt reale și merită atenție profesională. Nu trebuie să le gestionezi singur. **Terapia individuală îți oferă suportul, instrumentele și perspectivele necesare pentru vindecare și creștere.**"
 
-# Method Tabs - specific to individual therapy
-method_tabs:
-  enable: true
-  subtitle: "Cum lucrăm"
-  title: "Abordări Adaptate Nevoilor Tale Unice"
-  description: "În terapia individuală, folosesc o combinație de metode dovedite științific, personalizate pentru situația ta specifică."
 
   methods:
     - title: "TCC pentru Anxietate și Depresie"
@@ -118,12 +110,6 @@ method_tabs:
         - "Îmbunătățirea relațiilor cu tine și cu alții"
       duration: "Variabil, de la 12 sesiuni la terapie pe termen lung (1-2 ani)"
 
-# Timeline Process - individualized
-timeline_process:
-  enable: true
-  subtitle: "Procesul terapeutic"
-  title: "Cum Arată Călătoria Ta în Terapie Individuală"
-  description: "Fiecare persoană este unică, dar procesul urmează o structură care te ghidează de la evaluare inițială până la atingerea obiectivelor."
 
   steps:
     - title: "Prima Sesiune: Evaluare Complexă"
@@ -231,12 +217,6 @@ stats:
       label: "Confidențialitate garantată (cod deontologic)"
       icon: "lock"
 
-# Related Services
-related_services:
-  enable: true
-  subtitle: "Explorează"
-  title: "Alte Servicii Care Te-ar Putea Interesa"
-  description: "Uneori problema nu este doar individuală. Poate ai nevoie de terapie de cuplu sau familie."
 
   services:
     - title: "Terapie de Cuplu"

@@ -22,6 +22,9 @@
     icon (optional) - Icon name for feature card
     iconSize (optional) - Icon size (default: "3x")
     iconColor (optional) - Icon color (default: "primary")
+    iconWithWrapper (optional) - v4.0+ Wrap icon with gradient circle (default: false)
+    iconWrapperVariant (optional) - v4.0+ Gradient variant: primary|secondary|coral|sage (default: "primary")
+    iconWrapperSize (optional) - v4.0+ Wrapper size: sm|md|lg|xl (default: "md")
     button (optional) - Button dict (text, href, variant)
 
   Pricing variant:
@@ -53,6 +56,9 @@
 {{ $icon := .icon }}
 {{ $iconSize := .iconSize | default "3x" }}
 {{ $iconColor := .iconColor | default "primary" }}
+{{ $iconWithWrapper := .iconWithWrapper | default false }}
+{{ $iconWrapperVariant := .iconWrapperVariant | default "primary" }}
+{{ $iconWrapperSize := .iconWrapperSize | default "md" }}
 
 {{/* Pricing variant params */}}
 {{ $currency := .currency | default "$" }}
@@ -93,7 +99,15 @@
   {{/* Feature Card - Icon + Title + Description + Optional Button */}}
   <div class="career-benefits-item text-center {{ $wrapperClass }}" {{ $aosAttrs | safeHTMLAttr }}>
     {{ if $icon }}
-      {{ partial "atoms/icon.html" (dict "name" $icon "size" $iconSize "color" $iconColor "class" "mb-3") }}
+      {{ partial "atoms/icon.html" (dict
+        "name" $icon
+        "size" $iconSize
+        "color" $iconColor
+        "class" "mb-3"
+        "withWrapper" $iconWithWrapper
+        "wrapperVariant" $iconWrapperVariant
+        "wrapperSize" $iconWrapperSize
+      ) }}
     {{ end }}
 
     {{ if $title }}

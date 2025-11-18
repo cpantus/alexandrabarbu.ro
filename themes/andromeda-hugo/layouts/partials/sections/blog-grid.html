@@ -37,33 +37,40 @@
 
             {{/* Blog/Resource Grid */}}
             <div class="row blog-items" id="blogItems">
-              {{ range .items }}
-                <div class="col-lg-4 col-md-6 mb-4 blog-item" data-category="{{ .category | default "all" }}">
-                  <div class="card blog-card h-100 border-0 shadow-sm" data-aos="fade-up">
-                    {{ if .image }}
+              {{ range $index, $item := .items }}
+                {{- $colorVariants := slice "primary" "secondary" -}}
+                {{- $colorVariant := index $colorVariants (mod $index 2) -}}
+                <div class="col-lg-4 col-md-6 mb-4 blog-item" data-category="{{ $item.category | default "all" }}">
+                  <div class="card card-v4 card-hover-lift h-100" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+                    {{ if $item.image }}
                       <div class="blog-card-image">
                         {{ partial "atoms/image.html" (dict
-                          "src" .image
-                          "alt" .title
+                          "src" $item.image
+                          "alt" $item.title
                           "class" "card-img-top"
                         ) }}
-                        {{ if .type }}
-                          <span class="badge bg-secondary blog-badge">{{ .type }}</span>
+                        {{ if $item.type }}
+                          <span class="badge bg-{{ $colorVariant }} blog-badge">{{ $item.type }}</span>
                         {{ end }}
                       </div>
                     {{ end }}
                     <div class="card-body">
-                      {{ if .title }}
-                        {{ partial "atoms/heading.html" (dict "level" "h4" "text" .title "class" "card-title") }}
+                      {{ if $item.title }}
+                        {{ partial "atoms/heading.html" (dict
+                          "level" "h4"
+                          "text" $item.title
+                          "class" "card-title"
+                          "colorVariant" $colorVariant
+                        ) }}
                       {{ end }}
-                      {{ if .description }}
-                        <p class="card-text">{{ .description | markdownify }}</p>
+                      {{ if $item.description }}
+                        <p class="card-text">{{ $item.description | markdownify }}</p>
                       {{ end }}
-                      {{ if .link }}
+                      {{ if $item.link }}
                         {{ partial "atoms/button.html" (dict
                           "text" (i18n "read_more" | default "Citește mai mult")
-                          "url" (.link | relLangURL)
-                          "variant" "outline-primary"
+                          "url" ($item.link | relLangURL)
+                          "variant" (printf "outline-%s" $colorVariant)
                           "size" "sm"
                         ) }}
                       {{ end }}
@@ -79,7 +86,7 @@
                 <div class="col-lg-12 text-center">
                   {{ partial "atoms/button.html" (dict
                     "text" (i18n "load_more" | default "Încarcă mai multe")
-                    "variant" "primary"
+                    "variant" (.button_variant | default "primary")
                     "id" "loadMoreBtn"
                   ) }}
                 </div>

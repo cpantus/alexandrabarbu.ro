@@ -6,7 +6,7 @@ sections:
   - type: "hero-breadcrumb"
   - type: "values-intro"
   - type: "stats-numbers"
-  - type: "timeline-process"
+
   - type: "contact-form-enhanced"
 hero_image: "images/about/alexandra-barbu-portrait.jpg"
 breadcrumb:
@@ -34,26 +34,6 @@ values_intro:
     - title: "Personalizare Reală"
       description: "Nu există două persoane identice. Fiecare plan terapeutic este unic."
       icon: "user-circle"
-timeline_process:
-  enable: true
-  title: "Parcursul Meu Profesional"
-  steps:
-    - title: "Licență în Psihologie"
-      subtitle: "2005-2009"
-      description: "Universitatea București, Facultatea de Psihologie și Științele Educației. Specializare Psihologie Clinică."
-      icon: "graduation-cap"
-    - title: "Master Psihoterapie Cognitiv-Comportamentală"
-      subtitle: "2009-2011"
-      description: "Specializare în TCC, focus pe anxietate și depresie. Practică supervizată 500+ ore."
-      icon: "brain"
-    - title: "Certificare EMDR"
-      subtitle: "2013"
-      description: "Training avansat EMDR pentru tratarea traumelor. Certificat internațional EMDR Europe."
-      icon: "certificate"
-    - title: "Practică Privată"
-      subtitle: "2015-prezent"
-      description: "Cabinet propriu în București. 500+ clienți ajutați. Colaborări cu psihiatri și medici de familie."
-      icon: "briefcase"
 stats:
   enable: true
   items:

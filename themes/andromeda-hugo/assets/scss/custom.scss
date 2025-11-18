@@ -8,16 +8,36 @@
 // Import comprehensive design system
 @import 'design-system';
 
+// Import v4.1 design system foundation (TIER 0)
+@import 'systems/color-system';
+@import 'systems/icon-system';
+@import 'systems/card-system';
+
 // Import creative design enhancements
 @import 'design-enhancements';
 
 // Import component-specific styles
+@import 'components/headings'; // v4.1 TIER 1 - Heading color variants
 @import 'components/credentials';
 @import 'components/values-compass';
 @import 'components/stats-enhanced';
 @import 'components/feature-blocks-enhanced';
 @import 'components/pricing-enhanced';
-// @import 'components/problem-empathy';  // Disabled - style is embedded in custom.scss inline
+@import 'components/problem-empathy';  // v4.1 TIER 3 - Problem empathy section styling
+// Phase 4: v4.0 Enhanced Standard Sections
+@import 'components/hero-breadcrumb';  // v4.0 - Gradient overlays & glassmorphism (20+ pages)
+@import 'components/contact-form-enhanced';  // v4.0 - Glassmorphism cards & animated inputs (18+ pages)
+@import 'components/values-intro';  // v4.0 - Gradient backgrounds & floating animations (11 pages)
+@import 'components/video-popup';  // v4.0 - Glassmorphism overlay & gradient play button (2 pages)
+@import 'components/newsletter-signup';  // v4.0 - Glassmorphism card & gradient accent (3 pages)
+@import 'components/blog-grid';  // v4.0 - Parallax scrolling & gradient overlays (2 pages)
+@import 'components/signup-form';  // v4.0 - Glassmorphism & step indicators (1 page)
+@import 'components/privacy-guarantee';  // v4.0 - Glassmorphism & icon gradients (1 page)
+// @import 'components/timeline-process';  // DEPRECATED - Moved to _deprecated folder
+// @import 'components/method-tabs';  // DEPRECATED - Moved to _deprecated folder
+// @import 'components/benefits-grid';  // DEPRECATED - Moved to _deprecated folder
+@import 'components/testimonials';  // v4.1 TIER 3 - Testimonials with gradient cards
+@import 'components/faq';  // v4.1 TIER 3 - FAQ with gradient borders
 
 /*------------------------------------------------------------------
   # Global Base Styles - Typography & Layout

@@ -8,7 +8,7 @@
 
 Component-based Hugo site: Pages = Header + Sections (2-7) + Footer
 
-**Hierarchy**: Atoms → Molecules → Organisms → Sections
+**Hierarchy**: Atoms (5) → Molecules (17) → Organisms (2) → Sections (24) = 48 components
 
 ---
 
@@ -34,8 +34,8 @@ button.html, heading.html, icon.html, image.html, input.html
 
 **Usage**: `{{ partial "atoms/button.html" (dict "text" "Click" "variant" "primary") }}`
 
-### Molecules (14) - `layouts/partials/molecules/`
-card.html, form-field.html, accordion.html, pricing-toggle.html, video-embed.html, social-links.html, breadcrumb.html, nav-item.html, logo.html, language-selector.html, navigation.html, mobile-menu.html, footer-nav.html, footer-info.html
+### Molecules (17) - `layouts/partials/molecules/`
+card.html, form-field.html, accordion.html, pricing-toggle.html, video-embed.html, social-links.html, breadcrumb.html, nav-item.html, logo.html, language-selector.html, navigation.html, mobile-menu.html, footer-nav.html, footer-info.html, back-to-top.html, cookie-consent.html, emergency-banner.html
 
 **Usage**: `{{ partial "molecules/card.html" (dict "variant" "feature" "title" "Title") }}`
 
@@ -44,7 +44,7 @@ header.html, footer.html (cached by language for 30-50% build time reduction)
 
 **Usage**: `{{ partialCached "organisms/header.html" . .Language }}`
 
-### Sections (16) - `layouts/partials/sections/`
+### Sections (24) - `layouts/partials/sections/`
 1. hero-breadcrumb.html - Page header
 2. values-intro.html - Intro with image
 3. feature-blocks.html - Alternating blocks
@@ -61,6 +61,14 @@ header.html, footer.html (cached by language for 30-50% build time reduction)
 14. onboarding-steps.html - Process steps
 15. signup-form-enhanced.html - Signup form
 16. privacy-guarantee.html - Privacy section
+17. blog-grid.html - Blog post grid
+18. method-tabs.html - Tabbed content
+19. newsletter-signup.html - Newsletter subscription
+20. problem-empathy.html - Problem statement
+21. stats-numbers.html - Statistics display
+22. timeline-process.html - Process timeline
+23. related-services.html - Related content
+24. service-highlights.html - Service features
 
 **Data from front matter**:
 ```yaml
@@ -119,9 +127,9 @@ themes/andromeda-hugo/layouts/
 ├── _default/flexible.html              # MAIN ENGINE
 ├── partials/
 │   ├── atoms/                          # 5 basic
-│   ├── molecules/                      # 14 composite
+│   ├── molecules/                      # 17 composite
 │   ├── organisms/                      # 2 complex
-│   ├── sections/                       # 16 sections
+│   ├── sections/                       # 24 sections
 │   └── essentials/
 │       ├── header.html                 # Calls organism
 │       └── footer.html                 # Calls organism
@@ -141,9 +149,9 @@ themes/andromeda-hugo/layouts/
 ## Testing
 
 ```bash
-./scripts/test-components.sh           # Verify: 5+14+2+16 components
-./scripts/test-performance.sh          # Measure: <3s build, <500KB pages
-http://localhost:1313/test-all-sections/  # Visual test
+cd themes/andromeda-hugo               # Run from theme directory
+../../scripts/test-components.sh       # Verify: 5+17+2+24=48 components
+../../scripts/test-performance.sh      # Measure: <3s build, <500KB pages
 ```
 
 ---
@@ -173,7 +181,7 @@ content/fr/  # French
 
 **Understand**: README.md → ARCHITECTURE.md → themes/andromeda-hugo/docs/components/
 **Add features**: New page (archetypes) | New section (sections/) | New molecule (molecules/)
-**Verify**: `ls layouts/partials/atoms/ | wc -l` (5), molecules (14), organisms (2), sections (16)
+**Verify**: `ls layouts/partials/atoms/ | wc -l` (5), molecules (17), organisms (2), sections (24)
 
 ---
 

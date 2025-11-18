@@ -40,7 +40,7 @@
                       aria-controls="{{ $itemID }}-collapse">
 
                 {{- if $item.icon -}}
-                {{ partial "atoms/icon.html" (dict "icon" $item.icon "class" "me-3 text-primary") }}
+                {{ partial "atoms/icon.html" (dict "name" $item.icon "class" "me-3 text-primary") }}
                 {{- end -}}
 
                 <span class="accordion-question">{{ $item.question }}</span>
@@ -64,7 +64,7 @@
                 <ul class="faq-highlights mt-3">
                   {{- range $item.highlights -}}
                   <li>
-                    {{ partial "atoms/icon.html" (dict "icon" "las la-check-circle" "class" "text-success me-2") }}
+                    {{ partial "atoms/icon.html" (dict "name" "check-circle" "class" "text-success me-2") }}
                     <span>{{ . }}</span>
                   </li>
                   {{- end -}}
@@ -73,7 +73,7 @@
 
                 {{- if $item.note -}}
                 <div class="faq-note mt-3">
-                  {{ partial "atoms/icon.html" (dict "icon" "las la-info-circle" "class" "text-primary me-2") }}
+                  {{ partial "atoms/icon.html" (dict "name" "info-circle" "class" "text-primary me-2") }}
                   <span class="text-muted fst-italic">{{ $item.note }}</span>
                 </div>
                 {{- end -}}
@@ -91,7 +91,7 @@
     <div class="row justify-content-center mt-5">
       <div class="col-lg-8 text-center">
         <div class="faq-contact-note p-4 rounded-3 bg-white border border-primary border-opacity-25">
-          {{ partial "atoms/icon.html" (dict "icon" "las la-question-circle" "size" "32" "class" "text-primary mb-3") }}
+          {{ partial "atoms/icon.html" (dict "name" "question-circle" "size" "32" "class" "text-primary mb-3") }}
           <p class="mb-3 text-muted">{{ $section.contact_note }}</p>
           {{- if $section.contact_cta -}}
           {{ partial "atoms/button.html" (dict

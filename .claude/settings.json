@@ -44,6 +44,10 @@
           },
           {
             "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx code-plugin/hooks/session-messages.ts"
+          },
+          {
+            "type": "command",
             "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && git status 2>/dev/null || echo '(Not in git repository)'"
           }
         ]
@@ -109,11 +113,51 @@
             "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx core/infrastructure/hooks/post-tool-use-pattern.ts"
           }
         ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx core/infrastructure/hooks/post-tool-use-write.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx core/infrastructure/hooks/post-tool-use-multiskill.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx core/infrastructure/hooks/post-tool-use-multiskill.ts"
+          }
+        ]
+      },
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx core/infrastructure/hooks/post-tool-use-multiskill.ts"
+          }
+        ]
       }
     ],
     "SessionEnd": [
       {
         "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx code-plugin/hooks/session-end-messages.ts"
+          },
           {
             "type": "command",
             "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && git status 2>/dev/null || echo '(Not in git repository)'"
@@ -140,49 +184,9 @@
       "git stash *",
       "npm install *",
       "npm run *",
-      "hugo *",
+      "python *",
       "node *",
-      "npx *",
-      "Bash(node_modules/.bin/ts-node:*)",
-      "Bash(node_modules/.bin/tsc:*)",
-      "Bash(find:*)",
-      "Bash(chmod:*)",
-      "Bash(fd:*)",
-      "Bash(exa --git:*)",
-      "Bash(rg:*)",
-      "Bash(for:*)",
-      "Bash(done)",
-      "Bash(exa:*)",
-      "Bash(tree:*)",
-      "Bash(bat:*)",
-      "Bash(xargs:*)",
-      "Bash(comm:*)",
-      "Bash(du:*)",
-      "Bash(test:*)",
-      "Bash(cat:*)",
-      "Bash(npx tsx --version)",
-      "Bash(npx tsx:*)",
-      "Bash(mkdir:*)",
-      "Bash(./scripts/*:*)",
-      "Bash(node -e:*)",
-      "Bash(echo:*)",
-      "Bash(node --version:*)",
-      "Bash(npx --version:*)",
-      "Bash(npx:*)",
-      "Bash(node:*)",
-      "Bash(eza:*)",
-      "Bash(git show:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(npm info:*)",
-      "Bash(jq:*)",
-      "Bash(env)",
-      "Bash(git submodule:*)",
-      "WebFetch(domain:www.claude.com)",
-      "WebSearch",
-      "WebFetch(domain:code.claude.com)",
-      "WebFetch(domain:gohugo.io)",
-      "WebFetch(domain:github.com)"
+      "npx *"
     ],
     "deny": [
       "Read(.env*)",

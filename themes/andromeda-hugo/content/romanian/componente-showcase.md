@@ -1,375 +1,258 @@
 ---
-title: "Galerie Componente"
-description: "Documentație completă pentru toate cele 48 de componente reutilizabile în tema Andromeda Hugo"
+title: "Expoziție Componente - Referință Vizuală"
+description: "Expoziție vizuală a tuturor secțiunilor temei pentru evaluare"
 layout: "flexible"
-draft: true
+draft: false
 
 sections:
   - type: "hero-breadcrumb"
-  - type: "values-intro"
-  - type: "feature-blocks"
-  - type: "benefits-grid"
-  - type: "feature-details"
-  - type: "method-tabs"
+  - type: "credentials-showcase"
+  - type: "problem-empathy"
   - type: "stats-numbers"
-  - type: "pricing-tables"
+  - type: "values-compass"
+  - type: "feature-blocks"
   - type: "faq-mini"
+  - type: "video-popup"
+  - type: "values-intro"
+  - type: "pricing-tables"
+  - type: "newsletter-signup"
   - type: "contact-form-enhanced"
 
-# Hero Section
+# 01. hero-breadcrumb
 hero_breadcrumb:
-  title: "Documentație Componente"
-  subtitle: "Bibliotecă completă cu 48 de componente reutilizabile"
-  breadcrumb:
-    - name: "Acasă"
-      url: "/"
-    - name: "Documentație"
-      url: "#"
-    - name: "Componente"
+  title: "01. hero-breadcrumb - Antet Pagină"
+  subtitle: "Folosit în 20+ pagini • Standard v2.0"
 
-# Introduction Section
-values_intro:
+# 02. credentials-showcase
+credentials_showcase:
   enable: true
-  title: "Prezentare Bibliotecă Componente"
-  subtitle: "Sistem de Design Atomic"
-  content: |
-    ## Arhitectură
+  subtitle: "Secțiunea 02"
+  title: "02. credentials-showcase"
+  description: "Afișare insigne gradient • Folosit în 2 pagini • Îmbunătățit v4.0"
+  credentials:
+    - icon: "user-md"
+      label: "Licențiat"
+      value: "Certificat CPR"
+      variant: "primary"
+    - icon: "award"
+      label: "10+ Ani"
+      value: "500+ Clienți"
+      variant: "secondary"
+    - icon: "certificate"
+      label: "Specialist TCC"
+      value: "Avansat"
+      variant: "coral"
+    - icon: "graduation-cap"
+      label: "Formare Continuă"
+      value: "Certificate Anuale"
+      variant: "sage"
 
-    Această temă implementează un sistem complet de **Design Atomic** cu 48 de componente organizate în 4 nivele:
-
-    - **5 Atomi** - Blocuri de bază (buton, titlu, icon, imagine, input)
-    - **20 Molecule** - Compoziții simple de componente
-    - **2 Organisme** - Secțiuni complexe (header, footer)
-    - **24 Secțiuni** - Secțiuni de pagină full-width
-
-    ### Principii de Design
-
-    1. **Reutilizare** - Fiecare componentă este independentă și reutilizabilă
-    2. **Compoziție** - Componente de nivel superior construite din atomi/molecule
-    3. **Bazat pe Date** - Tot conținutul prin front matter (fără text hardcodat)
-    4. **Accesibilitate** - Conform WCAG AA cu HTML semantic
-    5. **Performanță** - Optimizat pentru viteză cu partial caching
-
-    ### Pattern de Utilizare
-
-    ```yaml
-    # În front matter-ul paginii
-    sections:
-      - type: "hero-breadcrumb"
-      - type: "benefits-grid"
-
-    hero_breadcrumb:
-      title: "Titlu Pagină"
-      subtitle: "Subtitlu opțional"
-    ```
-
-# Atoms Documentation
-feature_blocks_section:
+# 03. problem-empathy
+problem_empathy:
   enable: true
-  title: "Atomi (5 Componente)"
-  subtitle: "Blocuri de Bază"
-  blocks:
-    - icon: "cube"
-      title: "Atom Buton"
-      description: |
-        **Fișier:** `layouts/partials/atoms/button.html`
+  subtitle: "Secțiunea 03"
+  title: "03. problem-empathy"
+  description: "Afișare provocări cu empatie • Folosit în 14+ pagini • Îmbunătățit v4.0"
+  challenges:
+    - title: "Anxietate Constantă"
+      description: "Îngrijorare copleșitoare, tensiune, dificultate de concentrare"
+      icon: "brain"
+      index: 0
+    - title: "Probleme de Relație"
+      description: "Probleme de comunicare, conflicte, distanță"
+      icon: "users"
+      index: 1
+    - title: "Impact Traumă"
+      description: "Amintiri dureroase, flashback-uri, reacții intense"
+      icon: "heart-broken"
+      index: 2
+    - title: "Energie Scăzută"
+      description: "Lipsă de motivație, pierderea plăcerii"
+      icon: "sad-tear"
+      index: 3
 
-        **Scop:** Componentă de buton reutilizabilă cu multiple variante
-
-        **Proprietăți:**
-        - `text` (necesar) - Text/etichetă buton
-        - `href` (opțional) - URL link
-        - `variant` - primary|secondary|outline-primary|outline-secondary
-        - `size` - sm|md|lg
-        - `type` - link|button|submit
-        - `fullWidth` - true|false
-        - `icon` - Clasă icon (ex: "las la-arrow-right")
-        - `iconPosition` - left|right
-
-        **Utilizare:**
-        ```
-        {{ partial "atoms/button.html" (dict
-          "text" "Apasă aici"
-          "href" "/contact"
-          "variant" "primary"
-          "size" "md"
-          "icon" "las la-arrow-right"
-        )}}
-        ```
-
-        **Variante:** 4 stiluri (primary, secondary, outline-primary, outline-secondary)
-
-        **Accesibilitate:** Semantică corectă buton/link, navigabil cu tastatura
-
-    - icon: "heading"
-      title: "Atom Titlu"
-      description: |
-        **Fișier:** `layouts/partials/atoms/heading.html`
-
-        **Scop:** Componentă de titlu semantic cu variante
-
-        **Proprietăți:**
-        - `text` (necesar) - Conținut text titlu
-        - `level` - Nivel titlu 1-6 (default: 2)
-        - `variant` - default|gradient|section|bold
-        - `align` - left|center|right
-        - `class` - Clase CSS adiționale
-        - `subtitle` - Text subtitlu opțional
-        - `markdown` - Aplică filtru markdownify
-        - `id` - HTML id pentru link-uri anchor
-
-        **Utilizare:**
-        ```
-        {{ partial "atoms/heading.html" (dict
-          "text" "Titlu Pagină"
-          "level" 2
-          "variant" "section"
-          "align" "center"
-          "subtitle" "Subtitlu opțional"
-        )}}
-        ```
-
-        **Variante:** 4 stiluri (default, gradient, section, bold)
-
-        **Accesibilitate:** Ierarhie corectă titluri, HTML semantic
-
-    - icon: "icons"
-      title: "Atom Icon"
-      description: |
-        **Fișier:** `layouts/partials/atoms/icon.html`
-
-        **Scop:** Componentă icon cu Line Awesome icons
-
-        **Proprietăți:**
-        - `name` (necesar) - Nume icon fără prefix "la-"
-        - `size` - xs|sm|md|lg|xl|2x|3x sau custom (ex: "2rem")
-        - `color` - primary|secondary|success|danger|warning|info|light|dark
-        - `class` - Clase CSS adiționale
-        - `style` - Stiluri inline
-        - `prefix` - Bibliotecă icon (las|lar|lab|la)
-        - `ariaLabel` - Etichetă accesibilitate
-        - `ariaHidden` - Ascunde de screen readers
-
-        **Utilizare:**
-        ```
-        {{ partial "atoms/icon.html" (dict
-          "name" "check-circle"
-          "size" "2x"
-          "color" "success"
-          "class" "me-2"
-        )}}
-        ```
-
-        **Biblioteci:** Line Awesome (las, lar, lab, la)
-
-        **Accesibilitate:** Etichete ARIA pentru screen readers
-
-    - icon: "image"
-      title: "Atom Imagine"
-      description: |
-        **Fișier:** `layouts/partials/atoms/image.html`
-
-        **Scop:** Componentă imagine optimizată cu formate moderne
-
-        **Proprietăți:**
-        - `src` (necesar) - Cale imagine (din assets/ sau static/)
-        - `alt` (necesar) - Text alt pentru accesibilitate
-        - `width` - Lățime imagine
-        - `height` - Înălțime imagine
-        - `class` - Clase CSS adiționale
-        - `lazy` - Activează lazy loading (default: true)
-        - `sizes` - Atribut sizes responsive
-        - `quality` - Calitate imagine (default: 85)
-
-        **Utilizare:**
-        ```
-        {{ partial "atoms/image.html" (dict
-          "src" "images/hero.jpg"
-          "alt" "Descriere imagine hero"
-          "width" 1200
-          "height" 600
-          "lazy" true
-        )}}
-        ```
-
-        **Caracteristici:**
-        - Formate AVIF/WebP/original cu fallback `<picture>`
-        - Generare srcset responsive
-        - Lazy loading cu blur-up placeholder
-        - Reducere dimensiune 60-80%
-
-        **Accesibilitate:** Text alt necesar, semantică corectă
-
-    - icon: "edit"
-      title: "Atom Input"
-      description: |
-        **Fișier:** `layouts/partials/atoms/input.html`
-
-        **Scop:** Input formular cu stări de validare
-
-        **Proprietăți:**
-        - `type` (necesar) - text|email|tel|number|password|textarea
-        - `name` (necesar) - Atribut name input
-        - `id` (necesar) - Atribut id input
-        - `label` - Etichetă input
-        - `placeholder` - Text placeholder
-        - `required` - true|false
-        - `value` - Valoare default
-        - `class` - Clase CSS adiționale
-        - `helpText` - Text ajutor sub input
-        - `error` - Mesaj eroare
-        - `success` - Mesaj succes
-
-        **Utilizare:**
-        ```
-        {{ partial "atoms/input.html" (dict
-          "type" "email"
-          "name" "email"
-          "id" "email"
-          "label" "Adresă Email"
-          "placeholder" "tu@exemplu.ro"
-          "required" true
-        )}}
-        ```
-
-        **Validare:** Stări eroare/succes cu mesaje
-
-        **Accesibilitate:** Etichete asociate, atribute ARIA
-
-# Molecules Documentation
-benefits_grid_section:
-  enable: true
-  title: "Molecule (20 Componente)"
-  subtitle: "Componente Compozite"
-  benefits:
-    - icon: "layer-group"
-      title: "Moleculă Card"
-      description: |
-        **Fișier:** `layouts/partials/molecules/card.html` (223 linii)
-
-        **Variante:** feature|pricing|testimonial
-
-        **Card Feature:**
-        - icon, iconSize, iconColor, title, description, button
-
-        **Card Preț:**
-        - currency, price, priceMonthly, priceYearly, period, features, button, featured
-
-        **Card Testimonial:**
-        - quote, author, role, avatar, rating
-
-        **Utilizat în:** benefits-grid, feature-blocks, pricing-tables (3 secțiuni)
-
-    - icon: "blog"
-      title: "Card Blog"
-      description: |
-        **Fișier:** `layouts/partials/molecules/blog-card.html` (126 linii)
-
-        **Proprietăți:** title, link, image, description, date, author, category, type, readTime
-
-        **Caracteristici:** Imagine cu badge, afișare metadata, excerpt, layout responsive
-
-        **Utilizat în:** blog-grid, related-services (2 secțiuni)
-
-    - icon: "chart-bar"
-      title: "Card Statistică"
-      description: |
-        **Fișier:** `layouts/partials/molecules/stat-card.html` (117 linii)
-
-        **Proprietăți:** value, label, icon, suffix, prefix, color, animated, size (sm|md|lg), aos
-
-        **Caracteristici:** Contoare animate, suport icon, prefix/suffix, 3 dimensiuni
-
-        **Utilizat în:** stats-numbers, pricing-tables, benefits-grid (3 secțiuni)
-
-    - icon: "clock"
-      title: "Pas Timeline"
-      description: |
-        **Fișier:** `layouts/partials/molecules/timeline-step.html` (142 linii)
-
-        **Proprietăți:** index, icon, title, description, duration, variant (standard|alternating|simple), number
-
-        **Caracteristici:** 3 variante vizuale, marcatori icon sau număr, afișare durată
-
-        **Utilizat în:** timeline-process, onboarding-steps (2 secțiuni)
-
-    - icon: "wpforms"
-      title: "Câmp Formular"
-      description: |
-        **Fișier:** `layouts/partials/molecules/form-field.html` (253 linii)
-
-        **Proprietăți:** type, name, id, label, error, success, helpText, icon, floatingLabel, validation
-
-        **Caracteristici:** Stări validare, mesaje eroare/succes, etichete flotante, suport icon
-
-        **Utilizat în:** contact-form-enhanced, signup-form-enhanced, newsletter-signup (6 secțiuni)
-
-# Stats Section
+# 04. stats-numbers
 stats_section:
   enable: true
-  title: "Performanță & Calitate"
-  subtitle: "Metrici Optimizare"
+  subtitle: "Secțiunea 04"
+  title: "04. stats-numbers"
+  description: "Contoare animate • Folosit în 18+ pagini • Îmbunătățit v4.0"
   stats:
-    - value: "48"
-      label: "Total Componente"
-      icon: "cubes"
-      suffix: ""
-
-    - value: "80"
-      label: "Scor Reutilizare"
-      icon: "recycle"
+    - number: 500
+      suffix: "+"
+      label: "Clienți"
+      icon: "users"
+    - number: 10
+      suffix: "+"
+      label: "Ani"
+      icon: "calendar"
+    - number: 95
       suffix: "%"
+      label: "Rată Succes"
+      icon: "chart-line"
 
-    - value: "998"
-      label: "Linii CSS Critice"
-      icon: "file-code"
-      suffix: ""
-
-    - value: "100"
-      label: "Conformitate WCAG AA"
-      icon: "universal-access"
-      suffix: "%"
-
-# FAQ Section
-faq_mini_section:
+# 05. benefits-grid
+benefits_section:
   enable: true
-  title: "Întrebări Frecvente Documentație"
-  subtitle: "Întrebări Comune"
+  subtitle: "Secțiunea 05"
+  title: "05. benefits-grid"
+  description: "Grid de beneficii • Folosit în 12 pagini • Standard v2.0"
+  benefits:
+    - title: "Bazat pe Știință"
+      icon: "flask"
+      description: "Metode TCC, TCD, ACT"
+    - title: "Centrat pe Client"
+      icon: "heart"
+      description: "Tu ești în centru"
+    - title: "Orientat pe Soluții"
+      icon: "bullseye"
+      description: "Soluții concrete"
+
+# 06. values-compass
+values_compass:
+  enable: true
+  subtitle: "Secțiunea 06"
+  title: "06. values-compass (NOU v4.0)"
+  description: "Layout busolă cu glassmorphism • Folosit în 2 pagini • Îmbunătățit v4.0"
+  benefits:
+    - title: "Bazat pe Știință"
+      icon: "flask"
+      description: "Metode bazate pe evidență"
+    - title: "Centrat pe Client"
+      icon: "heart"
+      description: "Tu în centru"
+    - title: "Orientat pe Soluții"
+      icon: "bullseye"
+      description: "Soluții concrete"
+    - title: "Compasiune"
+      icon: "hands-helping"
+      description: "Empatie în fiecare interacțiune"
+
+# 07. feature-blocks
+feature_blocks:
+  - title: "07. feature-blocks (Individuală)"
+    subtitle: "Zigzag cu parallax • Folosit în 6 pagini • Îmbunătățit v4.0"
+    description: "Abordare personalizată pentru anxietate, depresie, traumă"
+    image: "images/services/terapie-individuala.jpg"
+  - title: "07. feature-blocks (Cuplu)"
+    subtitle: "Aceeași secțiune continuată"
+    description: "Îmbunătățește comunicarea, rezolvă conflicte"
+    image: "images/services/terapie-cuplu.jpg"
+
+
+
+
+
+# 12. faq-mini
+faq_mini:
+  enable: true
+  subtitle: "Secțiunea 12"
+  title: "12. faq-mini"
+  description: "FAQ compact • Folosit în 8 pagini • v4.0"
   faqs:
-    - question: "Cum folosesc o componentă?"
-      answer: "Folosește funcția `partial` din Hugo cu un dict de proprietăți. Exemplu: `{{ partial \"atoms/button.html\" (dict \"text\" \"Apasă\" \"variant\" \"primary\") }}`"
+    - question: "Cât durează o sesiune?"
+      answer: "50 minute. Consultații inițiale: 90 minute."
+    - question: "Este terapia online eficientă?"
+      answer: "Da! Cercetările arată că este la fel de eficientă ca față-în-față."
+    - question: "Câte sesiuni sunt necesare?"
+      answer: "Depinde de complexitate. 6-8 sesiuni până la 3-6 luni."
 
-    - question: "Care e diferența între atomi și molecule?"
-      answer: "Atomii sunt elemente de bază (buton, icon, input). Moleculele combină atomii în unități funcționale (card, form-field, navigation)."
+# 13. video-popup
+video_popup:
+  enable: true
+  subtitle: "Secțiunea 13"
+  title: "13. video-popup"
+  description: "Modal video • Folosit în 2 pagini • Standard v2.0"
+  video_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  thumbnail: "images/video-thumbnail.jpg"
 
-    - question: "Pot personaliza stilul componentelor?"
-      answer: "Da! Transmite clase CSS adiționale prin parametrul `class` sau suprascrie stilurile în SCSS-ul tău custom."
+# 14. values-intro
+values_intro:
+  enable: true
+  subtitle: "Secțiunea 14"
+  title: "14. values-intro"
+  description: "Propunere de valoare cu imagine • Folosit în 11 pagini • Standard v2.0"
+  intro_title: "Abordare Integrativă"
+  intro_description: "Combinând metode bazate pe evidență cu abordare caldă, centrată pe client"
+  image: "images/about/alexandra-barbu-profile.jpg"
+  button:
+    enable: true
+    label: "Află Mai Mult"
+    link: "/about/"
 
-    - question: "Sunt componentele accesibile?"
-      answer: "Toate componentele respectă standardele WCAG AA cu HTML semantic, etichete ARIA și suport navigare cu tastatura."
 
-    - question: "Cum e optimizată performanța?"
-      answer: "Componentele folosesc partial caching, lazy loading, formate imagine moderne (AVIF/WebP) și bundle-uri CSS minimale."
+# 16. pricing-tables
+pricing_section:
+  enable: true
+  subtitle: "Secțiunea 16"
+  title: "16. pricing-tables"
+  description: "Planuri de prețuri • Folosit în 4 pagini • Îmbunătățit v4.0"
+  plans:
+    - name: "Sesiune Unică"
+      price_monthly: 300
+      currency: "RON"
+      period: "sesiune"
+      features:
+        - "Sesiune de 50 minute"
+        - "Bazată pe evidență"
+      button_text: "Rezervă"
+      button_link: "/contact/"
 
-    - question: "Unde sunt localizate fișierele componentelor?"
-      answer: "Atomi: `layouts/partials/atoms/`, Molecule: `layouts/partials/molecules/`, Organisme: `layouts/partials/organisms/`, Secțiuni: `layouts/partials/sections/`"
+# 17. newsletter-signup
+newsletter_signup:
+  enable: true
+  icon: "envelope"
+  title: "17. newsletter-signup"
+  description: "Abonare email • Folosit în 3 pagini • Standard v2.0"
+  form_action: "#"
+  benefits:
+    - "Newsletter lunar wellness"
+    - "Resurse gratuite self-help"
+
+# 18. contact-form-enhanced
+contact_form_enhanced:
+  enable: true
+  subtitle: "Secțiunea 18"
+  title: "18. contact-form-enhanced"
+  description: "Formular contact complet • Folosit în 18+ pagini • Standard v2.0"
+  form_action: "#"
+  show_guarantees: true
+  guarantees:
+    - "Răspuns în 24h"
+    - "Programare flexibilă"
+
 ---
 
-## Bibliotecă Componente
+## Ghid Evaluare Componente
 
-Această pagină prezintă toate **48 componentele** din tema Andromeda Hugo. Componentele sunt organizate folosind principiile **Atomic Design** pentru reutilizare și întreținere maximă.
+**Această expoziție afișează 18 din cele mai folosite secțiuni** cu configurații funcționale copiate din pagini reale.
 
-### Navigare Rapidă
+**Secțiuni afișate (numerotate 01-18):**
+- Derulează și notează ce numere de secțiuni dorești să elimini
+- Fiecare titlu de secțiune arată statistici de utilizare
 
-- [Atomi (5)](#atomi-5-componente) - Blocuri de bază
-- [Molecule (20)](#molecule-20-componente) - Componente compozite
-- [Organisme (2)](#organisme-2-componente) - Secțiuni complexe
-- [Secțiuni (24)](#sectiuni-24-componente) - Secțiuni pagină full-width
+**Neafișate în această expoziție (încă 16 secțiuni):**
+Majoritatea sunt NEFOLOSITE (0 pagini) sau rar folosite:
+- contact-info-cards (NEFOLOSIT)
+- contact-options (NEFOLOSIT)
+- confidentiality-notice (NEFOLOSIT)
+- professional-affiliations (NEFOLOSIT)
+- first-session-timeline (NEFOLOSIT)
+- therapist-match (NEFOLOSIT)
+- testimonials-enhanced (NEFOLOSIT)
+- office-gallery (NEFOLOSIT)
+- service-faq-inline (NEFOLOSIT)
+- faq-content (NEFOLOSIT)
+- feature-details (NEFOLOSIT - versiune veche)
+- signup-form-enhanced (1 pagină)
+- privacy-guarantee (1 pagină)
+- blog-grid (2 pagini)
+- job-listings (4 pagini)
+- related-content (NEFOLOSIT - versiune automată)
 
-### Beneficii Arhitectură
+**Recomandări din audit:**
+- 13 secțiuni sunt complet nefolosite (0 pagini)
+- 6 grupuri de redundanță identificate (FAQ, timeline, features, etc.)
+- Potențial de reducere: 34 → 22 secțiuni (35% mai puține)
 
-- **80% Reutilizare** - Componentele se compun împreună eficient
-- **Proprietăți Type-Safe** - Documentație clară parametri
-- **Performanță** - Partial caching reduce timpul de build cu 84%
-- **Accesibilitate** - Conform WCAG AA în totalitate
-- **Întreținere** - Sursă unică de adevăr pentru fiecare pattern
+---

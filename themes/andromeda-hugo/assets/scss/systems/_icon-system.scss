@@ -1,0 +1,429 @@
+/*
+========================================================================
+  Icon System Foundation - Gradient Icon Wrappers & Mixins
+  Version: 4.1.0 - Design System Enhancement (TIER 0)
+
+  Purpose: Unified icon rendering system for v4.0 gradient circles
+  Supports Line Awesome, Font Awesome, custom SVG icons
+========================================================================
+*/
+
+@import '../design-tokens';
+@import 'color-system';
+
+/*------------------------------------------------------------------
+  # Icon Wrapper Mixins
+  # Transform flat icons into v4.0 gradient circles
+-------------------------------------------------------------------*/
+
+/**
+ * Base Icon Circle
+ * Creates circular gradient background container
+ * @param {string} $size - Circle size (sm: 40px, md: 56px, lg: 72px, xl: 96px)
+ * @param {string} $variant - Color variant (primary, secondary, coral, etc.)
+ */
+@mixin icon-circle($size: 'md', $variant: 'primary') {
+  // Size map
+  $sizes: (
+    'sm': 40px,
+    'md': 56px,
+    'lg': 72px,
+    'xl': 96px,
+  );
+
+  $circle-size: map-get($sizes, $size);
+
+  // Base circle styling
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: $circle-size;
+  height: $circle-size;
+  border-radius: $radius-full;
+  flex-shrink: 0;
+
+  // Gradient background based on variant
+  @if $variant == 'primary' {
+    background: linear-gradient(135deg, $emerald-400 0%, $emerald-500 100%);
+  } @else if $variant == 'secondary' {
+    background: linear-gradient(135deg, $terracotta-400 0%, $terracotta-500 100%);
+  } @else if $variant == 'coral' {
+    background: linear-gradient(135deg, $coral-400 0%, $coral-500 100%);
+  } @else if $variant == 'premium' {
+    background: linear-gradient(135deg, $plum-400 0%, $plum-500 100%);
+  } @else if $variant == 'sage' {
+    background: linear-gradient(135deg, $sage-400 0%, $sage-500 100%);
+  } @else if $variant == 'info' {
+    background: linear-gradient(135deg, $teal-400 0%, $teal-500 100%);
+  } @else {
+    // Fallback to primary
+    background: linear-gradient(135deg, $emerald-400 0%, $emerald-500 100%);
+  }
+
+  // Icon inside circle
+  i, svg {
+    color: #ffffff;
+    font-size: $circle-size * 0.45; // 45% of container size
+    line-height: 1;
+  }
+
+  // Subtle shadow for depth
+  box-shadow: $shadow-sm;
+
+  // Smooth transitions
+  transition: transform $duration-fast $ease-out,
+              box-shadow $duration-fast $ease-out;
+
+  // Hover effect: slight lift + stronger shadow
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+}
+
+/**
+ * Icon Circle with Glassmorphism
+ * Creates frosted glass effect icon container
+ * @param {string} $size - Circle size (sm, md, lg, xl)
+ * @param {string} $variant - Color variant (primary, secondary, etc.)
+ * @param {number} $blur - Backdrop blur amount (default: 12px)
+ */
+@mixin icon-circle-glass($size: 'md', $variant: 'primary', $blur: 12px) {
+  @include icon-circle($size, $variant);
+
+  // Glassmorphism overlay
+  position: relative;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+
+  // Semi-transparent gradient (lighter than solid version)
+  @if $variant == 'primary' {
+    background: linear-gradient(135deg, rgba($emerald-400, 0.7) 0%, rgba($emerald-500, 0.8) 100%);
+  } @else if $variant == 'secondary' {
+    background: linear-gradient(135deg, rgba($terracotta-400, 0.7) 0%, rgba($terracotta-500, 0.8) 100%);
+  } @else if $variant == 'coral' {
+    background: linear-gradient(135deg, rgba($coral-400, 0.7) 0%, rgba($coral-500, 0.8) 100%);
+  }
+
+  // Glass border
+  border: 1px solid rgba(#ffffff, 0.2);
+}
+
+/**
+ * Icon Flat (No Circle)
+ * Applies color only, no background container
+ * @param {string} $variant - Color variant (primary, secondary, etc.)
+ */
+@mixin icon-flat($variant: 'primary') {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  i, svg {
+    @if $variant == 'primary' {
+      color: $emerald-500;
+    } @else if $variant == 'secondary' {
+      color: $terracotta-500;
+    } @else if $variant == 'coral' {
+      color: $coral-500;
+    } @else if $variant == 'sage' {
+      color: $sage-500;
+    } @else {
+      color: $emerald-500; // Fallback
+    }
+
+    font-size: 2rem; // 32px default
+    line-height: 1;
+  }
+
+  transition: transform $duration-fast $ease-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+/**
+ * Icon with Text Badge
+ * Adds small text label below icon circle
+ * @param {string} $size - Icon circle size
+ * @param {string} $variant - Color variant
+ */
+@mixin icon-with-badge($size: 'md', $variant: 'primary') {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-2;
+
+  .icon-circle {
+    @include icon-circle($size, $variant);
+  }
+
+  .icon-badge {
+    font-size: $text-xs;
+    font-weight: $weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: $space-1 $space-2;
+    border-radius: $radius-sm;
+
+    @if $variant == 'primary' {
+      background: $emerald-100;
+      color: $emerald-700;
+    } @else if $variant == 'secondary' {
+      background: $terracotta-100;
+      color: $terracotta-700;
+    } @else if $variant == 'coral' {
+      background: $coral-100;
+      color: $coral-700;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Icon Component Classes
+  # Ready-to-use icon wrapper classes
+-------------------------------------------------------------------*/
+
+/**
+ * Standard Icon Circles (4 sizes × 6 variants = 24 classes)
+ */
+.icon-circle {
+  @include icon-circle('md', 'primary'); // Default
+
+  // Size variants
+  &.icon-sm { @include icon-circle('sm', 'primary'); }
+  &.icon-md { @include icon-circle('md', 'primary'); }
+  &.icon-lg { @include icon-circle('lg', 'primary'); }
+  &.icon-xl { @include icon-circle('xl', 'primary'); }
+
+  // Color variants
+  &.icon-primary { @include icon-circle('md', 'primary'); }
+  &.icon-secondary { @include icon-circle('md', 'secondary'); }
+  &.icon-coral { @include icon-circle('md', 'coral'); }
+  &.icon-premium { @include icon-circle('md', 'premium'); }
+  &.icon-sage { @include icon-circle('md', 'sage'); }
+  &.icon-info { @include icon-circle('md', 'info'); }
+
+  // Combined size + color (examples)
+  &.icon-sm-primary { @include icon-circle('sm', 'primary'); }
+  &.icon-sm-secondary { @include icon-circle('sm', 'secondary'); }
+  &.icon-lg-primary { @include icon-circle('lg', 'primary'); }
+  &.icon-lg-secondary { @include icon-circle('lg', 'secondary'); }
+  &.icon-xl-primary { @include icon-circle('xl', 'primary'); }
+  &.icon-xl-secondary { @include icon-circle('xl', 'secondary'); }
+}
+
+/**
+ * Glassmorphism Icon Circles
+ */
+.icon-circle-glass {
+  @include icon-circle-glass('md', 'primary');
+
+  &.icon-sm { @include icon-circle-glass('sm', 'primary'); }
+  &.icon-lg { @include icon-circle-glass('lg', 'primary'); }
+  &.icon-xl { @include icon-circle-glass('xl', 'primary'); }
+
+  &.icon-secondary { @include icon-circle-glass('md', 'secondary'); }
+  &.icon-coral { @include icon-circle-glass('md', 'coral'); }
+}
+
+/**
+ * Flat Icons (no background)
+ */
+.icon-flat {
+  @include icon-flat('primary');
+
+  &.icon-secondary { @include icon-flat('secondary'); }
+  &.icon-coral { @include icon-flat('coral'); }
+  &.icon-sage { @include icon-flat('sage'); }
+}
+
+/**
+ * Icons with Text Badges
+ */
+.icon-with-badge {
+  @include icon-with-badge('md', 'primary');
+
+  &.icon-secondary { @include icon-with-badge('md', 'secondary'); }
+  &.icon-coral { @include icon-with-badge('md', 'coral'); }
+}
+
+/*------------------------------------------------------------------
+  # Auto-Color Icon Distribution (nth-child fallback)
+  # Applied when no explicit variant specified
+-------------------------------------------------------------------*/
+
+/**
+ * Feature Icons - 4-color rotation (primary, secondary, coral, sage)
+ */
+.features-section,
+.benefits-section,
+.values-section {
+  .feature-icon,
+  .benefit-icon,
+  .value-icon {
+    &:nth-child(4n+1) { @include icon-circle('md', 'primary'); }
+    &:nth-child(4n+2) { @include icon-circle('md', 'secondary'); }
+    &:nth-child(4n+3) { @include icon-circle('md', 'coral'); }
+    &:nth-child(4n+4) { @include icon-circle('md', 'sage'); }
+  }
+}
+
+/**
+ * Service Icons - Alternating primary/secondary
+ */
+.services-section,
+.related-services-section {
+  .service-icon {
+    &:nth-child(odd) { @include icon-circle('lg', 'primary'); }
+    &:nth-child(even) { @include icon-circle('lg', 'secondary'); }
+  }
+}
+
+/**
+ * Timeline Icons - Sequential primary/secondary/coral
+ */
+.timeline-section,
+.process-section {
+  .timeline-icon,
+  .step-icon {
+    &:nth-child(3n+1) { @include icon-circle('md', 'primary'); }
+    &:nth-child(3n+2) { @include icon-circle('md', 'secondary'); }
+    &:nth-child(3n+3) { @include icon-circle('md', 'coral'); }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Icon Size Utilities
+  # Responsive icon sizing
+-------------------------------------------------------------------*/
+
+.icon-responsive {
+  // Mobile: sm (40px)
+  @include icon-circle('sm', 'primary');
+
+  // Tablet: md (56px)
+  @media (min-width: $breakpoint-md) {
+    @include icon-circle('md', 'primary');
+  }
+
+  // Desktop: lg (72px)
+  @media (min-width: $breakpoint-lg) {
+    @include icon-circle('lg', 'primary');
+  }
+}
+
+/*------------------------------------------------------------------
+  # Icon Animation Utilities
+  # Hover effects and entrance animations
+-------------------------------------------------------------------*/
+
+/**
+ * Pulse Animation (attention-grabbing)
+ */
+@keyframes icon-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: $shadow-sm;
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: $shadow-md;
+  }
+}
+
+.icon-circle-pulse {
+  @include icon-circle('md', 'primary');
+  animation: icon-pulse 2s ease-in-out infinite;
+
+  // Respect reduced motion preference
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/**
+ * Rotate on Hover
+ */
+.icon-circle-rotate {
+  @include icon-circle('md', 'primary');
+
+  i, svg {
+    transition: transform $duration-normal $ease-in-out;
+  }
+
+  &:hover i,
+  &:hover svg {
+    transform: rotate(15deg);
+  }
+}
+
+/**
+ * Float Animation (gentle up-down)
+ */
+@keyframes icon-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.icon-circle-float {
+  @include icon-circle('md', 'primary');
+  animation: icon-float 3s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Special Icon Treatments
+  # Context-specific icon styling
+-------------------------------------------------------------------*/
+
+/**
+ * Hero Section Icons (extra large, prominent)
+ */
+.hero-section .hero-icon {
+  @include icon-circle('xl', 'primary');
+
+  // Subtle glow effect
+  box-shadow: 0 20px 40px -10px rgba($emerald-500, 0.4);
+}
+
+/**
+ * Card Header Icons (compact, integrated)
+ */
+.card-header-icon {
+  @include icon-circle('sm', 'primary');
+  margin-right: $space-3;
+}
+
+/**
+ * List Item Icons (minimal, text-aligned)
+ */
+.list-icon {
+  @include icon-flat('primary');
+  margin-right: $space-2;
+  font-size: 1.25rem; // 20px
+}
+
+/*
+========================================================================
+  END Icon System Foundation
+
+  Usage Summary:
+  1. Mixins: @include icon-circle(), icon-circle-glass(), icon-flat(), icon-with-badge()
+  2. Classes: .icon-circle, .icon-circle-glass, .icon-flat, .icon-with-badge
+  3. Size Variants: .icon-sm, .icon-md, .icon-lg, .icon-xl
+  4. Color Variants: .icon-primary, .icon-secondary, .icon-coral, .icon-sage, .icon-info
+  5. Animations: .icon-circle-pulse, .icon-circle-rotate, .icon-circle-float
+  6. Auto-Distribution: Automatic color rotation via nth-child selectors
+
+  Integration: Import this file in custom.scss AFTER color-system.scss
+========================================================================
+*/

@@ -4,7 +4,7 @@ description: "Psychological assessments, training, leadership coaching, burnout 
 layout: "flexible"
 sections:
   - type: "hero-breadcrumb"
-  - type: "service-highlights"
+
   - type: "contact-form-enhanced"
 hero_image: "hero.jpg"
 breadcrumb:
@@ -14,7 +14,7 @@ breadcrumb:
     url: "/en/services/"
   - name: "Organizational Psychology"
     url: "/en/services/organizational-psychology/"
-service_highlights:
+
   enable: true
   title: "Services for Organizations"
   services:

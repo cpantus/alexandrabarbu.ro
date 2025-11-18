@@ -1,0 +1,26 @@
+{
+  "name": "coding-agent",
+  "version": "1.0.0",
+  "architecture": "2-tier-hybrid",
+  "core": {
+    "path": "core",
+    "version": "1.0.0",
+    "commands": ".claude/commands/infra"
+  },
+  "plugins": [
+    {
+      "name": "code",
+      "path": "code-plugin",
+      "version": "1.0.0",
+      "enabled": true,
+      "commands": {
+        "source": "code-plugin/commands",
+        "link": ".claude/commands/code",
+        "maintenance": "Run scripts/link-plugin-commands.sh code when adding/removing/renaming commands"
+      }
+    }
+  ],
+  "notes": {
+    "symlinks": "Plugin commands use symlinks for discovery. Requires maintenance when modifying plugin commands. See scripts/link-plugin-commands.sh"
+  }
+}

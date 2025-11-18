@@ -1,0 +1,248 @@
+{
+  "$schema": "./schemas/skill-composition-rules.schema.json",
+  "version": "5.5.0",
+  "compositions": [
+    {
+      "name": "visual-design-excellence",
+      "description": "Creates professional, accessible, beautiful data visualizations with distinctive aesthetics",
+      "skills": [
+        "data-visualization-designer",
+        "design-excellence",
+        "diagram-drawing"
+      ],
+      "triggers": [
+        "infographic",
+        "dashboard",
+        "data viz",
+        "data visualization",
+        "chart",
+        "graph"
+      ],
+      "enforcement": "require",
+      "synergy_multiplier": 3.2,
+      "output_acknowledgment_template": "Multi-Skill Composition Applied:\n- data-visualization-designer: [chart type decisions, visual encoding strategy, truthfulness validation]\n- design-excellence: [typography system, color palette, motion strategy, aesthetic polish]\n- diagram-drawing: [Chart.js/D3.js implementation, export formats, accessibility features]",
+      "rationale": "Visual design requires three dimensions: (1) what to show and how to encode it truthfully (data-viz-designer), (2) aesthetic excellence and brand distinction (design-excellence), (3) technical implementation with accessibility (diagram-drawing). Using all three GUARANTEES professional-grade output.",
+      "quality_gates": [
+        "Chart type justified by data structure and task",
+        "Typography uses distinctive pairing (not Inter/Roboto alone)",
+        "Color system is colorblind-safe with redundant encoding",
+        "Motion respects prefers-reduced-motion",
+        "Implementation uses modern libraries (Chart.js 4.x/D3.js v7)",
+        "Exports available in 3+ formats (PNG/SVG/PDF)"
+      ]
+    },
+    {
+      "name": "backend-security-architecture",
+      "description": "Secure, scalable backend systems with defense-in-depth",
+      "skills": [
+        "backend-architect",
+        "security-engineer"
+      ],
+      "triggers": [
+        "API",
+        "backend",
+        "database",
+        "authentication",
+        "authorization",
+        "server"
+      ],
+      "enforcement": "require",
+      "synergy_multiplier": 2.1,
+      "output_acknowledgment_template": "Multi-Skill Composition Applied:\n- backend-architect: [system design, data integrity, fault tolerance]\n- security-engineer: [threat modeling, OWASP compliance, secure coding]",
+      "rationale": "Backend systems require both scalability architecture AND security-first design. Combining guarantees systems are both performant and hardened.",
+      "quality_gates": [
+        "Authentication follows OWASP standards",
+        "Input validation on all endpoints",
+        "Rate limiting and DDoS protection",
+        "Database queries use parameterized statements",
+        "Secrets management via environment variables or vaults",
+        "Error handling doesn't leak sensitive info"
+      ]
+    },
+    {
+      "name": "performance-refactoring",
+      "description": "Fast, clean code through measurement-driven optimization and systematic refactoring",
+      "skills": [
+        "performance-engineer",
+        "refactoring-expert"
+      ],
+      "triggers": [
+        "optimize",
+        "performance",
+        "slow",
+        "bottleneck",
+        "refactor",
+        "clean up"
+      ],
+      "enforcement": "suggest",
+      "synergy_multiplier": 1.8,
+      "output_acknowledgment_template": "Multi-Skill Composition Applied:\n- performance-engineer: [bottleneck identification, measurement, optimization strategy]\n- refactoring-expert: [code quality improvement, SOLID principles, technical debt reduction]",
+      "rationale": "Performance optimization should preserve or improve code quality. Combining ensures fast AND maintainable code.",
+      "quality_gates": [
+        "Baseline performance metrics captured",
+        "Bottlenecks identified through profiling",
+        "Optimizations preserve readability",
+        "Tests verify behavior unchanged",
+        "Code follows SOLID principles"
+      ]
+    },
+    {
+      "name": "quality-engineering",
+      "description": "Comprehensive testing with production-ready Python code",
+      "skills": [
+        "python-expert",
+        "quality-engineer"
+      ],
+      "triggers": [
+        "Python test",
+        "pytest",
+        "testing strategy",
+        "Python quality"
+      ],
+      "enforcement": "suggest",
+      "synergy_multiplier": 1.9,
+      "output_acknowledgment_template": "Multi-Skill Composition Applied:\n- python-expert: [SOLID principles, type hints, modern Python idioms]\n- quality-engineer: [comprehensive test coverage, edge case detection, test pyramid]",
+      "rationale": "Production Python requires both code excellence AND thorough testing. Combining guarantees reliable, maintainable systems.",
+      "quality_gates": [
+        "Type hints on public APIs",
+        "Unit tests cover edge cases",
+        "Integration tests validate workflows",
+        "Code follows PEP 8",
+        "No mutable default arguments"
+      ]
+    },
+    {
+      "name": "devops-security",
+      "description": "Secure infrastructure automation and deployment pipelines",
+      "skills": [
+        "devops-architect",
+        "security-engineer"
+      ],
+      "triggers": [
+        "CI/CD",
+        "deployment",
+        "infrastructure",
+        "Docker",
+        "Kubernetes"
+      ],
+      "enforcement": "require",
+      "synergy_multiplier": 2.3,
+      "output_acknowledgment_template": "Multi-Skill Composition Applied:\n- devops-architect: [infrastructure automation, observability, reliability]\n- security-engineer: [secrets management, container security, supply chain hardening]",
+      "rationale": "Infrastructure automation requires security hardening from day one. Combining prevents deployment-time vulnerabilities.",
+      "quality_gates": [
+        "Secrets not in Dockerfiles or configs",
+        "Container images scanned for vulnerabilities",
+        "Least privilege IAM/RBAC policies",
+        "Network policies restrict traffic",
+        "Logging captures security events"
+      ]
+    },
+    {
+      "name": "educational-documentation",
+      "description": "Clear technical documentation with progressive learning pedagogy",
+      "skills": [
+        "technical-writer",
+        "socratic-mentor"
+      ],
+      "triggers": [
+        "documentation",
+        "tutorial",
+        "guide",
+        "learning",
+        "onboarding"
+      ],
+      "enforcement": "suggest",
+      "synergy_multiplier": 1.7,
+      "output_acknowledgment_template": "Multi-Skill Composition Applied:\n- technical-writer: [clear structure, audience-appropriate language, usability]\n- socratic-mentor: [progressive disclosure, discovery learning, strategic questioning]",
+      "rationale": "Educational docs should be both technically accurate AND pedagogically effective. Combining maximizes learning outcomes.",
+      "quality_gates": [
+        "Information chunked for cognitive load",
+        "Examples progress from simple to complex",
+        "Questions guide discovery",
+        "Code samples are runnable",
+        "Success criteria clearly stated"
+      ]
+    },
+    {
+      "name": "full-stack-architecture",
+      "description": "End-to-end system design with frontend, backend, and deployment excellence",
+      "skills": [
+        "frontend-architect",
+        "backend-architect",
+        "devops-architect"
+      ],
+      "triggers": [
+        "full stack",
+        "end-to-end",
+        "system architecture",
+        "complete system"
+      ],
+      "enforcement": "require",
+      "synergy_multiplier": 3.5,
+      "output_acknowledgment_template": "Multi-Skill Composition Applied:\n- frontend-architect: [user interface, accessibility, performance]\n- backend-architect: [API design, data integrity, fault tolerance]\n- devops-architect: [deployment automation, observability, scaling]",
+      "rationale": "Full-stack systems require cohesive architecture across all layers. Combining ensures consistency and quality end-to-end.",
+      "quality_gates": [
+        "API contracts documented (OpenAPI/GraphQL schema)",
+        "Frontend optimized for Core Web Vitals",
+        "Backend handles failures gracefully",
+        "Infrastructure scales horizontally",
+        "Monitoring covers all layers"
+      ]
+    },
+    {
+      "name": "root-cause-performance-analysis",
+      "description": "Systematic problem diagnosis with performance optimization",
+      "skills": [
+        "root-cause-analyst",
+        "performance-engineer"
+      ],
+      "triggers": [
+        "debug performance",
+        "investigate slowness",
+        "performance problem",
+        "bottleneck diagnosis"
+      ],
+      "enforcement": "suggest",
+      "synergy_multiplier": 2.0,
+      "output_acknowledgment_template": "Multi-Skill Composition Applied:\n- root-cause-analyst: [hypothesis testing, evidence gathering, causal analysis]\n- performance-engineer: [profiling, measurement, optimization validation]",
+      "rationale": "Performance issues require systematic diagnosis AND measurement-driven optimization. Combining ensures root causes are found and fixed.",
+      "quality_gates": [
+        "Baseline metrics captured before changes",
+        "Hypotheses tested with evidence",
+        "Profiling data identifies bottlenecks",
+        "Fixes verified with measurements",
+        "Improvements documented"
+      ]
+    }
+  ],
+  "composition_metadata": {
+    "enforcement_philosophy": "Compositions guarantee higher quality through skill synergy. When multiple skills load, they MUST work together, not in isolation.",
+    "synergy_multiplier_explanation": "Factor by which quality improves when skills compose vs. using single skill. 1.0 = no benefit, 2.0 = 2x better, 3.5 = 3.5x better.",
+    "output_acknowledgment_requirement": "When composition applies, Claude MUST output the acknowledgment template showing how each skill contributed.",
+    "validation_strategy": "post-tool-use-multiskill.ts hook validates composition acknowledgment appears in outputs when multiple skills loaded."
+  },
+  "extension_guide": {
+    "adding_new_composition": {
+      "steps": [
+        "1. Identify complementary skills that produce better results together",
+        "2. Define clear triggers (keywords/patterns that suggest composition)",
+        "3. Set enforcement level (require/suggest/optional)",
+        "4. Calculate synergy_multiplier (1.5-4.0 range typical)",
+        "5. Write output_acknowledgment_template showing each skill's contribution",
+        "6. Define quality_gates that verify composition was applied correctly",
+        "7. Add to compositions array in this file"
+      ],
+      "enforcement_level_guide": {
+        "require": "Composition is MANDATORY for acceptable quality (e.g., visual-design-excellence for infographics)",
+        "suggest": "Composition is RECOMMENDED but not critical (e.g., performance-refactoring)",
+        "optional": "Composition is BENEFICIAL but user can choose (reserved for future use)"
+      },
+      "synergy_multiplier_guide": {
+        "1.0-1.5": "Minimal synergy, mostly independent benefits",
+        "1.5-2.5": "Moderate synergy, clear quality improvement",
+        "2.5-3.5": "Strong synergy, major quality leap",
+        "3.5-5.0": "Exceptional synergy, transformative quality difference"
+      }
+    }
+  }
+}

@@ -12,13 +12,13 @@
           <div class="col-lg-5" data-aos="fade-up">
             <div class="section-title mb-0">
               <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
-              {{ partial "atoms/heading.html" (dict "level" "h2" "text" .title "class" "title" "markdown" true) }}
+              {{ partial "atoms/heading.html" (dict "level" "h2" "text" .title "class" "title" "markdown" true "colorVariant" "primary") }}
               <p>{{ .description | markdownify }}</p>
               {{ if .button_link }}
                 {{ partial "atoms/button.html" (dict
                   "text" .button_label
                   "href" .button_link
-                  "variant" "primary"
+                  "variant" (.button_variant | default "primary")
                   "class" "mt-4"
                 ) }}
               {{ end }}

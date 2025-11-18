@@ -21,27 +21,29 @@
         {{/* Problem Cards Grid */}}
         <div class="problem-grid">
           {{ range $index, $challenge := .challenges }}
-            {{/* Assign gradient variant based on index */}}
-            {{ $iconVariant := "icon-emerald" }}
-            {{ if eq (mod $index 4) 0 }}
-              {{ $iconVariant = "icon-emerald" }}
-            {{ else if eq (mod $index 4) 1 }}
-              {{ $iconVariant = "icon-terracotta" }}
-            {{ else if eq (mod $index 4) 2 }}
-              {{ $iconVariant = "icon-teal" }}
-            {{ else if eq (mod $index 4) 3 }}
-              {{ $iconVariant = "icon-amber" }}
-            {{ end }}
+            {{/* v4.0 color rotation: 4-color pattern (primary→secondary→coral→sage) */}}
+            {{ $colorVariants := slice "primary" "secondary" "coral" "sage" }}
+            {{ $colorIdx := mod $index (len $colorVariants) }}
+            {{ $colorVariant := index $colorVariants $colorIdx }}
 
             <div class="problem-card" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
-              {{/* Icon with gradient circle */}}
-              <div class="problem-icon-wrapper {{ $iconVariant }}">
-                <i class="las la-{{ $challenge.icon | default "exclamation-circle" }}"></i>
-              </div>
+              {{/* Icon with gradient circle wrapper - v4.0 design system */}}
+              {{ partial "atoms/icon.html" (dict
+                "name" ($challenge.icon | default "exclamation-circle")
+                "withWrapper" true
+                "wrapperVariant" $colorVariant
+                "wrapperSize" "lg"
+                "class" "problem-icon"
+              ) }}
 
               {{/* Card Content - Uses atoms/heading.html for consistent typography */}}
               <div class="problem-content">
-                {{ partial "atoms/heading.html" (dict "text" $challenge.title "level" "h3" "class" "problem-title") }}
+                {{ partial "atoms/heading.html" (dict
+                  "text" $challenge.title
+                  "level" "h3"
+                  "class" "problem-title"
+                  "colorVariant" $colorVariant
+                ) }}
                 <p class="problem-description">{{ $challenge.description }}</p>
               </div>
             </div>

@@ -9,6 +9,7 @@
             "level" 3
             "align" "center"
             "class" "mb-4"
+            "colorVariant" "primary"
           ) }}
           <p class="mb-4">{{ .Content }}</p>
           
@@ -19,6 +20,7 @@
               "text" "Ce vei primi:"
               "level" 5
               "class" "mb-3"
+              "colorVariant" "secondary"
             ) }}
             <ul class="list-unstyled">
               {{ range . }}
@@ -42,6 +44,7 @@
           "level" 3
           "align" "center"
           "class" "mb-4"
+          "colorVariant" "secondary"
         ) }}
 
         {{ with site.Params.career_form_action }}
@@ -102,7 +105,7 @@
           {{ partial "atoms/button.html" (dict
             "text" "Creează Cont"
             "type" "submit"
-            "variant" "primary"
+            "variant" ($.Params.button_variant | default "primary")
             "fullWidth" true
           ) }}
         </form>

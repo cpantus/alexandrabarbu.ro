@@ -4,7 +4,7 @@ description: "Evaluări psihologice, training-uri, coaching leadership, prevenir
 layout: "flexible"
 sections:
   - type: "hero-breadcrumb"
-  - type: "service-highlights"
+
   - type: "stats-numbers"
   - type: "contact-form-enhanced"
 hero_image: "images/services/psihologie-org-hero.jpg"
@@ -15,22 +15,6 @@ breadcrumb:
     url: "/servicii/"
   - name: "Psihologie Organizațională"
     url: "/servicii/psihologie-organizationala/"
-service_highlights:
-  enable: true
-  title: "Servicii pentru Organizații"
-  services:
-    - title: "Evaluări Psihologice"
-      description: "Teste de personalitate, abilități cognitive, potrivire culturală pentru recrutare și promovări."
-      icon: "clipboard-check"
-    - title: "Training & Workshop-uri"
-      description: "Comunicare eficientă, leadership, gestionare conflict, teambuilding."
-      icon: "chalkboard-teacher"
-    - title: "Coaching Leadership"
-      description: "Dezvoltare competențe leadership, luare decizii, gestionare echipă."
-      icon: "user-tie"
-    - title: "Prevenire Burnout"
-      description: "Programe wellbeing, gestionare stres, echilibru viață-muncă."
-      icon: "heartbeat"
 contact_form:
   enable: true
   title: "Cere Ofertă Personalizată"

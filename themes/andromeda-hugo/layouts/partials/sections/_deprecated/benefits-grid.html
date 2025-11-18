@@ -1,0 +1,51 @@
+{{/* Benefits Grid Section - Originally from Career/Corporate page */}}
+{{ $benefit := .Params.benefits_section }}
+{{ if not $benefit }}
+  {{ $benefit = .Params.benefit }}
+{{ end }}
+
+{{ with $benefit }}
+  {{ if .enable }}
+    <section class="section career">
+      <div class="container-xxl position-relative">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="block">
+              <div class="section-title text-center mb-0">
+                <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
+                {{ partial "atoms/heading.html" (dict "level" "h2" "text" .title "class" "title" "markdown" true) }}
+                <p>{{ .description | markdownify }}</p>
+              </div>
+
+              <div class="row career-benefits mx-auto justify-content-around">
+                {{ range $index, $item := .benefits }}
+                  {{ $n := add $index 1 }}
+                  {{/* v4.0 color rotation: 4-color pattern (primary→secondary→coral→sage) */}}
+                  {{ $colorVariants := slice "primary" "secondary" "coral" "sage" }}
+                  {{ $colorIdx := mod $index (len $colorVariants) }}
+                  {{ $colorVariant := index $colorVariants $colorIdx }}
+
+                  <div class="col-lg-3 col-md-6">
+                    {{ partial "molecules/card.html" (dict
+                      "variant" "feature"
+                      "icon" (replace $item.icon "las la-" "")
+                      "title" $item.title
+                      "iconSize" "3x"
+                      "iconColor" "primary"
+                      "iconWithWrapper" true
+                      "iconWrapperVariant" $colorVariant
+                      "iconWrapperSize" "md"
+                    ) }}
+                  </div>
+                  {{ if (modBool $n 3) }}
+                    <div class="col-lg-12 d-none d-lg-block"></div>
+                  {{ end }}
+                {{ end }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {{ end }}
+{{ end }}

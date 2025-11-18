@@ -11,10 +11,9 @@ service_types: ["individual"]
 sections:
   - type: "hero-breadcrumb"
   - type: "problem-empathy"
-  - type: "method-tabs"
-  - type: "benefits-grid"
+
   - type: "stats-numbers"
-  - type: "related-services"
+
   - type: "contact-form-enhanced"
 
 hero_image: "hero.jpg"

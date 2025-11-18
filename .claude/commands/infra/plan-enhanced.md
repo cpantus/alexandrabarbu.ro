@@ -111,7 +111,7 @@ When `/plan-enhanced` is invoked, Claude MUST execute all 4 stages sequentially.
 **Output**:
 - 2-3 research reports (~1,000-2,000 lines each)
 - Organized in task subdirectory: `research/[task-name]/`
-- Example: `research/diagram-infographics-system/chartjs-gsap-svg-animation.md`
+- Example: `research/graphql-api/graphql-best-practices.md`
 - High confidence (5-10 sources per topic)
 - Recent information (2024-2025 focus)
 
@@ -453,15 +453,15 @@ When `/plan-enhanced` is invoked, Claude MUST execute all 4 stages sequentially.
 
 **Example Structure**:
 ```
-research/diagram-infographics-system/
-├── chartjs-gsap-svg-animation.md
-├── infographics-architecture-patterns.md
-└── mcp-google-drive-integration.md
+research/graphql-api/
+├── graphql-best-practices.md
+├── api-design-patterns.md
+└── api-security-patterns.md
 
-dev/active/diagram-infographics-system/
+dev/active/graphql-api/
 ├── architecture-proposal.md
 ├── validation-report.md
-├── diagram-infographics-implementation-plan.md
+├── graphql-api-implementation-plan.md
 ├── OVERVIEW.md
 └── PROGRESS.md
 ```

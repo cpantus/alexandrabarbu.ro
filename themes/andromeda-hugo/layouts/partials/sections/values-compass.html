@@ -93,7 +93,7 @@
             {{ partial "atoms/button.html" (dict
               "text" .cta.text
               "url" .cta.url
-              "variant" "primary"
+              "variant" (.button_variant | default "primary")
               "size" "lg"
             ) }}
           </div>

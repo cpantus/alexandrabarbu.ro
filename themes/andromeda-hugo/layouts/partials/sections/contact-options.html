@@ -37,7 +37,11 @@
 
           <!-- Icon -->
           <div class="option-icon {{ if $option.featured }}featured{{ end }}">
-            {{ partial "atoms/icon.html" (dict "icon" $option.icon "size" "48") }}
+            {{- if $option.icon -}}
+            {{ partial "atoms/icon.html" (dict "name" $option.icon "size" "48") }}
+            {{- else -}}
+            {{ partial "atoms/icon.html" (dict "name" "envelope" "size" "48") }}
+            {{- end -}}
           </div>
 
           <!-- Content -->
@@ -68,7 +72,7 @@
             <ul class="option-features">
               {{- range $option.features -}}
               <li>
-                {{ partial "atoms/icon.html" (dict "icon" "las la-check" "class" "text-success me-2") }}
+                {{ partial "atoms/icon.html" (dict "name" "check" "class" "text-success me-2") }}
                 <span>{{ . }}</span>
               </li>
               {{- end -}}
@@ -77,7 +81,7 @@
 
             {{- if $option.response_time -}}
             <div class="response-time mt-3">
-              {{ partial "atoms/icon.html" (dict "icon" "las la-clock" "class" "text-primary me-2") }}
+              {{ partial "atoms/icon.html" (dict "name" "clock" "class" "text-primary me-2") }}
               <span class="text-muted">{{ $option.response_time }}</span>
             </div>
             {{- end -}}
@@ -115,7 +119,7 @@
             <a href="{{ .url }}"
                class="method-button"
                {{ if .external }}target="_blank" rel="noopener noreferrer"{{ end }}>
-              {{ partial "atoms/icon.html" (dict "icon" .icon "class" "me-2") }}
+              {{ partial "atoms/icon.html" (dict "name" .icon "class" "me-2") }}
               <span>{{ .label }}</span>
             </a>
             {{- end -}}

@@ -12,12 +12,16 @@ sections:
   - type: "values-compass"
   - type: "credentials-showcase"
   - type: "video-popup"
-  - type: "onboarding-steps"
+
   - type: "faq-mini"
   - type: "contact-form-enhanced"
 
 # Hero Image
 hero_image: "images/hero/alexandra-barbu-cabinet.jpg"
+
+# Strategic color variant assignments (Phase 1D - balanced distribution)
+# Pattern: primary (emerald) → secondary (terracotta) → outline-primary → secondary
+button_variant: "primary"  # Global default for sections without specific variant
 
 # 1. Credentials Showcase - Trust Building
 credentials_showcase:
@@ -34,7 +38,7 @@ credentials_showcase:
     - icon: "award"
       label: "10+ Ani Experiență"
       value: "500+ Clienți Ajutați"
-      variant: "success"
+      variant: "secondary"  # Terracotta - personal connection
     - icon: "certificate"
       label: "Membru CPR"
       value: "Colegiul Psihologilor din România"
@@ -42,7 +46,7 @@ credentials_showcase:
     - icon: "graduation-cap"
       label: "Formare Continuă"
       value: "TCC, EMDR, Mindfulness"
-      variant: "warning"
+      variant: "coral"  # Compassionate learning
   show_trust_text: true
   trust_text: "Certificări și acreditări verificate. Membră în bună regulă a organizațiilor profesionale de psihoterapie."
 
@@ -93,6 +97,7 @@ feature_blocks:
 # 4. About Preview
 values_intro:
   enable: true
+  button_variant: "secondary"  # Terracotta - personal/warm connection
   subtitle: "Despre mine"
   title: "Alexandra Barbu"
   description: |
@@ -114,6 +119,7 @@ values_intro:
 # 5. Approach Preview
 benefits_section:
   enable: true
+  button_variant: "secondary"  # Terracotta - warm approach
   subtitle: "Abordarea mea"
   title: "Filozofie Terapeutică Integrativă"
   description: "Combin cele mai eficiente metode terapeutice pentru rezultate durabile."
@@ -150,18 +156,6 @@ video_popup:
       role: "Client EMDR"
       rating: 5
 
-# 7. Simple Process (3 Steps)
-onboarding_steps:
-  - number: "1"
-    title: "Consultație Inițială Gratuită"
-    description: "30 de minute pentru a discuta nevoile tale și a vedea dacă suntem potriviți."
-  - number: "2"
-    title: "Plan Personalizat"
-    description: "Creăm împreună un plan terapeutic adaptat obiectivelor tale specifice."
-  - number: "3"
-    title: "Parcurs către Vindecare"
-    description: "Sesiuni regulate, suport continuu și progres măsurabil către o viață mai bună."
-
 # 8. FAQ Preview
 faq_mini:
   enable: true
@@ -179,6 +173,7 @@ faq_mini:
 # 9. CTA Final
 contact_form_enhanced:
   enable: true
+  button_variant: "primary"  # Emerald - main action/CTA
   subtitle: "Începe astăzi"
   title: "Fă Primul Pas către o Viață Mai Bună"
   description: |

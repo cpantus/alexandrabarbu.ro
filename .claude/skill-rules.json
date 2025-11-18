@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema#",
-  "version": "1.0",
-  "lastUpdated": "2025-11-13",
-  "description": "Auto-activation rules for code plugin skills. Skills trigger based on prompt keywords and intent patterns. Updated with design excellence triggers.",
+  "version": "1.1",
+  "lastUpdated": "2025-01-14",
+  "description": "Auto-activation rules for code plugin skills. Skills trigger based on prompt keywords and intent patterns. Includes design excellence triggers for frontend, UX, architecture, and data visualization work. Updated for official Claude Code skills format (directory-based structure with SKILL.md files).",
 
   "skills": {
     "frontend-best-practices": {
@@ -10,7 +10,7 @@
       "enforcement": "suggest",
       "priority": "high",
       "description": "Frontend development with design excellence - avoid AI slop aesthetics, distinctive typography, cohesive themes",
-      "skillPath": "code-plugin/skills/frontend-best-practices.md",
+      "skillPath": "code-plugin/skills/frontend-best-practices/SKILL.md",
       "promptTriggers": {
         "keywords": [
           "frontend", "react", "vue", "component", "hooks", "state", "props",
@@ -42,7 +42,7 @@
       "enforcement": "suggest",
       "priority": "high",
       "description": "UX and visual design excellence - typography, color psychology, hierarchy, motion for usability",
-      "skillPath": "code-plugin/skills/ux-guidelines.md",
+      "skillPath": "code-plugin/skills/ux-guidelines/SKILL.md",
       "promptTriggers": {
         "keywords": [
           "ux", "user experience", "usability", "design", "wireframe", "mockup",
@@ -76,7 +76,7 @@
       "enforcement": "suggest",
       "priority": "high",
       "description": "System architecture patterns, API design, and scalability strategies",
-      "skillPath": "code-plugin/skills/architecture-patterns.md",
+      "skillPath": "code-plugin/skills/architecture-patterns/SKILL.md",
       "promptTriggers": {
         "keywords": [
           "architecture", "system design", "design patterns",
@@ -105,8 +105,8 @@
       "type": "domain-specific",
       "enforcement": "require",
       "priority": "medium",
-      "description": "Create animated diagrams with design excellence - avoid AI slop, distinctive chart typography, cohesive themes",
-      "skillPath": ".claude/skills/diagram-drawing.md",
+      "description": "Create animated diagrams, infographics, and complex visualizations with Chart.js and D3.js - design excellence, distinctive typography, cohesive themes",
+      "skillPath": "core/infrastructure/skills/diagram-drawing/SKILL.md",
       "promptTriggers": {
         "keywords": [
           "diagram", "chart", "graph", "infographic", "visualization",
@@ -114,7 +114,11 @@
           "data visualization", "data viz", "export", "png", "svg", "pdf",
           "chartjs", "chart.js", "render diagram", "create chart",
           "chart design", "chart theme", "chart colors", "chart typography",
-          "chart animation", "chart accessibility", "colorblind safe"
+          "chart animation", "chart accessibility", "colorblind safe",
+          "network graph", "system architecture", "force directed", "node graph",
+          "dependency graph", "relationship diagram", "d3.js", "d3",
+          "sankey", "chord diagram", "sunburst", "treemap", "flow diagram",
+          "interactive dashboard", "coordinated views", "brushing and linking"
         ],
         "intentPatterns": [
           "(create|build|generate|render).*?(diagram|chart|graph|infographic)",
@@ -122,17 +126,80 @@
           "(visualize|plot|display).*?(data|metrics|statistics)",
           "line chart|bar chart|pie chart|scatter plot",
           "(design|style|theme).*?(chart|diagram|infographic)",
-          "(improve|enhance).*?(chart design|visualization)"
+          "(improve|enhance).*?(chart design|visualization)",
+          "(create|build|render).*?(network|dependency|flow).*?(graph|diagram)",
+          "(visualize|map).*?(system architecture|relationships|connections)",
+          "sankey|chord|sunburst|treemap|force.*?directed"
         ]
       },
       "autoActivate": true,
-      "reminderMessage": "💡 Diagram Drawing skill activated - Design excellence for data viz, avoid AI slop aesthetics"
+      "reminderMessage": "💡 Diagram Drawing skill activated - Chart.js + D3.js for standard charts, network graphs, infographics, complex visualizations"
+    },
+
+    "design-excellence": {
+      "type": "infrastructure",
+      "enforcement": "require",
+      "priority": "high",
+      "description": "Design excellence principles - typography anti-patterns, color theory, motion design, avoid AI slop",
+      "skillPath": "core/infrastructure/skills/design-excellence/SKILL.md",
+      "promptTriggers": {
+        "keywords": [
+          "design", "UX", "UI", "frontend", "visual design", "typography",
+          "color", "theme", "animation", "motion", "diagram", "chart", "infographic",
+          "aesthetic", "style", "layout", "responsive", "mobile", "web design"
+        ],
+        "intentPatterns": [
+          "(design|create|build).*?(UI|interface|component|layout)",
+          "(improve|enhance).*?(design|aesthetic|visual)",
+          "(choose|select).*?(typography|font|color|theme)",
+          "(style|theme).*?(application|website|component)"
+        ]
+      },
+      "autoActivate": true,
+      "reminderMessage": "💡 Design Excellence skill activated - Typography, color theory, motion design principles"
+    },
+
+    "data-visualization-designer": {
+      "type": "domain-specific",
+      "enforcement": "require",
+      "priority": "high",
+      "description": "Expert design guidance for truthful, clear data visualizations - chart selection, color strategy, validation",
+      "skillPath": "core/infrastructure/skills/data-visualization-designer/SKILL.md",
+      "promptTriggers": {
+        "keywords": [
+          "data viz",
+          "dashboard",
+          "chart type",
+          "color palette",
+          "visualization",
+          "infographic",
+          "chart selection",
+          "data storytelling",
+          "visualize data",
+          "colorblind",
+          "accessible visual",
+          "truthful visualization",
+          "misleading chart",
+          "chart design decision"
+        ],
+        "intentPatterns": [
+          "(design|choose|select).*?(chart|visualization)",
+          "visualiz(e|ation).*?data",
+          "(dashboard|infographic).*?design",
+          "which.*?chart.*?type",
+          "(create|design).*?(dashboard|data viz|infographic)",
+          "(validate|audit|check).*?(visualization|chart)",
+          "(avoid|prevent).*?(misleading|distortion)"
+        ]
+      },
+      "autoActivate": true,
+      "reminderMessage": "💡 Data Visualization Designer skill activated - Chart selection, color strategy, truthfulness validation"
     }
   },
 
   "config": {
     "cacheStrategy": "aggressive",
-    "maxSkillsPerPrompt": 3,
+    "maxSkillsPerPrompt": 5,
     "confidenceThreshold": 0.6,
     "debugMode": false
   }

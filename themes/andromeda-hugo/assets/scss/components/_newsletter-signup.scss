@@ -1,0 +1,60 @@
+/*
+  Newsletter Signup - v4.0 Enhanced
+  Glassmorphism card, gradient accent, animated submission
+*/
+.newsletter-section {
+  background: $gradient-warm-subtle;
+  position: relative;
+
+  .newsletter-card {
+    background: $gradient-glass-light;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: $radius-2xl;
+    padding: $space-8;
+    box-shadow: $shadow-glass;
+
+    @media (min-width: 992px) {
+      padding: $space-12;
+    }
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: $space-3;
+    max-width: 600px;
+    margin: 0 auto;
+
+    input[type="email"] {
+      flex: 1;
+      padding: $space-4;
+      border: 2px solid rgba($color-primary, 0.2);
+      border-radius: $radius-lg;
+      background: rgba(255, 255, 255, 0.9);
+      transition: all 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: $color-primary;
+        box-shadow: 0 0 0 4px rgba($color-primary, 0.1);
+      }
+    }
+
+    button {
+      padding: $space-4 $space-8;
+      background: $gradient-warm-vibrant;
+      color: #fff;
+      border: none;
+      border-radius: $radius-lg;
+      font-weight: $weight-semibold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: $shadow-warm;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: $shadow-warm-lg;
+      }
+    }
+  }
+}

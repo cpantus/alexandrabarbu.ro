@@ -8,8 +8,8 @@
 
 1. **Run Hugo from theme directory**: `cd themes/andromeda-hugo && hugo server`
 2. **Preserve multilingual**: Maintain RO (root path) + EN (`/en/`) content parity
-3. **Flexible layout only**: Pages = Header + Sections (2-7) + Footer. Use 24 section types.
-4. **Reuse components**: 5 atoms → 17 molecules → 2 organisms → 24 sections
+3. **Flexible layout only**: Pages = Header + Sections (2-7) + Footer. Use 34 section types.
+4. **Reuse components**: 5 atoms → 21 molecules → 2 organisms → 34 sections
 5. **Test both languages**: Verify `/{page}` (RO) and `/en/{page}` (EN)
 6. **Enhanced design system**: Use glassmorphism, gradients, and organic shapes (v4.0)
 
@@ -20,9 +20,9 @@
 **Component Hierarchy** (v4.0 Enhanced):
 ```
 Atoms (5)        → button, heading, icon, image, input
-Molecules (17)   → card, form-field, accordion, nav, credential-badge, etc.
+Molecules (21)   → card, form-field, accordion, nav, credential-badge, etc.
 Organisms (2)    → header, footer
-Sections (24)    → 19 core + 5 enhanced premium components
+Sections (34)    → 27 core + 2 specialized + 5 enhanced premium components
 
 Page = Header + Sections Array + Footer
 ```
@@ -33,9 +33,9 @@ layouts/
 ├── _default/flexible.html      # Layout engine (STABLE)
 └── partials/
     ├── atoms/                  # 5 basic components
-    ├── molecules/              # 17 composite components
+    ├── molecules/              # 21 composite components
     ├── organisms/              # 2 complex (header, footer)
-    └── sections/               # 24 page sections (5 enhanced v4.0)
+    └── sections/               # 34 page sections (5 enhanced v4.0)
 
 assets/
 ├── scss/
@@ -54,19 +54,62 @@ assets/
 
 ---
 
-## Available Sections (24)
+## Available Sections (34)
 
-**Core**: hero-breadcrumb, values-intro, feature-details, blog-grid, cta-standard
-**Interactive**: video-popup, faq-mini, faq-content, method-tabs
-**Forms**: contact-form-enhanced, signup-form-enhanced, newsletter-signup
-**Info**: contact-info-cards, onboarding-steps, privacy-guarantee, confidentiality-notice, job-listings
-**Enhanced v4.0** ⭐:
+### Core Foundation (5)
+Essential page components for structure and navigation:
+- `hero-breadcrumb` - Page header with title, subtitle, breadcrumb navigation
+- `values-intro` - Value proposition introduction with CTAs
+- `feature-details` - Detailed feature showcase
+- `blog-grid` - Blog post grid with pagination
+- `cta-standard` - Standard call-to-action section
+
+### Interactive (4)
+Engagement components with user interaction:
+- `video-popup` - Video modal with play button overlay
+- `faq-mini` - Compact FAQ accordion (3-5 questions)
+- `faq-content` - Full FAQ section with categorization
+- `method-tabs` - Tabbed content switcher for methodology
+
+### Forms (3)
+User input and data collection:
+- `contact-form-enhanced` - Full contact form with validation
+- `signup-form-enhanced` - Newsletter/service signup form
+- `newsletter-signup` - Simple email subscription
+
+### Info & Trust (7)
+Trust-building and informational components:
+- `contact-info-cards` - Contact methods (phone, email, location)
+- `contact-options` - Alternative contact channels
+- `onboarding-steps` - Process timeline for new clients
+- `privacy-guarantee` - Privacy and confidentiality assurance
+- `confidentiality-notice` - Legal confidentiality notice
+- `job-listings` - Career opportunities section
+- `professional-affiliations` - Credentials and memberships
+
+### Enhanced v4.0 (5) ⭐
+Premium components with glassmorphism, gradients, and animations:
 - `values-compass` - Compass-pattern layout with glassmorphism (NEW)
 - `feature-blocks` - Zigzag layout with parallax scrolling
-- `pricing-tables` - Featured tier elevation with tooltips
+- `pricing-tables` - Featured tier elevation with comparison tooltips
 - `stats-numbers` - SVG progress rings with animated counting
-- `credentials-showcase` - Gradient icons with circular grid
-**Legacy**: benefits-grid (use values-compass instead), problem-empathy, timeline-process, related-services, service-highlights
+- `credentials-showcase` - Gradient icon circles with credential badges
+
+### Specialized Therapy (5)
+Psychology practice-specific sections:
+- `first-session-timeline` - What to expect in first session
+- `therapist-match` - Therapist compatibility assessment
+- `service-faq-inline` - Service-specific inline FAQ
+- `testimonials-enhanced` - Client testimonials with photos
+- `office-gallery` - Office photos with lightbox
+
+### General Purpose (5)
+Reusable content sections (consider upgrading to v4.0 equivalents):
+- `benefits-grid` - Grid of benefits/features (v4.0: use values-compass)
+- `problem-empathy` - Problem statement with empathy
+- `timeline-process` - Linear process timeline
+- `related-services` - Cross-sell related services
+- `service-highlights` - Service feature highlights
 
 ---
 
@@ -159,6 +202,79 @@ headings_brand_color = true
 {{ site.Data.shared_sections.pricing_plans }}    # Shared data
 {{ site.Params.design.headings_brand_color }}    # Site params
 ```
+
+---
+
+## Color Variant Usage Guidelines
+
+### Button Variants Strategy
+
+Achieve balanced color distribution (50-60% emerald, 20-30% terracotta, 10-20% supporting colors) through strategic variant assignment:
+
+**Available Button Variants:**
+- `primary` (emerald) - Main actions, trust signals
+- `secondary` (terracotta) - Warm actions, personal connection
+- `outline-primary` (emerald outline) - Secondary actions
+- `outline-secondary` (terracotta outline) - Tertiary actions
+
+**Selection Decision Tree:**
+1. **Hero/CTA sections** → Use `primary` (emerald - trust, expertise)
+2. **Personal/warm sections** → Use `secondary` (terracotta - connection, warmth)
+3. **Alternating pattern** → Avoid color monotony by varying adjacent sections
+4. **Hierarchy** → Primary > Secondary > Outline-primary > Outline-secondary
+
+**Visual Rhythm Pattern (Recommended):**
+```yaml
+sections:
+  - type: "hero-breadcrumb"
+    button_variant: "primary"           # Section 1: Emerald (trust)
+  - type: "values-compass"
+    button_variant: "secondary"         # Section 2: Terracotta (warmth)
+  - type: "feature-blocks"
+    button_variant: "outline-primary"   # Section 3: Emerald outline
+  - type: "testimonials"
+    button_variant: "secondary"         # Section 4: Terracotta (personal)
+  - type: "cta-standard"
+    button_variant: "primary"           # Section 5: Emerald (action)
+```
+
+### Credential Badge Variants
+
+**8 Available Variants:**
+- `primary` (emerald gradient) - Main credentials, certifications
+- `secondary` (terracotta gradient) - Warm trust signals
+- `coral` (coral gradient) - Compassionate qualities
+- `premium` (plum gradient) - Premium/specialized credentials
+- `sage` (sage gradient) - Calm/holistic approaches
+- `info` (blue gradient) - Educational background
+- `success` (green gradient) - Achievements
+- `warning` (amber gradient) - Important notices
+
+**Semantic Usage:**
+```yaml
+credentials_showcase:
+  credentials:
+    - badge_variant: "primary"      # Licensed Psychologist
+    - badge_variant: "secondary"    # 15+ years experience
+    - badge_variant: "coral"        # Person-centered approach
+    - badge_variant: "premium"      # Trauma specialist
+```
+
+**Balance Guidelines:**
+- **Homepage:** Mix 3-4 different badge variants (avoid all-emerald)
+- **Service pages:** 2-3 variants focused on service theme
+- **About page:** 4-6 variants showcasing full credentials
+
+### Common Mistakes to Avoid
+
+❌ **All sections use primary variant** → 90% emerald monotony
+✅ **Alternating pattern** → Balanced 50-60% emerald, 20-30% terracotta
+
+❌ **Random variant selection** → Visual chaos
+✅ **Semantic selection** → Trust/action = primary, warmth/personal = secondary
+
+❌ **All credentials same color** → Bland, undifferentiated
+✅ **Mixed credential badges** → Visual interest, clear differentiation
 
 ---
 

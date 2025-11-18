@@ -1,0 +1,139 @@
+{{/*
+  Section Color Index Helper
+  Version: 4.1.0 - Design System Enhancement (TIER 0)
+
+  Purpose: Calculate automatic color assignments for section items
+  Zero-configuration color distribution with 4-tier fallback chain
+
+  Usage:
+    {{ $color := partial "meta/section-color-index.html" (dict
+      "item_variant" .button_variant
+      "section_variant" $section.button_variant
+      "color_theme" $section.color_theme
+      "index" $index
+      "type" "button"
+    ) }}
+
+  Parameters:
+    - item_variant (string, optional): Item-level color variant (highest priority)
+    - section_variant (string, optional): Section-level color variant
+    - color_theme (string, optional): Section color theme (default, warm, professional, badge)
+    - index (int, required): Item index (0-based)
+    - type (string, required): Component type (button, badge, icon, card)
+
+  Returns:
+    Color variant string (primary, secondary, coral, sage, etc.)
+*/}}
+
+{{- $item_variant := .item_variant | default "" -}}
+{{- $section_variant := .section_variant | default "" -}}
+{{- $color_theme := .color_theme | default "default" -}}
+{{- $index := .index | default 0 -}}
+{{- $type := .type | default "button" -}}
+
+{{/*
+  Palette Definitions
+  Maps for each color theme matching SCSS palettes in _color-system.scss
+*/}}
+{{- $palette_default := dict
+  "0" "primary"
+  "1" "secondary"
+  "2" "outline-primary"
+  "3" "secondary"
+-}}
+
+{{- $palette_warm := dict
+  "0" "secondary"
+  "1" "coral"
+  "2" "secondary"
+  "3" "coral"
+-}}
+
+{{- $palette_professional := dict
+  "0" "primary"
+  "1" "outline-primary"
+  "2" "primary"
+  "3" "secondary"
+-}}
+
+{{- $palette_badge := dict
+  "0" "primary"
+  "1" "secondary"
+  "2" "coral"
+  "3" "premium"
+  "4" "sage"
+  "5" "info"
+  "6" "success"
+  "7" "amber"
+-}}
+
+{{/*
+  4-Tier Fallback Chain
+  1. Item-level variant (highest priority)
+  2. Section-level variant
+  3. Theme-based calculated variant
+  4. CSS fallback (handled by _color-system.scss, not here)
+*/}}
+
+{{- $calculated_variant := "" -}}
+
+{{/* TIER 1: Item-level variant (highest priority) */}}
+{{- if $item_variant -}}
+  {{- $calculated_variant = $item_variant -}}
+
+{{/* TIER 2: Section-level variant */}}
+{{- else if $section_variant -}}
+  {{- $calculated_variant = $section_variant -}}
+
+{{/* TIER 3: Theme-based calculated variant */}}
+{{- else -}}
+  {{/* Select palette based on theme */}}
+  {{- $palette := $palette_default -}}
+
+  {{- if eq $color_theme "warm" -}}
+    {{- $palette = $palette_warm -}}
+  {{- else if eq $color_theme "professional" -}}
+    {{- $palette = $palette_professional -}}
+  {{- else if eq $color_theme "badge" -}}
+    {{- $palette = $palette_badge -}}
+  {{- end -}}
+
+  {{/* Calculate index modulo palette size for rotation */}}
+  {{- $palette_size := len $palette -}}
+  {{- $index_mod := mod $index $palette_size -}}
+  {{- $index_key := printf "%d" $index_mod -}}
+
+  {{/* Get variant from palette */}}
+  {{- $calculated_variant = index $palette $index_key -}}
+
+{{- end -}}
+
+{{/*
+  Component-Specific Class Prefix
+  Different component types need different CSS class prefixes
+*/}}
+{{- $class_prefix := "" -}}
+
+{{- if eq $type "button" -}}
+  {{- $class_prefix = "btn-" -}}
+{{- else if eq $type "badge" -}}
+  {{- $class_prefix = "credential-badge-" -}}
+{{- else if eq $type "icon" -}}
+  {{- $class_prefix = "icon-" -}}
+{{- else if eq $type "card" -}}
+  {{- $class_prefix = "card-" -}}
+{{- else -}}
+  {{/* Default: button */}}
+  {{- $class_prefix = "btn-" -}}
+{{- end -}}
+
+{{/*
+  Return full CSS class
+  Example outputs:
+  - btn-primary
+  - credential-badge-secondary
+  - icon-coral
+  - card-sage
+*/}}
+{{- $full_class := printf "%s%s" $class_prefix $calculated_variant -}}
+{{- return $full_class -}}

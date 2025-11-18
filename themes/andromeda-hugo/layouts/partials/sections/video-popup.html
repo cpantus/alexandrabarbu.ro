@@ -13,7 +13,7 @@
             <div class="block">
               <div class="section-title text-center" data-aos="fade-up">
                 <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
-                {{ partial "atoms/heading.html" (dict "level" "h2" "text" .title "class" "title" "markdown" true) }}
+                {{ partial "atoms/heading.html" (dict "level" "h2" "text" .title "class" "title" "markdown" true "colorVariant" "primary") }}
                 <p>{{ .description | markdownify }}</p>
               </div>
 

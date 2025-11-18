@@ -369,3 +369,8 @@ $nav-link-transition: color $duration-fast $ease-in-out;
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Import Design Patterns - Automatic Color Distribution (v4.1+) */
+/* Placed at end to ensure all variables are defined */
+@import "design-patterns";

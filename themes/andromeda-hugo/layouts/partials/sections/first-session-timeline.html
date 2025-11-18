@@ -12,7 +12,7 @@
         <p class="text-primary text-uppercase fw-semibold mb-2">{{ $section.subtitle }}</p>
         {{- end -}}
         {{- if $section.title -}}
-        {{ partial "atoms/heading.html" (dict "text" $section.title "level" 2 "class" "mb-3") }}
+        {{ partial "atoms/heading.html" (dict "text" $section.title "level" 2 "class" "mb-3" "colorVariant" "primary") }}
         {{- end -}}
         {{- if $section.description -}}
         <p class="text-muted lead">{{ $section.description }}</p>
@@ -27,6 +27,9 @@
         <div class="timeline-container">
           {{- range $index, $step := $section.steps -}}
           {{- $isLast := eq (add $index 1) (len $section.steps) -}}
+          {{- $colorVariants := slice "primary" "secondary" "coral" -}}
+          {{- $colorIndex := mod $index (len $colorVariants) -}}
+          {{- $colorVariant := index $colorVariants $colorIndex -}}
 
           <div class="timeline-step{{ if not $isLast }} timeline-step-connected{{ end }}"
                data-aos="fade-up"
@@ -36,9 +39,9 @@
             <div class="timeline-marker">
               <div class="timeline-icon">
                 {{- if $step.icon -}}
-                {{ partial "atoms/icon.html" (dict "icon" $step.icon "size" "24") }}
+                {{ partial "atoms/icon.html" (dict "name" $step.icon "size" "24" "withWrapper" true "wrapperVariant" $colorVariant "wrapperSize" "md") }}
                 {{- else -}}
-                <span class="timeline-number">{{ add $index 1 }}</span>
+                <span class="timeline-number icon-circle icon-circle-{{ $colorVariant }} icon-circle-md">{{ add $index 1 }}</span>
                 {{- end -}}
               </div>
               {{- if $step.duration -}}
@@ -49,7 +52,7 @@
             <!-- Timeline Content -->
             <div class="timeline-content">
               {{- if $step.title -}}
-              {{ partial "atoms/heading.html" (dict "text" $step.title "level" 4 "class" "mb-2") }}
+              {{ partial "atoms/heading.html" (dict "text" $step.title "level" 4 "class" "mb-2" "colorVariant" $colorVariant) }}
               {{- end -}}
 
               {{- if $step.description -}}
@@ -60,7 +63,7 @@
               <ul class="timeline-highlights">
                 {{- range $step.highlights -}}
                 <li>
-                  {{ partial "atoms/icon.html" (dict "icon" "las la-check-circle" "class" "text-primary me-2") }}
+                  {{ partial "atoms/icon.html" (dict "name" "check-circle" "class" "text-primary me-2") }}
                   <span>{{ . }}</span>
                 </li>
                 {{- end -}}
@@ -78,7 +81,7 @@
     <div class="row justify-content-center mt-5">
       <div class="col-lg-8">
         <div class="reassurance-box text-center p-4 rounded-3 bg-white border border-primary border-opacity-25">
-          {{ partial "atoms/icon.html" (dict "icon" "las la-heart" "size" "32" "class" "text-primary mb-3") }}
+          {{ partial "atoms/icon.html" (dict "name" "heart" "size" "32" "class" "text-primary mb-3") }}
           <p class="mb-0 text-muted">{{ $section.reassurance }}</p>
         </div>
       </div>
@@ -92,7 +95,7 @@
         {{ partial "atoms/button.html" (dict
           "text" $section.cta.text
           "url" $section.cta.url
-          "variant" (default "primary" $section.cta.variant)
+          "variant" (default "primary" (default $section.button_variant $section.cta.variant))
           "icon" $section.cta.icon
         ) }}
       </div>

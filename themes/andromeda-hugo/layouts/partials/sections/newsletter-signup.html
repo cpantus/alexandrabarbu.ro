@@ -14,10 +14,13 @@
                   "size" "3x"
                   "color" "white"
                   "class" "mb-3"
+                  "withWrapper" true
+                  "wrapperVariant" "secondary"
+                  "wrapperSize" "xl"
                 ) }}
               {{ end }}
               {{ if .title }}
-                {{ partial "atoms/heading.html" (dict "text" (.title | markdownify) "level" "h3" "class" "text-white mb-3") }}
+                {{ partial "atoms/heading.html" (dict "text" (.title | markdownify) "level" "h3" "class" "text-white mb-3" "colorVariant" "secondary") }}
               {{ end }}
               {{ if .description }}
                 <p class="text-white-50 mb-4">{{ .description | markdownify }}</p>
@@ -64,7 +67,7 @@
                 {{ partial "atoms/button.html" (dict
                   "type" "submit"
                   "text" (.button_text | default (i18n "subscribe" | default "Abonează-te"))
-                  "variant" "secondary"
+                  "variant" (.button_variant | default "secondary")
                   "size" "lg"
                   "fullWidth" true
                 ) }}

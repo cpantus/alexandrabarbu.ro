@@ -1,0 +1,423 @@
+/*
+========================================================================
+  Color System Foundation - Automatic Color Distribution
+  Version: 4.1.0 - Design System Enhancement (TIER 0)
+
+  Purpose: Automatic 50-30-20 color distribution (emerald/terracotta/others)
+  Zero content configuration required - Smart defaults + CSS fallbacks
+========================================================================
+*/
+
+@import '../design-tokens';
+
+/*------------------------------------------------------------------
+  # Color Assignment Utilities
+  # Automatic color distribution with 4-tier fallback chain
+-------------------------------------------------------------------*/
+
+/**
+ * Color Palette Definitions
+ * Maps for each section color theme (default, warm, professional, badge)
+ */
+
+/* Default Palette (50% emerald, 50% terracotta) */
+$palette-default: (
+  0: 'primary',           // Emerald
+  1: 'secondary',         // Terracotta
+  2: 'outline-primary',   // Emerald outline
+  3: 'secondary',         // Terracotta
+);
+
+/* Warm Palette (75% terracotta/coral) */
+$palette-warm: (
+  0: 'secondary',         // Terracotta
+  1: 'coral',             // Coral
+  2: 'secondary',         // Terracotta
+  3: 'coral',             // Coral
+);
+
+/* Professional Palette (75% emerald) */
+$palette-professional: (
+  0: 'primary',           // Emerald
+  1: 'outline-primary',   // Emerald outline
+  2: 'primary',           // Emerald
+  3: 'secondary',         // Terracotta (balance)
+);
+
+/* Badge Palette (8-color rotation for credentials) */
+$palette-badge: (
+  0: 'primary',           // Emerald
+  1: 'secondary',         // Terracotta
+  2: 'coral',             // Coral
+  3: 'premium',           // Plum
+  4: 'sage',              // Sage
+  5: 'info',              // Blue
+  6: 'success',           // Green
+  7: 'amber',             // Amber
+);
+
+/**
+ * Get Color from Palette
+ * @param {string} $palette-name - Palette name (default, warm, professional, badge)
+ * @param {number} $index - Item index (0-based)
+ * @return {string} - Variant name (primary, secondary, etc.)
+ */
+@function get-palette-color($palette-name: 'default', $index: 0) {
+  $palette: $palette-default;
+
+  @if $palette-name == 'warm' {
+    $palette: $palette-warm;
+  } @else if $palette-name == 'professional' {
+    $palette: $palette-professional;
+  } @else if $palette-name == 'badge' {
+    $palette: $palette-badge;
+  }
+
+  // Calculate modulo for rotation
+  $palette-size: length($palette);
+  $index-mod: $index % $palette-size;
+
+  @return map-get($palette, $index-mod);
+}
+
+/**
+ * Get Button Variant Class
+ * Smart fallback chain: item → section → theme → calculated → CSS
+ * @param {string} $item-variant - Item-level variant (highest priority)
+ * @param {string} $section-variant - Section-level variant
+ * @param {string} $color-theme - Section color theme (default, warm, professional)
+ * @param {number} $index - Item index for calculated variant
+ * @return {string} - Button class (btn-primary, btn-secondary, etc.)
+ */
+@function get-button-variant($item-variant: null, $section-variant: null, $color-theme: 'default', $index: 0) {
+  // 1. Item-level variant (highest priority)
+  @if $item-variant {
+    @return 'btn-#{$item-variant}';
+  }
+
+  // 2. Section-level variant
+  @if $section-variant {
+    @return 'btn-#{$section-variant}';
+  }
+
+  // 3. Theme-based calculated variant
+  $calculated-variant: get-palette-color($color-theme, $index);
+  @return 'btn-#{$calculated-variant}';
+}
+
+/**
+ * Get Badge Variant Class
+ * Smart fallback chain: item → section → theme → calculated → CSS
+ * @param {string} $item-variant - Item-level variant (highest priority)
+ * @param {string} $section-variant - Section-level variant
+ * @param {string} $color-theme - Section color theme (badge palette default)
+ * @param {number} $index - Item index for calculated variant
+ * @return {string} - Badge class (credential-badge-primary, etc.)
+ */
+@function get-badge-variant($item-variant: null, $section-variant: null, $color-theme: 'badge', $index: 0) {
+  // 1. Item-level variant (highest priority)
+  @if $item-variant {
+    @return 'credential-badge-#{$item-variant}';
+  }
+
+  // 2. Section-level variant
+  @if $section-variant {
+    @return 'credential-badge-#{$section-variant}';
+  }
+
+  // 3. Theme-based calculated variant (badge palette for variety)
+  $calculated-variant: get-palette-color($color-theme, $index);
+  @return 'credential-badge-#{$calculated-variant}';
+}
+
+/**
+ * Get Icon Gradient Variant
+ * Returns gradient class for icon backgrounds
+ * @param {string} $variant - Color variant (primary, secondary, coral, etc.)
+ * @return {string} - Gradient class (gradient-icon-primary, etc.)
+ */
+@function get-icon-gradient($variant: 'primary') {
+  @return 'gradient-icon-#{$variant}';
+}
+
+/*------------------------------------------------------------------
+  # CSS Custom Properties (CSS Variables)
+  # For runtime color assignment and theming
+-------------------------------------------------------------------*/
+
+:root {
+  /* Button Variant Colors */
+  --btn-primary-bg: #{$emerald-500};
+  --btn-primary-hover: #{$emerald-600};
+  --btn-primary-text: #ffffff;
+
+  --btn-secondary-bg: #{$terracotta-500};
+  --btn-secondary-hover: #{$terracotta-600};
+  --btn-secondary-text: #ffffff;
+
+  --btn-outline-primary-border: #{$emerald-500};
+  --btn-outline-primary-text: #{$emerald-600};
+  --btn-outline-primary-hover-bg: #{$emerald-50};
+
+  --btn-outline-secondary-border: #{$terracotta-500};
+  --btn-outline-secondary-text: #{$terracotta-600};
+  --btn-outline-secondary-hover-bg: #{$terracotta-50};
+
+  /* Badge Variant Colors (Gradients) */
+  --badge-primary-gradient: linear-gradient(135deg, #{$emerald-400} 0%, #{$emerald-600} 100%);
+  --badge-secondary-gradient: linear-gradient(135deg, #{$terracotta-400} 0%, #{$terracotta-600} 100%);
+  --badge-coral-gradient: linear-gradient(135deg, #{$coral-400} 0%, #{$coral-600} 100%);
+  --badge-premium-gradient: linear-gradient(135deg, #{$plum-400} 0%, #{$plum-600} 100%);
+  --badge-sage-gradient: linear-gradient(135deg, #{$sage-400} 0%, #{$sage-600} 100%);
+  --badge-info-gradient: linear-gradient(135deg, #{$teal-400} 0%, #{$teal-600} 100%);
+  --badge-success-gradient: linear-gradient(135deg, #{$sage-500} 0%, #{$sage-700} 100%);
+  --badge-amber-gradient: linear-gradient(135deg, #{$amber-400} 0%, #{$amber-600} 100%);
+
+  /* Icon Gradient Backgrounds */
+  --icon-gradient-primary: linear-gradient(135deg, #{$emerald-400} 0%, #{$emerald-500} 100%);
+  --icon-gradient-secondary: linear-gradient(135deg, #{$terracotta-400} 0%, #{$terracotta-500} 100%);
+  --icon-gradient-coral: linear-gradient(135deg, #{$coral-400} 0%, #{$coral-500} 100%);
+  --icon-gradient-premium: linear-gradient(135deg, #{$plum-400} 0%, #{$plum-500} 100%);
+  --icon-gradient-sage: linear-gradient(135deg, #{$sage-400} 0%, #{$sage-500} 100%);
+  --icon-gradient-info: linear-gradient(135deg, #{$teal-400} 0%, #{$teal-500} 100%);
+
+  /* Card Border Colors (for service-highlights, related-services) */
+  --card-border-primary: #{$emerald-200};
+  --card-border-secondary: #{$terracotta-200};
+  --card-border-coral: #{$coral-200};
+  --card-border-sage: #{$sage-200};
+
+  /* Card Hover Shadows (colored shadows) */
+  --card-shadow-primary: 0 10px 30px -5px rgba(#{red($emerald-400)}, #{green($emerald-400)}, #{blue($emerald-400)}, 0.2);
+  --card-shadow-secondary: 0 10px 30px -5px rgba(#{red($terracotta-400)}, #{green($terracotta-400)}, #{blue($terracotta-400)}, 0.2);
+  --card-shadow-coral: 0 10px 30px -5px rgba(#{red($coral-400)}, #{green($coral-400)}, #{blue($coral-400)}, 0.2);
+}
+
+/*------------------------------------------------------------------
+  # CSS Fallback Classes (nth-child selectors)
+  # Ultimate safety net when no variant specified anywhere
+-------------------------------------------------------------------*/
+
+/**
+ * Button Color Fallback (50-30-20 distribution)
+ * Applied when no explicit variant set in Hugo template
+ */
+.btn-auto-color,
+.service-card .btn:not([class*="btn-"]),
+.related-service .btn:not([class*="btn-"]),
+.feature-highlight .btn:not([class*="btn-"]) {
+  // Default: primary (emerald)
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+
+  &:hover {
+    background: var(--btn-primary-hover);
+  }
+
+  // Alternate: secondary (terracotta) - 50% of items
+  &:nth-child(2n) {
+    background: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+
+    &:hover {
+      background: var(--btn-secondary-hover);
+    }
+  }
+
+  // Every 4th: outline-primary (emerald outline) - 25% of items
+  &:nth-child(4n+3) {
+    background: transparent;
+    border: 2px solid var(--btn-outline-primary-border);
+    color: var(--btn-outline-primary-text);
+
+    &:hover {
+      background: var(--btn-outline-primary-hover-bg);
+    }
+  }
+}
+
+/**
+ * Badge Color Fallback (8-color rotation)
+ * Applied when no explicit variant set in Hugo template
+ */
+.credential-badge-auto,
+.credential-item:not([class*="credential-badge-"]) .credential-badge {
+  // Rotate through 8 variants for maximum visual variety
+  background: var(--badge-primary-gradient);
+
+  &:nth-child(8n+2) { background: var(--badge-secondary-gradient); }
+  &:nth-child(8n+3) { background: var(--badge-coral-gradient); }
+  &:nth-child(8n+4) { background: var(--badge-premium-gradient); }
+  &:nth-child(8n+5) { background: var(--badge-sage-gradient); }
+  &:nth-child(8n+6) { background: var(--badge-info-gradient); }
+  &:nth-child(8n+7) { background: var(--badge-success-gradient); }
+  &:nth-child(8n+8) { background: var(--badge-amber-gradient); }
+}
+
+/**
+ * Icon Gradient Fallback (4-color rotation)
+ * Applied when no explicit variant set in Hugo template
+ */
+.icon-gradient-auto,
+.feature-icon:not([class*="icon-gradient-"]),
+.benefit-icon:not([class*="icon-gradient-"]) {
+  background: var(--icon-gradient-primary);
+
+  &:nth-child(4n+2) { background: var(--icon-gradient-secondary); }
+  &:nth-child(4n+3) { background: var(--icon-gradient-coral); }
+  &:nth-child(4n+4) { background: var(--icon-gradient-sage); }
+}
+
+/**
+ * Card Border Color Fallback (4-color rotation)
+ * Applied when no explicit variant set in Hugo template
+ */
+.card-border-auto,
+.service-highlight:not([class*="card-border-"]),
+.related-service-card:not([class*="card-border-"]) {
+  border-top-color: var(--card-border-primary);
+
+  &:nth-child(4n+2) { border-top-color: var(--card-border-secondary); }
+  &:nth-child(4n+3) { border-top-color: var(--card-border-coral); }
+  &:nth-child(4n+4) { border-top-color: var(--card-border-sage); }
+
+  // Colored shadow on hover
+  &:hover {
+    box-shadow: var(--card-shadow-primary);
+
+    &:nth-child(4n+2) { box-shadow: var(--card-shadow-secondary); }
+    &:nth-child(4n+3) { box-shadow: var(--card-shadow-coral); }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Utility Classes
+  # Manual classes for explicit color control
+-------------------------------------------------------------------*/
+
+/**
+ * Explicit Color Theme Classes
+ * Apply to section containers to enforce specific palette
+ */
+.color-theme-default {
+  // Uses default 50-50 emerald/terracotta distribution
+}
+
+.color-theme-warm {
+  // 75% terracotta/coral
+  .btn-auto-color {
+    background: var(--btn-secondary-bg);
+
+    &:nth-child(4n+1),
+    &:nth-child(4n+3) {
+      background: var(--btn-secondary-bg);
+    }
+
+    &:nth-child(4n+2),
+    &:nth-child(4n+4) {
+      background: var(--btn-primary-bg);
+    }
+  }
+}
+
+.color-theme-professional {
+  // 75% emerald
+  .btn-auto-color {
+    background: var(--btn-primary-bg);
+
+    &:nth-child(4n+2) {
+      background: var(--btn-outline-primary-border);
+      border: 2px solid var(--btn-outline-primary-border);
+      color: var(--btn-outline-primary-text);
+    }
+
+    &:nth-child(4n+4) {
+      background: var(--btn-secondary-bg);
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Component-Specific Overrides
+  # Fine-tuned color distribution per component type
+-------------------------------------------------------------------*/
+
+/**
+ * Related Services Section
+ * Enforces strict 50-50 emerald/terracotta alternation
+ */
+.related-services-section {
+  .service-card {
+    &:nth-child(odd) .btn {
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
+    }
+
+    &:nth-child(even) .btn {
+      background: var(--btn-secondary-bg);
+      color: var(--btn-secondary-text);
+    }
+  }
+}
+
+/**
+ * Service Highlights Section
+ * Alternating border + icon colors
+ */
+.service-highlights-section {
+  .service-highlight {
+    &:nth-child(4n+1) {
+      border-top-color: var(--card-border-primary);
+      .icon-circle { background: var(--icon-gradient-primary); }
+    }
+
+    &:nth-child(4n+2) {
+      border-top-color: var(--card-border-secondary);
+      .icon-circle { background: var(--icon-gradient-secondary); }
+    }
+
+    &:nth-child(4n+3) {
+      border-top-color: var(--card-border-coral);
+      .icon-circle { background: var(--icon-gradient-coral); }
+    }
+
+    &:nth-child(4n+4) {
+      border-top-color: var(--card-border-sage);
+      .icon-circle { background: var(--icon-gradient-sage); }
+    }
+  }
+}
+
+/**
+ * Credentials Showcase Section
+ * 8-color badge rotation for maximum variety
+ */
+.credentials-showcase-section {
+  .credential-item {
+    &:nth-child(8n+1) .credential-badge { background: var(--badge-primary-gradient); }
+    &:nth-child(8n+2) .credential-badge { background: var(--badge-secondary-gradient); }
+    &:nth-child(8n+3) .credential-badge { background: var(--badge-coral-gradient); }
+    &:nth-child(8n+4) .credential-badge { background: var(--badge-premium-gradient); }
+    &:nth-child(8n+5) .credential-badge { background: var(--badge-sage-gradient); }
+    &:nth-child(8n+6) .credential-badge { background: var(--badge-info-gradient); }
+    &:nth-child(8n+7) .credential-badge { background: var(--badge-success-gradient); }
+    &:nth-child(8n+8) .credential-badge { background: var(--badge-amber-gradient); }
+  }
+}
+
+/*
+========================================================================
+  END Color System Foundation
+
+  Usage Summary:
+  1. SCSS Functions: get-button-variant(), get-badge-variant(), get-icon-gradient()
+  2. CSS Variables: --btn-primary-bg, --badge-primary-gradient, --icon-gradient-primary
+  3. Fallback Classes: .btn-auto-color, .credential-badge-auto, .icon-gradient-auto
+  4. Theme Classes: .color-theme-default, .color-theme-warm, .color-theme-professional
+
+  Fallback Chain (4 tiers):
+  Item variant → Section variant → Theme palette → Calculated (nth-child) → CSS fallback
+
+  Integration: Import this file in custom.scss AFTER design-tokens.scss
+========================================================================
+*/

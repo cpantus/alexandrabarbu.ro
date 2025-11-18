@@ -1,19 +1,20 @@
 {{/* FAQ Section - Hugo Way with Shortcodes */}}
 {{ with .Params.faq_section }}
-<section class="section pt-0">
+<section class="section pt-0 faq-section">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8">
         {{ with .title }}
         <div class="text-center mb-5">
-          {{ partial "atoms/heading.html" (dict "level" "h3" "text" . "class" "gradient-text") }}
+          {{- $headingVariant := $.Params.faq_section.heading_color_variant | default "primary" -}}
+          {{ partial "atoms/heading.html" (dict "level" "h3" "text" . "class" "gradient-text" "colorVariant" $headingVariant) }}
           {{ with $.Params.faq_section.subtitle }}
           <p class="text-muted">{{ . }}</p>
           {{ end }}
         </div>
         {{ end }}
-        
-        <div class="accordion faq-accordion" id="faqAccordion">
+
+        <div class="accordion faq-accordion faq-accordion-v4" id="faqAccordion">
           {{/* FAQ content will be rendered from markdown using shortcodes */}}
           {{ $.Content }}
         </div>

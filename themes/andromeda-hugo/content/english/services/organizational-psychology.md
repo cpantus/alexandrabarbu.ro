@@ -4,7 +4,7 @@ description: "Psychological assessments, training, leadership coaching, burnout 
 layout: "flexible"
 sections:
   - type: "hero-breadcrumb"
-  - type: "service-highlights"
+
   - type: "contact-form-enhanced"
 hero_image: "images/services/psihologie-org-hero.jpg"
 breadcrumb:
@@ -14,16 +14,6 @@ breadcrumb:
     url: "/en/services/"
   - name: "Organizational Psychology"
     url: "/en/services/organizational-psychology/"
-service_highlights:
-  enable: true
-  title: "Services for Organizations"
-  services:
-    - title: "Psychological Assessments"
-      description: "Personality tests, cognitive abilities, cultural fit for recruitment and promotions."
-      icon: "clipboard-check"
-    - title: "Training & Workshops"
-      description: "Effective communication, leadership, conflict management, teambuilding."
-      icon: "chalkboard-teacher"
 contact_form:
   enable: true
   title: "Request Custom Quote"

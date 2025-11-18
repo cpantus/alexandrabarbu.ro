@@ -1,0 +1,219 @@
+/*
+========================================================================
+  Hero Breadcrumb - Enhanced v4.0
+  Gradient overlays, glassmorphism, subtle animations
+========================================================================
+*/
+
+.page-header {
+  position: relative;
+  overflow: hidden;
+
+  // Gradient background overlay (v4.0)
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $gradient-warm-subtle;
+    opacity: 0.05;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  // Organic blob shape background (v4.0)
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 60%;
+    height: 150%;
+    background: radial-gradient(circle, rgba($green-200, 0.08) 0%, transparent 70%);
+    border-radius: $blob-soft;
+    z-index: 0;
+    pointer-events: none;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: float 20s ease-in-out infinite;
+    }
+  }
+
+  .block {
+    padding: $space-16 0;
+    position: relative;
+    z-index: 3;
+
+    @media (min-width: 992px) {
+      padding: $space-24 0;
+    }
+  }
+
+  .has-circle {
+    position: absolute;
+    top: 0;
+    left: $space-2;
+    height: 100%;
+    width: calc(100% - $space-6);
+    border-radius: $radius-xl;
+    background-color: rgba($color-primary, 0.05);
+    z-index: -1;
+  }
+
+  // Enhanced section title (v4.0)
+  .section-title {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    h1 {
+      position: relative;
+
+      // Subtle text gradient on hover (v4.0)
+      @media (min-width: 992px) {
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: $gradient-warm-vibrant;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+      }
+    }
+  }
+
+  // Glassmorphism breadcrumb (v4.0)
+  .breadcrumb {
+    background: $gradient-glass-light;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: $radius-lg;
+    padding: $space-2 $space-4;
+    box-shadow: $shadow-glass;
+    display: inline-flex;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: fadeIn 1s ease-out 0.3s backwards;
+    }
+
+    .breadcrumb-item {
+      a {
+        color: $color-text-secondary;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: $gradient-warm-vibrant;
+          transition: width 0.3s ease;
+        }
+
+        &:hover {
+          color: $color-primary;
+
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+
+      &.active {
+        color: $color-primary;
+        font-weight: 500;
+      }
+
+      + .breadcrumb-item::before {
+        color: $color-text-muted;
+        opacity: 0.5;
+      }
+    }
+  }
+
+  // Enhanced hero shapes (v4.0)
+  .hero-shapes {
+    position: relative;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: fadeInRight 0.8s ease-out 0.2s backwards;
+    }
+
+    img {
+      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
+      transition: transform 0.5s ease;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+
+    .shape-1,
+    .shape-2 {
+      position: absolute;
+      @media (prefers-reduced-motion: no-preference) {
+        animation: float 15s ease-in-out infinite;
+      }
+    }
+
+    .shape-2 {
+      animation-delay: -7.5s;
+      animation-duration: 18s;
+    }
+  }
+}
+
+// Keyframes for animations
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(1deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

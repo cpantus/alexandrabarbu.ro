@@ -1,0 +1,91 @@
+/*
+========================================================================
+  Heading Color Variants - v4.0 Design System
+  Version: 4.1.0 - TIER 1 Atom Upgrades
+
+  Purpose: Add color variants to heading atoms for v4.0 color distribution
+========================================================================
+*/
+
+@import '../design-tokens';
+
+/*------------------------------------------------------------------
+  # Heading Color Variants
+  # Apply brand color palette to headings
+-------------------------------------------------------------------*/
+
+/**
+ * Primary Variant (Emerald) - Default brand color
+ */
+.heading-primary {
+  color: $emerald-500;
+}
+
+/**
+ * Secondary Variant (Terracotta) - Warm, approachable
+ */
+.heading-secondary {
+  color: $terracotta-500;
+}
+
+/**
+ * Coral Variant - Compassionate, caring
+ */
+.heading-coral {
+  color: $coral-500;
+}
+
+/**
+ * Sage Variant - Calm, holistic
+ */
+.heading-sage {
+  color: $sage-500;
+}
+
+/**
+ * Info Variant (Blue) - Informational, clinical
+ */
+.heading-info {
+  color: $primary; // Bootstrap primary blue
+}
+
+/*------------------------------------------------------------------
+  # Responsive Typography
+  # Ensure heading colors maintain WCAG AA contrast
+-------------------------------------------------------------------*/
+
+// Dark background adjustments
+.bg-dark,
+.bg-primary,
+.bg-secondary {
+  .heading-primary,
+  .heading-secondary,
+  .heading-coral,
+  .heading-sage,
+  .heading-info {
+    color: $white; // Override for dark backgrounds
+  }
+}
+
+/*------------------------------------------------------------------
+  # Hover States
+  # Subtle color shifts on interactive headings
+-------------------------------------------------------------------*/
+
+a {
+  .heading-primary:hover {
+    color: darken($emerald-500, 10%);
+  }
+
+  .heading-secondary:hover {
+    color: darken($terracotta-500, 10%);
+  }
+
+  .heading-coral:hover {
+    color: darken($coral-500, 10%);
+  }
+
+  .heading-sage:hover {
+    color: darken($sage-500, 10%);
+  }
+}

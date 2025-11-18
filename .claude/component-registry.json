@@ -1,0 +1,327 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-07",
+  "components": {
+    "hooks": {
+      "pre-tool-use-bash": {
+        "path": "core/infrastructure/hooks/pre-tool-use-bash.ts",
+        "purpose": "Optimize bash commands before execution",
+        "capabilities": [
+          "bash command optimization",
+          "CLI tool replacement",
+          "token savings optimization",
+          "modern CLI tool integration"
+        ],
+        "domains": [
+          "bash optimization",
+          "CLI tools",
+          "command transformation",
+          "token reduction"
+        ],
+        "extensible": true,
+        "extensionPoints": [
+          {
+            "type": "rules",
+            "location": "core/infrastructure/hooks/utils/bash-optimizer.ts",
+            "interface": "OptimizationRule",
+            "description": "Add new command transformation rules to optimizationRules array"
+          }
+        ],
+        "relatedComponents": [
+          "core/infrastructure/hooks/utils/bash-optimizer.ts",
+          "core/infrastructure/hooks/utils/bash-optimizer-logger.ts"
+        ],
+        "keywords": [
+          "bash", "cli", "optimize", "grep", "find", "cat", "rg", "fd", "bat",
+          "command", "transformation", "modern tools", "ripgrep", "jq", "yq"
+        ]
+      },
+      "user-prompt-submit": {
+        "path": "core/infrastructure/hooks/user-prompt-submit.ts",
+        "purpose": "Auto-activate skills and patterns based on user input",
+        "capabilities": [
+          "skill auto-activation",
+          "pattern suggestion",
+          "documentation loading",
+          "context enrichment"
+        ],
+        "domains": [
+          "skill activation",
+          "pattern matching",
+          "context management"
+        ],
+        "extensible": false,
+        "keywords": [
+          "skill", "pattern", "auto-load", "activation", "context"
+        ]
+      },
+      "stop-event": {
+        "path": "core/infrastructure/hooks/stop-event.ts",
+        "purpose": "Cleanup and telemetry export on session stop",
+        "capabilities": [
+          "session cleanup",
+          "telemetry export",
+          "resource deallocation"
+        ],
+        "domains": [
+          "lifecycle management",
+          "telemetry",
+          "cleanup"
+        ],
+        "extensible": false,
+        "keywords": [
+          "stop", "cleanup", "telemetry", "session", "export"
+        ]
+      },
+      "pre-tool-use-write": {
+        "path": "core/infrastructure/hooks/pre-tool-use-write.ts",
+        "purpose": "Validate and guard file write operations",
+        "capabilities": [
+          "write validation",
+          "permission checking",
+          "backup creation",
+          "path validation"
+        ],
+        "domains": [
+          "file operations",
+          "write protection",
+          "validation"
+        ],
+        "extensible": false,
+        "keywords": [
+          "write", "file", "validation", "permission", "guard"
+        ]
+      },
+      "pre-tool-use-edit": {
+        "path": "core/infrastructure/hooks/pre-tool-use-edit.ts",
+        "purpose": "Validate and guard file edit operations",
+        "capabilities": [
+          "edit validation",
+          "diff generation",
+          "backup creation"
+        ],
+        "domains": [
+          "file operations",
+          "edit protection",
+          "validation"
+        ],
+        "extensible": false,
+        "keywords": [
+          "edit", "file", "validation", "diff", "modify"
+        ]
+      },
+      "post-tool-use-edit": {
+        "path": "core/infrastructure/hooks/post-tool-use-edit.ts",
+        "purpose": "Post-edit actions like formatting and git operations",
+        "capabilities": [
+          "auto-formatting",
+          "git staging",
+          "linting"
+        ],
+        "domains": [
+          "post-processing",
+          "formatting",
+          "git operations"
+        ],
+        "extensible": false,
+        "keywords": [
+          "format", "git", "post-edit", "lint", "stage"
+        ]
+      },
+      "background-agent": {
+        "path": "core/infrastructure/hooks/background-agent.ts",
+        "purpose": "Enable background agent execution",
+        "capabilities": [
+          "async execution",
+          "agent spawning",
+          "background tasks"
+        ],
+        "domains": [
+          "agent orchestration",
+          "async processing",
+          "background execution"
+        ],
+        "extensible": false,
+        "keywords": [
+          "background", "async", "agent", "spawn", "parallel"
+        ]
+      },
+      "agent-telemetry": {
+        "path": "core/infrastructure/hooks/agent-telemetry.ts",
+        "purpose": "Track agent cost and performance metrics",
+        "capabilities": [
+          "cost tracking",
+          "performance monitoring",
+          "usage analytics"
+        ],
+        "domains": [
+          "telemetry",
+          "monitoring",
+          "cost optimization"
+        ],
+        "extensible": false,
+        "keywords": [
+          "telemetry", "cost", "metrics", "monitoring", "performance"
+        ]
+      },
+      "context-bundle": {
+        "path": "core/infrastructure/hooks/context-bundle.ts",
+        "purpose": "Bundle and persist development context",
+        "capabilities": [
+          "context persistence",
+          "documentation bundling",
+          "session recovery"
+        ],
+        "domains": [
+          "context management",
+          "documentation",
+          "persistence"
+        ],
+        "extensible": false,
+        "keywords": [
+          "context", "bundle", "persist", "documentation", "recovery"
+        ]
+      }
+    },
+    "patterns": {
+      "meta": {
+        "component_hook": {
+          "path": "core/infrastructure/patterns/meta/component_hook.md",
+          "purpose": "Define standards for creating hook components",
+          "capabilities": [
+            "hook validation",
+            "structure definition",
+            "quality standards"
+          ],
+          "domains": [
+            "component creation",
+            "validation",
+            "standards"
+          ]
+        },
+        "component_pattern": {
+          "path": "core/infrastructure/patterns/meta/component_pattern.md",
+          "purpose": "Define standards for creating pattern components",
+          "capabilities": [
+            "pattern validation",
+            "structure definition",
+            "quality standards"
+          ],
+          "domains": [
+            "component creation",
+            "validation",
+            "standards"
+          ]
+        },
+        "component_skill": {
+          "path": "core/infrastructure/patterns/meta/component_skill.md",
+          "purpose": "Define standards for creating skill components",
+          "capabilities": [
+            "skill validation",
+            "structure definition",
+            "quality standards"
+          ],
+          "domains": [
+            "component creation",
+            "validation",
+            "standards"
+          ]
+        },
+        "component_agent": {
+          "path": "core/infrastructure/patterns/meta/component_agent.md",
+          "purpose": "Define standards for creating agent components",
+          "capabilities": [
+            "agent validation",
+            "structure definition",
+            "quality standards"
+          ],
+          "domains": [
+            "component creation",
+            "validation",
+            "standards"
+          ]
+        }
+      }
+    }
+  },
+  "domainOwnership": {
+    "bash optimization": {
+      "owner": "hooks/pre-tool-use-bash",
+      "description": "All bash command optimization and CLI tool integration",
+      "includesSubdomains": [
+        "CLI tool replacement",
+        "command transformation",
+        "token reduction for bash"
+      ]
+    },
+    "file operations": {
+      "owners": [
+        "hooks/pre-tool-use-write",
+        "hooks/pre-tool-use-edit",
+        "hooks/post-tool-use-edit"
+      ],
+      "description": "File creation, modification, and post-processing"
+    },
+    "context management": {
+      "owners": [
+        "hooks/user-prompt-submit",
+        "hooks/context-bundle"
+      ],
+      "description": "Context activation, enrichment, and persistence"
+    },
+    "telemetry": {
+      "owners": [
+        "hooks/agent-telemetry",
+        "hooks/stop-event"
+      ],
+      "description": "Performance tracking, cost monitoring, and metrics"
+    },
+    "agent orchestration": {
+      "owner": "hooks/background-agent",
+      "description": "Agent spawning, coordination, and background execution"
+    }
+  },
+  "intentMappings": [
+    {
+      "patterns": [
+        "integrate.*cli.*tools",
+        "add.*cli.*tool",
+        "optimize.*bash",
+        "transform.*command",
+        "replace.*grep.*with",
+        "modern.*cli"
+      ],
+      "mapTo": "hooks/pre-tool-use-bash",
+      "action": "extend",
+      "extensionPoint": "optimizationRules"
+    },
+    {
+      "patterns": [
+        "auto.*activate.*skill",
+        "load.*skill.*when",
+        "trigger.*pattern"
+      ],
+      "mapTo": "hooks/user-prompt-submit",
+      "action": "configure",
+      "configFile": "skill-rules.json"
+    },
+    {
+      "patterns": [
+        "validate.*write",
+        "guard.*file.*creation",
+        "prevent.*overwrite"
+      ],
+      "mapTo": "hooks/pre-tool-use-write",
+      "action": "extend_if_needed"
+    },
+    {
+      "patterns": [
+        "track.*cost",
+        "monitor.*performance",
+        "agent.*metrics"
+      ],
+      "mapTo": "hooks/agent-telemetry",
+      "action": "use_existing"
+    }
+  ]
+}

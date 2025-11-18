@@ -1,0 +1,136 @@
+{{- $section := .Params.therapist_match -}}
+{{- if $section -}}
+{{- $sectionID := printf "match-%d" (now.Unix) -}}
+
+<section class="section therapist-match" id="{{ $sectionID }}">
+  <div class="container">
+    <!-- Section Header -->
+    {{- if or $section.title $section.subtitle -}}
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center mb-5">
+        {{- if $section.subtitle -}}
+        <p class="text-primary text-uppercase fw-semibold mb-2">{{ $section.subtitle }}</p>
+        {{- end -}}
+        {{- if $section.title -}}
+        {{ partial "atoms/heading.html" (dict "text" $section.title "level" 2 "class" "mb-3" "colorVariant" "primary") }}
+        {{- end -}}
+        {{- if $section.description -}}
+        <p class="text-muted lead">{{ $section.description }}</p>
+        {{- end -}}
+      </div>
+    </div>
+    {{- end -}}
+
+    <!-- Match Comparison -->
+    <div class="row g-4">
+      {{- if $section.good_fit -}}
+      <!-- Good Fit -->
+      <div class="col-lg-6">
+        <div class="match-card match-card-good h-100" data-aos="fade-up">
+          <div class="match-card-header">
+            {{ partial "atoms/icon.html" (dict "name" "check-circle" "size" "48" "class" "text-success mb-3" "withWrapper" true "wrapperVariant" "primary" "wrapperSize" "xl") }}
+            {{ partial "atoms/heading.html" (dict "text" $section.good_fit.title "level" 3 "class" "mb-2" "colorVariant" "primary") }}
+            {{- if $section.good_fit.description -}}
+            <p class="text-muted">{{ $section.good_fit.description }}</p>
+            {{- end -}}
+          </div>
+
+          <div class="match-card-body">
+            {{- if $section.good_fit.characteristics -}}
+            <ul class="match-list">
+              {{- range $section.good_fit.characteristics -}}
+              <li>
+                {{ partial "atoms/icon.html" (dict "name" "check" "class" "text-success me-2") }}
+                <span>{{ . }}</span>
+              </li>
+              {{- end -}}
+            </ul>
+            {{- end -}}
+          </div>
+
+          {{- if $section.good_fit.examples -}}
+          <div class="match-card-footer">
+            <h5 class="mb-3">{{ default "Exemple:" $section.good_fit.examples_label }}</h5>
+            <ul class="match-examples">
+              {{- range $section.good_fit.examples -}}
+              <li>{{ . }}</li>
+              {{- end -}}
+            </ul>
+          </div>
+          {{- end -}}
+        </div>
+      </div>
+      {{- end -}}
+
+      {{- if $section.not_a_fit -}}
+      <!-- Not a Fit -->
+      <div class="col-lg-6">
+        <div class="match-card match-card-not h-100" data-aos="fade-up" data-aos-delay="100">
+          <div class="match-card-header">
+            {{ partial "atoms/icon.html" (dict "name" "times-circle" "size" "48" "class" "text-muted mb-3" "withWrapper" true "wrapperVariant" "secondary" "wrapperSize" "xl") }}
+            {{ partial "atoms/heading.html" (dict "text" $section.not_a_fit.title "level" 3 "class" "mb-2" "colorVariant" "secondary") }}
+            {{- if $section.not_a_fit.description -}}
+            <p class="text-muted">{{ $section.not_a_fit.description }}</p>
+            {{- end -}}
+          </div>
+
+          <div class="match-card-body">
+            {{- if $section.not_a_fit.characteristics -}}
+            <ul class="match-list">
+              {{- range $section.not_a_fit.characteristics -}}
+              <li>
+                {{ partial "atoms/icon.html" (dict "name" "arrow-right" "class" "text-muted me-2") }}
+                <span>{{ . }}</span>
+              </li>
+              {{- end -}}
+            </ul>
+            {{- end -}}
+          </div>
+
+          {{- if $section.not_a_fit.referrals -}}
+          <div class="match-card-footer">
+            <h5 class="mb-3">{{ default "Recomandări alternative:" $section.not_a_fit.referrals_label }}</h5>
+            <ul class="match-referrals">
+              {{- range $section.not_a_fit.referrals -}}
+              <li>
+                {{ partial "atoms/icon.html" (dict "name" "hand-point-right" "class" "text-primary me-2") }}
+                <span>{{ . }}</span>
+              </li>
+              {{- end -}}
+            </ul>
+          </div>
+          {{- end -}}
+        </div>
+      </div>
+      {{- end -}}
+    </div>
+
+    {{- if $section.honesty_note -}}
+    <!-- Honesty Note -->
+    <div class="row justify-content-center mt-5">
+      <div class="col-lg-10">
+        <div class="honesty-note text-center p-4 rounded-3 bg-light border border-primary border-opacity-25">
+          {{ partial "atoms/icon.html" (dict "name" "handshake" "size" "32" "class" "text-primary mb-3") }}
+          <p class="mb-0 fst-italic text-muted">{{ $section.honesty_note }}</p>
+        </div>
+      </div>
+    </div>
+    {{- end -}}
+
+    {{- if $section.cta -}}
+    <!-- Call to Action -->
+    <div class="row justify-content-center mt-4">
+      <div class="col-auto">
+        {{ partial "atoms/button.html" (dict
+          "text" $section.cta.text
+          "url" $section.cta.url
+          "variant" (default "primary" $section.cta.variant)
+          "icon" $section.cta.icon
+        ) }}
+      </div>
+    </div>
+    {{- end -}}
+  </div>
+</section>
+
+{{- end -}}

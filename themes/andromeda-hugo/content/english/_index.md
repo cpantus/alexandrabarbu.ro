@@ -12,12 +12,16 @@ sections:
   - type: "values-compass"
   - type: "credentials-showcase"
   - type: "video-popup"
-  - type: "onboarding-steps"
+
   - type: "faq-mini"
   - type: "contact-form-enhanced"
 
 # Hero Image
 hero_image: "images/hero/alexandra-barbu-cabinet.jpg"
+
+# Strategic color variant assignments (Phase 1D - balanced distribution)
+# Pattern: primary (emerald) → secondary (terracotta) → outline-primary → secondary
+button_variant: "primary"  # Global default for sections without specific variant
 
 # 1. Credentials Showcase - Trust Building
 credentials_showcase:
@@ -34,7 +38,7 @@ credentials_showcase:
     - icon: "award"
       label: "10+ Years Experience"
       value: "500+ Clients Helped"
-      variant: "success"
+      variant: "secondary"  # Terracotta - personal connection
     - icon: "certificate"
       label: "CPR Member"
       value: "Romanian College of Psychologists"
@@ -42,7 +46,7 @@ credentials_showcase:
     - icon: "graduation-cap"
       label: "Continuous Training"
       value: "CBT, EMDR, Mindfulness"
-      variant: "warning"
+      variant: "coral"  # Compassionate learning
   show_trust_text: true
   trust_text: "Verified certifications and accreditations. Member in good standing of professional psychotherapy organizations."
 
@@ -106,6 +110,7 @@ values_intro:
 
     My approach is based on **empathy, respect and collaboration**. I believe that each person has inner resources for healing - my role is to guide you in discovering and activating them.
   image: "images/about/alexandra-barbu-profile.jpg"
+  button_variant: "secondary"  # Terracotta - personal/warm connection
   button:
     enable: true
     label: "About Me"
@@ -117,6 +122,7 @@ benefits_section:
   subtitle: "My approach"
   title: "Integrative Therapeutic Philosophy"
   description: "I combine the most effective therapeutic methods for lasting results."
+  button_variant: "secondary"  # Terracotta - warm approach
   benefits:
     - title: "Science-Based"
       icon: "flask"
@@ -150,18 +156,6 @@ video_popup:
       role: "EMDR Client"
       rating: 5
 
-# 7. Simple Process (3 Steps)
-onboarding_steps:
-  - number: "1"
-    title: "Free Initial Consultation"
-    description: "30 minutes to discuss your needs and see if we're a good fit."
-  - number: "2"
-    title: "Personalized Plan"
-    description: "Together we create a therapeutic plan adapted to your specific goals."
-  - number: "3"
-    title: "Journey to Healing"
-    description: "Regular sessions, continuous support and measurable progress toward a better life."
-
 # 8. FAQ Preview
 faq_mini:
   enable: true
@@ -179,6 +173,7 @@ faq_mini:
 # 9. CTA Final
 contact_form_enhanced:
   enable: true
+  button_variant: "primary"  # Emerald - main action/CTA
   subtitle: "Start today"
   title: "Take the First Step Toward a Better Life"
   description: |

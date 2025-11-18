@@ -4,7 +4,7 @@ description: "Evaluări psihologice, training-uri, coaching leadership, prevenir
 layout: "flexible"
 sections:
   - type: "hero-breadcrumb"
-  - type: "service-highlights"
+
   - type: "stats-numbers"
   - type: "contact-form-enhanced"
 hero_image: "hero.jpg"
@@ -15,7 +15,7 @@ breadcrumb:
     url: "/servicii/"
   - name: "Psihologie Organizațională"
     url: "/servicii/psihologie-organizationala/"
-service_highlights:
+
   enable: true
   title: "Servicii pentru Organizații"
   services:

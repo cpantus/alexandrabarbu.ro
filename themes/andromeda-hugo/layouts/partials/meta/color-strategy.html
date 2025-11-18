@@ -1,0 +1,52 @@
+{{/*
+  Color Strategy Meta Partial - Andromeda Hugo Theme v4.1+
+
+  Calculates smart color defaults based on position, context, and type.
+  This eliminates the need for manual color variant configuration in content files.
+
+  Usage:
+    {{ $color := partial "meta/color-strategy.html" (dict
+      "type" "button"           # Component type: button, badge, icon, heading
+      "index" 0                 # Position in list (0-indexed)
+      "context" "default"       # Color theme: default, warm, professional, badge
+      "section" .               # Optional: section params for theme override
+    ) }}
+
+  Returns: Color variant string (e.g., "primary", "secondary", "outline-primary")
+
+  Design Philosophy:
+  - Default palette: 50% emerald (trust), 50% terracotta (warmth)
+  - Warm palette: 75% terracotta/coral (personal connection)
+  - Professional palette: 75% emerald (clinical expertise)
+  - Badge palette: 8-color rotation (maximum visual variety)
+*/}}
+
+{{- $type := .type -}}
+{{- $index := .index | default 0 -}}
+{{- $context := .context | default "default" -}}
+{{- $section := .section -}}
+
+{{/* Define color palettes by context */}}
+{{- $palettes := dict
+  "default" (slice "primary" "secondary" "outline-primary" "secondary")
+  "warm" (slice "secondary" "coral" "secondary" "outline-secondary")
+  "professional" (slice "primary" "outline-primary" "primary" "secondary")
+  "badge" (slice "primary" "secondary" "coral" "premium" "sage" "info" "success" "warning")
+-}}
+
+{{/* Check if section overrides color theme */}}
+{{- if $section -}}
+  {{- if $section.color_theme -}}
+    {{- $context = $section.color_theme -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Select appropriate palette */}}
+{{- $palette := index $palettes $context -}}
+
+{{/* Calculate color based on position (cycling through palette) */}}
+{{- $colorIndex := mod $index (len $palette) -}}
+{{- $selectedColor := index $palette $colorIndex -}}
+
+{{/* Return calculated color */}}
+{{- return $selectedColor -}}

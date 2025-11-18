@@ -8,7 +8,7 @@ layout: "flexible"
 sections:
   - type: "hero-breadcrumb"
   - type: "values-intro"
-  - type: "benefits-grid"
+
   - type: "pricing-tables"
   - type: "contact-form-enhanced"
 

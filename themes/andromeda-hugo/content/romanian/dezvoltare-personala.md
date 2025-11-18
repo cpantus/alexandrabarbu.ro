@@ -6,14 +6,9 @@ draft: false
 
 # Define which sections to use and in what order
 sections:
-  - type: "feature-details"
   - type: "hero-breadcrumb"
   - type: "values-intro"
-  - type: "feature-blocks"      # Borrowed from services page
-  - type: "benefits-grid"
-  - type: "pricing-tables"      # Borrowed from services page
-  - type: "job-listings"
-
+  - type: "feature-blocks"      
 feature_details:
   - title: "Cultivă Conștiința, Creează Schimbarea"
     subtitle: "Prezență și Potențial"

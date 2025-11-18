@@ -1,24 +1,29 @@
 {{/* Mini FAQ Section */}}
 {{ with .Params.faq_items }}
-<section class="section pt-0">
+<section class="section pt-0 faq-mini-section">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="text-center mb-5">
-          {{ partial "atoms/heading.html" (dict "level" "h3" "text" "Întrebări Frecvente") }}
-          <p class="text-muted">Răspunsuri la cele mai comune întrebări</p>
+          {{- $faqTitle := $.Params.faq_mini_title | default (i18n "faq_title" | default "Întrebări Frecvente") -}}
+          {{- $faqSubtitle := $.Params.faq_mini_subtitle | default (i18n "faq_subtitle" | default "Răspunsuri la cele mai comune întrebări") -}}
+          {{- $headingVariant := $.Params.faq_mini_heading_variant | default "primary" -}}
+          {{ partial "atoms/heading.html" (dict "level" "h3" "text" $faqTitle "colorVariant" $headingVariant) }}
+          <p class="text-muted">{{ $faqSubtitle }}</p>
         </div>
 
         {{ partial "molecules/accordion.html" (dict
           "items" .
           "id" "faqAccordion"
           "defaultOpen" 0
-          "class" "faq-accordion"
+          "class" "faq-accordion faq-accordion-v4"
         ) }}
-        
+
         <div class="text-center mt-4">
-          <p class="text-muted">Ai alte întrebări? 
-            <a href="#contact-form" class="text-primary">Contactează-ne direct</a>
+          {{- $faqFooter := $.Params.faq_mini_footer | default (i18n "faq_footer" | default "Ai alte întrebări?") -}}
+          {{- $faqLink := $.Params.faq_mini_link_text | default (i18n "contact_us" | default "Contactează-ne direct") -}}
+          <p class="text-muted">{{ $faqFooter }}
+            <a href="#contact-form" class="text-primary">{{ $faqLink }}</a>
           </p>
         </div>
       </div>

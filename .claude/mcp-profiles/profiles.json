@@ -1,0 +1,92 @@
+{
+  "profiles": {
+    "content": {
+      "description": "Content creation and distribution workflow",
+      "mcpServers": [
+        "google-analytics",
+        "hubspot",
+        "mailchimp",
+        "gdrive"
+      ],
+      "useCase": "Creating blog posts, email campaigns, social content with performance tracking",
+      "tokenSavings": "~8K tokens (removes 9 unused MCPs)"
+    },
+    "analysis": {
+      "description": "Performance analysis and business intelligence",
+      "mcpServers": [
+        "google-analytics",
+        "hubspot",
+        "stripe",
+        "salesforce"
+      ],
+      "useCase": "Analyzing metrics, revenue data, attribution, customer journeys",
+      "tokenSavings": "~9K tokens (removes 9 unused MCPs)"
+    },
+    "social": {
+      "description": "Social media management and advertising",
+      "mcpServers": [
+        "linkedin",
+        "twitter",
+        "meta-ads",
+        "google-ads",
+        "slack"
+      ],
+      "useCase": "Managing social posts, running ads, monitoring engagement",
+      "tokenSavings": "~8K tokens (removes 8 unused MCPs)"
+    },
+    "seo": {
+      "description": "SEO research and optimization",
+      "mcpServers": [
+        "ahrefs",
+        "semrush",
+        "google-analytics",
+        "google-ads"
+      ],
+      "useCase": "Keyword research, backlink analysis, traffic optimization, paid search",
+      "tokenSavings": "~9K tokens (removes 9 unused MCPs)"
+    },
+    "minimal": {
+      "description": "Minimal context for lightweight operations",
+      "mcpServers": [],
+      "useCase": "Pattern execution, local file work, no external integrations needed",
+      "tokenSavings": "~25K tokens (removes all 14 MCPs)"
+    },
+    "research": {
+      "description": "Web research and competitive intelligence",
+      "mcpServers": [
+        "playwright",
+        "context7"
+      ],
+      "useCase": "Multi-site web scraping, competitive analysis, market research with advanced browser automation and context management",
+      "tokenSavings": "~23K tokens (removes 12 unused MCPs)"
+    },
+    "productivity": {
+      "description": "Productivity and knowledge management",
+      "mcpServers": [
+        "notion"
+      ],
+      "useCase": "Accessing Notion workspaces, managing notes and databases, organizing knowledge",
+      "tokenSavings": "~24K tokens (removes 14 unused MCPs)"
+    }
+  },
+  "metadata": {
+    "totalMcps": 16,
+    "averageSavingsPerProfile": "8-25K tokens",
+    "defaultProfile": "minimal",
+    "profileSwitchingSupported": true
+  },
+  "usage": {
+    "load": "/mcp-load [profile]",
+    "unload": "/mcp-unload",
+    "list": "/mcp-list",
+    "examples": [
+      "/mcp-load content      # Before creating email campaign",
+      "/mcp-load analysis     # Before analyzing performance data",
+      "/mcp-load social       # Before managing social media",
+      "/mcp-load seo          # Before SEO research",
+      "/mcp-load research     # Before multi-site web scraping",
+      "/mcp-load productivity # Before accessing Notion workspace",
+      "/mcp-load minimal      # For pattern execution without external data"
+    ]
+  }
+}

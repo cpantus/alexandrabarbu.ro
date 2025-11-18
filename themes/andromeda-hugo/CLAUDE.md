@@ -1,0 +1,263 @@
+# Claude Instructions - Andromeda Hugo Theme
+
+**Version**: 4.0.0 - Creative Design Excellence Edition
+
+---
+
+## CRITICAL Rules
+
+1. **Run Hugo from theme directory**: `cd themes/andromeda-hugo && hugo server`
+2. **Preserve multilingual**: Maintain RO (root path) + EN (`/en/`) content parity
+3. **Flexible layout only**: Pages = Header + Sections (2-7) + Footer. Use 21 section types.
+4. **Reuse components**: 5 atoms → 21 molecules → 2 organisms → 21 sections
+5. **Test both languages**: Verify `/{page}` (RO) and `/en/{page}` (EN)
+6. **Enhanced design system**: Use glassmorphism, gradients, and organic shapes (v4.0)
+
+---
+
+## Architecture
+
+**Component Hierarchy** (v4.0 Enhanced):
+```
+Atoms (5)        → button, heading, icon, image, input
+Molecules (21)   → card, form-field, accordion, nav, credential-badge, etc.
+Organisms (2)    → header, footer
+Sections (21)    → 12 core + 4 specialized + 5 enhanced premium components
+
+Page = Header + Sections Array + Footer
+```
+
+**File Structure**:
+```
+layouts/
+├── _default/flexible.html      # Layout engine (STABLE)
+└── partials/
+    ├── atoms/                  # 5 basic components
+    ├── molecules/              # 21 composite components
+    ├── organisms/              # 2 complex (header, footer)
+    └── sections/               # 21 page sections (5 enhanced v4.0)
+
+assets/
+├── scss/
+│   ├── _design-enhancements.scss      # v4.0 design system
+│   └── components/
+│       ├── _values-compass.scss       # New v4.0
+│       ├── _stats-enhanced.scss       # Enhanced v4.0
+│       ├── _feature-blocks-enhanced.scss  # Enhanced v4.0
+│       ├── _pricing-enhanced.scss     # Enhanced v4.0
+│       └── _credentials.scss          # Enhanced v4.0
+└── js/
+    ├── values-compass-interactions.js # Mobile touch
+    ├── stats-counter.js               # Animated counting
+    └── scroll-animations.js           # Parallax + scroll effects
+```
+
+---
+
+## Active Sections (21 total)
+
+**Core (4)**: hero-breadcrumb, values-intro, blog-grid, cta-standard
+**Interactive (2)**: video-popup, faq-mini
+**Forms (3)**: contact-form-enhanced, signup-form-enhanced, newsletter-signup
+**Trust (3)**: contact-info-cards, contact-options, privacy-guarantee
+**Enhanced v4.0 (5)** ⭐: values-compass (NEW), feature-blocks, pricing-tables, stats-numbers, credentials-showcase
+**Specialized (4)**: first-session-timeline, service-faq-inline, testimonials-enhanced, problem-empathy
+
+**Deprecated (13)**: benefits-grid, service-highlights, timeline-process, onboarding-steps, method-tabs, related-services, feature-details, confidentiality-notice, professional-affiliations, therapist-match, office-gallery, job-listings, related-content
+
+---
+
+## Quick Start
+
+**Page Template** (30s):
+```yaml
+---
+title: "Page Title"
+layout: "flexible"
+sections:
+  - type: "hero-breadcrumb"
+  - type: "values-compass"
+
+hero_breadcrumb:
+  title: "Title"
+  subtitle: "Subtitle"
+
+values_compass:
+  title: "Core Values"
+  benefits:
+    - title: "Science-Based"
+      icon: "flask"
+      description: "Evidence-based methods"
+---
+```
+
+**Archetypes**: `hugo new content/services/page.md --kind service-page`
+
+**Languages**: RO (root `/`) + EN (`/en/`) | Use `.RelPermalink` in templates
+
+**Commands**:
+```bash
+cd themes/andromeda-hugo          # REQUIRED
+hugo server --buildDrafts         # Dev
+hugo --gc --minify               # Production
+```
+
+---
+
+## Data Access
+
+**Front Matter**: `{{ .Params.hero_breadcrumb.title }}`
+**Shared Data**: `{{ site.Data.shared_sections.pricing_plans }}`
+**Site Params**: `{{ site.Params.design.headings_brand_color }}`
+
+---
+
+## Color System (Auto v4.1+)
+
+**3-Tier Auto Distribution**:
+1. Smart defaults (position-based)
+2. CSS nth-child fallback
+3. Manual override (highest priority)
+
+**Palettes**: default (50/50 emerald/terracotta), warm (75% terracotta), professional (75% emerald), badge (8-color rotation)
+
+**Button Variants**: primary (emerald), secondary (terracotta), outline-primary, outline-secondary
+
+**Badge Variants (8)**: primary, secondary, coral, premium, sage, info, success, warning
+
+**Usage** (auto):
+```yaml
+related_services:
+  services:
+    - title: "Service 1"  # Auto: primary
+    - title: "Service 2"  # Auto: secondary
+```
+
+**Override**:
+```yaml
+related_services:
+  color_theme: "warm"     # Section level
+  services:
+    - title: "Service 1"
+      button_variant: "secondary"  # Item level
+```
+
+---
+
+## Design System
+
+**Colors**: Primary #4DB380 (emerald), Secondary #CC6B49 (terracotta), Text #374151
+**Typography**: Cormorant Garamond + Source Sans 3 | Base 16px
+**Breakpoints**: sm:576px | md:768px | lg:992px | xl:1200px
+
+---
+
+## Common Tasks
+
+**New Section**:
+1. Check existing: `ls layouts/partials/sections/`
+2. Create: `touch layouts/partials/sections/name.html`
+3. Register in `flexible.html` (lines 22-82)
+4. Template: <80 lines, data-driven, null-safe
+
+**Translation**: Add to `i18n/ro.yaml` + `i18n/en.yaml` | Use `{{ i18n "key" }}`
+
+**Navigation**: Update `config/_default/menus.{ro,en}.toml`
+
+**Component Reuse**:
+```html
+<!-- ✅ Good -->
+{{ partial "atoms/button.html" (dict "text" .text "url" .url "variant" "primary") }}
+
+<!-- ❌ Bad -->
+<a href="{{ .url }}" class="btn btn-primary">{{ .text }}</a>
+```
+
+---
+
+## Quality
+
+**Code**: 2-space indent | `{{- -}}` whitespace | Null-safe `if $var`
+**Performance**: Sections <80 lines | Build <3s | WebP+srcset+lazy | Cache partials
+**Accessibility**: Alt text | Semantic HTML | WCAG AA 4.5:1 | ARIA labels
+
+---
+
+## Testing
+
+- [ ] Both RO + EN languages
+- [ ] Responsive 375/768/1200px
+- [ ] No console errors
+- [ ] Build succeeds
+- [ ] Images load
+- [ ] Links work
+
+---
+
+## Troubleshooting
+
+**Section missing**: Add section data + type in front matter
+**Image 404**: Use `images/file.png` (not `/assets/`)
+**Build fails**: `hugo --verbose --debug`
+
+---
+
+## Files
+
+**✅ Safe**: content/\*\*/\*.md, layouts/partials/sections/\*.html, data/\*.yaml, config/\*.toml, i18n/\*.yaml
+**⚠️ Caution**: layouts/_default/flexible.html, hugo.toml
+**❌ Never**: node_modules/, public/, resources/
+
+---
+
+## Docs
+
+**Read**: PROJECT.md (arch), README.md (quick), ARCHITECTURE.md (tech)
+**API**: docs/components/
+**Test**: ../../scripts/test-components.sh
+
+---
+
+## Workflow
+
+**Every Task**: Read PROJECT.md → Use flexible layout → Check existing → Test RO+EN → Verify responsive → Build
+**Component**: <80 lines | Data-driven | Null-safe | Compose atoms/molecules
+
+---
+
+## v4.0 Enhancements 🎨
+
+**5 Premium Components**: values-compass (NEW), feature-blocks, pricing-tables, stats-numbers, credentials-showcase
+
+**Features**: Glassmorphism | Gradient icons | Parallax (≥992px) | SVG progress rings | Animated counting | Organic blobs | Staggered animations
+
+**values-compass Example**:
+```yaml
+sections:
+  - type: "values-compass"
+values_compass:
+  title: "Core Values"
+  benefits:
+    - title: "Science-Based"
+      icon: "flask"
+      description: "Evidence-based CBT, DBT, ACT"
+```
+
+**feature-blocks**: Zigzag + parallax
+**pricing-tables**: Featured tier 1.08x scale + tooltips
+**stats-numbers**: SVG rings + counting (0→target, 2s)
+**credentials-showcase**: Gradient circles + badges
+
+**Performance**: +18KB gzipped (+15KB CSS +3KB JS) | Build <3s ✅ | 60fps GPU
+
+**v4.0 Design System**:
+- 8 gradients (warm, radial, glass, icon)
+- 10 animations (fade-in 4dir, pulse, float, gradient-shift, blob-morph, stagger)
+- 4 organic blobs (soft, organic, smooth, gentle)
+- WCAG AA | Reduced-motion support | Keyboard nav | Touch-optimized
+
+---
+
+**Status**: Production ✅ | 21 active sections | <3s builds | <520KB pages | WebP | Multilingual | v4.0 Creative Excellence
+
+**Version**: 4.0.0 | **Updated**: 2025-11-18 | **Hugo**: v0.148.1 extended

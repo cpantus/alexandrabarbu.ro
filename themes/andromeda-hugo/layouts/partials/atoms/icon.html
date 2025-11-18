@@ -9,6 +9,14 @@
       "class" "me-2"
     )}}
 
+    With gradient circle wrapper (v4.0+):
+    {{ partial "atoms/icon.html" (dict
+      "name" "check-circle"
+      "withWrapper" true
+      "wrapperVariant" "primary"
+      "wrapperSize" "md"
+    )}}
+
   Parameters:
     name (required) - Icon name (without "la-" prefix, e.g., "check-circle", "arrow-right")
     size (optional) - Icon size: xs|sm|md|lg|xl|2x|3x or custom size (e.g., "2rem", "24px")
@@ -19,6 +27,11 @@
     ariaLabel (optional) - Accessibility label for screen readers
     ariaHidden (optional) - Hide from screen readers (default: false)
     attributes (optional) - Additional HTML attributes as dict
+
+    withWrapper (optional) - Wrap icon with gradient circle background (default: false)
+    wrapperVariant (optional) - Gradient variant: primary|secondary|coral|sage|premium|info (default: "primary")
+    wrapperSize (optional) - Wrapper size: sm|md|lg|xl (default: "md")
+    wrapperClass (optional) - Additional CSS classes for wrapper
 
   Icon Libraries:
     - las: Line Awesome Solid (default)
@@ -36,6 +49,12 @@
     - 3x: 3rem     ($icon-3x)
     - 4x: 4rem     ($icon-4x)
 
+  Wrapper Sizes (for gradient circles):
+    - sm: 48px circle (icon: 20px)
+    - md: 64px circle (icon: 28px) (default)
+    - lg: 80px circle (icon: 36px)
+    - xl: 96px circle (icon: 44px)
+
   Note: These sizes match the design token values in _design-tokens.scss.
   For circular icon backgrounds, use $icon-circle-sm/md/lg/xl in SCSS.
 
@@ -43,6 +62,7 @@
     Check icon: {{ partial "atoms/icon.html" (dict "name" "check-circle" "color" "success") }}
     Large shield: {{ partial "atoms/icon.html" (dict "name" "shield-alt" "size" "4x" "color" "primary") }}
     Arrow right: {{ partial "atoms/icon.html" (dict "name" "arrow-right" "class" "ms-2") }}
+    Gradient circle: {{ partial "atoms/icon.html" (dict "name" "heart" "withWrapper" true "wrapperVariant" "coral" "wrapperSize" "lg") }}
 */}}
 
 {{ $name := .name }}
@@ -54,6 +74,12 @@
 {{ $ariaLabel := .ariaLabel }}
 {{ $ariaHidden := .ariaHidden | default false }}
 {{ $attributes := .attributes | default dict }}
+
+{{/* v4.0+ Gradient wrapper parameters */}}
+{{ $withWrapper := .withWrapper | default false }}
+{{ $wrapperVariant := .wrapperVariant | default "primary" }}
+{{ $wrapperSize := .wrapperSize | default "md" }}
+{{ $wrapperClass := .wrapperClass | default "" }}
 
 {{/* Validate required parameter */}}
 {{ if not $name }}
@@ -109,9 +135,33 @@
 {{/* Trim spaces */}}
 {{ $inlineStyle = trim $inlineStyle " " }}
 
-{{/* Render icon */}}
-<i class="{{ $iconClass }}"
-  {{- if $inlineStyle }} style="{{ $inlineStyle }}"{{ end }}
-  {{- if $ariaLabel }} aria-label="{{ $ariaLabel }}"{{ end }}
-  {{- if $ariaHidden }} aria-hidden="true"{{ end }}
-  {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}></i>
+{{/* Render icon with optional gradient wrapper */}}
+{{- if $withWrapper -}}
+  {{/* Build wrapper classes - format: icon-circle icon-{size} icon-{variant} */}}
+  {{ $wrapperClasses := "icon-circle" }}
+  {{ if ne $wrapperSize "md" }}
+    {{ $wrapperClasses = printf "%s icon-%s" $wrapperClasses $wrapperSize }}
+  {{ end }}
+  {{ if ne $wrapperVariant "primary" }}
+    {{ $wrapperClasses = printf "%s icon-%s" $wrapperClasses $wrapperVariant }}
+  {{ end }}
+  {{ if $wrapperClass }}
+    {{ $wrapperClasses = printf "%s %s" $wrapperClasses $wrapperClass }}
+  {{ end }}
+
+  {{/* Render wrapped icon */}}
+  <div class="{{ $wrapperClasses }}">
+    <i class="{{ $iconClass }}"
+      {{- if $inlineStyle }} style="{{ $inlineStyle }}"{{ end }}
+      {{- if $ariaLabel }} aria-label="{{ $ariaLabel }}"{{ end }}
+      {{- if $ariaHidden }} aria-hidden="true"{{ end }}
+      {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}></i>
+  </div>
+{{- else -}}
+  {{/* Render unwrapped icon (backward compatible) */}}
+  <i class="{{ $iconClass }}"
+    {{- if $inlineStyle }} style="{{ $inlineStyle }}"{{ end }}
+    {{- if $ariaLabel }} aria-label="{{ $ariaLabel }}"{{ end }}
+    {{- if $ariaHidden }} aria-hidden="true"{{ end }}
+    {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}></i>
+{{- end -}}
