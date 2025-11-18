@@ -1860,8 +1860,8 @@ body.headings-brand-color {
 .timeline-process {
   .timeline-wrapper {
     position: relative;
-    padding: 2rem 0;
-    
+    padding: $space-6 0; // 32px (was 2rem)
+
     &::before {
       content: '';
       position: absolute;
@@ -1871,75 +1871,75 @@ body.headings-brand-color {
       width: 2px;
       background: linear-gradient(to bottom, $color-primary, $color-secondary);
       transform: translateX(-50%);
-      
+
       @media (max-width: 768px) {
-        left: 30px;
+        left: $space-8; // 48px (was 30px, nearest 8px grid)
       }
     }
   }
-  
+
   .timeline-item {
     position: relative;
-    margin-bottom: 3rem;
-    
+    margin-bottom: $space-8; // 48px (was 3rem)
+
     &:last-child {
       margin-bottom: 0;
     }
-    
+
     .timeline-marker {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
       z-index: 2;
-      
+
       @media (max-width: 768px) {
-        left: 30px;
+        left: $space-8; // 48px (was 30px, nearest 8px grid)
       }
     }
-    
+
     .timeline-icon {
-      width: 60px;
+      width: 60px; // Using exact size for now (closest token would be $icon-circle-md 64px)
       height: 60px;
       background: $color-primary;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px rgba($color-primary, 0.3);
-      
+      box-shadow: $shadow-warm-md; // Brand-tinted shadow for timeline markers
+
       .timeline-number {
         color: white;
-        font-size: 1.5rem;
-        font-weight: 700;
+        font-size: $text-2xl; // 1.5rem (24px)
+        font-weight: $font-weight-heading-bold; // 600 (was 700, corrected per design rules)
       }
     }
-    
+
     .timeline-content {
       width: calc(50% - 50px);
-      transition: all 0.3s ease;
-      
+      transition: all $duration-base $easing-medium; // Level 2 motion - cards (300ms ease-in-out)
+
       &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        transform: translateY(-2px); // Level 2 motion - molecule hover (was -4px, corrected to -2px)
+        box-shadow: $shadow-md; // +1 level shadow (sm → md)
       }
-      
+
       @media (max-width: 768px) {
         width: calc(100% - 80px);
         margin-left: 80px;
       }
     }
-    
+
     &.timeline-item-left .timeline-content {
       margin-right: auto;
-      
+
       @media (max-width: 768px) {
         margin-right: 0;
       }
     }
-    
+
     &.timeline-item-right .timeline-content {
       margin-left: auto;
-      
+
       @media (max-width: 768px) {
         margin-left: 80px;
       }
@@ -1968,30 +1968,30 @@ body.headings-brand-color {
   }
   
   .blog-card {
-    transition: all 0.3s ease;
+    transition: all $duration-base $easing-medium; // Level 2 motion - cards
     overflow: hidden;
-    
+
     &:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+      transform: translateY(-2px); // Level 2 motion - molecule hover (was -8px, corrected to -2px per design tokens)
+      box-shadow: $shadow-md; // +1 level shadow (sm → md)
     }
-    
+
     .blog-card-image {
       position: relative;
       overflow: hidden;
-      
+
       img {
-        transition: transform 0.5s ease;
+        transition: transform $duration-slow $easing-medium; // Slow transition for image zoom
       }
-      
+
       .blog-badge {
         position: absolute;
-        top: 1rem;
-        right: 1rem;
+        top: $space-4; // 16px (was 1rem)
+        right: $space-4; // 16px (was 1rem)
         z-index: 1;
       }
     }
-    
+
     &:hover .blog-card-image img {
       transform: scale(1.05);
     }
@@ -2086,14 +2086,14 @@ body.headings-brand-color {
 @media (max-width: 768px) {
   .timeline-process {
     .timeline-wrapper::before {
-      left: 30px;
+      left: $space-8; // 48px (was 30px, nearest 8px grid)
     }
-    
+
     .timeline-item {
       .timeline-marker {
-        left: 30px;
+        left: $space-8; // 48px (was 30px, nearest 8px grid)
       }
-      
+
       .timeline-content {
         width: calc(100% - 80px);
         margin-left: 80px !important;
