@@ -1387,6 +1387,1275 @@ Visitor sees your credentials continuously - builds trust.
 
 ---
 
+## 10 Premium Micro-Interactions (Code Examples)
+
+**What are micro-interactions?**
+Tiny animations (50-300ms) that respond to user actions. They make your site feel alive and premium.
+
+**Zero npm stack used:**
+- GSAP from CDN
+- Alpine.js from CDN
+- Pure CSS animations
+- Hugo SCSS
+
+---
+
+### 1. Ripple Effect on Click
+
+**What it is:** Material Design-style ripple emanates from click point.
+
+**Visual:**
+```
+Click at ⊗:
+┌─────────────┐
+│   Button    │
+└─────────────┘
+
+Frame 1 (0ms):
+┌─────────────┐
+│  ⊙Button    │ ← Small circle at click point
+└─────────────┘
+
+Frame 2 (100ms):
+┌─────────────┐
+│ ◯  Button   │ ← Circle expands
+└─────────────┘
+
+Frame 3 (200ms):
+┌─────────────┐
+│⚪   Button   │ ← Circle fills button, fades
+└─────────────┘
+```
+
+**Code (Pure CSS + Alpine.js):**
+
+```html
+<!-- Hugo template -->
+<button
+  class="btn-ripple"
+  x-data="ripple"
+  @click="createRipple($event)"
+>
+  Book Consultation
+</button>
+```
+
+```javascript
+// static/js/micro-interactions.js
+
+// Alpine.js component
+document.addEventListener('alpine:init', () => {
+  Alpine.data('ripple', () => ({
+    createRipple(event) {
+      const button = event.currentTarget;
+      const ripple = document.createElement('span');
+      const rect = button.getBoundingClientRect();
+
+      // Position ripple at click point
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      ripple.classList.add('ripple');
+
+      button.appendChild(ripple);
+
+      // Remove after animation
+      setTimeout(() => ripple.remove(), 600);
+    }
+  }));
+});
+```
+
+```scss
+// assets/scss/_micro-interactions.scss
+
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  .ripple {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple-animation 0.6s ease-out;
+    pointer-events: none;
+  }
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: translate(-50%, -50%) scale(20);
+    opacity: 0;
+  }
+}
+```
+
+**Usage on your site:**
+All primary CTAs: "Book Now", "Contact Us", "Schedule Appointment"
+
+---
+
+### 2. Success Checkmark Animation
+
+**What it is:** Animated checkmark draws itself after form submission.
+
+**Visual:**
+```
+Form submitted:
+
+Frame 1 (0ms):
+   ○           ← Empty circle
+
+Frame 2 (200ms):
+   ◐           ← Circle fills (green)
+
+Frame 3 (400ms):
+   ●           ← Full circle
+    ╲          ← Checkmark starts drawing
+
+Frame 4 (600ms):
+   ●
+    ✓          ← Checkmark completes
+```
+
+**Code (GSAP from CDN):**
+
+```html
+<!-- Success message -->
+<div
+  id="success-message"
+  class="hidden"
+  x-data="{ show: false }"
+  x-show="show"
+  x-transition
+>
+  <svg class="checkmark" viewBox="0 0 52 52">
+    <circle class="checkmark-circle" cx="26" cy="26" r="25"/>
+    <path class="checkmark-check" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+  </svg>
+  <p>Booking confirmed!</p>
+</div>
+```
+
+```javascript
+// static/js/micro-interactions.js
+
+function animateSuccessCheckmark() {
+  const circle = document.querySelector('.checkmark-circle');
+  const check = document.querySelector('.checkmark-check');
+
+  // Get path length for stroke animation
+  const checkLength = check.getTotalLength();
+
+  // Setup
+  gsap.set(check, {
+    strokeDasharray: checkLength,
+    strokeDashoffset: checkLength
+  });
+
+  // Animate
+  const tl = gsap.timeline();
+
+  tl.to('.checkmark-circle', {
+    strokeDashoffset: 0,
+    duration: 0.3,
+    ease: 'power2.out'
+  })
+  .to('.checkmark-check', {
+    strokeDashoffset: 0,
+    duration: 0.4,
+    ease: 'power4.out'
+  }, '-=0.1');
+
+  return tl;
+}
+
+// Trigger on form success
+document.querySelector('#contact-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  // Your form submission logic here
+
+  // Show success with animation
+  document.querySelector('#success-message').style.display = 'block';
+  animateSuccessCheckmark();
+});
+```
+
+```scss
+// assets/scss/_micro-interactions.scss
+
+.checkmark {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1rem;
+  display: block;
+
+  .checkmark-circle {
+    stroke: var(--color-primary);
+    stroke-width: 2;
+    fill: none;
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    animation: stroke 0.3s ease-out forwards;
+  }
+
+  .checkmark-check {
+    stroke: var(--color-primary);
+    stroke-width: 3;
+    fill: none;
+    stroke-linecap: round;
+  }
+}
+```
+
+**Usage:** Contact form, booking form, newsletter signup
+
+---
+
+### 3. Input Label Float Animation
+
+**What it is:** Label floats up when you focus input field.
+
+**Visual:**
+```
+BEFORE FOCUS:
+┌────────────────────────┐
+│ Name                   │ ← Label inside
+└────────────────────────┘
+
+DURING FOCUS:
+    Name                   ← Label floats up, shrinks
+┌────────────────────────┐
+│ |                      │ ← Cursor appears
+└────────────────────────┘
+
+TYPING:
+    Name                   ← Label stays up
+┌────────────────────────┐
+│ Alexandra|             │ ← Text appears
+└────────────────────────┘
+```
+
+**Code (Pure CSS):**
+
+```html
+<!-- Hugo template -->
+<div class="form-field-float">
+  <input
+    type="text"
+    id="name"
+    placeholder=" "
+    required
+  >
+  <label for="name">Your Name</label>
+</div>
+```
+
+```scss
+// assets/scss/_micro-interactions.scss
+
+.form-field-float {
+  position: relative;
+  margin: 1.5rem 0;
+
+  input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    transition: border-color 0.3s;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+    }
+
+    // Float label when focused OR has content
+    &:focus ~ label,
+    &:not(:placeholder-shown) ~ label {
+      transform: translateY(-2rem) scale(0.85);
+      color: var(--color-primary);
+      background: var(--color-bg);
+      padding: 0 0.5rem;
+    }
+  }
+
+  label {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    color: var(--color-text-light);
+    font-size: 1rem;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left center;
+  }
+}
+```
+
+**Usage:** All form fields (name, email, phone, message)
+
+---
+
+### 4. Copy to Clipboard with Feedback
+
+**What it is:** Click to copy, button shows "Copied!" feedback.
+
+**Visual:**
+```
+NORMAL STATE:
+┌──────────────┐
+│ Copy Email   │
+└──────────────┘
+
+CLICKED:
+┌──────────────┐
+│ ✓ Copied!    │ ← Text changes, green background
+└──────────────┘
+  (fades green, then back to normal after 2s)
+
+BACK TO NORMAL:
+┌──────────────┐
+│ Copy Email   │
+└──────────────┘
+```
+
+**Code (Alpine.js + GSAP):**
+
+```html
+<!-- Hugo template -->
+<div
+  x-data="{
+    copied: false,
+    async copyEmail() {
+      await navigator.clipboard.writeText('contact@psychologist.ro');
+      this.copied = true;
+      this.animateCopy();
+      setTimeout(() => this.copied = false, 2000);
+    },
+    animateCopy() {
+      gsap.fromTo(
+        this.$refs.btn,
+        { scale: 1 },
+        {
+          scale: 0.95,
+          duration: 0.1,
+          yoyo: true,
+          repeat: 1,
+          ease: 'power2.inOut'
+        }
+      );
+    }
+  }"
+>
+  <button
+    x-ref="btn"
+    @click="copyEmail()"
+    class="btn-copy"
+    :class="{ 'copied': copied }"
+  >
+    <span x-show="!copied">
+      <i class="las la-copy"></i> Copy Email
+    </span>
+    <span x-show="copied">
+      <i class="las la-check"></i> Copied!
+    </span>
+  </button>
+</div>
+```
+
+```scss
+// assets/scss/_micro-interactions.scss
+
+.btn-copy {
+  transition: all 0.3s;
+
+  &.copied {
+    background: var(--color-success);
+    color: white;
+
+    // Animate background pulse
+    animation: pulse-green 0.3s ease-out;
+  }
+}
+
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 0 0 0 rgba(77, 179, 128, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(77, 179, 128, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(77, 179, 128, 0);
+  }
+}
+```
+
+**Usage:** Email address, phone number, booking link
+
+---
+
+### 5. Accordion Smooth Open/Close
+
+**What it is:** FAQ sections expand/collapse with smooth animation.
+
+**Visual:**
+```
+CLOSED:
+┌────────────────────────────┐
+│ What is CBT therapy? [+]   │
+└────────────────────────────┘
+
+OPENING:
+┌────────────────────────────┐
+│ What is CBT therapy? [-]   │ ← Plus rotates to minus
+├────────────────────────────┤
+│ Content sliding down...    │ ← Height animates
+│                            │
+└────────────────────────────┘
+
+OPEN:
+┌────────────────────────────┐
+│ What is CBT therapy? [-]   │
+├────────────────────────────┤
+│ Cognitive Behavioral       │
+│ Therapy is an evidence-    │
+│ based approach that...     │
+└────────────────────────────┘
+```
+
+**Code (Alpine.js + GSAP):**
+
+```html
+<!-- Hugo template -->
+<div class="accordion-item" x-data="{ open: false }">
+  <button
+    class="accordion-header"
+    @click="open = !open"
+    :aria-expanded="open"
+  >
+    <span>What is CBT therapy?</span>
+    <i
+      class="las la-plus"
+      :class="{ 'rotate': open }"
+    ></i>
+  </button>
+
+  <div
+    x-ref="content"
+    x-show="open"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 transform -translate-y-2"
+    x-transition:enter-end="opacity-100 transform translate-y-0"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="opacity-100 transform translate-y-0"
+    x-transition:leave-end="opacity-0 transform -translate-y-2"
+    class="accordion-content"
+  >
+    <p>
+      Cognitive Behavioral Therapy is an evidence-based approach
+      that helps identify and change negative thought patterns...
+    </p>
+  </div>
+</div>
+```
+
+```scss
+// assets/scss/_micro-interactions.scss
+
+.accordion-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+
+  .accordion-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+
+    &:hover {
+      background: var(--color-bg-subtle);
+    }
+
+    i {
+      transition: transform 0.3s ease;
+      font-size: 1.5rem;
+
+      &.rotate {
+        transform: rotate(45deg); // Plus becomes X
+      }
+    }
+  }
+
+  .accordion-content {
+    padding: 0 1.5rem 1.5rem;
+  }
+}
+```
+
+**Usage:** FAQ sections, service details, expandable info
+
+---
+
+### 6. Image Lazy Load with Blur-Up
+
+**What it is:** Tiny blurred placeholder → sharp image fade-in.
+
+**Visual:**
+```
+LOADING:
+██████████ ← Blurred placeholder (5KB)
+██████████    Looks like image but blurry
+██████████
+
+LOADING COMPLETE:
+░░░░░░░░░░ ← Sharp image fades in
+░░Crystal░░    over blurred version
+░░░clear░░
+
+FINAL:
+[Sharp image fully visible]
+```
+
+**Code (GSAP + Hugo):**
+
+```html
+<!-- Hugo template with image processing -->
+{{ $img := resources.Get .image }}
+{{ $blur := $img.Resize "20x webp q20" }}
+{{ $sharp := $img.Resize "800x webp q90" }}
+
+<div class="img-lazy-load" data-animate="blur-up">
+  <!-- Tiny blurred placeholder (inline, instant) -->
+  <img
+    src="{{ $blur.RelPermalink }}"
+    class="img-blur"
+    alt="{{ .alt }}"
+  >
+
+  <!-- Sharp image (lazy loaded) -->
+  <img
+    data-src="{{ $sharp.RelPermalink }}"
+    class="img-sharp"
+    alt="{{ .alt }}"
+    loading="lazy"
+  >
+</div>
+```
+
+```javascript
+// static/js/micro-interactions.js
+
+// Intersection Observer for lazy loading
+const imageObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const container = entry.target;
+      const sharpImg = container.querySelector('.img-sharp');
+      const blurImg = container.querySelector('.img-blur');
+
+      // Load sharp image
+      sharpImg.src = sharpImg.dataset.src;
+
+      sharpImg.onload = () => {
+        // Fade in sharp, fade out blur
+        gsap.to(sharpImg, {
+          opacity: 1,
+          duration: 0.5,
+          ease: 'power2.out'
+        });
+
+        gsap.to(blurImg, {
+          opacity: 0,
+          duration: 0.5,
+          ease: 'power2.in'
+        });
+      };
+
+      imageObserver.unobserve(container);
+    }
+  });
+});
+
+// Observe all lazy images
+document.querySelectorAll('.img-lazy-load').forEach(img => {
+  imageObserver.observe(img);
+});
+```
+
+```scss
+// assets/scss/_micro-interactions.scss
+
+.img-lazy-load {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg-subtle);
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .img-blur {
+    filter: blur(20px);
+    transform: scale(1.1); // Hide blur edges
+  }
+
+  .img-sharp {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+}
+```
+
+**Usage:** All images (therapist photos, office photos, etc.)
+
+---
+
+### 7. Star Rating Hover Animation
+
+**What it is:** Stars fill with color on hover, with bounce effect.
+
+**Visual:**
+```
+NORMAL:
+☆ ☆ ☆ ☆ ☆  (empty stars)
+
+HOVER OVER 3RD STAR:
+★ ★ ★ ☆ ☆  (first 3 filled, with bounce)
+  ↑ ↑ ↑
+  Bounce in sequence
+
+CLICK 3RD STAR:
+★ ★ ★ ☆ ☆  (locked at 3 stars)
+      ↑
+   Pulse effect on click
+```
+
+**Code (Alpine.js + GSAP):**
+
+```html
+<!-- Hugo template -->
+<div
+  class="star-rating"
+  x-data="{
+    rating: 0,
+    tempRating: 0,
+    setRating(stars) {
+      this.rating = stars;
+      this.animateClick(stars);
+    },
+    hoverRating(stars) {
+      this.tempRating = stars;
+      this.animateHover(stars);
+    },
+    animateHover(stars) {
+      for (let i = 1; i <= stars; i++) {
+        gsap.fromTo(
+          `.star-${i}`,
+          { scale: 1 },
+          {
+            scale: 1.2,
+            duration: 0.2,
+            delay: i * 0.05,
+            ease: 'back.out(2)'
+          }
+        );
+      }
+    },
+    animateClick(stars) {
+      gsap.to(`.star-${stars}`, {
+        scale: 1.3,
+        duration: 0.15,
+        yoyo: true,
+        repeat: 1
+      });
+    }
+  }"
+>
+  <template x-for="star in 5">
+    <button
+      :class="`star star-${star}`"
+      @mouseenter="hoverRating(star)"
+      @mouseleave="tempRating = 0"
+      @click="setRating(star)"
+    >
+      <i
+        class="las"
+        :class="star <= (tempRating || rating) ? 'la-star' : 'la-star-o'"
+      ></i>
+    </button>
+  </template>
+</div>
+```
+
+```scss
+// assets/scss/_micro-interactions.scss
+
+.star-rating {
+  display: flex;
+  gap: 0.5rem;
+
+  .star {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: var(--color-text-light);
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--color-warning);
+    }
+
+    .la-star {
+      color: var(--color-warning);
+    }
+  }
+}
+```
+
+**Usage:** Testimonial submission, feedback forms, session ratings
+
+---
+
+### 8. Toggle Switch with Satisfying Click
+
+**What it is:** iOS-style toggle with smooth animation and haptic feel.
+
+**Visual:**
+```
+OFF:
+┌──────┐
+│ ○    │  ← Circle on left, gray background
+└──────┘
+
+CLICKED (sliding):
+┌──────┐
+│  ○   │  ← Circle slides right
+└──────┘    Background fades to green
+
+ON:
+┌──────┐
+│    ○ │  ← Circle on right, green background
+└──────┘
+```
+
+**Code (Alpine.js + GSAP):**
+
+```html
+<!-- Hugo template -->
+<div
+  x-data="{
+    enabled: false,
+    toggle() {
+      this.enabled = !this.enabled;
+      this.animateToggle();
+    },
+    animateToggle() {
+      const knob = this.$refs.knob;
+      const track = this.$refs.track;
+
+      // Squish effect on click
+      gsap.to(knob, {
+        scaleX: 0.8,
+        duration: 0.1,
+        yoyo: true,
+        repeat: 1,
+        ease: 'power2.inOut'
+      });
+    }
+  }"
+  class="toggle-container"
+>
+  <label class="toggle-label">
+    <span>Enable notifications</span>
+
+    <button
+      @click="toggle()"
+      x-ref="track"
+      class="toggle-track"
+      :class="{ 'enabled': enabled }"
+      role="switch"
+      :aria-checked="enabled"
+    >
+      <span x-ref="knob" class="toggle-knob"></span>
+    </button>
+  </label>
+</div>
+```
+
+```scss
+// assets/scss/_micro-interactions.scss
+
+.toggle-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.toggle-track {
+  position: relative;
+  width: 48px;
+  height: 28px;
+  background: var(--color-border);
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &.enabled {
+    background: var(--color-primary);
+  }
+
+  .toggle-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &.enabled .toggle-knob {
+    transform: translateX(20px);
+  }
+}
+```
+
+**Usage:** Settings, notification preferences, dark mode toggle
+
+---
+
+### 9. Pull-to-Refresh Indicator
+
+**What it is:** Pull down on mobile shows refresh indicator.
+
+**Visual:**
+```
+NORMAL:
+[Page content]
+
+PULLING DOWN:
+     ↓
+  [Spinner]    ← Refresh icon rotates
+     ↓
+[Page content]
+
+RELEASED (refreshing):
+     ⟳
+  [Spinner]    ← Spinning animation
+[Page content]
+
+COMPLETE:
+     ✓         ← Success checkmark briefly
+[Page content]
+```
+
+**Code (GSAP + Touch events):**
+
+```html
+<!-- Hugo template -->
+<div id="pull-refresh-container">
+  <div class="refresh-indicator" style="transform: translateY(-60px);">
+    <svg class="refresh-icon" viewBox="0 0 24 24">
+      <circle class="spinner-circle" cx="12" cy="12" r="10"/>
+      <path class="spinner-path" d="M12,2 A10,10 0 0,1 22,12"/>
+    </svg>
+    <span class="refresh-text">Pull to refresh</span>
+  </div>
+
+  <div class="page-content">
+    <!-- Your content -->
+  </div>
+</div>
+```
+
+```javascript
+// static/js/micro-interactions.js
+
+let pullDistance = 0;
+let startY = 0;
+let isPulling = false;
+
+const container = document.getElementById('pull-refresh-container');
+const indicator = container.querySelector('.refresh-indicator');
+const icon = indicator.querySelector('.refresh-icon');
+
+container.addEventListener('touchstart', (e) => {
+  if (window.scrollY === 0) {
+    startY = e.touches[0].clientY;
+    isPulling = true;
+  }
+});
+
+container.addEventListener('touchmove', (e) => {
+  if (!isPulling) return;
+
+  pullDistance = Math.max(0, e.touches[0].clientY - startY);
+  const progress = Math.min(pullDistance / 80, 1);
+
+  // Move indicator down
+  gsap.to(indicator, {
+    y: pullDistance * 0.5 - 60,
+    duration: 0.1
+  });
+
+  // Rotate icon
+  gsap.to(icon, {
+    rotation: progress * 360,
+    duration: 0.1
+  });
+});
+
+container.addEventListener('touchend', async () => {
+  if (pullDistance > 80) {
+    // Trigger refresh
+    indicator.querySelector('.refresh-text').textContent = 'Refreshing...';
+
+    // Spin animation
+    gsap.to(icon, {
+      rotation: '+=360',
+      duration: 1,
+      ease: 'none',
+      repeat: -1
+    });
+
+    // Your refresh logic here
+    await refreshContent();
+
+    // Success
+    indicator.querySelector('.refresh-text').textContent = 'Updated!';
+    gsap.killTweensOf(icon);
+  }
+
+  // Reset
+  gsap.to(indicator, {
+    y: -60,
+    duration: 0.3,
+    ease: 'power2.out'
+  });
+
+  isPulling = false;
+  pullDistance = 0;
+});
+```
+
+```scss
+// assets/scss/_micro-interactions.scss
+
+.refresh-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  z-index: 100;
+
+  .refresh-icon {
+    width: 24px;
+    height: 24px;
+
+    .spinner-circle {
+      stroke: var(--color-border);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .spinner-path {
+      stroke: var(--color-primary);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+  }
+}
+```
+
+**Usage:** Mobile blog pages, mobile service listings
+
+---
+
+### 10. Drawer Slide-In Navigation
+
+**What it is:** Mobile menu slides in from right with backdrop blur.
+
+**Visual:**
+```
+CLOSED:
+[Page content visible]
+
+OPENING:
+[Page content]█░░░░░   ← Drawer slides in from right
+[starts to blur]        Backdrop fades in
+
+OPEN:
+[Blurred page]█████   ← Drawer fully visible
+ [backdrop]            Links stagger in
+              Menu
+              ----
+              Home
+              About
+              Services
+              Contact
+```
+
+**Code (Alpine.js + GSAP):**
+
+```html
+<!-- Hugo template -->
+<div x-data="{ drawerOpen: false }">
+  <!-- Trigger button -->
+  <button
+    @click="drawerOpen = true"
+    class="menu-trigger"
+  >
+    <i class="las la-bars"></i>
+  </button>
+
+  <!-- Backdrop -->
+  <div
+    x-show="drawerOpen"
+    @click="drawerOpen = false"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    class="drawer-backdrop"
+  ></div>
+
+  <!-- Drawer -->
+  <div
+    x-show="drawerOpen"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="translate-x-full"
+    x-transition:enter-end="translate-x-0"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="translate-x-0"
+    x-transition:leave-end="translate-x-full"
+    @animationstart="staggerLinks()"
+    class="drawer"
+  >
+    <button
+      @click="drawerOpen = false"
+      class="drawer-close"
+    >
+      <i class="las la-times"></i>
+    </button>
+
+    <nav class="drawer-nav">
+      <a href="/" class="drawer-link">Home</a>
+      <a href="/about" class="drawer-link">About</a>
+      <a href="/services" class="drawer-link">Services</a>
+      <a href="/contact" class="drawer-link">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<script>
+function staggerLinks() {
+  gsap.from('.drawer-link', {
+    x: 30,
+    opacity: 0,
+    stagger: 0.1,
+    duration: 0.4,
+    ease: 'power2.out',
+    delay: 0.2
+  });
+}
+</script>
+```
+
+```scss
+// assets/scss/_micro-interactions.scss
+
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 998;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 80%;
+  max-width: 320px;
+  background: var(--color-bg);
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  padding: 2rem;
+
+  .drawer-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: rotate(90deg);
+    }
+  }
+
+  .drawer-nav {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .drawer-link {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-text);
+      text-decoration: none;
+      transition: all 0.3s;
+      padding: 0.5rem 0;
+      border-left: 3px solid transparent;
+      padding-left: 1rem;
+
+      &:hover {
+        color: var(--color-primary);
+        border-left-color: var(--color-primary);
+        padding-left: 1.5rem;
+      }
+    }
+  }
+}
+```
+
+**Usage:** Mobile navigation menu
+
+---
+
+## Integration Example (Complete Page)
+
+Here's how these micro-interactions work together on a contact page:
+
+```html
+<!-- Hugo template: layouts/contact.html -->
+{{ define "main" }}
+<section class="contact-section">
+  <div class="container">
+    <h1 data-animate="text-reveal">Get in Touch</h1>
+
+    <form
+      id="contact-form"
+      x-data="contactForm"
+      @submit.prevent="submitForm"
+      class="needs-validation"
+    >
+      <!-- 1. Floating label inputs -->
+      <div class="form-field-float">
+        <input type="text" id="name" placeholder=" " required>
+        <label for="name">Your Name</label>
+      </div>
+
+      <div class="form-field-float">
+        <input type="email" id="email" placeholder=" " required>
+        <label for="email">Email Address</label>
+      </div>
+
+      <div class="form-field-float">
+        <textarea id="message" placeholder=" " required></textarea>
+        <label for="message">Message</label>
+      </div>
+
+      <!-- 2. Toggle for newsletter -->
+      <div class="toggle-container">
+        <label class="toggle-label">
+          <span>Subscribe to newsletter</span>
+          <button type="button" class="toggle-track" @click="newsletter = !newsletter">
+            <span class="toggle-knob"></span>
+          </button>
+        </label>
+      </div>
+
+      <!-- 3. Star rating -->
+      <div class="star-rating" x-data="starRating">
+        <label>How did you hear about us?</label>
+        <div class="stars">
+          <!-- Star rating component here -->
+        </div>
+      </div>
+
+      <!-- 4. Submit button with ripple -->
+      <button
+        type="submit"
+        class="btn-ripple btn-primary"
+        x-data="ripple"
+        @click="createRipple($event)"
+      >
+        Send Message
+      </button>
+    </form>
+
+    <!-- 5. Success message with checkmark -->
+    <div id="success-message" x-show="submitted" x-transition>
+      <svg class="checkmark"><!-- Animated checkmark --></svg>
+      <p>Message sent successfully!</p>
+    </div>
+
+    <!-- 6. Copy email button -->
+    <div class="contact-info">
+      <p>Or email us directly:</p>
+      <button class="btn-copy" x-data="copyEmail">
+        <span x-show="!copied">Copy Email</span>
+        <span x-show="copied">✓ Copied!</span>
+      </button>
+    </div>
+  </div>
+</section>
+{{ end }}
+```
+
+**Result:** Every interaction feels premium:
+- Form fields respond elegantly (float labels)
+- Toggle switches feel tactile (squish effect)
+- Buttons give satisfying feedback (ripple)
+- Success state is delightful (checkmark animation)
+- Copy actions are confirmed (visual feedback)
+
+**All with zero npm. Just CDN scripts and Hugo SCSS.**
+
+---
+
 ## The Feeling
 
 **Your psychology practice website will feel like:**
