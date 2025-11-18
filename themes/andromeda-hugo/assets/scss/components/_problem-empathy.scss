@@ -60,7 +60,7 @@
   }
 }
 
-// Individual Problem Card - Enhanced v4.0
+// Individual Problem Card - Enhanced v4.0 with gradient glow
 .problem-card {
   display: flex;
   flex-direction: column;
@@ -71,31 +71,16 @@
   box-shadow: $shadow-base;
   transition: all $duration-normal $ease-out;
   position: relative;
-  overflow: hidden;
-
-  // Gradient border on hover
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: $radius-xl;
-    padding: 2px;
-    background: $gradient-warm-vibrant;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity $duration-normal $ease-out;
-  }
 
   &:hover {
     transform: translateY(-2px) scale(1.02); // Level 2 molecule motion
-    box-shadow: $shadow-md; // +1 level from $shadow-base
     background: rgba(255, 255, 255, 0.95);
 
-    &::before {
-      opacity: 1;
-    }
+    // Gradient glow effect (soft, warm)
+    box-shadow:
+      0 0 0 1px rgba($emerald-400, 0.15),
+      0 8px 24px -4px rgba($emerald-500, 0.2),
+      0 16px 48px -8px rgba($terracotta-400, 0.12);
 
     .problem-icon-wrapper {
       transform: rotate(8deg) scale(1.1);

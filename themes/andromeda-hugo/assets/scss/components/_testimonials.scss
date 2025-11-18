@@ -49,17 +49,16 @@
   }
 }
 
-// Testimonials Grid
+// Testimonials Grid - All cards on same row
 .testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: $space-6;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 
-  // Desktop: 2 columns
+  // Desktop: 3 columns (force single row)
   @media (min-width: $breakpoint-lg) {
-    grid-template-columns: repeat(2, 1fr);
     gap: $space-8;
   }
 
@@ -80,7 +79,7 @@
   }
 }
 
-// Individual Testimonial Card
+// Individual Testimonial Card - Gradient glow effect
 .testimonial-card {
   display: flex;
   flex-direction: column;
@@ -88,33 +87,15 @@
   background: $gradient-glass-light;
   @include glassmorphism($radius-lg, 0.95);
   border-radius: $radius-lg;
+  border: none !important;
   box-shadow: $shadow-sm;
   transition: all $duration-base $easing-medium;
   position: relative;
-  overflow: hidden;
 
-  // Subtle gradient accent at top
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, transparent 0%, transparent 100%);
-    opacity: 0;
-    transition: opacity $duration-base $easing-medium;
-  }
-
-  // Hover effects
+  // Hover effects with gradient glow
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: $shadow-md;
-    background: rgba(255, 255, 255, 0.98);
-
-    &::before {
-      opacity: 1;
-    }
+    transform: translateY(-2px) scale(1.02);
+    background: rgba(255, 255, 255, 0.95);
 
     .testimonial-photo {
       transform: scale(1.08);
@@ -122,17 +103,26 @@
     }
   }
 
-  // Gradient accent variants
-  &.variant-primary::before {
-    background: $gradient-icon-emerald;
+  // Variant-specific gradient glows
+  &.variant-primary:hover {
+    box-shadow:
+      0 0 0 1px rgba($emerald-400, 0.2),
+      0 8px 24px -4px rgba($emerald-500, 0.25),
+      0 16px 48px -8px rgba($emerald-400, 0.15);
   }
 
-  &.variant-secondary::before {
-    background: $gradient-icon-terracotta;
+  &.variant-secondary:hover {
+    box-shadow:
+      0 0 0 1px rgba($terracotta-400, 0.2),
+      0 8px 24px -4px rgba($terracotta-500, 0.25),
+      0 16px 48px -8px rgba($terracotta-400, 0.15);
   }
 
-  &.variant-coral::before {
-    background: linear-gradient(90deg, $coral-400 0%, $coral-600 100%);
+  &.variant-coral:hover {
+    box-shadow:
+      0 0 0 1px rgba($coral-400, 0.2),
+      0 8px 24px -4px rgba($coral-500, 0.25),
+      0 16px 48px -8px rgba($coral-400, 0.15);
   }
 
   @media (max-width: $breakpoint-sm) {

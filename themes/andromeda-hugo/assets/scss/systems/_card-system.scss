@@ -9,6 +9,7 @@
 */
 
 @import '../design-tokens';
+@import '../design-enhancements';
 @import 'color-system';
 
 /*------------------------------------------------------------------
@@ -17,57 +18,55 @@
 -------------------------------------------------------------------*/
 
 /**
- * Base v4.0 Card
- * Modern card with subtle elevation and smooth transitions
- * @param {string} $variant - Color variant for border/shadow (primary, secondary, coral, sage)
+ * Base v4.0 Card with Gradient Glow (elegant soft border)
+ * Modern card with glassmorphism gradient glow effect (unified theme-wide)
+ * @param {string} $variant - Color variant for glow (primary, secondary, coral, sage)
  * @param {boolean} $elevated - Whether to apply elevated shadow (default: false)
  */
 @mixin card-v4($variant: 'primary', $elevated: false) {
-  background: #ffffff;
+  position: relative;
+  background: $gradient-glass-light;
+  @include glassmorphism($card-border-radius, 0.9);
   border-radius: $card-border-radius; // 12px (design token rule)
   padding: $card-padding; // 16px (molecule tier)
-  transition: $card-transition; // 400ms ease-in-out (Level 2 motion)
+  transition: all $duration-base $easing-medium; // 400ms ease-in-out (Level 2 motion)
 
-  // Border (subtle color accent)
-  border: 1px solid;
-  @if $variant == 'primary' {
-    border-color: $emerald-200;
-  } @else if $variant == 'secondary' {
-    border-color: $terracotta-200;
-  } @else if $variant == 'coral' {
-    border-color: $coral-200;
-  } @else if $variant == 'sage' {
-    border-color: $sage-200;
-  } @else {
-    border-color: $gray-200;
-  }
-
-  // Shadow
+  // Base shadow
   @if $elevated {
     box-shadow: $card-shadow-hover; // Elevated rest state
   } @else {
     box-shadow: $card-shadow; // Subtle rest state
   }
 
-  // Hover effect: +1 level only (design token rule - NEVER skip levels)
+  // Hover effect: gradient glow appears + lift
   &:hover {
-    @if $elevated {
-      box-shadow: $shadow-lg; // +1 level from md
-    } @else {
-      box-shadow: $card-shadow-hover; // +1 level from sm
-    }
+    transform: translateY(-2px) scale(1.02);
+    background: rgba(255, 255, 255, 0.95);
 
-    // Colored shadow on hover
+    // Variant-specific gradient glow (soft, elegant)
     @if $variant == 'primary' {
-      box-shadow: 0 10px 30px -5px rgba($emerald-400, 0.2);
+      box-shadow:
+        0 0 0 1px rgba($emerald-400, 0.2),
+        0 8px 24px -4px rgba($emerald-500, 0.25),
+        0 16px 48px -8px rgba($emerald-400, 0.15);
     } @else if $variant == 'secondary' {
-      box-shadow: 0 10px 30px -5px rgba($terracotta-400, 0.2);
+      box-shadow:
+        0 0 0 1px rgba($terracotta-400, 0.2),
+        0 8px 24px -4px rgba($terracotta-500, 0.25),
+        0 16px 48px -8px rgba($terracotta-400, 0.15);
     } @else if $variant == 'coral' {
-      box-shadow: 0 10px 30px -5px rgba($coral-400, 0.2);
+      box-shadow:
+        0 0 0 1px rgba($coral-400, 0.2),
+        0 8px 24px -4px rgba($coral-500, 0.25),
+        0 16px 48px -8px rgba($coral-400, 0.15);
+    } @else if $variant == 'sage' {
+      box-shadow:
+        0 0 0 1px rgba($sage-400, 0.2),
+        0 8px 24px -4px rgba($sage-500, 0.25),
+        0 16px 48px -8px rgba($sage-400, 0.15);
+    } @else {
+      box-shadow: $shadow-md; // Fallback
     }
-
-    // Subtle lift
-    transform: translateY(-4px);
   }
 }
 

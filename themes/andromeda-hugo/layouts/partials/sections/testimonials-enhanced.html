@@ -25,12 +25,11 @@
               </div>
             {{- end -}}
 
-            <div class="testimonials-grid row g-4">
+            <div class="testimonials-grid">
               {{- range $index, $testimonial := .testimonials -}}
                 {{- $colorVariants := slice "primary" "secondary" "coral" -}}
                 {{- $colorVariant := index $colorVariants (mod $index 3) -}}
-                <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
-                  <div class="card card-v4 card-gradient-border card-gradient-border-{{ $colorVariant }} h-100">
+                <div class="testimonial-card variant-{{ $colorVariant }}" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
                     <div class="card-body">
                     {{/* Rating stars */}}
                     {{- if .rating -}}
@@ -91,7 +90,6 @@
                       </div>
                     {{- end -}}
                     </div>
-                  </div>
                 </div>
               {{- end -}}
             </div>

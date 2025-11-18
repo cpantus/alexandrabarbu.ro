@@ -412,6 +412,50 @@
   font-size: 1.25rem; // 20px
 }
 
+/*------------------------------------------------------------------
+  # Icon Centering Utilities
+  # Ensure icons are centered in their containers
+-------------------------------------------------------------------*/
+
+/**
+ * Center icon wrapper - block-level centering for standalone icons
+ * Applies to all sections using icons
+ */
+.icon-circle,
+.icon-circle-glass,
+.problem-icon-wrapper,
+.credential-icon-wrapper,
+.value-icon-wrapper,
+.service-icon-wrapper,
+.feature-icon-wrapper,
+.benefit-icon-wrapper,
+.privacy-shield {
+  display: flex !important; // Flexbox for internal centering
+  align-items: center !important;
+  justify-content: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/**
+ * Icon element centering within wrapper
+ * Ensures <i> tags are perfectly centered
+ */
+.icon-circle i,
+.icon-circle-glass i,
+.problem-icon-wrapper i,
+.credential-icon-wrapper i,
+.value-icon-wrapper i,
+.service-icon-wrapper i,
+.feature-icon-wrapper i,
+.benefit-icon-wrapper i,
+.privacy-shield i {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+
 /*
 ========================================================================
   END Icon System Foundation
@@ -423,6 +467,7 @@
   4. Color Variants: .icon-primary, .icon-secondary, .icon-coral, .icon-sage, .icon-info
   5. Animations: .icon-circle-pulse, .icon-circle-rotate, .icon-circle-float
   6. Auto-Distribution: Automatic color rotation via nth-child selectors
+  7. Centering: All icon wrappers auto-centered in containers
 
   Integration: Import this file in custom.scss AFTER color-system.scss
 ========================================================================
