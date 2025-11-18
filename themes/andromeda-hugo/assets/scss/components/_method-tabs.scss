@@ -1,0 +1,313 @@
+// Method Tabs Section - Enhanced v4.0
+// Gradient tab indicators, smooth transitions, active state styling
+
+.method-tabs-section {
+  padding: $space-16 0;
+  position: relative;
+  background: linear-gradient(180deg, rgba($green-50, 0.2) 0%, white 50%, rgba($terracotta-50, 0.2) 100%);
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// Section Header
+.method-tabs-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto $space-12;
+
+  .title {
+    font-family: $font-primary;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: $gray-900;
+    line-height: 1.2;
+    margin-bottom: $space-4;
+
+    @media (max-width: $breakpoint-md) {
+      font-size: 1.875rem;
+    }
+  }
+
+  .description {
+    font-family: $font-secondary;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: $gray-600;
+  }
+}
+
+// Tab Navigation
+.method-tabs-nav {
+  display: flex;
+  gap: $space-3;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: $space-10;
+  position: relative;
+
+  @media (max-width: $breakpoint-md) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+// Individual Tab Button
+.method-tab-button {
+  position: relative;
+  padding: $space-4 $space-6;
+  background: white;
+  border: 2px solid transparent;
+  border-radius: $radius-md;
+  font-family: $font-primary;
+  font-size: 1rem;
+  font-weight: 600;
+  color: $gray-700;
+  cursor: pointer;
+  transition: all $duration-base $easing-medium;
+  box-shadow: $shadow-xs;
+  min-width: 160px;
+  text-align: center;
+
+  // Gradient border (hidden by default)
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: $radius-md;
+    padding: 2px;
+    background: linear-gradient(135deg, $green-400 0%, $terracotta-400 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity $duration-base $easing-medium;
+  }
+
+  // Icon (v4.0+ gradient circle wrapper)
+  .icon-circle-sm {
+    display: inline-flex;
+    vertical-align: middle;
+    transition: transform $duration-fast $easing-subtle;
+  }
+
+  // Legacy flat icon support
+  i {
+    margin-right: $space-2;
+    font-size: 1.125rem;
+    transition: transform $duration-fast $easing-subtle;
+  }
+
+  // Hover state
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-sm;
+    color: $color-primary;
+
+    &::before {
+      opacity: 0.5;
+    }
+
+    i {
+      transform: scale(1.1);
+    }
+
+    .icon-circle-sm {
+      transform: translateY(-1px);
+    }
+  }
+
+  // Active state
+  &.active {
+    color: white;
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+
+    &::before {
+      opacity: 1;
+    }
+
+    // Gradient background variants
+    &.variant-primary {
+      background: $gradient-icon-emerald;
+    }
+
+    &.variant-secondary {
+      background: $gradient-icon-terracotta;
+    }
+
+    &.variant-coral {
+      background: linear-gradient(135deg, $coral-400 0%, $coral-600 100%);
+    }
+
+    i {
+      color: white !important;
+    }
+
+    // Icon circle inherits active tab gradient
+    .icon-circle-sm {
+      background: rgba(white, 0.2);
+      border: 1px solid rgba(white, 0.3);
+
+      i {
+        color: white !important;
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-md) {
+    min-width: auto;
+    padding: $space-3 $space-5;
+    font-size: 0.9375rem;
+  }
+}
+
+// Tab Content Container
+.method-tabs-content {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+// Individual Tab Panel
+.method-tab-panel {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity $duration-slow $easing-medium, transform $duration-slow $easing-medium;
+
+  &.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    animation: tab-fade-in $duration-slow $easing-medium;
+  }
+}
+
+@keyframes tab-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Tab Content Card
+.method-tab-content-card {
+  padding: $space-8;
+  background: $gradient-glass-light;
+  @include glassmorphism($radius-lg, 0.95);
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $space-6;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $space-5;
+  }
+}
+
+.method-tab-content-title {
+  font-family: $font-primary;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $color-primary;
+  line-height: 1.3;
+  margin: 0 0 $space-5;
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+
+  i {
+    color: $color-secondary;
+    font-size: 1.75rem;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 1.25rem;
+
+    i {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.method-tab-content-description {
+  font-family: $font-secondary;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: $gray-700;
+  margin: 0 0 $space-6;
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 0.9375rem;
+  }
+}
+
+// Features List in Tab Content
+.method-features-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: $space-4;
+  margin-top: $space-6;
+
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+    gap: $space-3;
+  }
+}
+
+.method-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-3;
+  padding: $space-3;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: $radius-sm;
+  transition: all $duration-fast $easing-subtle;
+
+  i {
+    color: $color-primary;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  span {
+    font-family: $font-secondary;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: $gray-700;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateX(4px);
+  }
+}
+
+// Responsive Adjustments
+@media (max-width: $breakpoint-sm) {
+  .method-tabs-section {
+    padding: $space-12 0;
+  }
+
+  .method-tabs-header {
+    margin-bottom: $space-8;
+
+    .title {
+      font-size: 1.75rem;
+    }
+  }
+
+  .method-tabs-nav {
+    margin-bottom: $space-8;
+  }
+}

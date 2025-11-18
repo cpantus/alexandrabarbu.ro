@@ -14,7 +14,8 @@
                   <p class="text-uppercase text-muted">{{ .subtitle | markdownify }}</p>
                 {{ end }}
                 {{ with .title }}
-                  {{ partial "atoms/heading.html" (dict "text" . "level" 2 "markdown" true) }}
+                  {{- $headingVariant := $section.heading_color_variant | default "primary" -}}
+                  {{ partial "atoms/heading.html" (dict "text" . "level" 2 "markdown" true "colorVariant" $headingVariant) }}
                 {{ end }}
                 {{ with .description }}
                   <p>{{ . | markdownify }}</p>
@@ -26,8 +27,12 @@
               {{/* Tab Navigation */}}
               <ul class="nav nav-pills nav-justified mb-4" id="methodTabs" role="tablist">
                 {{ range $index, $method := .methods }}
+                  {{- /* 3-color rotation for tabs: primary → secondary → coral */ -}}
+                  {{- $tabVariants := slice "primary" "secondary" "coral" -}}
+                  {{- $tabVariant := index $tabVariants (mod $index 3) -}}
+
                   <li class="nav-item" role="presentation">
-                    <button class="nav-link {{ if eq $index 0 }}active{{ end }}"
+                    <button class="nav-link nav-link-{{ $tabVariant }} {{ if eq $index 0 }}active{{ end }}"
                             id="method-tab-{{ $index }}"
                             data-bs-toggle="pill"
                             data-bs-target="#method-{{ $index }}"
@@ -36,7 +41,14 @@
                             aria-controls="method-{{ $index }}"
                             aria-selected="{{ if eq $index 0 }}true{{ else }}false{{ end }}">
                       {{ if .icon }}
-                        <i class="ti-{{ .icon }} text-primary me-2"></i>
+                        {{/* v4.0+ gradient circle wrapper for visual consistency */}}
+                        {{ partial "atoms/icon.html" (dict
+                          "name" .icon
+                          "withWrapper" true
+                          "wrapperVariant" $tabVariant
+                          "wrapperSize" "sm"
+                          "class" "me-2"
+                        ) }}
                       {{ end }}
                       {{ .short_name | default .name | default .title }}
                     </button>
@@ -51,7 +63,7 @@
                        id="method-{{ $index }}"
                        role="tabpanel"
                        aria-labelledby="method-tab-{{ $index }}">
-                    <div class="card border-0 shadow-sm">
+                    <div class="card border-0 shadow-sm card-v4">
                       <div class="card-body p-5">
                         {{ partial "atoms/heading.html" (dict "text" (.title | default .name) "level" 3 "class" "mb-3") }}
                         {{ with .description }}
