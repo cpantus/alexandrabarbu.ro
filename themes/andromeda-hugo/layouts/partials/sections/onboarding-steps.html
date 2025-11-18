@@ -11,7 +11,7 @@
               <div class="step-number">
                 {{ $step.number }}
               </div>
-              <h5 class="mb-2">{{ $step.title }}</h5>
+              {{ partial "atoms/heading.html" (dict "level" "h5" "text" $step.title "class" "mb-2") }}
               <p class="text-muted small mb-0">{{ $step.description }}</p>
             </div>
           </div>

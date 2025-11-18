@@ -108,7 +108,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <div class="alternative-methods text-center p-4 rounded-3 bg-light">
-          <h5 class="mb-4">{{ $section.alternative_methods.title | default "Or reach out directly:" }}</h5>
+          {{ partial "atoms/heading.html" (dict "level" "h5" "text" ($section.alternative_methods.title | default "Or reach out directly:") "class" "mb-4") }}
 
           <div class="method-buttons d-flex flex-wrap justify-content-center gap-3">
             {{- range $section.alternative_methods.methods -}}

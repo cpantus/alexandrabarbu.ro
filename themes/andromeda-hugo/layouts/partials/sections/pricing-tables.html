@@ -15,20 +15,16 @@
             {{ if eq $toggle "toggle" }}
               <div
                 class="pricing-switch d-flex align-items-center justify-content-center w-100 mb-4">
-                <label class="h5 m-0" id="monthly">{{ T "monthly" }}</label>
+                {{ partial "atoms/heading.html" (dict "level" "h5" "text" (T "monthly") "class" "m-0" "id" "monthly") }}
                 <div class="toggle">
                   <input class="pricing-check" type="checkbox" /><b
                     class="switch"></b>
                 </div>
-                <label class="h5 m-0" id="annually">{{ T "yearly" }}</label>
+                {{ partial "atoms/heading.html" (dict "level" "h5" "text" (T "yearly") "class" "m-0" "id" "annually") }}
               </div>
             {{ end }}
             {{ with $.Params.offer }}
-              <span
-                class="text-primary py-2 px-3 rounded-3"
-                style="background:#f9f9f9;"
-                >{{ . | markdownify }}</span
-              >
+              <span class="text-primary py-2 px-3 rounded-3 bg-light">{{ . | markdownify }}</span>
             {{ end }}
           </div>
         </div>

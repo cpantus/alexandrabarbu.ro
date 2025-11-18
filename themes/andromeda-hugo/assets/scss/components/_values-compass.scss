@@ -52,7 +52,7 @@
   h2 {
     color: $color-text-primary;
     margin-bottom: $space-4;
-    font-weight: $weight-bold;
+    font-weight: $font-weight-heading-bold; // 600 per design rules
   }
 
   p {
@@ -90,7 +90,7 @@
         stroke-width: 2px;
         fill: none;
         stroke-dasharray: 5, 5;
-        transition: opacity $duration-normal $ease-out;
+        transition: opacity $duration-base $easing-medium; // Level 2 motion
       }
 
       circle {
@@ -166,7 +166,7 @@
   border-radius: $values-border-radius;
   padding: $card-padding-lg;
   text-align: center;
-  transition: all $duration-normal $ease-out;
+  transition: all $duration-base $easing-medium; // Level 2 card motion
   cursor: default;
 
   // Entrance animation
@@ -194,10 +194,10 @@
   // Progressive disclosure
   @include progressive-disclosure();
 
-  // Hover lift effect
+  // Hover lift effect (Level 2 molecule motion: -2px lift + shadow upgrade)
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: $shadow-warm-lg;
+    transform: translateY(-2px);
+    box-shadow: $shadow-md; // +1 level from $shadow-sm (at rest)
     background: rgba(255, 255, 255, 0.95);
   }
 
@@ -220,7 +220,7 @@
   }
 
   &:hover {
-    transform: translateY(-12px) scale(1.02);
+    transform: translateY(-2px) scale(1.02); // Level 2 molecule motion (consistent lift)
     box-shadow: $shadow-featured;
   }
 
@@ -231,7 +231,7 @@
 
   .value-card-title {
     font-size: $text-2xl;
-    font-weight: $weight-bold;
+    font-weight: $font-weight-heading-bold; // 600 per design rules
   }
 }
 
@@ -245,7 +245,7 @@
   border-radius: $radius-full;
   margin: 0 auto $space-5;
   box-shadow: $shadow-base;
-  transition: all $duration-normal $ease-out;
+  transition: all $duration-base $easing-medium; // Level 2 molecule motion
   position: relative;
   overflow: hidden;
 
@@ -275,7 +275,7 @@
     border-radius: $radius-full;
     opacity: 0;
     filter: blur(20px);
-    transition: opacity $duration-normal $ease-out;
+    transition: opacity $duration-base $easing-medium; // Level 2 motion
   }
 
   .value-card:hover &::before {
@@ -285,9 +285,9 @@
 
   // Icon styling
   i, .icon {
-    font-size: 32px;
+    font-size: $icon-circle-sm;  // 32px - Design token (Week 3)
     color: white;
-    transition: transform $duration-normal $ease-out;
+    transition: transform $duration-base $easing-medium; // Level 2 molecule motion
     position: relative;
     z-index: 1;
   }
@@ -305,7 +305,7 @@
   // Featured card larger icon
   .value-card-featured & {
     i, .icon {
-      font-size: 40px;
+      font-size: $icon-2x;  // 40px - Design token (Week 3)
     }
   }
 }
@@ -313,10 +313,10 @@
 // Title
 .value-card-title {
   font-size: $text-xl;
-  font-weight: $weight-semibold;
+  font-weight: $font-weight-heading-bold; // 600 per design rules
   color: $color-text-primary;
   margin-bottom: $space-2;
-  transition: color $duration-normal $ease-out;
+  transition: color $duration-base $easing-medium; // Level 2 motion
 
   .value-card:hover & {
     color: $color-primary;

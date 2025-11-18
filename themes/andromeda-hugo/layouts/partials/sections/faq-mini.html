@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="text-center mb-5">
-          <h3>Întrebări Frecvente</h3>
+          {{ partial "atoms/heading.html" (dict "level" "h3" "text" "Întrebări Frecvente") }}
           <p class="text-muted">Răspunsuri la cele mai comune întrebări</p>
         </div>
-        
+
         {{ partial "molecules/accordion.html" (dict
           "items" .
           "id" "faqAccordion"

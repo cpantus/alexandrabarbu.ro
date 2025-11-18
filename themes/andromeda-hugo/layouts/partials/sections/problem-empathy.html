@@ -5,13 +5,13 @@
   {{ if .enable }}
     <section class="problem-empathy">
       <div class="container">
-        {{/* Section Header */}}
+        {{/* Section Header - Uses atoms/heading.html for consistent typography */}}
         <div class="problem-empathy-header">
           {{ if .subtitle }}
             <p class="subtitle">{{ .subtitle | markdownify }}</p>
           {{ end }}
           {{ if .title }}
-            <h2 class="title">{{ .title | markdownify }}</h2>
+            {{ partial "atoms/heading.html" (dict "text" (.title | markdownify) "level" "h2" "class" "title") }}
           {{ end }}
           {{ if .description }}
             <p class="description">{{ .description | markdownify }}</p>
@@ -39,9 +39,9 @@
                 <i class="las la-{{ $challenge.icon | default "exclamation-circle" }}"></i>
               </div>
 
-              {{/* Card Content */}}
+              {{/* Card Content - Uses atoms/heading.html for consistent typography */}}
               <div class="problem-content">
-                <h3 class="problem-title">{{ $challenge.title }}</h3>
+                {{ partial "atoms/heading.html" (dict "text" $challenge.title "level" "h3" "class" "problem-title") }}
                 <p class="problem-description">{{ $challenge.description }}</p>
               </div>
             </div>

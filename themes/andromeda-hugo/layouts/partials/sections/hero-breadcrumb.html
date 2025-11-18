@@ -1,10 +1,13 @@
 {{/* Hero Breadcrumb Section - Shared across pages */}}
+{{/* Uses design tokens for section padding via .page-header class */}}
+{{/* Compositional purity: Uses atoms/heading.html for h1 */}}
 <section class="page-header">
   <div class="container-xxl position-relative">
     <div class="row align-items-center">
       <div class="col-lg-6">
         <div class="section-title text-center text-lg-start mb-0">
-          <h1 class="mb-3">{{ .Title }}</h1>
+          {{/* Use atoms/heading.html for consistent typography */}}
+          {{ partial "atoms/heading.html" (dict "text" .Title "level" "h1" "class" "mb-3") }}
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb justify-content-center justify-content-lg-start">
               <li class="breadcrumb-item">
@@ -20,8 +23,10 @@
       <div class="col-lg-6">
         <div class="hero-shapes">
           {{ with .Params.hero_image }}
-          <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="img-fluid">
+          {{/* Use atoms/image.html for consistent image handling */}}
+          {{ partial "atoms/image.html" (dict "src" . "alt" $.Title "class" "img-fluid") }}
           {{ else }}
+          {{/* Decorative SVG shapes - inline is appropriate for simple graphics */}}
           <img src="{{ "images/shapes/shape-1.svg" | relURL }}" alt="shape" class="shape-1">
           <img src="{{ "images/shapes/shape-2.svg" | relURL }}" alt="shape" class="shape-2">
           {{ end }}

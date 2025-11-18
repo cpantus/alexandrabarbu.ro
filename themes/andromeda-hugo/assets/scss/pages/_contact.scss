@@ -7,7 +7,7 @@
 /* Contact Page Enhanced Styling */
 .contact-enhanced {
   position: relative;
-  background: linear-gradient(135deg, #f6f9fc 0%, #e9f7ef 100%);
+  background: linear-gradient(135deg, $gray-50 0%, lighten($emerald-50, 2%) 100%);
   padding: 60px 0;
 }
 
@@ -15,7 +15,7 @@
 .contact-method-card {
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
+  border-radius: $radius-lg;
   padding: 2rem;
   transition: all 0.3s ease;
   border: 1px solid rgba(77, 179, 128, 0.1);
@@ -23,7 +23,7 @@
   
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(77, 179, 128, 0.15);
+    box-shadow: $shadow-warm-md;
     border-color: rgba(77, 179, 128, 0.3);
     
     .contact-icon {
@@ -39,7 +39,7 @@
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #4DB380 0%, #3d9066 100%);
+  background: linear-gradient(135deg, $emerald-500 0%, $emerald-600 100%);
   color: white;
   font-size: 2.75rem;
   margin-bottom: 1rem;
@@ -51,7 +51,7 @@
   transition: all 0.3s ease;
   
   &:hover {
-    color: #4DB380 !important;
+    color: $emerald-500 !important;
     transform: translateY(-2px);
   }
 }
@@ -63,7 +63,7 @@
   
   &:hover {
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(77, 179, 128, 0.2);
+    box-shadow: $shadow-warm-sm;
   }
 }
 
@@ -81,126 +81,126 @@
 /* Enhanced Form Styling */
 .contact-form-enhanced {
   background: white;
-  border-radius: 25px;
+  border-radius: $radius-xl;
   padding: 2.5rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: $shadow-lg;
   
   .form-control {
-    border-radius: 12px;
-    border: 2px solid #e8f5ef;
-    padding: 12px 20px;
-    transition: all 0.3s ease;
+    border-radius: $radius-sm;       // 8px - Design token (Week 3)
+    border: 2px solid $emerald-50;  // Design token (Week 3)
+    padding: $space-3 $space-5;      // 12px 20px - Design tokens (Week 3)
+    transition: all $duration-base ease;
     
     &:focus {
-      border-color: #4DB380;
-      background-color: #f8fdfb;
-      box-shadow: 0 0 0 0.2rem rgba(77, 179, 128, 0.1);
+      border-color: $emerald-500;
+      background-color: lighten($emerald-50, 4%);
+      outline: 2px solid $emerald-500; outline-offset: 2px;
     }
   }
   
   .btn-primary {
-    border-radius: 12px;
+    border-radius: $radius-md;
     padding: 14px 30px;
     font-weight: 600;
-    background: linear-gradient(135deg, #4DB380 0%, #3d9066 100%);
+    background: linear-gradient(135deg, $emerald-500 0%, $emerald-600 100%);
     border: none;
     transition: all 0.3s ease;
     
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(77, 179, 128, 0.3);
+      box-shadow: $shadow-warm-md;
     }
   }
 }
 
 /* First Consultation Info Box */
 .consultation-info-box {
-  background: linear-gradient(135deg, #e8f5ef 0%, #f0f9f5 100%);
-  border-left: 4px solid #4DB380;
-  border-radius: 12px;
+  background: linear-gradient(135deg, $emerald-50 0%, lighten($emerald-50, 3%) 100%);
+  border-left: 4px solid $emerald-500;
+  border-radius: $radius-md;
   padding: 1rem 1.5rem;
   margin-bottom: 1.5rem;
   
   strong {
-    color: #4DB380;
+    color: $emerald-500;
     font-size: 1.1rem;
   }
 }
 
-/* FAQ Accordion Styling - Hugo Way */
+/* FAQ Accordion Styling - Hugo Way (Design Token Compliant) */
 .faq-accordion {
   .accordion-item {
     border: none;
     background: white;
-    border-radius: 15px;
-    margin-bottom: 1rem;
+    border-radius: $radius-md; // 12px (standard molecule radius)
+    margin-bottom: $space-4; // 16px (molecule gap)
     overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    
+    box-shadow: $shadow-sm; // At rest (molecule tier)
+    transition: $duration-base $easing-medium; // 300ms Level 2
+
     &:hover {
-      box-shadow: 0 5px 20px rgba(77, 179, 128, 0.1);
-      transform: translateY(-2px);
+      box-shadow: $shadow-md; // +1 level only
+      transform: translateY(-2px); // Level 2 molecule motion
     }
-    
+
     &.faq-item {
       /* Special styling for FAQ items from shortcode */
       border-left: 3px solid transparent;
-      
+
       &:hover {
-        border-left-color: #4DB380;
+        border-left-color: $emerald-500; // Brand color token
       }
     }
   }
-  
+
   .accordion-header {
     margin: 0 !important;
   }
-  
+
   .accordion-button {
     background: white;
-    color: #2c3e50;
-    font-weight: 600;
-    padding: 1.25rem 1.5rem;
+    color: $gray-800; // Text dark token
+    font-weight: $font-weight-heading-bold; // 600 (per design rules)
+    padding: $space-5 $space-6; // 20px 24px (molecule tier)
     border: none;
     box-shadow: none;
-    font-size: 1.05rem;
-    
+    font-size: $text-lg; // 1.125rem (18px)
+
     &::after {
-      transition: transform 0.3s ease;
+      transition: transform $duration-base $easing-medium; // 300ms
     }
-    
+
     &:not(.collapsed) {
-      background: linear-gradient(135deg, #f0f9f5 0%, #e8f5ef 100%);
-      color: #4DB380;
-      
+      background: linear-gradient(135deg, $emerald-50 0%, $emerald-100 100%); // Semantic brand gradient
+      color: $emerald-500; // Brand color
+
       &::after {
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%234DB380'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
         transform: rotate(180deg);
       }
     }
-    
+
     &:focus {
       box-shadow: none;
       border-color: transparent;
     }
-    
+
     &:hover {
-      color: #4DB380;
+      color: $emerald-500; // Brand color
     }
   }
-  
+
   .accordion-collapse {
-    transition: all 0.35s ease;
+    transition: all $duration-slow $easing-medium; // 350ms for collapse animation
   }
-  
+
   .accordion-body {
-    padding: 1.5rem;
-    color: #5a6c7d;
-    line-height: 1.7;
-    font-size: 0.95rem;
-    background: #fafbfc;
-    
+    padding: $space-6; // 24px (molecule tier)
+    color: $gray-600; // Text secondary
+    line-height: $leading-relaxed; // 1.625 (relaxed readability)
+    font-size: $text-sm; // 0.875rem (14px)
+    background: $gray-50; // Subtle background
+
     p:last-child {
       margin-bottom: 0;
     }
@@ -209,13 +209,13 @@
 
 /* Confidentiality Alert Enhanced */
 .alert-soft-primary {
-  background: linear-gradient(135deg, #e8f5ef 0%, #f0f9f5 100%);
+  background: linear-gradient(135deg, $emerald-50 0%, lighten($emerald-50, 3%) 100%);
   border: 1px solid rgba(77, 179, 128, 0.2);
-  border-radius: 15px;
+  border-radius: $radius-md;
   padding: 1.5rem;
   
   i {
-    color: #4DB380;
+    color: $emerald-500;
   }
 }
 
@@ -249,6 +249,71 @@
 
 /* Gradient Text Effect */
 .gradient-text {
-  background: linear-gradient(135deg, #4DB380 0%, #3d9066 100%);
+  background: linear-gradient(135deg, $emerald-500 0%, $emerald-600 100%);
   -webkit-background-clip: text;
+}
+
+/*------------------------------------------------------------------
+  # Enhanced Contact Form Elements (Extracted from contact-enhanced.html)
+  # Design Token Compliant - Week 10
+-------------------------------------------------------------------*/
+
+/* Alert Boxes for Form Feedback */
+.alert {
+  padding: $space-4;        // 16px - Design token
+  margin: $space-4 0;       // 16px vertical - Design token
+  border-radius: $radius-sm; // 8px - Design token
+  font-size: $text-sm;      // 0.875rem - Design token
+  line-height: $leading-normal; // 1.5 - Design token
+}
+
+.alert-success {
+  background-color: $emerald-50;      // Design token
+  border: 1px solid $emerald-500;     // Design token
+  color: $emerald-900;                // Design token (darker than #2d5a3d for better contrast)
+}
+
+.alert-warning {
+  background-color: $amber-100;       // Design token
+  border: 1px solid $amber-500;       // Design token
+  color: $amber-900;                  // Design token (darker than #856404 for better contrast)
+}
+
+.alert-danger {
+  background-color: $red-50;
+  border: 1px solid $red-500;
+  color: $red-900;
+}
+
+.alert a {
+  color: inherit;
+  text-decoration: underline;
+  font-weight: $font-weight-heading-bold; // 600 - Design token
+}
+
+/* Trust Badge Enhancement */
+.trust-badge {
+  font-size: 1.5em !important;
+}
+
+/* Clickable Contact Icons */
+.contact-icon-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  transition: transform $duration-fast $easing-medium,  // 200ms - Design token
+              opacity $duration-slow $easing-medium;     // 600ms - Design token
+}
+
+.contact-icon-link:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+  color: inherit;
+  text-decoration: none;
+}
+
+.contact-icon-link:focus {
+  outline: 2px solid $emerald-500;   // Design token
+  outline-offset: 4px;
+  border-radius: $radius-sm;         // 8px - Design token
 }

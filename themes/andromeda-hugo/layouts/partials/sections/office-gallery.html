@@ -53,7 +53,7 @@
                     {{- if or .caption .description -}}
                       <div class="gallery-caption mt-3">
                         {{- if .caption -}}
-                          <h4 class="caption-title h6 mb-2 fw-semibold">{{ .caption }}</h4>
+                          {{ partial "atoms/heading.html" (dict "level" "h4" "text" .caption "class" "caption-title h6 mb-2 fw-semibold") }}
                         {{- end -}}
                         {{- if .description -}}
                           <p class="caption-text small text-muted mb-0">{{ .description | markdownify }}</p>

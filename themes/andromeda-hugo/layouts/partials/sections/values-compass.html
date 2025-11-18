@@ -9,12 +9,12 @@
   {{ if .enable }}
     <section class="values-compass-section" id="values">
       <div class="container">
-        {{/* Section Header */}}
+        {{/* Section Header - Uses atoms/heading.html for consistent typography */}}
         <div class="values-compass-header">
           {{ if .subtitle }}
             <p class="text-uppercase text-muted mb-2">{{ .subtitle | markdownify }}</p>
           {{ end }}
-          <h2>{{ .title | markdownify }}</h2>
+          {{ partial "atoms/heading.html" (dict "text" (.title | markdownify) "level" "h2") }}
           {{ if .description }}
             <p>{{ .description | markdownify }}</p>
           {{ end }}
@@ -68,10 +68,13 @@
                   {{ end }}
                 </div>
 
-                {{/* Title */}}
-                <h3 class="value-card-title" id="value-{{ $n }}-title">
-                  {{ $item.title | markdownify }}
-                </h3>
+                {{/* Title - Uses atoms/heading.html for consistent typography */}}
+                {{ partial "atoms/heading.html" (dict
+                  "text" ($item.title | markdownify)
+                  "level" "h3"
+                  "class" "value-card-title"
+                  "id" (printf "value-%d-title" $n)
+                ) }}
 
                 {{/* Description (Progressive Disclosure) */}}
                 {{ if $item.description }}

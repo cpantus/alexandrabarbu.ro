@@ -17,7 +17,7 @@
                 ) }}
               {{ end }}
               {{ if .title }}
-                <h3 class="text-white mb-3">{{ .title | markdownify }}</h3>
+                {{ partial "atoms/heading.html" (dict "text" (.title | markdownify) "level" "h3" "class" "text-white mb-3") }}
               {{ end }}
               {{ if .description }}
                 <p class="text-white-50 mb-4">{{ .description | markdownify }}</p>

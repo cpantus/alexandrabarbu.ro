@@ -5,6 +5,9 @@
 ========================================================================
 */
 
+/* Import Design Tokens - SINGLE SOURCE OF TRUTH */
+@import 'design-tokens';
+
 /*------------------------------------------------------------------
   # Typography System - Alexandra's Brand Fonts
   # Poppins (Headlines) + Open Sans (Body) per brand guidelines
@@ -34,13 +37,14 @@ $text-6xl: 3.75rem;     // 60px
 $text-7xl: 4.5rem;      // 72px - Hero typography ≥100px for mobile-first, scales up
 $text-hero: clamp(4rem, 8vw, 7rem);  // 64px - 112px responsive hero
 
-/* Font Weights */
-$weight-light: 300;
-$weight-normal: 400;
-$weight-medium: 500;
-$weight-semibold: 600;
-$weight-bold: 700;
-$weight-extrabold: 800;
+/* Font Weights - Migrated to Design Tokens (Week 3 Refactor) */
+/* Using design token naming for consistency */
+$weight-light: 300;          // DEPRECATED - Not used in design system
+$weight-normal: $font-weight-body;           // 400 - Body text only
+$weight-medium: $font-weight-heading;        // 500 - Standard headings (from design tokens)
+$weight-semibold: $font-weight-heading-bold; // 600 - Emphasized headings (from design tokens)
+$weight-bold: 700;           // DEPRECATED - Use $weight-semibold (600) instead per design coherence rules
+$weight-extrabold: 800;      // DEPRECATED - Not used in design system
 
 /* Line Heights */
 $leading-tight: 1.25;
@@ -50,59 +54,40 @@ $leading-relaxed: 1.625;
 $leading-loose: 1.75;
 
 /*------------------------------------------------------------------
-  # Color System - Healing Depth (9-step tonal scales)
+  # Color System - Migrated to Design Tokens (Week 3 Refactor)
+  # All color definitions now reference _design-tokens.scss
 -------------------------------------------------------------------*/
 
-/* Primary - Healing Green (Growth, Calm, Trust) */
-$green-50: #f0fdf6;
-$green-100: #dcfce8;
-$green-200: #bbf7d5;
-$green-300: #86efb3;
-$green-400: #4DB380;  // Main brand color
-$green-500: #3a9d6a;
-$green-600: #2d7a52;
-$green-700: #246143;
-$green-800: #1e4d36;
-$green-900: #1a4231;
+/* DEPRECATED: Old $green-* variables - Use $emerald-* from design tokens */
+/* Aliases for backward compatibility during migration */
+$green-50: $emerald-50;
+$green-100: $emerald-100;
+$green-200: $emerald-200;
+$green-300: $emerald-300;
+$green-400: $emerald-500;  // Old brand color → New emerald-500
+$green-500: $emerald-600;
+$green-600: $emerald-700;
+$green-700: $emerald-800;
+$green-800: $emerald-900;
+$green-900: $emerald-900;
 
-/* Secondary - Warm Terracotta (Balance, Warmth, Grounding) */
-$terracotta-50: #fef7f3;
-$terracotta-100: #fceee6;
-$terracotta-200: #f9dcd0;
-$terracotta-300: #f5c2aa;
-$terracotta-400: #CC6B49;  // Main accent color
-$terracotta-500: #b55737;
-$terracotta-600: #964629;
-$terracotta-700: #7a3921;
-$terracotta-800: #5e2d1a;
-$terracotta-900: #4a2315;
+/* Terracotta already matches design tokens - no aliases needed */
+/* Grays already match design tokens - no aliases needed */
 
-/* Neutrals - Sophisticated Grays */
-$gray-50: #f9fafb;
-$gray-100: #f3f4f6;
-$gray-200: #e5e7eb;
-$gray-300: #d1d5db;
-$gray-400: #9ca3af;
-$gray-500: #6b7280;
-$gray-600: #4b5563;
-$gray-700: #374151;
-$gray-800: #1f2937;
-$gray-900: #111827;
+/* Semantic Color Mappings - Now using design tokens */
+$color-primary: $emerald-500;  // Brand primary
+$color-primary-light: $emerald-400;
+$color-primary-lighter: $emerald-300;
+$color-primary-lightest: $emerald-100;
+$color-primary-dark: $emerald-600;
+$color-primary-darker: $emerald-700;
 
-/* Semantic Color Mappings */
-$color-primary: $green-400;
-$color-primary-light: $green-300;
-$color-primary-lighter: $green-200;
-$color-primary-lightest: $green-100;
-$color-primary-dark: $green-500;
-$color-primary-darker: $green-600;
-
-$color-secondary: $terracotta-400;
-$color-secondary-light: $terracotta-300;
-$color-secondary-lighter: $terracotta-200;
+$color-secondary: $terracotta-500;  // Brand secondary
+$color-secondary-light: $terracotta-400;
+$color-secondary-lighter: $terracotta-300;
 $color-secondary-lightest: $terracotta-100;
-$color-secondary-dark: $terracotta-500;
-$color-secondary-darker: $terracotta-600;
+$color-secondary-dark: $terracotta-600;
+$color-secondary-darker: $terracotta-700;
 
 $color-text-primary: $gray-900;
 $color-text-secondary: $gray-600;
@@ -113,11 +98,11 @@ $color-bg-primary: #ffffff;
 $color-bg-secondary: $gray-50;
 $color-bg-tertiary: $gray-100;
 
-/* Success, Warning, Error (therapy-appropriate) */
-$color-success: $green-500;
-$color-warning: #f59e0b;
-$color-error: #ef4444;
-$color-info: #3b82f6;
+/* Semantic States - Using design token color system */
+$color-success: $sage-500;     // Green success (semantic, not brand)
+$color-warning: $amber-500;    // Warning/urgent
+$color-error: $red-500;        // Error red (design token)
+$color-info: $teal-500;        // Info/calm
 
 /*------------------------------------------------------------------
   # Motion System - Purposeful Calm
@@ -168,6 +153,7 @@ $space-20: 10rem;    // 160px
 -------------------------------------------------------------------*/
 
 $radius-none: 0;
+$radius-xs: 0.25rem;     // 4px (extra small, subtle rounding)
 $radius-sm: 0.375rem;    // 6px
 $radius-base: 0.5rem;    // 8px
 $radius-md: 0.75rem;     // 12px
@@ -194,6 +180,12 @@ $shadow-primary: 0 10px 30px -5px rgba($green-400, 0.2);
 $shadow-primary-lg: 0 20px 40px -8px rgba($green-400, 0.3);
 $shadow-secondary: 0 10px 30px -5px rgba($terracotta-400, 0.2);
 $shadow-secondary-lg: 0 20px 40px -8px rgba($terracotta-400, 0.3);
+
+/* Warm Shadows (brand-tinted for emerald accents) */
+$shadow-warm-xs: 0 2px 4px -1px rgba($green-400, 0.15);
+$shadow-warm-sm: 0 4px 8px -2px rgba($green-400, 0.2);
+$shadow-warm-md: 0 10px 20px -5px rgba($green-400, 0.25);
+$shadow-warm-lg: 0 20px 30px -8px rgba($green-400, 0.3);
 
 /* Inner Shadow (depth inversion) */
 $shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
@@ -229,9 +221,9 @@ $contrast-text-primary: 4.5;   // WCAG AA for normal text
 $contrast-text-large: 3.0;     // WCAG AA for large text
 $contrast-ui: 3.0;             // WCAG AA for UI components
 
-/* Focus Ring */
-$focus-ring: 0 0 0 3px rgba($green-400, 0.3);
-$focus-ring-secondary: 0 0 0 3px rgba($terracotta-400, 0.3);
+/* Focus Ring - Using design tokens */
+$focus-ring: 0 0 0 3px rgba($emerald-500, 0.3);  // 2px outline + 1px offset ≈ 3px blur
+$focus-ring-secondary: 0 0 0 3px rgba($terracotta-500, 0.3);
 
 /*------------------------------------------------------------------
   # Responsive Breakpoints
@@ -268,17 +260,17 @@ $button-padding-y: $space-3;
 $button-font-weight: $weight-semibold;
 $button-transition: $transition-base, transform $duration-fast $ease-out;
 
-/* Cards */
-$card-border-radius: $radius-lg;
-$card-padding: $space-6;
-$card-shadow: $shadow-base;
-$card-shadow-hover: $shadow-lg;
-$card-transition: $transition-base;
+/* Cards - Design Token Compliant (Week 4) */
+$card-border-radius: $radius-md;     // 12px - All cards use medium radius (design token rule)
+$card-padding: $space-4;             // 16px - Molecule tier (design token rule)
+$card-shadow: $shadow-sm;            // Subtle rest state
+$card-shadow-hover: $shadow-md;      // +1 level only (design token rule - NEVER skip levels)
+$card-transition: $transition-base;   // 400ms ease-in-out (Level 2 motion)
 
-/* Forms */
-$input-border-radius: $radius-md;
-$input-padding-x: $space-4;
-$input-padding-y: $space-3;
+/* Forms - Design Token Compliant (Week 3) */
+$input-border-radius: $radius-sm;  // 8px - Inputs use small radius (design token rule)
+$input-padding-x: $space-4;        // 16px
+$input-padding-y: $space-3;        // 12px
 $input-border-color: $gray-300;
 $input-focus-border-color: $green-400;
 $input-focus-shadow: $focus-ring;

@@ -35,11 +35,11 @@ $gradient-sunrise: linear-gradient(135deg,
   $terracotta-50 100%
 );
 
-/* Icon Background Gradients */
-$gradient-icon-emerald: linear-gradient(135deg, $green-300 0%, $green-500 100%);
-$gradient-icon-terracotta: linear-gradient(135deg, $terracotta-300 0%, $terracotta-500 100%);
-$gradient-icon-teal: linear-gradient(135deg, #5eead4 0%, #14b8a6 100%);
-$gradient-icon-amber: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+/* Icon Background Gradients - Using Design Tokens (Week 3) */
+$gradient-icon-emerald: linear-gradient(135deg, $emerald-300 0%, $emerald-600 100%);  // Uses design tokens
+$gradient-icon-terracotta: linear-gradient(135deg, $terracotta-300 0%, $terracotta-600 100%);
+$gradient-icon-teal: linear-gradient(135deg, $teal-300 0%, $teal-600 100%);  // Uses design tokens
+$gradient-icon-amber: linear-gradient(135deg, $amber-300 0%, $amber-600 100%);  // Uses design tokens
 
 /* Glassmorphism Backgrounds */
 $gradient-glass-light: linear-gradient(135deg,

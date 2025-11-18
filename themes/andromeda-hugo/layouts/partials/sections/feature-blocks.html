@@ -19,16 +19,17 @@
                 {{ if $item.subtitle }}
                   <p class="subtitle text-uppercase">{{ $item.subtitle | markdownify }}</p>
                 {{ end }}
-                <h2 class="title">{{ $item.title | markdownify }}</h2>
+                {{/* Use atoms/heading.html for consistent typography */}}
+                {{ partial "atoms/heading.html" (dict "text" ($item.title | markdownify) "level" "h2" "class" "title") }}
                 <p>{{ $item.description | markdownify }}</p>
               </div>
             </div>
           </div>
 
-          {{/* Image */}}
+          {{/* Image - Uses atoms/image.html for consistent handling */}}
           <div class="col-lg-6 mt-4 mt-lg-0">
             <div class="feature-image-wrapper parallax-enabled">
-              {{ partial "image.html" (dict "Src" $item.image "Alt" $item.title "Size" "575x") }}
+              {{ partial "atoms/image.html" (dict "src" $item.image "alt" $item.title "size" "575x") }}
             </div>
           </div>
         </div>

@@ -20,7 +20,7 @@
                     <i class="{{ .icon }}"></i>
                   </div>
                 {{ end }}
-                <h4 class="mb-2">{{ .title }}</h4>
+                {{ partial "atoms/heading.html" (dict "level" "h4" "text" .title "class" "mb-2") }}
                 {{ if .link }}
                   <a href="{{ .link }}" class="text-dark mb-1 fw-bold text-decoration-none d-block hover-link">{{ .info }}</a>
                 {{ else }}

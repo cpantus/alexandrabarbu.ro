@@ -31,11 +31,18 @@
       href="{{ .link | relURL }}"
       {{ .attributes | safeHTMLAttr }} />
   {{ else }}
-    {{ $styles = $styles | append (resources.Get .link) }}
+    {{ $resource := resources.Get .link }}
+    {{ if $resource }}
+      {{ if strings.HasSuffix .link ".scss" }}
+        {{ $styles = $styles | append ($resource | toCSS) }}
+      {{ else }}
+        {{ $styles = $styles | append $resource }}
+      {{ end }}
+    {{ end }}
   {{ end }}
 {{ end }}
-{{ $styles := $styles | append (resources.Get "scss/style.scss" | resources.ExecuteAsTemplate "style.scss" . | toCSS) }}
-{{ $styles := $styles | resources.Concat "/css/style.css" | fingerprint "sha512" }}
+{{ $styles = $styles | append (resources.Get "scss/style.scss" | resources.ExecuteAsTemplate "style.scss" . | toCSS) }}
+{{ $styles = $styles | resources.Concat "/css/style.css" | fingerprint "sha512" }}
 
 
 <!-- Purge CSS in Production -->

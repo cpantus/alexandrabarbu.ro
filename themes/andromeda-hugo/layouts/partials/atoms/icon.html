@@ -26,15 +26,18 @@
     - lab: Line Awesome Brands
     - la: Line Awesome base
 
-  Size Presets:
-    - xs: 0.75rem
-    - sm: 0.875rem
-    - md: 1rem (default)
-    - lg: 1.25rem
-    - xl: 1.5rem
-    - 2x: 2rem
-    - 3x: 3rem
-    - 4x: 4rem
+  Size Presets (mapped to design tokens in SCSS):
+    - xs: 0.75rem  ($icon-xs)
+    - sm: 0.875rem ($icon-sm)
+    - md: 1rem     ($icon-base) (default)
+    - lg: 1.25rem  ($icon-md)
+    - xl: 1.5rem   ($icon-lg)
+    - 2x: 2rem     ($icon-xl / $icon-2x)
+    - 3x: 3rem     ($icon-3x)
+    - 4x: 4rem     ($icon-4x)
+
+  Note: These sizes match the design token values in _design-tokens.scss.
+  For circular icon backgrounds, use $icon-circle-sm/md/lg/xl in SCSS.
 
   Examples:
     Check icon: {{ partial "atoms/icon.html" (dict "name" "check-circle" "color" "success") }}

@@ -17,7 +17,7 @@
 @import 'components/stats-enhanced';
 @import 'components/feature-blocks-enhanced';
 @import 'components/pricing-enhanced';
-// @import 'components/problem-empathy';  // Disabled - style is embedded in custom.scss inline
+@import 'components/problem-empathy';
 
 /*------------------------------------------------------------------
   # Global Base Styles - Typography & Layout
@@ -519,7 +519,7 @@ em, i {
 .form-control {
   &:focus {
     border-color: $color-secondary;
-    outline: 2px solid $terracotta-500; outline-offset: 2px;
+    box-shadow: 0 0 0 0.2rem rgba($color-secondary, 0.25);
   }
 }
 
@@ -531,7 +531,7 @@ em, i {
   }
   
   &:focus {
-    outline: 2px solid $terracotta-500; outline-offset: 2px;
+    box-shadow: 0 0 0 0.25rem rgba($color-secondary, 0.25);
   }
 }
 
@@ -564,7 +564,7 @@ em, i {
   
   &:hover {
     border-color: $color-secondary;
-    box-shadow: $shadow-warm-sm;
+    box-shadow: 0 4px 15px rgba($color-secondary, 0.15);
   }
   
   .test-icon {
@@ -1597,7 +1597,7 @@ h2, h3, h4, h5, h6,
     background: white;
     border-radius: 1rem;
     padding: 2rem;
-    box-shadow: $shadow-sm;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     border: 2px solid transparent;
     transition: all 0.3s ease;
     display: flex;
@@ -1605,7 +1605,7 @@ h2, h3, h4, h5, h6,
 
     &:hover {
       transform: translateY(-4px);
-      box-shadow: $shadow-md;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     }
 
     &.match-card-good {
@@ -1614,7 +1614,7 @@ h2, h3, h4, h5, h6,
 
       &:hover {
         border-color: rgba(34, 197, 94, 0.4);
-        box-shadow: $shadow-warm-md;
+        box-shadow: 0 8px 24px rgba(34, 197, 94, 0.15);
       }
     }
 
@@ -2010,7 +2010,7 @@ h2, h3, h4, h5, h6,
 
     &:hover {
       transform: translateY(-4px);
-      box-shadow: $shadow-warm-lg;
+      box-shadow: 0 12px 32px rgba(77, 179, 128, 0.15);
       border-color: rgba(77, 179, 128, 0.3);
 
       &::before {
@@ -2034,7 +2034,7 @@ h2, h3, h4, h5, h6,
       letter-spacing: 0.5px;
       padding: 0.375rem 0.75rem;
       border-radius: 1rem;
-      box-shadow: $shadow-warm-xs;
+      box-shadow: 0 2px 8px rgba(77, 179, 128, 0.3);
     }
 
     .option-icon {
@@ -2052,7 +2052,7 @@ h2, h3, h4, h5, h6,
       &.featured {
         background: linear-gradient(135deg, #4DB380, #3a9b6b);
         color: white;
-        box-shadow: $shadow-warm-sm;
+        box-shadow: 0 4px 16px rgba(77, 179, 128, 0.3);
       }
 
       i {
@@ -2084,7 +2084,7 @@ h2, h3, h4, h5, h6,
           width: 40px;
           height: 6px;
           background: rgba(156, 163, 175, 0.2);
-          border-radius: $radius-xs;
+          border-radius: 3px;
           transition: all 0.3s ease;
 
           &.active {
@@ -2172,7 +2172,7 @@ h2, h3, h4, h5, h6,
           border-color: #4DB380;
           color: white;
           transform: translateY(-2px);
-          box-shadow: $shadow-warm-sm;
+          box-shadow: 0 4px 12px rgba(77, 179, 128, 0.3);
 
           i {
             color: white;

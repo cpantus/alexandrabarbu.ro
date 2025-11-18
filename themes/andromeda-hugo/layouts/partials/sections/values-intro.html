@@ -12,7 +12,7 @@
           <div class="col-lg-5" data-aos="fade-up">
             <div class="section-title mb-0">
               <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
-              <h2 class="title">{{ .title | markdownify }}</h2>
+              {{ partial "atoms/heading.html" (dict "level" "h2" "text" .title "class" "title" "markdown" true) }}
               <p>{{ .description | markdownify }}</p>
               {{ if .button_link }}
                 {{ partial "atoms/button.html" (dict
@@ -29,7 +29,7 @@
             data-aos="fade-up"
             data-aos-delay="100">
             <div class="ps-0 ps-lg-4">
-              {{ partial "image.html" (dict "Src" .image "Alt" "our value" "Size" "560x") }}
+              {{ partial "atoms/image.html" (dict "src" .image "alt" "our value" "size" "560x") }}
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@
       <div class="col-lg-8">
         {{ with .title }}
         <div class="text-center mb-5">
-          <h3 class="gradient-text">{{ . }}</h3>
+          {{ partial "atoms/heading.html" (dict "level" "h3" "text" . "class" "gradient-text") }}
           {{ with $.Params.faq_section.subtitle }}
           <p class="text-muted">{{ . }}</p>
           {{ end }}

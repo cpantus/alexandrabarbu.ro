@@ -39,7 +39,7 @@
   @include glassmorphism(12px, 0.9);
   border-radius: $radius-xl;
   box-shadow: $shadow-base;
-  transition: all $duration-normal $ease-out;
+  transition: all $duration-base $easing-medium; // Level 2 card motion
   @include staggered-entrance(fade-in-up, 150ms);
 
   &:hover {
@@ -59,7 +59,7 @@
   width: 120px;
   height: 120px;
   margin: 0 auto $space-5;
-  transition: transform $duration-normal $ease-out;
+  transition: transform $duration-base $easing-medium; // Level 2 motion
 
   svg {
     width: 100%;
@@ -146,7 +146,7 @@
   transition: transform $duration-normal $ease-out;
 
   i, .icon {
-    font-size: 32px;
+    font-size: $icon-circle-sm;  // 32px - Design token (Week 3)
     color: white;
   }
 

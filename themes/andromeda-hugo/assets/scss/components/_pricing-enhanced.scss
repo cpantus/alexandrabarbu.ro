@@ -40,7 +40,7 @@
   border-radius: $radius-xl;
   padding: $space-8;
   box-shadow: $shadow-base;
-  transition: all $duration-normal $ease-out;
+  transition: all $duration-base $easing-medium; // Level 2 card motion
   border: 2px solid transparent;
   @include staggered-entrance(fade-in-up, 150ms);
 
@@ -56,12 +56,12 @@
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     opacity: 0;
-    transition: opacity $duration-normal $ease-out;
+    transition: opacity $duration-base $easing-medium; // Level 2 motion
   }
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: $shadow-warm-lg;
+    transform: translateY(-2px); // Level 2 molecule motion (not -8px)
+    box-shadow: $shadow-md; // +1 level only (sm → md)
     background: rgba(255, 255, 255, 0.95);
 
     &::before {
@@ -96,7 +96,7 @@
       background: $gradient-warm-vibrant;
       color: white;
       font-size: $text-sm;
-      font-weight: $weight-semibold;
+      font-weight: $font-weight-heading-bold; // 600 per design rules
       letter-spacing: 0.5px;
       border-radius: $radius-full;
       box-shadow: $shadow-md;
@@ -104,8 +104,8 @@
     }
 
     &:hover {
-      transform: scale(1.1);
-      box-shadow: $shadow-featured, $shadow-warm-lg;
+      transform: scale(1.08) translateY(-2px); // Keep base scale, add subtle lift
+      box-shadow: $shadow-featured, $shadow-md; // +1 level only
     }
   }
 }
@@ -119,7 +119,7 @@
 
   .pricing-title {
     font-size: $text-2xl;
-    font-weight: $weight-bold;
+    font-weight: $font-weight-heading-bold; // 600 per design rules (was $weight-bold)
     color: $color-text-primary;
     margin-bottom: $space-2;
   }
@@ -145,14 +145,14 @@
 
   .currency {
     font-size: $text-xl;
-    font-weight: $weight-semibold;
+    font-weight: $font-weight-heading-bold; // 600 per design rules
     color: $color-primary;
     margin-right: $space-1;
   }
 
   .amount {
     font-size: $text-6xl;
-    font-weight: $weight-extrabold;
+    font-weight: $font-weight-heading-bold; // 600 per design rules (was extrabold 800, too heavy)
     line-height: 1;
     color: $color-primary;
     font-family: $font-display;
@@ -196,7 +196,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: $weight-bold;
+      font-weight: $font-weight-heading-bold; // 600 per design rules
       font-size: $text-sm;
       margin-right: $space-3;
     }
@@ -220,7 +220,7 @@
         box-shadow: $shadow-lg;
         z-index: 100;
         margin-bottom: $space-1;
-        animation: tooltip-fade-in $duration-fast $ease-out;
+        animation: tooltip-fade-in $duration-fast $easing-subtle;
       }
     }
   }
@@ -239,9 +239,9 @@
     width: 100%;
     padding: $space-4 $space-6;
     font-size: $text-lg;
-    font-weight: $weight-semibold;
+    font-weight: $font-weight-heading-bold; // 600 per design rules
     border-radius: $radius-lg;
-    transition: all $duration-normal $ease-out;
+    transition: all $duration-base $easing-strong; // Level 3 button motion
 
     .card-pricing-featured & {
       background: $gradient-warm-vibrant;
@@ -262,11 +262,11 @@
 
   label {
     cursor: pointer;
-    transition: color $duration-fast $ease-out;
+    transition: color $duration-fast $easing-subtle; // Level 1 text motion (200ms)
 
     &.active {
       color: $color-primary;
-      font-weight: $weight-bold;
+      font-weight: $font-weight-heading-bold; // 600 per design rules
     }
   }
 
@@ -277,7 +277,7 @@
     height: 32px;
     background: $gray-300;
     border-radius: $radius-full;
-    transition: background $duration-fast $ease-out;
+    transition: background $duration-fast $easing-subtle; // Level 1 toggle motion (200ms)
     cursor: pointer;
 
     .pricing-check {
@@ -304,7 +304,7 @@
       background: white;
       border-radius: $radius-full;
       box-shadow: $shadow-base;
-      transition: all $duration-fast $ease-out;
+      transition: all $duration-fast $easing-subtle;
     }
 
     &:hover .switch {

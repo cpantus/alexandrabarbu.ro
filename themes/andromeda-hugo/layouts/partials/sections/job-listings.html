@@ -13,7 +13,7 @@
             <div class="block">
               <div class="section-title text-center">
                 <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
-                <h2 class="title">{{ .title | markdownify }}</h2>
+                {{ partial "atoms/heading.html" (dict "level" "h2" "text" .title "class" "title" "markdown" true) }}
               </div>
 
               <div class="row justify-content-center pt-4">

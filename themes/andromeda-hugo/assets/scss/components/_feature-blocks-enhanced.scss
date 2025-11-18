@@ -64,15 +64,15 @@
     transform: skewY(-2deg);
   }
 
-  // Hover effect - lift the entire block
+  // Hover effect - lift the entire block (Level 2 section motion)
   &:hover {
     .feature-image-wrapper {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: $shadow-warm-lg;
+      transform: translateY(-2px) scale(1.02); // Level 2 motion: -2px lift
+      box-shadow: $shadow-md; // +1 level upgrade
     }
 
     .feature-content {
-      transform: translateX(8px);
+      transform: translateX(8px); // Horizontal motion OK (not vertical lift rule)
     }
   }
 }
@@ -80,7 +80,7 @@
 // Feature Content (Text Side)
 .feature-content {
   padding: $space-6;
-  transition: transform $duration-normal $ease-out;
+  transition: transform $duration-base $easing-medium; // Level 2 section motion
 
   .section-title {
     margin-bottom: 0;
@@ -89,7 +89,7 @@
   .subtitle {
     color: $color-secondary;
     font-size: $text-sm;
-    font-weight: $weight-semibold;
+    font-weight: $font-weight-heading-bold; // 600 per design rules
     letter-spacing: 0.5px;
     margin-bottom: $space-3;
     display: inline-block;

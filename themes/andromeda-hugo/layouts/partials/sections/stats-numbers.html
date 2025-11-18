@@ -13,7 +13,7 @@
                   <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
                 {{ end }}
                 {{ if .title }}
-                  <h2 class="title">{{ .title | markdownify }}</h2>
+                  {{ partial "atoms/heading.html" (dict "text" (.title | markdownify) "level" "h2" "class" "title") }}
                 {{ end }}
               </div>
             {{ end }}
@@ -37,7 +37,7 @@
                     </div>
 
                     {{ if .label }}
-                      <h4 class="mb-0">{{ .label | markdownify }}</h4>
+                      {{ partial "atoms/heading.html" (dict "text" (.label | markdownify) "level" "h4" "class" "mb-0") }}
                     {{ end }}
                   </div>
                 </div>

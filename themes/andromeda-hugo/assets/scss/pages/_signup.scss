@@ -15,7 +15,7 @@
     left: 10%;
     right: 10%;
     height: 2px;
-    background: linear-gradient(90deg, #4DB380 0%, #CC6B49 100%);
+    background: linear-gradient(90deg, $emerald-500 0%, $terracotta-500 100%);
     z-index: 0;
   }
 }
@@ -31,12 +31,12 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #4DB380 0%, #CC6B49 100%);
+    background: linear-gradient(135deg, $emerald-500 0%, $terracotta-500 100%);
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
-    box-shadow: 0 5px 15px rgba(77, 179, 128, 0.3);
+    box-shadow: $shadow-warm-md;
     transition: all 0.3s ease;
     
     &:hover {
@@ -45,7 +45,7 @@
   }
   
   &.completed .step-number {
-    background: linear-gradient(135deg, #3d9066 0%, #2d6b4d 100%);
+    background: linear-gradient(135deg, $emerald-600 0%, $emerald-700 100%);
     
     &::after {
       content: '✓';
@@ -65,21 +65,21 @@
 /* Enhanced Signup Form */
 .signup-form-enhanced {
   background: white;
-  border-radius: 25px;
+  border-radius: $radius-xl;
   padding: 2.5rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: $shadow-lg;
   
   .form-progress {
     height: 6px;
-    background: #e8f5ef;
-    border-radius: 3px;
+    background: $emerald-50;
+    border-radius: $radius-xs;
     margin-bottom: 2rem;
     overflow: hidden;
     
     .progress-bar {
       height: 100%;
-      background: linear-gradient(90deg, #4DB380 0%, #3d9066 100%);
-      border-radius: 3px;
+      background: linear-gradient(90deg, $emerald-500 0%, $emerald-600 100%);
+      border-radius: $radius-xs;
       transition: width 0.5s ease;
     }
   }
@@ -91,7 +91,7 @@
     animation-delay: calc(var(--item-index) * 0.1s);
     
     i {
-      color: #4DB380;
+      color: $emerald-500;
       margin-right: 0.5rem;
     }
   }
@@ -120,7 +120,7 @@
     left: -10px;
     right: -10px;
     bottom: -10px;
-    background: linear-gradient(135deg, #4DB380 0%, #3d9066 100%);
+    background: linear-gradient(135deg, $emerald-500 0%, $emerald-600 100%);
     border-radius: 50%;
     opacity: 0.1;
     animation: pulse-ring 2s infinite;
@@ -144,7 +144,7 @@
 
 /* Reassuring Microcopy */
 .reassurance-text {
-  color: #4DB380;
+  color: $emerald-500;
   font-size: 0.875rem;
   margin-top: 0.25rem;
   display: flex;
@@ -158,13 +158,13 @@
 
 /* Account Benefits Card */
 .benefits-card {
-  background: linear-gradient(135deg, #f6f9fc 0%, #e9f7ef 100%);
-  border-radius: 20px;
+  background: linear-gradient(135deg, $gray-50 0%, lighten($emerald-50, 2%) 100%);
+  border-radius: $radius-lg;
   padding: 1.5rem;
   border: 1px solid rgba(77, 179, 128, 0.1);
   
   h5 {
-    color: #4DB380;
+    color: $emerald-500;
     font-weight: 600;
     margin-bottom: 1rem;
   }
@@ -182,7 +182,7 @@
         content: '✓';
         position: absolute;
         left: 0;
-        color: #4DB380;
+        color: $emerald-500;
         font-weight: bold;
       }
     }
@@ -192,24 +192,24 @@
 /* Input Field Focus Effects */
 .user-access-form {
   .form-control {
-    border: 2px solid #e8f5ef;
-    border-radius: 12px;
-    padding: 12px 20px;
-    transition: all 0.3s ease;
+    border: 2px solid $emerald-50;  // Design token (Week 3)
+    border-radius: $radius-sm;       // 8px - Design token (Week 3)
+    padding: $space-3 $space-5;      // 12px 20px - Design tokens (Week 3)
+    transition: all $duration-base ease;
     
     &:focus {
-      border-color: #4DB380;
-      background-color: #f8fdfb;
-      box-shadow: 0 0 0 0.2rem rgba(77, 179, 128, 0.1);
+      border-color: $emerald-500;
+      background-color: lighten($emerald-50, 4%);
+      outline: 2px solid $emerald-500; outline-offset: 2px;
       
       & + label {
-        color: #4DB380;
+        color: $emerald-500;
         transform: translateY(-2px);
       }
     }
     
     &:valid {
-      border-color: #4DB380;
+      border-color: $emerald-500;
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%234DB380'%3e%3cpath fill-rule='evenodd' d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z'/%3e%3c/svg%3e");
       background-repeat: no-repeat;
       background-position: right calc(0.375em + 0.1875rem) center;
@@ -218,10 +218,10 @@
   }
   
   .btn-primary {
-    border-radius: 12px;
+    border-radius: $radius-md;
     padding: 14px 30px;
     font-weight: 600;
-    background: linear-gradient(135deg, #4DB380 0%, #3d9066 100%);
+    background: linear-gradient(135deg, $emerald-500 0%, $emerald-600 100%);
     border: none;
     transition: all 0.3s ease;
     position: relative;
@@ -242,7 +242,7 @@
     
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(77, 179, 128, 0.3);
+      box-shadow: $shadow-warm-md;
       
       &::before {
         width: 300px;
@@ -306,13 +306,13 @@
 /* Privacy text for reCAPTCHA (add to form if needed) */
 .recaptcha-privacy {
   font-size: 0.75rem;
-  color: #6c757d;
+  color: $gray-500;
   margin-top: 1rem;
   text-align: center;
 }
 
 .recaptcha-privacy a {
-  color: #4DB380;
+  color: $emerald-500;
   text-decoration: underline;
 }
 
@@ -330,12 +330,12 @@
   /* Typography for markdown content */
   font-family: $font-secondary !important; /* Open Sans for body text */
   line-height: 1.7;
-  color: #5a6c7d;
+  color: $gray-600;
   
   /* Markdown headings within features */
   h1, h2, h3, h4, h5, h6 {
     font-family: $font-primary !important; /* Poppins for headlines */
-    color: #4DB380;
+    color: $emerald-500;
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
     
@@ -372,18 +372,18 @@
     position: relative;
     
     &::marker {
-      color: #4DB380; /* Verde Eucalipt bullet points */
+      color: $emerald-500; /* Verde Eucalipt bullet points */
     }
   }
   
   /* Links within markdown */
   a {
-    color: #4DB380;
+    color: $emerald-500;
     text-decoration: none;
     transition: all 0.2s ease;
     
     &:hover {
-      color: darken(#4DB380, 15%);
+      color: darken($emerald-500, 15%);
       text-decoration: underline;
     }
   }
@@ -391,21 +391,21 @@
   /* Strong and emphasis */
   strong {
     font-weight: 600;
-    color: #2c3e50;
+    color: $gray-800;
   }
   
   em {
     font-style: italic;
-    color: #6c757d;
+    color: $gray-500;
   }
   
   /* Blockquotes */
   blockquote {
-    border-left: 4px solid #4DB380;
+    border-left: 4px solid $emerald-500;
     padding-left: 1rem;
     margin: 1.5rem 0;
     font-style: italic;
-    color: #6c757d;
+    color: $gray-500;
     background: rgba(77, 179, 128, 0.05);
     border-radius: 0 8px 8px 0;
     padding: 1rem;
@@ -414,23 +414,23 @@
   /* Code styling */
   code {
     background: rgba(77, 179, 128, 0.1);
-    color: #4DB380;
+    color: $emerald-500;
     padding: 0.25rem 0.5rem;
-    border-radius: 4px;
+    border-radius: $radius-xs;
     font-size: 0.9em;
   }
   
   pre {
-    background: #f8f9fa;
-    border: 1px solid #e9ecef;
-    border-radius: 8px;
+    background: $gray-50;
+    border: 1px solid $gray-200;
+    border-radius: $radius-sm;
     padding: 1rem;
     overflow-x: auto;
     margin: 1rem 0;
     
     code {
       background: none;
-      color: #495057;
+      color: $gray-700;
       padding: 0;
     }
   }
@@ -442,7 +442,7 @@
     margin: 1rem 0;
     
     th, td {
-      border: 1px solid #e9ecef;
+      border: 1px solid $gray-200;
       padding: 0.5rem 0.75rem;
       text-align: left;
     }
@@ -450,11 +450,11 @@
     th {
       background: rgba(77, 179, 128, 0.1);
       font-weight: 600;
-      color: #4DB380;
+      color: $emerald-500;
     }
     
     tr:nth-child(even) {
-      background: #f8f9fa;
+      background: $gray-50;
     }
   }
   
@@ -462,7 +462,7 @@
   hr {
     border: none;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #4DB380, transparent);
+    background: linear-gradient(90deg, transparent, $emerald-500, transparent);
     margin: 2rem 0;
   }
   
@@ -470,7 +470,7 @@
   img {
     max-width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: $radius-sm;
     margin: 1rem 0;
   }
 }

@@ -12,7 +12,7 @@
                 <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
               {{ end }}
               {{ if .title }}
-                <h2 class="title">{{ .title | markdownify }}</h2>
+                {{ partial "atoms/heading.html" (dict "level" "h2" "text" .title "class" "title" "markdown" true) }}
               {{ end }}
               {{ if .description }}
                 <p>{{ .description | markdownify }}</p>
@@ -40,7 +40,7 @@
                   <div class="timeline-content card border-0 shadow-sm">
                     <div class="card-body">
                       {{ if .title }}
-                        <h4 class="mb-2">{{ .title | markdownify }}</h4>
+                        {{ partial "atoms/heading.html" (dict "level" "h4" "text" .title "class" "mb-2" "markdown" true) }}
                       {{ end }}
                       {{ if .description }}
                         <p class="mb-0">{{ .description | markdownify }}</p>
