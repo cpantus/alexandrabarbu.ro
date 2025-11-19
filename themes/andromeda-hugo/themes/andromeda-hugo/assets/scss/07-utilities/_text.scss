@@ -1,0 +1,50 @@
+/* ==========================================================================
+   #TEXT UTILITIES
+   Bootstrap-compatible text utilities
+   ========================================================================== */
+
+/* Text alignment
+   ========================================================================== */
+
+.text-start { text-align: left !important; }
+.text-end { text-align: right !important; }
+.text-center { text-align: center !important; }
+
+/* Text transform
+   ========================================================================== */
+
+.text-lowercase { text-transform: lowercase !important; }
+.text-uppercase { text-transform: uppercase !important; }
+.text-capitalize { text-transform: capitalize !important; }
+
+/* Text color utilities
+   ========================================================================== */
+
+.text-primary { color: #4DB380 !important; }
+.text-secondary { color: #CC6B49 !important; }
+.text-success { color: #28a745 !important; }
+.text-danger { color: #dc3545 !important; }
+.text-warning { color: #ffc107 !important; }
+.text-info { color: #17a2b8 !important; }
+.text-light { color: #f8f9fa !important; }
+.text-dark { color: #343a40 !important; }
+.text-white { color: #ffffff !important; }
+.text-black { color: #000000 !important; }
+.text-muted { color: #6c757d !important; }
+
+/* Text decoration
+   ========================================================================== */
+
+.text-decoration-none { text-decoration: none !important; }
+.text-decoration-underline { text-decoration: underline !important; }
+.text-decoration-line-through { text-decoration: line-through !important; }
+
+/* Text wrapping
+   ========================================================================== */
+
+.text-wrap { white-space: normal !important; }
+.text-nowrap { white-space: nowrap !important; }
+.text-break {
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+}

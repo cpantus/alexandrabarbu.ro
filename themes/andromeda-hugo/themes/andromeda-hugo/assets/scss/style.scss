@@ -46,3 +46,7 @@ $font-icon: '{{.font_icon | default "Font Awesome 5 Free"}}';
 @import 'toc';
 
 @import 'custom';
+
+// ITCSS Layer 7: Utilities (Bootstrap-compatible utility classes)
+// Highest specificity - utilities override everything
+@import '07-utilities/utilities';

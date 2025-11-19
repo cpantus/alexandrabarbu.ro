@@ -1,0 +1,35 @@
+/* ==========================================================================
+   #UTILITIES LAYER (ITCSS Layer 7)
+   Bootstrap-compatible utility classes aggregator
+
+   Purpose: Import all utility partials in the correct order
+
+   Utilities are the highest specificity layer in ITCSS. They override
+   everything and provide single-purpose helper classes for common CSS tasks.
+   Using !important is acceptable here as utilities are meant to be immutable.
+   ========================================================================== */
+
+/* Grid system (container, row, columns)
+   ========================================================================== */
+
+@import 'grid';
+
+/* Spacing utilities (margin & padding)
+   ========================================================================== */
+
+@import 'spacing';
+
+/* Text utilities (alignment, color, transform)
+   ========================================================================== */
+
+@import 'text';
+
+/* Display & flexbox utilities
+   ========================================================================== */
+
+@import 'display';
+
+/* Miscellaneous utilities (borders, shadows, backgrounds, positioning, sizing)
+   ========================================================================== */
+
+@import 'misc';
