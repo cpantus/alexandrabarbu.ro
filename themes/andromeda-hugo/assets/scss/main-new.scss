@@ -77,6 +77,15 @@
 //
 @import '06-components/components';
 
+// ==================================
+// LAYER 7: UTILITIES (Bootstrap-compatible)
+// ==================================
+// Purpose: Utility classes with highest specificity (.u-* prefix)
+// Bootstrap utilities: container, grid, spacing, text, display
+// Phase 3: ✅ COMPLETE - Provides missing layout/typography utilities
+//
+@import '07-utilities/utilities';
+
 // Component imports (TODO Phase 3: Convert to BEM, move to 06-components/)
 // NOTE: Most components now imported via 06-components/_components.scss (Phase 3 complete)
 // Remaining legacy imports (not yet BEM refactored):

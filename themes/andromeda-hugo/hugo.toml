@@ -4,7 +4,7 @@ baseURL = "https://alexandrabarbu.ro"
 # Title of your website (required).
 title = "Alexandra Barbu - Psihoterapeut - Terapie Cognitiv Comportammentala, Terapie de familie"
 # Your theme name
-theme = "andromeda-hugo"
+# theme = "andromeda-hugo"  # REMOVED: Circular reference (theme loading itself causes nested path issues)
 # Default time zone for time stamps; use any valid tz database name: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
 timeZone = "Europe/Bucharest"
 # post pagination
