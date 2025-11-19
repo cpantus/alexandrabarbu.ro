@@ -94,8 +94,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: $icon-lg;
-  height: $icon-lg;
+  width: $icon-circle-lg;
+  height: $icon-circle-lg;
   border-radius: $radius-full;
   margin-bottom: $space-4;
   transition: transform $duration-normal $ease-out;
@@ -103,7 +103,7 @@
 
   i {
     color: white !important;
-    font-size: 1.75rem;
+    font-size: $icon-xl;
     display: inline-block;
   }
 

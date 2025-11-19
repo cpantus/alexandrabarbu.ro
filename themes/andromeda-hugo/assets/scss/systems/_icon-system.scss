@@ -133,7 +133,7 @@
       color: $emerald-500; // Fallback
     }
 
-    font-size: 2rem; // 32px default
+    font-size: $icon-xl; // 32px default
     line-height: 1;
   }
 
@@ -410,7 +410,7 @@
 .list-icon {
   @include icon-flat('primary');
   margin-right: $space-2;
-  font-size: 1.25rem; // 20px
+  font-size: $icon-md; // 20px
 }
 
 /*------------------------------------------------------------------
