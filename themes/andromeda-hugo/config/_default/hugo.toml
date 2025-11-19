@@ -5,7 +5,7 @@
 # Base configuration
 baseURL = "https://alexandrabarbu.ro"
 title = "Alexandra Barbu - Psihoterapeut - Terapie Cognitiv Comportammentala, Terapie de familie"
-theme = "andromeda-hugo"
+# theme = "andromeda-hugo"  # Removed: Causes circular reference (loads old nested theme)
 timeZone = "Europe/Bucharest"
 
 # Language settings
