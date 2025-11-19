@@ -1,0 +1,221 @@
+/*
+========================================================================
+  COMPONENT TEMPLATE - BEM + ITCSS Pattern
+  Use this template when creating new components
+========================================================================
+
+  USAGE:
+  1. Copy this file to 06-components/_your-component.scss
+  2. Replace "example" with your component name (kebab-case)
+  3. Follow BEM naming: .c-component__element--modifier
+  4. Import in 06-components/_components.scss
+  5. Use design tokens from 01-settings/
+
+  EXAMPLE: .c-example → .c-testimonial, .c-pricing, .c-hero
+*/
+
+// ========================================================================
+// Component: Example
+// Description: Brief description of component purpose
+// Usage: Where/how this component is used
+// ========================================================================
+
+.c-example {
+  // Layout
+  position: relative;
+  display: block;
+
+  // Spacing (use tokens)
+  padding: $spacing-lg 0;
+  margin: 0 auto;
+  max-width: $container-max-width;
+
+  // Background (use tokens)
+  background-color: $white;
+
+  // Borders (use tokens)
+  border-radius: $border-radius-md;
+
+  // Shadows (use tokens)
+  box-shadow: $shadow-sm;
+
+  // Transitions (use tokens)
+  transition: $transition-base;
+
+  // Responsive
+  @media (max-width: $breakpoint-md) {
+    padding: $spacing-md 0;
+  }
+}
+
+// ========================================================================
+// Elements (child components, use __ notation)
+// ========================================================================
+
+.c-example__header {
+  text-align: center;
+  margin-bottom: $spacing-lg;
+}
+
+.c-example__title {
+  // Use typography tokens
+  font-family: $font-primary;
+  font-size: $font-size-2xl;
+  font-weight: $weight-bold;
+  color: $gray-900;
+  margin-bottom: $spacing-sm;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-xl;
+  }
+}
+
+.c-example__subtitle {
+  font-family: $font-secondary;
+  font-size: $font-size-lg;
+  color: $gray-600;
+}
+
+.c-example__content {
+  // Main content area
+  padding: $spacing-md;
+}
+
+.c-example__icon {
+  // Use icon tokens
+  width: $icon-circle-md;
+  height: $icon-circle-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: $gradient-primary;
+  color: $white;
+
+  i {
+    font-size: $font-size-xl;
+  }
+}
+
+// ========================================================================
+// Modifiers (variants, use -- notation)
+// ========================================================================
+
+.c-example--primary {
+  background: $gradient-warm;
+  color: $white;
+
+  .c-example__title {
+    color: $white;
+  }
+}
+
+.c-example--secondary {
+  background-color: $gray-50;
+  border: 1px solid $gray-200;
+}
+
+.c-example--compact {
+  padding: $spacing-sm 0;
+
+  .c-example__header {
+    margin-bottom: $spacing-md;
+  }
+}
+
+.c-example--large {
+  padding: $spacing-xl 0;
+}
+
+// ========================================================================
+// State Modifiers
+// ========================================================================
+
+.c-example--active {
+  border-color: $primary;
+  box-shadow: $shadow-lg;
+}
+
+.c-example--disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.c-example--loading {
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    border: 2px solid $primary;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+// ========================================================================
+// Legacy Compatibility (via @extend)
+// Map old class names to new BEM classes
+// ========================================================================
+
+.example-section {
+  @extend .c-example;
+}
+
+.example-header {
+  @extend .c-example__header;
+}
+
+.example-title {
+  @extend .c-example__title;
+}
+
+.example-primary {
+  @extend .c-example--primary;
+}
+
+// ========================================================================
+// Animations
+// ========================================================================
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+// ========================================================================
+// Hover Effects
+// ========================================================================
+
+.c-example {
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+}
+
+// ========================================================================
+// Best Practices Checklist
+// ========================================================================
+
+/*
+  ✅ Use design tokens (never hardcode colors, spacing, etc.)
+  ✅ BEM naming (.c-component__element--modifier)
+  ✅ Mobile-first responsive design
+  ✅ Legacy compatibility via @extend
+  ✅ Null-safe (handle missing data gracefully)
+  ✅ Accessibility (ARIA, semantic HTML, keyboard nav)
+  ✅ Performance (avoid deep nesting >3 levels)
+  ✅ Documentation (comments for complex logic)
+
+  ❌ Don't use !important (except utilities layer)
+  ❌ Don't hardcode values (use tokens)
+  ❌ Don't use IDs for styling
+  ❌ Don't nest more than 3 levels deep
+  ❌ Don't use magic numbers (explain with comments)
+*/

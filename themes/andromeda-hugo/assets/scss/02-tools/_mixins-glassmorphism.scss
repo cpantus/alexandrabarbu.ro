@@ -1,0 +1,71 @@
+// ==================================
+// GLASSMORPHISM & ORGANIC SHAPE MIXINS
+// ==================================
+// Layer: 02-tools (NO CSS output)
+// Purpose: Glassmorphism and organic blob shape mixins for v4.0 design
+// Source: Migrated from _design-enhancements.scss
+//
+// Dependencies:
+// - 01-settings/_tokens-components.scss ($glass-blur, $glass-opacity, $glass-border)
+// - 01-settings/_tokens-shadows.scss ($blob-soft, $blob-organic, $blob-smooth, $blob-gentle, $shadow-glass)
+//
+
+// ----------------------------------
+// Glassmorphism Effect
+// ----------------------------------
+// Creates the frosted glass effect with backdrop blur
+//
+// Parameters:
+// @param $blur - Backdrop blur amount (default: $glass-blur = 12px)
+// @param $opacity - Background opacity (default: $glass-opacity = 0.75)
+//
+// Usage:
+// .c-card {
+//   @include glassmorphism();  // Uses defaults
+// }
+// .c-card--light {
+//   @include glassmorphism(8px, 0.9);  // Custom values
+// }
+//
+@mixin glassmorphism($blur: $glass-blur, $opacity: $glass-opacity) {
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  background: rgba(255, 255, 255, $opacity);
+  border: none !important;  // v4.0 architecture: gradient glows replace decorative borders
+  box-shadow: $shadow-glass;
+}
+
+// ----------------------------------
+// Organic Blob Shape
+// ----------------------------------
+// Applies organic, asymmetric border-radius for natural shapes
+//
+// Parameters:
+// @param $variant - Blob style variant ('soft', 'organic', 'smooth', 'gentle')
+//
+// Usage:
+// .c-hero__background {
+//   @include organic-blob('soft');
+// }
+// .c-section__blob {
+//   @include organic-blob('organic');
+// }
+//
+@mixin organic-blob($variant: 'soft') {
+  @if $variant == 'soft' {
+    border-radius: $blob-soft;
+  } @else if $variant == 'organic' {
+    border-radius: $blob-organic;
+  } @else if $variant == 'smooth' {
+    border-radius: $blob-smooth;
+  } @else if $variant == 'gentle' {
+    border-radius: $blob-gentle;
+  }
+}
+
+// ==================================
+// END OF GLASSMORPHISM MIXINS
+// ==================================
+// NO CSS should be output from this file
+// All content should be mixins only
+//

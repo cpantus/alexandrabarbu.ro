@@ -226,8 +226,8 @@
   }
 
   .value-card-icon-wrapper {
-    width: $values-icon-featured-size;
-    height: $values-icon-featured-size;
+    width: $icon-circle-xl;   // 84px - Featured hierarchy (Session 3 fix)
+    height: $icon-circle-xl;
   }
 
   .value-card-title {
@@ -241,8 +241,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: $values-icon-size;
-  height: $values-icon-size;
+  width: $icon-circle-lg;   // 64px - Matches problem-empathy (Session 3 fix)
+  height: $icon-circle-lg;
   border-radius: $radius-full;
   margin: 0 auto $space-5;
   box-shadow: $shadow-base;

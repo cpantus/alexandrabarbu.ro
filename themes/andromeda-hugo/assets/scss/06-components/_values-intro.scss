@@ -1,0 +1,285 @@
+/*
+  Values Intro Section - BEM Component
+
+  Modern BEM architecture with legacy compatibility
+  Part of Phase 3 ITCSS refactoring (Session 18)
+
+  Features:
+  - Gradient background overlay
+  - Glassmorphism cards for value items
+  - Staggered fade-in animations
+  - Enhanced CTA buttons with gradient
+  - Responsive layout (mobile-first)
+  - v4.0 design enhancements
+
+  Usage:
+  <section class="c-values-intro">
+    <div class="container">
+      <h2 class="c-values-intro__title">Title</h2>
+      <div class="c-values-intro__items">
+        <div class="c-values-intro__item">...</div>
+      </div>
+      <a href="#" class="c-values-intro__cta">CTA</a>
+    </div>
+  </section>
+*/
+
+/* ============================================
+   SECTION CONTAINER
+   ============================================ */
+
+.c-values-intro {
+  padding: $space-12 0;
+  position: relative;
+  overflow: hidden;
+
+  /* Gradient background overlay */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $gradient-healing-depth;
+    opacity: 0.04;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Ensure content appears above overlay */
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Compact modifier for reduced padding */
+  &--compact {
+    padding: $space-8 0;
+  }
+
+  /* Responsive padding adjustments */
+  @media (max-width: 767px) {
+    padding: $space-8 0;
+
+    &--compact {
+      padding: $space-6 0;
+    }
+  }
+}
+
+/* ============================================
+   SECTION TITLE
+   ============================================ */
+
+.c-values-intro__title {
+  text-align: center;
+  margin-bottom: $space-8;
+  color: $gray-900;
+
+  /* Fade-in animation */
+  @media (prefers-reduced-motion: no-preference) {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  /* Responsive margin */
+  @media (max-width: 767px) {
+    margin-bottom: $space-6;
+  }
+}
+
+.c-values-intro__subtitle {
+  text-align: center;
+  color: $gray-600;
+  font-size: $text-lg;
+  margin-bottom: $space-6;
+  line-height: 1.6;
+
+  @media (max-width: 767px) {
+    font-size: $text-base;
+    margin-bottom: $space-5;
+  }
+}
+
+/* ============================================
+   VALUE ITEMS GRID
+   ============================================ */
+
+.c-values-intro__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $space-6;
+  margin-bottom: $space-8;
+
+  /* Responsive gap adjustments */
+  @media (max-width: 767px) {
+    gap: $space-4;
+    margin-bottom: $space-6;
+  }
+
+  @media (max-width: 575px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   VALUE ITEM CARDS
+   ============================================ */
+
+.c-values-intro__item {
+  background: $gradient-glass-light;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: $radius-xl;
+  padding: $space-6;
+  box-shadow: $shadow-glass;
+  transition: all 0.3s ease;
+
+  /* Staggered entrance animation */
+  @media (prefers-reduced-motion: no-preference) {
+    animation: fadeIn 0.6s ease-out backwards;
+
+    /* Stagger delays for first 6 items */
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.1}s;
+      }
+    }
+  }
+
+  /* Hover effect - lift with shadow */
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-warm-lg;
+  }
+
+  /* Responsive padding */
+  @media (max-width: 767px) {
+    padding: $space-5;
+  }
+
+  @media (max-width: 575px) {
+    padding: $space-4;
+  }
+}
+
+.c-values-intro__item-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: $space-3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg,
+  i,
+  .las {
+    font-size: 32px;
+    color: $color-primary;
+  }
+
+  @media (max-width: 575px) {
+    width: 40px;
+    height: 40px;
+
+    svg,
+    i,
+    .las {
+      font-size: 28px;
+    }
+  }
+}
+
+.c-values-intro__item-title {
+  font-size: $text-xl;
+  font-weight: $weight-semibold;
+  color: $gray-900;
+  margin-bottom: $space-2;
+  line-height: 1.3;
+
+  @media (max-width: 767px) {
+    font-size: $text-lg;
+  }
+}
+
+.c-values-intro__item-description {
+  font-size: $text-base;
+  color: $gray-700;
+  line-height: 1.6;
+
+  @media (max-width: 767px) {
+    font-size: $text-sm;
+  }
+}
+
+/* ============================================
+   CTA BUTTON
+   ============================================ */
+
+.c-values-intro__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-3 $space-6;
+  background: $gradient-warm-vibrant;
+  color: #fff;
+  font-weight: $weight-semibold;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-warm;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  margin: 0 auto;
+
+  /* Center the button */
+  &-wrapper {
+    text-align: center;
+  }
+
+  /* Hover effect - lift with enhanced shadow */
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-warm-lg;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  /* Active/pressed state */
+  &:active {
+    transform: translateY(0);
+  }
+
+  /* Responsive sizing */
+  @media (max-width: 575px) {
+    padding: $space-3 $space-5;
+    font-size: $text-sm;
+  }
+}
+
+/* ============================================
+   LEGACY COMPATIBILITY
+   ============================================ */
+
+/* Section wrapper */
+.values-section {
+  @extend .c-values-intro;
+}
+
+/* Section title */
+.values-section .section-title {
+  @extend .c-values-intro__title;
+}
+
+/* Value items grid */
+.values-items {
+  @extend .c-values-intro__items;
+}
+
+/* Value item cards */
+.value-item {
+  @extend .c-values-intro__item;
+}
+
+/* Enhanced button */
+.btn-enhanced {
+  @extend .c-values-intro__cta;
+}

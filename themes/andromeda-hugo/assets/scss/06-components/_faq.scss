@@ -1,0 +1,502 @@
+// =============================================================================
+// FAQ Component - BEM Refactored
+// =============================================================================
+// Component for collapsible FAQ sections with category support
+// Enhanced v4.0 with glassmorphism, gradient borders, icon rotation animations
+//
+// BEM Structure:
+//   .c-faq                          - FAQ section container
+//   .c-faq__header                  - Section header
+//   .c-faq__subtitle                - Header subtitle
+//   .c-faq__title                   - Header title
+//   .c-faq__description             - Header description
+//   .c-faq__accordion               - Accordion container
+//   .c-faq__item                    - Individual FAQ item
+//   .c-faq__question                - Clickable question header
+//   .c-faq__question-text           - Question text
+//   .c-faq__question-icon           - Chevron icon with rotation
+//   .c-faq__answer                  - Collapsible answer container
+//   .c-faq__answer-content          - Answer content wrapper
+//   .c-faq__category                - Category section wrapper
+//   .c-faq__category-title          - Category title
+//
+// Modifiers:
+//   .c-faq__item--active            - Expanded FAQ item
+//   .c-faq__item--category-general  - General category border color
+//   .c-faq__item--category-services - Services category border color
+//   .c-faq__item--category-pricing  - Pricing category border color
+//   .c-faq__item--category-process  - Process category border color
+//
+// Legacy Compatibility:
+//   .faq-section                    - Maps to .c-faq
+//   .faq-header                     - Maps to .c-faq__header
+//   .faq-accordion-v4               - Maps to .c-faq__accordion
+//   .faq-item                       - Maps to .c-faq__item
+//   .faq-question                   - Maps to .c-faq__question
+//   .faq-answer                     - Maps to .c-faq__answer
+//   .category-general               - Maps to .c-faq__item--category-general
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Section Container
+// -----------------------------------------------------------------------------
+.c-faq {
+  padding: $space-16 0;
+  position: relative;
+  background: linear-gradient(135deg, rgba($green-50, 0.2) 0%, white 50%, rgba($terracotta-50, 0.2) 100%);
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $space-12 0;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Section Header
+// -----------------------------------------------------------------------------
+.c-faq__header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto $space-12;
+
+  @media (max-width: $breakpoint-sm) {
+    margin-bottom: $space-8;
+  }
+}
+
+.c-faq__subtitle {
+  font-family: $font-secondary;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $color-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: $space-2;
+}
+
+.c-faq__title {
+  font-family: $font-primary;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: $gray-900;
+  line-height: 1.2;
+  margin-bottom: $space-4;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 1.875rem;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 1.75rem;
+  }
+}
+
+.c-faq__description {
+  font-family: $font-secondary;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: $gray-600;
+}
+
+// -----------------------------------------------------------------------------
+// Accordion Container (v4.0 enhanced)
+// -----------------------------------------------------------------------------
+.c-faq__accordion {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  @media (max-width: $breakpoint-sm) {
+    gap: $space-3;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Individual FAQ Item
+// -----------------------------------------------------------------------------
+.c-faq__item {
+  background: $gradient-glass-light;
+  @include glassmorphism($radius-md, 0.95);
+  border-radius: $radius-md;
+  overflow: hidden;
+  box-shadow: $shadow-xs;
+  transition: all $duration-base $easing-medium;
+  position: relative;
+
+  // Gradient left border (color-coded by category)
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, transparent 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity $duration-base $easing-medium;
+  }
+
+  // Hover effect
+  &:hover {
+    box-shadow: $shadow-sm;
+
+    &::before {
+      opacity: 0.6;
+    }
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    &::before {
+      width: 3px;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Active (Expanded) State
+// -----------------------------------------------------------------------------
+.c-faq__item--active {
+  box-shadow: $shadow-md;
+
+  &::before {
+    opacity: 1;
+  }
+
+  .c-faq__question-icon {
+    transform: rotate(180deg);
+  }
+
+  .c-faq__question-text {
+    color: $color-primary;
+  }
+
+  .c-faq__answer {
+    max-height: 1000px; // Large enough for any answer
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Category Border Variants
+// -----------------------------------------------------------------------------
+.c-faq__item--category-general::before {
+  background: $gradient-icon-emerald;
+}
+
+.c-faq__item--category-services::before {
+  background: $gradient-icon-terracotta;
+}
+
+.c-faq__item--category-pricing::before {
+  background: linear-gradient(180deg, $amber-400 0%, $amber-600 100%);
+}
+
+.c-faq__item--category-process::before {
+  background: linear-gradient(180deg, $teal-400 0%, $teal-600 100%);
+}
+
+// -----------------------------------------------------------------------------
+// Question (Clickable Header)
+// -----------------------------------------------------------------------------
+.c-faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+  padding: $space-5 $space-6;
+  cursor: pointer;
+  user-select: none;
+  transition: background $duration-fast $easing-subtle;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    padding: $space-4 $space-5;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $space-4;
+    gap: $space-3;
+  }
+}
+
+.c-faq__question-text {
+  font-family: $font-primary;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: $gray-900;
+  line-height: 1.4;
+  margin: 0;
+  flex: 1;
+  transition: color $duration-fast $easing-subtle;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 0.9375rem;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Chevron Icon with Rotation
+// -----------------------------------------------------------------------------
+.c-faq__question-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: $radius-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, $green-100 0%, $terracotta-100 100%);
+  flex-shrink: 0;
+  transition: transform $duration-base $easing-medium, background $duration-fast $easing-subtle;
+
+  i {
+    color: $color-primary;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: color $duration-fast $easing-subtle;
+  }
+
+  .c-faq__item--active & {
+    background: $gradient-warm-vibrant;
+
+    i {
+      color: white;
+    }
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    width: 28px;
+    height: 28px;
+
+    i {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Answer (Collapsible Content)
+// -----------------------------------------------------------------------------
+.c-faq__answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height $duration-slow $easing-medium, padding $duration-slow $easing-medium;
+}
+
+.c-faq__answer-content {
+  padding: 0 $space-6 $space-6 $space-6;
+  border-top: 1px solid rgba($gray-300, 0.3);
+
+  p {
+    font-family: $font-secondary;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: $gray-700;
+    margin: $space-4 0 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul, ol {
+    margin: $space-3 0;
+    padding-left: $space-6;
+
+    li {
+      font-family: $font-secondary;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: $gray-700;
+      margin-bottom: $space-2;
+    }
+  }
+
+  @media (max-width: $breakpoint-md) {
+    padding: 0 $space-5 $space-5 $space-5;
+
+    p {
+      font-size: 0.9375rem;
+    }
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: 0 $space-4 $space-4 $space-4;
+
+    p {
+      font-size: 0.875rem;
+      margin-top: $space-3;
+    }
+
+    ul, ol {
+      padding-left: $space-5;
+
+      li {
+        font-size: 0.875rem;
+      }
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Category Section (if using category grouping)
+// -----------------------------------------------------------------------------
+.c-faq__category {
+  margin-bottom: $space-10;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    margin-bottom: $space-8;
+  }
+}
+
+.c-faq__category-title {
+  font-family: $font-primary;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $gray-900;
+  margin: 0 0 $space-6;
+  padding-bottom: $space-3;
+  border-bottom: 2px solid transparent;
+  background: linear-gradient(to right, transparent 0%, transparent 100%) no-repeat bottom;
+  background-size: 120px 2px;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 1.25rem;
+    margin-bottom: $space-5;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 1.125rem;
+    margin-bottom: $space-4;
+  }
+}
+
+// Category title color variants
+.c-faq__category-title--general {
+  background-image: $gradient-icon-emerald;
+}
+
+.c-faq__category-title--services {
+  background-image: $gradient-icon-terracotta;
+}
+
+.c-faq__category-title--pricing {
+  background-image: linear-gradient(to right, $amber-400 0%, $amber-600 100%);
+}
+
+.c-faq__category-title--process {
+  background-image: linear-gradient(to right, $teal-400 0%, $teal-600 100%);
+}
+
+// =============================================================================
+// Legacy Compatibility Layer
+// =============================================================================
+// Maps old class names to new BEM structure via @extend
+// Ensures existing HTML templates continue to work
+
+.faq-section {
+  @extend .c-faq;
+}
+
+.faq-header {
+  @extend .c-faq__header;
+
+  .subtitle {
+    @extend .c-faq__subtitle;
+  }
+
+  .title {
+    @extend .c-faq__title;
+  }
+
+  .description {
+    @extend .c-faq__description;
+  }
+}
+
+.faq-accordion-v4 {
+  @extend .c-faq__accordion;
+}
+
+.faq-item {
+  @extend .c-faq__item;
+
+  &.active {
+    @extend .c-faq__item--active;
+  }
+
+  &.category-general {
+    @extend .c-faq__item--category-general;
+  }
+
+  &.category-services {
+    @extend .c-faq__item--category-services;
+  }
+
+  &.category-pricing {
+    @extend .c-faq__item--category-pricing;
+  }
+
+  &.category-process {
+    @extend .c-faq__item--category-process;
+  }
+}
+
+.faq-question {
+  @extend .c-faq__question;
+}
+
+.faq-question-text {
+  @extend .c-faq__question-text;
+}
+
+.faq-question-icon {
+  @extend .c-faq__question-icon;
+}
+
+.faq-answer {
+  @extend .c-faq__answer;
+}
+
+.faq-answer-content {
+  @extend .c-faq__answer-content;
+}
+
+.faq-category {
+  @extend .c-faq__category;
+}
+
+.faq-category-title {
+  @extend .c-faq__category-title;
+
+  &.category-general {
+    @extend .c-faq__category-title--general;
+  }
+
+  &.category-services {
+    @extend .c-faq__category-title--services;
+  }
+
+  &.category-pricing {
+    @extend .c-faq__category-title--pricing;
+  }
+
+  &.category-process {
+    @extend .c-faq__category-title--process;
+  }
+}

@@ -1,6 +1,6 @@
 # Claude Instructions - Andromeda Hugo Theme
 
-**Version**: 4.0.0 - Creative Design Excellence Edition
+**Version**: 5.0.0 - Creative Design Excellence + ITCSS Architecture
 
 ---
 
@@ -37,20 +37,44 @@ layouts/
     ├── organisms/              # 2 complex (header, footer)
     └── sections/               # 34 page sections (5 enhanced v4.0)
 
-assets/
-├── scss/
-│   ├── _design-enhancements.scss      # v4.0 design system
-│   └── components/
-│       ├── _values-compass.scss       # New v4.0
-│       ├── _stats-enhanced.scss       # Enhanced v4.0
-│       ├── _feature-blocks-enhanced.scss  # Enhanced v4.0
-│       ├── _pricing-enhanced.scss     # Enhanced v4.0
-│       └── _credentials.scss          # Enhanced v4.0
-└── js/
-    ├── values-compass-interactions.js # Mobile touch
-    ├── stats-counter.js               # Animated counting
-    └── scroll-animations.js           # Parallax + scroll effects
+assets/scss/                    # ITCSS Architecture (v5.0.0) ✅
+├── main-new.scss               # ITCSS entry point (ACTIVE)
+├── 01-settings/                # Design tokens (8 files - variables only)
+│   ├── _tokens-colors.scss
+│   ├── _tokens-typography.scss
+│   ├── _tokens-spacing.scss
+│   ├── _tokens-shadows.scss
+│   ├── _tokens-motion.scss
+│   ├── _tokens-gradients.scss
+│   └── _tokens-components.scss
+├── 02-tools/                   # Mixins & functions (no CSS output)
+│   ├── _mixins-card.scss
+│   ├── _mixins-icon.scss
+│   ├── _mixins-glassmorphism.scss
+│   └── _functions-colors.scss
+├── 03-generic/                 # CSS resets, normalize
+├── 05-objects/                 # Layout primitives (.o-container, .o-grid)
+└── 06-components/              # 20 BEM components (.c-*)
+    ├── _card.scss              # All v4.0 features preserved
+    ├── _button.scss
+    ├── _icon.scss
+    ├── _badge.scss
+    ├── _values-compass.scss    # New v4.0
+    ├── _stats.scss             # Enhanced v4.0
+    ├── _feature-blocks.scss    # Enhanced v4.0
+    ├── _pricing.scss           # Enhanced v4.0
+    ├── _credentials.scss       # Enhanced v4.0
+    └── ... (11 more BEM components)
+
+assets/js/
+├── values-compass-interactions.js # Mobile touch
+├── stats-counter.js               # Animated counting
+└── scroll-animations.js           # Parallax + scroll effects
 ```
+
+**SCSS Architecture**: The theme uses ITCSS (Inverted Triangle CSS) + BEM naming for scalable, maintainable styling. All v4.0 design features are preserved.
+
+**For SCSS/styling work**: See `themes/andromeda-hugo/ARCHITECTURE.md` (complete ITCSS guide) and `themes/andromeda-hugo/CLAUDE-ITCSS-ADDENDUM.md` (quick reference).
 
 ---
 
@@ -518,6 +542,6 @@ values_compass:
 
 ---
 
-**Status**: Production Ready ✅ | 53 components | <3s builds | <520KB pages | WebP images | Multilingual | **Creative Design Excellence v4.0**
+**Status**: Production Ready ✅ | 53 components | <3s builds | <520KB pages | WebP images | Multilingual | **v5.0: ITCSS + BEM + v4.0 Design**
 
-**Version**: 4.0.0 | **Updated**: 2025-11-17 | **Hugo**: v0.148.1 extended
+**Version**: 5.0.0 | **Updated**: 2025-11-19 | **Hugo**: v0.148.1 extended | **Architecture**: ITCSS + BEM

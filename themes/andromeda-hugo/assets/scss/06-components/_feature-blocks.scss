@@ -1,0 +1,488 @@
+// ============================================================================
+// Feature Blocks Enhanced Component - BEM Architecture
+// ============================================================================
+// Enhanced v4.0 with zigzag layout, parallax scrolling, glassmorphism
+//
+// BEM Structure:
+// .c-feature-blocks                       - Component block (section wrapper)
+// .c-feature-blocks__item                 - Individual feature block (row)
+// .c-feature-blocks__content              - Text content side
+// .c-feature-blocks__subtitle             - Eyebrow subtitle text
+// .c-feature-blocks__title                - Main title heading
+// .c-feature-blocks__description          - Description paragraph
+// .c-feature-blocks__list                 - Features list (ul)
+// .c-feature-blocks__list-item            - List item (li)
+// .c-feature-blocks__image-wrapper        - Image container with effects
+// .c-feature-blocks__image                - Image element
+//
+// Modifiers:
+// .c-feature-blocks__item--even           - Even item (image left, text right)
+// .c-feature-blocks__item--odd            - Odd item (text left, image right)
+// .c-feature-blocks__image-wrapper--parallax - Parallax scroll effect enabled
+//
+// v4.0 Features:
+// - Zigzag layout with alternating image/text sides (nth-child)
+// - Parallax scrolling effects on desktop (≥992px, applied via JS)
+// - Glassmorphism image containers with gradient overlay
+// - Diagonal dividers between blocks with gradient lines
+// - Organic blob backgrounds (dual blobs, alternating sides)
+// - Staggered entrance animations (fade-in-up, 200ms delay)
+// - Zoom effect on image hover (scale 1.05)
+// - Gradient text hover effect on titles
+// - Responsive breakpoints (desktop → tablet → mobile stack)
+// - Reduced motion support
+// ============================================================================
+
+// Component Block (Section Wrapper)
+// ----------------------------------------------------------------------------
+.c-feature-blocks {
+  position: relative;
+  overflow: hidden;
+  padding: $space-16 0;
+
+  // Organic background blobs (dual decorative pseudo-elements)
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 40%;
+    height: 80%;
+    opacity: 0.06;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  // Left blob (top)
+  &::before {
+    top: 10%;
+    left: -5%;
+    background: $gradient-radial-primary;
+    @include organic-blob('soft'); // v4.0 design system mixin
+  }
+
+  // Right blob (bottom)
+  &::after {
+    bottom: 10%;
+    right: -5%;
+    background: $gradient-radial-secondary;
+    @include organic-blob('gentle'); // v4.0 design system mixin
+  }
+
+  // Responsive padding
+  @media (max-width: $breakpoint-lg) {
+    padding: $space-12 0;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    padding: $space-10 0;
+  }
+}
+
+// Feature Block Item (Individual Row)
+// ----------------------------------------------------------------------------
+.c-feature-blocks__item {
+  position: relative;
+  margin-bottom: $space-16;
+  z-index: 1;
+
+  // Staggered entrance animation (v4.0)
+  @include staggered-entrance(fade-in-up, 200ms);
+
+  // Diagonal divider between items (gradient line)
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: calc(-#{$space-16} / 2);
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      $color-primary 50%,
+      transparent 100%
+    );
+    opacity: 0.15;
+    transform: skewY(-2deg);
+  }
+
+  // Hover effect - lift entire block
+  &:hover {
+    // Lift image wrapper (Level 2 section motion)
+    .c-feature-blocks__image-wrapper {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: $shadow-md; // +1 level upgrade
+    }
+
+    // Horizontal motion for text content
+    .c-feature-blocks__content {
+      transform: translateX(8px);
+    }
+  }
+
+  // Responsive adjustments
+  @media (max-width: $breakpoint-lg) {
+    margin-bottom: $space-12;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    margin-bottom: $space-10;
+
+    // Remove diagonal divider on mobile
+    &:not(:last-child)::after {
+      display: none;
+    }
+  }
+}
+
+// Content Side (Text Side)
+// ----------------------------------------------------------------------------
+.c-feature-blocks__content {
+  padding: $space-6;
+  transition: transform $duration-base $easing-medium; // Level 2 section motion
+
+  // Reset margin for section titles
+  .section-title {
+    margin-bottom: 0;
+  }
+
+  // Responsive padding
+  @media (max-width: $breakpoint-md) {
+    padding: $space-4;
+  }
+}
+
+// Subtitle (Eyebrow Text)
+.c-feature-blocks__subtitle {
+  color: $color-secondary;
+  font-size: $text-sm;
+  font-weight: $font-weight-heading-bold; // 600 per design rules
+  letter-spacing: 0.5px;
+  margin-bottom: $space-3;
+  display: inline-block;
+  position: relative;
+
+  // Animated underline on hover
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: $gradient-warm-vibrant;
+    transition: width $duration-normal $ease-out;
+  }
+
+  // Expand underline on parent hover
+  .c-feature-blocks__item:hover &::after {
+    width: 100%;
+  }
+}
+
+// Title Heading
+.c-feature-blocks__title {
+  font-size: $text-3xl;
+  font-weight: $weight-bold;
+  line-height: $leading-tight;
+  margin-bottom: $space-4;
+  color: $color-text-primary;
+
+  // Gradient text on hover (subtle effect)
+  .c-feature-blocks__item:hover & {
+    background: $gradient-warm-vibrant;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  // Responsive font sizing
+  @media (max-width: $breakpoint-lg) {
+    font-size: $text-2xl;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $text-xl;
+  }
+}
+
+// Description Paragraph
+.c-feature-blocks__description {
+  font-size: $text-lg;
+  line-height: $leading-relaxed;
+  color: $color-text-secondary;
+  margin-bottom: $space-5;
+
+  // Responsive font sizing
+  @media (max-width: $breakpoint-lg) {
+    font-size: $text-base;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $text-sm;
+  }
+}
+
+// Features List (Optional)
+// ----------------------------------------------------------------------------
+.c-feature-blocks__list {
+  list-style: none;
+  padding: 0;
+  margin: $space-4 0;
+}
+
+.c-feature-blocks__list-item {
+  padding-left: $space-6;
+  margin-bottom: $space-3;
+  position: relative;
+  font-size: $text-base;
+  color: $color-text-secondary;
+
+  // Custom checkmark icon (gradient circle)
+  &::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: $radius-full;
+    background: $gradient-icon-emerald;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: $weight-bold;
+    font-size: $text-sm;
+  }
+}
+
+// Image Wrapper (Image Side)
+// ----------------------------------------------------------------------------
+.c-feature-blocks__image-wrapper {
+  position: relative;
+  border-radius: $radius-2xl;
+  overflow: hidden;
+  box-shadow: $shadow-lg;
+  transition: all $duration-normal $ease-out;
+  background: $gradient-glass-light;
+  @include glassmorphism(8px, 0.8); // v4.0 glassmorphism mixin
+
+  // Gradient overlay (hidden by default, shown on hover)
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba($green-400, 0.1) 0%,
+      rgba($terracotta-400, 0.1) 100%
+    );
+    opacity: 0;
+    transition: opacity $duration-normal $ease-out;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+
+  // Decorative corner accent (hidden by default)
+  &::after {
+    content: '';
+    position: absolute;
+    top: $space-4;
+    right: $space-4;
+    width: 60px;
+    height: 60px;
+    border-radius: $radius-full;
+    background: $gradient-warm-vibrant;
+    opacity: 0;
+    transform: scale(0);
+    transition: all $duration-normal $ease-out;
+    z-index: 2;
+  }
+
+  &:hover::after {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+
+  // Responsive adjustments
+  @media (max-width: $breakpoint-lg) {
+    margin-bottom: $space-6;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    margin-bottom: $space-5;
+  }
+}
+
+// Parallax Enabled Modifier (applied via JS on desktop ≥992px)
+.c-feature-blocks__image-wrapper--parallax {
+  will-change: transform;
+}
+
+// Image Element
+.c-feature-blocks__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: $radius-2xl;
+  transition: transform $duration-slow $ease-out;
+
+  // Zoom effect on hover
+  .c-feature-blocks__image-wrapper:hover & {
+    transform: scale(1.05);
+  }
+}
+
+// Zigzag Pattern (Alternating Left/Right Layout)
+// ----------------------------------------------------------------------------
+// Even items: Image left, Text right
+.c-feature-blocks__item--even {
+  .c-feature-blocks__image-wrapper {
+    transform-origin: left center;
+  }
+
+  .c-feature-blocks__content {
+    transform-origin: right center;
+  }
+}
+
+// Odd items: Text left, Image right
+.c-feature-blocks__item--odd {
+  .c-feature-blocks__image-wrapper {
+    transform-origin: right center;
+  }
+
+  .c-feature-blocks__content {
+    transform-origin: left center;
+  }
+}
+
+// Apply zigzag automatically via nth-child
+.c-feature-blocks__item {
+  &:nth-child(even) {
+    @extend .c-feature-blocks__item--even;
+  }
+
+  &:nth-child(odd) {
+    @extend .c-feature-blocks__item--odd;
+  }
+}
+
+// Accessibility: Reduced Motion
+// ----------------------------------------------------------------------------
+@media (prefers-reduced-motion: reduce) {
+  .c-feature-blocks__item,
+  .c-feature-blocks__image-wrapper,
+  .c-feature-blocks__content,
+  .c-feature-blocks__image {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .c-feature-blocks__image-wrapper--parallax {
+    will-change: auto;
+  }
+}
+
+// High Contrast Mode
+// ----------------------------------------------------------------------------
+@media (prefers-contrast: high) {
+  .c-feature-blocks__image-wrapper {
+    border: 2px solid currentColor;
+    background: $color-bg-primary !important;
+  }
+
+  .c-feature-blocks__title {
+    -webkit-text-fill-color: currentColor !important;
+    background: none !important;
+  }
+}
+
+// Print Styles
+// ----------------------------------------------------------------------------
+@media print {
+  .c-feature-blocks::before,
+  .c-feature-blocks::after {
+    display: none;
+  }
+
+  .c-feature-blocks__item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: $space-8;
+
+    &:not(:last-child)::after {
+      display: none;
+    }
+  }
+
+  .c-feature-blocks__image-wrapper::before,
+  .c-feature-blocks__image-wrapper::after {
+    display: none;
+  }
+}
+
+// ============================================================================
+// Legacy Compatibility Layer
+// ============================================================================
+// Maps old class names to new BEM structure using @extend
+// Maintains backward compatibility with existing HTML templates
+// Remove these after template updates are complete
+// ============================================================================
+
+// Section-level legacy class
+.feature-blocks-section {
+  @extend .c-feature-blocks;
+}
+
+// Item legacy class
+.feature-block-item {
+  @extend .c-feature-blocks__item;
+}
+
+// Content legacy class
+.feature-content {
+  @extend .c-feature-blocks__content;
+
+  // Legacy nested elements
+  .subtitle {
+    @extend .c-feature-blocks__subtitle;
+  }
+
+  h2,
+  .title {
+    @extend .c-feature-blocks__title;
+  }
+
+  p {
+    @extend .c-feature-blocks__description;
+  }
+
+  ul {
+    @extend .c-feature-blocks__list;
+
+    li {
+      @extend .c-feature-blocks__list-item;
+    }
+  }
+}
+
+// Image wrapper legacy class
+.feature-image-wrapper {
+  @extend .c-feature-blocks__image-wrapper;
+
+  // Parallax modifier
+  &.parallax-enabled {
+    @extend .c-feature-blocks__image-wrapper--parallax;
+  }
+
+  // Legacy nested image
+  img {
+    @extend .c-feature-blocks__image;
+  }
+}

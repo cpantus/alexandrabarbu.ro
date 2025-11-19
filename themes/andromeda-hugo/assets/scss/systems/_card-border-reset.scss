@@ -1,0 +1,132 @@
+/*
+========================================================================
+  Card Border Reset System - Nuclear Border Elimination (v4.0)
+  Purpose: Complete removal of decorative borders across ALL card variants
+  Load Order: MUST be imported LAST in custom.scss for CSS cascade authority
+  Session: 3 - Root Cause Fix (2025-01-19)
+========================================================================
+
+Why This Exists:
+- Previous global `.card { border: none }` was overridden by component-specific selectors
+- CSS specificity: `.section-card` (0,0,1,0) = `.card` (0,0,1,0) = last rule wins
+- Components imported AFTER global reset, overriding it
+- Solution: Import THIS file LAST = final authority in CSS cascade
+
+Architectural Principle:
+- Decorative borders removed (v4.0 uses gradient glows)
+- Functional borders preserved (forms, outline buttons, high-contrast mode)
+*/
+
+/*------------------------------------------------------------------
+  Level 1: Base Card Resets
+-------------------------------------------------------------------*/
+
+.card,
+.card-v4,
+.card-primary,
+.card-secondary,
+.card-coral,
+.card-sage,
+.card-premium,
+.card-info,
+.card-success,
+.card-warning {
+  border: none !important;
+}
+
+/*------------------------------------------------------------------
+  Level 2: Component-Specific Card Variants
+-------------------------------------------------------------------*/
+
+.value-card,
+.value-card-featured,
+.problem-card,
+.credential-badge,
+.section-card,
+.service-card,
+.related-service-card,
+.feature-card,
+.benefit-card,
+.privacy-card,
+.testimonial-card,
+.stat-card,
+.pricing-card,
+.faq-card,
+.blog-card,
+.timeline-card,
+.contact-card,
+.team-card,
+.portfolio-card {
+  border: none !important;
+}
+
+/*------------------------------------------------------------------
+  Level 3: Wrapper Containers (Prevent Inherited Borders)
+-------------------------------------------------------------------*/
+
+.values-compass-grid .value-card,
+.problem-grid .problem-card,
+.credentials-grid .credential-badge,
+.services-grid .service-card,
+.features-grid .feature-card,
+.testimonials-grid .testimonial-card,
+.stats-grid .stat-card,
+.pricing-grid .pricing-card,
+.blog-grid .blog-card,
+.timeline .timeline-card,
+.contact-options .contact-card {
+  border: none !important;
+}
+
+/*------------------------------------------------------------------
+  Level 4: Pseudo-Element Border Overrides
+-------------------------------------------------------------------*/
+
+.card::before,
+.card::after,
+.value-card::before,
+.value-card::after,
+.problem-card::before,
+.problem-card::after,
+.credential-badge::before,
+.credential-badge::after,
+.section-card::before,
+.section-card::after,
+.service-card::before,
+.service-card::after,
+.feature-card::before,
+.feature-card::after {
+  border: none !important;
+}
+
+/*------------------------------------------------------------------
+  Level 5: Accessibility Preservation (High-Contrast Mode)
+-------------------------------------------------------------------*/
+
+@media (prefers-contrast: high) {
+  /* Restore borders for accessibility in high-contrast mode */
+  .value-card,
+  .problem-card,
+  .credential-badge,
+  .section-card,
+  .service-card,
+  .feature-card {
+    border: 3px solid currentColor !important;
+  }
+}
+
+/*------------------------------------------------------------------
+  Level 6: Bootstrap Base Override (Nuclear Option)
+-------------------------------------------------------------------*/
+
+/* Override Bootstrap's default card border system */
+.card {
+  --bs-card-border-width: 0 !important;
+  --bs-card-border-color: transparent !important;
+}
+
+/*
+========================================================================
+  End of Nuclear Border Reset
+========================================================================
+*/

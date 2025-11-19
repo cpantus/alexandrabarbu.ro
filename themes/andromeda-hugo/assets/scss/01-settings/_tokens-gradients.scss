@@ -1,0 +1,82 @@
+// ==================================
+// GRADIENT TOKENS (v4.0 Design System)
+// ==================================
+// Layer: 01-settings (NO CSS output)
+// Purpose: Gradient definitions for v4.0 glassmorphism & enhanced components
+// Source: Migrated from _design-enhancements.scss
+//
+// NOTE: All gradients use color tokens from _tokens-colors.scss
+// Ensure colors are imported before this file in _settings.scss
+//
+
+// ----------------------------------
+// Warm Gradient Palette (Emerald → Terracotta)
+// ----------------------------------
+// Usage: Background overlays, section backgrounds, warm branding
+$gradient-warm-subtle: linear-gradient(135deg, $green-50 0%, $terracotta-50 100%);
+$gradient-warm-light: linear-gradient(135deg, $green-100 0%, $terracotta-100 100%);
+$gradient-warm-medium: linear-gradient(135deg, $green-200 0%, $terracotta-200 100%);
+$gradient-warm-vibrant: linear-gradient(135deg, $green-400 0%, $terracotta-400 100%);
+
+// ----------------------------------
+// Radial Gradients (Organic Spotlight)
+// ----------------------------------
+// Usage: Hero backgrounds, section focal points
+$gradient-radial-primary: radial-gradient(circle at top left, $green-300, $green-500);
+$gradient-radial-secondary: radial-gradient(circle at bottom right, $terracotta-300, $terracotta-500);
+$gradient-radial-warm: radial-gradient(circle at center, $green-200, $terracotta-200);
+
+// ----------------------------------
+// Multi-Stop Gradients (Layered Depth)
+// ----------------------------------
+// Usage: Complex backgrounds with depth
+$gradient-healing-depth: linear-gradient(135deg,
+  $green-400 0%,
+  $green-300 25%,
+  $terracotta-300 75%,
+  $terracotta-400 100%
+);
+
+$gradient-sunrise: linear-gradient(135deg,
+  $terracotta-100 0%,
+  $green-100 50%,
+  $terracotta-50 100%
+);
+
+// ----------------------------------
+// Icon Background Gradients
+// ----------------------------------
+// Usage: Icon circles in values-compass, problem-empathy, credentials
+$gradient-icon-emerald: linear-gradient(135deg, $emerald-300 0%, $emerald-600 100%);
+$gradient-icon-terracotta: linear-gradient(135deg, $terracotta-300 0%, $terracotta-600 100%);
+$gradient-icon-teal: linear-gradient(135deg, $teal-300 0%, $teal-600 100%);
+$gradient-icon-amber: linear-gradient(135deg, $amber-300 0%, $amber-600 100%);
+
+// ----------------------------------
+// Glassmorphism Backgrounds
+// ----------------------------------
+// Usage: Cards, overlays, semi-transparent elements
+$gradient-glass-light: linear-gradient(135deg,
+  rgba(255, 255, 255, 0.8) 0%,
+  rgba(255, 255, 255, 0.6) 100%
+);
+
+$gradient-glass-warm: linear-gradient(135deg,
+  rgba($green-100, 0.6) 0%,
+  rgba($terracotta-100, 0.4) 100%
+);
+
+// ----------------------------------
+// Component-Specific Gradients
+// ----------------------------------
+// Usage: Button component gradients
+
+// Primary button gradients (emerald)
+$gradient-primary: linear-gradient(135deg, $emerald-400 0%, $emerald-600 100%);
+$gradient-primary-vibrant: linear-gradient(135deg, $emerald-500 0%, $emerald-700 100%);
+$gradient-primary-subtle: linear-gradient(135deg, $emerald-300 0%, $emerald-500 100%);
+
+// Secondary button gradients (terracotta)
+$gradient-secondary: linear-gradient(135deg, $terracotta-400 0%, $terracotta-600 100%);
+$gradient-secondary-vibrant: linear-gradient(135deg, $terracotta-500 0%, $terracotta-700 100%);
+$gradient-secondary-subtle: linear-gradient(135deg, $terracotta-300 0%, $terracotta-500 100%);

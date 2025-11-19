@@ -1,0 +1,92 @@
+/*
+========================================================================
+  OBJECTS: Grid Layouts
+  Layer 5 - Layout Primitives (.o-* prefix)
+========================================================================
+
+  Purpose: Reusable grid patterns
+  Philosophy: Structure without style (OOCSS)
+  Naming: .o-grid, .o-grid--2col, .o-grid--3col
+
+  Usage:
+    <div class="o-grid o-grid--3col">
+      <div class="o-grid__item">Item 1</div>
+      <div class="o-grid__item">Item 2</div>
+      <div class="o-grid__item">Item 3</div>
+    </div>
+
+========================================================================
+*/
+
+// ==================================
+// Grid: Base
+// ==================================
+.o-grid {
+  display: grid;
+  gap: $space-6;  // From 01-settings
+  width: 100%;
+}
+
+// ==================================
+// Grid Item
+// ==================================
+.o-grid__item {
+  // No styles needed - just for semantic HTML
+}
+
+// ==================================
+// Grid Modifiers: Column Counts
+// ==================================
+.o-grid--2col {
+  grid-template-columns: 1fr;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.o-grid--3col {
+  grid-template-columns: 1fr;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.o-grid--4col {
+  grid-template-columns: 1fr;
+
+  @media (min-width: $breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// ==================================
+// Grid Modifier: Auto-fit (responsive)
+// ==================================
+.o-grid--auto {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+// ==================================
+// Grid Modifier: Gap Sizes
+// ==================================
+.o-grid--gap-sm {
+  gap: $space-3;
+}
+
+.o-grid--gap-md {
+  gap: $space-6;
+}
+
+.o-grid--gap-lg {
+  gap: $space-8;
+}

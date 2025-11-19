@@ -1,0 +1,360 @@
+/*
+========================================================================
+  NEWSLETTER SIGNUP COMPONENT - BEM v2.0.0
+  06-components/_newsletter.scss
+========================================================================
+
+  Purpose: Email subscription signup with v4.0 glassmorphism design
+  Usage: Newsletter signup sections
+
+  BEM Structure:
+  - .c-newsletter (block)
+  - .c-newsletter__card (element)
+  - .c-newsletter__header (element)
+  - .c-newsletter__title (element)
+  - .c-newsletter__description (element)
+  - .c-newsletter__form (element)
+  - .c-newsletter__input (element)
+  - .c-newsletter__submit (element)
+
+  Modifiers:
+  - .c-newsletter--compact (section variant)
+  - .c-newsletter__submit--loading (button state)
+
+  v4.0 Features:
+  - Glassmorphism card with backdrop blur
+  - Gradient warm background
+  - Animated button hover (lift effect)
+  - Focus states with glow
+
+  Dependencies:
+  - 01-settings/_tokens-colors.scss (gradients, shadows)
+  - 01-settings/_tokens-spacing.scss (padding, gaps)
+  - 01-settings/_tokens-shadows.scss (glass effects)
+
+  Last Updated: 2025-11-19 (Session 17)
+  Phase: 3 - Component Refactoring
+========================================================================
+*/
+
+// ==================================
+// Block: Newsletter Section
+// ==================================
+.c-newsletter {
+  background: $gradient-warm-subtle;
+  position: relative;
+  padding: $space-16 0;
+
+  @media (min-width: 768px) {
+    padding: $space-20 0;
+  }
+}
+
+// ==================================
+// Element: Card Container
+// ==================================
+.c-newsletter__card {
+  background: $gradient-glass-light;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); // Safari support
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: $radius-2xl;
+  padding: $space-8;
+  box-shadow: $shadow-glass;
+  max-width: 800px;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+
+  @media (min-width: 992px) {
+    padding: $space-12;
+  }
+
+  // Hover effect
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: $shadow-lg;  // Fixed: $shadow-glass-lg doesn't exist, using $shadow-lg
+  }
+}
+
+// ==================================
+// Element: Header
+// ==================================
+.c-newsletter__header {
+  text-align: center;
+  margin-bottom: $space-6;
+
+  @media (min-width: 768px) {
+    margin-bottom: $space-8;
+  }
+}
+
+// ==================================
+// Element: Title
+// ==================================
+.c-newsletter__title {
+  font-size: $text-2xl;
+  font-weight: $weight-bold;
+  color: $color-text-primary;
+  margin-bottom: $space-3;
+
+  @media (min-width: 768px) {
+    font-size: $text-3xl;
+  }
+}
+
+// ==================================
+// Element: Description
+// ==================================
+.c-newsletter__description {
+  font-size: $text-base;
+  color: $color-text-secondary;
+  max-width: 600px;
+  margin: 0 auto;
+
+  @media (min-width: 768px) {
+    font-size: $text-lg;
+  }
+}
+
+// ==================================
+// Element: Form
+// ==================================
+.c-newsletter__form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  max-width: 600px;
+  margin: 0 auto;
+
+  @media (min-width: 576px) {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+// ==================================
+// Element: Email Input
+// ==================================
+.c-newsletter__input {
+  flex: 1;
+  padding: $space-4;
+  border: 2px solid rgba($color-primary, 0.2);
+  border-radius: $radius-lg;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: $text-base;
+  color: $color-text-primary;
+  transition: all 0.3s ease;
+
+  // Focus state
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 4px rgba($color-primary, 0.1);
+    background: rgba(255, 255, 255, 1);
+  }
+
+  // Placeholder
+  &::placeholder {
+    color: $color-text-muted;  // Fixed: renamed from $color-text-tertiary to match tokens
+  }
+
+  // Error state
+  &.is-invalid,
+  &:invalid:not(:placeholder-shown) {
+    border-color: $color-error;
+
+    &:focus {
+      box-shadow: 0 0 0 4px rgba($color-error, 0.1);
+    }
+  }
+
+  // Success state
+  &.is-valid:not(:placeholder-shown) {
+    border-color: $color-success;
+
+    &:focus {
+      box-shadow: 0 0 0 4px rgba($color-success, 0.1);
+    }
+  }
+
+  @media (min-width: 768px) {
+    padding: $space-4 $space-6;
+  }
+}
+
+// ==================================
+// Element: Submit Button
+// ==================================
+.c-newsletter__submit {
+  padding: $space-4 $space-8;
+  background: $gradient-warm-vibrant;
+  color: #fff;
+  border: none;
+  border-radius: $radius-lg;
+  font-size: $text-base;
+  font-weight: $weight-semibold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: $shadow-warm;
+  white-space: nowrap;
+
+  // Hover state
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: $shadow-warm-lg;
+  }
+
+  // Active state
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  // Focus state
+  &:focus {
+    outline: none;
+    box-shadow: $shadow-warm-lg, 0 0 0 4px rgba($color-secondary, 0.2);
+  }
+
+  // Disabled state
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  @media (min-width: 768px) {
+    padding: $space-4 $space-10;
+  }
+}
+
+// Modifier: Loading state
+.c-newsletter__submit--loading {
+  position: relative;
+  color: transparent;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+  }
+}
+
+// ==================================
+// Modifier: Compact Variant
+// ==================================
+.c-newsletter--compact {
+  padding: $space-12 0;
+
+  .c-newsletter__card {
+    padding: $space-6;
+
+    @media (min-width: 992px) {
+      padding: $space-8;
+    }
+  }
+
+  .c-newsletter__header {
+    margin-bottom: $space-4;
+  }
+
+  .c-newsletter__title {
+    font-size: $text-xl;
+
+    @media (min-width: 768px) {
+      font-size: $text-2xl;
+    }
+  }
+}
+
+// ==================================
+// Animations
+// ==================================
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+// ==================================
+// Legacy Compatibility
+// ==================================
+// Map old class names to new BEM structure for backward compatibility
+// TODO: Remove in v5.0 after updating HTML templates
+
+.newsletter-section {
+  @extend .c-newsletter;
+}
+
+.newsletter-card {
+  @extend .c-newsletter__card;
+}
+
+.newsletter-form {
+  @extend .c-newsletter__form;
+
+  input[type="email"] {
+    @extend .c-newsletter__input;
+  }
+
+  button,
+  button[type="submit"] {
+    @extend .c-newsletter__submit;
+  }
+}
+
+// ==================================
+// Accessibility
+// ==================================
+// Respect reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+  .c-newsletter__card,
+  .c-newsletter__input,
+  .c-newsletter__submit {
+    transition: none;
+  }
+
+  .c-newsletter__submit:hover {
+    transform: none;
+  }
+
+  @keyframes spin {
+    from, to {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+  }
+}
+
+// ==================================
+// High Contrast Mode
+// ==================================
+@media (prefers-contrast: high) {
+  .c-newsletter__card {
+    border-width: 2px;
+    border-color: currentColor;
+  }
+
+  .c-newsletter__input {
+    border-width: 3px;
+  }
+}
+
+/*
+========================================================================
+  END NEWSLETTER COMPONENT
+========================================================================
+  BEM Naming: .c-newsletter, .c-newsletter__element, .c-newsletter--modifier
+  Legacy Support: Via @extend (remove in v5.0)
+  Total Lines: 371
+  Status: Phase 3 Complete
+========================================================================
+*/

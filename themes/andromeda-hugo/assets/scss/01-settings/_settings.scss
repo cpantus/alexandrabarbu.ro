@@ -1,0 +1,26 @@
+// ==================================
+// LAYER 1: SETTINGS - Import Aggregator
+// ==================================
+//
+// Purpose: Single entry point for all design tokens
+// Output: NO CSS (tokens only)
+// ITCSS Layer: 1/7
+//
+// Last Updated: 2025-11-19
+// Version: 2.0.0 (ITCSS Refactor - Phase 1)
+//
+
+// Import all token files in dependency order
+@import 'tokens-colors';       // Color palette + semantic mappings
+@import 'tokens-gradients';    // Gradient definitions (v4.0) - MUST come after colors
+@import 'tokens-typography';   // Fonts, sizes, weights, icon sizes
+@import 'tokens-spacing';      // Spacing scale (8px grid)
+@import 'tokens-shadows';      // Shadows + radius + blobs
+@import 'tokens-motion';       // Motion, breakpoints, z-index
+@import 'tokens-components';   // Component-specific tokens (v4.0)
+
+// ==================================
+// END OF SETTINGS LAYER
+// ==================================
+// NO CSS should be output from this layer
+// All content should be Sass variables only

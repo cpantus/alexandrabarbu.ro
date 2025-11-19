@@ -1,0 +1,57 @@
+// ==================================
+// SPACING TOKENS (8px base grid)
+// ==================================
+//
+// Layer: 01-settings (NO CSS output)
+// Purpose: Consistent spacing scale for all layout
+// Rule: ALL spacing MUST use these tokens, NO arbitrary values
+//
+// Last Updated: 2025-11-19
+// Version: 2.0.0 (ITCSS Refactor - Phase 1)
+//
+
+// ----------------------------------
+// Spacing Scale (8px base grid)
+// ----------------------------------
+// Base: 8px grid (4px smallest increment)
+
+$space-0: 0;
+$space-1: 4px;       // Minimum spacing
+$space-2: 8px;       // Atom-to-atom gap
+$space-3: 12px;      // Atom internal padding (buttons, inputs)
+$space-4: 16px;      // Molecule internal padding (cards)
+$space-5: 20px;      // Rarely used (prefer 16 or 24)
+$space-6: 24px;      // Card grids, content gaps
+$space-8: 32px;      // Organism internal padding (header, footer)
+$space-10: 40px;     // Medium section gaps
+$space-12: 48px;     // Large content gaps
+$space-16: 64px;     // Section padding (mobile)
+$space-20: 80px;     // Large section gaps
+$space-24: 96px;     // Section padding (desktop)
+
+// ----------------------------------
+// Component Tier Spacing (ENFORCE)
+// ----------------------------------
+// Atoms: $space-3 (12px) vertical padding
+// Molecules: $space-4 (16px) padding
+// Organisms: $space-8 (32px) vertical padding
+// Sections: $space-16 (64px mobile), $space-24 (96px desktop)
+
+// ----------------------------------
+// Container Widths
+// ----------------------------------
+$container-max-width: 1200px;  // Standard max width
+$container-narrow: 768px;      // Narrow content (text-heavy pages)
+$container-wide: 1400px;       // Wide layouts
+
+// ----------------------------------
+// Breakpoints
+// ----------------------------------
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// ==================================
+// END OF SPACING TOKENS
+// ==================================

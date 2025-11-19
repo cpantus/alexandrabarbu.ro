@@ -1,0 +1,169 @@
+/*
+========================================================================
+  ITCSS Layer 2: Tools - Color Functions
+  Automatic Color Distribution System
+  Version: 5.0.0 - ITCSS Refactor
+========================================================================
+*/
+
+/*------------------------------------------------------------------
+  # Color Palette Maps
+  # Define color distribution strategies for different contexts
+-------------------------------------------------------------------*/
+
+/**
+ * Default Palette (50% emerald, 50% terracotta)
+ * Balanced professional + warm distribution
+ */
+$palette-default: (
+  0: 'primary',           // Emerald
+  1: 'secondary',         // Terracotta
+  2: 'outline-primary',   // Emerald outline
+  3: 'secondary',         // Terracotta
+);
+
+/**
+ * Warm Palette (75% terracotta/coral)
+ * For personal, empathetic sections
+ */
+$palette-warm: (
+  0: 'secondary',         // Terracotta
+  1: 'coral',             // Coral
+  2: 'secondary',         // Terracotta
+  3: 'coral',             // Coral
+);
+
+/**
+ * Professional Palette (75% emerald)
+ * For trust, expertise, credentials
+ */
+$palette-professional: (
+  0: 'primary',           // Emerald
+  1: 'outline-primary',   // Emerald outline
+  2: 'primary',           // Emerald
+  3: 'secondary',         // Terracotta (balance)
+);
+
+/**
+ * Badge Palette (8-color rotation)
+ * Maximum visual variety for credentials
+ */
+$palette-badge: (
+  0: 'primary',           // Emerald
+  1: 'secondary',         // Terracotta
+  2: 'coral',             // Coral
+  3: 'premium',           // Plum
+  4: 'sage',              // Sage
+  5: 'info',              // Blue
+  6: 'success',           // Green
+  7: 'amber',             // Amber
+);
+
+/*------------------------------------------------------------------
+  # Color Distribution Functions
+  # Smart fallback chain for automatic color assignment
+-------------------------------------------------------------------*/
+
+/**
+ * Get Color from Palette
+ * @param {string} $palette-name - Palette name (default, warm, professional, badge)
+ * @param {number} $index - Item index (0-based)
+ * @return {string} - Variant name (primary, secondary, etc.)
+ */
+@function get-palette-color($palette-name: 'default', $index: 0) {
+  $palette: $palette-default;
+
+  @if $palette-name == 'warm' {
+    $palette: $palette-warm;
+  } @else if $palette-name == 'professional' {
+    $palette: $palette-professional;
+  } @else if $palette-name == 'badge' {
+    $palette: $palette-badge;
+  }
+
+  // Calculate modulo for rotation
+  $palette-size: length($palette);
+  $index-mod: $index % $palette-size;
+
+  @return map-get($palette, $index-mod);
+}
+
+/**
+ * Get Button Variant Class
+ * Smart fallback chain: item → section → theme → calculated
+ * @param {string} $item-variant - Item-level variant (highest priority)
+ * @param {string} $section-variant - Section-level variant
+ * @param {string} $color-theme - Section color theme (default, warm, professional)
+ * @param {number} $index - Item index for calculated variant
+ * @return {string} - Button class (btn-primary, btn-secondary, etc.)
+ */
+@function get-button-variant($item-variant: null, $section-variant: null, $color-theme: 'default', $index: 0) {
+  // 1. Item-level variant (highest priority)
+  @if $item-variant {
+    @return 'btn-#{$item-variant}';
+  }
+
+  // 2. Section-level variant
+  @if $section-variant {
+    @return 'btn-#{$section-variant}';
+  }
+
+  // 3. Theme-based calculated variant
+  $calculated-variant: get-palette-color($color-theme, $index);
+  @return 'btn-#{$calculated-variant}';
+}
+
+/**
+ * Get Badge Variant Class
+ * Smart fallback chain: item → section → theme → calculated
+ * @param {string} $item-variant - Item-level variant (highest priority)
+ * @param {string} $section-variant - Section-level variant
+ * @param {string} $color-theme - Section color theme (badge palette default)
+ * @param {number} $index - Item index for calculated variant
+ * @return {string} - Badge class (credential-badge-primary, etc.)
+ */
+@function get-badge-variant($item-variant: null, $section-variant: null, $color-theme: 'badge', $index: 0) {
+  // 1. Item-level variant (highest priority)
+  @if $item-variant {
+    @return 'credential-badge-#{$item-variant}';
+  }
+
+  // 2. Section-level variant
+  @if $section-variant {
+    @return 'credential-badge-#{$section-variant}';
+  }
+
+  // 3. Theme-based calculated variant (badge palette for variety)
+  $calculated-variant: get-palette-color($color-theme, $index);
+  @return 'credential-badge-#{$calculated-variant}';
+}
+
+/**
+ * Get Icon Gradient Variant
+ * Returns gradient class for icon backgrounds
+ * @param {string} $variant - Color variant (primary, secondary, coral, etc.)
+ * @return {string} - Gradient class (gradient-icon-primary, etc.)
+ */
+@function get-icon-gradient($variant: 'primary') {
+  @return 'gradient-icon-#{$variant}';
+}
+
+/*
+========================================================================
+  Usage Examples:
+
+  // In section SCSS:
+  .c-my-section__button {
+    @extend .btn-#{get-button-variant(null, null, 'warm', 0)};
+  }
+
+  // In Hugo template (via CSS classes):
+  <button class="{{ get-button-variant .button_variant $.section_variant $.color_theme $index }}">
+
+  Fallback Chain (4 tiers):
+  1. Item variant (explicit in content)
+  2. Section variant (section-level default)
+  3. Theme palette (calculated from theme + index)
+  4. CSS fallback (nth-child selectors - TO BE ELIMINATED IN PHASE 3)
+========================================================================
+*/

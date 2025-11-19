@@ -1,0 +1,289 @@
+// =============================================================================
+// Video Popup Component - BEM Refactored
+// =============================================================================
+// Component for video section with modal popup overlay and play button
+// Enhanced v4.0 with glassmorphism, gradient overlays, pulse animation
+//
+// BEM Structure:
+//   .c-video                        - Video section container
+//   .c-video__wrapper               - Video thumbnail wrapper with overlay
+//   .c-video__thumbnail             - Video thumbnail image (img element)
+//   .c-video__overlay               - Gradient overlay on video thumbnail
+//   .c-video__play-button           - Play button with glassmorphism
+//   .c-video__play-icon             - Play SVG icon
+//
+// Modifiers:
+//   .c-video__play-button--lg       - Large play button (96px)
+//   .c-video__play-button--sm       - Small play button (64px)
+//
+// Legacy Compatibility:
+//   .video-section                  - Maps to .c-video
+//   .video-wrapper                  - Maps to .c-video__wrapper
+//   .play-button                    - Maps to .c-video__play-button
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Section Container
+// -----------------------------------------------------------------------------
+.c-video {
+  position: relative;
+}
+
+// -----------------------------------------------------------------------------
+// Video Wrapper (with thumbnail and overlay)
+// -----------------------------------------------------------------------------
+.c-video__wrapper {
+  position: relative;
+  border-radius: $radius-2xl;
+  overflow: hidden;
+  box-shadow: $shadow-warm-lg;
+  cursor: pointer;
+
+  @media (max-width: $breakpoint-md) {
+    border-radius: $radius-xl;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    border-radius: $radius-lg;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Video Thumbnail (img element - styled in HTML)
+// -----------------------------------------------------------------------------
+.c-video__thumbnail {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+// -----------------------------------------------------------------------------
+// Gradient Overlay
+// -----------------------------------------------------------------------------
+.c-video__overlay {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba($green-900, 0.3), rgba($terracotta-900, 0.3));
+  z-index: 1;
+  opacity: 0.6;
+  transition: opacity $duration-base $easing-subtle;
+  pointer-events: none;
+
+  .c-video__wrapper:hover & {
+    opacity: 0.4;
+  }
+}
+
+// Alternative: Apply overlay via ::before pseudo-element on wrapper
+// This allows using wrapper without explicit overlay element
+.c-video__wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba($green-900, 0.3), rgba($terracotta-900, 0.3));
+  z-index: 1;
+  opacity: 0.6;
+  transition: opacity $duration-base $easing-subtle;
+}
+
+.c-video__wrapper:hover::before {
+  opacity: 0.4;
+}
+
+// -----------------------------------------------------------------------------
+// Play Button (with glassmorphism)
+// -----------------------------------------------------------------------------
+.c-video__play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80px;
+  height: 80px;
+  background: $gradient-glass-light;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); // Safari support
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-radius: $radius-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all $duration-base $easing-medium;
+  box-shadow: $shadow-glass;
+
+  // Pulse animation (respects reduced-motion preference)
+  @media (prefers-reduced-motion: no-preference) {
+    animation: pulse-gentle 2s ease-in-out infinite;
+  }
+
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: $gradient-warm-light;
+    border-color: $color-primary;
+    box-shadow: $shadow-md;
+  }
+
+  &:active {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    width: 72px;
+    height: 72px;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    width: 64px;
+    height: 64px;
+    border-width: 2px;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Play Icon (SVG)
+// -----------------------------------------------------------------------------
+.c-video__play-icon {
+  width: 32px;
+  height: 32px;
+  fill: $color-primary;
+  margin-left: 4px; // Visual centering (play icon is not perfectly centered)
+  transition: fill $duration-fast $easing-subtle;
+
+  .c-video__play-button:hover & {
+    fill: $color-primary-dark;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    width: 28px;
+    height: 28px;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    width: 24px;
+    height: 24px;
+    margin-left: 3px;
+  }
+}
+
+// Alternative: Support for icon fonts (e.g., Line Awesome)
+.c-video__play-button i {
+  font-size: 32px;
+  color: $color-primary;
+  margin-left: 4px;
+  transition: color $duration-fast $easing-subtle;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 28px;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 24px;
+    margin-left: 3px;
+  }
+}
+
+.c-video__play-button:hover i {
+  color: $color-primary-dark;
+}
+
+// -----------------------------------------------------------------------------
+// Size Modifiers
+// -----------------------------------------------------------------------------
+.c-video__play-button--lg {
+  width: 96px;
+  height: 96px;
+
+  .c-video__play-icon,
+  i {
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    width: 80px;
+    height: 80px;
+
+    .c-video__play-icon,
+    i {
+      width: 32px;
+      height: 32px;
+      font-size: 32px;
+    }
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    width: 72px;
+    height: 72px;
+
+    .c-video__play-icon,
+    i {
+      width: 28px;
+      height: 28px;
+      font-size: 28px;
+    }
+  }
+}
+
+.c-video__play-button--sm {
+  width: 64px;
+  height: 64px;
+
+  .c-video__play-icon,
+  i {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    width: 56px;
+    height: 56px;
+
+    .c-video__play-icon,
+    i {
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Pulse Animation (defined if not already in design system)
+// -----------------------------------------------------------------------------
+@keyframes pulse-gentle {
+  0%, 100% {
+    box-shadow: $shadow-glass;
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba($color-primary, 0.1),
+                0 0 0 16px rgba($color-primary, 0.05),
+                $shadow-glass;
+  }
+}
+
+// =============================================================================
+// Legacy Compatibility Layer
+// =============================================================================
+// Maps old class names to new BEM structure via @extend
+// Ensures existing HTML templates continue to work
+
+.video-section {
+  @extend .c-video;
+}
+
+.video-wrapper {
+  @extend .c-video__wrapper;
+}
+
+.play-button {
+  @extend .c-video__play-button;
+
+  svg {
+    @extend .c-video__play-icon;
+  }
+}

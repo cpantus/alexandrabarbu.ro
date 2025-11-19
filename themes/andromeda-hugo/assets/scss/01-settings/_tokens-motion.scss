@@ -1,0 +1,112 @@
+// ==================================
+// MOTION, BREAKPOINTS & Z-INDEX TOKENS
+// ==================================
+//
+// Layer: 01-settings (NO CSS output)
+// Purpose: Animation system, responsive breakpoints, layering
+// Philosophy: Welcoming Motion, Accessible
+//
+// Last Updated: 2025-11-19
+// Version: 2.0.0 (ITCSS Refactor - Phase 1)
+//
+
+// ==================================
+// MOTION TOKENS (3-tier system)
+// ==================================
+
+// ----------------------------------
+// Durations
+// ----------------------------------
+$duration-instant: 100ms;    // Instant feedback (focus states)
+$duration-fast: 200ms;       // Level 1 - Subtle (links, nav)
+$duration-base: 300ms;       // Level 2 & 3 - Medium/Strong (cards, buttons)
+$duration-normal: 400ms;     // Standard transitions (calming)
+$duration-slow: 600ms;       // Complex animations
+$duration-slower: 800ms;     // Page transitions
+
+// ----------------------------------
+// Easing Functions
+// ----------------------------------
+$easing-subtle: ease-out;                    // Level 1 - Subtle fade
+$easing-medium: ease-in-out;                 // Level 2 - Medium lift
+$easing-strong: cubic-bezier(0.4, 0, 0.2, 1); // Level 3 - Strong lift (buttons)
+
+// Legacy easing (for backward compatibility)
+$ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);  // Smooth, natural
+$ease-out: cubic-bezier(0, 0, 0.2, 1);       // Entrances
+$ease-in: cubic-bezier(0.4, 0, 1, 1);        // Exits
+$ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);  // Playful (use sparingly)
+
+// ----------------------------------
+// Composite Transitions
+// ----------------------------------
+// Pre-built transition combinations for common use cases
+$transition-base: all $duration-normal $ease-in-out;
+$transition-fast: all $duration-fast $ease-in-out;
+$transition-slow: all $duration-slow $ease-in-out;
+$transition-colors: background-color $duration-normal $ease-in-out,
+                    color $duration-normal $ease-in-out,
+                    border-color $duration-normal $ease-in-out;
+$transition-transform: transform $duration-normal $ease-in-out;
+$transition-opacity: opacity $duration-normal $ease-in-out;
+
+// ----------------------------------
+// Component-Specific Transitions
+// ----------------------------------
+// Specialized transition combinations for specific components
+$card-transition: $transition-base;   // 400ms ease-in-out (Level 2 motion)
+$button-transition: transform $duration-base $easing-strong,
+                    box-shadow $duration-base $easing-strong;
+$input-transition: border-color $duration-fast $ease-out,
+                   box-shadow $duration-fast $ease-out;
+
+// ----------------------------------
+// Motion Levels (ENFORCE)
+// ----------------------------------
+// Level 1 - Subtle: Links, nav items
+//   - Duration: 200ms
+//   - Easing: ease-out
+//   - Transform: NONE
+//   - Property: color only
+//
+// Level 2 - Medium: Cards, inputs, form fields
+//   - Duration: 300ms
+//   - Easing: ease-in-out
+//   - Transform: translateY(-2px)
+//   - Shadow: +1 level (sm→md, md→lg)
+//
+// Level 3 - Strong: Buttons, CTAs
+//   - Duration: 300ms
+//   - Easing: cubic-bezier(0.4, 0, 0.2, 1)
+//   - Transform: translateY(-4px) scale(1.02)
+//   - Shadow: $shadow-warm-md
+
+// ==================================
+// BREAKPOINT TOKENS
+// ==================================
+// Mobile-first responsive design
+
+$breakpoint-sm: 576px;    // Small devices (landscape phones)
+$breakpoint-md: 768px;    // Medium devices (tablets)
+$breakpoint-lg: 992px;    // Large devices (desktops)
+$breakpoint-xl: 1200px;   // Extra large devices (large desktops)
+$breakpoint-xxl: 1400px;  // Extra extra large devices
+
+// ==================================
+// Z-INDEX SCALE
+// ==================================
+// Layering system for consistent stacking
+
+$z-base: 0;
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070;
+$z-skip-link: 10000;
+
+// ==================================
+// END OF MOTION, BREAKPOINTS & Z-INDEX TOKENS
+// ==================================

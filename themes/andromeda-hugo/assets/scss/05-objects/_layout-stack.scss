@@ -1,0 +1,54 @@
+/*
+========================================================================
+  OBJECTS: Stack Layout
+  Layer 5 - Layout Primitives (.o-* prefix)
+========================================================================
+
+  Purpose: Vertical spacing utility (Every Layout pattern)
+  Philosophy: Consistent vertical rhythm
+  Naming: .o-stack
+
+  Usage:
+    <div class="o-stack">
+      <p>Paragraph 1</p>
+      <p>Paragraph 2</p>  <!-- Automatic spacing -->
+      <p>Paragraph 3</p>
+    </div>
+
+  Reference: https://every-layout.dev/layouts/stack/
+
+========================================================================
+*/
+
+// ==================================
+// Stack: Base (Vertical Spacing)
+// ==================================
+.o-stack > * + * {
+  margin-top: $space-4;  // From 01-settings
+}
+
+// ==================================
+// Stack Modifiers: Spacing Sizes
+// ==================================
+.o-stack--sm > * + * {
+  margin-top: $space-2;
+}
+
+.o-stack--md > * + * {
+  margin-top: $space-4;
+}
+
+.o-stack--lg > * + * {
+  margin-top: $space-6;
+}
+
+.o-stack--xl > * + * {
+  margin-top: $space-8;
+}
+
+// ==================================
+// Stack Modifier: Recursive (Nested Stacks)
+// ==================================
+.o-stack--recursive * + * {
+  margin-top: $space-4;
+}

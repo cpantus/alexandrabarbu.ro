@@ -1,0 +1,479 @@
+/*
+========================================================================
+  Testimonials Component - BEM Refactoring (v4.0)
+
+  BEM Structure:
+    .c-testimonials                    - Testimonials section container
+    .c-testimonials__header            - Section header
+    .c-testimonials__subtitle          - Subtitle/eyebrow text
+    .c-testimonials__title             - Main title
+    .c-testimonials__description       - Description text
+    .c-testimonials__grid              - Grid container for cards
+    .c-testimonials__card              - Individual testimonial card
+    .c-testimonials__quote-icon        - Quote icon circle
+    .c-testimonials__quote             - Quote text
+    .c-testimonials__author            - Author section container
+    .c-testimonials__photo             - Author photo
+    .c-testimonials__author-info       - Author name/role container
+    .c-testimonials__author-name       - Author name
+    .c-testimonials__author-role       - Author role/title
+    .c-testimonials__rating            - Star rating
+
+  Modifiers:
+    .c-testimonials__card--primary     - Primary gradient hover
+    .c-testimonials__card--secondary   - Secondary gradient hover
+    .c-testimonials__card--coral       - Coral gradient hover
+
+  Legacy Compatibility:
+    - .testimonials-section            → .c-testimonials
+    - .testimonials-header             → .c-testimonials__header
+    - .testimonials-grid               → .c-testimonials__grid
+    - .testimonial-card                → .c-testimonials__card
+    - .testimonial-card.variant-primary → .c-testimonials__card--primary
+
+  Created: 2025-11-19 (Session 13 - Phase 3 BEM Refactoring)
+========================================================================
+*/
+
+/*------------------------------------------------------------------
+  # Testimonials Section Container
+-------------------------------------------------------------------*/
+
+.c-testimonials {
+  padding: $space-16 0;
+  position: relative;
+  background: linear-gradient(180deg, white 0%, rgba($terracotta-50, 0.3) 50%, white 100%);
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $space-12 0;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Section Header
+-------------------------------------------------------------------*/
+
+.c-testimonials__header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto $space-12;
+
+  @media (max-width: $breakpoint-sm) {
+    margin-bottom: $space-8;
+  }
+}
+
+.c-testimonials__subtitle {
+  font-family: $font-secondary;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $color-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: $space-2;
+}
+
+.c-testimonials__title {
+  font-family: $font-primary;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: $gray-900;
+  line-height: 1.2;
+  margin-bottom: $space-4;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 1.875rem;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 1.75rem;
+  }
+}
+
+.c-testimonials__description {
+  font-family: $font-secondary;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: $gray-600;
+}
+
+/*------------------------------------------------------------------
+  # Testimonials Grid
+-------------------------------------------------------------------*/
+
+.c-testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-6;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  // Desktop: 3 columns with larger gap
+  @media (min-width: $breakpoint-lg) {
+    gap: $space-8;
+  }
+
+  // Tablet: 2 columns
+  @media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  // Mobile: Stack vertically
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+    gap: $space-5;
+  }
+
+  // Staggered entrance animations
+  .c-testimonials__card {
+    @include staggered-entrance(fade-in-up, 120ms);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Testimonial Card
+-------------------------------------------------------------------*/
+
+.c-testimonials__card {
+  display: flex;
+  flex-direction: column;
+  padding: $space-8;
+  background: $gradient-glass-light;
+  @include glassmorphism($radius-lg, 0.95);
+  border-radius: $radius-lg;
+  border: none !important;
+  box-shadow: $shadow-sm;
+  transition: all $duration-base $easing-medium;
+  position: relative;
+
+  // Base hover effects
+  &:hover {
+    transform: translateY(-2px) scale(1.02);
+    background: rgba(255, 255, 255, 0.95);
+
+    .c-testimonials__photo {
+      transform: scale(1.08);
+      box-shadow: $shadow-md;
+    }
+  }
+
+  // Primary variant (emerald glow)
+  &--primary:hover {
+    box-shadow:
+      0 0 0 1px rgba($emerald-400, 0.2),
+      0 8px 24px -4px rgba($emerald-500, 0.25),
+      0 16px 48px -8px rgba($emerald-400, 0.15);
+  }
+
+  // Secondary variant (terracotta glow)
+  &--secondary:hover {
+    box-shadow:
+      0 0 0 1px rgba($terracotta-400, 0.2),
+      0 8px 24px -4px rgba($terracotta-500, 0.25),
+      0 16px 48px -8px rgba($terracotta-400, 0.15);
+  }
+
+  // Coral variant (coral glow)
+  &--coral:hover {
+    box-shadow:
+      0 0 0 1px rgba($coral-400, 0.2),
+      0 8px 24px -4px rgba($coral-500, 0.25),
+      0 16px 48px -8px rgba($coral-400, 0.15);
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $space-6;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Quote Icon
+-------------------------------------------------------------------*/
+
+.c-testimonials__quote-icon {
+  width: $icon-circle-md;
+  height: $icon-circle-md;
+  border-radius: $radius-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $space-5;
+  flex-shrink: 0;
+
+  i {
+    color: white !important;
+    font-size: $icon-lg;
+  }
+
+  // Primary variant (emerald gradient)
+  .c-testimonials__card--primary & {
+    background: $gradient-icon-emerald;
+    box-shadow: $shadow-warm-sm;
+  }
+
+  // Secondary variant (terracotta gradient)
+  .c-testimonials__card--secondary & {
+    background: $gradient-icon-terracotta;
+    box-shadow: $shadow-warm-sm;
+  }
+
+  // Coral variant (coral gradient)
+  .c-testimonials__card--coral & {
+    background: linear-gradient(135deg, $coral-400 0%, $coral-600 100%);
+    box-shadow: $shadow-sm;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    width: $icon-circle-sm;
+    height: $icon-circle-sm;
+    margin-bottom: $space-4;
+
+    i {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Quote Text
+-------------------------------------------------------------------*/
+
+.c-testimonials__quote {
+  font-family: $font-secondary;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: $gray-700;
+  margin: 0 0 $space-6;
+  flex: 1;
+  font-style: italic;
+  position: relative;
+
+  // Large decorative opening quote
+  &::before {
+    content: '"';
+    font-size: 3rem;
+    font-weight: 700;
+    color: $color-primary;
+    opacity: 0.1;
+    position: absolute;
+    top: -20px;
+    left: -8px;
+    line-height: 1;
+    font-family: serif;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 0.9375rem;
+    margin-bottom: $space-5;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Author Section
+-------------------------------------------------------------------*/
+
+.c-testimonials__author {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+  margin-top: auto;
+  padding-top: $space-5;
+  border-top: 1px solid rgba($gray-300, 0.5);
+
+  @media (max-width: $breakpoint-sm) {
+    gap: $space-3;
+    padding-top: $space-4;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Author Photo
+-------------------------------------------------------------------*/
+
+.c-testimonials__photo {
+  width: 56px;
+  height: 56px;
+  border-radius: $radius-full;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: $shadow-sm;
+  transition: transform $duration-base $easing-medium, box-shadow $duration-base $easing-medium;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  // Gradient ring around photo (base transparent)
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: $radius-full;
+    background: linear-gradient(135deg, transparent 0%, transparent 100%);
+    z-index: -1;
+  }
+
+  // Primary variant ring
+  .c-testimonials__card--primary &::before {
+    background: $gradient-icon-emerald;
+  }
+
+  // Secondary variant ring
+  .c-testimonials__card--secondary &::before {
+    background: $gradient-icon-terracotta;
+  }
+
+  // Coral variant ring
+  .c-testimonials__card--coral &::before {
+    background: linear-gradient(135deg, $coral-400 0%, $coral-600 100%);
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    width: $icon-circle-md;
+    height: $icon-circle-md;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Author Info
+-------------------------------------------------------------------*/
+
+.c-testimonials__author-info {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+}
+
+.c-testimonials__author-name {
+  font-family: $font-primary;
+  font-size: 1rem;
+  font-weight: 600;
+  color: $gray-900;
+  margin: 0;
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 0.9375rem;
+  }
+}
+
+.c-testimonials__author-role {
+  font-family: $font-secondary;
+  font-size: 0.875rem;
+  color: $gray-600;
+  margin: 0;
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 0.8125rem;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Rating Stars
+-------------------------------------------------------------------*/
+
+.c-testimonials__rating {
+  display: flex;
+  gap: $space-1;
+  margin-top: $space-2;
+
+  i {
+    color: $amber-400;
+    font-size: 1rem;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    i {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Legacy Compatibility
+  Map old class names to new BEM structure via @extend
+-------------------------------------------------------------------*/
+
+.testimonials-section {
+  @extend .c-testimonials;
+}
+
+.testimonials-header {
+  @extend .c-testimonials__header;
+
+  .subtitle {
+    @extend .c-testimonials__subtitle;
+  }
+
+  .title {
+    @extend .c-testimonials__title;
+  }
+
+  .description {
+    @extend .c-testimonials__description;
+  }
+}
+
+.testimonials-grid {
+  @extend .c-testimonials__grid;
+}
+
+.testimonial-card {
+  @extend .c-testimonials__card;
+
+  &.variant-primary {
+    @extend .c-testimonials__card--primary;
+  }
+
+  &.variant-secondary {
+    @extend .c-testimonials__card--secondary;
+  }
+
+  &.variant-coral {
+    @extend .c-testimonials__card--coral;
+  }
+}
+
+.testimonial-quote-icon {
+  @extend .c-testimonials__quote-icon;
+}
+
+.testimonial-quote {
+  @extend .c-testimonials__quote;
+}
+
+.testimonial-author {
+  @extend .c-testimonials__author;
+}
+
+.testimonial-photo {
+  @extend .c-testimonials__photo;
+}
+
+.testimonial-author-info {
+  @extend .c-testimonials__author-info;
+}
+
+.testimonial-author-name {
+  @extend .c-testimonials__author-name;
+}
+
+.testimonial-author-role {
+  @extend .c-testimonials__author-role;
+}
+
+.testimonial-rating {
+  @extend .c-testimonials__rating;
+}

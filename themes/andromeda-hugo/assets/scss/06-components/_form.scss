@@ -1,0 +1,532 @@
+/*
+========================================================================
+  Form Component - BEM Refactoring (v4.0)
+
+  BEM Structure:
+    .c-form                        - Form container
+    .c-form__group                 - Form group wrapper
+    .c-form__label                 - Form label
+    .c-form__input                 - Input/textarea/select
+    .c-form__textarea              - Textarea specific
+    .c-form__select                - Select specific
+    .c-form__feedback              - Validation feedback message
+    .c-form__privacy               - Privacy notice
+    .c-form__submit                - Submit button
+    .c-form__success               - Success message container
+
+  Modifiers:
+    .c-form--enhanced              - v4.0 glassmorphism style
+    .c-form--compact               - Reduced spacing
+    .c-form__group--floating       - Floating label effect
+    .c-form__group--valid          - Valid state
+    .c-form__group--invalid        - Invalid state
+    .c-form__input--sm/md/lg       - Input sizes
+    .c-form__submit--primary       - Primary button style
+    .c-form__submit--secondary     - Secondary button style
+    .c-form__success--visible      - Show success message
+
+  Legacy Compatibility:
+    - .form-card                   → .c-form--enhanced
+    - .form-group                  → .c-form__group
+    - .form-control                → .c-form__input
+    - .btn-submit                  → .c-form__submit
+    - .form-success                → .c-form__success
+    - .invalid-feedback            → .c-form__feedback
+
+  Created: 2025-11-19 (Session 10 - Phase 3 BEM Refactoring)
+========================================================================
+*/
+
+/*------------------------------------------------------------------
+  # Form Container
+-------------------------------------------------------------------*/
+
+.c-form {
+  position: relative;
+
+  // Enhanced glassmorphism variant (v4.0)
+  &--enhanced {
+    background: $gradient-glass-light;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: $radius-2xl;
+    padding: $space-8;
+    box-shadow: $shadow-glass, $shadow-warm;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @media (min-width: 992px) {
+      padding: $space-12;
+    }
+  }
+
+  // Compact variant
+  &--compact {
+    .c-form__group {
+      margin-bottom: $space-4;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Form Group (Field Container)
+-------------------------------------------------------------------*/
+
+.c-form__group {
+  margin-bottom: $space-6;
+
+  // Floating label variant
+  &--floating {
+    position: relative;
+
+    .c-form__label {
+      position: absolute;
+      top: $space-3;
+      left: $space-4;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      color: $color-text-muted;
+    }
+
+    .c-form__input:focus + .c-form__label,
+    .c-form__input:not(:placeholder-shown) + .c-form__label,
+    .c-form__textarea:focus + .c-form__label,
+    .c-form__textarea:not(:placeholder-shown) + .c-form__label {
+      top: -$space-2;
+      left: $space-2;
+      font-size: $text-xs;
+      color: $color-primary;
+      background: #fff;
+      padding: 0 $space-1;
+    }
+  }
+
+  // Valid state
+  &--valid {
+    .c-form__input,
+    .c-form__textarea {
+      border-color: $color-success;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2310b981'%3E%3Cpath fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right $space-3 center;
+      background-size: 1.25rem;
+      padding-right: $space-10;
+    }
+  }
+
+  // Invalid state
+  &--invalid {
+    .c-form__input,
+    .c-form__textarea {
+      border-color: $color-error;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23ef4444'%3E%3Cpath fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z' clip-rule='evenodd'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right $space-3 center;
+      background-size: 1.25rem;
+      padding-right: $space-10;
+    }
+
+    .c-form__feedback {
+      display: block;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Form Labels
+-------------------------------------------------------------------*/
+
+.c-form__label {
+  display: block;
+  margin-bottom: $space-2;
+  color: $color-text-primary;
+  font-weight: $weight-medium;
+  font-size: $text-sm;
+  transition: color 0.3s ease;
+}
+
+/*------------------------------------------------------------------
+  # Form Inputs
+-------------------------------------------------------------------*/
+
+.c-form__input,
+.c-form__textarea,
+.c-form__select {
+  width: 100%;
+  padding: $space-3 $space-4;
+  border: 2px solid rgba($color-primary, 0.15);
+  border-radius: $radius-lg;
+  background: rgba(255, 255, 255, 0.9);
+  font-family: $font-body;
+  font-size: $text-base;
+  color: $color-text-primary;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba($color-primary, 0.1);
+    transform: translateY(-2px);
+  }
+
+  &::placeholder {
+    color: $color-text-muted;
+    opacity: 0.6;
+  }
+
+  // Size variants
+  &--sm {
+    padding: $space-2 $space-3;
+    font-size: $text-sm;
+  }
+
+  &--lg {
+    padding: $space-4 $space-5;
+    font-size: $text-lg;
+  }
+}
+
+// Textarea specific
+.c-form__textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+// Select specific
+.c-form__select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23374151'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right $space-3 center;
+  background-size: 1.5rem;
+  padding-right: $space-10;
+}
+
+// Checkbox and radio
+.c-form__checkbox,
+.c-form__radio {
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid rgba($color-primary, 0.3);
+  border-radius: $radius-sm;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+
+  &:checked {
+    background-color: $color-secondary;
+    border-color: $color-secondary;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0.625rem;
+      height: 0.625rem;
+      background: #fff;
+      border-radius: 2px;
+    }
+  }
+
+  &:focus {
+    outline: 2px solid $terracotta-500;
+    outline-offset: 2px;
+  }
+}
+
+.c-form__radio {
+  border-radius: 50%;
+
+  &:checked::after {
+    border-radius: 50%;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Validation Feedback
+-------------------------------------------------------------------*/
+
+.c-form__feedback {
+  display: none;
+  color: $color-error;
+  font-size: $text-sm;
+  margin-top: $space-1;
+}
+
+/*------------------------------------------------------------------
+  # Privacy Notice
+-------------------------------------------------------------------*/
+
+.c-form__privacy {
+  margin-top: $space-6;
+  padding: $space-4;
+  background: rgba($color-primary, 0.05);
+  border-left: 4px solid $color-primary;
+  border-radius: $radius-md;
+  font-size: $text-sm;
+  color: $color-text-secondary;
+
+  a {
+    color: $color-primary;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Submit Button
+-------------------------------------------------------------------*/
+
+.c-form__submit {
+  padding: $space-4 $space-8;
+  border: none;
+  border-radius: $radius-lg;
+  font-weight: $weight-semibold;
+  font-size: $text-lg;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  // Primary variant (default)
+  &--primary {
+    background: $gradient-warm-vibrant;
+    color: #fff;
+    box-shadow: $shadow-warm;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-warm-lg;
+
+      &::before {
+        left: 100%;
+      }
+    }
+  }
+
+  // Secondary variant
+  &--secondary {
+    background: $color-secondary;
+    color: #fff;
+    box-shadow: $shadow-md;
+
+    &:hover {
+      background: darken($color-secondary, 5%);
+      transform: translateY(-2px);
+      box-shadow: $shadow-lg;
+    }
+  }
+
+  // Disabled state
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
+  // Active state
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Success Message
+-------------------------------------------------------------------*/
+
+.c-form__success {
+  display: none;
+  background: $gradient-glass-warm;
+  backdrop-filter: blur(10px);
+  border: 2px solid $color-success;
+  border-radius: $radius-lg;
+  padding: $space-6;
+  text-align: center;
+  animation: fadeInUp 0.5s ease-out;
+
+  &--visible {
+    display: block;
+  }
+}
+
+.c-form__success-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto $space-4;
+  background: $gradient-icon-emerald;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse-gentle 2s ease-in-out infinite;
+
+  svg {
+    width: 32px;
+    height: 32px;
+    color: #fff;
+  }
+}
+
+.c-form__success-title {
+  color: $color-success;
+  margin-bottom: $space-2;
+}
+
+.c-form__success-text {
+  color: $color-text-secondary;
+}
+
+/*------------------------------------------------------------------
+  # Legacy Compatibility
+  Map old class names to new BEM structure via @extend
+-------------------------------------------------------------------*/
+
+// Form containers
+.contact-form-section .form-card {
+  @extend .c-form--enhanced;
+}
+
+.form-card {
+  @extend .c-form--enhanced;
+}
+
+// Form groups
+.form-group {
+  @extend .c-form__group;
+
+  &.has-floating-label {
+    @extend .c-form__group--floating;
+  }
+
+  &.is-valid {
+    @extend .c-form__group--valid;
+  }
+
+  &.is-invalid {
+    @extend .c-form__group--invalid;
+  }
+}
+
+// Form controls
+.form-control {
+  @extend .c-form__input;
+
+  &:focus {
+    border-color: $color-secondary;
+    outline: 2px solid $terracotta-500;
+    outline-offset: 2px;
+  }
+}
+
+textarea.form-control {
+  @extend .c-form__textarea;
+}
+
+select.form-control {
+  @extend .c-form__select;
+}
+
+.form-check-input {
+  @extend .c-form__checkbox;
+
+  &[type="radio"] {
+    @extend .c-form__radio;
+  }
+
+  &:checked {
+    background-color: $color-secondary;
+    border-color: $color-secondary;
+  }
+
+  &:focus {
+    outline: 2px solid $terracotta-500;
+    outline-offset: 2px;
+  }
+}
+
+// Validation
+.invalid-feedback {
+  @extend .c-form__feedback;
+}
+
+// Privacy notice
+.form-privacy {
+  @extend .c-form__privacy;
+}
+
+// Submit button
+.btn-submit {
+  @extend .c-form__submit--primary;
+}
+
+// Success message
+.form-success {
+  @extend .c-form__success;
+
+  &.is-visible {
+    @extend .c-form__success--visible;
+  }
+
+  .success-icon {
+    @extend .c-form__success-icon;
+  }
+
+  h3 {
+    @extend .c-form__success-title;
+  }
+
+  p {
+    @extend .c-form__success-text;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Animations
+-------------------------------------------------------------------*/
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}

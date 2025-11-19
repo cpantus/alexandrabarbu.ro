@@ -1,0 +1,214 @@
+// ==================================
+// ITCSS LAYER 1: SETTINGS - COLOR TOKENS
+// ==================================
+//
+// Purpose: Single source of truth for all color values (NO CSS output)
+// Rule: Components MUST use semantic names, NOT palette names directly
+//
+// Last Updated: 2025-11-19 (Phase 2 - System Layer Refactoring)
+// Version: 2.0.0 (ITCSS Architecture)
+//
+
+// ==================================
+// 8-COLOR PALETTE WITH 9-STEP SCALES
+// ==================================
+
+// ----------------------------------
+// PRIMARY PALETTE: Emerald (Growth, Healing, Trust)
+// ----------------------------------
+$emerald-50: #f0fdf6;
+$emerald-100: #dcfce7;
+$emerald-200: #bbf7d0;
+$emerald-300: #86efac;
+$emerald-400: #4ade80;
+$emerald-500: #4DB380;  // BRAND PRIMARY
+$emerald-600: #16a34a;
+$emerald-700: #15803d;
+$emerald-800: #166534;
+$emerald-900: #14532d;
+
+// ----------------------------------
+// SECONDARY PALETTE: Terracotta (Warmth, Balance, Grounding)
+// ----------------------------------
+$terracotta-50: #fff5f3;
+$terracotta-100: #ffe8e1;
+$terracotta-200: #ffd1c4;
+$terracotta-300: #ffb8a3;
+$terracotta-400: #ff9d7f;
+$terracotta-500: #CC6B49;  // BRAND SECONDARY
+$terracotta-600: #b8583a;
+$terracotta-700: #9a4830;
+$terracotta-800: #7d3a26;
+$terracotta-900: #5e2c1d;
+
+// ----------------------------------
+// SUPPORTING PALETTE: Teal (Info, Calm, Clarity)
+// ----------------------------------
+$teal-50: #f0fdfa;
+$teal-100: #ccfbf1;
+$teal-200: #99f6e4;
+$teal-300: #5eead4;
+$teal-400: #2dd4bf;
+$teal-500: #14b8a6;
+$teal-600: #0d9488;
+$teal-700: #0f766e;
+$teal-800: #115e59;
+$teal-900: #134e4a;
+
+// ----------------------------------
+// SUPPORTING PALETTE: Amber (Warning, Highlight, Attention)
+// ----------------------------------
+$amber-50: #fffbeb;
+$amber-100: #fef3c7;
+$amber-200: #fde68a;
+$amber-300: #fcd34d;
+$amber-400: #fbbf24;
+$amber-500: #f59e0b;
+$amber-600: #d97706;
+$amber-700: #b45309;
+$amber-800: #92400e;
+$amber-900: #78350f;
+
+// ----------------------------------
+// SUPPORTING PALETTE: Sage (Success, Positive, Growth)
+// ----------------------------------
+$sage-50: #f0fdf4;
+$sage-100: #dcfce7;
+$sage-200: #bbf7d0;
+$sage-300: #86efac;
+$sage-400: #4ade80;
+$sage-500: #22c55e;
+$sage-600: #16a34a;
+$sage-700: #15803d;
+$sage-800: #166534;
+$sage-900: #14532d;
+
+// ----------------------------------
+// SUPPORTING PALETTE: Plum (Premium, Depth, Sophistication)
+// ----------------------------------
+$plum-50: #faf5ff;
+$plum-100: #f3e8ff;
+$plum-200: #e9d5ff;
+$plum-300: #d8b4fe;
+$plum-400: #c084fc;
+$plum-500: #a855f7;
+$plum-600: #9333ea;
+$plum-700: #7e22ce;
+$plum-800: #6b21a8;
+$plum-900: #581c87;
+
+// ----------------------------------
+// SUPPORTING PALETTE: Coral (Emotional, Testimonials, Warmth)
+// ----------------------------------
+$coral-50: #fff1f2;
+$coral-100: #ffe4e6;
+$coral-200: #fecdd3;
+$coral-300: #fda4af;
+$coral-400: #fb7185;
+$coral-500: #f43f5e;
+$coral-600: #e11d48;
+$coral-700: #be123c;
+$coral-800: #9f1239;
+$coral-900: #881337;
+
+// ----------------------------------
+// SUPPORTING PALETTE: Navy (Footer, Contrast, Stability)
+// ----------------------------------
+$navy-50: #f0f9ff;
+$navy-100: #e0f2fe;
+$navy-200: #bae6fd;
+$navy-300: #7dd3fc;
+$navy-400: #38bdf8;
+$navy-500: #0ea5e9;
+$navy-600: #0284c7;
+$navy-700: #0369a1;
+$navy-800: #075985;
+$navy-900: #1e3a8a;
+
+// ----------------------------------
+// SUPPORTING PALETTE: Red (Error, Danger, Critical)
+// ----------------------------------
+$red-50: #fef2f2;
+$red-100: #fee2e2;
+$red-200: #fecaca;
+$red-300: #fca5a5;
+$red-400: #f87171;
+$red-500: #ef4444;
+$red-600: #dc2626;
+$red-700: #b91c1c;
+$red-800: #991b1b;
+$red-900: #7f1d1d;
+
+// ----------------------------------
+// GRAYSCALE PALETTE: Neutral (Text, Backgrounds, Borders)
+// ----------------------------------
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-800: #1f2937;
+$gray-900: #111827;
+
+// ----------------------------------
+// BASE COLORS (Legacy compatibility)
+// ----------------------------------
+$white: #ffffff;
+$black: #000000;
+
+// ==================================
+// SEMANTIC COLOR MAPPINGS
+// ==================================
+// Purpose: Enforce semantic meaning, prevent arbitrary color usage
+// Rule: Components MUST use semantic names, NOT palette names
+
+// Brand Colors
+$color-primary: $emerald-500;
+$color-secondary: $terracotta-500;
+
+// Text Colors
+$color-text-primary: $gray-700;
+$color-text-secondary: $gray-600;
+$color-text-muted: $gray-500;
+$color-text-heading: $gray-900;
+
+// Background Colors
+$color-bg-page: $gray-50;
+$color-bg-section: #ffffff;
+$color-bg-card: #ffffff;
+
+// Border Colors
+$color-border-light: $gray-200;
+$color-border-medium: $gray-300;
+$color-border-dark: $gray-400;
+
+// State Colors
+$color-success: $sage-500;
+$color-warning: $amber-500;
+$color-error: $red-500;
+$color-info: $teal-500;
+
+// ----------------------------------
+// Legacy Color Aliases (Backward Compatibility)
+// ----------------------------------
+// Source: _design-system.scss lines 64-73
+// DEPRECATED: Old $green-* variables → Use $emerald-* from design tokens
+// These aliases ensure gradients and legacy code continue to work
+$green-50: $emerald-50;
+$green-100: $emerald-100;
+$green-200: $emerald-200;
+$green-300: $emerald-300;
+$green-400: $emerald-500;  // Old brand color → New emerald-500
+$green-500: $emerald-600;
+$green-600: $emerald-700;
+$green-700: $emerald-800;
+$green-800: $emerald-900;
+$green-900: $emerald-900;
+
+// ==================================
+// END OF COLOR TOKENS
+// ==================================
+// NO CSS should be output from this layer (SCSS variables only)

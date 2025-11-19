@@ -1,0 +1,546 @@
+// ==================================
+// CARD COMPONENT - BEM Architecture
+// ==================================
+//
+// Purpose: Reusable card component with v4.0 styling
+// Features: Glassmorphism, gradient effects, multiple variants
+//
+// Last Updated: 2025-11-19 (Phase 3 - Component BEM Refactoring)
+// Version: 3.0.0 (ITCSS + BEM)
+//
+// BEM Structure:
+// Block: .c-card
+// Elements: __header, __title, __icon, __body, __footer, __meta, __action
+// Modifiers: --primary, --secondary, --coral, --sage, --elevated, --glass, --gradient-border, --top-accent, --hover-lift, --gradient-bg
+//
+
+/*------------------------------------------------------------------
+  # Base Card Block
+-------------------------------------------------------------------*/
+
+/**
+ * Base card component (default: primary variant)
+ */
+.c-card {
+  @include card-v4('primary', false);
+
+  // Variant modifiers
+  &--primary {
+    @include card-v4('primary', false);
+  }
+
+  &--secondary {
+    @include card-v4('secondary', false);
+  }
+
+  &--coral {
+    @include card-v4('coral', false);
+  }
+
+  &--sage {
+    @include card-v4('sage', false);
+  }
+
+  // State modifiers
+  &--elevated {
+    @include card-v4('primary', true);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Card Style Variants (Block Modifiers)
+-------------------------------------------------------------------*/
+
+/**
+ * Glassmorphism card variant
+ */
+.c-card--glass {
+  @include card-glass('primary', 12px, 0.7);
+
+  &.c-card--secondary {
+    @include card-glass('secondary', 12px, 0.7);
+  }
+
+  &.c-card--neutral {
+    @include card-glass('neutral', 12px, 0.7);
+  }
+
+  // Sub-modifier: stronger glass effect
+  &.c-card--glass-strong {
+    @include card-glass('primary', 20px, 0.8);
+  }
+}
+
+/**
+ * Gradient border card variant
+ */
+.c-card--gradient-border {
+  @include card-gradient-border('primary');
+
+  &.c-card--secondary {
+    @include card-gradient-border('secondary');
+  }
+
+  &.c-card--healing {
+    @include card-gradient-border('healing');
+  }
+}
+
+/**
+ * Top accent border card variant
+ */
+.c-card--top-accent {
+  @include card-top-accent('primary');
+
+  &.c-card--secondary {
+    @include card-top-accent('secondary');
+  }
+
+  &.c-card--coral {
+    @include card-top-accent('coral');
+  }
+
+  &.c-card--sage {
+    @include card-top-accent('sage');
+  }
+}
+
+/**
+ * Hover lift animation card variant
+ */
+.c-card--hover-lift {
+  @include card-v4('primary', false);
+  @include card-hover-lift(-8px);
+
+  // Sub-modifiers for lift intensity
+  &.c-card--lift-small {
+    @include card-hover-lift(-4px);
+  }
+
+  &.c-card--lift-large {
+    @include card-hover-lift(-12px);
+  }
+}
+
+/**
+ * Gradient background card variant
+ */
+.c-card--gradient-bg {
+  @include card-gradient-bg('primary-subtle');
+
+  &.c-card--secondary {
+    @include card-gradient-bg('secondary-subtle');
+  }
+
+  &.c-card--light {
+    @include card-gradient-bg('light');
+  }
+}
+
+/*------------------------------------------------------------------
+  # Card Elements (BEM Structure)
+-------------------------------------------------------------------*/
+
+/**
+ * Card header (title + icon)
+ */
+.c-card__header {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  margin-bottom: $space-4;
+}
+
+/**
+ * Card icon element
+ */
+.c-card__icon {
+  flex-shrink: 0;
+}
+
+/**
+ * Card title element
+ */
+.c-card__title {
+  font-family: $font-primary;
+  font-size: $text-xl;
+  font-weight: $weight-semibold;
+  color: $gray-900;
+  margin: 0;
+}
+
+/**
+ * Card body (main content)
+ */
+.c-card__body {
+  color: $gray-600;
+  font-size: $text-base;
+  line-height: $leading-relaxed;
+  margin-bottom: $space-4;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/**
+ * Card footer (actions, metadata)
+ */
+.c-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: $space-4;
+  padding-top: $space-4;
+  border-top: 1px solid $gray-200;
+}
+
+/**
+ * Card metadata element
+ */
+.c-card__meta {
+  font-size: $text-sm;
+  color: $gray-500;
+}
+
+/**
+ * Card action link element
+ */
+.c-card__action {
+  font-size: $text-sm;
+  font-weight: $weight-semibold;
+  color: $emerald-600;
+  text-decoration: none;
+  transition: color $duration-fast $ease-out;
+
+  &:hover {
+    color: $emerald-700;
+    text-decoration: underline;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Card Grid Layouts (Object-like, but card-specific)
+-------------------------------------------------------------------*/
+
+/**
+ * 2-column card grid (default)
+ */
+.c-card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-6;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    gap: $space-8;
+  }
+}
+
+/**
+ * 3-column card grid
+ */
+.c-card-grid--3col {
+  @extend .c-card-grid;
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/**
+ * 4-column card grid
+ */
+.c-card-grid--4col {
+  @extend .c-card-grid;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/**
+ * Masonry card grid (Pinterest-style)
+ */
+.c-card-grid--masonry {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-6;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Auto-Color Distribution (Context-Specific)
+  # Applied when no explicit variant specified
+-------------------------------------------------------------------*/
+
+/**
+ * Service cards - alternating primary/secondary
+ */
+.services-grid,
+.related-services-section {
+  .c-card:not([class*="c-card--"]) {
+    &:nth-child(odd) {
+      @include card-top-accent('primary');
+    }
+    &:nth-child(even) {
+      @include card-top-accent('secondary');
+    }
+  }
+
+  // Legacy class support (temporary)
+  .service-card:not([class*="c-card--"]) {
+    &:nth-child(odd) {
+      @include card-top-accent('primary');
+    }
+    &:nth-child(even) {
+      @include card-top-accent('secondary');
+    }
+  }
+}
+
+/**
+ * Feature cards - 4-color rotation
+ */
+.features-grid,
+.benefits-grid {
+  .c-card:not([class*="c-card--"]) {
+    &:nth-child(4n+1) {
+      @include card-top-accent('primary');
+    }
+    &:nth-child(4n+2) {
+      @include card-top-accent('secondary');
+    }
+    &:nth-child(4n+3) {
+      @include card-top-accent('coral');
+    }
+    &:nth-child(4n+4) {
+      @include card-top-accent('sage');
+    }
+  }
+
+  // Legacy class support (temporary)
+  .feature-card:not([class*="c-card--"]),
+  .benefit-card:not([class*="c-card--"]) {
+    &:nth-child(4n+1) {
+      @include card-top-accent('primary');
+    }
+    &:nth-child(4n+2) {
+      @include card-top-accent('secondary');
+    }
+    &:nth-child(4n+3) {
+      @include card-top-accent('coral');
+    }
+    &:nth-child(4n+4) {
+      @include card-top-accent('sage');
+    }
+  }
+}
+
+/**
+ * Blog cards - alternating elevated/standard
+ */
+.blog-grid {
+  .c-card:not([class*="c-card--"]) {
+    &:nth-child(odd) {
+      @include card-v4('primary', false);
+    }
+    &:nth-child(even) {
+      @include card-v4('primary', true);
+    }
+  }
+
+  // Legacy class support (temporary)
+  .blog-card:not([class*="c-card--"]) {
+    &:nth-child(odd) {
+      @include card-v4('primary', false);
+    }
+    &:nth-child(even) {
+      @include card-v4('primary', true);
+    }
+  }
+}
+
+/**
+ * Testimonial cards - gradient backgrounds
+ */
+.testimonials-grid {
+  .c-card:not([class*="c-card--"]) {
+    &:nth-child(3n+1) {
+      @include card-gradient-bg('primary-subtle');
+    }
+    &:nth-child(3n+2) {
+      @include card-gradient-bg('secondary-subtle');
+    }
+    &:nth-child(3n+3) {
+      @include card-gradient-bg('light');
+    }
+  }
+
+  // Legacy class support (temporary)
+  .testimonial-card:not([class*="c-card--"]) {
+    &:nth-child(3n+1) {
+      @include card-gradient-bg('primary-subtle');
+    }
+    &:nth-child(3n+2) {
+      @include card-gradient-bg('secondary-subtle');
+    }
+    &:nth-child(3n+3) {
+      @include card-gradient-bg('light');
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Legacy Class Compatibility (Phase 3 Transition)
+  # TODO: Remove in Phase 4 after HTML templates updated
+-------------------------------------------------------------------*/
+
+// Base compatibility
+.card-v4 {
+  @extend .c-card;
+}
+
+// Variant compatibility
+.card-primary {
+  @extend .c-card--primary;
+}
+
+.card-secondary {
+  @extend .c-card--secondary;
+}
+
+.card-coral {
+  @extend .c-card--coral;
+}
+
+.card-sage {
+  @extend .c-card--sage;
+}
+
+.card-elevated {
+  @extend .c-card--elevated;
+}
+
+// Style variant compatibility
+.card-glass {
+  @extend .c-card--glass;
+}
+
+.card-gradient-border {
+  @extend .c-card--gradient-border;
+}
+
+.card-top-accent {
+  @extend .c-card--top-accent;
+}
+
+.card-hover-lift {
+  @extend .c-card--hover-lift;
+}
+
+.card-gradient-bg {
+  @extend .c-card--gradient-bg;
+}
+
+// Element compatibility
+.card-header {
+  @extend .c-card__header;
+}
+
+.card-icon {
+  @extend .c-card__icon;
+}
+
+.card-title {
+  @extend .c-card__title;
+}
+
+.card-body {
+  @extend .c-card__body;
+}
+
+.card-footer {
+  @extend .c-card__footer;
+}
+
+.card-meta {
+  @extend .c-card__meta;
+}
+
+.card-action {
+  @extend .c-card__action;
+}
+
+// Grid compatibility
+.card-grid {
+  @extend .c-card-grid;
+}
+
+.card-grid-3 {
+  @extend .c-card-grid--3col;
+}
+
+.card-grid-4 {
+  @extend .c-card-grid--4col;
+}
+
+.card-grid-masonry {
+  @extend .c-card-grid--masonry;
+}
+
+// ==================================
+// USAGE GUIDE
+// ==================================
+//
+// Basic card:
+//   <div class="c-card">...</div>
+//
+// Card with variant:
+//   <div class="c-card c-card--secondary">...</div>
+//
+// Card with style variant:
+//   <div class="c-card c-card--glass c-card--secondary">...</div>
+//
+// Card structure:
+//   <div class="c-card c-card--primary">
+//     <div class="c-card__header">
+//       <div class="c-card__icon">...</div>
+//       <h3 class="c-card__title">Title</h3>
+//     </div>
+//     <div class="c-card__body">
+//       <p>Content...</p>
+//     </div>
+//     <div class="c-card__footer">
+//       <span class="c-card__meta">Metadata</span>
+//       <a href="#" class="c-card__action">Action Link</a>
+//     </div>
+//   </div>
+//
+// Card grid:
+//   <div class="c-card-grid c-card-grid--3col">
+//     <div class="c-card">...</div>
+//     <div class="c-card">...</div>
+//     <div class="c-card">...</div>
+//   </div>
+//
+// VERSION HISTORY:
+// 3.0.0 (2025-11-19) - ITCSS Phase 3: Full BEM refactoring with legacy compatibility
+// 2.0.0 (2025-11-19) - ITCSS Phase 2: Mixins extracted to tools layer
+// 1.0.0 (2025-11-17) - Initial card system with v4.0 enhancements
+//

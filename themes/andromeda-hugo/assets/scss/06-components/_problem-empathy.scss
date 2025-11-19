@@ -1,0 +1,405 @@
+// ============================================================================
+// Problem Empathy Component - BEM Architecture
+// ============================================================================
+// Enhanced v4.0 with glassmorphism, gradient icons, and organic shapes
+//
+// BEM Structure:
+// .c-problem-empathy                    - Component block
+// .c-problem-empathy__header            - Section header
+// .c-problem-empathy__subtitle          - Header eyebrow text
+// .c-problem-empathy__title             - Header main title
+// .c-problem-empathy__description       - Header description
+// .c-problem-empathy__grid              - Cards grid container
+// .c-problem-empathy__card              - Individual problem card
+// .c-problem-empathy__icon              - Icon wrapper with gradient
+// .c-problem-empathy__content           - Card text content wrapper
+// .c-problem-empathy__card-title        - Card title
+// .c-problem-empathy__card-description  - Card description text
+//
+// Modifiers:
+// .c-problem-empathy--compact           - Reduced padding variant
+// .c-problem-empathy__icon--emerald     - Emerald gradient icon
+// .c-problem-empathy__icon--terracotta  - Terracotta gradient icon
+// .c-problem-empathy__icon--teal        - Teal gradient icon
+// .c-problem-empathy__icon--amber       - Amber gradient icon
+//
+// v4.0 Features:
+// - Glassmorphism cards with gradient glow hover
+// - Organic blob background with radial gradient
+// - Staggered entrance animations (fade-in-up, 100ms delay)
+// - Gradient icon circles (4 color variants)
+// - Responsive grid (2×2 → 2×n → 1×n)
+// - Touch-optimized hover effects
+// - Reduced motion support
+// ============================================================================
+
+// Component Block
+// ----------------------------------------------------------------------------
+.c-problem-empathy {
+  padding: $space-16 0;
+  position: relative;
+  overflow: hidden;
+  background: $gradient-warm-subtle;
+
+  // Organic background blob (decorative pseudo-element)
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 50%;
+    height: 120%;
+    background: $gradient-radial-secondary;
+    opacity: 0.08;
+    @include organic-blob('smooth'); // v4.0 design system mixin
+    z-index: 0;
+  }
+
+  // Container with z-index layering
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// Modifier: Compact variant with reduced padding
+.c-problem-empathy--compact {
+  padding: $space-12 0;
+
+  @media (max-width: $breakpoint-md) {
+    padding: $space-8 0;
+  }
+}
+
+// Section Header
+// ----------------------------------------------------------------------------
+.c-problem-empathy__header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto $space-12;
+
+  @media (max-width: $breakpoint-md) {
+    margin-bottom: $space-8;
+  }
+}
+
+.c-problem-empathy__subtitle {
+  font-family: $font-secondary;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $color-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: $space-2;
+}
+
+.c-problem-empathy__title {
+  font-family: $font-primary;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: $gray-900;
+  line-height: 1.2;
+  margin-bottom: $space-4;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 1.875rem;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 1.75rem;
+  }
+}
+
+.c-problem-empathy__description {
+  font-family: $font-secondary;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: $gray-600;
+  margin: 0;
+}
+
+// Cards Grid Container
+// ----------------------------------------------------------------------------
+.c-problem-empathy__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $gap-normal;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+
+  // Desktop: 2x2 grid layout
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $gap-spacious;
+  }
+
+  // Tablet: 2 columns
+  @media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  // Mobile: Stack vertically
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+    gap: $gap-tight;
+  }
+}
+
+// Individual Problem Card
+// ----------------------------------------------------------------------------
+.c-problem-empathy__card {
+  display: flex;
+  flex-direction: column;
+  padding: $card-padding-lg;
+  background: $gradient-glass-light;
+  @include glassmorphism(16px, 0.9); // v4.0 glassmorphism mixin
+  border: none !important; // Remove glassmorphism border - gradient glow only
+  border-radius: $radius-xl;
+  box-shadow: $shadow-base;
+  transition: all $duration-normal $ease-out;
+  position: relative;
+
+  // Staggered entrance animation (v4.0)
+  @include staggered-entrance(fade-in-up, 100ms);
+
+  // Hover state with gradient glow and lift effect
+  &:hover {
+    transform: translateY(-2px) scale(1.02); // Level 2 molecule motion
+    background: rgba(255, 255, 255, 0.95);
+
+    // Gradient glow effect (soft, warm)
+    box-shadow:
+      0 0 0 1px rgba($emerald-400, 0.15),
+      0 8px 24px -4px rgba($emerald-500, 0.2),
+      0 16px 48px -8px rgba($terracotta-400, 0.12);
+
+    // Icon rotation animation on hover
+    .c-problem-empathy__icon {
+      transform: rotate(8deg) scale(1.1);
+    }
+  }
+
+  // Reduced motion support
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+
+    &:hover {
+      transform: none;
+
+      .c-problem-empathy__icon {
+        transform: none;
+      }
+    }
+  }
+
+  // Responsive padding adjustments
+  @media (max-width: $breakpoint-md) {
+    padding: $card-padding-base;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $space-5;
+  }
+}
+
+// Icon Wrapper with Gradient Circle
+// ----------------------------------------------------------------------------
+.c-problem-empathy__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: $icon-circle-lg; // 64px
+  height: $icon-circle-lg;
+  border-radius: $radius-full;
+  margin-bottom: $space-4;
+  transition: transform $duration-normal $ease-out;
+  flex-shrink: 0;
+
+  // Icon styling (Line Awesome)
+  i {
+    color: white !important;
+    font-size: $icon-xl; // 32px
+    display: inline-block;
+  }
+
+  // Responsive icon sizing
+  @media (max-width: $breakpoint-md) {
+    width: $icon-circle-sm; // 32px - Tablet responsive size
+    height: $icon-circle-sm;
+
+    i {
+      font-size: 1.5rem; // 24px
+    }
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    width: 28px; // Mobile smallest size (reduced from 32px)
+    height: 28px;
+    margin-bottom: $space-3;
+
+    i {
+      font-size: 1.25rem; // 20px
+    }
+  }
+}
+
+// Icon Gradient Modifiers (4 color variants)
+// ----------------------------------------------------------------------------
+.c-problem-empathy__icon--emerald {
+  background: $gradient-icon-emerald;
+  box-shadow: $shadow-warm-sm;
+}
+
+.c-problem-empathy__icon--terracotta {
+  background: $gradient-icon-terracotta;
+  box-shadow: $shadow-warm-sm;
+}
+
+.c-problem-empathy__icon--teal {
+  background: $gradient-icon-teal;
+  box-shadow: $shadow-sm;
+
+  // Enhanced icon rendering for teal variant
+  i {
+    color: white !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    font-family: "Line Awesome Free" !important;
+    font-weight: 900 !important;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+.c-problem-empathy__icon--amber {
+  background: $gradient-icon-amber;
+  box-shadow: $shadow-sm;
+}
+
+// Card Content Wrapper
+// ----------------------------------------------------------------------------
+.c-problem-empathy__content {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+// Card Title
+// ----------------------------------------------------------------------------
+.c-problem-empathy__card-title {
+  font-family: $font-primary;
+  font-size: 1.25rem; // 20px
+  font-weight: 600;
+  color: $color-primary;
+  line-height: 1.3;
+  margin: 0;
+  transition: color $duration-fast $ease-out;
+
+  // Hover effect (parent card hover)
+  .c-problem-empathy__card:hover & {
+    color: darken($color-primary, 10%);
+  }
+
+  // Responsive font sizing
+  @media (max-width: $breakpoint-md) {
+    font-size: 1.125rem; // 18px
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 1rem; // 16px
+  }
+}
+
+// Card Description
+// ----------------------------------------------------------------------------
+.c-problem-empathy__card-description {
+  font-family: $font-secondary;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.6;
+  color: $gray-600;
+  margin: 0;
+
+  // Responsive font sizing
+  @media (max-width: $breakpoint-md) {
+    font-size: 0.875rem; // 14px
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 0.8125rem; // 13px
+  }
+}
+
+// ============================================================================
+// Legacy Compatibility Layer
+// ============================================================================
+// Maps old class names to new BEM structure using @extend
+// Maintains backward compatibility with existing HTML templates
+// Remove these after template updates are complete
+// ============================================================================
+
+// Section-level legacy classes
+.problem-empathy {
+  @extend .c-problem-empathy;
+}
+
+.problem-empathy-header {
+  @extend .c-problem-empathy__header;
+
+  // Legacy nested selectors
+  .subtitle {
+    @extend .c-problem-empathy__subtitle;
+  }
+
+  .title {
+    @extend .c-problem-empathy__title;
+  }
+
+  .description {
+    @extend .c-problem-empathy__description;
+  }
+}
+
+// Grid legacy class
+.problem-grid {
+  @extend .c-problem-empathy__grid;
+}
+
+// Card-level legacy classes
+.problem-card {
+  @extend .c-problem-empathy__card;
+}
+
+.problem-content {
+  @extend .c-problem-empathy__content;
+}
+
+.problem-title {
+  @extend .c-problem-empathy__card-title;
+}
+
+.problem-description {
+  @extend .c-problem-empathy__card-description;
+}
+
+// Icon wrapper legacy classes
+.problem-icon-wrapper {
+  @extend .c-problem-empathy__icon;
+
+  // Icon variant legacy classes
+  &.icon-emerald {
+    @extend .c-problem-empathy__icon--emerald;
+  }
+
+  &.icon-terracotta {
+    @extend .c-problem-empathy__icon--terracotta;
+  }
+
+  &.icon-teal {
+    @extend .c-problem-empathy__icon--teal;
+  }
+
+  &.icon-amber {
+    @extend .c-problem-empathy__icon--amber;
+  }
+}

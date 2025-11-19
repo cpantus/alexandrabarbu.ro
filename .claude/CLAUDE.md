@@ -45,8 +45,6 @@ Multi-Skill Composition Applied:
 
 **Rule (Core Submodule):** YOU MUST update core submodule before local modifications. Core changes committed to hal-10k-core first, never directly in submodules (except emergency hotfixes). See SUBMODULE-WORKFLOW.md.
 
-**Rule (Hugo Working Directory):** YOU MUST run ALL Hugo commands from `themes/andromeda-hugo/` directory.
-
 **Rule (Component Reuse = Quality Guarantee):** System components (skills, agents, patterns, commands) are refined, validated parts that embody accumulated best practices. BEFORE creating new components:
 
 1. **Search existing** (scan 3+ similar examples in respective directories)
@@ -72,67 +70,7 @@ Multi-Skill Composition Applied:
 
 ---
 
-## Hugo Project Context
-
-### Project Structure
-```
-/home/cere/Work/alex/alexandrabarbu.ro/
-├── .claude/                          # Infrastructure (GITIGNORED)
-├── core/                             # Core submodule (GITIGNORED)
-├── dev/                              # Dev docs (optional: can commit)
-├── themes/
-│   └── andromeda-hugo/               # Theme development
-│       ├── CLAUDE.md                 # Theme-specific rules
-│       ├── PROJECT.md                # Architecture docs
-│       ├── REFACTOR-PLAN-v2.md       # Current refactor plan
-│       └── cc-hugo-audit.md          # Audit report
-├── content/                          # Hugo content
-├── static/                           # Static assets
-└── config/                           # Hugo configuration
-```
-
-### Theme Documentation
-- **Theme rules**: `themes/andromeda-hugo/CLAUDE.md`
-- **Refactor plan**: `themes/andromeda-hugo/REFACTOR-PLAN-v2.md` (LATEST)
-- **Audit report**: `themes/andromeda-hugo/cc-hugo-audit.md`
-- **Architecture**: `themes/andromeda-hugo/PROJECT.md`
-
-### Current Work
-**Active task**: Atomic design system refactor
-- **Duration**: 12 weeks, 130 hours
-- **Phases**: 5 (Atoms → Molecules → Organisms → Migration → Polish)
-- **Status**: See `dev/active/refactor-atomic-design/PROGRESS.md`
-
-### Hugo-Specific Guidelines
-
-#### Development Commands
-```bash
-hugo server --buildDrafts          # Local development
-hugo --gc --minify                 # Production build
-hugo --templateMetrics             # Performance monitoring
-```
-
-#### Theme Development
-- Work from theme directory: `themes/andromeda-hugo/`
-- Follow refactor plan: `REFACTOR-PLAN-v2.md`
-- Test multilingual (RO/EN)
-- Verify responsive design
-
-#### Image Optimization
-- Use Hugo's native image processing
-- Generate WebP with fallbacks
-- Create responsive srcset
-- Implement lazy-loading
-
-#### Performance Targets
-- Build time: <3s
-- Page weight: <500KB
-- Image assets: <2MB
-- CSS bundle: <50KB (gzipped)
-
----
-
-### Component Auto-Loading (Skills, Patterns, Workflows)
+## Component Auto-Loading (Skills, Patterns, Workflows)
 
 **Enforcement Levels:**
 - **Simple (🟢 SUGGESTED):** Gentle recommendation, no bypass justification needed
@@ -146,8 +84,9 @@ hugo --templateMetrics             # Performance monitoring
 
 **Bypass Detection:** Phrases like "Bypassing pattern because...", "Not using pattern because...", "Alternative approach: ..." trigger bypass mode (🟡 Warning shown, quality gates off, user responsible).
 
+---
 
-### Component Reuse Examples (Practical Guide)
+## Component Reuse Examples (Practical Guide)
 
 **See "Component Reuse = Quality Guarantee" rule above for mandatory requirements.**
 
@@ -167,8 +106,8 @@ hugo --templateMetrics             # Performance monitoring
 **Decision Examples:**
 - ❌ New CLI validation hook → `pre-tool-use-bash.ts` exists, extend bash-optimizer rules
 - ✅ Add jq/yq validation → extends bash-optimizer.ts with new tool rules
-- ❌ New social-media skill → check existing content/growth skills first, add resources
-- ✅ Quantum-computing skill → genuinely new domain, no overlap
+- ❌ New domain skill → check existing domain skills first, add resources
+- ✅ Novel domain skill → genuinely new domain, no overlap
 - ❌ New orchestration agent → orchestrator.md exists, extend coordination patterns
 - ✅ Domain-specific specialist agent → unique capabilities, extends agent system
 
@@ -204,8 +143,8 @@ When you add/remove/rename plugin commands, run: `./scripts/link-plugin-commands
 
 **Examples:**
 - `/workflow scout-plan-build` → Infrastructure command
-- `/campaign` → Marketing plugin command (symlinked)
 - `/system-health` → Infrastructure command
+- Plugin commands → Symlinked from plugin directories
 
 **CRITICAL:** Commands in plugin directories are source of truth. `.claude/commands/[plugin]/` contains symlinks for discovery only.
 
@@ -260,8 +199,6 @@ When you add/remove/rename plugin commands, run: `./scripts/link-plugin-commands
 5. **Hooks**: Sequential execution (infrastructure hooks → plugin hooks)
 6. **Model rules**: Plugin rules take precedence for domain-specific tasks
 
-**Current state**: Marketing plugin uses infrastructure configs (no plugin-specific overrides needed)
-
 ---
 
 ## Documentation System
@@ -282,7 +219,7 @@ When you add/remove/rename plugin commands, run: `./scripts/link-plugin-commands
 
 **Progressive:** Skills → on-demand resources (84% reduction) | Docs → auto-load | Patterns → load dependencies
 
-**On-Demand:** `/prime [content|analytics|full]` | Skills auto-activate | **Tracking:** `/cost-report` | `hooks/agent-telemetry.ts`
+**On-Demand:** `/prime [domain|context]` (plugin-specific) | Skills auto-activate | **Tracking:** `/cost-report` | `hooks/agent-telemetry.ts`
 
 ### Prompt Caching
 **Agents >15K MUST cache | See:** `core/docs/prompt-caching-guide.md` for 5 rules and templates
@@ -293,8 +230,8 @@ When you add/remove/rename plugin commands, run: `./scripts/link-plugin-commands
 **Naming (ENFORCED via pre-tool-use-write.ts):**
 - Agents/commands/hooks: `kebab-case` (MANDATORY - violations blocked)
 - Skills: `kebab-case` (MANDATORY - violations blocked)
-- Patterns (execution): `snake_case` (e.g., `campaign_launch.md`) (MANDATORY - violations blocked)
-- Patterns (output templates): `kebab-case` (e.g., `campaign-brief.md`)
+- Patterns (execution): `snake_case` (e.g., `workflow_execution.md`) (MANDATORY - violations blocked)
+- Patterns (output templates): `kebab-case` (e.g., `output-template.md`)
 
 **File Structure:** `.claude/skills/[name].md` | `.claude/patterns/[category]/[name].md` | `.claude/agents/[name].md` | `.claude/commands/[name].md` | `.claude/hooks/[name].ts`
 
@@ -371,14 +308,14 @@ await playwright_execute('./scripts/playwright/scrape-page.ts', {
 - Swap plugins for different clients/domains without touching infrastructure
 
 **What Gets Filtered (Plugin Disabled):**
-- ✅ Skills: All 8 marketing skills blocked from auto-activation
-- ✅ Patterns: All 42 marketing patterns blocked from suggestions (only meta patterns remain)
-- ✅ Commands: `.claude/commands/marketing/` removed from filesystem
+- ✅ Skills: Plugin-specific skills blocked from auto-activation
+- ✅ Patterns: Plugin-specific patterns blocked from suggestions (only meta patterns remain)
+- ✅ Commands: Plugin command directories removed from filesystem
 - ✅ Session messages: Infrastructure-only messages shown
 
-**Example Plugins:**
-- Code Plugin: `code-plugin/` (13 agents, 42 patterns, 8 skills, 49 commands)
-- Custom Domain: Create your own plugin following the same structure
+**Plugin Examples:**
+- Domain-specific plugins extend infrastructure with specialized components
+- Create custom plugins following the plugin structure in `PLUGIN-USAGE.md`
 
 **See:** `PLUGIN-USAGE.md` for detailed usage guide | Plugin documentation in each plugin directory
 
@@ -389,9 +326,9 @@ await playwright_execute('./scripts/playwright/scrape-page.ts', {
 **CRITICAL:** YOU MUST use auto-loaded components (skills, patterns, workflows) with "MANDATORY"/"require" enforcement. Ignoring = architecture violation.
 
 **Core Sync:** `cd core && git pull && cd .. && git add core` | Enforced: git pre-commit hook
-**Plugins:** `/code-on` | `/code-off` (or `export CODE_PLUGIN_ENABLED=1`)
 **Load:** `/load skills|patterns|agents|workflows|orchestrator|devdocs|all`
 **Create:** `/pattern component_[type]` validates structure
 **Diagnostics:** `/system-health` | `/cost-report` | `/agent-status`
 **MCP:** Code execution pattern for 3+ tool calls (96-98% reduction)
 **CLI Tools:** `rg` not `grep`, `fd` not `find`, `bat` not `cat`, `exa` not `ls`
+**Plugins:** See `PLUGIN-USAGE.md` for toggle commands and configuration

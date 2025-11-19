@@ -1,0 +1,382 @@
+/*
+  Signup Form Enhanced Section - BEM Component
+
+  Modern BEM architecture with legacy compatibility
+  Part of Phase 3 ITCSS refactoring (Session 18)
+
+  Features:
+  - Glassmorphism card with enhanced backdrop blur
+  - Step indicator with gradient progress
+  - Multi-step form support
+  - Active/completed state animations
+  - Responsive layout (mobile-first)
+  - v4.0 design enhancements
+
+  Usage:
+  <section class="c-signup-form">
+    <div class="container">
+      <div class="c-signup-form__card">
+        <div class="c-signup-form__steps">
+          <div class="c-signup-form__step c-signup-form__step--active">
+            <span class="c-signup-form__step-number">1</span>
+            <span class="c-signup-form__step-label">Step 1</span>
+          </div>
+        </div>
+        <form class="c-signup-form__form">...</form>
+      </div>
+    </div>
+  </section>
+*/
+
+/* ============================================
+   SECTION CONTAINER
+   ============================================ */
+
+.c-signup-form {
+  padding: $space-12 0;
+  position: relative;
+
+  /* Compact modifier for reduced padding */
+  &--compact {
+    padding: $space-8 0;
+  }
+
+  /* Responsive padding adjustments */
+  @media (max-width: 767px) {
+    padding: $space-8 0;
+
+    &--compact {
+      padding: $space-6 0;
+    }
+  }
+}
+
+/* ============================================
+   CARD CONTAINER
+   ============================================ */
+
+.c-signup-form__card {
+  background: $gradient-glass-light;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: $radius-2xl;
+  padding: $space-8;
+  box-shadow: $shadow-glass;
+  max-width: 720px;
+  margin: 0 auto;
+
+  /* Responsive padding */
+  @media (max-width: 767px) {
+    padding: $space-6;
+    border-radius: $radius-xl;
+  }
+
+  @media (max-width: 575px) {
+    padding: $space-5;
+  }
+}
+
+/* ============================================
+   STEP INDICATOR
+   ============================================ */
+
+.c-signup-form__steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $space-8;
+  position: relative;
+
+  /* Responsive margin */
+  @media (max-width: 767px) {
+    margin-bottom: $space-6;
+  }
+}
+
+.c-signup-form__step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+
+  /* Connecting line between steps */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background: $input-border-color;
+    z-index: -1;
+    transition: background 0.3s ease;
+  }
+
+  /* Hide line after last step */
+  &:last-child::after {
+    display: none;
+  }
+
+  /* Active step state */
+  &--active {
+    .c-signup-form__step-number {
+      background: $gradient-warm-vibrant;
+      color: #fff;
+      border-color: transparent;
+      box-shadow: $shadow-warm;
+      transform: scale(1.1);
+    }
+
+    .c-signup-form__step-label {
+      color: $color-primary;
+      font-weight: $weight-semibold;
+    }
+  }
+
+  /* Completed step state */
+  &--completed {
+    .c-signup-form__step-number {
+      background: $gradient-warm-vibrant;
+      color: #fff;
+      border-color: transparent;
+
+      /* Checkmark icon for completed */
+      &::before {
+        content: '✓';
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+
+    .c-signup-form__step-label {
+      color: $gray-700;
+    }
+
+    /* Green connecting line for completed steps */
+    &::after {
+      background: linear-gradient(to right, $color-primary, $color-secondary);
+    }
+  }
+
+  /* Disabled/upcoming step state */
+  &--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.c-signup-form__step-number {
+  width: 40px;
+  height: 40px;
+  border: 2px solid $input-border-color;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  font-weight: $weight-semibold;
+  font-size: $text-base;
+  margin-bottom: $space-2;
+  transition: all 0.3s ease;
+  color: $gray-600;
+
+  /* Responsive sizing */
+  @media (max-width: 575px) {
+    width: 32px;
+    height: 32px;
+    font-size: $text-sm;
+  }
+}
+
+.c-signup-form__step-label {
+  display: block;
+  font-size: $text-sm;
+  color: $gray-600;
+  transition: color 0.3s ease, font-weight 0.3s ease;
+
+  /* Responsive font size */
+  @media (max-width: 767px) {
+    font-size: $text-xs;
+  }
+
+  @media (max-width: 575px) {
+    display: none; /* Hide labels on very small screens */
+  }
+}
+
+/* ============================================
+   FORM CONTENT
+   ============================================ */
+
+.c-signup-form__form {
+  /* Form elements inherit from _form.scss component */
+  /* This section primarily handles layout */
+}
+
+.c-signup-form__title {
+  font-size: $text-2xl;
+  font-weight: $weight-semibold;
+  color: $gray-900;
+  margin-bottom: $space-2;
+  text-align: center;
+
+  @media (max-width: 767px) {
+    font-size: $text-xl;
+  }
+}
+
+.c-signup-form__description {
+  font-size: $text-base;
+  color: $gray-600;
+  text-align: center;
+  margin-bottom: $space-6;
+  line-height: 1.6;
+
+  @media (max-width: 767px) {
+    font-size: $text-sm;
+    margin-bottom: $space-5;
+  }
+}
+
+/* ============================================
+   FORM ACTIONS
+   ============================================ */
+
+.c-signup-form__actions {
+  display: flex;
+  gap: $space-3;
+  justify-content: space-between;
+  margin-top: $space-6;
+
+  /* Responsive layout - stack on mobile */
+  @media (max-width: 575px) {
+    flex-direction: column;
+    gap: $space-2;
+  }
+}
+
+.c-signup-form__action-button {
+  flex: 1;
+  padding: $space-3 $space-6;
+  border-radius: $radius-lg;
+  font-weight: $weight-semibold;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+
+  /* Primary button (Next, Submit) */
+  &--primary {
+    background: $gradient-warm-vibrant;
+    color: #fff;
+    box-shadow: $shadow-warm;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-warm-lg;
+    }
+  }
+
+  /* Secondary button (Back, Cancel) */
+  &--secondary {
+    background: transparent;
+    color: $gray-700;
+    border: 1px solid $input-border-color;
+
+    &:hover {
+      background: rgba($gray-100, 0.5);
+      border-color: $gray-400;
+    }
+  }
+
+  /* Disabled state */
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+
+  /* Responsive sizing */
+  @media (max-width: 575px) {
+    padding: $space-3 $space-4;
+    font-size: $text-sm;
+  }
+}
+
+/* ============================================
+   PROGRESS BAR (optional enhancement)
+   ============================================ */
+
+.c-signup-form__progress {
+  width: 100%;
+  height: 4px;
+  background: rgba($gray-300, 0.3);
+  border-radius: $radius-full;
+  margin-bottom: $space-6;
+  overflow: hidden;
+
+  @media (max-width: 767px) {
+    margin-bottom: $space-5;
+  }
+}
+
+.c-signup-form__progress-bar {
+  height: 100%;
+  background: $gradient-warm-vibrant;
+  border-radius: $radius-full;
+  transition: width 0.4s ease;
+  width: 0%;
+
+  /* Width set dynamically via JS or inline style */
+  &[data-progress="33"] {
+    width: 33.33%;
+  }
+
+  &[data-progress="66"] {
+    width: 66.66%;
+  }
+
+  &[data-progress="100"] {
+    width: 100%;
+  }
+}
+
+/* ============================================
+   LEGACY COMPATIBILITY
+   ============================================ */
+
+/* Section wrapper */
+.signup-section {
+  @extend .c-signup-form;
+}
+
+/* Card */
+.signup-card {
+  @extend .c-signup-form__card;
+}
+
+/* Step indicator */
+.step-indicator {
+  @extend .c-signup-form__steps;
+}
+
+/* Step */
+.step-indicator .step {
+  @extend .c-signup-form__step;
+
+  &.active {
+    @extend .c-signup-form__step--active;
+  }
+
+  &.completed {
+    @extend .c-signup-form__step--completed;
+  }
+}
+
+/* Step number */
+.step-number {
+  @extend .c-signup-form__step-number;
+}
+
+/* Step label */
+.step-label {
+  @extend .c-signup-form__step-label;
+}

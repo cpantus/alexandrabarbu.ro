@@ -1,6 +1,6 @@
 # Andromeda Hugo - Psychology Practice Theme
 
-**Version**: 4.0.0 - Creative Design Excellence | **Type**: Hugo Theme | **Status**: Enhanced Modern Architecture
+**Version**: 5.0.0 - ITCSS + BEM Architecture | **Type**: Hugo Theme | **Status**: Production Ready - ITCSS Refactored
 **Author**: Gethugothemes (base) + Creative Enhancements | **Site**: alexandrabarbu.ro | **License**: UNLICENSED
 
 ---
@@ -589,26 +589,29 @@ values_compass:
 
 **Featured Badge**: Set `featured: true` in pricing card data
 
-### Design System Files
+### Design System Files (v5.0.0 - ITCSS Architecture)
 
-**Core Enhancement**: `assets/scss/_design-enhancements.scss` (440 lines)
-- 8 new gradient types
-- 4 organic blob shapes
-- 10 animation keyframes
-- Enhanced shadow system
-- Glassmorphism utilities
+**ITCSS Structure** (6 layers):
+- `01-settings/` - Design tokens (8 files, ~625 lines - variables only)
+- `02-tools/` - Mixins & functions (4 files, ~350 lines - no CSS output)
+- `03-generic/` - CSS resets, custom properties
+- `05-objects/` - Layout primitives (4 files, ~250 lines - `.o-*` classes)
+- `06-components/` - 20 BEM components (~9,850 lines - `.c-*` classes)
 
-**Component Styles**:
-- `_values-compass.scss` (440 lines)
-- `_stats-enhanced.scss` (260 lines)
-- `_feature-blocks-enhanced.scss` (330 lines)
-- `_pricing-enhanced.scss` (340 lines)
-- `_credentials.scss` (enhanced, 220 lines)
+**Component Styles** (All v4.0 features preserved in BEM):
+- `06-components/_values-compass.scss` (604 lines - compass layout)
+- `06-components/_stats.scss` (438 lines - SVG rings)
+- `06-components/_feature-blocks.scss` (488 lines - zigzag parallax)
+- `06-components/_pricing.scss` (570 lines - featured elevation)
+- `06-components/_credentials.scss` (250 lines - gradient badges)
+- ... 15 more BEM components (card, button, icon, badge, form, etc.)
 
-**JavaScript** (~650 lines total):
+**JavaScript** (~650 lines total - unchanged):
 - `values-compass-interactions.js` - Mobile touch interactions
 - `stats-counter.js` - Animated counting + SVG rings
 - `scroll-animations.js` - Parallax + scroll triggers
+
+**For SCSS documentation**: See `ARCHITECTURE.md` (complete ITCSS guide) and `CLAUDE-ITCSS-ADDENDUM.md` (quick reference)
 
 ### Performance Impact
 
@@ -645,4 +648,4 @@ values_compass:
 
 ---
 
-**Document Version**: 4.0 | **Last Updated**: 2025-11-17 | **Creative Design Excellence** | **Tokens**: ~1,850
+**Document Version**: 5.0 | **Last Updated**: 2025-11-19 | **ITCSS + BEM Architecture + Creative Design Excellence** | **Status**: Production Ready ✅

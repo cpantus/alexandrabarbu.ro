@@ -1,0 +1,189 @@
+// ==================================
+// ICON MIXINS - Gradient Icon Wrappers
+// ==================================
+//
+// Purpose: Unified icon rendering system for v4.0 gradient circles
+// Supports Line Awesome, Font Awesome, custom SVG icons
+//
+// Last Updated: 2025-11-19 (Phase 2 - System Layer Refactoring)
+// Version: 2.0.0 (ITCSS Architecture - Mixins Only, NO CSS Output)
+//
+
+/**
+ * Base Icon Circle
+ * Creates circular gradient background container
+ * @param {string} $size - Circle size (sm: 32px, md: 48px, lg: 64px, xl: 84px)
+ * @param {string} $variant - Color variant (primary, secondary, coral, etc.)
+ * NOTE: Aligned with _design-tokens.scss $icon-circle-* tokens
+ */
+@mixin icon-circle($size: 'md', $variant: 'primary') {
+  // Size map (aligned with design-tokens.scss)
+  $sizes: (
+    'sm': 32px,  // Matches $icon-circle-sm
+    'md': 48px,  // Matches $icon-circle-md
+    'lg': 64px,  // Matches $icon-circle-lg
+    'xl': 84px,  // Matches $icon-circle-xl
+  );
+
+  $circle-size: map-get($sizes, $size);
+
+  // Base circle styling
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: $circle-size;
+  height: $circle-size;
+  border-radius: $radius-full;
+  flex-shrink: 0;
+
+  // Gradient background based on variant
+  @if $variant == 'primary' {
+    background: linear-gradient(135deg, $emerald-400 0%, $emerald-500 100%);
+  } @else if $variant == 'secondary' {
+    background: linear-gradient(135deg, $terracotta-400 0%, $terracotta-500 100%);
+  } @else if $variant == 'coral' {
+    background: linear-gradient(135deg, $coral-400 0%, $coral-500 100%);
+  } @else if $variant == 'premium' {
+    background: linear-gradient(135deg, $plum-400 0%, $plum-500 100%);
+  } @else if $variant == 'sage' {
+    background: linear-gradient(135deg, $sage-400 0%, $sage-500 100%);
+  } @else if $variant == 'info' {
+    background: linear-gradient(135deg, $teal-400 0%, $teal-500 100%);
+  } @else {
+    // Fallback to primary
+    background: linear-gradient(135deg, $emerald-400 0%, $emerald-500 100%);
+  }
+
+  // Icon inside circle
+  i, svg {
+    color: #ffffff;
+    font-size: $circle-size * 0.45; // 45% of container size
+    line-height: 1;
+  }
+
+  // Subtle shadow for depth
+  box-shadow: $shadow-sm;
+
+  // Smooth transitions
+  transition: transform $duration-fast $ease-out,
+              box-shadow $duration-fast $ease-out;
+
+  // Hover effect: slight lift + stronger shadow
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+}
+
+/**
+ * Icon Circle with Glassmorphism
+ * Creates frosted glass effect icon container
+ * @param {string} $size - Circle size (sm, md, lg, xl)
+ * @param {string} $variant - Color variant (primary, secondary, etc.)
+ * @param {number} $blur - Backdrop blur amount (default: 12px)
+ */
+@mixin icon-circle-glass($size: 'md', $variant: 'primary', $blur: 12px) {
+  @include icon-circle($size, $variant);
+
+  // Glassmorphism overlay
+  position: relative;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+
+  // Semi-transparent gradient (lighter than solid version)
+  @if $variant == 'primary' {
+    background: linear-gradient(135deg, rgba($emerald-400, 0.7) 0%, rgba($emerald-500, 0.8) 100%);
+  } @else if $variant == 'secondary' {
+    background: linear-gradient(135deg, rgba($terracotta-400, 0.7) 0%, rgba($terracotta-500, 0.8) 100%);
+  } @else if $variant == 'coral' {
+    background: linear-gradient(135deg, rgba($coral-400, 0.7) 0%, rgba($coral-500, 0.8) 100%);
+  }
+
+  // Glass border
+  border: 1px solid rgba(#ffffff, 0.2);
+}
+
+/**
+ * Icon Flat (No Circle)
+ * Applies color only, no background container
+ * @param {string} $variant - Color variant (primary, secondary, etc.)
+ */
+@mixin icon-flat($variant: 'primary') {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  i, svg {
+    @if $variant == 'primary' {
+      color: $emerald-500;
+    } @else if $variant == 'secondary' {
+      color: $terracotta-500;
+    } @else if $variant == 'coral' {
+      color: $coral-500;
+    } @else if $variant == 'sage' {
+      color: $sage-500;
+    } @else {
+      color: $emerald-500; // Fallback
+    }
+
+    font-size: $icon-xl; // 32px default
+    line-height: 1;
+  }
+
+  transition: transform $duration-fast $ease-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+/**
+ * Icon with Text Badge
+ * Adds small text label below icon circle
+ * @param {string} $size - Icon circle size
+ * @param {string} $variant - Color variant
+ */
+@mixin icon-with-badge($size: 'md', $variant: 'primary') {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-2;
+
+  .icon-circle {
+    @include icon-circle($size, $variant);
+  }
+
+  .icon-badge {
+    font-size: $text-xs;
+    font-weight: $weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: $space-1 $space-2;
+    border-radius: $radius-sm;
+
+    @if $variant == 'primary' {
+      background: $emerald-100;
+      color: $emerald-700;
+    } @else if $variant == 'secondary' {
+      background: $terracotta-100;
+      color: $terracotta-700;
+    } @else if $variant == 'coral' {
+      background: $coral-100;
+      color: $coral-700;
+    }
+  }
+}
+
+// ==================================
+// USAGE RULES
+// ==================================
+// 1. Mixins provide styling logic, NO CSS output here
+// 2. Component classes use these mixins in 06-components/_icon.scss (Phase 3)
+// 3. Always use $icon-circle-* tokens from 01-settings/_tokens-typography.scss
+// 4. Icon size = 45% of container (responsive to circle size)
+// 5. Supports 6 color variants: primary, secondary, coral, premium, sage, info
+//
+// VERSION HISTORY:
+// 2.0.0 (2025-11-19) - ITCSS Phase 2: Extracted from systems/_icon-system.scss
+// 1.0.0 (2025-11-17) - Initial icon system with v4.0 gradient circles
+//

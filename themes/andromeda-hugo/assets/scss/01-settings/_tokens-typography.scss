@@ -1,0 +1,93 @@
+// ==================================
+// TYPOGRAPHY TOKENS
+// ==================================
+//
+// Layer: 01-settings (NO CSS output)
+// Purpose: Font families, sizes, weights, line heights, icon sizes
+// Philosophy: Soft Hierarchy, Warm Professional
+//
+// Last Updated: 2025-11-19
+// Version: 2.0.0 (ITCSS Refactor - Phase 1)
+//
+
+// ----------------------------------
+// Font Families
+// ----------------------------------
+$font-heading: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;    // Headings ONLY
+$font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif; // Body text ONLY
+
+// Legacy aliases (for BEM component compatibility)
+$font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;  // Headlines - Modern, friendly, rounded
+$font-secondary: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;  // Body - Clear, professional, readable
+
+// ----------------------------------
+// Font Weights (RESTRICTED)
+// ----------------------------------
+// RULE: Headings ONLY 500 or 600, Body ONLY 400
+$font-weight-heading: 500;                 // Default heading weight
+$font-weight-heading-bold: 600;            // Emphasized heading weight
+$font-weight-body: 400;                    // Body text weight (NEVER bold in paragraphs)
+
+// FORBIDDEN: Do NOT use 300 (thin), 700 (bold), 800 (extrabold)
+// Rationale: Soft hierarchy, warm professional personality
+
+// Legacy weight aliases (for BEM component compatibility)
+$weight-light: 300;
+$weight-normal: 400;
+$weight-medium: 500;
+$weight-semibold: 600;
+$weight-bold: 700;
+$weight-extrabold: 800;
+
+// ----------------------------------
+// Font Sizes (11-step scale, fluid)
+// ----------------------------------
+$text-xs: 12px;                            // Fine print
+$text-sm: 14px;                            // Captions, metadata
+$text-base: 16px;                          // Body text PRIMARY
+$text-lg: 18px;                            // Lead paragraphs
+$text-xl: 20px;                            // H5
+$text-2xl: 24px;                           // H3, H4
+$text-3xl: 30px;                           // H2
+$text-4xl: 36px;                           // H1
+$text-5xl: 48px;                           // Display-2
+$text-6xl: 64px;                           // Display-1 base
+$text-7xl: clamp(64px, 6vw, 112px);       // Display-1 fluid (responsive)
+
+// ----------------------------------
+// Line Heights
+// ----------------------------------
+$leading-tight: 1.25;                      // Display, H1, H2 (tight for impact)
+$leading-snug: 1.375;                      // H3, H4, H5 (snug for clarity)
+$leading-normal: 1.5;                      // Body text (optimal readability)
+$leading-relaxed: 1.625;                   // Small text, captions (relaxed for legibility)
+
+// ----------------------------------
+// Icon Sizes (Inline icons)
+// ----------------------------------
+// Usage: Icon atoms, inline icons in text
+// These map to the size presets in icon.html partial
+$icon-xs: 0.75rem;                         // 12px - Tiny inline icons
+$icon-sm: 0.875rem;                        // 14px - Small inline icons
+$icon-base: 1rem;                          // 16px - Default icon size
+$icon-md: 1.25rem;                         // 20px - Medium icons
+$icon-lg: 1.5rem;                          // 24px - Large icons
+$icon-xl: 2rem;                            // 32px - Extra large icons
+$icon-2x: 2rem;                            // 32px - Alias for xl
+$icon-3x: 3rem;                            // 48px - Feature icons
+$icon-4x: 4rem;                            // 64px - Hero icons
+
+// ----------------------------------
+// Icon Circle Sizes (Container dimensions)
+// ----------------------------------
+// IMPORTANT: Use these for icon CONTAINER width/height, NOT font-size
+// For font-size, use $icon-* tokens above (measured in rem)
+// These are used in feature sections with circular backgrounds
+$icon-circle-sm: 32px;                     // Small circular icon container
+$icon-circle-md: 48px;                     // Medium circular icon container (MOST COMMON)
+$icon-circle-lg: 64px;                     // Large circular icon container
+$icon-circle-xl: 84px;                     // Extra large circular icon container
+
+// ==================================
+// END OF TYPOGRAPHY TOKENS
+// ==================================

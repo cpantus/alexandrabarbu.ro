@@ -1,0 +1,10 @@
+/*
+========================================================================
+  STYLE ENTRY POINT - Project Override
+  Overrides base theme's style.scss
+========================================================================
+*/
+
+// Import legacy architecture (stable)
+// ITCSS architecture available in main-new.scss but not yet fully deployed
+@import 'custom';

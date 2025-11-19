@@ -1,0 +1,43 @@
+// ==================================
+// LAYER 2: TOOLS - Import Aggregator
+// ==================================
+//
+// Purpose: Mixins and functions (NO CSS output)
+// Output: NO CSS (mixins/functions only)
+// ITCSS Layer: 2/7
+//
+// Last Updated: 2025-11-19 (Phase 2 in progress)
+// Version: 2.0.0 (ITCSS Refactor)
+//
+
+// ----------------------------------
+// Functions
+// ----------------------------------
+@import 'functions-colors';      // Color palette & distribution functions
+
+// ----------------------------------
+// Mixins - Card System (from Phase 2)
+// ----------------------------------
+@import 'mixins-card';           // Card mixins (Phase 2)
+
+// ----------------------------------
+// Mixins - Icon System (from Phase 2)
+// ----------------------------------
+@import 'mixins-icon';           // Icon mixins (Phase 2)
+
+// ----------------------------------
+// Mixins - Glassmorphism & Organic Shapes (Session 21)
+// ----------------------------------
+@import 'mixins-glassmorphism';  // Glassmorphism & organic blob mixins (v4.0)
+
+// ----------------------------------
+// TODO Phase 2 Remaining:
+// - Extract additional mixins from _design-system.scss
+// - Extract hover/animation mixins from _design-enhancements.scss
+// ----------------------------------
+
+// ==================================
+// END OF TOOLS LAYER
+// ==================================
+// NO CSS should be output from this layer
+// All content should be mixins and functions only

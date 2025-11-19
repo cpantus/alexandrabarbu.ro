@@ -1,0 +1,25 @@
+/*
+========================================================================
+  OBJECTS LAYER - Import Aggregator
+  Layer 5 - Layout Primitives (.o-* prefix)
+========================================================================
+
+  Purpose: Import all object-level layout primitives
+  Philosophy: OOCSS - structure without style
+  Output: CSS classes for reusable layout patterns
+
+  Objects are:
+  - Agnostic to content (work with any component)
+  - Class-based selectors only (.o-*)
+  - No cosmetic styling (borders, colors, shadows)
+  - Purely structural (layout, spacing, positioning)
+
+  Import Order: Alphabetical (no dependencies)
+
+========================================================================
+*/
+
+@import 'layout-container';
+@import 'layout-flex';
+@import 'layout-grid';
+@import 'layout-stack';

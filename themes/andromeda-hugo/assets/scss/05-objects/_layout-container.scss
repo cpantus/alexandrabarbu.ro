@@ -1,0 +1,59 @@
+/*
+========================================================================
+  OBJECTS: Container Layouts
+  Layer 5 - Layout Primitives (.o-* prefix)
+========================================================================
+
+  Purpose: Reusable container patterns
+  Philosophy: Structure without style (OOCSS)
+  Naming: .o-container, .o-container--fluid
+
+  Usage:
+    <div class="o-container">
+      Content is constrained to max-width
+    </div>
+
+    <div class="o-container o-container--fluid">
+      Content spans full width
+    </div>
+
+========================================================================
+*/
+
+// ==================================
+// Container: Centered with max-width
+// ==================================
+.o-container {
+  width: 100%;
+  max-width: $container-max-width;  // From 01-settings
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $space-4;           // From 01-settings
+  padding-right: $space-4;
+
+  @media (min-width: $breakpoint-md) {
+    padding-left: $space-6;
+    padding-right: $space-6;
+  }
+}
+
+// ==================================
+// Container Modifier: Fluid (Full Width)
+// ==================================
+.o-container--fluid {
+  max-width: none;
+}
+
+// ==================================
+// Container Modifier: Narrow
+// ==================================
+.o-container--narrow {
+  max-width: $container-narrow;     // Typically 768px
+}
+
+// ==================================
+// Container Modifier: Wide
+// ==================================
+.o-container--wide {
+  max-width: $container-wide;       // Typically 1400px
+}

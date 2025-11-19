@@ -40,6 +40,9 @@ $gradient-icon-emerald: linear-gradient(135deg, $emerald-300 0%, $emerald-600 10
 $gradient-icon-terracotta: linear-gradient(135deg, $terracotta-300 0%, $terracotta-600 100%);
 $gradient-icon-teal: linear-gradient(135deg, $teal-300 0%, $teal-600 100%);  // Uses design tokens
 $gradient-icon-amber: linear-gradient(135deg, $amber-300 0%, $amber-600 100%);  // Uses design tokens
+$gradient-icon-coral: linear-gradient(135deg, $coral-300 0%, $coral-600 100%);  // Added for Phase 3 BEM components
+$gradient-icon-premium: linear-gradient(135deg, $plum-300 0%, $plum-600 100%);  // Added for Phase 3 BEM components
+$gradient-icon-sage: linear-gradient(135deg, $sage-300 0%, $sage-600 100%);  // Added for Phase 3 BEM components
 
 /* Glassmorphism Backgrounds */
 $gradient-glass-light: linear-gradient(135deg,
@@ -226,8 +229,9 @@ $gap-spacious: $space-10;
 /* Values Component Tokens */
 $values-card-base-width: 280px;
 $values-card-featured-width: 320px;
-$values-icon-size: $icon-circle-md;          // 48px - Container size (NOT font-size!)
-$values-icon-featured-size: $icon-circle-lg; // 64px - Featured container size
+// Icon sizes: Use standard tokens directly - NO custom intermediate tokens
+// Regular cards: $icon-circle-lg (64px) - matches problem-empathy
+// Featured cards: $icon-circle-xl (84px) - hierarchy differentiation
 $values-card-gap: $gap-normal;
 $values-border-radius: $radius-xl;
 $values-featured-scale: 1.15;
@@ -246,7 +250,7 @@ $glass-border: 1px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur($blur);
   -webkit-backdrop-filter: blur($blur);
   background: rgba(255, 255, 255, $opacity);
-  /* border removed - components use gradient glows instead (v4.0) */
+  border: none !important;  // v4.0 architecture: gradient glows replace decorative borders
   box-shadow: $shadow-glass;
 }
 
@@ -352,8 +356,8 @@ $glass-border: 1px solid rgba(255, 255, 255, 0.2);
   border: 2px solid rgba($green-400, 0.3);
 
   .icon-wrapper {
-    width: $values-icon-featured-size;
-    height: $values-icon-featured-size;
+    width: $icon-circle-xl;   // 84px - Matches values-compass featured (Session 3 fix)
+    height: $icon-circle-xl;
   }
 
   h3, h4 {

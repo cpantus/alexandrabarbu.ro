@@ -1,0 +1,115 @@
+/*
+========================================================================
+  MAIN ENTRY POINT - ITCSS Architecture v2.0.0
+  Andromeda Hugo Theme - Phase 1 Foundation
+========================================================================
+
+  Purpose: New ITCSS-compliant entry point for Phase 1 testing
+  Status: DEVELOPMENT (parallel with custom.scss)
+  Phase: 1 - Foundation Consolidation
+
+  Architecture: 7-layer ITCSS (Inverted Triangle CSS)
+  Philosophy: Progressive specificity, layer isolation
+
+  Last Updated: 2025-11-19
+  ITCSS Layers: Settings → Tools → Generic → Elements → Objects → Components → Utilities
+
+========================================================================
+*/
+
+// ==================================
+// LAYER 1: SETTINGS (Design Tokens)
+// ==================================
+// Purpose: Sass variables only, NO CSS output
+// Replaces: _design-tokens.scss (consolidated into 5 files)
+//
+@import '01-settings/settings';
+
+// ==================================
+// LAYER 2: TOOLS (Mixins & Functions)
+// ==================================
+// Purpose: Mixins and functions only, NO CSS output
+// Phase 2: Includes color functions, card mixins, icon mixins
+//
+@import '02-tools/tools';
+
+// ==================================
+// LAYER 3: GENERIC (Resets & CSS Variables)
+// ==================================
+// Purpose: CSS resets, normalization, CSS custom properties
+// Phase 2: CSS custom properties (:root) for runtime theming
+//
+@import '03-generic/generic';
+
+// ==================================
+// TEMPORARY: Import legacy design files BEFORE components
+// ==================================
+// CRITICAL: design-enhancements must be imported BEFORE components
+// because it contains mixins (staggered-entrance, etc.) used by BEM components
+//
+@import 'design-system';              // TODO Phase 2: Split into layers
+// @import 'systems/color-system';    // ✅ PHASE 2: Migrated to 02-tools/ + 03-generic/
+// @import 'systems/icon-system';     // ✅ PHASE 2: Migrated to 02-tools/
+// @import 'systems/card-system';     // ✅ PHASE 2: Migrated to 02-tools/
+@import 'design-enhancements';        // TODO Phase 2: Extract mixins to 02-tools/
+
+// ==================================
+// LAYER 5: OBJECTS (Layout Primitives)
+// ==================================
+// Purpose: Reusable layout patterns (.o-* prefix)
+// Phase 3: Container, grid, flex, stack patterns
+//
+@import '05-objects/objects';
+
+// ==================================
+// LAYER 6: COMPONENTS (UI Components)
+// ==================================
+// Purpose: UI components with BEM naming (.c-* prefix)
+// Phase 3: Card component refactored to BEM with legacy compatibility
+//
+@import '06-components/components';
+
+// Component imports (TODO Phase 3: Convert to BEM, move to 06-components/)
+// NOTE: Most components now imported via 06-components/_components.scss (Phase 3 complete)
+// Remaining legacy imports (not yet BEM refactored):
+@import 'components/headings';
+@import 'components/contact-form-enhanced';
+
+// CRITICAL: Nuclear Border Reset - MUST BE LAST IMPORT
+// TODO Phase 2: Eliminate need for this via default border policy in 04-elements/
+@import 'systems/card-border-reset';
+
+// ==================================
+// TEMPORARY: Base styles from custom.scss
+// ==================================
+// TODO Phase 2: Move to 04-elements/typography.scss and 04-elements/forms.scss
+//
+body {
+  font-family: $font-body;
+  font-size: $text-base;
+  line-height: $leading-normal;
+  color: $color-text-primary;
+  font-weight: $font-weight-body;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: $font-heading;
+  font-weight: $font-weight-heading;
+  line-height: $leading-tight;
+  color: $color-text-primary;
+  margin-bottom: $space-4;
+}
+
+// ==================================
+// END OF MAIN ENTRY POINT
+// ==================================
+// Phase 1 Status: Foundation consolidation complete
+// Next: Phase 2 - System layer refactoring
+//
+// Validation:
+// - Build succeeds: hugo --gc --minify
+// - Visual regression: Screenshot comparison
+// - CSS output: Should match custom.scss output

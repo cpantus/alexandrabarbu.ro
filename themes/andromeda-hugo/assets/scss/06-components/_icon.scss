@@ -1,0 +1,360 @@
+// ==================================
+// LAYER 6: ICON COMPONENT - BEM Refactored
+// ==================================
+//
+// Purpose: Ready-to-use icon wrapper classes with v4.0 gradient circles
+// Supports: Line Awesome, Font Awesome, custom SVG icons
+//
+// Last Updated: 2025-11-19 (Phase 3 - Component BEM Refactoring)
+// Version: 1.0.0 (ITCSS Architecture)
+//
+// BEM Naming:
+// Block:    .c-icon
+// Element:  .c-icon__circle, .c-icon__badge
+// Modifier: .c-icon--sm, .c-icon--primary, .c-icon--glass
+//
+// Dependencies:
+// - Layer 1: 01-settings/_tokens-* (icon sizes, colors, spacing)
+// - Layer 2: 02-tools/_mixins-icon.scss (icon-circle, icon-flat mixins)
+//
+
+/*------------------------------------------------------------------
+  # Base Icon Component
+-------------------------------------------------------------------*/
+
+/**
+ * Base Icon Circle (.c-icon)
+ * Default: md size + primary variant
+ */
+.c-icon {
+  @include icon-circle('md', 'primary');
+
+  // Size modifiers (4 sizes)
+  &--sm { @include icon-circle('sm', 'primary'); }
+  &--md { @include icon-circle('md', 'primary'); }
+  &--lg { @include icon-circle('lg', 'primary'); }
+  &--xl { @include icon-circle('xl', 'primary'); }
+
+  // Color variant modifiers (6 colors)
+  &--primary { @include icon-circle('md', 'primary'); }
+  &--secondary { @include icon-circle('md', 'secondary'); }
+  &--coral { @include icon-circle('md', 'coral'); }
+  &--premium { @include icon-circle('md', 'premium'); }
+  &--sage { @include icon-circle('md', 'sage'); }
+  &--info { @include icon-circle('md', 'info'); }
+
+  // Combined size + color modifiers (common combinations)
+  &--sm-primary { @include icon-circle('sm', 'primary'); }
+  &--sm-secondary { @include icon-circle('sm', 'secondary'); }
+  &--lg-primary { @include icon-circle('lg', 'primary'); }
+  &--lg-secondary { @include icon-circle('lg', 'secondary'); }
+  &--xl-primary { @include icon-circle('xl', 'primary'); }
+  &--xl-secondary { @include icon-circle('xl', 'secondary'); }
+}
+
+/*------------------------------------------------------------------
+  # Glassmorphism Icon Component
+-------------------------------------------------------------------*/
+
+/**
+ * Glassmorphism Icon Circle (.c-icon--glass)
+ * Semi-transparent gradient with backdrop blur
+ */
+.c-icon--glass {
+  @include icon-circle-glass('md', 'primary');
+
+  // Size variants
+  &.c-icon--sm { @include icon-circle-glass('sm', 'primary'); }
+  &.c-icon--lg { @include icon-circle-glass('lg', 'primary'); }
+  &.c-icon--xl { @include icon-circle-glass('xl', 'primary'); }
+
+  // Color variants
+  &.c-icon--secondary { @include icon-circle-glass('md', 'secondary'); }
+  &.c-icon--coral { @include icon-circle-glass('md', 'coral'); }
+}
+
+/*------------------------------------------------------------------
+  # Flat Icon Component (No Background)
+-------------------------------------------------------------------*/
+
+/**
+ * Flat Icon (.c-icon--flat)
+ * Icon color only, no circular background
+ */
+.c-icon--flat {
+  @include icon-flat('primary');
+
+  // Color variants
+  &.c-icon--secondary { @include icon-flat('secondary'); }
+  &.c-icon--coral { @include icon-flat('coral'); }
+  &.c-icon--sage { @include icon-flat('sage'); }
+}
+
+/*------------------------------------------------------------------
+  # Icon with Badge Component
+-------------------------------------------------------------------*/
+
+/**
+ * Icon with Text Badge (.c-icon--with-badge)
+ * Icon circle with small text label below
+ */
+.c-icon--with-badge {
+  @include icon-with-badge('md', 'primary');
+
+  // Color variants
+  &.c-icon--secondary { @include icon-with-badge('md', 'secondary'); }
+  &.c-icon--coral { @include icon-with-badge('md', 'coral'); }
+}
+
+/*------------------------------------------------------------------
+  # Icon Animation Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Pulse Animation (.c-icon--pulse)
+ * Gentle scale + shadow animation for attention
+ */
+@keyframes icon-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: $shadow-sm;
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: $shadow-md;
+  }
+}
+
+.c-icon--pulse {
+  animation: icon-pulse 2s ease-in-out infinite;
+
+  // Respect reduced motion preference
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/**
+ * Rotate on Hover (.c-icon--rotate)
+ * Icon rotates 15deg on hover
+ */
+.c-icon--rotate {
+  i, svg {
+    transition: transform $duration-normal $ease-in-out;
+  }
+
+  &:hover i,
+  &:hover svg {
+    transform: rotate(15deg);
+  }
+}
+
+/**
+ * Float Animation (.c-icon--float)
+ * Gentle up-down floating motion
+ */
+@keyframes icon-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.c-icon--float {
+  animation: icon-float 3s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Responsive Icon Component
+-------------------------------------------------------------------*/
+
+/**
+ * Responsive Icon (.c-icon--responsive)
+ * Auto-scales based on viewport:
+ * Mobile: sm (32px)
+ * Tablet: md (48px)
+ * Desktop: lg (64px)
+ */
+.c-icon--responsive {
+  // Mobile: sm (32px)
+  @include icon-circle('sm', 'primary');
+
+  // Tablet: md (48px)
+  @media (min-width: $breakpoint-md) {
+    @include icon-circle('md', 'primary');
+  }
+
+  // Desktop: lg (64px)
+  @media (min-width: $breakpoint-lg) {
+    @include icon-circle('lg', 'primary');
+  }
+}
+
+/*------------------------------------------------------------------
+  # Context-Specific Icon Components
+-------------------------------------------------------------------*/
+
+/**
+ * Hero Icon (.c-icon--hero)
+ * Extra large with prominent shadow
+ */
+.c-icon--hero {
+  @include icon-circle('xl', 'primary');
+  box-shadow: 0 20px 40px -10px rgba($emerald-500, 0.4);
+}
+
+/**
+ * Card Header Icon (.c-icon--card-header)
+ * Compact size for card headers
+ */
+.c-icon--card-header {
+  @include icon-circle('sm', 'primary');
+  margin-right: $space-3;
+}
+
+/**
+ * List Item Icon (.c-icon--list)
+ * Flat icon for inline list items
+ */
+.c-icon--list {
+  @include icon-flat('primary');
+  margin-right: $space-2;
+
+  i, svg {
+    font-size: $icon-md; // 20px
+  }
+}
+
+/*------------------------------------------------------------------
+  # Legacy Compatibility Classes (Phase 3 Transition)
+  # TODO Phase 4: Remove after HTML templates updated to BEM
+-------------------------------------------------------------------*/
+
+/**
+ * Legacy .icon-circle classes
+ * Extends new BEM component for backward compatibility
+ */
+.icon-circle {
+  @extend .c-icon;
+
+  // Legacy size modifiers
+  &.icon-sm { @extend .c-icon--sm; }
+  &.icon-md { @extend .c-icon--md; }
+  &.icon-lg { @extend .c-icon--lg; }
+  &.icon-xl { @extend .c-icon--xl; }
+
+  // Legacy color modifiers
+  &.icon-primary { @extend .c-icon--primary; }
+  &.icon-secondary { @extend .c-icon--secondary; }
+  &.icon-coral { @extend .c-icon--coral; }
+  &.icon-premium { @extend .c-icon--premium; }
+  &.icon-sage { @extend .c-icon--sage; }
+  &.icon-info { @extend .c-icon--info; }
+
+  // Legacy combined modifiers
+  &.icon-sm-primary { @extend .c-icon--sm-primary; }
+  &.icon-sm-secondary { @extend .c-icon--sm-secondary; }
+  &.icon-lg-primary { @extend .c-icon--lg-primary; }
+  &.icon-lg-secondary { @extend .c-icon--lg-secondary; }
+  &.icon-xl-primary { @extend .c-icon--xl-primary; }
+  &.icon-xl-secondary { @extend .c-icon--xl-secondary; }
+}
+
+/**
+ * Legacy glassmorphism classes
+ */
+.icon-circle-glass {
+  @extend .c-icon--glass;
+
+  &.icon-sm { @extend .c-icon--glass.c-icon--sm; }
+  &.icon-lg { @extend .c-icon--glass.c-icon--lg; }
+  &.icon-xl { @extend .c-icon--glass.c-icon--xl; }
+  &.icon-secondary { @extend .c-icon--glass.c-icon--secondary; }
+  &.icon-coral { @extend .c-icon--glass.c-icon--coral; }
+}
+
+/**
+ * Legacy flat icon classes
+ */
+.icon-flat {
+  @extend .c-icon--flat;
+
+  &.icon-secondary { @extend .c-icon--flat.c-icon--secondary; }
+  &.icon-coral { @extend .c-icon--flat.c-icon--coral; }
+  &.icon-sage { @extend .c-icon--flat.c-icon--sage; }
+}
+
+/**
+ * Legacy animation classes
+ */
+.icon-circle-pulse { @extend .c-icon--pulse; }
+.icon-circle-rotate { @extend .c-icon--rotate; }
+.icon-circle-float { @extend .c-icon--float; }
+
+/**
+ * Legacy responsive class
+ */
+.icon-responsive { @extend .c-icon--responsive; }
+
+/**
+ * Legacy context-specific wrapper classes
+ * These are used by section components and will be updated in Phase 3
+ */
+.problem-icon-wrapper,
+.credential-icon-wrapper,
+.value-icon-wrapper,
+.service-icon-wrapper,
+.feature-icon-wrapper,
+.benefit-icon-wrapper,
+.privacy-shield {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  i, svg {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+  }
+}
+
+// ==================================
+// COMPONENT USAGE
+// ==================================
+//
+// BEM Examples:
+// <div class="c-icon c-icon--lg c-icon--secondary">
+//   <i class="las la-heart"></i>
+// </div>
+//
+// <div class="c-icon c-icon--glass c-icon--xl">
+//   <i class="las la-star"></i>
+// </div>
+//
+// <div class="c-icon c-icon--flat c-icon--coral">
+//   <i class="las la-check"></i>
+// </div>
+//
+// Legacy (still works, Phase 3 transition):
+// <div class="icon-circle icon-lg icon-secondary">
+//   <i class="las la-heart"></i>
+// </div>
+//
+// Available Modifiers:
+// Size:      --sm (32px), --md (48px), --lg (64px), --xl (84px)
+// Color:     --primary, --secondary, --coral, --premium, --sage, --info
+// Style:     --glass (glassmorphism), --flat (no background)
+// Animation: --pulse, --rotate, --float
+// Context:   --hero, --card-header, --list, --responsive
+//
+// Performance: ~380 lines, specificity < 0,2,0, no !important (except legacy centering)
+//

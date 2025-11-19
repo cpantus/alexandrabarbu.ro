@@ -41,7 +41,8 @@
     {{ end }}
   {{ end }}
 {{ end }}
-{{ $styles = $styles | append (resources.Get "scss/style.scss" | resources.ExecuteAsTemplate "style.scss" . | toCSS) }}
+{{ $mainStyle := resources.Get "scss/style.scss" | resources.ExecuteAsTemplate "style.scss" . | toCSS }}
+{{ $styles = $styles | append $mainStyle }}
 {{ $styles = $styles | resources.Concat "/css/style.css" | fingerprint "sha512" }}
 
 

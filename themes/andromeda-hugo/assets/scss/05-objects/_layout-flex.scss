@@ -1,0 +1,130 @@
+/*
+========================================================================
+  OBJECTS: Flex Layouts
+  Layer 5 - Layout Primitives (.o-* prefix)
+========================================================================
+
+  Purpose: Reusable flexbox patterns
+  Philosophy: Structure without style (OOCSS)
+  Naming: .o-flex, .o-flex__item
+
+  Usage:
+    <div class="o-flex o-flex--center">
+      <div class="o-flex__item">Item 1</div>
+      <div class="o-flex__item o-flex__item--grow">Item 2 (grows)</div>
+    </div>
+
+========================================================================
+*/
+
+// ==================================
+// Flex: Base
+// ==================================
+.o-flex {
+  display: flex;
+  gap: $space-4;  // From 01-settings
+}
+
+// ==================================
+// Flex Item
+// ==================================
+.o-flex__item {
+  // No styles - semantic only
+}
+
+.o-flex__item--grow {
+  flex-grow: 1;
+}
+
+.o-flex__item--shrink {
+  flex-shrink: 1;
+}
+
+.o-flex__item--no-shrink {
+  flex-shrink: 0;
+}
+
+// ==================================
+// Flex Modifiers: Direction
+// ==================================
+.o-flex--row {
+  flex-direction: row;
+}
+
+.o-flex--column {
+  flex-direction: column;
+}
+
+.o-flex--row-reverse {
+  flex-direction: row-reverse;
+}
+
+.o-flex--column-reverse {
+  flex-direction: column-reverse;
+}
+
+// ==================================
+// Flex Modifiers: Alignment
+// ==================================
+.o-flex--center {
+  justify-content: center;
+  align-items: center;
+}
+
+.o-flex--justify-start {
+  justify-content: flex-start;
+}
+
+.o-flex--justify-end {
+  justify-content: flex-end;
+}
+
+.o-flex--justify-between {
+  justify-content: space-between;
+}
+
+.o-flex--justify-around {
+  justify-content: space-around;
+}
+
+.o-flex--align-start {
+  align-items: flex-start;
+}
+
+.o-flex--align-end {
+  align-items: flex-end;
+}
+
+.o-flex--align-center {
+  align-items: center;
+}
+
+.o-flex--align-stretch {
+  align-items: stretch;
+}
+
+// ==================================
+// Flex Modifiers: Wrap
+// ==================================
+.o-flex--wrap {
+  flex-wrap: wrap;
+}
+
+.o-flex--nowrap {
+  flex-wrap: nowrap;
+}
+
+// ==================================
+// Flex Modifiers: Gap Sizes
+// ==================================
+.o-flex--gap-sm {
+  gap: $space-2;
+}
+
+.o-flex--gap-md {
+  gap: $space-4;
+}
+
+.o-flex--gap-lg {
+  gap: $space-6;
+}

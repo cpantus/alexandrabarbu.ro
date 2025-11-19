@@ -1,0 +1,30 @@
+// ==================================
+// ITCSS LAYER 3: GENERIC - Import Aggregator
+// ==================================
+//
+// Purpose: CSS resets and normalization (element selectors only)
+// Output: YES (CSS custom properties + minimal resets)
+// ITCSS Layer: 3/7
+//
+// Last Updated: 2025-11-19 (Phase 2)
+// Version: 2.0.0 (ITCSS Refactor)
+//
+
+// ----------------------------------
+// CSS Custom Properties (Runtime Theming)
+// ----------------------------------
+// MUST be imported first (generates :root {...})
+@import 'custom-properties';
+
+// ----------------------------------
+// TODO Phase 2: Add normalize/reset
+// - Create _normalize.scss (minimal CSS reset)
+// - Uncomment below when ready
+// ----------------------------------
+// @import 'normalize';
+
+// ==================================
+// END OF GENERIC LAYER
+// ==================================
+// Output: CSS custom properties only (for now)
+// Next: Add normalize.css in Phase 2

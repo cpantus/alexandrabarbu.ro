@@ -1,0 +1,92 @@
+/*
+========================================================================
+  ITCSS Layer 3: Generic - CSS Custom Properties (CSS Variables)
+  Runtime Color Assignment & Theming
+  Version: 5.0.0 - ITCSS Refactor
+========================================================================
+*/
+
+/*------------------------------------------------------------------
+  # CSS Custom Properties (:root)
+  # For runtime theming and component color assignment
+-------------------------------------------------------------------*/
+
+:root {
+  /* ----------------------------------
+   * Button Variant Colors
+   * ---------------------------------- */
+  --btn-primary-bg: #{$emerald-500};
+  --btn-primary-hover: #{$emerald-600};
+  --btn-primary-text: #ffffff;
+
+  --btn-secondary-bg: #{$terracotta-500};
+  --btn-secondary-hover: #{$terracotta-600};
+  --btn-secondary-text: #ffffff;
+
+  --btn-outline-primary-border: #{$emerald-500};
+  --btn-outline-primary-text: #{$emerald-600};
+  --btn-outline-primary-hover-bg: #{$emerald-50};
+
+  --btn-outline-secondary-border: #{$terracotta-500};
+  --btn-outline-secondary-text: #{$terracotta-600};
+  --btn-outline-secondary-hover-bg: #{$terracotta-50};
+
+  /* ----------------------------------
+   * Badge Variant Colors (Gradients)
+   * For credential badges with visual variety
+   * ---------------------------------- */
+  --badge-primary-gradient: linear-gradient(135deg, #{$emerald-400} 0%, #{$emerald-600} 100%);
+  --badge-secondary-gradient: linear-gradient(135deg, #{$terracotta-400} 0%, #{$terracotta-600} 100%);
+  --badge-coral-gradient: linear-gradient(135deg, #{$coral-400} 0%, #{$coral-600} 100%);
+  --badge-premium-gradient: linear-gradient(135deg, #{$plum-400} 0%, #{$plum-600} 100%);
+  --badge-sage-gradient: linear-gradient(135deg, #{$sage-400} 0%, #{$sage-600} 100%);
+  --badge-info-gradient: linear-gradient(135deg, #{$teal-400} 0%, #{$teal-600} 100%);
+  --badge-success-gradient: linear-gradient(135deg, #{$sage-500} 0%, #{$sage-700} 100%);
+  --badge-amber-gradient: linear-gradient(135deg, #{$amber-400} 0%, #{$amber-600} 100%);
+
+  /* ----------------------------------
+   * Icon Gradient Backgrounds
+   * For icon circles with brand colors
+   * ---------------------------------- */
+  --icon-gradient-primary: linear-gradient(135deg, #{$emerald-400} 0%, #{$emerald-500} 100%);
+  --icon-gradient-secondary: linear-gradient(135deg, #{$terracotta-400} 0%, #{$terracotta-500} 100%);
+  --icon-gradient-coral: linear-gradient(135deg, #{$coral-400} 0%, #{$coral-500} 100%);
+  --icon-gradient-premium: linear-gradient(135deg, #{$plum-400} 0%, #{$plum-500} 100%);
+  --icon-gradient-sage: linear-gradient(135deg, #{$sage-400} 0%, #{$sage-500} 100%);
+  --icon-gradient-info: linear-gradient(135deg, #{$teal-400} 0%, #{$teal-500} 100%);
+
+  /* ----------------------------------
+   * Card Border Colors
+   * For service-highlights, related-services sections
+   * ---------------------------------- */
+  --card-border-primary: #{$emerald-200};
+  --card-border-secondary: #{$terracotta-200};
+  --card-border-coral: #{$coral-200};
+  --card-border-sage: #{$sage-200};
+
+  /* ----------------------------------
+   * Card Hover Shadows (Colored)
+   * Subtle brand-colored shadows on hover
+   * ---------------------------------- */
+  --card-shadow-primary: 0 10px 30px -5px rgba(#{red($emerald-400)}, #{green($emerald-400)}, #{blue($emerald-400)}, 0.2);
+  --card-shadow-secondary: 0 10px 30px -5px rgba(#{red($terracotta-400)}, #{green($terracotta-400)}, #{blue($terracotta-400)}, 0.2);
+  --card-shadow-coral: 0 10px 30px -5px rgba(#{red($coral-400)}, #{green($coral-400)}, #{blue($coral-400)}, 0.2);
+}
+
+/*
+========================================================================
+  Usage Notes:
+
+  These CSS custom properties are used by:
+  1. Component classes (BEM-style) in Layer 6
+  2. Fallback nth-child selectors (TO BE ELIMINATED IN PHASE 3)
+  3. Runtime theming (future dark mode support)
+
+  Integration: Automatically loaded via main-new.scss Layer 3 import
+
+  Migration Plan (Phase 3):
+  - Replace nth-child fallback classes with explicit BEM modifiers
+  - Move component-specific CSS classes to 06-components/
+  - Keep only :root variables here
+========================================================================
+*/

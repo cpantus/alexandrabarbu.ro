@@ -1,0 +1,69 @@
+// ==================================
+// LAYER 6: COMPONENTS - Import Aggregator
+// ==================================
+//
+// Purpose: UI components with BEM naming (.c-* prefix)
+// Specificity: Higher than objects, uses BEM for isolation
+//
+// Last Updated: 2025-11-19 (Phase 3 - Component BEM Refactoring)
+// Version: 1.0.0 (ITCSS Architecture)
+//
+// BEM Naming Convention:
+// Block:    .c-block
+// Element:  .c-block__element
+// Modifier: .c-block--modifier
+//
+// Component Files: Keep each < 400 lines, focused, single responsibility
+//
+
+// Core Components (BEM refactored)
+@import 'card';                    // ✅ Phase 3: BEM refactored with legacy compat
+@import 'button';                  // ✅ Phase 3: Extracted from custom.scss + BEM
+@import 'icon';                    // ✅ Phase 3: BEM refactored with legacy compat
+@import 'badge';                   // ✅ Phase 3: Extracted from credentials.scss + BEM
+@import 'form';                    // ✅ Phase 3: Extracted from custom.scss + contact-form + BEM
+
+// Section Components (BEM refactored)
+@import 'hero-breadcrumb';         // ✅ Phase 3: BEM refactored with legacy compat
+@import 'testimonials';            // ✅ Phase 3: BEM refactored with legacy compat
+@import 'faq';                     // ✅ Phase 3: BEM refactored with legacy compat
+@import 'video-popup';             // ✅ Phase 3: BEM refactored with legacy compat
+@import 'blog-grid';               // ✅ Phase 3: BEM refactored with legacy compat
+@import 'newsletter';              // ✅ Phase 3: BEM refactored with legacy compat
+@import 'privacy-guarantee';       // ✅ Phase 3: BEM refactored with legacy compat
+@import 'values-intro';            // ✅ Phase 3: BEM refactored with legacy compat
+@import 'signup-form';             // ✅ Phase 3: BEM refactored with legacy compat
+@import 'problem-empathy';         // ✅ Phase 3: BEM refactored with legacy compat
+@import 'credentials';             // ✅ Phase 3: BEM refactored with legacy compat
+
+// Enhanced v4.0 Section Components (BEM refactored - Phase 3)
+@import 'values-compass';          // ✅ Phase 3: BEM refactored with legacy compat
+@import 'stats';                   // ✅ Phase 3: BEM refactored with legacy compat
+@import 'feature-blocks';          // ✅ Phase 3: BEM refactored with legacy compat
+@import 'pricing';                 // ✅ Phase 3: BEM refactored with legacy compat
+
+// Section Components (TODO Phase 3: BEM refactoring - Future)
+// Note: These will be refactored to BEM in future phases
+//
+// Planned imports:
+// @import 'contact-form';          // Phase 3: .c-contact-form BEM
+// @import 'headings';              // Phase 3: .c-heading BEM
+
+// ==================================
+// COMPONENT CREATION RULES
+// ==================================
+// 1. BEM naming mandatory: .c-block__element--modifier
+// 2. No !important (utility layer only)
+// 3. Specificity < 0,3,0 (avoid deep nesting)
+// 4. File size < 400 lines
+// 5. Use mixins from Layer 2 (tools)
+// 6. Use tokens from Layer 1 (settings)
+// 7. Can use objects from Layer 5
+// 8. Include legacy class @extend for Phase 3 transition
+//
+// Template:
+//   .c-component { /* block */ }
+//   .c-component__element { /* element */ }
+//   .c-component--modifier { /* modifier */ }
+//   .c-component__element--modifier { /* element modifier */ }
+//

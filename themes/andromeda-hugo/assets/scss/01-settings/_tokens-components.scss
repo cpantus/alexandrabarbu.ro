@@ -1,0 +1,66 @@
+// ==================================
+// COMPONENT-SPECIFIC TOKENS (v4.0)
+// ==================================
+// Layer: 01-settings (NO CSS output)
+// Purpose: Component-specific design variables
+// Source: Migrated from _design-enhancements.scss
+//
+// NOTE: These are component-specific variables that don't fit into
+// other token categories. Most components should use tokens from
+// tokens-spacing.scss, tokens-colors.scss, etc.
+//
+
+// ----------------------------------
+// Card Tokens
+// ----------------------------------
+// Usage: Card component styling (mixins-card.scss)
+
+// Card padding variants
+$card-padding-sm: $space-4;    // 16px - Compact cards
+$card-padding-base: $space-6;  // 32px - Default cards
+$card-padding-lg: $space-8;    // 48px - Hero cards
+$card-padding: $card-padding-sm;  // Alias for default (16px molecule tier)
+
+// Card border radius
+$card-border-radius: 12px;  // Standard card corner rounding
+
+// Card shadows (aliases to shadow tokens)
+$card-shadow: $shadow-sm;          // Rest state: subtle shadow
+$card-shadow-hover: $shadow-md;    // Hover state: elevated shadow
+
+// ----------------------------------
+// Button Tokens
+// ----------------------------------
+// Usage: Button component styling (from _design-system.scss)
+$button-font-weight: $weight-semibold;    // Button font weight (600)
+$button-border-radius: $radius-md;         // Button border radius
+$button-padding-x: $space-6;               // Horizontal padding (32px)
+$button-padding-y: $space-3;               // Vertical padding (12px)
+$button-transition: $transition-base, transform $duration-fast $ease-out;  // Smooth transitions
+
+// ----------------------------------
+// Gap Spacing Tokens
+// ----------------------------------
+// Usage: Grid/Flex gaps between elements
+$gap-tight: $space-4;      // 16px - Tight spacing
+$gap-normal: $space-6;     // 32px - Normal spacing (most common)
+$gap-loose: $space-8;      // 48px - Loose spacing
+$gap-spacious: $space-10;  // 64px - Extra spacious
+
+// ----------------------------------
+// Values Compass Component Tokens
+// ----------------------------------
+// Usage: Specific to values-compass section
+$values-card-base-width: 280px;        // Default card width
+$values-card-featured-width: 320px;    // Featured card width
+$values-card-gap: $gap-normal;         // Gap between cards
+$values-border-radius: $radius-xl;     // Card border radius
+$values-featured-scale: 1.15;          // Featured card scale factor
+
+// ----------------------------------
+// Glassmorphism Tokens
+// ----------------------------------
+// Usage: Glass effect cards and overlays
+$glass-blur: 12px;                                      // Backdrop blur amount
+$glass-opacity: 0.75;                                   // Background opacity
+$glass-border: 1px solid rgba(255, 255, 255, 0.2);    // Glass border

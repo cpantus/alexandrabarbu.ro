@@ -1,0 +1,438 @@
+// ============================================================================
+// Stats Enhanced Component - BEM Architecture
+// ============================================================================
+// Enhanced v4.0 with SVG progress rings, animated counting, glassmorphism
+//
+// BEM Structure:
+// .c-stats                          - Component block (section wrapper)
+// .c-stats__container               - Inner container (z-index layering)
+// .c-stats__item                    - Individual stat card
+// .c-stats__ring                    - SVG progress ring container
+// .c-stats__ring-svg                - SVG element
+// .c-stats__ring-bg                 - Background circle path
+// .c-stats__ring-progress           - Animated progress circle path
+// .c-stats__inner                   - Inner content (number + label inside ring)
+// .c-stats__number                  - Stat number wrapper
+// .c-stats__count                   - Animated count value
+// .c-stats__suffix                  - Suffix (%, +, k, etc.)
+// .c-stats__label                   - Stat label text
+// .c-stats__icon                    - Icon wrapper (alternative to ring)
+// .c-stats__svg-defs                - SVG gradient definitions container
+//
+// Modifiers:
+// .c-stats__item--variant-1         - Emerald gradient variant
+// .c-stats__item--variant-2         - Terracotta gradient variant
+// .c-stats__item--variant-3         - Teal gradient variant
+// .c-stats__item--variant-4         - Amber gradient variant
+// .c-stats__number--counting        - Pulse animation during count
+//
+// v4.0 Features:
+// - SVG progress rings with animated stroke-dashoffset (circumference calc)
+// - Animated counting from 0 to target value (2s duration)
+// - Glassmorphism cards with gradient glow hover
+// - Organic blob background with radial gradient
+// - Staggered entrance animations (fade-in-up, 150ms delay)
+// - Responsive ring sizing (120px → 100px → 90px)
+// - Pulse effect during count animation
+// - Reduced motion support
+// ============================================================================
+
+// Component Block (Section Wrapper)
+// ----------------------------------------------------------------------------
+.c-stats {
+  padding: $space-16 0;
+  position: relative;
+  overflow: hidden;
+  background: $gradient-warm-subtle;
+
+  // Organic background blob (decorative pseudo-element)
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    right: -8%;
+    width: 45%;
+    height: 120%;
+    background: $gradient-radial-secondary;
+    opacity: 0.08;
+    @include organic-blob('smooth'); // v4.0 design system mixin
+    z-index: 0;
+  }
+}
+
+// Container with z-index layering
+.c-stats__container {
+  position: relative;
+  z-index: 1;
+}
+
+// Stat Item Card
+// ----------------------------------------------------------------------------
+.c-stats__item {
+  position: relative;
+  padding: $space-6;
+  background: $gradient-glass-light;
+  @include glassmorphism(12px, 0.9); // v4.0 glassmorphism mixin
+  border-radius: $radius-xl;
+  box-shadow: $shadow-base;
+  transition: all $duration-base $easing-medium; // Level 2 card motion
+  @include staggered-entrance(fade-in-up, 150ms); // v4.0 staggered animation
+
+  // Hover state with lift and gradient glow
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: $shadow-warm-lg;
+    background: rgba(255, 255, 255, 0.95);
+
+    // Lift + scale ring on hover
+    .c-stats__ring {
+      transform: scale(1.05);
+    }
+  }
+
+  // Responsive padding adjustments
+  @media (max-width: $breakpoint-sm) {
+    padding: $space-5;
+  }
+}
+
+// SVG Progress Ring Container
+// ----------------------------------------------------------------------------
+.c-stats__ring {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto $space-5;
+  transition: transform $duration-base $easing-medium; // Level 2 motion
+
+  // Tablet: reduce size
+  @media (max-width: $breakpoint-lg) {
+    width: 100px;
+    height: 100px;
+  }
+
+  // Mobile: smallest size
+  @media (max-width: $breakpoint-md) {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+// SVG Element
+.c-stats__ring-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg); // Start progress from top
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+// Background Circle (gray track)
+.c-stats__ring-bg {
+  fill: none;
+  stroke: $gray-200;
+  stroke-width: 8;
+}
+
+// Progress Circle (animated with gradient stroke)
+.c-stats__ring-progress {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset $duration-slow $ease-out; // Smooth progress animation
+  stroke: url(#gradient-primary); // Default gradient (overridden by variants)
+}
+
+// Inner Content (Number + Label inside ring)
+// ----------------------------------------------------------------------------
+.c-stats__inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+// Stat Number Wrapper
+// ----------------------------------------------------------------------------
+.c-stats__number {
+  font-size: $text-4xl;
+  font-weight: $weight-bold;
+  line-height: 1;
+  color: $color-primary;
+  font-family: $font-display;
+  margin-bottom: $space-2;
+
+  // Responsive font sizing
+  @media (max-width: $breakpoint-lg) {
+    font-size: $text-3xl;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $text-2xl;
+  }
+}
+
+// Animated Count Value
+.c-stats__count {
+  display: inline-block;
+  transition: transform $duration-fast $ease-out;
+}
+
+// Suffix (%, +, k, etc.)
+.c-stats__suffix {
+  font-size: $text-2xl;
+  opacity: 0.8;
+
+  // Responsive suffix sizing
+  @media (max-width: $breakpoint-lg) {
+    font-size: $text-xl;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $text-lg;
+  }
+}
+
+// Counting state (pulse animation)
+.c-stats__number--counting {
+  .c-stats__count {
+    animation: pulse-number $duration-fast ease-in-out;
+  }
+}
+
+// Stat Label
+// ----------------------------------------------------------------------------
+.c-stats__label {
+  font-size: $text-base;
+  font-weight: $weight-medium;
+  color: $color-text-secondary;
+  margin-top: $space-3;
+  line-height: $leading-snug;
+
+  // Responsive label sizing
+  @media (max-width: $breakpoint-md) {
+    font-size: $text-sm;
+  }
+}
+
+// Icon Wrapper (alternative to ring)
+// ----------------------------------------------------------------------------
+.c-stats__icon {
+  width: $icon-circle-lg;
+  height: $icon-circle-lg;
+  margin: 0 auto $space-4;
+  border-radius: $radius-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $gradient-icon-emerald;
+  box-shadow: $shadow-base;
+  transition: transform $duration-normal $ease-out;
+
+  // Icon styling
+  i,
+  .icon {
+    font-size: $icon-circle-sm; // 32px - Design token
+    color: white;
+  }
+
+  // Hover rotation + scale
+  .c-stats__item:hover & {
+    transform: rotate(8deg) scale(1.1);
+  }
+}
+
+// Color Variants (SVG gradient strokes)
+// ----------------------------------------------------------------------------
+.c-stats__item--variant-1 {
+  .c-stats__ring-progress {
+    stroke: url(#gradient-emerald);
+  }
+}
+
+.c-stats__item--variant-2 {
+  .c-stats__ring-progress {
+    stroke: url(#gradient-terracotta);
+  }
+}
+
+.c-stats__item--variant-3 {
+  .c-stats__ring-progress {
+    stroke: url(#gradient-teal);
+  }
+}
+
+.c-stats__item--variant-4 {
+  .c-stats__ring-progress {
+    stroke: url(#gradient-amber);
+  }
+}
+
+// SVG Gradient Definitions Container
+// ----------------------------------------------------------------------------
+.c-stats__svg-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+// Animations
+// ----------------------------------------------------------------------------
+@keyframes pulse-number {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes ring-fill {
+  from {
+    stroke-dashoffset: 283; // Circumference of 90px radius circle (2 * π * r)
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+// Responsive Design
+// ----------------------------------------------------------------------------
+@media (max-width: $breakpoint-md) {
+  .c-stats {
+    padding: $space-12 0;
+  }
+
+  .c-stats__item {
+    margin-bottom: $space-6;
+  }
+}
+
+// Accessibility: Reduced Motion
+// ----------------------------------------------------------------------------
+@media (prefers-reduced-motion: reduce) {
+  .c-stats__item,
+  .c-stats__ring,
+  .c-stats__number,
+  .c-stats__ring-progress {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// High Contrast Mode
+// ----------------------------------------------------------------------------
+@media (prefers-contrast: high) {
+  .c-stats__item {
+    border: 2px solid currentColor;
+    background: $color-bg-primary !important;
+  }
+
+  .c-stats__ring-progress,
+  .c-stats__ring-bg {
+    stroke: currentColor !important;
+  }
+}
+
+// ============================================================================
+// Legacy Compatibility Layer
+// ============================================================================
+// Maps old class names to new BEM structure using @extend
+// Maintains backward compatibility with existing HTML templates
+// Remove these after template updates are complete
+// ============================================================================
+
+// Section-level legacy classes
+.stats-numbers {
+  @extend .c-stats;
+
+  // Legacy nested container
+  .container-xxl {
+    @extend .c-stats__container;
+  }
+}
+
+// Stat item legacy class
+.stat-item {
+  @extend .c-stats__item;
+
+  // Legacy variant classes (stat-item-variant-1, etc.)
+  &.stat-item-variant-1 {
+    @extend .c-stats__item--variant-1;
+  }
+
+  &.stat-item-variant-2 {
+    @extend .c-stats__item--variant-2;
+  }
+
+  &.stat-item-variant-3 {
+    @extend .c-stats__item--variant-3;
+  }
+
+  &.stat-item-variant-4 {
+    @extend .c-stats__item--variant-4;
+  }
+}
+
+// Ring legacy classes
+.stat-progress-ring {
+  @extend .c-stats__ring;
+
+  // Legacy nested SVG
+  svg {
+    @extend .c-stats__ring-svg;
+  }
+
+  // Legacy ring paths
+  .ring-background {
+    @extend .c-stats__ring-bg;
+  }
+
+  .ring-progress {
+    @extend .c-stats__ring-progress;
+  }
+
+  // Legacy inner content
+  .stat-inner-content {
+    @extend .c-stats__inner;
+  }
+}
+
+// Number legacy classes
+.stat-number {
+  @extend .c-stats__number;
+
+  // Legacy counting state
+  &.counting {
+    @extend .c-stats__number--counting;
+  }
+
+  // Legacy nested elements
+  .stat-count {
+    @extend .c-stats__count;
+  }
+
+  .stat-suffix {
+    @extend .c-stats__suffix;
+  }
+}
+
+// Label legacy class
+.stat-label {
+  @extend .c-stats__label;
+}
+
+// Icon legacy class
+.stat-icon {
+  @extend .c-stats__icon;
+}
+
+// SVG defs legacy class
+.stat-svg-defs {
+  @extend .c-stats__svg-defs;
+}

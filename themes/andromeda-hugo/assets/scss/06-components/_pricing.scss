@@ -1,0 +1,570 @@
+// ============================================================================
+// Pricing Enhanced Component - BEM Architecture
+// ============================================================================
+// Enhanced v4.0 with featured tier elevation, comparison tooltips, glassmorphism
+//
+// BEM Structure:
+// .c-pricing                            - Component block (section wrapper)
+// .c-pricing__container                 - Inner container (z-index layering)
+// .c-pricing__card                      - Individual pricing card
+// .c-pricing__header                    - Card header section
+// .c-pricing__title                     - Plan name title
+// .c-pricing__description               - Plan description text
+// .c-pricing__price                     - Price section wrapper
+// .c-pricing__price-wrapper             - Price flex container
+// .c-pricing__currency                  - Currency symbol
+// .c-pricing__amount                    - Price amount number
+// .c-pricing__period                    - Billing period text
+// .c-pricing__features                  - Features list (ul)
+// .c-pricing__feature                   - Feature list item (li)
+// .c-pricing__button                    - CTA button wrapper
+// .c-pricing__switch                    - Monthly/yearly toggle wrapper
+// .c-pricing__toggle                    - Toggle switch element
+// .c-pricing__check                     - Checkbox input (hidden)
+// .c-pricing__switch-handle             - Toggle handle element
+//
+// Modifiers:
+// .c-pricing__card--featured            - Featured tier (elevated, highlighted)
+// .c-pricing__amount--changing          - Pulse animation during price change
+// .c-pricing__feature--tooltip          - Feature with comparison tooltip
+//
+// v4.0 Features:
+// - Featured tier elevation (1.08x scale, special styling)
+// - Glassmorphism cards with gradient borders
+// - Comparison tooltips on features (hover to reveal)
+// - Organic blob background with radial gradient
+// - Staggered entrance animations (fade-in-up, 150ms delay)
+// - Featured badge with gradient background
+// - Responsive scale adjustments (1.08 → 1.05 → 1.0 on mobile)
+// - Animated price pulse effect on toggle
+// - Reduced motion support
+// ============================================================================
+
+// Component Block (Section Wrapper)
+// ----------------------------------------------------------------------------
+.c-pricing {
+  padding: $space-16 0;
+  position: relative;
+  overflow: hidden;
+  background: $gradient-warm-subtle;
+
+  // Organic background blob (decorative pseudo-element)
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 80%;
+    background: $gradient-radial-warm;
+    opacity: 0.08;
+    @include organic-blob('smooth'); // v4.0 design system mixin
+    z-index: 0;
+  }
+
+  // Responsive padding
+  @media (max-width: $breakpoint-md) {
+    padding: $space-12 0;
+  }
+}
+
+// Container with z-index layering
+.c-pricing__container {
+  position: relative;
+  z-index: 1;
+}
+
+// Pricing Card
+// ----------------------------------------------------------------------------
+.c-pricing__card {
+  position: relative;
+  background: $gradient-glass-light;
+  @include glassmorphism(12px, 0.9); // v4.0 glassmorphism mixin
+  border-radius: $radius-xl;
+  padding: $space-8;
+  box-shadow: $shadow-base;
+  transition: all $duration-base $easing-medium; // Level 2 card motion
+  border: 2px solid transparent;
+  @include staggered-entrance(fade-in-up, 150ms); // v4.0 staggered animation
+
+  // Gradient border on hover (masked pseudo-element)
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: $radius-xl;
+    padding: 2px;
+    background: $gradient-warm-medium;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity $duration-base $easing-medium; // Level 2 motion
+  }
+
+  // Hover state
+  &:hover {
+    transform: translateY(-2px); // Level 2 molecule motion (not -8px)
+    box-shadow: $shadow-md; // +1 level only (sm → md)
+    background: rgba(255, 255, 255, 0.95);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+// Featured Tier Modifier
+// ----------------------------------------------------------------------------
+.c-pricing__card--featured {
+  transform: scale(1.08); // Elevated scale (desktop)
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba($green-50, 0.95) 100%
+  );
+  box-shadow: $shadow-featured;
+  border: 2px solid rgba($green-400, 0.3);
+  z-index: 10;
+
+  // Gradient border always visible
+  &::before {
+    background: $gradient-healing;
+    opacity: 1;
+  }
+
+  // Featured badge (positioned above card)
+  &::after {
+    content: attr(data-featured-label); // Dynamic label from HTML attribute
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: $space-2 $space-5;
+    background: $gradient-warm-vibrant;
+    color: white;
+    font-size: $text-sm;
+    font-weight: $font-weight-heading-bold; // 600 per design rules
+    letter-spacing: 0.5px;
+    border-radius: $radius-full;
+    box-shadow: $shadow-md;
+    white-space: nowrap;
+  }
+
+  // Featured hover state
+  &:hover {
+    transform: scale(1.08) translateY(-2px); // Keep base scale, add subtle lift
+    box-shadow: $shadow-featured, $shadow-md; // +1 level only
+  }
+
+  // Responsive scale reduction (tablet)
+  @media (max-width: $breakpoint-lg) {
+    transform: scale(1.05);
+
+    &:hover {
+      transform: scale(1.07);
+    }
+  }
+
+  // Mobile: remove scale (stack normally)
+  @media (max-width: $breakpoint-md) {
+    transform: scale(1);
+    margin-bottom: $space-8;
+
+    &::after {
+      top: -12px;
+    }
+  }
+}
+
+// Card Header
+// ----------------------------------------------------------------------------
+.c-pricing__header {
+  text-align: center;
+  margin-bottom: $space-6;
+  padding-bottom: $space-5;
+  border-bottom: 1px solid rgba($gray-300, 0.5);
+}
+
+.c-pricing__title {
+  font-size: $text-2xl;
+  font-weight: $font-weight-heading-bold; // 600 per design rules
+  color: $color-text-primary;
+  margin-bottom: $space-2;
+}
+
+.c-pricing__description {
+  font-size: $text-sm;
+  color: $color-text-secondary;
+  line-height: $leading-relaxed;
+}
+
+// Price Section
+// ----------------------------------------------------------------------------
+.c-pricing__price {
+  text-align: center;
+  margin-bottom: $space-6;
+}
+
+.c-pricing__price-wrapper {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: $space-2;
+}
+
+.c-pricing__currency {
+  font-size: $text-xl;
+  font-weight: $font-weight-heading-bold; // 600 per design rules
+  color: $color-primary;
+  margin-right: $space-1;
+}
+
+.c-pricing__amount {
+  font-size: $text-6xl;
+  font-weight: $font-weight-heading-bold; // 600 per design rules (was extrabold 800, too heavy)
+  line-height: 1;
+  color: $color-primary;
+  font-family: $font-display;
+
+  // Responsive font sizing
+  @media (max-width: $breakpoint-lg) {
+    font-size: $text-5xl;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $text-4xl;
+  }
+}
+
+.c-pricing__period {
+  font-size: $text-base;
+  color: $color-text-muted;
+  margin-left: $space-2;
+}
+
+// Animated price change modifier
+.c-pricing__amount--changing {
+  animation: price-pulse $duration-fast ease-in-out;
+}
+
+// Features List
+// ----------------------------------------------------------------------------
+.c-pricing__features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 $space-6 0;
+}
+
+.c-pricing__feature {
+  padding: $space-3 0;
+  font-size: $text-base;
+  color: $color-text-secondary;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+
+  // Checkmark icon (gradient circle)
+  &::before {
+    content: '✓';
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: $radius-full;
+    background: $gradient-icon-emerald;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: $font-weight-heading-bold; // 600 per design rules
+    font-size: $text-sm;
+    margin-right: $space-3;
+  }
+
+  // Featured tier special checkmarks
+  .c-pricing__card--featured & {
+    &::before {
+      background: $gradient-healing;
+    }
+  }
+}
+
+// Comparison Tooltip Modifier
+.c-pricing__feature--tooltip {
+  cursor: help;
+
+  // Tooltip on hover
+  &:hover::after {
+    content: attr(data-tooltip); // Dynamic tooltip from HTML attribute
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: $space-2 $space-3;
+    background: $gray-900;
+    color: white;
+    font-size: $text-xs;
+    white-space: nowrap;
+    border-radius: $radius-md;
+    box-shadow: $shadow-lg;
+    z-index: 100;
+    margin-bottom: $space-1;
+    animation: tooltip-fade-in $duration-fast $easing-subtle;
+  }
+
+  // Mobile: allow wrapping for longer tooltips
+  @media (max-width: $breakpoint-md) {
+    &:hover::after {
+      white-space: normal;
+      max-width: 200px;
+    }
+  }
+}
+
+// CTA Button Wrapper
+// ----------------------------------------------------------------------------
+.c-pricing__button {
+  width: 100%;
+
+  .btn {
+    width: 100%;
+    padding: $space-4 $space-6;
+    font-size: $text-lg;
+    font-weight: $font-weight-heading-bold; // 600 per design rules
+    border-radius: $radius-lg;
+    transition: all $duration-base $easing-strong; // Level 3 button motion
+
+    // Featured card special button
+    .c-pricing__card--featured & {
+      background: $gradient-warm-vibrant;
+      border: none;
+      box-shadow: $shadow-primary;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: $shadow-primary-lg;
+      }
+    }
+  }
+}
+
+// Pricing Toggle (Monthly/Yearly Switch)
+// ----------------------------------------------------------------------------
+.c-pricing__switch {
+  margin-bottom: $space-8;
+
+  label {
+    cursor: pointer;
+    transition: color $duration-fast $easing-subtle; // Level 1 text motion (200ms)
+
+    &.active {
+      color: $color-primary;
+      font-weight: $font-weight-heading-bold; // 600 per design rules
+    }
+  }
+}
+
+.c-pricing__toggle {
+  position: relative;
+  margin: 0 $space-4;
+  width: 60px;
+  height: 32px;
+  background: $gray-300;
+  border-radius: $radius-full;
+  transition: background $duration-fast $easing-subtle; // Level 1 toggle motion (200ms)
+  cursor: pointer;
+
+  &:hover {
+    .c-pricing__switch-handle {
+      box-shadow: $shadow-md;
+    }
+  }
+}
+
+.c-pricing__check {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+
+  // Checked state
+  &:checked + .c-pricing__switch-handle {
+    left: 30px;
+    background: $gradient-warm-vibrant;
+  }
+
+  &:checked ~ .c-pricing__toggle {
+    background: $color-primary-light;
+  }
+}
+
+.c-pricing__switch-handle {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 28px;
+  height: 28px;
+  background: white;
+  border-radius: $radius-full;
+  box-shadow: $shadow-base;
+  transition: all $duration-fast $easing-subtle;
+}
+
+// Animations
+// ----------------------------------------------------------------------------
+@keyframes price-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes tooltip-fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+// Accessibility: Reduced Motion
+// ----------------------------------------------------------------------------
+@media (prefers-reduced-motion: reduce) {
+  .c-pricing__card,
+  .c-pricing__amount,
+  .c-pricing__button .btn {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// High Contrast Mode
+// ----------------------------------------------------------------------------
+@media (prefers-contrast: high) {
+  .c-pricing__card {
+    border: 3px solid currentColor;
+    background: $color-bg-primary !important;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .c-pricing__feature::before {
+    border: 2px solid currentColor;
+  }
+}
+
+// ============================================================================
+// Legacy Compatibility Layer
+// ============================================================================
+// Maps old class names to new BEM structure using @extend
+// Maintains backward compatibility with existing HTML templates
+// Remove these after template updates are complete
+// ============================================================================
+
+// Section-level legacy class
+.pricing-section {
+  @extend .c-pricing;
+
+  // Legacy nested container
+  .container {
+    @extend .c-pricing__container;
+  }
+}
+
+// Card legacy class
+.card-pricing {
+  @extend .c-pricing__card;
+
+  // Featured modifier
+  &.card-pricing-featured {
+    @extend .c-pricing__card--featured;
+  }
+}
+
+// Header legacy class
+.pricing-header {
+  @extend .c-pricing__header;
+
+  // Legacy nested elements
+  .pricing-title {
+    @extend .c-pricing__title;
+  }
+
+  .pricing-description {
+    @extend .c-pricing__description;
+  }
+}
+
+// Price legacy class
+.pricing-price {
+  @extend .c-pricing__price;
+
+  // Legacy nested elements
+  .price-wrapper {
+    @extend .c-pricing__price-wrapper;
+  }
+
+  .currency {
+    @extend .c-pricing__currency;
+  }
+
+  .amount {
+    @extend .c-pricing__amount;
+
+    // Changing state
+    &.changing {
+      @extend .c-pricing__amount--changing;
+    }
+  }
+
+  .period {
+    @extend .c-pricing__period;
+  }
+}
+
+// Features legacy class
+.pricing-features {
+  @extend .c-pricing__features;
+
+  // Legacy list items
+  li {
+    @extend .c-pricing__feature;
+
+    // Tooltip modifier
+    &[data-tooltip] {
+      @extend .c-pricing__feature--tooltip;
+    }
+  }
+}
+
+// Button legacy class
+.pricing-button {
+  @extend .c-pricing__button;
+}
+
+// Switch legacy class
+.pricing-switch {
+  @extend .c-pricing__switch;
+
+  .toggle {
+    @extend .c-pricing__toggle;
+  }
+
+  .pricing-check {
+    @extend .c-pricing__check;
+  }
+
+  .switch {
+    @extend .c-pricing__switch-handle;
+  }
+}

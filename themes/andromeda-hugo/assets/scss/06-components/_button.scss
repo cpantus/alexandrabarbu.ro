@@ -1,0 +1,310 @@
+// ==================================
+// BUTTON COMPONENT - BEM Architecture
+// ==================================
+//
+// Purpose: Reusable button component with gradient effects
+// Features: Primary/secondary variants, outline variants, size modifiers
+//
+// Last Updated: 2025-11-19 (Phase 3 - Component BEM Refactoring)
+// Version: 1.0.0 (ITCSS + BEM)
+//
+// BEM Structure:
+// Block: .c-button
+// Modifiers: --primary, --secondary, --outline-primary, --outline-secondary, --sm, --lg
+//
+
+/*------------------------------------------------------------------
+  # Base Button Block
+-------------------------------------------------------------------*/
+
+/**
+ * Base button component
+ * Provides foundation styling for all button variants
+ */
+.c-button {
+  font-family: $font-body;
+  font-weight: $button-font-weight;
+  border-radius: $button-border-radius;
+  padding: $button-padding-y $button-padding-x;
+  transition: $button-transition;
+  border: 0;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 1.5;
+
+  // Hover lift effect (subtle elevation)
+  &:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+
+  // Active press effect
+  &:active {
+    transform: translateY(0);
+  }
+
+  // Focus state for accessibility
+  &:focus {
+    outline: 2px solid rgba($emerald-500, 0.5);
+    outline-offset: 2px;
+  }
+
+  // Disabled state
+  &:disabled,
+  &[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Button Variant Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Primary button - gradient with depth (emerald)
+ */
+.c-button--primary {
+  background: $gradient-primary;
+  color: white;
+  box-shadow: $shadow-primary;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $gradient-primary-vibrant;
+    box-shadow: $shadow-primary-lg;
+    color: white;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background: $gradient-primary;
+    box-shadow: $shadow-primary;
+  }
+}
+
+/**
+ * Secondary button - warm terracotta gradient
+ */
+.c-button--secondary {
+  background: $gradient-secondary;
+  color: white;
+  box-shadow: $shadow-secondary;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $gradient-secondary-vibrant;
+    box-shadow: $shadow-secondary-lg;
+    color: white;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background: $gradient-secondary;
+    box-shadow: $shadow-secondary;
+  }
+}
+
+/**
+ * Outline primary button - elegant emerald border
+ */
+.c-button--outline-primary {
+  color: $color-primary;
+  border: 2px solid $color-primary;
+  background-color: transparent;
+  box-shadow: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: white;
+    border-color: $color-primary;
+    background: $gradient-primary;
+    box-shadow: $shadow-primary;
+  }
+
+  &:disabled,
+  &[disabled] {
+    color: $color-primary;
+    border-color: $color-primary;
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+/**
+ * Outline secondary button - elegant terracotta border
+ */
+.c-button--outline-secondary {
+  color: $color-secondary;
+  border: 2px solid $color-secondary;
+  background-color: transparent;
+  box-shadow: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: white;
+    border-color: $color-secondary;
+    background: $gradient-secondary;
+    box-shadow: $shadow-secondary;
+  }
+
+  &:disabled,
+  &[disabled] {
+    color: $color-secondary;
+    border-color: $color-secondary;
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Button Size Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Small button modifier
+ */
+.c-button--sm {
+  padding: $space-2 $space-4;
+  font-size: $text-sm;
+}
+
+/**
+ * Large button modifier
+ */
+.c-button--lg {
+  padding: $space-4 $space-8;
+  font-size: $text-lg;
+}
+
+/*------------------------------------------------------------------
+  # Accessibility: Touch Targets (WCAG 2.1 AA)
+-------------------------------------------------------------------*/
+
+/**
+ * Minimum 44px touch targets on mobile
+ */
+@media (max-width: 768px) {
+  .c-button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem 1.5rem;
+  }
+
+  // Adjust small button for touch target compliance
+  .c-button--sm {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.5rem 1rem; // Still smaller, but meets target
+  }
+}
+
+/*------------------------------------------------------------------
+  # Reduced Motion Support
+-------------------------------------------------------------------*/
+
+/**
+ * Respect user's reduced motion preference
+ */
+@media (prefers-reduced-motion: reduce) {
+  .c-button {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+
+    &:active {
+      transform: none;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Legacy Class Compatibility (Phase 3 Transition)
+  # TODO: Remove in Phase 4 after HTML templates updated
+-------------------------------------------------------------------*/
+
+// Base compatibility
+.btn {
+  @extend .c-button;
+}
+
+// Variant compatibility
+.btn-primary {
+  @extend .c-button;
+  @extend .c-button--primary;
+}
+
+.btn-secondary {
+  @extend .c-button;
+  @extend .c-button--secondary;
+}
+
+.btn-outline-primary {
+  @extend .c-button;
+  @extend .c-button--outline-primary;
+}
+
+.btn-outline-secondary {
+  @extend .c-button;
+  @extend .c-button--outline-secondary;
+}
+
+// Size compatibility
+.btn-sm {
+  @extend .c-button--sm;
+}
+
+.btn-lg {
+  @extend .c-button--lg;
+}
+
+// ==================================
+// USAGE GUIDE
+// ==================================
+//
+// Basic button:
+//   <a href="#" class="c-button c-button--primary">Click Me</a>
+//   <button class="c-button c-button--primary">Click Me</button>
+//
+// Outline button:
+//   <a href="#" class="c-button c-button--outline-primary">Learn More</a>
+//
+// Size modifiers:
+//   <a href="#" class="c-button c-button--primary c-button--sm">Small</a>
+//   <a href="#" class="c-button c-button--primary c-button--lg">Large</a>
+//
+// Disabled button:
+//   <button class="c-button c-button--primary" disabled>Disabled</button>
+//
+// In Hugo templates (via atoms/button.html):
+//   {{ partial "atoms/button.html" (dict
+//     "text" "Click Me"
+//     "url" "#"
+//     "variant" "primary"
+//     "size" "lg"
+//   ) }}
+//
+// Multiple buttons:
+//   <div class="button-group">
+//     <a href="#" class="c-button c-button--primary">Primary</a>
+//     <a href="#" class="c-button c-button--outline-primary">Secondary</a>
+//   </div>
+//
+// VERSION HISTORY:
+// 1.0.0 (2025-11-19) - ITCSS Phase 3: Extracted from custom.scss with BEM naming + legacy compatibility
+//

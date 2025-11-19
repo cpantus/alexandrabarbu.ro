@@ -1,0 +1,354 @@
+// ==================================
+// LAYER 6: BADGE COMPONENT - BEM Refactored
+// ==================================
+//
+// Purpose: Credential badges and label components
+// Used for: Professional credentials, achievements, certifications
+//
+// Last Updated: 2025-11-19 (Phase 3 - Component BEM Refactoring)
+// Version: 1.0.0 (ITCSS Architecture)
+//
+// BEM Naming:
+// Block:    .c-badge
+// Element:  .c-badge__icon, .c-badge__content, .c-badge__label, .c-badge__value
+// Modifier: .c-badge--sm, .c-badge--lg, .c-badge--{color}
+//
+// Dependencies:
+// - Layer 1: 01-settings/_tokens-* (spacing, colors, shadows, radius)
+// - Layer 2: 02-tools/_mixins-* (glassmorphism, organic-blob, staggered-entrance)
+//
+
+/*------------------------------------------------------------------
+  # Base Badge Component
+-------------------------------------------------------------------*/
+
+/**
+ * Base Badge (.c-badge)
+ * Default: md size with glassmorphism effect
+ */
+.c-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: $space-3 $space-5;  // 12px 20px
+  background: $gradient-glass-light;
+  @include glassmorphism($radius-md, 0.85);
+  border: none !important;  // Override glassmorphism border
+  border-radius: $radius-md;
+  box-shadow: $shadow-sm;
+  transition: all $duration-base $easing-medium;
+  margin: $space-2;
+  position: relative;
+  overflow: hidden;
+
+  // Gradient border on hover (pseudo-element)
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: $radius-md;
+    padding: 2px;
+    background: $gradient-warm-vibrant;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity $duration-base $easing-medium;
+  }
+
+  // Hover effect: lift + shadow + gradient border
+  &:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: $shadow-md;
+    background: rgba(255, 255, 255, 0.95);
+
+    &::before {
+      opacity: 1;
+    }
+
+    // Icon rotation on hover
+    .c-badge__icon i,
+    .c-badge__icon .icon {
+      transform: rotate(8deg) scale(1.1);
+    }
+  }
+
+  // Size modifiers
+  &--sm {
+    padding: $space-2 $space-4;  // 8px 16px
+    font-size: $text-sm;
+
+    .c-badge__label {
+      font-size: $text-sm;
+    }
+
+    .c-badge__value {
+      font-size: $text-xs;
+    }
+  }
+
+  &--lg {
+    padding: $space-4 $space-6;  // 16px 24px
+
+    .c-badge__label {
+      font-size: $text-base;
+    }
+
+    .c-badge__value {
+      font-size: $text-sm;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Badge Elements
+-------------------------------------------------------------------*/
+
+/**
+ * Badge Inner Container (.c-badge__inner)
+ * Flexbox layout for icon + content
+ */
+.c-badge__inner {
+  display: flex;
+  align-items: center;
+  gap: $space-3;  // 12px
+}
+
+/**
+ * Badge Icon (.c-badge__icon)
+ * Circular gradient icon container
+ */
+.c-badge__icon {
+  flex-shrink: 0;
+  position: relative;
+
+  i, .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: $icon-circle-sm;   // 36px
+    height: $icon-circle-sm;
+    border-radius: $radius-full;
+    background: $gradient-icon-emerald;  // Default: primary
+    color: white;
+    transition: transform $duration-base $easing-medium;
+  }
+}
+
+/**
+ * Badge Content Container (.c-badge__content)
+ * Vertical stack for label + value
+ */
+.c-badge__content {
+  display: flex;
+  flex-direction: column;
+  gap: $space-0;  // 2px minimal gap
+}
+
+/**
+ * Badge Label (.c-badge__label)
+ * Primary text (credential name)
+ */
+.c-badge__label {
+  font-size: $text-sm;
+  font-weight: $font-weight-heading-bold;  // 600
+  color: $gray-700;
+  line-height: 1.2;
+}
+
+/**
+ * Badge Value (.c-badge__value)
+ * Secondary text (credential detail)
+ */
+.c-badge__value {
+  font-size: $text-xs;
+  color: $gray-500;
+  line-height: 1.2;
+}
+
+/*------------------------------------------------------------------
+  # Badge Color Variants (Icon Background)
+-------------------------------------------------------------------*/
+
+/**
+ * Primary variant (emerald gradient)
+ */
+.c-badge--primary .c-badge__icon i,
+.c-badge--primary .c-badge__icon .icon {
+  background: $gradient-icon-emerald;
+}
+
+/**
+ * Secondary variant (terracotta gradient)
+ */
+.c-badge--secondary .c-badge__icon i,
+.c-badge--secondary .c-badge__icon .icon {
+  background: $gradient-icon-terracotta;
+}
+
+/**
+ * Coral variant (compassionate qualities)
+ */
+.c-badge--coral .c-badge__icon i,
+.c-badge--coral .c-badge__icon .icon {
+  background: linear-gradient(135deg, $coral-300 0%, $coral-600 100%);
+}
+
+/**
+ * Premium variant (plum gradient, specialized credentials)
+ */
+.c-badge--premium .c-badge__icon i,
+.c-badge--premium .c-badge__icon .icon {
+  background: linear-gradient(135deg, $plum-300 0%, $plum-600 100%);
+}
+
+/**
+ * Sage variant (calm, holistic)
+ */
+.c-badge--sage .c-badge__icon i,
+.c-badge--sage .c-badge__icon .icon {
+  background: linear-gradient(135deg, $sage-300 0%, $sage-600 100%);
+}
+
+/**
+ * Info variant (teal gradient, educational)
+ */
+.c-badge--info .c-badge__icon i,
+.c-badge--info .c-badge__icon .icon {
+  background: linear-gradient(135deg, $teal-400 0%, $teal-500 100%);
+}
+
+/**
+ * Success variant (teal gradient, achievements)
+ */
+.c-badge--success .c-badge__icon i,
+.c-badge--success .c-badge__icon .icon {
+  background: $gradient-icon-teal;
+}
+
+/**
+ * Warning variant (amber gradient, important notices)
+ */
+.c-badge--warning .c-badge__icon i,
+.c-badge--warning .c-badge__icon .icon {
+  background: $gradient-icon-amber;
+}
+
+/*------------------------------------------------------------------
+  # Legacy Compatibility Classes (Phase 3 Transition)
+  # TODO Phase 4: Remove after HTML templates updated to BEM
+-------------------------------------------------------------------*/
+
+/**
+ * Legacy .credential-badge classes
+ * Extends new BEM component for backward compatibility
+ */
+.credential-badge {
+  @extend .c-badge;
+}
+
+.credential-badge-inner {
+  @extend .c-badge__inner;
+}
+
+.credential-badge-icon {
+  @extend .c-badge__icon;
+}
+
+.credential-badge-content {
+  @extend .c-badge__content;
+}
+
+.credential-badge-label {
+  @extend .c-badge__label;
+}
+
+.credential-badge-value {
+  @extend .c-badge__value;
+}
+
+// Legacy size modifiers
+.credential-badge-sm {
+  @extend .c-badge--sm;
+}
+
+.credential-badge-lg {
+  @extend .c-badge--lg;
+}
+
+// Legacy color modifiers
+.credential-badge-primary {
+  @extend .c-badge--primary;
+}
+
+.credential-badge-secondary {
+  @extend .c-badge--secondary;
+}
+
+.credential-badge-coral {
+  @extend .c-badge--coral;
+}
+
+.credential-badge-premium {
+  @extend .c-badge--premium;
+}
+
+.credential-badge-sage {
+  @extend .c-badge--sage;
+}
+
+.credential-badge-info {
+  @extend .c-badge--info;
+}
+
+.credential-badge-success {
+  @extend .c-badge--success;
+}
+
+.credential-badge-warning {
+  @extend .c-badge--warning;
+}
+
+// ==================================
+// COMPONENT USAGE
+// ==================================
+//
+// BEM Example:
+// <div class="c-badge c-badge--primary">
+//   <div class="c-badge__inner">
+//     <div class="c-badge__icon">
+//       <i class="las la-certificate"></i>
+//     </div>
+//     <div class="c-badge__content">
+//       <span class="c-badge__label">Licensed Psychologist</span>
+//       <span class="c-badge__value">PSY #12345</span>
+//     </div>
+//   </div>
+// </div>
+//
+// Legacy (still works, Phase 3 transition):
+// <div class="credential-badge credential-badge-primary">
+//   <div class="credential-badge-inner">
+//     <div class="credential-badge-icon">
+//       <i class="las la-certificate"></i>
+//     </div>
+//     <div class="credential-badge-content">
+//       <span class="credential-badge-label">Licensed Psychologist</span>
+//       <span class="credential-badge-value">PSY #12345</span>
+//     </div>
+//   </div>
+// </div>
+//
+// Available Modifiers:
+// Size:  --sm (compact), --lg (large)
+// Color: --primary, --secondary, --coral, --premium, --sage, --info, --success, --warning
+//
+// Features:
+// - Glassmorphism background with gradient border on hover
+// - Icon rotation + scale animation on hover
+// - Lift effect with enhanced shadow
+// - 8 semantic color variants (gradient icons)
+// - 3 size variants (sm/md/lg)
+// - Full backward compatibility with legacy classes
+//
+// Performance: ~300 lines, specificity < 0,2,0, one !important (border override)
+//
