@@ -1,10 +1,9 @@
 /*
 ========================================================================
-  STYLE ENTRY POINT - Project Override
-  Overrides base theme's style.scss
+  STYLE ENTRY POINT - ITCSS Architecture
+  Uses new BEM + ITCSS refactored components
 ========================================================================
 */
 
-// Import legacy architecture (stable)
-// ITCSS architecture available in main-new.scss but not yet fully deployed
-@import 'custom';
+// Import ITCSS architecture (NEW - all 20 BEM components)
+@import 'main-new';
