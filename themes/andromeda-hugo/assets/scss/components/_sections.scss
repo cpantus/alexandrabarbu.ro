@@ -2,7 +2,10 @@
   # New Sections Styles (design-2.md Implementation)
 -------------------------------------------------------------------*/
 
-@import '../design-system';
+/* This file is compiled standalone, so it needs its own imports */
+@import '../01-settings/settings';
+@import '../02-tools/tools';
+@import '../design-system-legacy';
 
 /* Problem/Empathy Section */
 .problem-empathy {

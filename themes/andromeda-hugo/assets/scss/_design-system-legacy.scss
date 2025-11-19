@@ -118,6 +118,12 @@ $focus-ring-secondary: 0 0 0 3px rgba($terracotta-500, 0.3);
   # Use tokens from 01-settings/_tokens-components.scss
 -------------------------------------------------------------------*/
 
+/* Legacy border radius for backwards compatibility */
+$radius-xs: 4px;  // Extra small - not in new ITCSS structure
+
+/* Legacy typography aliases */
+$font-display: $font-primary;  // Alias for display typography
+
 $button-font-weight: $weight-semibold;
 $input-border-color: $gray-300;
 $input-focus-border-color: $green-400;
@@ -141,5 +147,14 @@ $nav-height: 80px;
   &:hover {
     transform: translateY($lift);
     box-shadow: $shadow;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
