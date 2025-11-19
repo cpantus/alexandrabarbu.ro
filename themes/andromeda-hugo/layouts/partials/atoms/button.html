@@ -25,6 +25,8 @@
     icon (optional) - Icon class (e.g., "las la-arrow-right")
     iconPosition (optional) - left|right (default: right)
     attributes (optional) - Additional HTML attributes as dict
+    animate (optional) - Animation type (e.g., "magnetic-button", "ripple")
+    animateOptions (optional) - Animation options as dict (e.g., (dict "strength" "0.3"))
 */}}
 
 {{ $text := .text }}
@@ -37,6 +39,8 @@
 {{ $icon := .icon }}
 {{ $iconPosition := .iconPosition | default "right" }}
 {{ $attributes := .attributes | default dict }}
+{{ $animate := .animate }}
+{{ $animateOptions := .animateOptions | default dict }}
 
 {{/* Build button classes */}}
 {{ $btnClass := printf "btn btn-%s" $variant }}
@@ -66,6 +70,8 @@
 {{/* Render as link or button */}}
 {{ if eq $type "link" }}
   <a href="{{ $href | relURL }}" class="{{ $btnClass }}"
+    {{- if $animate }} data-animate="{{ $animate }}"{{ end -}}
+    {{- range $key, $value := $animateOptions }} data-{{ $key }}="{{ $value }}"{{ end -}}
     {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}>
     {{- template "button-content" (dict "icon" $icon "iconPosition" $iconPosition "text" $text) -}}
   </a>
@@ -74,6 +80,8 @@
     {{- if eq $type "submit" }} type="submit"
     {{- else }} type="button"{{ end }}
     class="{{ $btnClass }}"
+    {{- if $animate }} data-animate="{{ $animate }}"{{ end -}}
+    {{- range $key, $value := $animateOptions }} data-{{ $key }}="{{ $value }}"{{ end -}}
     {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}>
     {{- template "button-content" (dict "icon" $icon "iconPosition" $iconPosition "text" $text) -}}
   </button>

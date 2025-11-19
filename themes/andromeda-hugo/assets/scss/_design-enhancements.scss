@@ -416,3 +416,114 @@ $glass-border: 1px solid rgba(255, 255, 255, 0.2);
     --shadow-base: 0 4px 6px rgba(0, 0, 0, 0.3);
   }
 }
+
+/*------------------------------------------------------------------
+  # GSAP Enhancement Styles (v4.1)
+  # Added: 2025-11-18
+  # Provides styling for 5 new GSAP-powered animation effects:
+  # - Magnetic buttons
+  # - Ripple click effects
+  # - Text reveal (word-by-word)
+  # - Image reveal (clip-path)
+  # - Alpine.js components
+-------------------------------------------------------------------*/
+
+/* Magnetic Button Enhancements */
+[data-animate="magnetic-button"] {
+  position: relative;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  will-change: transform;
+
+  &:hover {
+    box-shadow: 0 8px 16px rgba($emerald-500, 0.2),
+                0 4px 8px rgba($emerald-500, 0.15);
+  }
+}
+
+/* Ripple Effect Container */
+[data-animate="ripple"] {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+/* Text Reveal Words */
+.word-reveal {
+  display: inline-block;
+  margin-right: 0.25em;
+  will-change: transform, opacity;
+}
+
+/* Image Reveal Clip Path */
+[data-animate="image-reveal"] {
+  clip-path: inset(0% 0% 0% 0%);
+  will-change: clip-path;
+}
+
+/* Alpine.js Toggle Switch */
+.toggle-switch {
+  position: relative;
+  width: 50px;
+  height: 26px;
+  background: $gray-300;
+  border-radius: 13px;
+  transition: background 0.3s ease;
+  cursor: pointer;
+
+  &.active {
+    background: $emerald-500;
+  }
+
+  .toggle-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    will-change: transform;
+  }
+
+  &.active .toggle-knob {
+    transform: translateX(24px);
+  }
+}
+
+/* Accessibility: Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate],
+  [data-animate="magnetic-button"],
+  [data-animate="ripple"],
+  [data-animate="text-reveal"],
+  [data-animate="image-reveal"] {
+    animation: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+
+  .word-reveal,
+  .ripple-effect,
+  .toggle-knob {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    will-change: auto !important;
+  }
+
+  /* Ensure magnetic buttons don't move */
+  [data-animate="magnetic-button"] {
+    transform: none !important;
+  }
+}

@@ -17,6 +17,8 @@
     class (optional) - Additional CSS classes
     aos (optional) - AOS animation name (e.g., "fade-up")
     aosDelay (optional) - AOS delay in ms (e.g., 100)
+    animate (optional) - GSAP animation type (e.g., "ripple")
+    animateOptions (optional) - GSAP animation options as dict
 
   Feature variant:
     icon (optional) - Icon name for feature card
@@ -51,6 +53,8 @@
 {{ $class := .class | default "" }}
 {{ $aos := .aos }}
 {{ $aosDelay := .aosDelay }}
+{{ $animate := .animate }}
+{{ $animateOptions := .animateOptions | default dict }}
 
 {{/* Feature variant params */}}
 {{ $icon := .icon }}
@@ -94,10 +98,19 @@
   {{ end }}
 {{ end }}
 
+{{/* Build GSAP animation attributes */}}
+{{ $animateAttrs := "" }}
+{{ if $animate }}
+  {{ $animateAttrs = printf `data-animate="%s"` $animate }}
+  {{ range $key, $value := $animateOptions }}
+    {{ $animateAttrs = printf `%s data-%s="%s"` $animateAttrs $key $value }}
+  {{ end }}
+{{ end }}
+
 {{/* Render card based on variant */}}
 {{ if eq $variant "feature" }}
   {{/* Feature Card - Icon + Title + Description + Optional Button */}}
-  <div class="career-benefits-item text-center {{ $wrapperClass }}" {{ $aosAttrs | safeHTMLAttr }}>
+  <div class="career-benefits-item text-center {{ $wrapperClass }}" {{ $aosAttrs | safeHTMLAttr }} {{ $animateAttrs | safeHTMLAttr }}>
     {{ if $icon }}
       {{ partial "atoms/icon.html" (dict
         "name" $icon
@@ -131,7 +144,7 @@
 
 {{ else if eq $variant "pricing" }}
   {{/* Pricing Card - Title + Price + Features + Button */}}
-  <div class="card pricing-card border-0 {{ if $featured }}pricing-card-featured{{ end }} {{ $wrapperClass }}" {{ $aosAttrs | safeHTMLAttr }}>
+  <div class="card pricing-card border-0 {{ if $featured }}pricing-card-featured{{ end }} {{ $wrapperClass }}" {{ $aosAttrs | safeHTMLAttr }} {{ $animateAttrs | safeHTMLAttr }}>
     <div class="card-body">
       {{ if $title }}
         {{ partial "atoms/heading.html" (dict
@@ -190,7 +203,7 @@
 
 {{ else if eq $variant "testimonial" }}
   {{/* Testimonial Card - Quote + Author + Avatar + Rating */}}
-  <div class="card testimonial-card border-0 {{ $wrapperClass }}" {{ $aosAttrs | safeHTMLAttr }}>
+  <div class="card testimonial-card border-0 {{ $wrapperClass }}" {{ $aosAttrs | safeHTMLAttr }} {{ $animateAttrs | safeHTMLAttr }}>
     <div class="card-body">
       {{ if $rating }}
         <div class="rating mb-3">

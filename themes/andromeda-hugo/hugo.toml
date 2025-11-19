@@ -230,3 +230,19 @@ link = "plugins/cookie/cookie.js"
 link = "plugins/webfont-loader/webfont-loader-2.min.js"
 [[params.plugins.js]]
 link = "plugins/glightbox.js"
+
+# Animation Enhancement Libraries (v4.1 - Added 2025-11-18)
+[[params.plugins.js]]
+link = "https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
+attributes = "defer"
+[[params.plugins.js]]
+link = "https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
+attributes = "defer"
+[[params.plugins.js]]
+link = "https://cdn.jsdelivr.net/npm/alpinejs@3.13/dist/cdn.min.js"
+attributes = "defer"
+
+# Custom Animation Enhancement Scripts (v4.1)
+[[params.plugins.js]]
+link = "js/gsap-enhancements.js"
+attributes = "defer"
