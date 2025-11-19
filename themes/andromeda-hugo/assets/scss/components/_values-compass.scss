@@ -163,6 +163,7 @@
   position: relative;
   background: $gradient-glass-light;
   @include glassmorphism(16px, 0.9);
+  border: none !important;  // Remove glassmorphism border - uses gradient border pseudo-element
   border-radius: $values-border-radius;
   padding: $card-padding-lg;
   text-align: center;

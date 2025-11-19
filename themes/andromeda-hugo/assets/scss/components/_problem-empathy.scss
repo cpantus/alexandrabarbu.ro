@@ -67,6 +67,7 @@
   padding: $card-padding-lg;
   background: $gradient-glass-light;
   @include glassmorphism(16px, 0.9);
+  border: none !important;  // Remove glassmorphism border - gradient glow only
   border-radius: $radius-xl;
   box-shadow: $shadow-base;
   transition: all $duration-normal $ease-out;

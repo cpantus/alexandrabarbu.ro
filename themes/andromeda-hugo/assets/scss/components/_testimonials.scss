@@ -132,8 +132,8 @@
 
 // Quote Icon
 .testimonial-quote-icon {
-  width: 48px;
-  height: 48px;
+  width: $icon-circle-md;
+  height: $icon-circle-md;
   border-radius: $radius-full;
   display: flex;
   align-items: center;
@@ -163,8 +163,8 @@
   }
 
   @media (max-width: $breakpoint-sm) {
-    width: 40px;
-    height: 40px;
+    width: $icon-circle-sm;
+    height: $icon-circle-sm;
     margin-bottom: $space-4;
 
     i {
@@ -258,8 +258,8 @@
   }
 
   @media (max-width: $breakpoint-sm) {
-    width: 48px;
-    height: 48px;
+    width: $icon-circle-md;
+    height: $icon-circle-md;
   }
 }
 

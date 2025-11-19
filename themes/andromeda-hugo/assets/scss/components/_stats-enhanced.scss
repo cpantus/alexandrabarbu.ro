@@ -134,8 +134,8 @@
 
 // Icon (optional, if ring is not used)
 .stat-icon {
-  width: 64px;
-  height: 64px;
+  width: $icon-circle-lg;
+  height: $icon-circle-lg;
   margin: 0 auto $space-4;
   border-radius: $radius-full;
   display: flex;

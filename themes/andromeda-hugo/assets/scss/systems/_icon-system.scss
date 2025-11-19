@@ -19,16 +19,17 @@
 /**
  * Base Icon Circle
  * Creates circular gradient background container
- * @param {string} $size - Circle size (sm: 40px, md: 56px, lg: 72px, xl: 96px)
+ * @param {string} $size - Circle size (sm: 32px, md: 48px, lg: 64px, xl: 84px)
  * @param {string} $variant - Color variant (primary, secondary, coral, etc.)
+ * NOTE: Aligned with _design-tokens.scss $icon-circle-* tokens
  */
 @mixin icon-circle($size: 'md', $variant: 'primary') {
-  // Size map
+  // Size map (aligned with design-tokens.scss)
   $sizes: (
-    'sm': 40px,
-    'md': 56px,
-    'lg': 72px,
-    'xl': 96px,
+    'sm': 32px,  // Matches $icon-circle-sm
+    'md': 48px,  // Matches $icon-circle-md
+    'lg': 64px,  // Matches $icon-circle-lg
+    'xl': 84px,  // Matches $icon-circle-xl
   );
 
   $circle-size: map-get($sizes, $size);

@@ -327,7 +327,7 @@ em, i {
 
 .card {
   border-radius: $card-border-radius;
-  border: 1px solid $gray-200;
+  /* border removed - v4.0 uses gradient glows instead */
   box-shadow: $card-shadow;
   transition: $card-transition;
   overflow: hidden;
@@ -337,7 +337,7 @@ em, i {
   &:hover {
     transform: translateY(-2px);  // Level 2: Small lift (design token rule)
     box-shadow: $card-shadow-hover;
-    border-color: $gray-300;
+    /* border-color removed - gradient glows instead */
   }
 
   // Card with layered background
@@ -349,15 +349,15 @@ em, i {
     );
   }
 
-  // Card with gradient background
+  // Card with gradient background (keep borders for these variants)
   &.card-gradient-primary {
     background: $gradient-primary-subtle;
-    border-color: $green-200;
+    border: 1px solid $green-200;
   }
 
   &.card-gradient-secondary {
     background: $gradient-secondary-subtle;
-    border-color: $terracotta-200;
+    border: 1px solid $terracotta-200;
   }
 }
 
@@ -1458,8 +1458,8 @@ h2, h3, h4, h5, h6,
   }
 
   .timeline-icon {
-    width: 64px;
-    height: 64px;
+    width: $icon-circle-lg;
+    height: $icon-circle-lg;
     border-radius: $radius-full; // 50%
     background: $gradient-primary; // Emerald gradient
     color: white;
@@ -1589,8 +1589,8 @@ h2, h3, h4, h5, h6,
     }
 
     .timeline-icon {
-      width: 48px;
-      height: 48px;
+      width: $icon-circle-md;
+      height: $icon-circle-md;
       font-size: 1.25rem;
 
       .timeline-number {
@@ -2209,8 +2209,8 @@ h2, h3, h4, h5, h6,
       padding: 1.5rem;
 
       .option-icon {
-        width: 64px;
-        height: 64px;
+        width: $icon-circle-lg;
+        height: $icon-circle-lg;
 
         i {
           font-size: 2rem;
