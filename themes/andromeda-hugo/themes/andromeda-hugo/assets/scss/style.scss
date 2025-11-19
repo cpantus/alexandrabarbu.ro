@@ -1,52 +1,10 @@
-// Color Variables
-{{ with site.Params.variables }}
-$white: {{.white | default "#ffffff"}};
-$black: {{.black | default "#000000"}};
-$light: {{.light | default "#FAFAFA"}};
-$color-primary: {{.color_primary | default "#FE6019"}};
-$border-color: {{.border_color | default "#ECECEC"}};
+/*
+========================================================================
+  STYLE ENTRY POINT - ITCSS Architecture
+  Nested theme SCSS file - imports main ITCSS architecture from parent
+========================================================================
+*/
 
-// Font Variables
-$font-size: {{.font_size | default "16px"}};
-$font-scale: {{.font_scale | default "1.25"}};
-$font-primary: '{{ replaceRE ":[ital,]*[ital@]*[wght@]*[0-9,;]+" "" .font_primary | default "Lato"}}', {{.font_primary_type | default "sans-serif"}};
-$font-secondary: '{{ replaceRE ":[ital,]*[ital@]*[wght@]*[0-9,;]+" "" .font_secondary | default "Lato"}}', {{.font_secondary_type | default "sans-serif"}};
-$font-icon: '{{.font_icon | default "Font Awesome 5 Free"}}';
-{{ end }}
-
-// Import design system tokens (motion, spacing, shadows, etc.)
-@import 'design-system';
-
-@import 'templates/bootstrap';
-
-@import 'preloader';
-
-@import 'mixins';
-
-@import 'typography';
-
-@import 'buttons';
-
-@import 'animations';
-
-@import 'common';
-
-@import 'templates/navigation';
-
-@import 'templates/main';
-
-@import 'notice';
-
-@import 'tabs';
-
-// @import 'image';
-
-@import 'gallery';
-
-@import 'toc';
-
-@import 'custom';
-
-// ITCSS Layer 7: Utilities (Bootstrap-compatible utility classes)
-// Highest specificity - utilities override everything
-@import '07-utilities/utilities';
+// Import ITCSS architecture from parent theme (NEW - all 20 BEM components + typography)
+// Path: themes/andromeda-hugo/themes/andromeda-hugo/assets/scss/ → themes/andromeda-hugo/assets/scss/
+@import '../../../../assets/scss/main-new';
