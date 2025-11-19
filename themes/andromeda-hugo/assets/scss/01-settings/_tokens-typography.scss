@@ -2,13 +2,19 @@
 // TYPOGRAPHY TOKENS
 // ==================================
 //
-// Layer: 01-settings (NO CSS output)
+// Layer: 01-settings (NO CSS output except for font @import)
 // Purpose: Font families, sizes, weights, line heights, icon sizes
 // Philosophy: Soft Hierarchy, Warm Professional
 //
 // Last Updated: 2025-11-19
 // Version: 2.0.0 (ITCSS Refactor - Phase 1)
 //
+
+// ----------------------------------
+// Google Fonts Import
+// ----------------------------------
+// Load Cormorant Garamond (headings) + Source Sans 3 (body)
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
 
 // ----------------------------------
 // Font Families

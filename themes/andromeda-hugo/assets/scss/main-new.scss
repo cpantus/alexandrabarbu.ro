@@ -47,11 +47,11 @@
 // CRITICAL: design-enhancements must be imported BEFORE components
 // because it contains mixins (staggered-entrance, etc.) used by BEM components
 //
-@import 'design-system';              // TODO Phase 2: Split into layers
+@import 'design-system-legacy';      // ✅ Refactored: Minimal backwards compatibility layer
 // @import 'systems/color-system';    // ✅ PHASE 2: Migrated to 02-tools/ + 03-generic/
 // @import 'systems/icon-system';     // ✅ PHASE 2: Migrated to 02-tools/
 // @import 'systems/card-system';     // ✅ PHASE 2: Migrated to 02-tools/
-@import 'design-enhancements';        // TODO Phase 2: Extract mixins to 02-tools/
+@import 'design-enhancements';        // TODO Phase 3: Extract mixins to 02-tools/
 
 // ==================================
 // LAYER 4: ELEMENTS (HTML Elements)
@@ -77,6 +77,13 @@
 //
 @import '06-components/components';
 
+// Component imports (TODO Phase 3: Convert to BEM, move to 06-components/)
+// NOTE: Most components now imported via 06-components/_components.scss (Phase 3 complete)
+// Remaining legacy imports (not yet BEM refactored):
+// MOVED BEFORE LAYER 7 to maintain ITCSS specificity order
+@import 'components/headings';
+@import 'components/contact-form-enhanced';
+
 // ==================================
 // LAYER 7: UTILITIES (Bootstrap-compatible)
 // ==================================
@@ -85,12 +92,6 @@
 // Phase 3: ✅ COMPLETE - Provides missing layout/typography utilities
 //
 @import '07-utilities/utilities';
-
-// Component imports (TODO Phase 3: Convert to BEM, move to 06-components/)
-// NOTE: Most components now imported via 06-components/_components.scss (Phase 3 complete)
-// Remaining legacy imports (not yet BEM refactored):
-@import 'components/headings';
-@import 'components/contact-form-enhanced';
 
 // CRITICAL: Nuclear Border Reset - MUST BE LAST IMPORT
 // TODO Phase 2: Eliminate need for this via default border policy in 04-elements/

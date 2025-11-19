@@ -5,17 +5,15 @@
 ========================================================================
 */
 
-/* Import Design Tokens - SINGLE SOURCE OF TRUTH */
+/* Import design tokens for color variables (this file is imported before ITCSS layers) */
 @import 'design-tokens';
 
 /*------------------------------------------------------------------
   # Typography System - Alexandra's Brand Fonts
-  # Poppins (Headlines) + Open Sans (Body) per brand guidelines
+  # Cormorant Garamond (Headlines) + Source Sans 3 (Body)
 -------------------------------------------------------------------*/
 
-/* Font Imports - Google Fonts (v4.1 Typography Upgrade) */
-/* Phase 2: Cormorant Garamond + Source Sans Pro (44/50 score, 1.7x improvement) */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
+/* Fonts loaded via @import in _tokens-typography.scss */
 
 /* Font Family Tokens - Literary, Thoughtful Aesthetic */
 $font-primary: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;  // Headlines - Literary, thoughtful, reflective
@@ -38,12 +36,12 @@ $text-6xl: 3.75rem;     // 60px
 $text-7xl: 4.5rem;      // 72px - Hero typography ≥100px for mobile-first, scales up
 $text-hero: clamp(4rem, 8vw, 7rem);  // 64px - 112px responsive hero
 
-/* Font Weights - Migrated to Design Tokens (Week 3 Refactor) */
+/* Font Weights - Using design token variables */
 /* Using design token naming for consistency */
 $weight-light: 300;          // DEPRECATED - Not used in design system
 $weight-normal: $font-weight-body;           // 400 - Body text only
-$weight-medium: $font-weight-heading;        // 500 - Standard headings (from design tokens)
-$weight-semibold: $font-weight-heading-bold; // 600 - Emphasized headings (from design tokens)
+$weight-medium: $font-weight-heading;        // 500 - Standard headings
+$weight-semibold: $font-weight-heading-bold; // 600 - Emphasized headings
 $weight-bold: 700;           // DEPRECATED - Use $weight-semibold (600) instead per design coherence rules
 $weight-extrabold: 800;      // DEPRECATED - Not used in design system
 

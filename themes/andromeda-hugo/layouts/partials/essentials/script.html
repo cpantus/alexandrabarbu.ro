@@ -5,7 +5,7 @@
 {{ $scripts := slice }}
 
 {{/* Add existing theme JavaScript files */}}
-{{ range (slice "js/values-compass-interactions.js" "js/stats-counter.js" "js/scroll-animations.js" "js/gsap-enhancements.js") }}
+{{ range (slice "js/vanilla-collapse.js" "js/vanilla-dropdown.js" "js/values-compass-interactions.js" "js/stats-counter.js" "js/scroll-animations.js" "js/gsap-enhancements.js") }}
   {{ $resource := resources.Get . }}
   {{ if $resource }}
     {{ $scripts = $scripts | append $resource }}
@@ -18,25 +18,7 @@
   <script crossorigin="anonymous" defer="defer" integrity="{{ $bundled.Data.Integrity }}" type="application/javascript">{{ $bundled.Content | safeJS }}</script>
 {{ end }}
 
-{{/* Font loading - only if configured */}}
-{{ $pf := site.Params.variables.font_primary }}
-{{ $sf := site.Params.variables.font_secondary }}
-{{ if or $pf $sf }}
-<script type="application/javascript">
-  if (typeof WebFont !== 'undefined') {
-    WebFont.load({
-      google: {
-        api: 'https://fonts.googleapis.com/css2',
-        families: ['{{$pf | default `Poppins:wght@300;400;600;700`}}{{if not $sf}}&display=swap{{end}}'{{with $sf}},'{{. | default `Open Sans:wght@300;400;600;700`}}&display=swap'{{end}}],
-        version: 2
-      },
-      active: () => {
-        sessionStorage.fontsLoaded = true
-      }
-    });
-  }
-</script>
-{{ end }}
+{{/* Font loading via CSS @import only (see _design-system.scss or _tokens-typography.scss) */}}
 
 {{/* Optional partials - only include if they exist */}}
 {{ with site.Params.pwa }}
