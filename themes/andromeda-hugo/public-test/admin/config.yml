@@ -1,0 +1,1031 @@
+# Sveltia CMS Configuration - With Built-in SEO Guidelines
+# Comprehensive hints and examples for non-technical users
+
+# Backend Configuration for Local Development
+backend:
+  name: github
+  repo: cpantus/alexandrabarbu.ro
+  branch: main
+# Media Management
+media_folder: "themes/andromeda-hugo/static/images/uploads"
+public_folder: "/images/uploads"
+
+# Local Development Settings
+site_url: "http://localhost:1313"
+display_url: "http://localhost:1313"
+logo_url: "/images/logo.png"
+
+# Publishing workflow
+publish_mode: editorial_workflow
+search: false
+
+# Language-Based Collections Structure
+collections:
+  # ===========================================
+  # 🇷🇴 ROMANIAN CONTENT (DEFAULT)
+  # ===========================================
+  - name: "romanian_content"
+    label: "🇷🇴 Conținut Română (RO)"
+    icon: "translate"
+    files:
+      # Homepage
+      - name: "homepage_ro"
+        label: "🏠 Pagina Principală"
+        file: "themes/andromeda-hugo/content/romanian/_index.md"
+        fields:
+          - label: "Banner"
+            name: "banner"
+            widget: "object"
+            collapsed: false
+            required: false
+            fields:
+              - { label: "Titlu", name: "title", widget: "string", required: false }
+              - { label: "Text Buton", name: "button", widget: "string", required: false }
+              - { label: "Link Buton", name: "button_link", widget: "string", required: false }
+              - { label: "Imagine", name: "image", widget: "image", required: false }
+          - label: "Caracteristici/Teste"
+            name: "features"
+            widget: "object"
+            collapsed: false
+            required: false
+            fields:
+              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+              - { label: "Titlu", name: "title", widget: "string", required: false }
+              - { label: "Descriere", name: "description", widget: "text", required: false }
+              - label: "Blocuri Caracteristici"
+                name: "features_blocks"
+                widget: "list"
+                required: false
+                label_singular: "Test/Caracteristică"
+                fields:
+                  - { label: "Iconiță", name: "icon", widget: "string", hint: "Exemplu: las la-lock", required: false }
+                  - { label: "Titlu", name: "title", widget: "string", required: false }
+                  - { label: "Conținut", name: "content", widget: "text", required: false }
+                  - { label: "Text Buton", name: "button", widget: "string", required: false }
+                  - { label: "Link Buton", name: "button_link", widget: "string", required: false }
+          - label: "Cum Funcționează"
+            name: "how_it_works"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Secțiune", name: "section", widget: "string", default: "how-it-works", required: false }
+              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true, required: false }
+          - label: "Video Intro"
+            name: "intro_video"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Titlu", name: "title", widget: "string", required: false }
+              - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+              - { label: "Descriere", name: "description", widget: "text", required: false }
+              - { label: "Thumbnail Video", name: "video_thumbnail", widget: "image", required: false }
+              - { label: "URL Video", name: "video_url", widget: "string", hint: "YouTube embed URL", required: false }
+          - label: "Carusel Branduri"
+            name: "brands_carousel"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: false, required: false }
+              - label: "Imagini Branduri"
+                name: "brand_images"
+                widget: "list"
+                required: false
+                label_singular: "Imagine Brand"
+                field: { label: "Cale Imagine", widget: "string" }
+          - label: "Testimoniale"
+            name: "testimonials"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+              - { label: "Titlu", name: "title", widget: "string", required: false }
+              - { label: "Descriere", name: "description", widget: "text", required: false }
+              - { label: "Imagine Stânga", name: "image_left", widget: "image", required: false }
+              - { label: "Imagine Dreapta", name: "image_right", widget: "image", required: false }
+              - label: "Lista Testimoniale"
+                name: "testimonials_quotes"
+                widget: "list"
+                required: false
+                label_singular: "Testimonial"
+                fields:
+                  - { label: "Citat", name: "quote", widget: "text", required: false }
+                  - { label: "Nume", name: "name", widget: "string", required: false }
+                  - { label: "Funcție", name: "designation", widget: "string", required: false }
+                  - { label: "Poză", name: "image", widget: "image", required: false }
+
+      # About Page - Enhanced for Complete Control
+      - name: "about_ro"
+        label: "👩‍⚕️ Despre Mine"
+        file: "themes/andromeda-hugo/content/romanian/about.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string", required: false }
+          - { label: "Layout", name: "layout", widget: "string", default: "about", required: false }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false, required: false }
+          - label: "Descriere SEO"
+            name: "description"
+            widget: "text"
+            required: false
+            hint: "📏 150-160 caractere | 🎯 Formula: [Credențiale] + [Specializări] + [Experiență] + [București] | 💡 Exemplu: 'Psiholog licențiat Alexandra Barbu, specialist în CBT, terapie de familie și tratamente psihedelice în București. 10+ ani experiență în vindecarea traumelor.' | 🔍 Include: psiholog licențiat, specialist CBT, experiență terapie"
+          - { label: "Imagine Profil", name: "image", widget: "image", required: false }
+          - { label: "Conținut Markdown", name: "body", widget: "markdown", required: false }
+          - label: "Cine Sunt"
+            name: "who_we_are"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Activează", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+              - { label: "Titlu", name: "title", widget: "string", required: false }
+              - { label: "Descriere", name: "description", widget: "text", required: false }
+              - { label: "Imagine", name: "image", widget: "image", required: false }
+
+      # Servicii Page
+      - name: "servicii_ro"
+        label: "🔬 Servicii Terapie"
+        file: "themes/andromeda-hugo/content/romanian/servicii.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Layout", name: "layout", widget: "string", default: "services" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "Descriere SEO"
+            name: "description"
+            widget: "text"
+            required: false
+            hint: "📏 150-160 caractere | 🎯 Formula: [Servicii terapie] + [Specializări] + [București] + [Programează] | 💡 Exemplu: 'Servicii terapie psihologică în București cu Alexandra Barbu. CBT, terapie de familie, tratamente psihedelice. Programează consultație acum.' | 🔍 Include: servicii terapie, psiholog București, CBT, programează"
+          - label: "Cum Funcționează"
+            name: "how_it_works"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true }
+              - label: "Lista Servicii"
+                name: "block"
+                widget: "list"
+                label_singular: "Serviciu"
+                fields:
+                  - { label: "Subtitlu", name: "subtitle", widget: "string" }
+                  - { label: "Titlu", name: "title", widget: "string" }
+                  - { label: "Descriere", name: "description", widget: "text" }
+                  - { label: "Imagine", name: "image", widget: "image" }
+          - label: "Prețuri"
+            name: "pricing"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true }
+          - { label: "Ofertă Specială", name: "offer", widget: "string", required: false }
+          - { label: "Toggle Lunar/Anual", name: "monthly_yearly_toggle", widget: "select", options: ["monthly", "yearly", "toggle"], default: "toggle" }
+          - label: "Carduri Prețuri"
+            name: "pricing_card"
+            widget: "list"
+            collapsed: false
+            label_singular: "Card Preț"
+            fields:
+              - { label: "Nume Serviciu", name: "name", widget: "string" }
+              - { label: "Descriere", name: "content", widget: "text" }
+              - { label: "Monedă", name: "currency", widget: "string", default: "RON" }
+              - { label: "Preț Lunar", name: "monthly_price", widget: "string" }
+              - { label: "Preț Anual", name: "yearly_price", widget: "string" }
+              - { label: "Card Evidențiat", name: "featured", widget: "boolean", default: false }
+              - { label: "Text Buton", name: "button_label", widget: "string" }
+              - { label: "Link Buton", name: "button_link", widget: "string" }
+              - label: "Lista Servicii"
+                name: "services"
+                widget: "list"
+                field: { label: "Serviciu", widget: "string" }
+          - label: "Video Cum Funcționează"
+            name: "how_it_works_video"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Activează Secțiunea", name: "enable", widget: "boolean", default: true }
+              - { label: "Subtitlu", name: "subtitle", widget: "string" }
+              - { label: "Titlu", name: "title", widget: "string" }
+              - { label: "Descriere", name: "description", widget: "text" }
+              - { label: "URL Video", name: "video_url", widget: "string", hint: "YouTube embed URL" }
+              - { label: "Thumbnail Video", name: "video_thumbnail", widget: "image" }
+
+      # Contact Page
+      - name: "contact_ro"
+        label: "📞 Contact"
+        file: "themes/andromeda-hugo/content/romanian/contact.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "Descriere SEO"
+            name: "description"
+            widget: "text"
+            hint: "📏 150-160 caractere | 🎯 Formula: [Contact] + [Servicii] + [București] + [Răspuns rapid] | 💡 Exemplu: 'Contactează psiholog Alexandra Barbu pentru programări terapie în București. Consultații CBT, terapie de familie, tratamente psihedelice. Răspuns în 24h.' | 🔍 Include: contact psiholog, programări terapie București, răspuns rapid"
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+      # Test/Resurse Page
+      - name: "test_ro"
+        label: "📋 Teste/Resurse"
+        file: "themes/andromeda-hugo/content/romanian/test.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "Descriere SEO"
+            name: "description"
+            widget: "text"
+            hint: "📏 150-160 caractere | 🎯 Formula: [Teste gratuite] + [Tipuri evaluări] + [Validat de] + [București] | 💡 Exemplu: 'Teste psihologice gratuite și resurse pentru sănătate mintală. Evaluări ADHD, anxietate, depresie. Instrumente validate de psiholog licențiat din București.' | 🔍 Include: teste psihologice gratuite, evaluări ADHD, anxietate, depresie"
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+      # FAQ Page
+      - name: "faq_ro"
+        label: "❓ Întrebări Frecvente"
+        file: "themes/andromeda-hugo/content/romanian/intrebari.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "Descriere SEO"
+            name: "description"
+            widget: "text"
+            hint: "📏 150-160 caractere | 🎯 Formula: [Întrebări] + [Despre ce] + [Răspunsuri de la] + [Credențiale] | 💡 Exemplu: 'Întrebări frecvente despre terapie răspunse de psihologul licențiat Alexandra Barbu. Află despre CBT, costuri ședințe, durata tratamentului și beneficiile terapiei.' | 🔍 Include: întrebări terapie, costuri ședințe, durata tratament"
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+      # CBT Therapy
+      - name: "cbt_ro"
+        label: "🧠 Terapie CBT"
+        file: "themes/andromeda-hugo/content/romanian/cbt.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "Descriere SEO"
+            name: "description"
+            widget: "text"
+            hint: "📏 150-160 caractere | 🎯 Formula: [Terapie CBT] + [Condiții tratate] + [București] + [Detalii ședință] | 💡 Exemplu: 'Terapie cognitiv-comportamentală (CBT) în București. Tratament eficient pentru anxietate, depresie și tulburări de comportament. Ședințe de 50 min, 350 RON.' | 🔍 Include: CBT București, anxietate tratament, depresie terapie"
+          - { label: "Preț", name: "price", widget: "string", required: false, hint: "ex: '350 RON/ședință'" }
+          - { label: "Durată", name: "duration", widget: "string", required: false, hint: "ex: '50 minute'" }
+          - { label: "Imagine", name: "image", widget: "image", required: false }
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+      # Family Therapy
+      - name: "family_ro"
+        label: "👨‍👩‍👧‍👦 Terapie de Familie"
+        file: "themes/andromeda-hugo/content/romanian/familie.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "Descriere SEO"
+            name: "description"
+            widget: "text"
+            hint: "📏 150-160 caractere | 🎯 Formula: [Terapie familie] + [Probleme rezolvate] + [București] + [Beneficii] | 💡 Exemplu: 'Terapie de familie în București cu psiholog licențiat. Rezolvă conflicte, îmbunătățește comunicarea, construiește relații sănătoase. Ședințe pentru cupluri și familii.' | 🔍 Include: terapie familie București, conflicte familie, comunicare familie"
+          - { label: "Preț", name: "price", widget: "string", required: false }
+          - { label: "Durată", name: "duration", widget: "string", required: false }
+          - { label: "Imagine", name: "image", widget: "image", required: false }
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+      # Psychedelic Therapy
+      - name: "psychedelic_ro"
+        label: "🌿 Terapie Psihedelică"
+        file: "themes/andromeda-hugo/content/romanian/psihedelice.md"
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "Descriere SEO"
+            name: "description"
+            widget: "text"
+            hint: "📏 150-160 caractere | 🎯 Formula: [Terapie psihedelică] + [Condiții tratate] + [Siguranță] + [București] | 💡 Exemplu: 'Terapie asistată psihedelică în București pentru trauma, depresie și PTSD. Tratament inovator și sigur cu psiholog licențiat. Sesiuni supervizate profesional.' | 🔍 Include: terapie psihedelică București, trauma PTSD, tratament inovator"
+          - { label: "Preț", name: "price", widget: "string", required: false }
+          - { label: "Durată", name: "duration", widget: "string", required: false }
+          - { label: "Imagine", name: "image", widget: "image", required: false }
+          - { label: "Conținut", name: "body", widget: "markdown" }
+
+  # Romanian Blog Posts
+  - name: "blog_ro"
+    label: "🇷🇴 📰 Blog Română"
+    icon: "article"
+    folder: "themes/andromeda-hugo/content/romanian/blog"
+    create: true
+    slug: "{{slug}}"
+    filter: { field: "draft", value: false }
+    fields:
+      - { label: "Titlu", name: "title", widget: "string" }
+      - { label: "Data", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Imagine Principală", name: "image", widget: "image", required: false }
+      - { label: "Autor", name: "author", widget: "string", required: false }
+      - label: "Descriere SEO"
+        name: "description"
+        widget: "text"
+        required: false
+        hint: "📏 150-160 caractere | 🎯 Formula: [Învață] + [Subiect] + [De la expert] + [Beneficiu] | 💡 Exemplu: 'Învață tehnici CBT eficiente pentru gestionarea anxietății acasă. Strategii bazate pe dovezi de la terapeut licențiat din București. Citește sfaturi practice acum.' | 🔍 Include: tehnici CBT, anxietate managment, terapeut București"
+      - { label: "Etichete", name: "tags", widget: "list", required: false }
+      - { label: "Categorii", name: "categories", widget: "list", required: false }
+      - { label: "Conținut", name: "body", widget: "markdown" }
+
+
+
+  # Romanian Case Studies
+  - name: "case_studies_ro"
+    label: "🇷🇴 📋 Studii de Caz Română"
+    icon: "clinical_notes"
+    folder: "themes/andromeda-hugo/content/romanian/case-studies"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titlu Caz", name: "title", widget: "string", hint: "Titlu anonimizat" }
+      - { label: "Data", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Tip Client", name: "client_type", widget: "select", options: ["Adult", "Copil/Adolescent", "Familie", "Cuplu", "Grup"] }
+      - { label: "Metodă Terapeutică", name: "therapy_method", widget: "string" }
+      - { label: "Durată Tratament", name: "duration", widget: "string" }
+      - label: "Descriere SEO"
+        name: "description"
+        widget: "text"
+        hint: "📏 150-160 caractere | 🎯 Formula: [Studiu caz] + [Metodă] + [Rezultat] + [Anonim] | 💡 Exemplu: 'Studiu de caz CBT pentru anxietate la adult. Tratament de 6 luni cu rezultate excelente. Caz anonimizat de psiholog licențiat din București.' | ⚠️ IMPORTANT: Asigură anonimitatea completă"
+      - { label: "Conținut Caz", name: "body", widget: "markdown", hint: "Asigurați-vă anonimizarea clientului" }
+
+  # ===========================================
+  # 🇺🇸 ENGLISH CONTENT
+  # ===========================================
+  - name: "english_content"
+    label: "🇺🇸 English Content (EN)"
+    icon: "language"
+    files:
+      # Homepage
+      - name: "homepage_en"
+        label: "🏠 Homepage"
+        file: "themes/andromeda-hugo/content/english/_index.md"
+        fields:
+          - label: "Banner"
+            name: "banner"
+            widget: "object"
+            collapsed: false
+            required: false
+            fields:
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Button Text", name: "button", widget: "string", required: false }
+              - { label: "Button Link", name: "button_link", widget: "string", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+          - label: "Features/Tests"
+            name: "features"
+            widget: "object"
+            collapsed: false
+            required: false
+            fields:
+              - { label: "Enable Section", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - label: "Feature Blocks"
+                name: "features_blocks"
+                widget: "list"
+                required: false
+                label_singular: "Test/Feature"
+                fields:
+                  - { label: "Icon", name: "icon", widget: "string", hint: "Example: las la-lock", required: false }
+                  - { label: "Title", name: "title", widget: "string", required: false }
+                  - { label: "Content", name: "content", widget: "text", required: false }
+                  - { label: "Button Text", name: "button", widget: "string", required: false }
+                  - { label: "Button Link", name: "button_link", widget: "string", required: false }
+          - label: "How It Works"
+            name: "how_it_works"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Section", name: "section", widget: "string", default: "how-it-works", required: false }
+              - { label: "Enable Section", name: "enable", widget: "boolean", default: true, required: false }
+          - label: "Intro Video"
+            name: "intro_video"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Enable Section", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Video Thumbnail", name: "video_thumbnail", widget: "image", required: false }
+              - { label: "Video URL", name: "video_url", widget: "string", hint: "YouTube embed URL", required: false }
+          - label: "Brands Carousel"
+            name: "brands_carousel"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Enable Section", name: "enable", widget: "boolean", default: false, required: false }
+              - label: "Brand Images"
+                name: "brand_images"
+                widget: "list"
+                required: false
+                label_singular: "Brand Image"
+                field: { label: "Image Path", widget: "string" }
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Enable Section", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Left Image", name: "image_left", widget: "image", required: false }
+              - { label: "Right Image", name: "image_right", widget: "image", required: false }
+              - label: "Testimonials List"
+                name: "testimonials_quotes"
+                widget: "list"
+                required: false
+                label_singular: "Testimonial"
+                fields:
+                  - { label: "Quote", name: "quote", widget: "text", required: false }
+                  - { label: "Name", name: "name", widget: "string", required: false }
+                  - { label: "Designation", name: "designation", widget: "string", required: false }
+                  - { label: "Photo", name: "image", widget: "image", required: false }
+
+      # About Page - Enhanced for Complete Control
+      - name: "about_en"
+        label: "👩‍⚕️ About Me"
+        file: "themes/andromeda-hugo/content/english/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Layout", name: "layout", widget: "string", default: "about", required: false }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false, required: false }
+          - label: "SEO Description"
+            name: "description"
+            widget: "text"
+            required: false
+            hint: "📏 150-160 characters | 🎯 Formula: [Credentials] + [Specializations] + [Experience] + [Bucharest] | 💡 Example: 'Licensed therapist Alexandra Barbu specializes in CBT, family therapy, and psychedelic-assisted treatment in Bucharest. 10+ years experience helping clients heal.' | 🔍 Include: licensed therapist, CBT specialist, Bucharest therapy"
+          - { label: "Profile Image", name: "image", widget: "image", required: false }
+          - { label: "Markdown Content", name: "body", widget: "markdown", required: false }
+          - label: "Who We Are"
+            name: "who_we_are"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Enable", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+          - label: "What We Do"
+            name: "what_we_do"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Enable", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - label: "Service Blocks"
+                name: "block"
+                widget: "list"
+                required: false
+                label_singular: "Service Block"
+                fields:
+                  - { label: "Title", name: "title", widget: "string", required: false }
+                  - { label: "Content", name: "content", widget: "text", required: false }
+          - label: "Our Mission"
+            name: "our_mission"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Enable", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+          - label: "About Video"
+            name: "about_video"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Enable", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Video URL", name: "video_url", widget: "string", hint: "YouTube embed URL", required: false }
+              - { label: "Video Thumbnail", name: "video_thumbnail", widget: "image", required: false }
+          - label: "Brands Carousel"
+            name: "brands_carousel"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Enable", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Section", name: "section", widget: "string", default: "/", hint: "Brand images reference", required: false }
+          - label: "Our Team"
+            name: "our_team"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Enable", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - label: "Team Members"
+                name: "team"
+                widget: "list"
+                required: false
+                label_singular: "Team Member"
+                fields:
+                  - { label: "Name", name: "name", widget: "string", required: false }
+                  - { label: "Photo", name: "image", widget: "image", required: false }
+                  - { label: "Position", name: "designation", widget: "string", required: false }
+          - label: "Our Office"
+            name: "our_office"
+            widget: "object"
+            collapsed: true
+            required: false
+            fields:
+              - { label: "Enable", name: "enable", widget: "boolean", default: true, required: false }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - label: "Office Locations"
+                name: "office_locations"
+                widget: "list"
+                required: false
+                label_singular: "Office Location"
+                fields:
+                  - { label: "City", name: "city", widget: "string", required: false }
+                  - { label: "Country Flag", name: "country_flag", widget: "image", required: false }
+                  - { label: "Address Line 1", name: "address_line_one", widget: "string", required: false }
+                  - { label: "Address Line 2", name: "address_line_two", widget: "string", required: false }
+
+      # Contact Page
+      - name: "contact_en"
+        label: "📞 Contact"
+        file: "themes/andromeda-hugo/content/english/contact.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "SEO Description"
+            name: "description"
+            widget: "text"
+            hint: "📏 150-160 characters | 🎯 Formula: [Contact] + [Services] + [Bucharest] + [Quick response] | 💡 Example: 'Contact psychologist Alexandra Barbu for therapy appointments in Bucharest. CBT consultations, family therapy, psychedelic treatments. 24h response time.' | 🔍 Include: contact psychologist, therapy appointments Bucharest, quick response"
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      # Tests/Resources Page
+      - name: "tests_en"
+        label: "📋 Tests/Resources"
+        file: "themes/andromeda-hugo/content/english/tests.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "SEO Description"
+            name: "description"
+            widget: "text"
+            hint: "📏 150-160 characters | 🎯 Formula: [Free tests] + [Assessment types] + [Validated by] + [Bucharest] | 💡 Example: 'Free psychological tests and mental health resources. ADHD, anxiety, depression assessments. Validated tools by licensed psychologist in Bucharest.' | 🔍 Include: free psychological tests, ADHD assessment, anxiety depression tests"
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      # FAQ Page
+      - name: "faq_en"
+        label: "❓ FAQ"
+        file: "themes/andromeda-hugo/content/english/faq.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "SEO Description"
+            name: "description"
+            widget: "text"
+            hint: "📏 150-160 characters | 🎯 Formula: [Questions] + [About what] + [Answered by] + [Credentials] | 💡 Example: 'Common therapy questions answered by licensed psychologist Alexandra Barbu. Learn about CBT, session costs, treatment duration, and therapy benefits in Bucharest.' | 🔍 Include: therapy questions, session costs, treatment duration"
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      # Services Page - English (Complete Management)
+      - name: "services_en"
+        label: "🔬 Services Therapy"
+        file: "themes/andromeda-hugo/content/english/services.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Layout", name: "layout", widget: "string", default: "services" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "SEO Description"
+            name: "description"
+            widget: "text"
+            required: false
+            hint: "📏 150-160 characters | 🎯 Formula: [Therapy services] + [Specializations] + [Bucharest] + [Book now] | 💡 Example: 'Professional therapy services in Bucharest with Alexandra Barbu. CBT, family therapy, psychedelic treatments. Book your consultation today.' | 🔍 Include: therapy services, psychologist Bucharest, CBT, book consultation"
+          - label: "How It Works"
+            name: "how_it_works"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Enable Section", name: "enable", widget: "boolean", default: true }
+              - label: "Services List"
+                name: "block"
+                widget: "list"
+                label_singular: "Service"
+                fields:
+                  - { label: "Subtitle", name: "subtitle", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - { label: "Image", name: "image", widget: "image" }
+          - label: "Pricing"
+            name: "pricing"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Enable Section", name: "enable", widget: "boolean", default: true }
+          - { label: "Special Offer", name: "offer", widget: "string", required: false }
+          - { label: "Monthly/Yearly Toggle", name: "monthly_yearly_toggle", widget: "select", options: ["monthly", "yearly", "toggle"], default: "toggle" }
+          - label: "Pricing Cards"
+            name: "pricing_card"
+            widget: "list"
+            collapsed: false
+            label_singular: "Pricing Card"
+            fields:
+              - { label: "Service Name", name: "name", widget: "string" }
+              - { label: "Description", name: "content", widget: "text" }
+              - { label: "Currency", name: "currency", widget: "string", default: "$" }
+              - { label: "Monthly Price", name: "monthly_price", widget: "string" }
+              - { label: "Yearly Price", name: "yearly_price", widget: "string" }
+              - { label: "Featured Card", name: "featured", widget: "boolean", default: false }
+              - { label: "Button Text", name: "button_label", widget: "string" }
+              - { label: "Button Link", name: "button_link", widget: "string" }
+              - label: "Services List"
+                name: "services"
+                widget: "list"
+                field: { label: "Service", widget: "string" }
+          - label: "How It Works Video"
+            name: "how_it_works_video"
+            widget: "object"
+            collapsed: false
+            fields:
+              - { label: "Enable Section", name: "enable", widget: "boolean", default: true }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Video URL", name: "video_url", widget: "string", hint: "YouTube embed URL" }
+              - { label: "Video Thumbnail", name: "video_thumbnail", widget: "image" }
+
+      # CBT Therapy
+      - name: "cbt_en"
+        label: "🧠 CBT Therapy"
+        file: "themes/andromeda-hugo/content/english/cbt.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "SEO Description"
+            name: "description"
+            widget: "text"
+            hint: "📏 150-160 characters | 🎯 Formula: [CBT therapy] + [Conditions treated] + [Bucharest] + [Session details] | 💡 Example: 'Cognitive Behavioral Therapy (CBT) in Bucharest. Effective treatment for anxiety, depression, and behavioral disorders. 50-min sessions, €80.' | 🔍 Include: CBT Bucharest, anxiety treatment, depression therapy"
+          - { label: "Price", name: "price", widget: "string", required: false, hint: "e.g. '350 RON/session'" }
+          - { label: "Duration", name: "duration", widget: "string", required: false, hint: "e.g. '50 minutes'" }
+          - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      # Family Therapy
+      - name: "family_en"
+        label: "👨‍👩‍👧‍👦 Family Therapy"
+        file: "themes/andromeda-hugo/content/english/family-therapy.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "SEO Description"
+            name: "description"
+            widget: "text"
+            hint: "📏 150-160 characters | 🎯 Formula: [Family therapy] + [Issues resolved] + [Bucharest] + [Benefits] | 💡 Example: 'Family therapy in Bucharest with licensed psychologist. Resolve conflicts, improve communication, build healthy relationships. Sessions for couples and families.' | 🔍 Include: family therapy Bucharest, family conflicts, improve communication"
+          - { label: "Price", name: "price", widget: "string", required: false }
+          - { label: "Duration", name: "duration", widget: "string", required: false }
+          - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      # Psychedelic Therapy
+      - name: "psychedelic_en"
+        label: "🌿 Psychedelic Therapy"
+        file: "themes/andromeda-hugo/content/english/psychedelic-therapy.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "SEO Description"
+            name: "description"
+            widget: "text"
+            hint: "📏 150-160 characters | 🎯 Formula: [Psychedelic therapy] + [Conditions treated] + [Safety] + [Bucharest] | 💡 Example: 'Psychedelic-assisted therapy in Bucharest for trauma, depression, and PTSD. Innovative and safe treatment with licensed psychologist. Professionally supervised sessions.' | 🔍 Include: psychedelic therapy Bucharest, trauma PTSD, innovative treatment"
+          - { label: "Price", name: "price", widget: "string", required: false }
+          - { label: "Duration", name: "duration", widget: "string", required: false }
+          - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      # Articles/Resources Page
+      - name: "articles_en"
+        label: "📚 Articles & Resources"
+        file: "themes/andromeda-hugo/content/english/articles.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - { label: "Layout", name: "layout", widget: "string", default: "about" }
+          - label: "SEO Description"
+            name: "description"
+            widget: "text"
+            required: false
+            hint: "📏 150-160 characters | 🎯 Formula: [Articles] + [Mental health] + [Expert] + [Resources] | 💡 Example: 'Professional articles and mental health resources from licensed psychologist in Bucharest. Evidence-based insights, research, and practical guides for wellbeing.' | 🔍 Include: mental health articles, psychology resources, expert insights"
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      # Pricing Page
+      - name: "pricing_en"
+        label: "💰 Pricing"
+        file: "themes/andromeda-hugo/content/english/pricing.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Layout", name: "layout", widget: "string", default: "pricing" }
+          - { label: "Draft", name: "draft", widget: "boolean", default: false }
+          - label: "SEO Description"
+            name: "description"
+            widget: "text"
+            required: false
+            hint: "📏 150-160 characters | 🎯 Formula: [Therapy pricing] + [Transparent rates] + [Bucharest] + [Value] | 💡 Example: 'Transparent therapy pricing in Bucharest. Affordable rates for CBT, family therapy, and psychedelic treatments. Quality mental healthcare that fits your budget.' | 🔍 Include: therapy pricing, affordable rates, mental healthcare costs"
+          - { label: "Special Offer", name: "offer", widget: "string", required: false }
+          - { label: "Monthly/Yearly Toggle", name: "monthly_yearly_toggle", widget: "select", options: ["monthly", "yearly", "toggle"], default: "toggle" }
+          - label: "Pricing Cards"
+            name: "pricing_card"
+            widget: "list"
+            collapsed: false
+            label_singular: "Pricing Option"
+            fields:
+              - { label: "Service Name", name: "name", widget: "string" }
+              - { label: "Description", name: "content", widget: "text" }
+              - { label: "Currency", name: "currency", widget: "string", default: "$" }
+              - { label: "Monthly Price", name: "monthly_price", widget: "string" }
+              - { label: "Yearly Price", name: "yearly_price", widget: "string" }
+              - { label: "Featured Option", name: "featured", widget: "boolean", default: false }
+              - { label: "Button Text", name: "button_label", widget: "string" }
+              - { label: "Button Link", name: "button_link", widget: "string" }
+              - label: "Included Services"
+                name: "services"
+                widget: "list"
+                field: { label: "Service", widget: "string" }
+
+  # English Blog Posts
+  - name: "blog_en"
+    label: "🇺🇸 📰 Blog English"
+    icon: "article"
+    folder: "themes/andromeda-hugo/content/english/blog"
+    create: true
+    slug: "{{slug}}"
+    filter: { field: "draft", value: false }
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Author", name: "author", widget: "string", required: false }
+      - label: "SEO Description"
+        name: "description"
+        widget: "text"
+        required: false
+        hint: "📏 150-160 characters | 🎯 Formula: [Learn] + [Topic] + [From expert] + [Benefit] | 💡 Example: 'Learn effective CBT techniques for managing anxiety at home. Evidence-based strategies from a licensed therapist in Bucharest. Read practical tips now.' | 🔍 Include: CBT techniques, anxiety management, therapist Bucharest"
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Categories", name: "categories", widget: "list", required: false }
+      - { label: "Content", name: "body", widget: "markdown" }
+
+
+
+  # English Case Studies
+  - name: "case_studies_en"
+    label: "🇺🇸 📋 Case Studies English"
+    icon: "clinical_notes"
+    folder: "themes/andromeda-hugo/content/english/case-studies"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Case Title", name: "title", widget: "string", hint: "Anonymized case title" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Client Type", name: "client_type", widget: "select", options: ["Adult", "Child/Adolescent", "Family", "Couple", "Group"] }
+      - { label: "Therapy Method", name: "therapy_method", widget: "string" }
+      - { label: "Treatment Duration", name: "duration", widget: "string" }
+      - label: "SEO Description"
+        name: "description"
+        widget: "text"
+        hint: "📏 150-160 characters | 🎯 Formula: [Case study] + [Method] + [Outcome] + [Anonymous] | 💡 Example: 'CBT case study for adult anxiety treatment. 6-month therapy with excellent results. Anonymized case by licensed psychologist in Bucharest.' | ⚠️ IMPORTANT: Ensure complete anonymity"
+      - { label: "Case Content", name: "body", widget: "markdown", hint: "Ensure client anonymity" }
+
+  # ===========================================
+  # 🌐 SITE CONFIGURATION
+  # ===========================================
+
+  # Footer Configuration
+  - name: "footer_config"
+    label: "🦶 Footer Configuration"
+    icon: "footer"
+    files:
+      - name: "footer_settings"
+        label: "Footer Settings"
+        file: "themes/andromeda-hugo/config/_default/params.toml"
+        fields:
+          - label: "Footer Information"
+            name: "footer_info"
+            widget: "string"
+            hint: "Short description text in footer"
+            default: "Professional psychological therapy services"
+          - label: "Contact Information"
+            name: "contact_info"
+            widget: "object"
+            fields:
+              - label: "Address"
+                name: "address"
+                widget: "string"
+                hint: "Practice location"
+                default: "București, România"
+              - label: "Phone Numbers"
+                name: "phone"
+                widget: "list"
+                field: { label: "Phone", widget: "string" }
+                hint: "List of contact phone numbers"
+              - label: "Email Addresses"
+                name: "email"
+                widget: "list"
+                field: { label: "Email", widget: "string" }
+                hint: "List of contact email addresses"
+
+  # Social Media Configuration
+  - name: "social_media"
+    label: "📱 Social Media Links"
+    icon: "share"
+    files:
+      - name: "social_settings"
+        label: "Social Media Settings"
+        file: "themes/andromeda-hugo/data/social.yml"
+        fields:
+          - label: "Facebook"
+            name: "facebook"
+            widget: "string"
+            required: false
+            hint: "Full Facebook page URL (e.g., https://facebook.com/yourpage)"
+          - label: "Instagram"
+            name: "instagram"
+            widget: "string"
+            required: false
+            hint: "Full Instagram profile URL (e.g., https://instagram.com/yourprofile)"
+          - label: "TikTok"
+            name: "tiktok"
+            widget: "string"
+            required: false
+            hint: "Full TikTok profile URL (e.g., https://tiktok.com/@yourprofile)"
+          - label: "YouTube"
+            name: "youtube"
+            widget: "string"
+            required: false
+            hint: "Full YouTube channel URL (e.g., https://youtube.com/yourchannel)"
+          - label: "LinkedIn"
+            name: "linkedin"
+            widget: "string"
+            required: false
+            hint: "Full LinkedIn profile URL (e.g., https://linkedin.com/in/yourprofile)"
+          - label: "Twitter"
+            name: "twitter"
+            widget: "string"
+            required: false
+            hint: "Full Twitter profile URL (e.g., https://twitter.com/yourprofile)"
+
+  # SEO & Analytics Management (Consolidated)
+  - name: "seo_analytics"
+    label: "🔍 SEO & Analytics"
+    icon: "search_insights"
+    files:
+      # SEO Metadata & Most Analytics
+      - name: "seo_metadata_config"
+        label: "SEO Metadata & Site Settings"
+        file: "themes/andromeda-hugo/config/_default/params.toml"
+        fields:
+          - label: "Website Metadata"
+            name: "metadata"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Global Keywords"
+                name: "keywords"
+                widget: "list"
+                field: { label: "Keyword", widget: "string" }
+                hint: "Main keywords for the entire website"
+              - label: "Global Description"
+                name: "description"
+                widget: "text"
+                hint: "Default meta description for the website (150-160 characters)"
+              - label: "Author"
+                name: "author"
+                widget: "string"
+                hint: "Website author name"
+              - label: "Open Graph Image"
+                name: "image"
+                widget: "image"
+                hint: "Default social sharing image (1200x630px recommended)"
+          - label: "Site Verifications"
+            name: "site_verification"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Google Search Console"
+                name: "google"
+                widget: "string"
+                required: false
+                hint: "Google Search Console verification code"
+              - label: "Bing Webmaster Tools"
+                name: "bing"
+                widget: "string"
+                required: false
+                hint: "Bing verification code"
+              - label: "Baidu Webmaster"
+                name: "baidu"
+                widget: "string"
+                required: false
+                hint: "Baidu verification code"
+              - label: "Facebook Domain Verification"
+                name: "facebook"
+                widget: "string"
+                required: false
+                hint: "Facebook domain verification code"
+          - label: "Alternative Analytics Platforms"
+            name: "analytics_other"
+            widget: "object"
+            collapsed: true
+            fields:
+              - label: "Matomo Analytics"
+                name: "matomo"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - label: "Enable Matomo"
+                    name: "enable"
+                    widget: "boolean"
+                    default: false
+                  - label: "Matomo URL"
+                    name: "url"
+                    widget: "string"
+                    required: false
+                    hint: "Your Matomo instance URL"
+                  - label: "Site ID"
+                    name: "id"
+                    widget: "string"
+                    required: false
+                    hint: "Your Matomo site ID"
+              - label: "Baidu Analytics"
+                name: "baidu"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - label: "Enable Baidu"
+                    name: "enable"
+                    widget: "boolean"
+                    default: false
+                  - label: "Analytics ID"
+                    name: "analytics_id"
+                    widget: "string"
+                    required: false
+                    hint: "Baidu Analytics ID"
+              - label: "Plausible Analytics"
+                name: "plausible"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - label: "Enable Plausible"
+                    name: "enable"
+                    widget: "boolean"
+                    default: false
+                  - label: "Domain"
+                    name: "domain"
+                    widget: "string"
+                    required: false
+                    hint: "Your domain for Plausible (e.g., alexandrabarbu.ro)"
+              - label: "Counter Analytics"
+                name: "counter"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - label: "Enable Counter"
+                    name: "enable"
+                    widget: "boolean"
+                    default: false
+                  - label: "Username"
+                    name: "username"
+                    widget: "string"
+                    required: false
+                    hint: "Your counter.dev username"
+
+      # Google Analytics (Separate file due to Hugo structure)
+      - name: "google_analytics_config"
+        label: "Google Analytics Settings"
+        file: "themes/andromeda-hugo/hugo.toml"
+        fields:
+          - label: "Google Analytics"
+            name: "services"
+            widget: "object"
+            collapsed: false
+            fields:
+              - label: "Google Analytics"
+                name: "googleAnalytics"
+                widget: "object"
+                collapsed: false
+                fields:
+                  - label: "Analytics ID"
+                    name: "ID"
+                    widget: "string"
+                    required: false
+                    hint: "Google Analytics 4 measurement ID (G-XXXXXXXXXX) or Universal Analytics (UA-XXXXXXX-X)"

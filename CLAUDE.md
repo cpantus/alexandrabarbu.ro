@@ -6,7 +6,7 @@
 
 ## CRITICAL Rules
 
-1. **Run Hugo from theme directory**: `cd themes/andromeda-hugo && hugo server`
+1. **Run Hugo from project root**: `hugo server` (not from theme directory)
 2. **Preserve multilingual**: Maintain RO (root path) + EN (`/en/`) content parity
 3. **Flexible layout only**: Pages = Header + Sections (2-7) + Footer. Use 34 section types.
 4. **Reuse components**: 5 atoms → 21 molecules → 2 organisms → 34 sections
@@ -190,11 +190,10 @@ hugo new content/landing/promo.md --kind landing-page
 ## Development Commands
 
 ```bash
-cd themes/andromeda-hugo               # MUST run from theme directory
-hugo server --buildDrafts              # Dev server
+hugo server --buildDrafts              # Dev server (run from project root)
 hugo --gc --minify                     # Production build
 hugo --templateMetrics                 # Performance check
-../../scripts/test-components.sh       # Verify 48 components
+scripts/test-components.sh             # Verify 48 components
 ```
 
 ---

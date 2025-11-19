@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Alexandra Barbu - Content Manager</title>
+  <style>
+    [data-slate-editor] {
+      -webkit-user-modify: read-write !important;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="loading" class="loading">Loading Alexandra Barbu CMS...</div>
+  
+  <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+  <script>
+    // Determine which config to load based on hostname
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const configPath = isLocal ? '/admin/config.yml' : '/admin/config.production.yml';
+    
+    // Load the appropriate configuration
+    console.log(`Loading ${isLocal ? 'local' : 'production'} CMS configuration...`);
+    
+    // Hide loading message once CMS loads
+    if (window.CMS) {
+      document.getElementById('loading').style.display = 'none';
+    }
+    
+    // Add custom CSS for better Romanian language support
+    window.CMS.registerEventListener('mounted', () => {
+      console.log('CMS mounted successfully');
+      document.getElementById('loading').style.display = 'none';
+    });
+  </script>
+</body>
+</html>
