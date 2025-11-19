@@ -1,0 +1,10 @@
+{{- $type := .Get "type" | default "info" -}}
+{{- $icon := .Get "icon" | default "" -}}
+{{- $content := .Inner | markdownify -}}
+
+<div class="notice notice-{{ $type }}" role="alert">
+  {{- if $icon }}<i class="{{ $icon }}"></i>{{ end -}}
+  <div class="notice-content">
+    {{- $content -}}
+  </div>
+</div>

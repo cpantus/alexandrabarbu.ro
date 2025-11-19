@@ -1,0 +1,4 @@
+{{- $id := .Get "id" | default (printf "tabs-%d" (add 1 (math.Rand))) -}}
+<div class="tabs" id="{{ $id }}">
+  {{- .Inner -}}
+</div>

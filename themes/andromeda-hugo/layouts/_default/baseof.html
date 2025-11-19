@@ -51,7 +51,6 @@
     {{ if hugo.IsProduction }}
       {{ partialCached "preloader.html" . "global-preloader" }}
       {{ partialCached "essentials/header.html" . .Language }}
-      {{ partialCached "gtm-noscript.html" . "global-gtm" }}
     {{ else }}
       {{ partial "preloader.html" . }}
       {{ partial "essentials/header.html" . }}

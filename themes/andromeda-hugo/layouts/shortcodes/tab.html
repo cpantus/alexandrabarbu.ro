@@ -1,0 +1,8 @@
+{{- $name := .Get "name" | default "Tab" -}}
+{{- $content := .Inner | markdownify -}}
+<div class="tab">
+  <h4 class="tab-title">{{ $name }}</h4>
+  <div class="tab-content">
+    {{- $content -}}
+  </div>
+</div>

@@ -1,108 +1,13 @@
 # Hugo Module Configuration
 #
-# NOTE: All module imports have been disabled to use local theme features only.
-# This avoids dependency on external Hugo modules that are unavailable.
+# This site uses a self-contained atomic design architecture with local ITCSS styling.
+# No external Hugo modules are required or used.
 #
-# If you need to re-enable modules in the future, uncomment the desired imports
-# below and run: hugo mod get -u
+# Theme structure:
+# - 5 atoms → 21 molecules → 2 organisms → 34 sections
+# - ITCSS Layer 7: Bootstrap-compatible utilities (local implementation)
+# - All components self-contained in themes/andromeda-hugo/
 
 [hugoVersion]
 extended = true
 min = "0.147.2"
-
-# Bootstrap SCSS Module
-# [[imports]]
-# path = "github.com/gohugoio/hugo-mod-bootstrap-scss/v5"
-
-# GetHugoThemes Components
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/components/preloader"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/components/social-share"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/components/cookie-consent"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/components/custom-script"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/components/render-link"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/icons/font-awesome"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/components/valine-comment"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/components/crisp-chat"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/pwa"
-
-# GetHugoThemes Images Module
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/images"
-
-# GetHugoThemes Shortcodes
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/shortcodes/buttons"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/shortcodes/codepen"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/shortcodes/collapse"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/shortcodes/notice"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/shortcodes/video"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/shortcodes/tabs"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/shortcodes/gallery"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/shortcodes/table-of-contents"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/shortcodes/youtube-lite"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/shortcodes/vimeo-lite"
-
-# GetHugoThemes SEO Tools
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/seo-tools/baidu-analytics"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/seo-tools/matomo-analytics"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/seo-tools/plausible-analytics"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/seo-tools/counter-analytics"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/seo-tools/google-tag-manager"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/seo-tools/site-verifications"
-
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/seo-tools/basic-seo"
-
-# GetHugoThemes Utilities
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/gzip-caching"
-
-# Non-existent module (commented out permanently)
-# [[imports]]
-# path = "github.com/gethugothemes/hugo-modules/adsense"  # Module doesn't exist

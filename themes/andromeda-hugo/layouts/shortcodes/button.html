@@ -1,0 +1,13 @@
+{{- $link := .Get "link" | default (.Get "url") | default "#" -}}
+{{- $text := .Get "text" | default (.Get "label") | default "Button" -}}
+{{- $class := .Get "class" | default "btn btn-primary" -}}
+{{- $target := .Get "target" | default "" -}}
+{{- $rel := .Get "rel" | default "" -}}
+
+<a
+  href="{{ $link | relURL }}"
+  class="{{ $class }}"
+  {{- if $target }} target="{{ $target }}"{{ end }}
+  {{- if $rel }} rel="{{ $rel }}"{{ end }}>
+  {{- $text -}}
+</a>

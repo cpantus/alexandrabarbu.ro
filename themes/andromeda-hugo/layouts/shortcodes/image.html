@@ -1,0 +1,12 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default (.Get "title") | default "" -}}
+{{- $title := .Get "title" | default "" -}}
+{{- $class := .Get "c" | default .Get "class" | default "" -}}
+{{- $loading := .Get "loading" | default "lazy" -}}
+
+<img
+  src="{{ $src | relURL }}"
+  alt="{{ $alt }}"
+  {{- if $title }} title="{{ $title }}"{{ end }}
+  {{- if $class }} class="{{ $class }}"{{ end }}
+  loading="{{ $loading }}">

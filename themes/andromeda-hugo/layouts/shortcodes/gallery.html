@@ -1,0 +1,10 @@
+{{- $dir := .Get "dir" | default "" -}}
+{{- $class := .Get "class" | default "gallery" -}}
+{{- $content := .Inner -}}
+
+<div class="{{ $class }}">
+  {{- if $dir -}}
+    <p><em>Gallery: {{ $dir }}</em></p>
+  {{- end -}}
+  {{- $content | markdownify -}}
+</div>
