@@ -1,0 +1,4 @@
+{{- $manifest := "manifest.webmanifest" -}}
+{{- if fileExists (path.Join "static" $manifest) -}}
+<link rel="manifest" href="{{ $manifest | relURL }}">
+{{- end -}}

@@ -1,0 +1,8 @@
+{{- with site.Params.pwa -}}
+<!-- Progressive Web App -->
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+  }
+</script>
+{{- end -}}

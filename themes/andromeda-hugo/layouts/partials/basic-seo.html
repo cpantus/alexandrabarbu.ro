@@ -1,0 +1,14 @@
+{{- $title := .Title -}}
+{{- if .IsHome -}}
+  {{- $title = site.Title -}}
+{{- end -}}
+
+<title>{{ $title }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+<meta name="author" content="{{ site.Params.author }}">
+
+{{- with .Keywords -}}
+<meta name="keywords" content="{{ delimit . ", " }}">
+{{- end -}}
+
+<link rel="canonical" href="{{ .Permalink }}">

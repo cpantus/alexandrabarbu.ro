@@ -195,7 +195,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 ### Gallery
 
-{{< gallery dir="images/gallery" class="" height="400" width="400" webp="true" command="Fit" options="" zoomable="true" >}}
+{{< gallery dir="images/gallery" class="" height="400" width="400" webp="true" command="Fit" options="" zoomable="true" />}}
 
 <hr>
 

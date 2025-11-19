@@ -1,0 +1,5 @@
+{{- $favicon := "images/favicon.png" -}}
+{{- if fileExists (path.Join "static" $favicon) -}}
+<link rel="shortcut icon" href="{{ $favicon | relURL }}" type="image/x-icon">
+<link rel="icon" href="{{ $favicon | relURL }}" type="image/x-icon">
+{{- end -}}

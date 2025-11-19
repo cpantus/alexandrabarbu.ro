@@ -1,0 +1,7 @@
+{{- with site.Params.cookies -}}
+<!-- Cookie Consent -->
+<div id="cookie-consent" class="cookie-consent">
+  <p>{{ .content }}</p>
+  <button onclick="this.parentElement.style.display='none'">OK</button>
+</div>
+{{- end -}}
