@@ -226,8 +226,8 @@ $gap-spacious: $space-10;
 /* Values Component Tokens */
 $values-card-base-width: 280px;
 $values-card-featured-width: 320px;
-$values-icon-size: $icon-lg;
-$values-icon-featured-size: $icon-xl;
+$values-icon-size: $icon-circle-md;          // 48px - Container size (NOT font-size!)
+$values-icon-featured-size: $icon-circle-lg; // 64px - Featured container size
 $values-card-gap: $gap-normal;
 $values-border-radius: $radius-xl;
 $values-featured-scale: 1.15;

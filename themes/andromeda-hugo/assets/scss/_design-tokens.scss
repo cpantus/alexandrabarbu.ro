@@ -289,6 +289,8 @@ $icon-3x: 3rem;                            // 48px - Feature icons
 $icon-4x: 4rem;                            // 64px - Hero icons
 
 // Icon sizes for circular backgrounds (used in feature sections)
+// IMPORTANT: Use these for icon CONTAINER width/height, NOT font-size
+// For font-size, use $icon-* tokens above (measured in rem)
 $icon-circle-sm: 32px;                     // Small circular icon container
 $icon-circle-md: 48px;                     // Medium circular icon container (MOST COMMON)
 $icon-circle-lg: 64px;                     // Large circular icon container

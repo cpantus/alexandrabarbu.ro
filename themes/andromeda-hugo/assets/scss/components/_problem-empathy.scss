@@ -215,8 +215,8 @@
   }
 
   .problem-icon-wrapper {
-    width: $icon-base;
-    height: $icon-base;
+    width: $icon-circle-sm;   // 32px - Tablet responsive size
+    height: $icon-circle-sm;
 
     i {
       font-size: 1.5rem;
@@ -246,8 +246,8 @@
   }
 
   .problem-icon-wrapper {
-    width: $icon-sm;
-    height: $icon-sm;
+    width: 28px;   // Mobile smallest size (reduced from 32px)
+    height: 28px;
     margin-bottom: $space-3;
 
     i {
