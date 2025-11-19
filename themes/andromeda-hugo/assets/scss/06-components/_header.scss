@@ -1,0 +1,211 @@
+// ==================================
+// HEADER COMPONENT (BEM + Bootstrap compatibility)
+// ==================================
+//
+// Layer: 06-components
+// Purpose: Site header with navigation (Bootstrap class compatibility layer)
+// Naming: .c-header (BEM) + legacy Bootstrap classes support
+//
+// Last Updated: 2025-11-19
+// Version: 1.0.0 (ITCSS Phase 1 - Header restoration)
+//
+// NOTE: This is a compatibility layer to make existing Bootstrap classes work
+// while we transition to full BEM. The HTML uses Bootstrap classes (.navbar, etc.)
+// and this file provides the minimum styling needed for functionality.
+//
+
+// ----------------------------------
+// Header Container
+// ----------------------------------
+.header-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: $space-4 0;
+  transition: all 0.3s ease;
+}
+
+// ----------------------------------
+// Header Height Fix (prevents content jump)
+// ----------------------------------
+.header-height-fix {
+  height: 80px;
+}
+
+// ----------------------------------
+// Bootstrap Navbar Classes (Compatibility)
+// ----------------------------------
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  font-family: $font-heading;
+}
+
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  padding: $space-2 0;
+  margin-right: $space-6;
+  font-size: $text-2xl;
+  font-weight: $font-weight-heading;
+  color: $color-text-primary;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    color: $color-primary;
+    text-decoration: none;
+  }
+}
+
+// ----------------------------------
+// Navigation Toggle (Mobile Hamburger)
+// ----------------------------------
+.navbar-toggler {
+  padding: $space-2 $space-3;
+  font-size: $text-lg;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid $color-border-light;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.55)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+
+// ----------------------------------
+// Navigation Collapse Container
+// ----------------------------------
+.navbar-collapse {
+  flex-basis: 100%;
+  flex-grow: 1;
+  align-items: center;
+}
+
+// Mobile: hidden by default
+.collapse:not(.show) {
+  display: none;
+}
+
+// Desktop: always shown
+@media (min-width: 992px) {
+  .navbar-expand-lg {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    .navbar-collapse {
+      display: flex !important;
+      flex-basis: auto;
+    }
+
+    .navbar-toggler {
+      display: none;
+    }
+  }
+}
+
+// ----------------------------------
+// Navigation Links
+// ----------------------------------
+.navbar-nav {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+
+  @media (min-width: 992px) {
+    flex-direction: row;
+    margin-left: auto;
+  }
+}
+
+.nav-link {
+  display: block;
+  padding: $space-3 $space-4;
+  color: $color-text-primary;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-family: $font-heading;
+  font-weight: $font-weight-heading;
+
+  &:hover,
+  &:focus {
+    color: $color-primary;
+  }
+
+  &.active {
+    color: $color-primary;
+    font-weight: $font-weight-heading-bold;
+  }
+}
+
+// ----------------------------------
+// Navigation Controller (Mobile)
+// ----------------------------------
+.nav-controller {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+}
+
+// ----------------------------------
+// Skip to Content (Accessibility)
+// ----------------------------------
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  z-index: 10000;
+  padding: $space-3 $space-4;
+  background-color: $color-primary;
+  color: #ffffff;
+  text-decoration: none;
+  transition: top 0.2s ease;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+.visually-hidden-focusable:not(:focus):not(:focus-within) {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// ==================================
+// END OF HEADER COMPONENT
+// ==================================

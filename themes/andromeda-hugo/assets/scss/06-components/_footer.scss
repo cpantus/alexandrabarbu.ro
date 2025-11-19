@@ -1,0 +1,148 @@
+// ==================================
+// FOOTER COMPONENT (BEM + Bootstrap compatibility)
+// ==================================
+//
+// Layer: 06-components
+// Purpose: Site footer with CTA, links, and copyright (Bootstrap class compatibility layer)
+// Naming: .c-footer (BEM) + legacy Bootstrap classes support
+//
+// Last Updated: 2025-11-19
+// Version: 1.0.0 (ITCSS Phase 1 - Footer restoration)
+//
+// NOTE: This is a compatibility layer to make existing Bootstrap classes work
+// while we transition to full BEM. The HTML uses Bootstrap classes (.call-to-action, etc.)
+// and this file provides the minimum styling needed for functionality.
+//
+
+// ----------------------------------
+// Call-to-Action Section (Optional)
+// ----------------------------------
+.call-to-action {
+  padding: $space-16 0;
+  position: relative;
+  overflow: hidden;
+
+  &.has-bg-color {
+    background-color: rgba($color-primary, 0.05);
+  }
+
+  .section-title {
+    h2 {
+      margin-bottom: $space-4;
+    }
+
+    p {
+      font-size: $text-lg;
+      color: $color-text-secondary;
+      margin-bottom: $space-6;
+    }
+  }
+
+  // Decorative circles and SVG
+  .has-circle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+// ----------------------------------
+// Footer Container
+// ----------------------------------
+.footer {
+  background-color: $gray-900;
+  color: $gray-100;
+  padding: $space-12 0 $space-6 0;
+
+  a {
+    color: $gray-100;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover,
+    &:focus {
+      color: $color-primary;
+    }
+  }
+
+  h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    margin-bottom: $space-4;
+  }
+}
+
+// ----------------------------------
+// Footer Sections
+// ----------------------------------
+.footer-top {
+  padding-bottom: $space-8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom {
+  padding-top: $space-6;
+  text-align: center;
+  font-size: $text-sm;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+// ----------------------------------
+// Footer Lists (Quick Links, etc.)
+// ----------------------------------
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: $space-2;
+  }
+}
+
+// ----------------------------------
+// Social Icons
+// ----------------------------------
+.social-icons {
+  display: flex;
+  gap: $space-3;
+  flex-wrap: wrap;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover,
+    &:focus {
+      background-color: $color-primary;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    i {
+      font-size: $text-lg;
+    }
+  }
+}
+
+// ----------------------------------
+// Copyright Notice
+// ----------------------------------
+.copyright {
+  p {
+    margin: 0;
+  }
+}
+
+// ==================================
+// END OF FOOTER COMPONENT
+// ==================================

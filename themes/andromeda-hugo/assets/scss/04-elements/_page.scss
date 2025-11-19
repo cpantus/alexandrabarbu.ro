@@ -1,0 +1,61 @@
+// ==================================
+// PAGE BASE STYLES
+// ==================================
+//
+// Layer: 04-elements (First layer with CSS output)
+// Purpose: Base styles for <body> and <html>
+// Specificity: Element selectors only (no classes/IDs)
+//
+// Last Updated: 2025-11-19
+// Version: 1.0.0 (ITCSS Phase 1 - Typography Fix)
+//
+
+// ----------------------------------
+// HTML Element
+// ----------------------------------
+html {
+  // Ensure proper box-sizing inheritance
+  box-sizing: border-box;
+  // Prevent font size adjustments on orientation change (iOS)
+  -webkit-text-size-adjust: 100%;
+  // Enable smooth scrolling (respects reduced-motion)
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
+}
+
+// ----------------------------------
+// Box Sizing (All Elements)
+// ----------------------------------
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+// ----------------------------------
+// Body Element
+// ----------------------------------
+body {
+  // Typography
+  font-family: $font-body;
+  font-size: $text-base;
+  line-height: $leading-normal;
+  font-weight: $font-weight-body;
+  color: $color-text-primary;
+
+  // Font rendering
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // Reset default margins
+  margin: 0;
+  padding: 0;
+
+  // Ensure body fills viewport
+  min-height: 100vh;
+}
+
+// ==================================
+// END OF PAGE BASE STYLES
+// ==================================

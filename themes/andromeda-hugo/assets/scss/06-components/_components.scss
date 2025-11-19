@@ -16,6 +16,10 @@
 // Component Files: Keep each < 400 lines, focused, single responsibility
 //
 
+// Organisms (Structural components)
+@import 'header';                  // ✅ Phase 1: Bootstrap compatibility layer (Typography Fix)
+@import 'footer';                  // ✅ Phase 1: Bootstrap compatibility layer (Typography Fix)
+
 // Core Components (BEM refactored)
 @import 'card';                    // ✅ Phase 3: BEM refactored with legacy compat
 @import 'button';                  // ✅ Phase 3: Extracted from custom.scss + BEM

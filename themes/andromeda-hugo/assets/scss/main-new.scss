@@ -54,6 +54,14 @@
 @import 'design-enhancements';        // TODO Phase 2: Extract mixins to 02-tools/
 
 // ==================================
+// LAYER 4: ELEMENTS (HTML Elements)
+// ==================================
+// Purpose: Bare HTML element styling (h1-h6, p, a, ul, etc.)
+// Phase 1: ✅ COMPLETE - Moved from temporary styles below
+//
+@import '04-elements/elements';
+
+// ==================================
 // LAYER 5: OBJECTS (Layout Primitives)
 // ==================================
 // Purpose: Reusable layout patterns (.o-* prefix)
@@ -80,28 +88,12 @@
 @import 'systems/card-border-reset';
 
 // ==================================
-// TEMPORARY: Base styles from custom.scss
+// ✅ BASE STYLES MOVED TO 04-ELEMENTS
 // ==================================
-// TODO Phase 2: Move to 04-elements/typography.scss and 04-elements/forms.scss
-//
-body {
-  font-family: $font-body;
-  font-size: $text-base;
-  line-height: $leading-normal;
-  color: $color-text-primary;
-  font-weight: $font-weight-body;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: $font-heading;
-  font-weight: $font-weight-heading;
-  line-height: $leading-tight;
-  color: $color-text-primary;
-  margin-bottom: $space-4;
-}
+// Previously temporary styles (body, h1-h6) now in proper ITCSS layer:
+// - 04-elements/_page.scss (body, html, box-sizing)
+// - 04-elements/_headings.scss (h1-h6, .h1-.h6)
+// - 04-elements/_text.scss (p, a, ul, ol, blockquote)
 
 // ==================================
 // END OF MAIN ENTRY POINT

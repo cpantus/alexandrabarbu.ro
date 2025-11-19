@@ -1,0 +1,45 @@
+// ==================================
+// ELEMENTS LAYER (Layer 4)
+// ==================================
+//
+// Layer: 04-elements (First layer with CSS output)
+// Purpose: Bare HTML element styling (no classes)
+// Scope: html, body, h1-h6, p, a, ul, ol, blockquote, etc.
+// Philosophy: Set defaults for all bare HTML elements
+//
+// Last Updated: 2025-11-19
+// Version: 1.0.0 (ITCSS Phase 1 - Typography Fix)
+//
+// ITCSS Layer Order:
+// 1. Settings   (variables only)
+// 2. Tools      (mixins only)
+// 3. Generic    (normalize, CSS custom properties)
+// 4. Elements   ← YOU ARE HERE (base element styles)
+// 5. Objects    (layout primitives)
+// 6. Components (UI components)
+// 7. Utilities  (utility classes)
+//
+// Notes:
+// - This layer moved from temporary styles in main-new.scss (lines 87-104)
+// - Fixes typography breakage by providing base styles for all HTML elements
+// - All styles use typography tokens from 01-settings/_tokens-typography.scss
+//
+
+// ----------------------------------
+// Page Base Styles (html, body, box-sizing)
+// ----------------------------------
+@import 'page';
+
+// ----------------------------------
+// Heading Elements (h1-h6, .h1-.h6)
+// ----------------------------------
+@import 'headings';
+
+// ----------------------------------
+// Text Elements (p, a, ul, ol, blockquote, etc.)
+// ----------------------------------
+@import 'text';
+
+// ==================================
+// END OF ELEMENTS LAYER
+// ==================================

@@ -1,0 +1,100 @@
+// ==================================
+// TEXT ELEMENTS
+// ==================================
+//
+// Layer: 04-elements
+// Purpose: Base styles for paragraphs, lists, links, and other text elements
+// Specificity: Element selectors only (no classes/IDs)
+//
+// Last Updated: 2025-11-19
+// Version: 1.0.0 (ITCSS Phase 1 - Typography Fix)
+//
+
+// ----------------------------------
+// Paragraphs
+// ----------------------------------
+p {
+  margin-top: 0;
+  margin-bottom: $space-4;
+  line-height: $leading-normal;
+}
+
+// ----------------------------------
+// Links
+// ----------------------------------
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+
+  &:hover,
+  &:focus {
+    color: $color-primary-dark;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+// ----------------------------------
+// Lists
+// ----------------------------------
+ul, ol {
+  margin-top: 0;
+  margin-bottom: $space-4;
+  padding-left: $space-6;
+  line-height: $leading-normal;
+}
+
+li {
+  margin-bottom: $space-2;
+}
+
+// Nested lists should have less bottom margin
+li > ul,
+li > ol {
+  margin-top: $space-2;
+  margin-bottom: 0;
+}
+
+// ----------------------------------
+// Blockquotes
+// ----------------------------------
+blockquote {
+  margin: 0 0 $space-4;
+  padding-left: $space-4;
+  border-left: 4px solid $color-primary;
+  font-style: italic;
+  color: $color-text-secondary;
+}
+
+// ----------------------------------
+// Inline Text Elements
+// ----------------------------------
+strong, b {
+  font-weight: $font-weight-heading;
+}
+
+em, i {
+  font-style: italic;
+}
+
+small {
+  font-size: $text-sm;
+}
+
+// ----------------------------------
+// Horizontal Rule
+// ----------------------------------
+hr {
+  margin: $space-8 0;
+  border: 0;
+  border-top: 1px solid $color-border-light;
+}
+
+// ==================================
+// END OF TEXT ELEMENTS
+// ==================================
