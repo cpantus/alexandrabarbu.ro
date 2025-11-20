@@ -134,7 +134,7 @@ contact_options:
       response_time: "Response within 24h"
       button_text: "Schedule Free Call"
       button_url: "/contact/"
-      button_icon: "las la-phone"
+      button_icon: "phone"
     - icon: "video"
       title: "Initial Assessment"
       badge: "Recommended"
@@ -149,7 +149,7 @@ contact_options:
       response_time: "Response within 12h"
       button_text: "Book Assessment"
       button_url: "/contact/"
-      button_icon: "las la-calendar"
+      button_icon: "calendar"
       featured: true
     - icon: "handshake"
       title: "Ongoing Therapy"
@@ -164,12 +164,12 @@ contact_options:
       response_time: "Priority scheduling"
       button_text: "Start Therapy"
       button_url: "/contact/"
-      button_icon: "las la-arrow-right"
+      button_icon: "arrow-right"
   alternative_methods:
     title: "Or reach out directly:"
     methods:
       - label: "Email"
-        icon: "las la-envelope"
+        icon: "envelope"
         url: "mailto:contact@example.com"
       - label: "WhatsApp"
         icon: "lab la-whatsapp"

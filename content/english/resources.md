@@ -45,7 +45,7 @@ method_tabs:
   methods:
     - name: "Anxiety and Stress"
       slug: "anxiety"
-      icon: "las la-wind"
+      icon: "wind"
       description: |
         Articles and exercises for managing anxiety, panic attacks, chronic stress and
         excessive worries. Relaxation, breathing and mindfulness techniques.
@@ -56,7 +56,7 @@ method_tabs:
         - "Mindfulness tools"
     - name: "Depression and Mood"
       slug: "depression"
-      icon: "las la-cloud-rain"
+      icon: "cloud-rain"
       description: |
         Resources about depression, persistent sadness, loss of motivation and low energy. Behavioral
         and cognitive strategies for improving mood.
@@ -67,7 +67,7 @@ method_tabs:
         - "Healthy daily routines"
     - name: "Relationships and Communication"
       slug: "relationships"
-      icon: "las la-user-friends"
+      icon: "user-friends"
       description: |
         Guides about effective communication, conflict resolution, building healthy relationships and
         setting personal boundaries.
@@ -78,7 +78,7 @@ method_tabs:
         - "Empathy and active listening"
     - name: "Mindfulness and Self-Awareness"
       slug: "mindfulness"
-      icon: "las la-spa"
+      icon: "spa"
       description: |
         Mindfulness practices, meditation, body awareness and increasing self-awareness.
         Techniques for living in the present.
@@ -89,7 +89,7 @@ method_tabs:
         - "Presence and awareness"
     - name: "Personal Development"
       slug: "development"
-      icon: "las la-seedling"
+      icon: "seedling"
       description: |
         Articles about resilience, personal values, life goals, self-compassion and continuous growth.
         Resources to discover your potential.
@@ -159,22 +159,22 @@ feature_details:
       description: |
         20 pages with CBT techniques, mindfulness, breathing exercises and action plans. PDF format,
         free download.
-      icon: "las la-file-pdf"
+      icon: "file-pdf"
     - title: "Thoughts and Emotions Journal Template"
       description: |
         Essential tool for self-observation and cognitive restructuring. Includes complete
         usage instructions. Downloadable and printable format.
-      icon: "las la-journal-whills"
+      icon: "journal-whills"
     - title: "Mindfulness and Relaxation Audio Exercises"
       description: |
         5 guided audio exercises (5-15 minutes each): body scan, conscious breathing, focused meditation,
         progressive muscle relaxation, calming visualization.
-      icon: "las la-headphones-alt"
+      icon: "headphones-alt"
     - title: "Weekly Wellbeing Planner"
       description: |
         Template for planning pleasant activities, monitoring mood, setting goals
         and tracking progress. Perfect for behavioral activation.
-      icon: "las la-calendar-check"
+      icon: "calendar-check"
 
 # First Session Timeline Section - Workshops and Events
 first_session_timeline:
@@ -186,25 +186,25 @@ first_session_timeline:
       description: |
         A practical introduction to mindfulness with guided exercises, interactive discussions and downloadable materials.
         Ideal for beginners. Next date: TBD.
-      icon: "las la-video"
+      icon: "video"
     - title: "Managing Anxiety - Live Q&A Session"
       duration: "1 hour"
       description: |
         Interactive question and answer session about anxiety, panic attacks and management strategies.
         Free for all interested persons. Next date: TBD.
-      icon: "las la-comments"
+      icon: "comments"
     - title: "Assertive Communication in Relationships"
       duration: "90 minutes"
       description: |
         Practical workshop to learn to communicate clearly, set healthy boundaries and resolve conflicts
         constructively. Includes role exercises. Next date: TBD.
-      icon: "las la-users"
+      icon: "users"
     - title: "Therapeutic Journaling - How to Write for Healing"
       duration: "1 hour"
       description: |
         Discover the power of therapeutic writing. Journaling techniques, prompts and guided exercises for
         processing emotions and self-reflection. Next date: TBD.
-      icon: "las la-pen"
+      icon: "pen"
 
 # CTA Standard Section
 cta_standard:

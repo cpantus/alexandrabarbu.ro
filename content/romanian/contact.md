@@ -31,13 +31,13 @@ contact_info_cards:
   description: "Alege modalitatea care ți se potrivește cel mai bine"
   cards:
     - title: "Telefon"
-      icon: "las la-phone"
+      icon: "phone"
       value: "+40 721 234 567"
       description: "Luni - Vineri: 09:00 - 20:00 | Sâmbătă: 10:00 - 14:00"
       link: "tel:+40721234567"
       link_text: "Sună Acum"
     - title: "Email"
-      icon: "las la-envelope"
+      icon: "envelope"
       value: "contact@alexandrabarbu.ro"
       description: "Răspund în maxim 24 de ore (zile lucrătoare)"
       link: "mailto:contact@alexandrabarbu.ro"
@@ -49,7 +49,7 @@ contact_info_cards:
       link: "https://wa.me/40721234567"
       link_text: "Deschide WhatsApp"
     - title: "Cabinet București"
-      icon: "las la-map-marker-alt"
+      icon: "map-marker-alt"
       value: "Str. Doamnei nr. 12, Sector 3"
       description: "București 030167, România"
       link: "https://maps.google.com/?q=Str.+Doamnei+12+Bucuresti"
@@ -66,7 +66,7 @@ contact_options:
   description: "Flexibilitate completă - alege ce ți se potrivește"
   options:
     - title: "Ședințe la Cabinet"
-      icon: "las la-clinic-medical"
+      icon: "clinic-medical"
       description: |
         Întâlniri față în față într-un spațiu confidențial, confortabil și sigur în centrul Bucureștiului.
         Atmosferă caldă, profesională și lipsită de judecată.
@@ -79,7 +79,7 @@ contact_options:
       button_url: "#contact-info"
       button_variant: "primary"
     - title: "Ședințe Online"
-      icon: "las la-video"
+      icon: "video"
       description: |
         Terapie la fel de eficientă, din confortul casei tale. Folosesc platforme securizate (Zoom, Google Meet)
         cu criptare end-to-end pentru a proteja confidențialitatea.
@@ -163,22 +163,22 @@ feature_details:
       description: |
         20-30 de minute în care discutăm despre situația ta, așteptările tale de la terapie și cum te pot ajuta.
         Îți explic și procesul terapeutic și răspund la orice întrebări ai.
-      icon: "las la-user-check"
+      icon: "user-check"
     - title: "Confort și Confidențialitate"
       description: |
         Te vei simți ascultat, înțeles și respectat. Confidențialitatea este garantată prin codul deontologic
         și legislația GDPR. Nimic din ce discutăm nu părăsește cabinetul fără acordul tău.
-      icon: "las la-lock"
+      icon: "lock"
     - title: "Decizie Informată"
       description: |
         După întâlnirea inițială, vei avea toate informațiile necesare pentru a decide dacă vrei să continui.
         Nu există presiune sau obligații. Terapia funcționează cel mai bine când este alegerea ta liberă.
-      icon: "las la-hand-holding-heart"
+      icon: "hand-holding-heart"
     - title: "Răspuns Rapid"
       description: |
         Răspund la toate mesajele în maxim 24 de ore (de obicei în aceeași zi lucrătoare). Programarea se face rapid,
         adesea chiar în aceeași săptămână, în funcție de disponibilitate.
-      icon: "las la-clock"
+      icon: "clock"
 
 # Pricing Tables Section
 pricing_tables:

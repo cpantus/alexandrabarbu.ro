@@ -44,7 +44,7 @@ method_tabs:
   methods:
     - name: "Cognitive Behavioral Therapy (CBT)"
       slug: "cbt"
-      icon: "las la-brain"
+      icon: "brain"
       description: |
         CBT is a structured, solution-oriented method that helps you identify and modify
         thoughts and behaviors that contribute to your difficulties. It is effective for anxiety,
@@ -56,7 +56,7 @@ method_tabs:
         - "Scientifically proven efficacy for many conditions"
     - name: "Emotionally Focused Therapy (EFT)"
       slug: "eft"
-      icon: "las la-heart"
+      icon: "heart"
       description: |
         EFT helps you understand and process your deep emotions, often rooted in early
         attachment relationships. This method is particularly useful for relational difficulties,
@@ -68,7 +68,7 @@ method_tabs:
         - "Effective for couples and individual therapy"
     - name: "Solution-Focused Therapy (SFT)"
       slug: "sft"
-      icon: "las la-lightbulb"
+      icon: "lightbulb"
       description: |
         SFT emphasizes your resources, your strengths and the future you want, rather
         than past problems. It is a pragmatic approach, oriented toward concrete goals and rapid changes.
@@ -79,7 +79,7 @@ method_tabs:
         - "Ideal for clear and specific goals"
     - name: "Mindfulness and ACT"
       slug: "mindfulness-act"
-      icon: "las la-spa"
+      icon: "spa"
       description: |
         Mindfulness and Acceptance and Commitment Therapy (ACT) teach you to be present in the moment,
         accept difficult experiences and act according to your values. These methods are
@@ -145,25 +145,25 @@ first_session_timeline:
       description: |
         We get to know each other, discuss your expectations from therapy and clarify any questions about the process.
         It's important to feel comfortable and safe.
-      icon: "las la-handshake"
+      icon: "handshake"
     - title: "Exploring Your Challenges"
       duration: "20-25 minutes"
       description: |
         You'll tell me about the difficulties that brought you to therapy, their impact on your life and
         what you've tried so far. I listen carefully and ask questions to better understand your situation.
-      icon: "las la-comments"
+      icon: "comments"
     - title: "Setting Goals"
       duration: "10-15 minutes"
       description: |
         Together, we'll identify clear and realistic goals for therapy. What do you want to be different?
         How will you know therapy is working? We establish clear expectations and a preliminary plan.
-      icon: "las la-bullseye"
+      icon: "bullseye"
     - title: "Planning and Next Steps"
       duration: "5-10 minutes"
       description: |
         We discuss session frequency, methods we'll use and first concrete steps.
         I also offer some resources or simple exercises, if applicable.
-      icon: "las la-map-marked-alt"
+      icon: "map-marked-alt"
 
 # Feature Details Section - What Makes My Approach Different
 feature_details:
@@ -178,22 +178,22 @@ feature_details:
       description: |
         I combine CBT, EFT, SFT, mindfulness and other validated methods, according to your needs. I'm not limited
         by a single school of thought - I use what works best for you.
-      icon: "las la-puzzle-piece"
+      icon: "puzzle-piece"
     - title: "Focus on Therapeutic Relationship"
       description: |
         Research shows that therapeutic relationship quality is the strongest predictor of success in
         therapy. I invest time and energy in building a relationship based on trust, empathy and mutual respect.
-      icon: "las la-user-friends"
+      icon: "user-friends"
     - title: "Trauma-Informed Approach"
       description: |
         I understand trauma's impact on your life and use gentle, safe and validated methods to
         help you process difficult experiences, without retraumatization.
-      icon: "las la-shield-alt"
+      icon: "shield-alt"
     - title: "Continuous Psychological Education"
       description: |
         I help you understand what's happening with you - why you react a certain way, where your emotions
         come from, how mind and body work. Self-knowledge is a powerful foundation for change.
-      icon: "las la-book-open"
+      icon: "book-open"
 
 # CTA Standard Section
 cta_standard:

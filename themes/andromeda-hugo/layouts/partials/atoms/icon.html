@@ -73,7 +73,7 @@
 */}}
 
 {{/* Parse parameters */}}
-{{ $name := .name }}
+{{ $name := .name | default .icon }}  {{/* Accept both 'name' and 'icon' parameters for backwards compatibility */}}
 {{ $size := .size | default "md" }}
 {{ $variant := .variant | default "primary" }}
 {{ $class := .class | default "" }}

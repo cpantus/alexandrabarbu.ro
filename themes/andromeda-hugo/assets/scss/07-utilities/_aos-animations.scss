@@ -1,0 +1,101 @@
+// ==================================
+// AOS (Animate On Scroll) Compatibility Styles
+// ==================================
+//
+// Lightweight alternative to full AOS library
+// Provides basic fade-up, fade-in animations
+//
+// Usage: Add data-aos="fade-up" to HTML elements
+// Optional: data-aos-delay="100" for staggered animations
+//
+
+// Base AOS states
+[data-aos] {
+  &.aos-init {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition-delay: 0ms;
+  }
+
+  &.aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Animation variants
+[data-aos="fade-up"] {
+  &.aos-init {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  &.aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-aos="fade-down"] {
+  &.aos-init {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  &.aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-aos="fade-left"] {
+  &.aos-init {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  &.aos-animate {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+[data-aos="fade-right"] {
+  &.aos-init {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  &.aos-animate {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+[data-aos="fade-in"] {
+  &.aos-init {
+    opacity: 0;
+  }
+  &.aos-animate {
+    opacity: 1;
+  }
+}
+
+[data-aos="zoom-in"] {
+  &.aos-init {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  &.aos-animate {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  [data-aos] {
+    &.aos-init {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+}

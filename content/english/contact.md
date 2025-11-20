@@ -31,13 +31,13 @@ contact_info_cards:
   description: "Choose the method that suits you best"
   cards:
     - title: "Phone"
-      icon: "las la-phone"
+      icon: "phone"
       value: "+40 721 234 567"
       description: "Monday - Friday: 09:00 - 20:00 | Saturday: 10:00 - 14:00"
       link: "tel:+40721234567"
       link_text: "Call Now"
     - title: "Email"
-      icon: "las la-envelope"
+      icon: "envelope"
       value: "contact@alexandrabarbu.ro"
       description: "I respond within 24 hours (business days)"
       link: "mailto:contact@alexandrabarbu.ro"
@@ -49,7 +49,7 @@ contact_info_cards:
       link: "https://wa.me/40721234567"
       link_text: "Open WhatsApp"
     - title: "Bucharest Office"
-      icon: "las la-map-marker-alt"
+      icon: "map-marker-alt"
       value: "Doamnei St. no. 12, Sector 3"
       description: "Bucharest 030167, Romania"
       link: "https://maps.google.com/?q=Str.+Doamnei+12+Bucuresti"
@@ -66,7 +66,7 @@ contact_options:
   description: "Complete flexibility - choose what suits you"
   options:
     - title: "Office Sessions"
-      icon: "las la-clinic-medical"
+      icon: "clinic-medical"
       description: |
         Face-to-face meetings in a confidential, comfortable and safe space in central Bucharest.
         Warm, professional and non-judgmental atmosphere.
@@ -79,7 +79,7 @@ contact_options:
       button_url: "#contact-info"
       button_variant: "primary"
     - title: "Online Sessions"
-      icon: "las la-video"
+      icon: "video"
       description: |
         Equally effective therapy, from the comfort of your home. I use secure platforms (Zoom, Google Meet)
         with end-to-end encryption to protect confidentiality.
@@ -163,22 +163,22 @@ feature_details:
       description: |
         20-30 minutes where we discuss your situation, your expectations from therapy and how I can help you.
         I also explain the therapeutic process and answer any questions you have.
-      icon: "las la-user-check"
+      icon: "user-check"
     - title: "Comfort and Confidentiality"
       description: |
         You will feel heard, understood and respected. Confidentiality is guaranteed through the code of ethics
         and GDPR legislation. Nothing we discuss leaves the office without your consent.
-      icon: "las la-lock"
+      icon: "lock"
     - title: "Informed Decision"
       description: |
         After the initial meeting, you'll have all the information needed to decide if you want to continue.
         There's no pressure or obligations. Therapy works best when it's your free choice.
-      icon: "las la-hand-holding-heart"
+      icon: "hand-holding-heart"
     - title: "Quick Response"
       description: |
         I respond to all messages within 24 hours (usually same business day). Scheduling is done quickly,
         often in the same week, depending on availability.
-      icon: "las la-clock"
+      icon: "clock"
 
 # Pricing Tables Section
 pricing_tables:

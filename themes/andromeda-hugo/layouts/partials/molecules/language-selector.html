@@ -103,28 +103,35 @@
 
       {{- $pageLang := $context.Lang -}}
 
-      {{/* Current language option (selected) */}}
-      {{- with site.GetPage (printf "/%s" $pageLang) -}}
-        {{- $flag := index $languageFlags $pageLang | default "🌐" -}}
-        {{- $langName := site.Language.LanguageName | default $pageLang -}}
-        <option
-          value="{{ $context.RelPermalink }}"
-          data-lang="{{ $pageLang }}"
-          class="c-language-selector__option"
-          selected>
-          {{ $flag }} {{ $langName }}
-        </option>
-      {{- end -}}
-
-      {{/* Translation options */}}
-      {{- range $context.Translations -}}
+      {{/* Loop through all configured languages */}}
+      {{- range site.Languages -}}
         {{- $langCode := .Lang -}}
         {{- $flag := index $languageFlags $langCode | default "🌐" -}}
-        {{- $langName := .Language.LanguageName | default $langCode -}}
+        {{- $langName := .LanguageName | default $langCode -}}
+        {{- $isCurrentLang := eq $langCode $pageLang -}}
+
+        {{/* Get the URL for this language version of the page */}}
+        {{- $langURL := "" -}}
+        {{- if $isCurrentLang -}}
+          {{- $langURL = $context.RelPermalink -}}
+        {{- else -}}
+          {{/* Try to find translation */}}
+          {{- range $context.Translations -}}
+            {{- if eq .Lang $langCode -}}
+              {{- $langURL = .RelPermalink -}}
+            {{- end -}}
+          {{- end -}}
+          {{/* Fallback to homepage if no translation exists */}}
+          {{- if not $langURL -}}
+            {{- $langURL = printf "/%s/" $langCode | absLangURL -}}
+          {{- end -}}
+        {{- end -}}
+
         <option
-          value="{{ .RelPermalink }}"
+          value="{{ $langURL }}"
           data-lang="{{ $langCode }}"
-          class="c-language-selector__option">
+          class="c-language-selector__option"
+          {{- if $isCurrentLang }} selected{{- end -}}>
           {{ $flag }} {{ $langName }}
         </option>
       {{- end -}}

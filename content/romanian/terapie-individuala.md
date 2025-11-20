@@ -79,17 +79,17 @@ benefit:
 
   benefits:
     - title: "MANAGEMENTUL STRESULUI"
-      icon: "las la-lock la-3x"
+      icon: "lock la-3x"
     - title: "PREVENIREA BURNOUT"
-      icon: "las la-magnet la-3x"
+      icon: "magnet la-3x"
     - title: "RESILIENCE BUILDING"
-      icon: "las la-hamburger la-3x"
+      icon: "hamburger la-3x"
     - title: "EXECUTIVE COACHING"
-      icon: "las la-stroopwafel la-3x"
+      icon: "stroopwafel la-3x"
     - title: "TEAM DYNAMICS"
-      icon: "las la-plane-departure la-3x"
+      icon: "plane-departure la-3x"
     - title: "PERFORMANCE COACHING"
-      icon: "las la-medkit la-3x"
+      icon: "medkit la-3x"
 
 # office_gallery
 office_gallery:

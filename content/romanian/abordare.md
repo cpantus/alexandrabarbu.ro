@@ -44,7 +44,7 @@ method_tabs:
   methods:
     - name: "Terapie Cognitiv-Comportamentală (CBT)"
       slug: "cbt"
-      icon: "las la-brain"
+      icon: "brain"
       description: |
         CBT este o metodă structurată, orientată spre soluții, care te ajută să identifici și să modifici
         gândurile și comportamentele care contribuie la dificultățile tale. Este eficientă pentru anxietate,
@@ -56,7 +56,7 @@ method_tabs:
         - "Eficacitate dovedită științific pentru multe afecțiuni"
     - name: "Terapia Focused pe Emoții (EFT)"
       slug: "eft"
-      icon: "las la-heart"
+      icon: "heart"
       description: |
         EFT te ajută să înțelegi și să procesezi emoțiile tale profunde, deseori înrădăcinate în relații
         de atașament timpurii. Această metodă este deosebit de utilă pentru dificultăți relaționale,
@@ -68,7 +68,7 @@ method_tabs:
         - "Eficientă pentru terapia de cuplu și individuală"
     - name: "Terapia Focalizată pe Soluții (SFT)"
       slug: "sft"
-      icon: "las la-lightbulb"
+      icon: "lightbulb"
       description: |
         SFT pune accent pe resursele tale, punctele tale forte și pe viitorul pe care ți-l dorești, mai degrabă
         decât pe problemele din trecut. Este o abordare pragmatică, orientată spre obiective concrete și schimbări rapide.
@@ -79,7 +79,7 @@ method_tabs:
         - "Ideal pentru obiective clare și specifice"
     - name: "Mindfulness și ACT"
       slug: "mindfulness-act"
-      icon: "las la-spa"
+      icon: "spa"
       description: |
         Mindfulness și Terapia de Acceptare și Angajament (ACT) te învață să fii prezent în momentul actual,
         să accepți experiențele dificile și să acționezi în conformitate cu valorile tale. Aceste metode sunt
@@ -145,25 +145,25 @@ first_session_timeline:
       description: |
         Ne cunoaștem, discutăm despre așteptările tale de la terapie și clarifăm orice întrebări ai despre proces.
         Este important să te simți confortabil și în siguranță.
-      icon: "las la-handshake"
+      icon: "handshake"
     - title: "Explorarea Provocărilor Tale"
       duration: "20-25 minute"
       description: |
         Îmi vei povesti despre dificultățile care te-au adus în terapie, impactul lor asupra vieții tale și
         ce ai încercat până acum. Ascult cu atenție și fac întrebări pentru a înțelege mai bine situația ta.
-      icon: "las la-comments"
+      icon: "comments"
     - title: "Stabilirea Obiectivelor"
       duration: "10-15 minute"
       description: |
         Împreună, vom identifica obiective clare și realiste pentru terapie. Ce îți dorești să fie diferit?
         Cum vei ști că terapia funcționează? Stabilim așteptări clare și un plan preliminar.
-      icon: "las la-bullseye"
+      icon: "bullseye"
     - title: "Planificare și Pași Următori"
       duration: "5-10 minute"
       description: |
         Discutăm despre frecvența ședințelor, metodele pe care le vom folosi și primii pași concreți.
         Îți ofer și câteva resurse sau exerciții simple, dacă este cazul.
-      icon: "las la-map-marked-alt"
+      icon: "map-marked-alt"
 
 # Feature Details Section - What Makes My Approach Different
 feature_details:
@@ -178,22 +178,22 @@ feature_details:
       description: |
         Combin CBT, EFT, SFT, mindfulness și alte metode validate, în funcție de nevoile tale. Nu sunt limitată
         de o singură școală de gândire - folosesc ceea ce funcționează cel mai bine pentru tine.
-      icon: "las la-puzzle-piece"
+      icon: "puzzle-piece"
     - title: "Focus pe Relația Terapeutică"
       description: |
         Cercetările arată că calitatea relației terapeutice este cel mai puternic predictor al succesului în
         terapie. Investesc timp și energie în construirea unei relații bazate pe încredere, empatie și respect mutual.
-      icon: "las la-user-friends"
+      icon: "user-friends"
     - title: "Abordare Trauma-Informată"
       description: |
         Înțeleg impactul traumei asupra vieții tale și folosesc metode delicate, sigure și validate pentru
         a te ajuta să procesezi experiențe dificile, fără retraumatizare.
-      icon: "las la-shield-alt"
+      icon: "shield-alt"
     - title: "Educație Psihologică Continuă"
       description: |
         Te ajut să înțelegi ce se întâmplă cu tine - de ce reacționezi într-un anumit fel, de unde vin emoțiile
         tale, cum funcționează mintea și corpul. Cunoașterea de sine este o bază puternică pentru schimbare.
-      icon: "las la-book-open"
+      icon: "book-open"
 
 # CTA Standard Section
 cta_standard:

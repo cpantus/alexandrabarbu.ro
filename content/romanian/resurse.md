@@ -45,7 +45,7 @@ method_tabs:
   methods:
     - name: "Anxietate și Stres"
       slug: "anxietate"
-      icon: "las la-wind"
+      icon: "wind"
       description: |
         Articole și exerciții pentru gestionarea anxietății, atacurilor de panică, stresului cronic și
         îngrijorărilor excesive. Tehnici de relaxare, respirație și mindfulness.
@@ -56,7 +56,7 @@ method_tabs:
         - "Instrumente de mindfulness"
     - name: "Depresie și Mood"
       slug: "depresie"
-      icon: "las la-cloud-rain"
+      icon: "cloud-rain"
       description: |
         Resurse despre depresie, tristețe persistentă, pierderea motivației și energia scăzută. Strategii
         comportamentale și cognitive pentru îmbunătățirea dispoziției.
@@ -67,7 +67,7 @@ method_tabs:
         - "Rutine zilnice sănătoase"
     - name: "Relații și Comunicare"
       slug: "relatii"
-      icon: "las la-user-friends"
+      icon: "user-friends"
       description: |
         Ghiduri despre comunicare eficientă, rezolvarea conflictelor, construirea relațiilor sănătoase și
         stabilirea limitelor personale.
@@ -78,7 +78,7 @@ method_tabs:
         - "Empatie și ascultare activă"
     - name: "Mindfulness și Autocunoaștere"
       slug: "mindfulness"
-      icon: "las la-spa"
+      icon: "spa"
       description: |
         Practici de mindfulness, meditație, conștientizare corporală și creșterea conștientizării de sine.
         Tehnici pentru a trăi în prezent.
@@ -89,7 +89,7 @@ method_tabs:
         - "Prezență și conștientizare"
     - name: "Dezvoltare Personală"
       slug: "dezvoltare"
-      icon: "las la-seedling"
+      icon: "seedling"
       description: |
         Articole despre reziliență, valori personale, obiective de viață, auto-compasiune și creștere continuă.
         Resurse pentru a-ți descoperi potențialul.
@@ -159,22 +159,22 @@ feature_details:
       description: |
         20 de pagini cu tehnici CBT, mindfulness, exerciții de respirație și planuri de acțiune. Format PDF,
         descărcabil gratuit.
-      icon: "las la-file-pdf"
+      icon: "file-pdf"
     - title: "Template Jurnal de Gânduri și Emoții"
       description: |
         Instrument esențial pentru auto-observare și restructurare cognitivă. Include instrucțiuni complete
         de utilizare. Format descărcabil și imprimabil.
-      icon: "las la-journal-whills"
+      icon: "journal-whills"
     - title: "Exerciții Audio de Mindfulness și Relaxare"
       description: |
         5 exerciții audio ghidate (5-15 minute fiecare): body scan, respirație conștientă, meditație focalizată,
         relaxare musculară progresivă, vizualizare calmantă.
-      icon: "las la-headphones-alt"
+      icon: "headphones-alt"
     - title: "Planificator Săptămânal de Bunăstare"
       description: |
         Template pentru planificarea activităților plăcute, monitorizarea dispoziției, stabilirea obiectivelor
         și urmărirea progresului. Perfect pentru activare comportamentală.
-      icon: "las la-calendar-check"
+      icon: "calendar-check"
 
 # First Session Timeline Section - Workshops and Events
 first_session_timeline:
@@ -186,25 +186,25 @@ first_session_timeline:
       description: |
         O introducere practică în mindfulness cu exerciții ghidate, discuții interactive și materiale descărcabile.
         Ideal pentru începători. Data viitoare: TBD.
-      icon: "las la-video"
+      icon: "video"
     - title: "Gestionarea Anxietății - Sesiune Q&A Live"
       duration: "1 oră"
       description: |
         Sesiune interactivă de întrebări și răspunsuri despre anxietate, atacuri de panică și strategii de gestionare.
         Gratuit pentru toate persoanele interesate. Data viitoare: TBD.
-      icon: "las la-comments"
+      icon: "comments"
     - title: "Comunicare Asertivă în Relații"
       duration: "90 minute"
       description: |
         Workshop practic pentru a învăța să comunici clar, să stabilești limite sănătoase și să rezolvi conflicte
         constructiv. Include exerciții de rol. Data viitoare: TBD.
-      icon: "las la-users"
+      icon: "users"
     - title: "Jurnal Terapeutic - Cum să Scrii pentru Vindecare"
       duration: "1 oră"
       description: |
         Descoperă puterea scrisului terapeutic. Tehnici de journaling, prompt-uri și exerciții ghidate pentru
         procesarea emoțiilor și auto-reflecție. Data viitoare: TBD.
-      icon: "las la-pen"
+      icon: "pen"
 
 # CTA Standard Section
 cta_standard:

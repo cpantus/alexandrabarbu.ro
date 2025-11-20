@@ -34,17 +34,17 @@ benefits_section:
   description: "Instrumentele digitale care îți susțin procesul de vindecare"
   benefits:
     - title: "Acces 24/7"
-      icon: "las la-clock la-3x"
+      icon: "clock la-3x"
     - title: "100% Confidențial"
-      icon: "las la-lock la-3x"
+      icon: "lock la-3x"
     - title: "Resurse Personalizate"
-      icon: "las la-user-circle la-3x"
+      icon: "user-circle la-3x"
     - title: "Progres Monitorizat"
-      icon: "las la-chart-line la-3x"
+      icon: "chart-line la-3x"
     - title: "Comunicare Securizată"
-      icon: "las la-shield-alt la-3x"
+      icon: "shield-alt la-3x"
     - title: "Suport Continuu"
-      icon: "las la-headset la-3x"
+      icon: "headset la-3x"
 
 # Privacy guarantee
 privacy_guarantee:
