@@ -2,6 +2,10 @@
 
 # main menu
 
+[[main]]
+name = "Acasă"
+url = "/"
+weight = 1
 
 [[main]]
 name = "Despre"
@@ -61,7 +65,7 @@ weight = 7
 # footer menu
 [[footer]]
 name = "Despre"
-url = "about/"
+url = "despre-mine/"
 weight = 1
 
 [[footer]]
@@ -70,8 +74,23 @@ url = "servicii/"
 weight = 2
 
 [[footer]]
-name = "Termeni & Conditii"
-url = "terms-and-conditions/"
+name = "Abordare"
+url = "abordare/"
 weight = 3
+
+[[footer]]
+name = "Resurse"
+url = "resurse/"
+weight = 4
+
+[[footer]]
+name = "Contact"
+url = "contact/"
+weight = 5
+
+[[footer]]
+name = "Termeni & Condiții"
+url = "termeni-si-conditii/"
+weight = 6
 
 

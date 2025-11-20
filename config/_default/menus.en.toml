@@ -3,6 +3,11 @@
 # main menu
 
 [[main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[main]]
 name = "About"
 url = "about/"
 weight = 2
@@ -65,6 +70,21 @@ url = "services/"
 weight = 2
 
 [[footer]]
+name = "Approach"
+url = "approach/"
+weight = 3
+
+[[footer]]
+name = "Resources"
+url = "resources/"
+weight = 4
+
+[[footer]]
 name = "Contact"
 url = "contact/"
-weight = 3
+weight = 5
+
+[[footer]]
+name = "Terms & Conditions"
+url = "terms-and-conditions/"
+weight = 6
