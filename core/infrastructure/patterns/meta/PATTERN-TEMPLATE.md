@@ -42,6 +42,83 @@
 
 ---
 
+## TASK DECOMPOSITION OVERRIDE (v5.4.0)
+
+When this pattern applies ([specific use cases]), **DO NOT use your default task decomposition.**
+
+### ❌ PROHIBITED SEQUENCE ([Name the anti-pattern - typical wrong approach]):
+1. [Wrong approach step 1 - skipping validation/planning]
+2. [Wrong approach step 2 - ad-hoc execution without structure]
+3. [Wrong approach step 3 - incomplete or missing outputs]
+4. [Wrong approach step 4 - no validation of results]
+
+### ✅ MANDATORY SEQUENCE ([Pattern's execution model]):
+
+**Phase 1: [Input Validation]** (Ensure [N] prerequisites met)
+1. **[Prerequisite 1]**: [What to validate]
+   - Reference: Pattern "[Section]" or validation rules
+   - Output: [Validation result - pass/fail with details]
+
+2. **[Prerequisite 2]**: [What to validate]
+   - Reference: Pattern "[Section]" or validation rules
+   - Output: [Validation result - pass/fail with details]
+
+3. **[Prerequisite 3]**: [What to validate]
+   - Reference: Pattern "[Section]" or validation rules
+   - Output: [Validation result - pass/fail with details]
+
+**Output Acknowledgment After Phase 1:**
+```
+[Pattern Name] Validated:
+- [Prerequisite 1]: ✅ [Status + details]
+- [Prerequisite 2]: ✅ [Status + details]
+- [Prerequisite 3]: ✅ [Status + details]
+```
+
+**Phase 2: [Staged Execution]** (Execute workflow stages)
+4. **Stage 1 - [Stage Name]**: [What this stage accomplishes]
+   - Actions: [Key actions for this stage]
+   - Outputs: [Artifacts produced]
+
+5. **Stage 2 - [Stage Name]**: [What this stage accomplishes]
+   - Actions: [Key actions for this stage]
+   - Outputs: [Artifacts produced]
+
+6. **Stage 3 - [Stage Name]**: [What this stage accomplishes]
+   - Actions: [Key actions for this stage]
+   - Outputs: [Artifacts produced]
+
+**Phase 3: [Output Generation]** (Validate and finalize deliverables)
+7. **Completeness Check**: Verify all required outputs produced
+8. **Quality Validation**: Check outputs meet pattern standards
+9. **Artifact Finalization**: Save/format deliverables per pattern spec
+
+**IF you use ❌ sequence instead of ✅ sequence = ARCHITECTURE VIOLATION**
+
+**Rationale:** [Explain WHY the mandatory sequence is required. What quality/completeness does it guarantee? What problems does structured execution prevent?]
+
+---
+
+## LANGUAGE STANDARDS (v5.4.0)
+
+**YOU MUST use directive language throughout pattern execution:**
+
+**Required Directives:**
+- ✅ "MUST", "DO NOT", "ALWAYS", "NEVER", "MANDATORY", "PROHIBITED", "REQUIRED"
+- ❌ Never: "should", "consider", "might", "could", "try to", "it's recommended"
+
+**Process Steps:**
+- ✅ "Execute X", "Validate Y", "Generate Z"
+- ❌ "Try to do X", "Consider Y", "Should generate Z"
+
+**Rules Section:**
+- ✅ "MUST follow", "PROHIBITED:", "REQUIRED:"
+- ❌ "Should follow", "Avoid:", "Recommended:"
+
+**Enforcement Note:** Patterns with weak language will be rejected by validation hooks.
+
+---
+
 ## INPUT
 
 **Required:**

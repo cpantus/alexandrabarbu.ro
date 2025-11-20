@@ -17,31 +17,25 @@ import {
   ComponentType
 } from './utils/component-consistency-validator';
 import { initializePatternCache } from './utils/pattern-parser';
+import {
+  readStdin,
+  parseToolArgs,
+  passthroughInput,
+  outputToolArgs,
+  getFilePath,
+  getProjectRoot,
+  getRelativePath,
+  getComponentName as getBaseComponentName,
+} from './utils/hook-base';
 
 // Initialize pattern cache at module load (v5.2)
 initializePatternCache();
 
 /**
- * Read stdin to get tool use arguments
- */
-async function readStdin(): Promise<string> {
-  return new Promise((resolve) => {
-    let data = '';
-    process.stdin.on('data', (chunk) => {
-      data += chunk;
-    });
-    process.stdin.on('end', () => {
-      resolve(data);
-    });
-  });
-}
-
-/**
  * Parse component type from file path
  */
 function getComponentTypeFromPath(filePath: string): ComponentType | null {
-  const projectRoot = path.resolve(__dirname, '../../..');
-  const relativePath = path.relative(projectRoot, filePath);
+  const relativePath = getRelativePath(filePath);
 
   if (relativePath.startsWith('.claude/agents/')) {
     return { type: 'agent', path: filePath };
@@ -69,59 +63,44 @@ function getComponentTypeFromPath(filePath: string): ComponentType | null {
 }
 
 /**
- * Extract component name from file path
- */
-function getComponentName(filePath: string): string {
-  const basename = path.basename(filePath);
-  const extname = path.extname(filePath);
-  return basename.replace(extname, '');
-}
-
-/**
  * Main hook function
  */
 async function main() {
+  let input = '';
+
   try {
     // Get tool use arguments from stdin
-    const input = await readStdin();
-
-    if (!input || input.trim().length === 0) {
-      // No input, output as-is
-      process.stdout.write(input);
-      process.exit(0);
-    }
+    input = await readStdin();
 
     // Parse the tool use arguments (JSON format)
-    let toolArgs: any;
-    try {
-      toolArgs = JSON.parse(input);
-    } catch (error) {
-      // Can't parse, output as-is
-      process.stdout.write(input);
-      process.exit(0);
+    const toolArgs = parseToolArgs(input);
+
+    // Early exit if no valid input or parse failed
+    if (!input || input.trim().length === 0 || toolArgs === null) {
+      passthroughInput(input);
+      return;
     }
 
     // Get file path from tool arguments
-    const filePath = toolArgs.file_path || toolArgs.path;
+    const filePath = getFilePath(toolArgs);
     if (!filePath) {
-      // No file path, output as-is
-      process.stdout.write(JSON.stringify(toolArgs));
-      process.exit(0);
+      outputToolArgs(toolArgs);
+      return;
     }
 
-    // Get project root (hooks are in core/infrastructure/hooks/, so go up 3 dirs)
-    const projectRoot = path.resolve(__dirname, '../../..');
+    // Get project root
+    const projectRoot = getProjectRoot();
 
     // Check if this is a component file that needs validation
     const componentType = getComponentTypeFromPath(filePath);
     if (!componentType) {
       // Not a component file, output as-is
-      process.stdout.write(JSON.stringify(toolArgs));
-      process.exit(0);
+      outputToolArgs(toolArgs);
+      return;
     }
 
     // Get component name
-    const componentName = getComponentName(filePath);
+    const componentName = getBaseComponentName(filePath);
 
     // For edits, we need to read the current file and apply the change to validate the result
     let content = '';
@@ -136,8 +115,8 @@ async function main() {
       }
     } catch (error) {
       // Can't read file, output as-is
-      process.stdout.write(JSON.stringify(toolArgs));
-      process.exit(0);
+      outputToolArgs(toolArgs);
+      return;
     }
 
     // Only validate if we're editing the YAML frontmatter or structure
@@ -150,8 +129,8 @@ async function main() {
 
     if (!isStructuralEdit) {
       // Not a structural edit, skip validation to avoid noise
-      process.stdout.write(JSON.stringify(toolArgs));
-      process.exit(0);
+      outputToolArgs(toolArgs);
+      return;
     }
 
     // Run validation on the edited content
@@ -195,15 +174,12 @@ async function main() {
     }
 
     // Output the (potentially corrected) tool arguments
-    process.stdout.write(JSON.stringify(toolArgs));
-    process.exit(0);
+    outputToolArgs(toolArgs);
 
   } catch (error) {
     // Log error but pass through original input
     console.error('[pre-tool-use-edit] Error:', error);
-    const input = await readStdin();
-    process.stdout.write(input);
-    process.exit(0);
+    passthroughInput(input);
   }
 }
 

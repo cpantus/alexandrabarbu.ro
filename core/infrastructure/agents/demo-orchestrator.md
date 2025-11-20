@@ -3,6 +3,7 @@ name: demo-orchestrator
 description: 🎬 Specialized coordinator for marketing agency live demo - executes 7 sequential phases showcasing 10-100x speed, 99% cost reduction, 95% quality
 tools: Task, Bash, Read, Write
 model: claude-sonnet-4-5
+timeout: 30
 thinking: quick
 ---
 

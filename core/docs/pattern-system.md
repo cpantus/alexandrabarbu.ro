@@ -94,6 +94,29 @@ Each pattern includes:
 - **EXAMPLE**: Real input → output demonstration
 - **VARIATIONS**: Customization options
 
+### v5.4.0 Structure Requirements (Component Reuse = Quality Guarantee)
+
+All patterns created after v5.4.0 MUST include:
+
+1. **Task Decomposition Override Section**
+   - Overrides Claude's default task breakdown behavior
+   - Provides MANDATORY 3-phase execution sequence
+   - Includes ❌ PROHIBITED anti-patterns with consequences
+   - Includes ✅ MANDATORY phase-by-phase guidance
+   - Output Acknowledgment formats for validation
+
+2. **Language Standards Section**
+   - Enforces directive language (YOU MUST/DO NOT)
+   - Prohibits weak language (should/consider/might)
+   - Rationale: "Weak language leads to inconsistent execution"
+
+**Phase naming conventions:**
+- Research patterns: "Query Formulation & Source Strategy" → "Research Execution" → "Quality Validation"
+- Workflow patterns: "Input Validation & Strategy" → "Staged Execution" → "Output Generation"
+- Content patterns: "Content Strategy & Parameters" → "Generation" → "Review & Selection"
+
+**Validation:** Use `/pattern component_pattern` to validate structure before production use.
+
 ## Pattern + Skills Integration
 
 Patterns often reference skills for knowledge:
@@ -108,27 +131,52 @@ Patterns often reference skills for knowledge:
 - Consistent output quality (enforced structure)
 - Easy to chain into complex workflows
 
-## Pattern Enforcement Levels
+## Pattern Enforcement Levels (v5.3.0: Guidance-First)
 
-**Complexity-based enforcement** ensures quality gates for critical workflows:
+**Complexity-based enforcement** ensures quality gates through context injection:
 
 ### Simple Patterns (🟢 SUGGESTED)
 - **Examples**: component_agent, component_pattern, compress_documentation
 - **Enforcement**: Gentle recommendation
 - **Message**: "This pattern provides structure and quality gates. You may proceed without it if you have specific reasons."
 - **Bypass**: No justification required
+- **Behavior**: Hook suggests, no auto-load
 
-### Medium Patterns (🔴 MANDATORY)
+### Medium Patterns (🔴 MANDATORY - AUTO-LOADED)
 - **Examples**: system_design, api_design, component_design
-- **Enforcement**: Strong warning, requires explicit justification
-- **Message**: "Medium patterns ensure quality gates for critical workflows. To proceed WITHOUT pattern, include justification in prompt."
+- **Enforcement**: AUTO-INJECTION into Claude's context (200-500 tokens)
+- **Message**: "✓ pattern-name auto-loaded (MANDATORY pattern, tier mode, N tokens)"
+- **Behavior**: Pattern content injected → Claude executes workflow naturally
 - **Bypass**: Requires "Bypassing pattern because..." in prompt
+- **Progressive loading**: Quick tier loads core sections only
 
-### Complex Patterns (🔴 MANDATORY)
+### Complex Patterns (🔴 MANDATORY - AUTO-LOADED)
 - **Examples**: architecture_decision, scalability_analysis, hugo_content_migration
-- **Enforcement**: Strong warning, requires explicit justification
-- **Message**: "Complex patterns ensure quality gates for critical workflows. To proceed WITHOUT pattern, include justification in prompt."
+- **Enforcement**: AUTO-INJECTION into Claude's context (200-500 tokens)
+- **Message**: "✓ pattern-name auto-loaded (MANDATORY pattern, tier mode, N tokens)"
+- **Behavior**: Pattern content injected → Claude executes workflow naturally
 - **Bypass**: Requires "Bypassing pattern because..." in prompt
+- **Progressive loading**: Quick tier loads core sections only
+
+### Auto-Load Mechanism (v5.3.0)
+
+**Philosophy shift:**
+- OLD: Block execution, require `/pattern` command
+- NEW: Auto-inject pattern content into Claude's context
+- Result: Pattern files are delegatable systems executed naturally
+
+**How it works:**
+1. Hook detects medium/complex pattern match
+2. Check for bypass justification
+3. If no bypass → load pattern progressively (tier-based)
+4. Inject via stdout: `<required-pattern>...</required-pattern>`
+5. Cache per session (no duplicate loads)
+6. Claude sees workflow in context → executes it
+
+**Progressive disclosure:**
+- Quick tier: Core sections (PURPOSE, PROCESS, OUTPUT) ~200-500 lines
+- Full tier: Complete pattern content
+- Session cache prevents duplicate injections
 
 ### Justification Bypass
 

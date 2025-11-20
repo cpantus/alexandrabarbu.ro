@@ -1,12 +1,13 @@
 # Claude Code Core Infrastructure
 
-**Version:** 5.5.0
+**Version:** 5.7.0
 **Status:** Production
 **License:** MIT
 **Usage:** Standalone Workspace OR Git Submodule
 
 Shared core infrastructure for Claude Code projects - domain-agnostic, reusable, production-grade.
 
+**NEW in v5.7.0:** Progressive skill disclosure with automated component counting!
 **NEW in v5.5.0:** Can be used as a standalone Claude Code workspace for infrastructure development!
 
 ## Overview
@@ -95,47 +96,55 @@ hal-10k-core/
 │   ├── skills-system.md           # Skill auto-activation
 │   └── workflow-system.md         # Scout/Plan/Build workflows
 ├── infrastructure/
-│   ├── agents/                    # 5 core agents
+│   ├── agents/                    # 9 core agents
 │   │   ├── orchestrator.md
 │   │   ├── task-coordinator.md
 │   │   ├── task-implementer.md
 │   │   ├── research-scout.md
-│   │   └── demo-personalize.md
-│   ├── hooks/                     # 13 lifecycle hooks
+│   │   ├── system-architect.md
+│   │   └── ... (4 more)
+│   ├── hooks/                     # 17 lifecycle hooks + 31 utilities
 │   │   ├── user-prompt-submit.ts
 │   │   ├── pre-tool-use-bash.ts
 │   │   ├── pre-tool-use-write.ts
 │   │   ├── suggest-research.ts
-│   │   └── utils/                 # Shared hook utilities
-│   ├── patterns/                  # Execution templates
-│   │   ├── meta/                  # 8 component creation patterns
-│   │   ├── workflow/              # 9 workflow patterns
-│   │   ├── bundles/               # 4 pattern bundles
+│   │   ├── background-agent.ts
+│   │   └── utils/                 # 31 shared utilities
+│   ├── patterns/                  # 26 execution templates
+│   │   ├── meta/                  # Component creation patterns
+│   │   ├── workflow/              # Multi-stage workflows
+│   │   ├── bundles/               # Pattern bundles
 │   │   └── pattern-index.json     # Pattern metadata
-│   ├── skills/                    # 3 core skills
-│   │   ├── research-integration.md
+│   ├── skills/                    # 6 core skills + 2 resource dirs
+│   │   ├── skill-developer.md
+│   │   ├── data-visualization-designer.md
+│   │   ├── design-excellence.md
+│   │   ├── diagram-drawing.md
 │   │   ├── mcp-code-execution.md
-│   │   └── teaching-system.md
-│   └── commands/                  # 25 infrastructure commands
-│       └── infra/
+│   │   ├── SKILL-TEMPLATE.md
+│   │   └── @*/resources/          # Progressive disclosure resources
+│   ├── commands/                  # 35 infrastructure commands
+│   │   └── infra/
+│   └── utils/                     # 28 shared utilities
 └── schemas/                       # Validation schemas
     ├── mcp-schema.json
     └── pattern-schema.json
 ```
 
-### 🤖 Agents (6 Core)
+### 🤖 Agents (9 Core)
 
 **General Purpose:**
 - `orchestrator.md` - Multi-agent coordination
 - `task-coordinator.md` - Task planning and breakdown
 - `task-implementer.md` - Code implementation
-- `system-architect.md` - **NEW v5.5.0** - Architecture design (universal, not coding-specific)
+- `system-architect.md` - Architecture design (universal, not coding-specific)
 
 **Specialized:**
 - `research-scout.md` - External knowledge gathering (WebSearch, Context7 MCP)
 - `demo-personalize.md` - Demo customization
+- Plus 3 more orchestration agents
 
-### 📋 Patterns (21 Core)
+### 📋 Patterns (26 Core)
 
 **Meta Patterns (8)** - Component creation with quality gates:
 - `component_agent` - Create new agents

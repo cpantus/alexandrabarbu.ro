@@ -14,6 +14,82 @@ Use this pattern when comparing:
 
 **Goal**: Make informed technology selection decisions based on objective comparison of pros/cons/use cases.
 
+## Task Decomposition Override (v5.4.0)
+
+**CRITICAL:** This pattern overrides Claude's default task decomposition behavior. YOU MUST follow the 3-phase sequence below. DO NOT create your own task breakdown.
+
+### ❌ PROHIBITED SEQUENCE
+1. ❌ Comparing technologies without individual research first
+2. ❌ Presenting biased recommendations without objective analysis
+3. ❌ Skipping use-case mapping or trade-off documentation
+4. ❌ Declaring universal winners without context
+
+**Consequences:** Biased technology selection, missing critical trade-offs, poor decision support → ARCHITECTURE VIOLATION
+
+### ✅ MANDATORY 3-PHASE SEQUENCE
+
+#### Phase 1: Query Formulation & Source Strategy
+**Decision Point:** Establish comparison scope and research methodology
+
+**YOU MUST:**
+1. Identify the two technologies/approaches being compared
+2. Research EACH technology independently (individual strengths, limitations, use cases)
+3. Formulate specific comparison queries (direct comparison, use-case guidance, migration experiences)
+4. Define objectivity requirements (no bias, document both pros and cons, multiple perspectives)
+
+**Output Acknowledgment After Phase 1:**
+```
+✅ Phase 1 Complete - Comparison Research Strategy Defined
+📋 Technologies: [Tech A] vs [Tech B]
+📊 Research Phases: Individual (2x) → Direct Comparison → Community Perspective
+🎯 Objectivity: Unbiased analysis with trade-offs documented
+⏭️  Proceeding to Phase 2: Comparative Research Execution
+```
+
+#### Phase 2: Comparative Research Execution
+**YOU MUST:**
+1. Execute Phase 1: Individual technology research (Context7 + WebSearch for each)
+2. Execute Phase 2: Direct comparison research (comparison articles, use-case guidance, migration stories)
+3. Execute Phase 3: Community perspective (WebFetch top comparison sources, extract patterns)
+4. Execute Phase 4: Decision framework synthesis (criteria, mapping, recommendations)
+5. Cross-reference findings across all phases
+6. Identify consensus and conflicts in recommendations
+
+**Output Acknowledgment After Phase 2:**
+```
+✅ Phase 2 Complete - Comparative Research Finished
+📊 Individual Research: [Tech A sources count], [Tech B sources count]
+📄 Comparison Sources: [count] comparison articles reviewed
+🎯 Patterns Identified: [consensus points], [conflict areas]
+⏭️  Proceeding to Phase 3: Decision Framework & Report Generation
+```
+
+#### Phase 3: Decision Framework & Report Generation
+**YOU MUST:**
+1. Validate coverage (both technologies researched, 3+ comparison articles, benchmarks included)
+2. Verify objectivity (no bias, pros/cons for BOTH, trade-offs explained, context provided)
+3. Create comparison matrix (performance, scalability, complexity, ecosystem, etc.)
+4. Map technologies to use cases (when to choose each)
+5. Generate decision tree and recommendations
+6. Document all sources with credibility ratings
+
+**Output Acknowledgment After Phase 3:**
+```
+✅ Phase 3 Complete - Research Comparison Pattern Finished
+📊 Comparison Matrix: [dimensions compared]
+🎯 Use Cases Mapped: [count] scenarios analyzed
+📄 Decision Framework: Complete with recommendations
+✅ Pattern execution complete
+```
+
+## Language Standards (v5.4.0)
+
+**Directive Language:** This pattern uses imperative commands.
+- ✅ "YOU MUST", "DO NOT", "ALWAYS", "NEVER"
+- ❌ "should", "consider", "might", "could", "try to"
+
+**Rationale:** Weak language leads to inconsistent execution. Strong directives ensure reliable pattern application.
+
 ## Pattern Overview
 
 This specialized pattern:

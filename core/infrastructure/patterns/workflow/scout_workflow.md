@@ -5,6 +5,134 @@
 **Use When:** Starting complex tasks that require finding relevant files across the codebase
 **Cost:** Low (uses fast models: Haiku, Gemini Flash)
 **Speed:** Fast (2-5 minutes for 2-3 parallel scouts)
+**Version:** 2.0 (v5.4.0 Task Decomposition Override)
+
+---
+
+## Task Decomposition Override (v5.4.0)
+
+**CRITICAL:** When executing this pattern, YOU MUST follow the 3-phase sequence below. DO NOT use generic task decomposition. This pattern-specific sequence prevents Claude's default behavior and ensures checkable validation points.
+
+### ❌ PROHIBITED SEQUENCE (Default Decomposition)
+
+```
+Task: Execute scout workflow
+→ Generic: Break into subtasks based on Claude's judgment
+→ Generic: Execute steps in arbitrary order
+→ Generic: Return results without validation
+Result: ARCHITECTURE VIOLATION - Scout execution cannot be validated by hooks
+```
+
+**Consequence:** Unvalidated scout execution, inconsistent search strategies, missing research opportunities, untrackable progress.
+
+---
+
+### ✅ MANDATORY SEQUENCE (Input Validation → Staged Execution → Output Generation)
+
+**Phase 1: Input Validation (Search Strategy Design)**
+
+YOU MUST validate and design search strategy BEFORE spawning scouts:
+
+1. **Validate required inputs:** task_description, search_scope, scout_count
+2. **Design search strategy:**
+   - Break down task into searchable components
+   - Define search queries for each scout
+   - Determine scope and patterns
+   - Identify research needs (--with-research flag)
+3. **Component creation detection:** Check if task involves creating agents/patterns/skills/commands
+4. **Decide scout approach:** Fast (1 scout), Standard (2-3 scouts), or Deep (4-5 scouts)
+
+**Output Acknowledgment After Phase 1:**
+```markdown
+✅ PHASE 1 COMPLETE: Search Strategy Designed
+- Scout count: [N] scouts
+- Search strategies: [list of strategies per scout]
+- Component creation: [Yes/No] → Research: [Yes/No]
+- Estimated time: [X] minutes
+```
+
+**Phase 2: Staged Execution (Scout Orchestration)**
+
+YOU MUST execute scouts and research in parallel:
+
+1. **Spawn scout agents:** Launch 2-3 background agents with specific search strategies
+2. **Spawn research agent (if needed):** Launch research scout if --with-research or component creation detected
+3. **Monitor progress:** Check agent status periodically
+4. **Search research examples:** If component creation, query research repositories (1,515+ components)
+
+**Output Acknowledgment After Phase 2:**
+```markdown
+✅ PHASE 2 COMPLETE: Scout Execution Finished
+- Scouts completed: [N]/[N]
+- Research completed: [Yes/No]
+- Files discovered: [N] files
+- Research examples: [N] examples (if applicable)
+- Execution time: [X] minutes
+```
+
+**Phase 3: Output Generation (Report Aggregation)**
+
+YOU MUST aggregate and validate scout findings:
+
+1. **Read scout reports:** Collect findings from all scouts
+2. **Deduplicate files:** Remove duplicates, merge relevance scores
+3. **Rank by relevance:** High (2+ scouts), Medium (1 scout high confidence), Low (1 scout low confidence)
+4. **Integrate research:** Add research findings and examples (if applicable)
+5. **Create aggregated report:** scout-report.md with all findings
+6. **Return JSON output:** For next agent (Plan workflow)
+
+**Output Acknowledgment After Phase 3 (REQUIRED FORMAT):**
+```markdown
+✅ SCOUT WORKFLOW COMPLETE
+**Report:** /dev/active/[task]/scout-report.md
+**High Priority Files:** [N] files (mentioned by 2+ scouts)
+**Medium Priority Files:** [N] files (1 scout, high confidence)
+**Low Priority Files:** [N] files (1 scout, low confidence)
+**Research Report:** [path] (if applicable)
+**Total Time:** [X] minutes
+**Total Cost:** $[X]
+**Next Agent:** plan_workflow pattern
+```
+
+---
+
+### Why This Sequence is Mandatory
+
+**Input Validation First:**
+- Prevents spawning scouts without clear strategy
+- Detects component creation early → enables research
+- Validates inputs before expensive operations
+
+**Staged Execution Second:**
+- Parallel scout execution for speed (2-5 minutes)
+- Research integrated when needed (no time penalty)
+- Component examples included automatically
+
+**Output Generation Last:**
+- Deduplicated, ranked findings
+- Research integrated for informed planning
+- Structured output for Plan agent consumption
+
+**Hook Validation:** Hooks can parse "✅ SCOUT WORKFLOW COMPLETE" output to verify pattern compliance.
+
+---
+
+## Language Standards
+
+**Directive Language (v5.4.0):**
+
+This pattern uses MANDATORY directive language to enforce quality:
+
+- ✅ **USE:** "YOU MUST", "DO NOT", "ALWAYS", "NEVER", "MANDATORY", "REQUIRED", "PROHIBITED"
+- ❌ **AVOID:** "should", "consider", "might", "could", "try to", "ideally", "recommended"
+
+**Examples in this pattern:**
+- "YOU MUST follow the 3-phase sequence" (not "you should follow")
+- "DO NOT use generic task decomposition" (not "avoid using")
+- "ALWAYS run 2-3 scouts in parallel" (not "consider running")
+- "NEVER use Sonnet for scouts" (not "try to use Haiku")
+
+**Rationale:** Weak language leads to inconsistent execution. Scouts are exploratory and cheap—directive language ensures best practices are followed: parallel execution, cheap models, structured output.
 
 ---
 
@@ -31,11 +159,11 @@ Optional:
 3. Define search queries for each scout
 4. Determine search scope and patterns
 
-**Think about:**
-- What files are likely to be relevant?
-- What keywords or patterns indicate relevance?
-- How to divide search work among scouts?
-- What to prioritize (recent changes, core files, dependencies)?
+**YOU MUST determine:**
+- Which files are relevant to the task
+- Which keywords or patterns indicate relevance
+- How to divide search work among scouts
+- What to prioritize (recent changes, core files, dependencies)
 
 ---
 
@@ -78,9 +206,9 @@ Optional:
 /background-status scout-3
 ```
 
-**Observe:**
-- Execution time (should be <2 min per scout)
-- Context usage (should be low, <50K tokens)
+**YOU MUST verify:**
+- Execution time (MUST be <2 min per scout)
+- Context usage (MUST be low, <50K tokens)
 - Status (running → completed)
 
 ---
@@ -284,9 +412,9 @@ Optional:
 - [ ] Next steps are clear
 
 **Cost Validation:**
-- [ ] Total cost < $0.10 (scouts should be cheap)
-- [ ] Total tokens < 150K (scouts should be efficient)
-- [ ] Total time < 5 minutes (scouts should be fast)
+- [ ] Total cost < $0.10 (scouts MUST be cheap)
+- [ ] Total tokens < 150K (scouts MUST be efficient)
+- [ ] Total time < 5 minutes (scouts MUST be fast)
 
 **Quality Validation:**
 - [ ] High priority files contain at least 1 truly relevant file
@@ -406,7 +534,7 @@ Found email-related files across patterns, skills, scripts, and modules. The exi
 
 ## Next Steps
 1. Load High Priority files (4 files) into Plan agent
-2. Plan agent should design migration strategy
+2. Plan agent will design migration strategy
 3. Check Medium Priority files if more context needed
 ```
 
@@ -637,13 +765,13 @@ Task: "setup Redis caching" → Research: "Redis caching patterns"
 4. **Log performance:** Track time/tokens/cost for optimization
 5. **Validate results:** Spot-check high priority files before passing to Plan
 6. **Document strategy:** Include keywords/patterns in report for debugging
-7. **Set time limits:** Scout should complete in <5 min, fail if exceeds
+7. **Set time limits:** Scout MUST complete in <5 min, fail if exceeds
 8. **Avoid file reads:** Use Grep/Glob for discovery, save Read for Plan stage
 9. **Deduplicate aggressively:** Same file mentioned by multiple scouts = high priority
-10. **Budget wisely:** Scout should cost <$0.10, or 5% of total task budget
+10. **Budget wisely:** Scout MUST cost <$0.10, or 5% of total task budget
 
 ---
 
-**Pattern Version:** 1.0
-**Last Updated:** 2025-11-04
-**Part of:** v4.0 Multi-Agent Workflows (Phase 18)
+**Pattern Version:** 2.0 (v5.4.0)
+**Last Updated:** 2025-11-14
+**Part of:** v5.4.0 Directive Language Transformation

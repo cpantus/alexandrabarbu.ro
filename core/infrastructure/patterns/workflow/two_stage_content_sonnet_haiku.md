@@ -28,6 +28,86 @@ Generate high-volume content variants cost-effectively using Haiku for generatio
 
 ---
 
+## Task Decomposition Override (v5.4.0)
+
+**CRITICAL:** This pattern overrides Claude's default task decomposition behavior. YOU MUST follow the 3-phase sequence below. DO NOT create your own task breakdown.
+
+### ❌ PROHIBITED SEQUENCE
+1. ❌ Generating variants without strategic angle diversification
+2. ❌ Selecting without evaluation criteria (brand voice, persona resonance, performance predictors)
+3. ❌ Skipping A/B testing recommendations
+4. ❌ Missing cost/quality analysis
+
+**Consequences:** Low-quality variants, poor selection rationale, missed optimization opportunities → ARCHITECTURE VIOLATION
+
+### ✅ MANDATORY 3-PHASE SEQUENCE
+
+#### Phase 1: Content Strategy & Generation Parameters
+**Decision Point:** Define content requirements and generation strategy
+
+**YOU MUST:**
+1. Analyze content type and determine quantity (typically 10-20 variants)
+2. Identify target persona and campaign goal (awareness/engagement/conversion)
+3. Define platform constraints (length limits, format requirements)
+4. Plan strategic angle diversification (benefit, curiosity, urgency, question, data-driven)
+
+**Output Acknowledgment After Phase 1:**
+```
+✅ Phase 1 Complete - Content Strategy Defined
+📋 Content Type: [subject lines/posts/ad copy/headlines]
+📊 Quantity: [10-20] variants across [5] strategic angles
+🎯 Target: [persona] for [goal] on [platform]
+⏭️  Proceeding to Phase 2: High-Volume Generation (Haiku)
+```
+
+#### Phase 2: High-Volume Generation & Initial Selection
+**YOU MUST:**
+1. Spawn copywriter-haiku subagent for variant generation
+2. Generate [QUANTITY] diverse variants across strategic angles
+3. Ensure brand voice alignment (check voice-patterns-quick.md)
+4. Follow platform best practices (character limits, formatting)
+5. Have Haiku provide top 3 picks with brief reasoning
+6. Format output as numbered list for easy review
+
+**Output Acknowledgment After Phase 2:**
+```
+✅ Phase 2 Complete - Variants Generated (Haiku)
+📊 Variants: [count] generated across strategic angles
+💰 Cost: ~$0.01
+⏱️  Time: 30-60 seconds
+🎯 Haiku's Top 3: [list variant numbers]
+⏭️  Proceeding to Phase 3: Strategic Selection (Sonnet)
+```
+
+#### Phase 3: Strategic Selection & Performance Analysis
+**YOU MUST:**
+1. Spawn copywriter (sonnet) subagent for strategic review
+2. Evaluate each variant against criteria (brand voice, persona resonance, goal optimization, platform best practices, performance predictors)
+3. Select top 3 variants with detailed reasoning
+4. Provide performance predictions based on benchmarks
+5. Create A/B testing recommendation (test setup, success metrics, timeline)
+6. Calculate cost analysis (total cost, savings vs sonnet-only)
+
+**Output Acknowledgment After Phase 3:**
+```
+✅ Phase 3 Complete - Two-Stage Content Pattern Finished
+🥇 Top 3 Selected: [variant numbers]
+📊 Performance Predictions: [expected metrics]
+🧪 A/B Test: #[X] vs #[Y] recommended
+💰 Cost Savings: 67% ($0.04 vs $0.12 sonnet-only)
+✅ Pattern execution complete
+```
+
+## Language Standards (v5.4.0)
+
+**Directive Language:** This pattern uses imperative commands.
+- ✅ "YOU MUST", "DO NOT", "ALWAYS", "NEVER"
+- ❌ "should", "consider", "might", "could", "try to"
+
+**Rationale:** Weak language leads to inconsistent execution. Strong directives ensure reliable pattern application.
+
+---
+
 ## PROCESS
 
 ### Stage 1: High-Volume Generation (Haiku)

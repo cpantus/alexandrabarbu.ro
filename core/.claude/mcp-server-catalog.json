@@ -1,0 +1,335 @@
+{
+  "$schema": "../schemas/mcp-schema.json",
+  "version": "1.0.0",
+  "description": "MCP server metadata for selective loading and token optimization",
+  "servers": {
+    "playwright": {
+      "category": "browser-automation",
+      "keywords": [
+        "browser",
+        "scrape",
+        "web page",
+        "screenshot",
+        "navigate",
+        "automate",
+        "crawl",
+        "web scraping",
+        "headless",
+        "puppeteer",
+        "selenium"
+      ],
+      "toolCount": 23,
+      "estimatedTokens": 18400,
+      "frequency": "medium",
+      "autoStart": false,
+      "description": "Browser automation and web scraping with Playwright"
+    },
+    "gdrive": {
+      "category": "productivity",
+      "keywords": [
+        "google drive",
+        "gdrive",
+        "document",
+        "spreadsheet",
+        "upload",
+        "download",
+        "drive",
+        "docs",
+        "sheets"
+      ],
+      "toolCount": 18,
+      "estimatedTokens": 14400,
+      "frequency": "high",
+      "autoStart": false,
+      "description": "Google Drive file management and integration"
+    },
+    "github": {
+      "category": "development",
+      "keywords": [
+        "github",
+        "repository",
+        "pull request",
+        "pr",
+        "issue",
+        "commit",
+        "git",
+        "repo",
+        "code review"
+      ],
+      "toolCount": 20,
+      "estimatedTokens": 16000,
+      "frequency": "medium",
+      "autoStart": false,
+      "description": "GitHub repository and issue management"
+    },
+    "slack": {
+      "category": "communication",
+      "keywords": [
+        "slack",
+        "message",
+        "channel",
+        "dm",
+        "notification",
+        "chat",
+        "team communication"
+      ],
+      "toolCount": 12,
+      "estimatedTokens": 9600,
+      "frequency": "medium",
+      "autoStart": false,
+      "description": "Slack messaging and channel management"
+    },
+    "notion": {
+      "category": "productivity",
+      "keywords": [
+        "notion",
+        "database",
+        "page",
+        "workspace",
+        "notes",
+        "wiki",
+        "documentation"
+      ],
+      "toolCount": 15,
+      "estimatedTokens": 12000,
+      "frequency": "medium",
+      "autoStart": false,
+      "description": "Notion workspace and database management"
+    },
+    "postgres": {
+      "category": "database",
+      "keywords": [
+        "postgres",
+        "postgresql",
+        "database",
+        "sql",
+        "query",
+        "table",
+        "db"
+      ],
+      "toolCount": 10,
+      "estimatedTokens": 8000,
+      "frequency": "low",
+      "autoStart": false,
+      "description": "PostgreSQL database operations"
+    },
+    "mysql": {
+      "category": "database",
+      "keywords": [
+        "mysql",
+        "database",
+        "sql",
+        "query",
+        "table",
+        "db",
+        "mariadb"
+      ],
+      "toolCount": 10,
+      "estimatedTokens": 8000,
+      "frequency": "low",
+      "autoStart": false,
+      "description": "MySQL database operations"
+    },
+    "mongodb": {
+      "category": "database",
+      "keywords": [
+        "mongodb",
+        "mongo",
+        "nosql",
+        "collection",
+        "document",
+        "database"
+      ],
+      "toolCount": 12,
+      "estimatedTokens": 9600,
+      "frequency": "low",
+      "autoStart": false,
+      "description": "MongoDB NoSQL database operations"
+    },
+    "jira": {
+      "category": "project-management",
+      "keywords": [
+        "jira",
+        "ticket",
+        "issue",
+        "sprint",
+        "backlog",
+        "epic",
+        "story"
+      ],
+      "toolCount": 18,
+      "estimatedTokens": 14400,
+      "frequency": "low",
+      "autoStart": false,
+      "description": "Jira project and issue tracking"
+    },
+    "salesforce": {
+      "category": "crm",
+      "keywords": [
+        "salesforce",
+        "crm",
+        "lead",
+        "opportunity",
+        "account",
+        "contact",
+        "customer"
+      ],
+      "toolCount": 22,
+      "estimatedTokens": 17600,
+      "frequency": "low",
+      "autoStart": false,
+      "description": "Salesforce CRM operations"
+    },
+    "hubspot": {
+      "category": "crm",
+      "keywords": [
+        "hubspot",
+        "crm",
+        "contact",
+        "deal",
+        "marketing",
+        "campaign"
+      ],
+      "toolCount": 20,
+      "estimatedTokens": 16000,
+      "frequency": "low",
+      "autoStart": false,
+      "description": "HubSpot CRM and marketing automation"
+    },
+    "google-analytics": {
+      "category": "analytics",
+      "keywords": [
+        "google analytics",
+        "analytics",
+        "ga",
+        "metrics",
+        "traffic",
+        "conversion",
+        "pageviews"
+      ],
+      "toolCount": 14,
+      "estimatedTokens": 11200,
+      "frequency": "low",
+      "autoStart": false,
+      "description": "Google Analytics data and reporting"
+    },
+    "mailchimp": {
+      "category": "marketing",
+      "keywords": [
+        "mailchimp",
+        "email",
+        "campaign",
+        "newsletter",
+        "subscriber",
+        "mailing list"
+      ],
+      "toolCount": 16,
+      "estimatedTokens": 12800,
+      "frequency": "low",
+      "autoStart": false,
+      "description": "Mailchimp email marketing"
+    },
+    "ahrefs": {
+      "category": "seo",
+      "keywords": [
+        "ahrefs",
+        "seo",
+        "backlink",
+        "keyword",
+        "ranking",
+        "domain rating",
+        "search"
+      ],
+      "toolCount": 12,
+      "estimatedTokens": 9600,
+      "frequency": "low",
+      "autoStart": false,
+        "description": "Ahrefs SEO and backlink analysis"
+    },
+    "aws": {
+      "category": "cloud",
+      "keywords": [
+        "aws",
+        "amazon",
+        "ec2",
+        "s3",
+        "lambda",
+        "cloud",
+        "infrastructure"
+      ],
+      "toolCount": 25,
+      "estimatedTokens": 20000,
+      "frequency": "low",
+      "autoStart": false,
+      "description": "AWS cloud services management"
+    },
+    "stripe": {
+      "category": "payment",
+      "keywords": [
+        "stripe",
+        "payment",
+        "charge",
+        "customer",
+        "subscription",
+        "invoice",
+        "billing"
+      ],
+      "toolCount": 18,
+      "estimatedTokens": 14400,
+      "frequency": "low",
+      "autoStart": false,
+      "description": "Stripe payment processing"
+    }
+  },
+  "profiles": {
+    "research-minimal": {
+      "description": "Minimal server set for research tasks",
+      "servers": [],
+      "estimatedTokens": 0,
+      "tokenSavings": 192000,
+      "savingsPercentage": 100
+    },
+    "browser-automation": {
+      "description": "Browser automation and web scraping",
+      "servers": ["playwright"],
+      "estimatedTokens": 18400,
+      "tokenSavings": 173600,
+      "savingsPercentage": 90
+    },
+    "productivity": {
+      "description": "Productivity tools (Drive, Notion, Slack)",
+      "servers": ["gdrive", "notion", "slack"],
+      "estimatedTokens": 36000,
+      "tokenSavings": 156000,
+      "savingsPercentage": 81
+    },
+    "development": {
+      "description": "Development tools (GitHub, databases)",
+      "servers": ["github", "postgres"],
+      "estimatedTokens": 24000,
+      "tokenSavings": 168000,
+      "savingsPercentage": 88
+    },
+    "marketing": {
+      "description": "Marketing and analytics tools",
+      "servers": ["hubspot", "mailchimp", "google-analytics", "ahrefs"],
+      "estimatedTokens": 49600,
+      "tokenSavings": 142400,
+      "savingsPercentage": 74
+    },
+    "local-dev": {
+      "description": "Local development - no MCPs needed",
+      "servers": [],
+      "estimatedTokens": 0,
+      "tokenSavings": 192000,
+      "savingsPercentage": 100
+    }
+  },
+  "metadata": {
+    "totalServers": 16,
+    "totalEstimatedTokens": 192000,
+    "averageTokensPerServer": 12000,
+    "lastUpdated": "2025-11-15",
+    "version": "1.0.0"
+  }
+}

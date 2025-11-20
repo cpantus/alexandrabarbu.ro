@@ -9,23 +9,8 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-
-/**
- * Read stdin (user prompt)
- */
-async function readStdin(): Promise<string> {
-  return new Promise((resolve, reject) => {
-    let data = '';
-    process.stdin.setEncoding('utf8');
-    process.stdin.on('data', chunk => {
-      data += chunk;
-    });
-    process.stdin.on('end', () => {
-      resolve(data);
-    });
-    process.stdin.on('error', reject);
-  });
-}
+import { readStdinWithTimeout } from './utils/stdin-reader';
+import { getProjectRoot } from './utils/project-root';
 
 /**
  * Detect if prompt is research-worthy
@@ -216,27 +201,27 @@ ${border}
  */
 async function main() {
   try {
-    // Get user prompt from stdin
-    const prompt = await readStdin();
+    // Get user prompt from stdin with timeout
+    const prompt = await readStdinWithTimeout({ timeout: 1000 });
 
     if (!prompt || prompt.trim().length === 0) {
-      process.exit(0);
+      process.exit(0); // Success - no prompt to analyze
     }
 
     // Short-circuit for trivial prompts
     const promptLower = prompt.toLowerCase().trim();
     if (promptLower.length < 15 ||
         /^(hi|hello|hey|thanks?|thank you|bye|goodbye|\?)$/i.test(promptLower)) {
-      process.exit(0);
+      process.exit(0); // Success - trivial prompt
     }
 
     // Skip if user is already using /research command or --with-research flag
     if (promptLower.includes('/research') || promptLower.includes('--with-research')) {
-      process.exit(0);
+      process.exit(0); // Success - already using research
     }
 
-    // Get project root (hooks are in core/infrastructure/hooks/, so go up 3 dirs)
-    const projectRoot = path.resolve(__dirname, '../../..');
+    // Get project root (portable detection via git or cwd)
+    const projectRoot = getProjectRoot();
 
     // Detect research needs
     const detection = detectResearchNeeds(prompt);
@@ -265,17 +250,17 @@ async function main() {
     );
 
     console.log(suggestion);
-    process.exit(0);
+    process.exit(0); // Success - suggestion shown
 
   } catch (error) {
     // Silent fail - don't disrupt user experience if hook errors
     console.error('Hook error:', error);
-    process.exit(1);
+    process.exit(0); // Exit gracefully on error (don't block user)
   }
 }
 
 // Run the hook
 main().catch(error => {
   console.error('Unexpected error:', error);
-  process.exit(1);
+  process.exit(0); // Exit gracefully on error (don't block user)
 });

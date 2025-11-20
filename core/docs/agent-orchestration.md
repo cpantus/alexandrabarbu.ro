@@ -2,6 +2,146 @@
 
 Coordinate specialized agents for complex development workflows and research tasks.
 
+## Official Sub-Agent Patterns
+
+This system implements the official Claude Code sub-agent patterns with enhancements for background execution and observability.
+
+### Alignment with Official Standards
+
+**100% Compliant:**
+- ✅ **File-based discovery** - Agents defined in `.md` files with YAML frontmatter
+- ✅ **YAML configuration** - Model, timeout, tools specified in frontmatter
+- ✅ **Conversation storage** - JSONL format for resumable agents (`agent-{id}.jsonl`)
+- ✅ **Source precedence** - Project → User → Plugin agent discovery
+- ✅ **Agent structure** - Name, description, system prompt, tool access
+
+**Enhanced Beyond Standard:**
+- 🎯 **Background orchestration** - Detached processes for "out-of-loop" execution
+- 📊 **Telemetry integration** - Cost tracking, bash optimization monitoring
+- 👁️ **Observability** - `/observe` dashboard for real-time agent status
+- 💾 **Prompt caching metrics** - Track cache hits/misses for performance
+- 🔄 **Resumable agents** - Continue conversations with `--resume [agent-id]`
+
+### Agent Discovery (File-Based)
+
+Agents are automatically discovered from three sources:
+
+```
+Priority Order:
+1. Project agents:  core/infrastructure/agents/*.md  (highest priority)
+2. User agents:     ~/.claude/agents/*.md            (override defaults)
+3. Plugin agents:   [plugin]/agents/*.md             (domain-specific)
+```
+
+**YAML Frontmatter Format:**
+```yaml
+---
+name: agent-name
+description: When this subagent should be invoked
+tools: Read, Write, Grep, Bash
+model: sonnet
+timeout: 60  # minutes
+thinking: think  # Optional: think|think-hard|ultrathink
+---
+
+Your agent's system prompt goes here...
+```
+
+**Discovery Details:**
+- Automatic discovery at runtime (no hardcoded agent lists)
+- `.md` files with YAML frontmatter
+- Filters out `TEMPLATE.md` and `README.md` files
+- Validates required fields: `name`, `description`
+- Falls back to defaults: `model: sonnet`, `timeout: 60`
+
+**See:** `core/infrastructure/hooks/utils/agent-discovery.ts` for implementation
+
+### Agent Management (`/agents` Command)
+
+Interactive command for creating and managing agents:
+
+```bash
+# List all discovered agents
+/agents list [--source project|user|plugin] [--format table|json]
+
+# Create new agent interactively
+/agents create [--project|--user|--plugin]
+
+# Edit existing agent
+/agents edit <agent-name>
+
+# Delete agent (with safety prompts)
+/agents delete <agent-name> [--force]
+
+# Validate YAML frontmatter
+/agents validate <agent-name> [--all]
+```
+
+**Features:**
+- Interactive creation wizard with YAML validation
+- Table/JSON output formats
+- Source filtering (project/user/plugin)
+- Safety features (confirmations, backups, project agent protection)
+- Editor integration for editing agents
+
+**See:** `.claude/commands/infra/agents.md` for full documentation
+
+### Conversation Storage (Resumable Agents)
+
+Full conversation continuity across agent sessions using JSONL format:
+
+```bash
+# Start agent (creates conversation file)
+/background research-scout "React best practices"
+→ Creates: /tmp/agents/agent-{id}.jsonl
+
+# Kill agent mid-execution
+/kill <agent-id>
+
+# Resume with full conversation context
+/background research-scout "continue analysis" --resume <agent-id>
+→ Loads previous conversation and continues
+```
+
+**JSONL Format (Official Standard):**
+```jsonl
+{"type":"session","agentId":"agent-123","agentType":"research-scout","startTime":"2025-11-15T10:00:00Z","version":"1.0"}
+{"type":"event","timestamp":"2025-11-15T10:00:05Z","role":"user","content":"Research React best practices"}
+{"type":"event","timestamp":"2025-11-15T10:01:30Z","role":"assistant","content":"Starting research..."}
+```
+
+**Utilities:**
+- `createConversationFile(agentId)` - Initialize new conversation
+- `appendToConversation(agentId, event)` - Add user/assistant messages
+- `loadConversation(agentId)` - Restore full conversation history
+- `listConversations()` - Show all conversation files
+- `cleanupOldConversations(days)` - Delete old conversations
+
+**See:** `core/infrastructure/hooks/utils/conversation-storage.ts` for implementation
+
+### Background Orchestration (Implementation Detail)
+
+Our system uses `child_process.spawn()` to invoke Claude Code CLI as background processes. This is **valid and necessary** because:
+
+1. **No programmatic API exists** - Official Claude Code provides NO Node.js/TypeScript API for spawning sub-agents from code
+2. **Background execution required** - We need detached processes that run independently for "out-of-loop" orchestration
+3. **Telemetry integration** - Process-level control enables cost tracking, bash optimization monitoring, and `/observe` dashboard
+
+**Official Research Findings:**
+- See: `dev/active/sub-agents-migration/api-research-findings.md`
+- Validates spawn() as the only implementation approach
+- Documents official patterns we fully align with
+- Explains why telemetry is our value-add
+
+**Implementation:**
+- Spawn detached Claude Code processes
+- Pass conversation files for resumability
+- Track PIDs in registry for `/observe` dashboard
+- Monitor process lifecycle for telemetry
+- Atomic status updates via file locking
+
+**See:** `core/infrastructure/hooks/background-agent.ts` for implementation details
+
 ## Infrastructure Agents
 
 ### Core Orchestration (3)

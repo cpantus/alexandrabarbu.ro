@@ -15,11 +15,11 @@ import * as path from 'path';
 import * as os from 'os';
 
 export interface CacheEntry {
-  resourceType: 'skill' | 'pattern' | 'persona' | 'doc';
+  resourceType: 'skill' | 'skill-loaded' | 'pattern' | 'pattern-loaded' | 'composition-loaded' | 'guidance' | 'persona' | 'doc';
   resourceName: string;
   resourcePath: string;
   loadedAt: number; // Unix timestamp
-  tier: 'minimal' | 'quick' | 'full';
+  tier: 'minimal' | 'quick' | 'full' | 'session';
   tokenEstimate: number;
 }
 
@@ -35,7 +35,11 @@ export interface SessionCache {
   };
 }
 
-const CACHE_FILE = path.join(os.tmpdir(), 'claude-marketing-agent-context-cache.json');
+// Session-specific cache (v5.2.0 fix)
+// Each conversation gets its own cache to prevent cross-session pollution
+// Falls back to timestamp-based ID if CLAUDE_SESSION_ID unavailable
+const SESSION_ID = process.env.CLAUDE_SESSION_ID || `session-${Date.now()}`;
+const CACHE_FILE = path.join(os.tmpdir(), `claude-context-cache-${SESSION_ID}.json`);
 const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
 const SESSION_TTL = 4 * 60 * 60 * 1000; // 4 hours
 
@@ -146,10 +150,10 @@ export function isCached(
  * Add resource to cache
  */
 export function addToCache(
-  resourceType: 'skill' | 'pattern' | 'persona' | 'doc',
+  resourceType: 'skill' | 'skill-loaded' | 'pattern' | 'pattern-loaded' | 'composition-loaded' | 'guidance' | 'persona' | 'doc',
   resourceName: string,
   resourcePath: string,
-  tier: 'minimal' | 'quick' | 'full',
+  tier: 'minimal' | 'quick' | 'full' | 'session',
   tokenEstimate: number
 ): void {
   const cache = getCache();
@@ -239,6 +243,22 @@ export function getCachedResources(): Array<{
     age: formatDuration(now - entry.loadedAt),
     tokens: entry.tokenEstimate
   }));
+}
+
+/**
+ * Get list of resource names for a specific resource type
+ * Used for composition detection - returns which skills/patterns were loaded
+ *
+ * @param resourceType - Type of resource to filter by (e.g., 'skill-loaded')
+ * @returns Array of resource names
+ */
+export function getCachedKeys(resourceType: string): string[] {
+  const cache = getCache();
+  const now = Date.now();
+
+  return cache.entries
+    .filter(e => e.resourceType === resourceType && now - e.loadedAt < CACHE_TTL)
+    .map(e => e.resourceName);
 }
 
 /**

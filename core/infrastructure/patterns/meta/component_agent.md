@@ -4,12 +4,87 @@
 **Category:** System Architecture
 **Complexity:** Medium
 **Purpose:** Define structure, validation rules, and standards for specialized marketing agents
+**Version:** 2.0 (v5.4.0 - Directive Language + Task Decomposition Override)
 
 ---
 
 ## PURPOSE
 
 Ensure all agents follow consistent naming conventions, structural requirements, emoji standards, and quality guidelines to maintain system cohesion and enable validation/generation.
+
+---
+
+## Task Decomposition Override (v5.4.0)
+
+When creating or validating agent components, **DO NOT use your default task decomposition.**
+
+### ❌ PROHIBITED SEQUENCE (Ad-hoc Validation):
+1. Read agent file and skim for obvious issues
+2. Check naming format only
+3. Skip structural validation
+4. Produce superficial "looks good" approval
+
+### ✅ MANDATORY SEQUENCE (Comprehensive Agent Validation):
+
+**Phase 1: Strategic Analysis** (Make 4 critical validation decisions)
+1. **Naming Compliance**: Validate kebab-case format, uniqueness, and descriptiveness
+   - Reference: This pattern "Naming Convention" section
+   - Output: Name validity assessment + correction suggestions if needed
+
+2. **Structure Completeness**: Verify YAML frontmatter and required markdown sections
+   - Reference: This pattern "Required Structure" section
+   - Output: Missing fields/sections + severity classification
+
+3. **Semantic Validation**: Check emoji appropriateness, similarity to existing agents
+   - Reference: This pattern "Emoji Standards" and "Similarity Detection" sections
+   - Output: Emoji conflicts + duplicate agent warnings
+
+4. **Integration Integrity**: Verify all @-references resolve and dependencies exist
+   - Reference: This pattern "Integration References" section
+   - Output: Broken references + missing dependency list
+
+**Output Acknowledgment After Phase 1:**
+```
+Agent Validation Analysis:
+- Naming: [kebab-case compliance + similarity score]
+- Structure: [Missing sections: X, Y / All sections present]
+- Semantics: [Emoji ✓ / Similarity: 75% to existing-agent]
+- Integration: [N broken references / All valid]
+```
+
+**Phase 2: Execution** (Generate comprehensive validation report)
+5. Execute validation algorithm (8-step process from PROCESS section)
+6. Classify issues (critical/warning/recommendation)
+7. Generate auto-correction suggestions where applicable
+
+**Phase 3: Reporting** (Produce actionable validation output)
+8. Verify report completeness (all validation dimensions covered)
+9. Ensure actionability (specific fix instructions for each issue)
+10. Generate unified validation report in OUTPUT format
+
+**IF you use ❌ sequence instead of ✅ sequence = ARCHITECTURE VIOLATION**
+
+**Rationale:** Agent validation requires systematic analysis across 4 dimensions (naming, structure, semantics, integration). Skipping Phase 1 analysis leads to superficial validation that misses critical issues like duplicate agents, broken references, or structural incompleteness. The mandatory sequence guarantees comprehensive quality gates before agent approval.
+
+---
+
+## Language Standards (v5.4.0)
+
+**YOU MUST use directive language throughout agent specifications:**
+
+**Required Directives:**
+- ✅ "MUST", "DO NOT", "ALWAYS", "NEVER", "MANDATORY", "PROHIBITED", "REQUIRED"
+- ❌ Never: "should", "consider", "might", "could", "try to", "it's recommended"
+
+**Validation Rules:**
+- ✅ "All agents MUST include YAML frontmatter"
+- ❌ "Agents should have YAML frontmatter"
+
+**Quality Standards:**
+- ✅ "The agent MUST ensure all references resolve"
+- ❌ "The agent should check references"
+
+**Enforcement Note:** Meta-patterns with weak language will be rejected by validation hooks.
 
 ---
 
@@ -274,7 +349,7 @@ All agents MUST include these sections in order:
 
 When adding a new agent:
 
-1. **Semantic Match** - Emoji should visually represent agent's domain
+1. **Semantic Match** - Emoji MUST visually represent agent's domain
    - Strategy → 🎯 target
    - Copy → ✍️ writing
    - Analytics → 📊 chart
@@ -283,7 +358,7 @@ When adding a new agent:
 2. **Distinctiveness** - Must be unique among agents
    - Check existing emojis before choosing
    - Haiku variants CAN reuse emoji of full version (e.g., copywriter-haiku uses ✍️)
-   - But core agents should all be distinct
+   - Core agents MUST all be distinct
 
 3. **Universal Support** - Must render correctly on all platforms
    - Test on macOS, Linux, Windows
@@ -344,7 +419,7 @@ When adding a new agent:
 - Agents often reference 2-4 skills
 - Agents may chain to specific patterns
 - Orchestrators reference other agents
-- All agents should reference quality checklists
+- All agents MUST reference quality checklists
 
 ### Model Selection Guidelines
 

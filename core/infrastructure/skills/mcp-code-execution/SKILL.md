@@ -1,11 +1,9 @@
-# mcp-code-execution
-
-**Type:** Infrastructure optimization
-**Priority:** High (96-98% token reduction)
-**Auto-activate:** MCP keywords, multi-tool workflows
-**Updated:** 2025-11-12
-
 ---
+name: "mcp-code-execution"
+description: " Auto-activates when user mentions: "
+---
+
+# mcp-code-execution
 
 ## Quick Reference
 
@@ -30,6 +28,79 @@
 | UI testing | 120K | 4K | 97% |
 | Monitoring | 65K | 2.5K | 96% |
 | Data extraction | 95K | 3.5K | 96% |
+
+---
+
+## Task Decomposition Override (v5.4.0)
+
+When this skill applies (3+ MCP tool calls detected), **DO NOT use your default task decomposition.**
+
+### ❌ PROHIBITED SEQUENCE (Traditional MCP - wastes 70K-100K tokens):
+1. Load all MCP tool definitions into context
+2. Make sequential MCP tool calls
+3. Store all results in context
+4. Process results in conversation
+
+### ✅ MANDATORY SEQUENCE (Code Execution Pattern):
+
+**Phase 1: Workflow Analysis** (Make 3 explicit decisions)
+1. **Workflow Pattern Identification**: Classify the MCP workflow type
+   - Reference: Skill "The Solution" section
+   - Output: Pattern classification with tool count (e.g., "Parallel: 5 playwright calls for multi-page scraping, estimated 85K → 3K tokens (96% savings)")
+
+2. **Script Structure Design**: Plan TypeScript script organization
+   - Reference: Skill "The Solution" section
+   - Output: Script approach (e.g., "Single script with async/await parallel execution, error handling, JSON output")
+
+3. **Data Privacy Strategy**: Define what data stays local vs returned
+   - Reference: Skill "The Problem" section (PII considerations)
+   - Output: Privacy specification (e.g., "Process all PII locally, return aggregated metrics only, no raw data in context")
+
+**Output Acknowledgment After Phase 1:**
+```
+MCP Code Execution Applied:
+- Workflow Pattern: [Type + tool count + estimated savings]
+- Script Structure: [Organization approach]
+- Data Privacy: [What stays local vs returned]
+```
+
+**Phase 2: Implementation** (Apply Phase 1 decisions)
+4. Create TypeScript script with MCP wrapper calls
+5. Implement error handling and logging
+6. Execute script locally (data stays local)
+7. Return summary/aggregated results only
+
+**Phase 3: Validation** (Verify quality criteria)
+8. Verify token savings: 96-98% reduction achieved (2K-5K vs 70K-100K)
+9. Verify privacy: No PII or sensitive data in context
+10. Verify correctness: Output matches expected workflow results
+11. Verify reusability: Script can be reused for similar workflows
+
+**IF you use ❌ sequence instead of ✅ sequence = ARCHITECTURE VIOLATION**
+
+**Rationale:** Traditional MCP for 3+ calls wastes 70K-100K tokens. Code execution pattern achieves same result with 2K-5K tokens (96-98% reduction). The 3-phase approach GUARANTEES: (1) optimal workflow pattern selection, (2) privacy-preserving implementation, (3) measurable token savings verification. This is MANDATORY for cost optimization.
+
+---
+
+## Language Standards (v5.4.0)
+
+**YOU MUST use directive language throughout this skill:**
+
+**Required Directives:**
+- ✅ "YOU MUST use", "DO NOT use", "ALWAYS", "NEVER", "MANDATORY", "PROHIBITED", "REQUIRED"
+- ❌ Never: "should", "consider", "might", "could", "try to", "it's recommended", "please", "ideally"
+
+**Section Headers:**
+- ✅ "Required Standards", "Rules", "Requirements", "Anti-Patterns to Avoid"
+- ❌ "Best Practices", "Guidelines", "Recommendations", "Suggestions"
+
+**Examples of Directive Transformation:**
+- ❌ "Consider using X" → ✅ "YOU MUST use X"
+- ❌ "You should avoid Y" → ✅ "DO NOT use Y (PROHIBITED)"
+- ❌ "It's recommended to Z" → ✅ "MANDATORY: Z"
+- ❌ "Try to follow pattern P" → ✅ "ALWAYS follow pattern P"
+
+**Enforcement Note:** Skills with weak language will be rejected by pre-tool-use-write.ts hook.
 
 ---
 

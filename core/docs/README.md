@@ -214,4 +214,16 @@ Detail files reference each other and core CLAUDE.md:
 
 ---
 
+## Historical Documentation
+
+**Migration Guides:**
+- See `dev/archive/migrations/` for completed version migrations
+- [v5.6.0 Skills Migration](../../dev/archive/migrations/v5.6.0-skills-migration.md) - Migration from legacy to official Claude Code format
+
+**Audit Reports:**
+- See `docs/audits/` (project root) for security and compliance audits
+- Latest permission audit: 2025-11-11, Next: 2026-02-11
+
+---
+
 **For questions or updates, see:** `dev/active/claude-md-optimization/` dev docs

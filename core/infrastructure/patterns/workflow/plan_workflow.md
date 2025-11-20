@@ -5,6 +5,148 @@
 **Use When:** After Scout completes, before Build begins
 **Cost:** Medium (uses Sonnet for strategic thinking)
 **Speed:** Medium (5-15 minutes depending on complexity)
+**Version:** 2.0 (v5.4.0 Task Decomposition Override)
+
+---
+
+## Task Decomposition Override (v5.4.0)
+
+**CRITICAL:** When executing this pattern, YOU MUST follow the 3-phase sequence below. DO NOT use generic task decomposition. This pattern-specific sequence prevents Claude's default behavior and ensures checkable validation points.
+
+### ❌ PROHIBITED SEQUENCE (Default Decomposition)
+
+```
+Task: Create implementation plan
+→ Generic: Break into subtasks based on Claude's judgment
+→ Generic: Design strategy in arbitrary order
+→ Generic: Return plan without validation
+Result: ARCHITECTURE VIOLATION - Plan quality cannot be validated by hooks
+```
+
+**Consequence:** Incomplete plans, missing research integration, vague task breakdowns, untestable success criteria.
+
+---
+
+### ✅ MANDATORY SEQUENCE (Input Validation → Staged Execution → Output Generation)
+
+**Phase 1: Input Validation (Load Context & Detect Gaps)**
+
+YOU MUST load context and detect knowledge gaps BEFORE designing strategy:
+
+1. **Load scout results:** Read scout report, validate file paths exist
+2. **Load research context (automatic):**
+   - Check for research reports from scout workflow
+   - Search research library for matching reports
+   - Load research findings, best practices, warnings
+3. **Detect knowledge gaps:**
+   - IF scout found NO files AND task involves new technology → knowledge gap
+   - Identify gap type: new technology, new pattern, unfamiliar domain
+   - Suggest research options to user (comprehensive/continue/auto-spawn)
+4. **Read high priority files:** Load all files from scout report
+
+**Output Acknowledgment After Phase 1:**
+```markdown
+✅ PHASE 1 COMPLETE: Context Loaded
+- Scout report loaded: [N] high priority files
+- Research loaded: [Yes/No] → Report: [path]
+- Knowledge gaps: [None/Detected] → Gap type: [type]
+- Files read: [N]/[N] files loaded
+```
+
+**Phase 2: Staged Execution (Strategic Planning)**
+
+YOU MUST design implementation strategy with research integration:
+
+1. **Design implementation strategy:**
+   - Break task into phases (3-7 phases)
+   - Order phases by dependency
+   - Estimate effort per phase
+   - Identify risks per phase
+2. **Create detailed task breakdown:**
+   - Tasks 15-60 minutes each
+   - Clear success criteria per task
+   - File operations documented (create/modify/delete)
+   - Dependencies explicitly stated
+3. **Integrate research findings:**
+   - Follow best practices from research
+   - Avoid warnings identified in research
+   - Use recommended patterns from research
+4. **Validate plan quality:**
+   - Completeness, feasibility, clarity checks
+   - Backward compatibility verified
+   - Testing strategy defined
+
+**Output Acknowledgment After Phase 2:**
+```markdown
+✅ PHASE 2 COMPLETE: Strategy Designed
+- Phases defined: [N] phases
+- Tasks created: [N] tasks (avg [X] min/task)
+- File operations: [N] create, [N] modify, [N] delete
+- Research integrated: [Yes/No]
+- Risks identified: [N] risks with mitigations
+```
+
+**Phase 3: Output Generation (Plan Document Creation)**
+
+YOU MUST create comprehensive plan document:
+
+1. **Generate plan document:** [task]-plan.md with all sections
+2. **Include research context:** Document research findings, best practices, warnings
+3. **Create task checklist:** [task]-tasks.md for progress tracking
+4. **Create context file:** [task]-context.md for state persistence
+5. **Validate completeness:** All sections present, all requirements met
+
+**Output Acknowledgment After Phase 3 (REQUIRED FORMAT):**
+```markdown
+✅ PLAN WORKFLOW COMPLETE
+**Plan:** /dev/active/[task]/[task]-plan.md
+**Tasks:** /dev/active/[task]/[task]-tasks.md
+**Context:** /dev/active/[task]/[task]-context.md
+**Phases:** [N] phases, [N] tasks total
+**Estimated Time:** [X] hours
+**Research Integrated:** [Yes/No]
+**Ready For:** build_workflow pattern
+```
+
+---
+
+### Why This Sequence is Mandatory
+
+**Input Validation First:**
+- Loads research context automatically (no manual step)
+- Detects knowledge gaps early → offers research options
+- Validates scout findings before expensive strategy work
+
+**Staged Execution Second:**
+- Integrates research into all planning decisions
+- Creates detailed, actionable tasks
+- Identifies risks and dependencies systematically
+
+**Output Generation Last:**
+- Comprehensive plan document with research context
+- Task checklist for progress tracking
+- Context file for state persistence (95%+ recovery)
+
+**Hook Validation:** Hooks can parse "✅ PLAN WORKFLOW COMPLETE" output to verify pattern compliance.
+
+---
+
+## Language Standards
+
+**Directive Language (v5.4.0):**
+
+This pattern uses MANDATORY directive language to enforce quality:
+
+- ✅ **USE:** "YOU MUST", "DO NOT", "ALWAYS", "NEVER", "MANDATORY", "REQUIRED", "PROHIBITED"
+- ❌ **AVOID:** "should", "consider", "might", "could", "try to", "ideally", "recommended"
+
+**Examples in this pattern:**
+- "YOU MUST load context BEFORE designing strategy" (not "you should load")
+- "DO NOT skip research integration" (not "consider integrating")
+- "ALWAYS validate plan quality" (not "try to validate")
+- "NEVER create plans without success criteria" (not "ideally include")
+
+**Rationale:** Weak language leads to incomplete plans. Planning requires strategic thinking and research integration—directive language ensures best practices are followed: context loading, research integration, detailed breakdowns.
 
 ---
 
@@ -42,10 +184,10 @@ Optional:
    - Load medium priority files only if needed
    - Skip low priority files initially
 
-**Think about:**
-- Are the scout results sufficient?
-- Do I need additional files?
-- Are there obvious gaps in coverage?
+**YOU MUST assess:**
+- Whether scout results are sufficient
+- Whether additional files are needed
+- Whether there are obvious gaps in coverage
 
 ---
 
@@ -159,11 +301,11 @@ When research is loaded, include in all planning decisions:
 **Implementation Note**: All phases should follow these best practices
 ```
 
-**Think about:**
-- Is external knowledge needed for this task?
-- Do we have research on this technology?
-- Should we suggest research to the user?
-- What best practices should inform the plan?
+**YOU MUST determine:**
+- Whether external knowledge is needed for this task
+- Whether we have research on this technology
+- Whether to suggest research to the user
+- Which best practices inform the plan
 
 ---
 
@@ -223,11 +365,11 @@ For each file:
    - Where might we get stuck?
    - How to mitigate risks?
 
-**Think about:**
-- Is this the simplest approach?
-- Are there alternative strategies?
-- What assumptions am I making?
-- What could I be missing?
+**YOU MUST evaluate:**
+- Whether this is the simplest approach
+- What alternative strategies exist
+- Which assumptions are being made
+- What might be missing
 
 ---
 
@@ -962,6 +1104,6 @@ Phase 1 (Extract) → Phase 2 (Create) → Phase 3 (Integrate) → Phase 4 (Test
 
 ---
 
-**Pattern Version:** 1.0
-**Last Updated:** 2025-11-04
-**Part of:** v4.0 Multi-Agent Workflows (Phase 18)
+**Pattern Version:** 2.0 (v5.4.0)
+**Last Updated:** 2025-11-14
+**Part of:** v5.4.0 Directive Language Transformation

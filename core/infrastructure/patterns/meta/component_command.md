@@ -4,12 +4,82 @@
 **Complexity**: medium
 **Thinking**: N/A (specification pattern, not execution pattern)
 **Knowledge Required**: N/A (defines standards for command components)
+**Version:** 2.0 (v5.4.0 - Directive Language + Task Decomposition Override)
 
 ---
 
 ## PURPOSE
 
 Define the structure, validation rules, and quality standards for slash command components in the Marketing Agent system.
+
+---
+
+## Task Decomposition Override (v5.4.0)
+
+When creating or validating command components, **DO NOT use your default task decomposition.**
+
+### ❌ PROHIBITED SEQUENCE (Ad-hoc Command Creation):
+1. Create markdown file without checking existing commands
+2. Skip category validation
+3. Forget to add examples or usage syntax
+4. Deploy without testing invocation
+
+### ✅ MANDATORY SEQUENCE (Systematic Command Development):
+
+**Phase 1: Input Validation** (Validate 3 critical command requirements)
+1. **Naming Validation**: Verify kebab-case format and special pattern compliance
+   - Reference: This pattern "Naming Convention" section
+   - Output: Name validity + pattern compliance (agent-*, mcp-*, start-X-Y, etc.)
+
+2. **Category Validation**: Check category is valid and command fits appropriately
+   - Reference: This pattern "Category Standards" section
+   - Output: Category validity + appropriate categorization
+
+3. **Uniqueness Validation**: Ensure command name doesn't duplicate existing commands
+   - Reference: Scan `.claude/commands/` directory
+   - Output: Uniqueness check + similar command warnings
+
+**Output Acknowledgment After Phase 1:**
+```
+Command Validation Input Analysis:
+- Naming: [kebab-case ✓, pattern: agent-* ✓]
+- Category: [production ✓ / workflow might be more appropriate]
+- Uniqueness: [Unique ✓ / Similar to existing-command (60% overlap)]
+```
+
+**Phase 2: Staged Execution** (Create command with proper structure)
+4. Create markdown file with required sections (description, usage, examples)
+5. Add workflow instructions if command is multi-step
+6. Include parameter documentation for complex commands
+
+**Phase 3: Output Generation** (Test and validate command)
+7. Test command invocation works correctly
+8. Verify all examples execute successfully
+9. Document command in appropriate index/discovery system
+
+**IF you use ❌ sequence instead of ✅ sequence = ARCHITECTURE VIOLATION**
+
+**Rationale:** Command creation requires validating naming patterns and category appropriateness first. Skipping Phase 1 leads to improperly categorized commands, missing documentation, and duplicate functionality. The mandatory sequence ensures commands are discoverable and properly integrated.
+
+---
+
+## Language Standards (v5.4.0)
+
+**YOU MUST use directive language throughout command specifications:**
+
+**Required Directives:**
+- ✅ "MUST", "DO NOT", "ALWAYS", "NEVER", "MANDATORY", "PROHIBITED", "REQUIRED"
+- ❌ Never: "should", "consider", "might", "could", "try to", "recommended"
+
+**Command Documentation:**
+- ✅ "Commands MUST include usage syntax"
+- ❌ "Commands should include usage syntax"
+
+**Workflow Instructions:**
+- ✅ "Execute step 1", "Verify output", "NEVER skip validation"
+- ❌ "Try to execute", "Consider verifying", "Should check output"
+
+**Enforcement Note:** Meta-patterns with weak language will be rejected by validation hooks.
 
 ---
 

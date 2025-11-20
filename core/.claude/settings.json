@@ -24,6 +24,10 @@
           {
             "type": "command",
             "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx infrastructure/hooks/suggest-research.ts"
+          },
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx infrastructure/hooks/detect-server-opportunity.ts"
           }
         ]
       }
@@ -121,6 +125,16 @@
           {
             "type": "command",
             "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && git status 2>/dev/null || echo '(Not in git repository)'"
+          }
+        ]
+      }
+    ],
+    "PostPlanApproval": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || echo .)\" && npx tsx infrastructure/hooks/post-plan-approval.ts"
           }
         ]
       }

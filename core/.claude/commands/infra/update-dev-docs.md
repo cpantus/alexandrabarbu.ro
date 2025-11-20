@@ -158,6 +158,41 @@ Read all 3 dev docs files:
 **Progress:** [X/Y tasks complete] (was [X-N/Y])
 ```
 
+**5. Compress completed phases (auto token optimization):**
+
+For each phase showing **(N/N)** completion (all tasks checked):
+- Compress the detailed task list to ~30% of original size
+- Use pipe notation format for efficiency
+- Preserve essential information: task numbers, files, outcomes
+
+**Compression format:**
+```markdown
+### Phase 1: Foundation ✅ (5/5, compressed)
+Tasks: 1.1 setup (src/, package.json, tsconfig) | 1.2 schema (5 tables, migrations) | 1.3 API (CRUD endpoints) | 1.4 middleware (auth, logging) | 1.5 tests (95% coverage) | Created: 47 files | Modified: 3 configs | Time: 3.2h
+```
+
+**What to preserve:**
+- Task numbers (1.1, 1.2, 1.3...)
+- Key files/components created or modified
+- Important outcomes and metrics
+- Time spent on phase
+
+**What to remove:**
+- Verbose step-by-step details
+- Redundant descriptions
+- Long explanations already in context.md
+
+**Compression triggers:**
+- Phase shows (N/N) - all tasks complete
+- Phase marked with ✅ COMPLETE
+- More than 100 lines of task details in that phase
+
+**Benefits:**
+- 70% token reduction for completed work
+- Faster context loading after compaction
+- Preserved knowledge for reference
+- Current work stays verbose for detail
+
 ### Step 5: Update Plan File (If Needed)
 
 **Usually plan.md stays unchanged, but update if:**
@@ -172,7 +207,7 @@ If yes, update plan.md sections that changed.
 
 ### Step 6: Create Bundle Entry
 
-**After updating dev docs, automatically create a bundle entry:**
+**After updating dev docs (including compression), automatically create a bundle entry:**
 
 Run the context-bundle hook to append execution log:
 ```bash
@@ -181,7 +216,7 @@ ts-node .claude/hooks/context-bundle.ts "update-dev-docs: [brief summary]" "upda
 
 This captures:
 - Timestamp of update
-- Summary of what was updated
+- Summary of what was updated (including which phases compressed)
 - Current context snapshot
 - Modified files list
 
@@ -214,6 +249,7 @@ Updated Files:
   📝 context.md - [What was updated]
   ✓ tasks.md - [X new tasks completed, Y new tasks added]
   📋 plan.md - [Updated / Unchanged]
+  🗜️  Compressed: [N phases compressed to 30% (token savings: X lines)]
 
 📊 Summary:
   ✅ Completed: [X tasks]
@@ -223,6 +259,7 @@ Updated Files:
 
 📦 Bundle Entry: Created in [task]-bundle.log
    Context recovery improved: 70% → 80%+
+   Token efficiency: Completed phases compressed for faster loading
 
 💡 You're ready for compaction! Context will survive.
 

@@ -18,6 +18,83 @@ Use this pattern when researching:
 - "TypeScript strict mode best practices"
 - "Error handling best practices in Node.js"
 
+## Task Decomposition Override (v5.4.0)
+
+**CRITICAL:** This pattern overrides Claude's default task decomposition behavior. YOU MUST follow the 3-phase sequence below. DO NOT create your own task breakdown.
+
+### ❌ PROHIBITED SEQUENCE
+1. ❌ Skipping official documentation as the primary source
+2. ❌ Accepting single-source practices without cross-referencing
+3. ❌ Including practices without rationale or examples
+4. ❌ Missing anti-patterns or context-specific guidance
+
+**Consequences:** Outdated practices, unreliable recommendations, missing critical context → ARCHITECTURE VIOLATION
+
+### ✅ MANDATORY 3-PHASE SEQUENCE
+
+#### Phase 1: Query Formulation & Source Strategy
+**Decision Point:** Establish best practices research methodology
+
+**YOU MUST:**
+1. Identify the technology/framework for best practices research
+2. Formulate official guidance queries (Context7 for documentation)
+3. Formulate community consensus queries (WebSearch for 2024-2025 content)
+4. Define source prioritization (Tier 1: Official, Tier 2: Experts, Tier 3: Companies, Tier 4: Practitioners)
+
+**Output Acknowledgment After Phase 1:**
+```
+✅ Phase 1 Complete - Best Practices Research Strategy Defined
+📋 Topic: [technology/framework]
+📊 Source Tiers: Official → Experts → Companies → Practitioners
+🎯 Recency Focus: 2024-2025 content prioritized
+⏭️  Proceeding to Phase 2: Multi-Tier Research Execution
+```
+
+#### Phase 2: Multi-Tier Research Execution
+**YOU MUST:**
+1. Execute Phase 1: Official guidance (Context7 + WebFetch official docs)
+2. Execute Phase 2: Community consensus (WebSearch with multiple query variations)
+3. Execute Phase 3: Expert sources (WebFetch top 3-5 authoritative sources)
+4. Execute Phase 4: Anti-patterns (WebSearch for common mistakes and pitfalls)
+5. Cross-reference all practices across Tier 1-4 sources
+6. Document consensus levels (strong 5/5, moderate 3/5, weak 2/5)
+
+**Output Acknowledgment After Phase 2:**
+```
+✅ Phase 2 Complete - Best Practices Research Finished
+📊 Official Sources: [count]
+📄 Expert Sources: [count]
+🎯 Practices Identified: [count] with consensus ratings
+⚠️  Anti-Patterns: [count] documented
+⏭️  Proceeding to Phase 3: Validation & Report Generation
+```
+
+#### Phase 3: Validation & Report Generation
+**YOU MUST:**
+1. Validate source requirements (official docs included, 2+ expert sources, 3+ practitioner sources)
+2. Verify content requirements (5+ practices, rationale for each, examples, anti-patterns, context-specific guidance)
+3. Confirm validation requirements (cross-referenced, conflicts noted, evolution documented)
+4. Generate best practices report following the standard template
+5. Include quick reference (DO/DON'T lists)
+6. Assign confidence level based on consensus
+
+**Output Acknowledgment After Phase 3:**
+```
+✅ Phase 3 Complete - Research Best Practices Pattern Finished
+📊 Core Practices: [count] with consensus validation
+🎯 Anti-Patterns: [count] documented with better alternatives
+📄 Report Generated: research/[topic]-best-practices.md
+✅ Pattern execution complete
+```
+
+## Language Standards (v5.4.0)
+
+**Directive Language:** This pattern uses imperative commands.
+- ✅ "YOU MUST", "DO NOT", "ALWAYS", "NEVER"
+- ❌ "should", "consider", "might", "could", "try to"
+
+**Rationale:** Weak language leads to inconsistent execution. Strong directives ensure reliable pattern application.
+
 ## Pattern Overview
 
 This specialized pattern:

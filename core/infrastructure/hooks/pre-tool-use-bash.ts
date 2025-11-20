@@ -35,6 +35,12 @@ import {
   trackOptimization,
   checkToolAvailability,
 } from './utils/bash-optimizer';
+import {
+  readStdin,
+  parseToolArgs,
+  passthroughInput,
+  outputToolArgs,
+} from './utils/hook-base';
 
 // ============================================================================
 // Hook Configuration
@@ -52,21 +58,6 @@ const HOOK_CONFIG = {
 // ============================================================================
 // Helper Functions
 // ============================================================================
-
-/**
- * Read stdin to get tool use arguments
- */
-async function readStdin(): Promise<string> {
-  return new Promise((resolve) => {
-    let data = '';
-    process.stdin.on('data', (chunk) => {
-      data += chunk;
-    });
-    process.stdin.on('end', () => {
-      resolve(data);
-    });
-  });
-}
 
 /**
  * Display MANDATORY warning when CLI tool standards violated
@@ -120,40 +111,33 @@ async function main() {
     // Get tool use arguments from stdin
     input = await readStdin();
 
-    if (!input || input.trim().length === 0) {
-      // No input, output as-is
-      process.stdout.write(input);
-      process.exit(0);
-    }
-
     // Parse the tool use arguments (JSON format)
-    let toolArgs: any;
-    try {
-      toolArgs = JSON.parse(input);
-    } catch (error) {
-      // Can't parse, output as-is
-      process.stdout.write(input);
-      process.exit(0);
+    const toolArgs = parseToolArgs(input);
+
+    // Early exit if no valid input or parse failed
+    if (!input || input.trim().length === 0 || toolArgs === null) {
+      passthroughInput(input);
+      return;
     }
 
     // Check if hook is enabled
     if (!HOOK_CONFIG.enabled) {
-      process.stdout.write(JSON.stringify(toolArgs));
-      process.exit(0);
+      outputToolArgs(toolArgs);
+      return;
     }
 
     // Extract command from tool arguments
     const command = toolArgs.command;
     if (!command || typeof command !== 'string') {
       // No command, output as-is
-      process.stdout.write(JSON.stringify(toolArgs));
-      process.exit(0);
+      outputToolArgs(toolArgs);
+      return;
     }
 
     // Skip optimization for certain command types
     if (shouldSkipOptimization(command.trim())) {
-      process.stdout.write(JSON.stringify(toolArgs));
-      process.exit(0);
+      outputToolArgs(toolArgs);
+      return;
     }
 
     const startTime = Date.now();
@@ -189,14 +173,12 @@ async function main() {
     }
 
     // Output the (potentially modified) tool arguments
-    process.stdout.write(JSON.stringify(toolArgs));
-    process.exit(0);
+    outputToolArgs(toolArgs);
 
   } catch (error) {
     // Silently pass through on error to avoid hook failures
     // Use the input we already read
-    process.stdout.write(input || '{}');
-    process.exit(0);
+    passthroughInput(input || '{}');
   }
 }
 

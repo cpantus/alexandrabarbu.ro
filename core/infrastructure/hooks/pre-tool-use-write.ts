@@ -18,31 +18,31 @@ import {
   ComponentType
 } from './utils/component-consistency-validator';
 import { initializePatternCache } from './utils/pattern-parser';
+import {
+  validateV540Compliance,
+  generateV540Warning,
+  shouldSkipValidation
+} from './utils/v540-validator';
+import {
+  readStdin,
+  parseToolArgs,
+  passthroughInput,
+  outputToolArgs,
+  blockWithError,
+  getFilePath,
+  getProjectRoot,
+  getRelativePath,
+  getComponentName as getBaseComponentName,
+} from './utils/hook-base';
 
 // Initialize pattern cache at module load
 initializePatternCache();
 
 /**
- * Read stdin to get tool use arguments
- */
-async function readStdin(): Promise<string> {
-  return new Promise((resolve) => {
-    let data = '';
-    process.stdin.on('data', (chunk) => {
-      data += chunk;
-    });
-    process.stdin.on('end', () => {
-      resolve(data);
-    });
-  });
-}
-
-/**
  * Parse component type from file path
  */
 function getComponentTypeFromPath(filePath: string): ComponentType | null {
-  const projectRoot = path.resolve(__dirname, '../../..');
-  const relativePath = path.relative(projectRoot, filePath);
+  const relativePath = getRelativePath(filePath);
 
   if (relativePath.startsWith('.claude/agents/')) {
     return { type: 'agent', path: filePath };
@@ -70,15 +70,6 @@ function getComponentTypeFromPath(filePath: string): ComponentType | null {
 }
 
 /**
- * Extract component name from file path
- */
-function getComponentName(filePath: string): string {
-  const basename = path.basename(filePath);
-  const extname = path.extname(filePath);
-  return basename.replace(extname, '');
-}
-
-/**
  * Estimate token count for content
  * Uses conservative estimate: ~3.5 characters per token
  * This ensures we don't underestimate and violate budget
@@ -92,8 +83,7 @@ function estimateTokenCount(content: string): number {
  * Check if file is a cache file
  */
 function isCacheFile(filePath: string): boolean {
-  const projectRoot = path.resolve(__dirname, '../../..');
-  const relativePath = path.relative(projectRoot, filePath);
+  const relativePath = getRelativePath(filePath);
   return relativePath.startsWith('.claude/knowledge/cache/');
 }
 
@@ -101,64 +91,59 @@ function isCacheFile(filePath: string): boolean {
  * Main hook function
  */
 async function main() {
+  let input = '';
+
   try {
     // Get tool use arguments from stdin
-    const input = await readStdin();
-
-    if (!input || input.trim().length === 0) {
-      // No input, output as-is
-      process.stdout.write(input);
-      process.exit(0);
-    }
+    input = await readStdin();
 
     // Parse the tool use arguments (JSON format)
-    let toolArgs: any;
-    try {
-      toolArgs = JSON.parse(input);
-    } catch (error) {
-      // Can't parse, output as-is
-      process.stdout.write(input);
-      process.exit(0);
+    const toolArgs = parseToolArgs(input);
+
+    // Early exit if no valid input or parse failed
+    if (!input || input.trim().length === 0 || toolArgs === null) {
+      passthroughInput(input);
+      return;
     }
 
     // Get file path from tool arguments
-    const filePath = toolArgs.file_path || toolArgs.path;
+    const filePath = getFilePath(toolArgs);
     if (!filePath) {
-      // No file path, output as-is
-      process.stdout.write(JSON.stringify(toolArgs));
-      process.exit(0);
+      outputToolArgs(toolArgs);
+      return;
     }
 
-    // Get project root (hooks are in core/infrastructure/hooks/, so go up 3 dirs)
-    const projectRoot = path.resolve(__dirname, '../../..');
+    // Get project root
+    const projectRoot = getProjectRoot();
 
     // Check if this is a component file that needs validation
     const componentType = getComponentTypeFromPath(filePath);
     if (!componentType) {
       // Not a component file, output as-is
-      process.stdout.write(JSON.stringify(toolArgs));
-      process.exit(0);
+      outputToolArgs(toolArgs);
+      return;
     }
 
     // ✅ CRITICAL: Check if file already exists (prevents duplicate creation)
     if (fs.existsSync(filePath)) {
-      const relativePath = path.relative(projectRoot, filePath);
-      console.error('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-      console.error('❌ CRITICAL ERROR: File Already Exists');
-      console.error('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
-      console.error(`📁 Path: ${relativePath}`);
-      console.error(`🔧 Type: ${componentType.type}`);
-      console.error('\n💡 Did you mean to MODIFY the existing file instead of creating a new one?');
-      console.error('   Use the Edit tool or Read + Edit pattern to modify existing files.');
-      console.error('\n🚫 OPERATION BLOCKED: Cannot overwrite existing component without explicit confirmation');
-      console.error('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
-
-      // Exit with error to block the Write operation
-      process.exit(1);
+      const relativePath = getRelativePath(filePath);
+      blockWithError(
+        'CRITICAL ERROR: File Already Exists',
+        [
+          `📁 Path: ${relativePath}`,
+          `🔧 Type: ${componentType.type}`,
+          '',
+          '💡 Did you mean to MODIFY the existing file instead of creating a new one?',
+          '   Use the Edit tool or Read + Edit pattern to modify existing files.',
+          '',
+          '🚫 OPERATION BLOCKED: Cannot overwrite existing component without explicit confirmation'
+        ],
+        1
+      );
     }
 
     // Get component name
-    const componentName = getComponentName(filePath);
+    const componentName = getBaseComponentName(filePath);
 
     // Get content if provided
     const content = toolArgs.content || '';
@@ -261,6 +246,29 @@ async function main() {
       console.error('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 
       process.exit(1);
+    }
+
+    // ✅ v5.4.0 COMPLIANCE VALIDATION (Phase 6: Hook Enhancement)
+    // Warn (not block) when components lack v5.4.0 structure
+    if (!shouldSkipValidation(filePath) && content && content.length > 100) {
+      const v540Result = validateV540Compliance(content, filePath);
+
+      if (!v540Result.isCompliant) {
+        const warning = generateV540Warning(v540Result, path.relative(projectRoot, filePath));
+        if (warning) {
+          console.error(warning);
+        }
+
+        // Log compliance status for observability
+        if (v540Result.isPartiallyCompliant) {
+          console.error(`\nℹ️  v5.4.0 Compliance: PARTIAL (has some structure, missing others)\n`);
+        } else {
+          console.error(`\nℹ️  v5.4.0 Compliance: NON-COMPLIANT (missing Task Decomposition Override framework)\n`);
+        }
+      } else {
+        // Silently pass compliant components
+        console.error(`\n✅ v5.4.0 Compliance: FULLY COMPLIANT\n`);
+      }
     }
 
     // ✅ SUGGEST RESEARCH EXAMPLES (if available)
@@ -366,15 +374,12 @@ async function main() {
     }
 
     // Output the (potentially corrected) tool arguments
-    process.stdout.write(JSON.stringify(toolArgs));
-    process.exit(0);
+    outputToolArgs(toolArgs);
 
   } catch (error) {
     // Log error but pass through original input
     console.error('[pre-tool-use-write] Error:', error);
-    const input = await readStdin();
-    process.stdout.write(input);
-    process.exit(0);
+    passthroughInput(input);
   }
 }
 

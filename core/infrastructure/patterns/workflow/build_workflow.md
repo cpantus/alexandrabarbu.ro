@@ -5,6 +5,142 @@
 **Use When:** After Plan completes, ready to build/modify files
 **Cost:** High (actual implementation work)
 **Speed:** Variable (depends on plan complexity, 2-20 hours)
+**Version:** 2.0 (v5.4.0 Task Decomposition Override)
+
+---
+
+## Task Decomposition Override (v5.4.0)
+
+**CRITICAL:** When executing this pattern, YOU MUST follow the 3-phase sequence below. DO NOT use generic task decomposition. This pattern-specific sequence prevents Claude's default behavior and ensures checkable validation points.
+
+### ❌ PROHIBITED SEQUENCE (Default Decomposition)
+
+```
+Task: Execute implementation plan
+→ Generic: Break into subtasks based on Claude's judgment
+→ Generic: Execute tasks in arbitrary order
+→ Generic: Return results without validation
+Result: ARCHITECTURE VIOLATION - Build execution cannot be validated by hooks
+```
+
+**Consequence:** Incomplete implementations, untested code, missing progress tracking, unrecoverable state after compaction.
+
+---
+
+### ✅ MANDATORY SEQUENCE (Input Validation → Staged Execution → Output Generation)
+
+**Phase 1: Input Validation (Load Plan & Setup Tracking)**
+
+YOU MUST load plan and setup tracking BEFORE executing:
+
+1. **Load and validate plan:** Read [task]-plan.md, verify structure
+2. **Create progress tracking:**
+   - Load or create [task]-tasks.md (task checklist)
+   - Load or create [task]-context.md (state persistence)
+   - Mark all tasks as pending initially
+3. **Validate plan feasibility:**
+   - File paths are absolute and correct
+   - Dependencies are clear and non-circular
+   - Success criteria exist for all tasks
+4. **Determine execution strategy:** Sequential phases, pause points, error handling
+
+**Output Acknowledgment After Phase 1:**
+```markdown
+✅ PHASE 1 COMPLETE: Plan Loaded & Tracking Setup
+- Plan loaded: [N] phases, [N] tasks total
+- Estimated time: [X] hours
+- Tracking files created: tasks.md, context.md
+- Execution strategy: [Sequential/Careful/Incremental]
+```
+
+**Phase 2: Staged Execution (Phase-by-Phase Implementation)**
+
+YOU MUST execute phases sequentially with validation:
+
+FOR EACH PHASE:
+1. **Pre-phase setup:** Mark phase as in_progress, verify dependencies met
+2. **Execute phase tasks:**
+   - FOR EACH TASK: Mark in_progress → Execute steps → Verify success criteria → Mark completed
+   - Create bundle entries for task completions
+   - Handle errors: Log, attempt recovery, escalate if needed
+3. **Post-phase validation:**
+   - Run phase tests (if defined)
+   - Verify all tasks completed
+   - Update context.md with progress
+   - Mark phase as completed
+
+**Output Acknowledgment After Each Phase:**
+```markdown
+✅ PHASE [N] COMPLETE: [Phase Name]
+- Tasks: [N]/[N] completed
+- Time: [X] minutes (estimated: [Y] minutes)
+- Tests: [Passed/Failed]
+- Issues: [None/N issues resolved]
+```
+
+**Phase 3: Output Generation (Completion Report)**
+
+YOU MUST create comprehensive completion report:
+
+1. **Final validation:** All phases complete, all tests passing, no blockers
+2. **Create deliverable summary:** List all files created/modified/deleted
+3. **Run final tests:** Full test suite, backward compatibility, quality checks
+4. **Update documentation:**
+   - Mark plan as "COMPLETE" in plan.md
+   - Mark all tasks as "completed" in tasks.md
+   - Update context.md with final status
+5. **Generate completion report:** Summary, metrics, issues, lessons learned
+
+**Output Acknowledgment After Phase 3 (REQUIRED FORMAT):**
+```markdown
+✅ BUILD WORKFLOW COMPLETE
+**Completion Report:** /dev/active/[task]/[task]-completion-report.md
+**Files Created:** [N] files
+**Files Modified:** [N] files
+**Total Time:** [X] hours (estimated: [Y] hours, ±[Z]%)
+**Tests:** All passed (unit + integration)
+**Status:** Ready for production
+```
+
+---
+
+### Why This Sequence is Mandatory
+
+**Input Validation First:**
+- Validates plan structure before expensive execution
+- Sets up progress tracking (tasks.md, context.md)
+- Enables 95%+ context recovery after compaction
+
+**Staged Execution Second:**
+- Sequential phase execution with validation
+- Continuous progress tracking and bundle creation
+- Error handling and recovery at each step
+
+**Output Generation Last:**
+- Comprehensive completion report
+- All tracking files updated (plan, tasks, context)
+- Final validation ensures nothing missed
+
+**Hook Validation:** Hooks can parse "✅ BUILD WORKFLOW COMPLETE" output to verify pattern compliance.
+
+---
+
+## Language Standards
+
+**Directive Language (v5.4.0):**
+
+This pattern uses MANDATORY directive language to enforce quality:
+
+- ✅ **USE:** "YOU MUST", "DO NOT", "ALWAYS", "NEVER", "MANDATORY", "REQUIRED", "PROHIBITED"
+- ❌ **AVOID:** "should", "consider", "might", "could", "try to", "ideally", "recommended"
+
+**Examples in this pattern:**
+- "YOU MUST load plan BEFORE executing" (not "you should load")
+- "DO NOT skip progress tracking" (not "consider tracking")
+- "ALWAYS validate success criteria" (not "try to validate")
+- "NEVER mark tasks complete without verification" (not "ideally verify")
+
+**Rationale:** Weak language leads to incomplete implementations. Building requires systematic execution and continuous tracking—directive language ensures best practices are followed: progress tracking, error handling, validation.
 
 ---
 
@@ -50,11 +186,11 @@ Optional:
    - Record plan loaded
    - Note starting point
 
-**Think about:**
-- Is the plan clear and actionable?
-- Are there any ambiguities to resolve?
-- Do I have all required files?
-- Are there any blockers?
+**YOU MUST verify:**
+- Whether the plan is clear and actionable
+- Whether there are any ambiguities to resolve
+- Whether you have all required files
+- Whether there are any blockers
 
 ---
 
@@ -73,7 +209,10 @@ Optional:
      - Execute task steps
      - Verify success criteria
      - Mark task as "completed"
-     - Create bundle entry (task completion)
+     - **Update dev docs immediately** (if dev docs exist):
+       - Update [task]-tasks.md with task completion checkbox `[x]`
+       - Add completion timestamp to task entry
+       - Create bundle entry (task completion)
 
 3. **Post-phase validation:**
    - Verify all tasks completed
@@ -81,6 +220,10 @@ Optional:
    - Check for errors/warnings
    - Update context.md with progress
    - Mark phase as "completed" in tasks.md
+   - **Compress completed phase** (if dev docs exist):
+     - Compress phase task list to ~30% using pipe notation
+     - Add "✅ (compressed)" marker to phase header
+     - Preserve: task numbers, files, outcomes, time spent
 
 4. **Decision point:**
    - Continue to next phase? (yes if all success criteria met)
@@ -134,6 +277,10 @@ Optional:
 - [ ] Criterion 3 met?
 
 **If all met:** Mark task complete ✅
+- Update tasks.md: Mark task as `[x]` completed
+- Add timestamp to completion entry
+- If dev docs exist, update immediately (don't wait for manual update)
+
 **If any fail:** Document issue, attempt fix, escalate if needed
 
 ---
@@ -753,6 +900,6 @@ All tasks executed exactly as planned with no modifications to the original plan
 
 ---
 
-**Pattern Version:** 1.0
-**Last Updated:** 2025-11-04
-**Part of:** v4.0 Multi-Agent Workflows (Phase 18)
+**Pattern Version:** 2.0 (v5.4.0)
+**Last Updated:** 2025-11-14
+**Part of:** v5.4.0 Directive Language Transformation

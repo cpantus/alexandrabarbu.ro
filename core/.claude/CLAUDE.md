@@ -171,17 +171,22 @@ When you add/remove/rename plugin commands, run: `./scripts/link-plugin-commands
 ## Quality Standards
 **Naming (ENFORCED via pre-tool-use-write.ts):**
 - Agents/commands/hooks: `kebab-case` (MANDATORY - violations blocked)
-- Skills: `kebab-case` (MANDATORY - violations blocked)
+- Skills: Directory `kebab-case`, file MUST be `SKILL.md` (MANDATORY - violations blocked per Anthropic standard)
 - Patterns (execution): `snake_case` (e.g., `campaign_launch.md`) (MANDATORY - violations blocked)
 - Patterns (output templates): `kebab-case` (e.g., `campaign-brief.md`)
 
-**File Structure:** `.claude/skills/[name].md` | `.claude/patterns/[category]/[name].md` | `.claude/agents/[name].md` | `.claude/commands/[name].md` | `.claude/hooks/[name].ts`
+**File Structure:**
+- Skills: `.claude/skills/[skill-name]/SKILL.md` (with optional `/resources/` subdirectory)
+- Patterns: `.claude/patterns/[category]/[name].md`
+- Agents: `.claude/agents/[name].md`
+- Commands: `.claude/commands/[name].md`
+- Hooks: `.claude/hooks/[name].ts`
 
 **Validation:** Meta-patterns (`/pattern component_[type]`) before production | Naming enforcement automatic
 
 **CLI Compliance:** Use modern tools (see CLI Tool Standards) | Monitor: `CC_BASH_OPT_DEBUG=1`
 
-**Permissions:** `settings.json` → `permissions.allowedCommands` + `permissions.deny` | Explicit | Careful wildcards | Document | Audit: `core/docs/PERMISSION-AUDIT.md`
+**Permissions:** `settings.json` → `permissions.allowedCommands` + `permissions.deny` | Explicit | Careful wildcards | Document
 
 ### Security Standards
 
@@ -199,7 +204,7 @@ When you add/remove/rename plugin commands, run: `./scripts/link-plugin-commands
 
 **Rule:** Never bypass security denials without explicit user approval.
 **Rule:** All sensitive operations require user confirmation.
-**Audit:** Quarterly review via `.claude/docs/PERMISSION-AUDIT.md`
+**Audit:** Quarterly review (last: 2025-11-11, next: 2026-02-11)
 
 ### CRITICAL: Extend vs Create
 **BEFORE creating:** 1. Search existing 2. Identify extension points 3. Default EXTEND 4. Verify uniqueness

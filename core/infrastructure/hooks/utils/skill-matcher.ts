@@ -37,6 +37,10 @@ export interface MatchedSkill {
 /**
  * Resolve skill file path by searching in multiple locations
  * Priority: 1) Rule's skillPath, 2) marketing-plugin, 3) core, 4) .claude (legacy)
+ *
+ * Updated for official Claude Code format (v5.6.0):
+ * - New format: skill-name/SKILL.md (directory-based)
+ * - Legacy format: skill-name.md (standalone file)
  */
 function resolveSkillPath(skillName: string, rule: SkillRule, projectRoot: string): string {
   // If rule specifies a path, use it
@@ -48,11 +52,16 @@ function resolveSkillPath(skillName: string, rule: SkillRule, projectRoot: strin
     console.warn(`[skill-matcher] Skill path specified in rule not found: ${rule.skillPath}`);
   }
 
-  // Search in multiple locations
+  // Search in multiple locations (official format first, then legacy)
   const searchPaths = [
+    // Official Claude Code format (directory-based)
+    `marketing-plugin/skills/${skillName}/SKILL.md`,
+    `core/infrastructure/skills/${skillName}/SKILL.md`,
+    `.claude/skills/${skillName}/SKILL.md`,
+    // Legacy format (standalone files)
     `marketing-plugin/skills/${skillName}.md`,
     `core/infrastructure/skills/${skillName}.md`,
-    `.claude/skills/${skillName}.md` // legacy fallback
+    `.claude/skills/${skillName}.md`
   ];
 
   for (const searchPath of searchPaths) {
@@ -62,28 +71,29 @@ function resolveSkillPath(skillName: string, rule: SkillRule, projectRoot: strin
     }
   }
 
-  // If not found, return the rule's path or default to legacy location
-  return rule.skillPath || `.claude/skills/${skillName}.md`;
+  // If not found, return the rule's path or default to official format
+  return rule.skillPath || `core/infrastructure/skills/${skillName}/SKILL.md`;
 }
 
 /**
  * Load skill rules from skill-rules.json
+ * Returns full structure: { skills: {...}, config: {...} }
  */
-export function loadSkillRules(projectRoot: string): SkillRules {
+export function loadSkillRules(projectRoot: string): any {
   const rulesPath = path.join(projectRoot, '.claude', 'skill-rules.json');
 
   if (!fs.existsSync(rulesPath)) {
     console.error(`[skill-matcher] skill-rules.json not found at ${rulesPath}`);
-    return {};
+    return { skills: {}, config: { maxSkillsPerPrompt: 3 } };
   }
 
   try {
     const rulesContent = fs.readFileSync(rulesPath, 'utf-8');
     const parsed = JSON.parse(rulesContent);
-    return parsed.skills;
+    return parsed; // Return full structure, not just skills
   } catch (error) {
     console.error(`[skill-matcher] Error loading skill-rules.json:`, error);
-    return {};
+    return { skills: {}, config: { maxSkillsPerPrompt: 3 } };
   }
 }
 

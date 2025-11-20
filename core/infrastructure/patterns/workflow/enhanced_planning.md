@@ -59,6 +59,86 @@ When this pattern is invoked, Claude MUST execute the following 4 stages in orde
 
 **Rule**: If failure costs > $100 or affects > 100 users, use this pattern
 
+## Task Decomposition Override (v5.4.0)
+
+**CRITICAL:** This pattern overrides Claude's default task decomposition behavior. YOU MUST follow the 3-phase sequence below. DO NOT create your own task breakdown.
+
+### ❌ PROHIBITED SEQUENCE
+1. ❌ Creating architecture without research foundation
+2. ❌ Skipping validation before planning
+3. ❌ Combining stages or proceeding without stage completion
+4. ❌ Creating plans without risk assessment
+
+**Consequences:** Uninformed architecture, missing quality gates, preventable failures → ARCHITECTURE VIOLATION
+
+### ✅ MANDATORY 3-PHASE SEQUENCE
+
+#### Phase 1: Requirements Analysis & Research Scope
+**Decision Point:** Define research topics and establish planning foundation
+
+**YOU MUST:**
+1. Analyze the software development task and extract technology keywords
+2. Generate 2-3 research topics ([Primary Tech] best practices, [Domain] architecture, [Integration] patterns)
+3. Create sanitized task subdirectory for research organization
+4. Spawn 2-3 research-scout agents in parallel (haiku model)
+5. Wait for all research reports to complete (quality check: 5+ sources per topic, high confidence)
+
+**Output Acknowledgment After Phase 1:**
+```
+✅ Phase 1 Complete - Research Foundation Established
+📋 Research Topics: [topic 1], [topic 2], [topic 3]
+📊 Reports Generated: [count] reports, [total sources] sources
+🎯 Confidence Levels: [High/Medium/Low for each]
+⏭️  Proceeding to Phase 2: Architecture Design
+```
+
+#### Phase 2: Architecture Design & Validation
+**YOU MUST:**
+1. Load all research reports from Phase 1
+2. Spawn system-architect agent with think-hard mode (Sonnet model)
+3. Create comprehensive architecture proposal (3-10 pages based on complexity)
+4. Immediately create dev docs for session continuity (`/create-dev-docs`)
+5. Execute systematic validation against 9 criteria (Completeness, Best Practices, Scalability, Technology Fit, Trade-offs, Security, Cost, Maintainability, Risk Management)
+6. Make clear APPROVED or REVISE decision (max 1 revision cycle)
+
+**Output Acknowledgment After Phase 2:**
+```
+✅ Phase 2 Complete - Architecture Designed & Validated
+📋 Architecture: [page count] pages, [component count] components
+📊 Validation: [criteria passed]/9 criteria passed
+🎯 Decision: [APPROVED/REVISE]
+📄 Dev Docs: Created for session continuity
+⏭️  Proceeding to Phase 3: Implementation Planning
+```
+
+#### Phase 3: Implementation Planning & Risk Management
+**YOU MUST:**
+1. Load validated architecture and research reports
+2. Create 4-phase implementation plan (Foundation & Validation, Core Features, Integration & Robustness, Optimization & Polish)
+3. Define quality gates for each phase
+4. Map critical path and dependencies
+5. Identify and document risks with mitigations
+6. Create comprehensive testing strategy
+7. Define measurable success criteria
+
+**Output Acknowledgment After Phase 3:**
+```
+✅ Phase 3 Complete - Enhanced Planning Pattern Finished
+📋 Implementation Plan: 4 phases, [task count] tasks
+📊 Quality Gates: Defined for each phase
+🎯 Risks: [count] identified with mitigations
+📄 Next Steps: [first 3 tasks documented]
+✅ Pattern execution complete
+```
+
+## Language Standards (v5.4.0)
+
+**Directive Language:** This pattern uses imperative commands.
+- ✅ "YOU MUST", "DO NOT", "ALWAYS", "NEVER"
+- ❌ "should", "consider", "might", "could", "try to"
+
+**Rationale:** Weak language leads to inconsistent execution. Strong directives ensure reliable pattern application.
+
 ## PROCESS
 
 ### STAGE 1: PARALLEL RESEARCH (3-5 minutes)

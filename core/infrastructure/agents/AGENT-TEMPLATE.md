@@ -58,6 +58,75 @@ thinking: "think"  # or "think-hard" or "ultrathink"
 
 ---
 
+## Task Decomposition Override (v5.4.0)
+
+When this agent is invoked ([specific invocation contexts]), **DO NOT use your default task decomposition.**
+
+### ❌ PROHIBITED SEQUENCE ([Name the anti-pattern - typical poor approach]):
+1. [Wrong approach step 1 - common mistake in agent workflows]
+2. [Wrong approach step 2 - leads to fragmented/incomplete work]
+3. [Wrong approach step 3 - violates agent's core methodology]
+4. [Wrong approach step 4 - produces poor quality outputs]
+
+### ✅ MANDATORY SEQUENCE ([Agent's methodology name]):
+
+**Phase 1: [Strategic Analysis]** (Make [N] critical decisions)
+1. **[Analysis Name 1]**: [What to analyze/assess]
+   - Reference: Agent "[Section Name]" or @[agent-name]/resources/[resource].md
+   - Output: [Assessment result to document]
+
+2. **[Analysis Name 2]**: [What to analyze/assess]
+   - Reference: Agent "[Section Name]" or @[agent-name]/resources/[resource].md
+   - Output: [Assessment result to document]
+
+3. **[Analysis Name 3]**: [What to analyze/assess]
+   - Reference: Agent "[Section Name]" or @[agent-name]/resources/[resource].md
+   - Output: [Assessment result to document]
+
+**Output Acknowledgment After Phase 1:**
+```
+[Agent Name] Analysis:
+- [Analysis 1]: [Result + implications]
+- [Analysis 2]: [Result + implications]
+- [Analysis 3]: [Result + implications]
+```
+
+**Phase 2: [Execution]** (Execute workflow based on Phase 1 analysis)
+4. [Execution step 1 - applies Phase 1 analysis]
+5. [Execution step 2 - follows agent methodology]
+6. [Execution step 3 - generates core deliverables]
+
+**Phase 3: [Reporting]** (Validate and summarize outcomes)
+7. [Validation criterion 1 - verify quality standards met]
+8. [Validation criterion 2 - check completeness]
+9. [Summary generation - unified report, not fragmented outputs]
+
+**IF you use ❌ sequence instead of ✅ sequence = ARCHITECTURE VIOLATION**
+
+**Rationale:** [Explain WHY the mandatory sequence is required. What quality does it guarantee? What problem does it solve? How does strategic analysis ensure optimal outcomes?]
+
+---
+
+## Language Standards (v5.4.0)
+
+**YOU MUST use directive language throughout agent workflows:**
+
+**Required Directives:**
+- ✅ "MUST", "DO NOT", "ALWAYS", "NEVER", "MANDATORY", "PROHIBITED", "REQUIRED"
+- ❌ Never: "should", "consider", "might", "could", "try to", "it's recommended"
+
+**Workflow Steps:**
+- ✅ "Execute X", "Validate Y", "Generate Z"
+- ❌ "Try to do X", "Consider Y", "Should generate Z"
+
+**Quality Standards:**
+- ✅ "This agent MUST ensure:", "MANDATORY verification:"
+- ❌ "This agent should ensure:", "Recommended checks:"
+
+**Enforcement Note:** Agents with weak language will be rejected by validation hooks.
+
+---
+
 ## Capabilities
 
 ### Primary Skills

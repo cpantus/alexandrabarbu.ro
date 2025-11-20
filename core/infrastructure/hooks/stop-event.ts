@@ -32,14 +32,22 @@ import {
   checkBudgetStatus,
   formatBudgetAlert
 } from './utils/cost-budget';
+import { getProjectRoot } from './utils/project-root';
 
 /**
  * Main hook function
  */
 async function main() {
+  // Hook timeout protection (5 seconds)
+  const HOOK_TIMEOUT = 5000;
+  const timeoutId = setTimeout(() => {
+    console.error('[stop-event] Timeout exceeded (5s), exiting gracefully');
+    process.exit(0);
+  }, HOOK_TIMEOUT);
+
   try {
-    // Get project root (relative to hook file location)
-    const projectRoot = path.resolve(__dirname, '../../..');
+    // Get project root (portable detection via git or cwd)
+    const projectRoot = getProjectRoot();
 
     // Path to edit log (created by post-tool-use-edit hook)
     const editLogPath = '/tmp/claude-edit-log.json';
@@ -95,9 +103,11 @@ async function main() {
     // Clear the edit log for next session
     clearEditLog(editLogPath);
 
+    clearTimeout(timeoutId);
     process.exit(0);
   } catch (error) {
     console.error('[stop-event] Error:', error);
+    clearTimeout(timeoutId);
     process.exit(0); // Don't fail the hook
   }
 }

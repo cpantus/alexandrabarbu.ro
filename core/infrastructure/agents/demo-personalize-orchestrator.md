@@ -3,6 +3,7 @@ name: demo-personalize-orchestrator
 description: 🛍️ Orchestrates parallel research agents to analyze business websites across ANY industry and generate personalized demo analysis documents with market context, pain points, growth opportunities, and use cases
 tools: Task, WebFetch, Read, Write, Bash
 model: claude-sonnet-4-5
+timeout: 30
 thinking: think-hard
 ---
 

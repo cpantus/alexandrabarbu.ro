@@ -18,6 +18,11 @@ import { isCached, addToCache, getCacheStats, recordCacheHit } from './utils/con
 import { detectMode, shouldFilterSkill, shouldFilterPattern, getModeReminder } from './utils/mode-detector';
 import { detectRequiredTier, filterComponentsByTier, formatTierSuggestion } from './utils/tier-filter';
 import { routeRequest, formatRoutingDecision, formatCompactRouting } from './utils/smart-router';
+import { loadSkillProgressive } from './utils/skill-loader';
+import { loadPatternProgressive } from './utils/pattern-loader';
+import { detectCompositions, formatCompositionGuidance } from './utils/composition-matcher';
+import { readStdinWithTimeout } from './utils/stdin-reader';
+import { getProjectRoot } from './utils/project-root';
 
 // Global cache for loaded documentation (persists across hook invocations)
 const docsCache = new DocsCache();
@@ -58,12 +63,20 @@ function getPatternIndex(projectRoot: string): any {
  * Main hook function
  */
 async function main() {
+  // Hook timeout protection (5 seconds)
+  const HOOK_TIMEOUT = 5000;
+  const timeoutId = setTimeout(() => {
+    console.error('[user-prompt-submit] Timeout exceeded (5s), exiting gracefully');
+    process.exit(0);
+  }, HOOK_TIMEOUT);
+
   try {
-    // Get user prompt from stdin
-    const prompt = await readStdin();
+    // Get user prompt from stdin with timeout
+    const prompt = await readStdinWithTimeout({ timeout: 1000 });
 
     if (!prompt || prompt.trim().length === 0) {
       // No prompt to analyze
+      clearTimeout(timeoutId);
       process.exit(0);
     }
 
@@ -72,11 +85,12 @@ async function main() {
     const promptLower = prompt.toLowerCase().trim();
     if (promptLower.length < 10 ||
         /^(hi|hello|hey|thanks?|thank you|bye|goodbye|what time|help|\?)$/i.test(promptLower)) {
+      clearTimeout(timeoutId);
       process.exit(0);
     }
 
-    // Get project root (hooks are in core/infrastructure/hooks/, so go up 3 dirs)
-    const projectRoot = path.resolve(__dirname, '../../..');
+    // Get project root (portable detection via git or cwd)
+    const projectRoot = getProjectRoot();
 
     // Detect mode (teaching vs production)
     const modeDetection = detectMode(prompt);
@@ -95,15 +109,17 @@ async function main() {
     }
 
     // Load skill rules (cached for 1 minute)
-    const skillRules = getSkillRules(projectRoot);
+    const skillRulesData = getSkillRules(projectRoot);
+    const skillRules = skillRulesData.skills || {};
+    const config = skillRulesData.config || { maxSkillsPerPrompt: 3 };
 
     if (Object.keys(skillRules).length === 0) {
       // No skill rules configured
       process.exit(0);
     }
 
-    // Match skills to prompt
-    const matchedSkills = matchSkillsToPrompt(prompt, skillRules, projectRoot, 3);
+    // Match skills to prompt (use config limit, not hardcoded)
+    const matchedSkills = matchSkillsToPrompt(prompt, skillRules, projectRoot, config.maxSkillsPerPrompt);
 
     // Load pattern index and match patterns (cached for 1 minute, with output style awareness)
     const patternIndex = getPatternIndex(projectRoot);
@@ -138,8 +154,9 @@ async function main() {
       skillPath: skill.skillPath
     }));
 
-    // CHECK FOR MANDATORY SKILL ENFORCEMENT
-    // Skills with enforcement: "require" MUST be read before proceeding
+    // AUTO-LOAD REQUIRED SKILLS (v5.2.0: Application Guarantee)
+    // Skills with enforcement: "require" are AUTO-LOADED into Claude's context
+    // This GUARANTEES application (not just awareness)
     const requiredSkills = uniqueSkills.filter(skill =>
       skillRules[skill.name]?.enforcement === 'require'
     );
@@ -148,47 +165,86 @@ async function main() {
       skillRules[skill.name]?.enforcement === 'warn'
     );
 
+    // Auto-load required skills with progressive disclosure
+    let autoLoadedSkills: string[] = [];
+    let totalAutoLoadTokens = 0;
+
     if (requiredSkills.length > 0) {
-      // Check if required skills have been read (via session cache)
-      const unreadSkills = requiredSkills.filter(skill =>
-        !isCached('skill', skill.name, 'full')
+      // Check which skills need loading (not already loaded THIS session)
+      const skillsToLoad = requiredSkills.filter(skill =>
+        !isCached('skill-loaded', skill.name, 'session')
       );
 
-      if (unreadSkills.length > 0) {
-        // BLOCK: Required skills MUST be read
-        const blockMessage = [
-          '',
-          '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-          '🔴 EXECUTION BLOCKED: MANDATORY SKILL READING REQUIRED',
-          '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-          '',
-          'The following skills MUST be read before proceeding:',
-          '',
-          ...unreadSkills.map(skill => [
-            `  ❌ ${skill.name}`,
-            `     Path: ${skill.skillPath}`,
-            ''
-          ].join('\n')),
-          '📖 WHY THIS MATTERS:',
-          '   These skills contain CRITICAL guidance that ensures quality output.',
-          '   Reading them is NON-NEGOTIABLE. They exist to prevent low-quality',
-          '   "AI slop" and ensure professional, well-designed results.',
-          '',
-          '⚡ TO PROCEED:',
-          '   1. Use the Read tool to read each skill file listed above',
-          '   2. Follow the guidance in those files when implementing',
-          '   3. Re-submit your prompt - you will be unblocked automatically',
-          '',
-          '⚠️  POLICY (CLAUDE.md):',
-          '   Required skills enforce quality standards system-wide.',
-          '   This is not optional. Read the skills, follow the guidance.',
-          '',
-          '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-          ''
-        ].join('\n');
+      if (skillsToLoad.length > 0) {
+        // Determine context tier for progressive loading
+        const taskComplexity = detectTaskComplexity(prompt);
+        const contextTier = determineContextTier({
+          model: 'sonnet',
+          taskComplexity,
+          explicitTier: detectExplicitTier(prompt)
+        });
 
-        process.stderr.write(blockMessage);
-        process.exit(1); // Exit with error to block execution
+        // Load each required skill progressively
+        for (const skill of skillsToLoad) {
+          const loaded = loadSkillProgressive(
+            skill.name,
+            skill.skillPath,
+            contextTier.name
+          );
+
+          if (loaded) {
+            // Inject skill content into Claude's context via stdout
+            process.stdout.write(loaded.content);
+
+            // Track loaded skills
+            autoLoadedSkills.push(skill.name);
+            totalAutoLoadTokens += loaded.tokens;
+
+            // Mark as loaded in session cache (prevents duplicate loads)
+            addToCache('skill-loaded', skill.name, skill.skillPath, 'session', loaded.tokens);
+
+            // Log to stderr for user visibility
+            process.stderr.write(`✓ ${skill.name} auto-loaded (${contextTier.name} mode, ${loaded.tokens} tokens, MANDATORY for quality)\n`);
+          }
+        }
+      } else {
+        // All required skills already loaded this session
+        process.stderr.write(`✓ Required skills already loaded this session (${requiredSkills.map(s => s.name).join(', ')})\n`);
+      }
+    }
+
+    // MULTI-SKILL COMPOSITION DETECTION (v5.5.0)
+    // Check if loaded skills form a known composition (synergistic combination)
+    // If so, inject composition guidance to ensure skills work together
+    const allLoadedSkills = [
+      ...requiredSkills.map(s => s.name),
+      ...warnSkills.map(s => s.name)
+    ];
+
+    let compositionGuidance = '';
+    if (allLoadedSkills.length >= 2) {
+      const compositions = detectCompositions(allLoadedSkills, prompt);
+
+      if (compositions.length > 0) {
+        // Use highest-confidence composition
+        const topComposition = compositions[0];
+
+        // Only inject if not already cached for this session
+        if (!isCached('composition-loaded', topComposition.composition.name, 'session')) {
+          compositionGuidance = formatCompositionGuidance(topComposition);
+
+          // Mark as loaded in session cache
+          addToCache(
+            'composition-loaded',
+            topComposition.composition.name,
+            topComposition.composition.name,
+            'session',
+            500 // Estimated tokens for composition guidance
+          );
+
+          // Log to stderr for user visibility
+          process.stderr.write(`✓ Composition detected: ${topComposition.composition.name} (${topComposition.matched_skills.length} skills, ${(topComposition.confidence * 100).toFixed(0)}% confidence)\n`);
+        }
       }
     }
 
@@ -306,53 +362,58 @@ async function main() {
     // Format pattern suggestions (using NEW verbose formatter with complexity-based enforcement)
     const patternReminder = formatPatternSuggestions(matchedPatterns, patternIndex, projectRoot, prompt);
 
-    // CHECK FOR MANDATORY PATTERN ENFORCEMENT
-    // If medium/complex patterns detected without bypass justification, BLOCK execution
+    // AUTO-LOAD MANDATORY PATTERNS (v5.3.0: Guidance-First)
+    // If medium/complex patterns detected without bypass justification, AUTO-INJECT content
     const hasJustification = checkForJustification(prompt);
     const mandatoryPatterns = matchedPatterns.filter(p =>
       p.complexity === 'medium' || p.complexity === 'complex'
     );
 
-    if (mandatoryPatterns.length > 0 && !hasJustification) {
-      // BLOCK: Medium/complex patterns require justification or /pattern usage
-      const blockMessage = [
-        '',
-        '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-        '🔴 EXECUTION BLOCKED: MANDATORY PATTERN REQUIRED',
-        '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-        '',
-        `Detected ${mandatoryPatterns.length} MANDATORY pattern(s):`,
-        ...mandatoryPatterns.map(p => `  • ${p.name} (${p.complexity})`),
-        '',
-        'Medium/complex patterns ensure quality gates for critical workflows.',
-        '',
-        '📋 TO PROCEED, you must either:',
-        '',
-        '1️⃣  Use the pattern (RECOMMENDED):',
-        `   /pattern ${mandatoryPatterns[0].name}`,
-        '',
-        '2️⃣  Provide explicit bypass justification in your prompt:',
-        '   Include these elements:',
-        '   ✓ "Bypassing pattern because [specific reason]"',
-        '   ✓ Alternative approach explanation',
-        '   ✓ Risk acknowledgment',
-        '',
-        '   Example:',
-        '   "Bypassing pattern because experimenting with new approach.',
-        '   Alternative: Manual iterative implementation.',
-        '   Risk: May miss quality gates and require rework."',
-        '',
-        '⚠️  POLICY (CLAUDE.md):',
-        '   ❌ DO NOT ignore this pattern - violation of core principles',
-        '   ❌ DO NOT read pattern file and implement manually',
-        '   ✅ MUST use /pattern command for enforcement + quality gates',
-        '',
-        '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-        ''
-      ].join('\n');
+    let autoLoadedPatterns: string[] = [];
+    let totalPatternTokens = 0;
 
-      process.stderr.write(blockMessage);
-      process.exit(1); // Exit with error to block execution
+    if (mandatoryPatterns.length > 0 && !hasJustification) {
+      // Auto-load mandatory patterns (like skills v5.2.0, but for patterns)
+      const patternsToLoad = mandatoryPatterns.filter(pattern =>
+        !isCached('pattern-loaded', pattern.name, 'session')
+      );
+
+      if (patternsToLoad.length > 0) {
+        // Determine context tier for progressive loading
+        const taskComplexity = detectTaskComplexity(prompt);
+        const contextTier = determineContextTier({
+          model: 'sonnet',
+          taskComplexity,
+          explicitTier: detectExplicitTier(prompt)
+        });
+
+        // Load each mandatory pattern progressively
+        for (const pattern of patternsToLoad) {
+          const loaded = loadPatternProgressive(
+            pattern.name,
+            pattern.patternPath,
+            contextTier.name
+          );
+
+          if (loaded) {
+            // Inject pattern content into Claude's context via stdout
+            process.stdout.write(loaded.content);
+
+            // Track loaded patterns
+            autoLoadedPatterns.push(pattern.name);
+            totalPatternTokens += loaded.tokens;
+
+            // Mark as loaded in session cache (prevents duplicate loads)
+            addToCache('pattern-loaded', pattern.name, pattern.patternPath, 'session', loaded.tokens);
+
+            // Log to stderr for user visibility
+            process.stderr.write(`✓ ${pattern.name} auto-loaded (MANDATORY pattern, ${contextTier.name} mode, ${loaded.tokens} tokens)\n`);
+          }
+        }
+      } else {
+        // All mandatory patterns already loaded this session
+        process.stderr.write(`✓ Mandatory patterns already loaded this session (${mandatoryPatterns.map(p => p.name).join(', ')})\n`);
+      }
     }
 
     // Format documentation injection
@@ -378,6 +439,10 @@ async function main() {
       process.stdout.write(patternReminder);
     }
 
+    if (compositionGuidance) {
+      process.stdout.write(compositionGuidance);
+    }
+
     if (contextTierHint) {
       process.stdout.write(contextTierHint);
     }
@@ -398,36 +463,16 @@ async function main() {
       process.stdout.write(docsInjection);
     }
 
+    clearTimeout(timeoutId);
     process.exit(0);
   } catch (error) {
     console.error('[user-prompt-submit] Error:', error);
+    clearTimeout(timeoutId);
     process.exit(0); // Don't fail the hook, just skip
   }
 }
 
-/**
- * Read prompt from stdin
- */
-function readStdin(): Promise<string> {
-  return new Promise((resolve) => {
-    let data = '';
-
-    process.stdin.setEncoding('utf-8');
-
-    process.stdin.on('data', (chunk) => {
-      data += chunk;
-    });
-
-    process.stdin.on('end', () => {
-      resolve(data);
-    });
-
-    // Handle case where stdin is immediately closed
-    process.stdin.on('error', () => {
-      resolve('');
-    });
-  });
-}
+// Removed: readStdin() - now using readStdinWithTimeout() from utils/stdin-reader.ts
 
 /**
  * Detect if user explicitly requested a context tier

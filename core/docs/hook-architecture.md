@@ -20,10 +20,10 @@ Hooks are TypeScript/Bash scripts that execute at specific lifecycle events to e
 
 | Hook | Event | Purpose | Language |
 |------|-------|---------|----------|
-| `user-prompt-submit.ts` | UserPromptSubmit | Auto-activate skills/patterns/docs, **skill enforcement** (warn/require levels, blocks if unread), **pattern enforcement** (simple=suggested, medium/complex=mandatory with justification bypass), plugin filtering | TypeScript |
+| `user-prompt-submit.ts` | UserPromptSubmit | Auto-activate skills/patterns/docs, **skill enforcement v5.2.0** (require=auto-load with progressive disclosure, warn=message, suggest=reminder), **pattern enforcement** (simple=suggested, medium/complex=mandatory with justification bypass), plugin filtering | TypeScript |
 | `session-start-command-links.ts` | SessionStart (startup) | Dynamic plugin command symlink management | TypeScript |
 | `stop-event.ts` | Stop | Proactive error checking, cleanup | TypeScript |
-| `pre-tool-use-write.ts` | PreToolUse (Write) | **ENFORCE naming standards (BLOCKING)**, validate file creation, prevent duplication | TypeScript |
+| `pre-tool-use-write.ts` | PreToolUse (Write) | **ENFORCE naming standards (BLOCKING)**, validate file creation, prevent duplication, **v5.4.0 compliance validation** (Task Decomposition Override, Language Standards, directive language detection) | TypeScript |
 | `pre-tool-use-edit.ts` | PreToolUse (Edit) | Track file modifications | TypeScript |
 | `pre-tool-use-bash.ts` | PreToolUse (Bash) | **ENFORCE CLI tool standards (auto-correct with MANDATORY warnings)** | TypeScript |
 | `post-tool-use-edit.ts` | PostToolUse (Edit) | Bundle log tracking | TypeScript |
@@ -31,8 +31,10 @@ Hooks are TypeScript/Bash scripts that execute at specific lifecycle events to e
 | `background-agent.ts` | Custom | Background agent orchestration | TypeScript |
 | `agent-telemetry.ts` | Custom | Cost tracking, observability | TypeScript |
 | `context-bundle.ts` | Custom | Context persistence | TypeScript |
-| `detect-mcp-opportunity.ts` | UserPromptSubmit | MCP optimization detection | TypeScript |
+| `detect-mcp-opportunity.ts` | UserPromptSubmit | MCP code execution pattern detection (96-98% token savings) | TypeScript |
+| `detect-server-opportunity.ts` | UserPromptSubmit | MCP selective server loading detection (60-90% token savings) | TypeScript |
 | `suggest-research.ts` | UserPromptSubmit | Research detection hook | TypeScript |
+| `post-plan-approval.ts` | PostPlanApproval | **ENFORCE constraint acknowledgment (BLOCKING)** - validates plans address detected constraints (<500 lines, "don't overdo", etc.) before execution | TypeScript |
 
 **Plugin-Specific Hooks:**
 
@@ -140,11 +142,64 @@ export function handleEvent(args: EventArgs) {
 - `mode-detector.ts` - Detect teaching vs production mode, plugin filtering
 - `plugin-state.ts` - Detect enabled plugins via environment variables (v5.0.5)
 - `tier-detector.ts` - Detect context tier (minimal/quick/full)
-- `context-cache.ts` - Session-based caching
+- `context-cache.ts` - Session-based caching (v5.2.0: session-specific)
 - `formatter.ts` - Output formatting
 - `bash-optimizer.ts` - CLI tool validation/correction
+- `skill-loader.ts` - Progressive skill loading for auto-injection (v5.2.0)
 
 ## Detailed Hook Descriptions
+
+### user-prompt-submit.ts: Skill Auto-Load (v5.2.0)
+
+**Event**: UserPromptSubmit
+**Purpose**: Auto-load "require" skills into Claude's context with progressive disclosure
+**Enforcement**: MANDATORY APPLICATION (not just awareness)
+
+**Philosophy Change (v5.1.0 → v5.2.0):**
+- **OLD**: Block execution until user manually reads skill file (awareness model)
+- **NEW**: Auto-inject skill content into Claude's context (application model)
+- **Reason**: Reading without application is useless - "require" must guarantee quality
+
+**How it works:**
+1. Skill matches prompt keywords/intent patterns
+2. Check enforcement level: suggest/warn/require
+3. If `require` → check session cache (not loaded yet?)
+4. Determine context tier (minimal/quick/full) from prompt complexity
+5. Load skill progressively:
+   - **Minimal/Quick tier**: Core principles only (first 200-300 lines)
+   - **Full tier**: Complete skill content (400-500 lines)
+   - **Resources**: Never auto-loaded (always on-demand via @-reference)
+6. Inject via stdout wrapped in `<required-skill>` tags
+7. Mark as loaded in session-specific cache
+8. Log to stderr: `✓ skill-name auto-loaded (tier mode, N tokens, MANDATORY)`
+
+**Progressive Disclosure Benefits:**
+- Maintains 40-60% token savings vs naive full loading
+- Minimal tier: 200-300 tokens (core anti-patterns, critical rules)
+- Quick tier: 200-300 tokens (same as minimal, default)
+- Full tier: 400-500 tokens (complete skill, for complex tasks)
+- Resources available on-demand: `@skill-name/resources/topic.md`
+
+**Session Cache Fix (v5.2.0):**
+- Cache filename now includes session ID: `claude-context-cache-${SESSION_ID}.json`
+- Each conversation gets fresh enforcement checks
+- Prevents cross-session pollution where previous reads bypass current enforcement
+- Falls back to timestamp-based ID if `CLAUDE_SESSION_ID` unavailable
+
+**Example output:**
+```
+✓ diagram-drawing auto-loaded (quick mode, 287 tokens, MANDATORY for quality)
+📚 Full guidance: @.claude/skills/diagram-drawing.md
+📂 Resources: typography-for-data, chart-theme-gallery, wcag-compliance
+```
+
+**Application Guarantee Contract:**
+When user sees "auto-loaded", they know:
+1. Skill content IS in Claude's context (not just suggested)
+2. Claude WILL apply those principles (not optional)
+3. Output WILL reflect that guidance (guaranteed quality)
+
+**Performance:** <50ms for progressive load, 200-500 tokens per skill
 
 ### post-tool-use-pattern.ts (NEW v5.0.5)
 

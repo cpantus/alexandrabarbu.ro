@@ -4,12 +4,87 @@
 **Complexity**: medium
 **Thinking**: N/A (specification pattern, not execution pattern)
 **Knowledge Required**: N/A (defines standards for pattern components)
+**Version:** 2.0 (v5.4.0 - Directive Language + Task Decomposition Override)
 
 ---
 
 ## PURPOSE
 
 Define the structure, validation rules, and quality standards for pattern components in the Marketing Agent system. This is the meta-pattern: the pattern that defines what patterns should look like.
+
+---
+
+## Task Decomposition Override (v5.4.0)
+
+When creating or validating pattern components, **DO NOT use your default task decomposition.**
+
+### ❌ PROHIBITED SEQUENCE (Surface-Level Pattern Review):
+1. Read pattern file and check for required sections
+2. Verify naming looks correct
+3. Skip complexity alignment validation
+4. Approve without checking pattern index registration
+
+### ✅ MANDATORY SEQUENCE (Comprehensive Pattern Validation):
+
+**Phase 1: Input Validation** (Validate 4 critical pattern dimensions)
+1. **Naming Validation**: Verify snake_case format, similarity detection
+   - Reference: This pattern "Naming Convention" section
+   - Output: Name compliance + similarity warnings
+
+2. **Metadata Validation**: Check category, complexity, thinking mode alignment
+   - Reference: This pattern "Category Standards" and "Complexity Levels" sections
+   - Output: Metadata validity + misalignment warnings
+
+3. **Structure Validation**: Verify all required sections present and properly ordered
+   - Reference: This pattern "Required Structure" section
+   - Output: Missing sections list + ordering issues
+
+4. **Dependency Validation**: Verify knowledge files and skill references exist
+   - Reference: This pattern "Knowledge Dependencies" section
+   - Output: Broken dependencies + resolution paths
+
+**Output Acknowledgment After Phase 1:**
+```
+Pattern Validation Input Analysis:
+- Naming: [snake_case ✓ / Similarity: 68% to pattern-name]
+- Metadata: [Category ✓, Complexity mismatch: marked simple but 8 steps]
+- Structure: [Missing: QUALITY CHECKS, EXAMPLE]
+- Dependencies: [2 broken skill references]
+```
+
+**Phase 2: Staged Execution** (Execute 8-step validation process)
+5. Execute validation algorithm from PROCESS section (steps 1-8)
+6. Generate complexity alignment assessment
+7. Validate pattern index registration and metadata sync
+
+**Phase 3: Output Generation** (Produce comprehensive validation report)
+8. Classify all issues (critical/warning/recommendation)
+9. Generate auto-correction suggestions
+10. Produce unified validation report in OUTPUT format
+
+**IF you use ❌ sequence instead of ✅ sequence = ARCHITECTURE VIOLATION**
+
+**Rationale:** Pattern validation requires systematic input validation across 4 dimensions before execution. Skipping Phase 1 leads to missed complexity misalignments (e.g., "simple" patterns with 10 steps), unregistered patterns that won't auto-suggest, and broken dependencies. The mandatory sequence guarantees patterns are production-ready and properly integrated.
+
+---
+
+## Language Standards (v5.4.0)
+
+**YOU MUST use directive language throughout pattern specifications:**
+
+**Required Directives:**
+- ✅ "MUST", "DO NOT", "ALWAYS", "NEVER", "MANDATORY", "PROHIBITED", "REQUIRED"
+- ❌ Never: "should", "consider", "might", "could", "try to", "recommended"
+
+**Pattern Rules:**
+- ✅ "All patterns MUST include PURPOSE section"
+- ❌ "Patterns should have a PURPOSE section"
+
+**Process Steps:**
+- ✅ "Execute validation", "Verify alignment", "Generate report"
+- ❌ "Try to validate", "Consider checking alignment", "Should generate report"
+
+**Enforcement Note:** Meta-patterns with weak language will be rejected by validation hooks.
 
 ---
 
@@ -101,7 +176,9 @@ Different modes or customization options (optional but recommended)
 When to use this pattern vs alternatives (optional but recommended)
 ```
 
-**Optional but Recommended Sections:**
+**Optional Sections:**
+- VARIATIONS (Different modes or customization options)
+- USAGE NOTES (When to use this pattern vs alternatives)
 - SUCCESS METRICS (for marketing patterns)
 - PATTERN CHAINING (integration with other patterns)
 - MAINTENANCE NOTES (for meta-patterns)
@@ -316,9 +393,9 @@ When to use this pattern vs alternatives (optional but recommended)
 ```
 
 **Validation rules:**
-- Referenced skills must exist
-- Knowledge files must be in skill resources
-- Chained patterns should have compatible input/output
+- Referenced skills MUST exist
+- Knowledge files MUST be in skill resources
+- Chained patterns MUST have compatible input/output
 - Maximum chain length: 5 patterns (prevent complexity explosion)
 
 ---

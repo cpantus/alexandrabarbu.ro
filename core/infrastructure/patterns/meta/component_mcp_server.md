@@ -4,12 +4,82 @@
 **Complexity**: simple
 **Thinking**: N/A
 **Knowledge Required**: N/A
+**Version:** 2.0 (v5.4.0 - Directive Language + Task Decomposition Override)
 
 ---
 
 ## PURPOSE
 
 Define structure, validation rules, and quality standards for MCP (Model Context Protocol) server configuration components.
+
+---
+
+## Task Decomposition Override (v5.4.0)
+
+When creating or validating MCP server components, **DO NOT use your default task decomposition.**
+
+### ❌ PROHIBITED SEQUENCE (Quick Server Setup):
+1. Add server to mcp-servers.json without validation
+2. Skip profile and environment variable checks
+3. Forget to test server connection
+4. Deploy without verifying tool availability
+
+### ✅ MANDATORY SEQUENCE (Systematic MCP Server Setup):
+
+**Phase 1: Input Validation** (Validate 3 critical MCP server requirements)
+1. **Server Configuration Validation**: Verify command, args, and env vars are complete
+   - Reference: This pattern "Configuration Location" section + MCP documentation
+   - Output: Configuration completeness + required fields check
+
+2. **Profile Validation**: Check profile exists and server is appropriately categorized
+   - Reference: MCP profile standards (research, social, analytics, etc.)
+   - Output: Profile validity + categorization appropriateness
+
+3. **Uniqueness Validation**: Ensure server name doesn't duplicate existing servers
+   - Reference: Scan `.claude/mcp-servers.json` for existing configurations
+   - Output: Uniqueness check + naming conflicts
+
+**Output Acknowledgment After Phase 1:**
+```
+MCP Server Validation Input Analysis:
+- Configuration: [Command ✓, Required env vars ✓]
+- Profile: [research ✓ / social might be more appropriate]
+- Uniqueness: [Unique ✓ / Conflicts with existing-server]
+```
+
+**Phase 2: Staged Execution** (Configure MCP server)
+4. Add server configuration to mcp-servers.json with correct structure
+5. Set up required environment variables in shell/config
+6. Register server in appropriate profile
+
+**Phase 3: Output Generation** (Test and validate server)
+7. Test server connection and initialization
+8. Verify all tools are available and functional
+9. Document server tools and usage patterns
+
+**IF you use ❌ sequence instead of ✅ sequence = ARCHITECTURE VIOLATION**
+
+**Rationale:** MCP server setup requires validating configuration completeness and profile appropriateness first. Skipping Phase 1 leads to misconfigured servers, missing environment variables, and servers that fail to connect.
+
+---
+
+## Language Standards (v5.4.0)
+
+**YOU MUST use directive language throughout MCP server specifications:**
+
+**Required Directives:**
+- ✅ "MUST", "DO NOT", "ALWAYS", "NEVER", "MANDATORY", "PROHIBITED", "REQUIRED"
+- ❌ Never: "should", "consider", "might", "could", "try to", "recommended"
+
+**Server Requirements:**
+- ✅ "MCP servers MUST include command and profile fields"
+- ❌ "MCP servers should have command and profile"
+
+**Configuration Rules:**
+- ✅ "ALWAYS test server connection", "NEVER deploy without env vars"
+- ❌ "Try to test connection", "Consider setting env vars"
+
+**Enforcement Note:** Meta-patterns with weak language will be rejected by validation hooks.
 
 ---
 

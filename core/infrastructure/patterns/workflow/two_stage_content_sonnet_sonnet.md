@@ -30,6 +30,87 @@ Generate brand-defining content with maximum quality through deep strategic expl
 
 ---
 
+## Task Decomposition Override (v5.4.0)
+
+**CRITICAL:** This pattern overrides Claude's default task decomposition behavior. YOU MUST follow the 3-phase sequence below. DO NOT create your own task breakdown.
+
+### ❌ PROHIBITED SEQUENCE
+1. ❌ Generating without deep strategic thinking (think-hard required)
+2. ❌ Selecting without systematic scoring framework
+3. ❌ Skipping risk assessment or brand impact analysis
+4. ❌ Missing executive recommendation with contingency plan
+
+**Consequences:** Suboptimal brand-defining content, missed strategic opportunities, inadequate risk mitigation → ARCHITECTURE VIOLATION
+
+### ✅ MANDATORY 3-PHASE SEQUENCE
+
+#### Phase 1: Content Strategy & Generation Parameters
+**Decision Point:** Define high-stakes content requirements and strategic exploration
+
+**YOU MUST:**
+1. Analyze the critical nature of the task (why it matters: budget, brand impact, visibility)
+2. Determine quantity for deep exploration (typically 5-10 variants)
+3. Identify target persona and campaign stakes
+4. Plan strategic angle exploration (benefit, insight, aspiration, provocation, story, data-anchored)
+5. Load FULL brand voice guidelines and persona research (not compressed)
+
+**Output Acknowledgment After Phase 1:**
+```
+✅ Phase 1 Complete - Strategic Content Strategy Defined
+📋 Stakes: [critical work description]
+📊 Quantity: [5-10] variants for deep strategic exploration
+🎯 Target: [persona] for [goal] with [$X] budget/visibility
+⏭️  Proceeding to Phase 2: Deep Strategic Generation (Sonnet + think-hard)
+```
+
+#### Phase 2: Deep Strategic Generation
+**YOU MUST:**
+1. Spawn copywriter subagent with think-hard mode (extended thinking)
+2. Think deeply about strategic approach (uniqueness, core insight, differentiation, emotional/rational appeals, narrative arc)
+3. Generate [QUANTITY] variants exploring distinct strategic angles
+4. Provide strategic rationale, emotional response analysis, and brand positioning for each
+5. Load full brand voice guidelines and persona research
+6. Include top 3 picks with detailed strategic reasoning
+
+**Output Acknowledgment After Phase 2:**
+```
+✅ Phase 2 Complete - Deep Strategic Generation Finished (Sonnet)
+📊 Variants: [count] with strategic rationale
+💰 Cost: ~$0.08
+⏱️  Time: 3-5 minutes
+🎯 Generator's Top 3: [variant numbers with reasoning]
+⏭️  Proceeding to Phase 3: Strategic Review & Selection
+```
+
+#### Phase 3: Strategic Review & Selection
+**YOU MUST:**
+1. Spawn copywriter subagent for systematic review
+2. Create scoring matrix (Brand Voice 30%, Persona Resonance 30%, Strategic Soundness 25%, Performance Predictors 15%)
+3. Score all variants and select top 3 (ensure diversity of approaches)
+4. Provide deep analysis for each top 3 (why it will win, brand impact, risk assessment, optimization notes, expansion potential)
+5. Create A/B testing strategy (hypothesis, sample size, metrics, decision framework)
+6. Provide executive recommendation with confidence level and contingency plan
+
+**Output Acknowledgment After Phase 3:**
+```
+✅ Phase 3 Complete - Two-Stage Content (Sonnet-Sonnet) Pattern Finished
+🥇 Top 3 Selected: [variant numbers with scores]
+📊 Strategic Analysis: Complete with risk assessment
+🧪 A/B Test Strategy: Defined with statistical rigor
+💰 Cost Analysis: $0.12 (same as direct Sonnet, structured quality process)
+✅ Pattern execution complete
+```
+
+## Language Standards (v5.4.0)
+
+**Directive Language:** This pattern uses imperative commands.
+- ✅ "YOU MUST", "DO NOT", "ALWAYS", "NEVER"
+- ❌ "should", "consider", "might", "could", "try to"
+
+**Rationale:** Weak language leads to inconsistent execution. Strong directives ensure reliable pattern application.
+
+---
+
 ## PROCESS
 
 ### Stage 1: Deep Strategic Generation (Sonnet with think-hard)

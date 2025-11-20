@@ -12,6 +12,82 @@ Use this pattern when:
 - Want to validate research report completeness
 - Structuring research queries for best results
 
+## Task Decomposition Override (v5.4.0)
+
+**CRITICAL:** This pattern overrides Claude's default task decomposition behavior. YOU MUST follow the 3-phase sequence below. DO NOT create your own task breakdown.
+
+### ❌ PROHIBITED SEQUENCE
+1. ❌ Jumping directly to searches without query formulation
+2. ❌ Skipping source validation or credibility assessment
+3. ❌ Generating outputs without quality gate validation
+4. ❌ Single-source research without cross-referencing
+
+**Consequences:** Poor research quality, unreliable recommendations, missing critical insights → ARCHITECTURE VIOLATION
+
+### ✅ MANDATORY 3-PHASE SEQUENCE
+
+#### Phase 1: Query Formulation & Source Strategy
+**Decision Point:** Determine optimal query structure and research strategy
+
+**YOU MUST:**
+1. Analyze the research topic and classify the query type (best practices, comparison, patterns, pitfalls, implementation)
+2. Formulate specific, context-rich queries following the query templates
+3. Select the appropriate research strategy (Documentation-First, Best Practices Discovery, Technology Comparison, Pattern Discovery, or Pitfall Identification)
+4. Define source quality requirements (minimum credibility thresholds, recency requirements)
+
+**Output Acknowledgment After Phase 1:**
+```
+✅ Phase 1 Complete - Research Query Formulated
+📋 Query Type: [best practices/comparison/patterns/etc.]
+📊 Strategy: [selected research strategy]
+🎯 Source Requirements: [min sources, credibility, recency]
+⏭️  Proceeding to Phase 2: Research Execution
+```
+
+#### Phase 2: Research Execution & Source Collection
+**YOU MUST:**
+1. Execute the research strategy using the formulated queries
+2. Use Context7 for official documentation (when available)
+3. Perform WebSearch for community consensus and expert sources
+4. WebFetch top 3-5 authoritative sources
+5. Cross-reference findings across multiple sources
+6. Document all sources with credibility ratings
+
+**Output Acknowledgment After Phase 2:**
+```
+✅ Phase 2 Complete - Research Execution Finished
+📊 Searches Performed: [count]
+📄 Pages Fetched: [count]
+🎯 Sources Collected: [count with credibility breakdown]
+⏭️  Proceeding to Phase 3: Quality Validation & Report Generation
+```
+
+#### Phase 3: Quality Validation & Report Generation
+**YOU MUST:**
+1. Validate research against all quality gates (minimum requirements checklist)
+2. Verify source quality (3+ credible sources, at least 1 high-credibility)
+3. Confirm content completeness (executive summary, key findings, best practices, recommendations)
+4. Check consensus validation (claims cross-referenced)
+5. Generate research report following the standard template
+6. Assign confidence level (High/Medium/Low) with justification
+
+**Output Acknowledgment After Phase 3:**
+```
+✅ Phase 3 Complete - Research Query Pattern Finished
+📊 Quality Gates: [passed count]/[total count] passed
+🎯 Confidence Level: [High/Medium/Low]
+📄 Report Generated: research/[topic].md
+✅ Pattern execution complete
+```
+
+## Language Standards (v5.4.0)
+
+**Directive Language:** This pattern uses imperative commands.
+- ✅ "YOU MUST", "DO NOT", "ALWAYS", "NEVER"
+- ❌ "should", "consider", "might", "could", "try to"
+
+**Rationale:** Weak language leads to inconsistent execution. Strong directives ensure reliable pattern application.
+
 ## Pattern Overview
 
 This pattern provides:

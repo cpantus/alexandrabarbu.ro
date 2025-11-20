@@ -9,7 +9,85 @@
 
 ## PURPOSE
 
-Define structure, validation rules, and quality standards for skill components in the Marketing Agent system.
+Define structure, validation rules, and quality standards for skill components in the Claude Code infrastructure system.
+
+---
+
+## TASK DECOMPOSITION OVERRIDE (v5.4.0)
+
+When this pattern applies (creating new skill component), **DO NOT use your default task decomposition.**
+
+### ❌ PROHIBITED SEQUENCE (Template copy-paste without thought):
+1. Copy SKILL-TEMPLATE.md verbatim
+2. Fill in placeholder text without validation
+3. Add random "best practices" from internet
+4. Skip enforcement level and trigger definition
+5. Use weak language ("should", "consider", "might")
+6. Skip anti-pattern identification
+
+### ✅ MANDATORY SEQUENCE (Quality Skill Creation):
+
+**Phase 1: [Skill Design]** (Make 4 critical decisions)
+1. **Enforcement Level Decision**: Determine auto-load behavior
+   - Reference: Pattern "Skill Types" section + @component_skill/resources/enforcement-guide.md
+   - Output: Level (require/suggest) + trigger keywords (3-5) + justification
+
+2. **Knowledge Structure Decision**: Define core vs. resources split
+   - Reference: Pattern "Resource Files" + "Progressive Disclosure" sections
+   - Output: Core principles list (≤500 lines main) + resource topic breakdown
+
+3. **Anti-Pattern Identification**: List prohibited approaches
+   - Reference: Pattern "Design Skills Best Practices" section
+   - Output: 3-5 anti-patterns + consequences + detection criteria
+
+4. **Task Decomposition Override Design**: Define mandatory execution sequence
+   - Reference: SKILL-TEMPLATE.md "Task Decomposition Override (v5.4.0)" section
+   - Output: ❌ prohibited sequence + ✅ mandatory 3-phase sequence
+
+**Output Acknowledgment After Phase 1:**
+```
+Skill Design Complete:
+- Enforcement: [require/suggest] - Triggers: [keyword1, keyword2, keyword3]
+- Structure: [420]L core + [3] resources ([topic1, topic2, topic3])
+- Anti-Patterns: [pattern1, pattern2, pattern3]
+- Override: 3-phase sequence defined (Decision→Implementation→Validation)
+```
+
+**Phase 2: [Implementation]** (Write skill with v5.4.0 compliance)
+5. Write skill file using directive language (YOU MUST/MUST NOT, never "should"/"consider")
+6. Create resource files for deep-dive topics (on-demand loading)
+7. Register in skill-rules.json with triggers and enforcement level
+
+**Phase 3: [Validation]** (Verify quality standards)
+8. Verify ≤500 lines core skill (`wc -l file.md`)
+9. Check directive language compliance (`rg -i "should|consider|might|try to"` → expect 0 matches)
+10. Validate Task Decomposition Override structure (has ❌/✅/phases/acknowledgment/rationale)
+11. Test auto-activation (simulate trigger keywords in test prompt)
+
+**IF you use ❌ sequence instead of ✅ sequence = ARCHITECTURE VIOLATION**
+
+**Rationale:** Generic skills become noise without enforcement. The 4-decision framework (Phase 1) ensures skills are actionable (enforcement triggers), efficient (progressive disclosure), preventive (anti-patterns), and directive (override sequences). Validation phase (Phase 3) prevents quality regression and weak language proliferation. Reusing this pattern guarantees skill quality and consistency across infrastructure.
+
+---
+
+## LANGUAGE STANDARDS (v5.4.0)
+
+**YOU MUST use directive language throughout skill creation:**
+
+**Required Directives:**
+- ✅ "YOU MUST use", "DO NOT use", "ALWAYS", "NEVER", "MANDATORY", "PROHIBITED", "REQUIRED"
+- ❌ Never: "should", "consider", "might", "could", "try to", "it's recommended", "please", "ideally"
+
+**Skill Content Examples:**
+- ❌ "Consider using distinctive fonts" → ✅ "YOU MUST use distinctive fonts"
+- ❌ "You should avoid purple gradients" → ✅ "DO NOT use purple gradients (PROHIBITED)"
+- ❌ "It's recommended to validate accessibility" → ✅ "MANDATORY: Validate accessibility (WCAG 2.1 AA)"
+
+**Section Headers:**
+- ✅ "Required Standards", "Rules", "Anti-Patterns to Avoid"
+- ❌ "Best Practices", "Guidelines", "Recommendations"
+
+**Enforcement:** Skills with weak language will be BLOCKED by pre-tool-use-write.ts hook.
 
 ---
 
@@ -148,28 +226,38 @@ intentPatterns:
 
 ### Resource Files
 
-**Structure:**
+**Structure (Official Claude Code Format v5.6.0):**
 ```
 .claude/skills/
-├── skill-name.md (main file, <500 lines)
-└── skill-name/
-    └── resources/
-        ├── detail-doc-1.md
-        ├── detail-doc-2.md
-        └── framework-specific.md
+└── skill-name/                  # Skill directory
+    ├── SKILL.md                 # Main file (required, <500 lines)
+    ├── resources/               # Supporting docs (optional)
+    │   ├── detail-doc-1.md
+    │   ├── detail-doc-2.md
+    │   └── framework-specific.md
+    └── scripts/                 # Helper scripts (optional)
+        └── helper.py
 ```
+
+**Key Changes (v5.6.0):**
+- Skills are now directories, not standalone files
+- Main file MUST be named `SKILL.md` (uppercase)
+- Resources are in `skill-name/resources/` (not `skills/resources/skill-name/`)
+- YAML frontmatter required (see SKILL-TEMPLATE)
 
 **Naming:** kebab-case, descriptive
 - `tone-by-format.md` ✓
 - `vocabulary-guide.md` ✓
 - `strategic-sarah.md` ✓
 
-**References:** Use `@resources/file-name.md` in main skill file
+**References:** Use `@skill-name/resources/file-name.md` in main skill file
 
 **Progressive Disclosure:**
-- Main skill file: Quick reference (<500 lines)
+- Main SKILL.md: Quick reference (<500 lines)
 - Resources: Detailed docs (unlimited length)
 - Load resources only when needed
+
+**See:** `dev/archive/migrations/v5.6.0-skills-migration.md` for migration from legacy format (v5.5.0 → v5.6.0)
 
 ---
 
@@ -263,17 +351,15 @@ interface SkillValidationReport {
 }
 ```
 
-### Valid Skill File Example
+### Valid Skill File Example (Official Format v5.6.0)
 
 ```markdown
-# Brand Voice Guidelines
-
-**Skill Type:** Universal
-**Priority:** Critical
-**Auto-activates on:** email, social, blog, ad copy, content creation
-**Last Updated:** 2025-11-03
-
 ---
+name: "brand-voice-guidelines"
+description: "Ensures all marketing content maintains consistent brand voice. Provides voice attributes, writing frameworks, and quality checklists. Auto-activates when creating email, social, blog, ad copy, or any content."
+---
+
+# Brand Voice Guidelines
 
 ## What This Skill Does
 
@@ -285,9 +371,9 @@ Ensures all marketing content maintains consistent brand voice. Provides:
 **Progressive disclosure:**
 - This file: Quick reference + core attributes
 - Resources:
-  - `@resources/tone-by-format.md` - Format-specific guidance
-  - `@resources/vocabulary-guide.md` - Preferred/forbidden terms
-  - `@resources/quality-checklist.md` - Self-review protocol
+  - `@brand-voice-guidelines/resources/tone-by-format.md` - Format-specific guidance
+  - `@brand-voice-guidelines/resources/vocabulary-guide.md` - Preferred/forbidden terms
+  - `@brand-voice-guidelines/resources/quality-checklist.md` - Self-review protocol
 
 ---
 
@@ -391,7 +477,8 @@ Load detailed resources when:
 
 ---
 
-**Pattern Version:** 1.0
-**Last Updated:** 2025-11-06
-**Component Count:** 9 skills
+**Pattern Version:** 2.0 (v5.4.0 Task Decomposition Override)
+**Last Updated:** 2025-11-14
+**Component Count:** 10 skills (infrastructure + plugin)
 **Validation Coverage:** 100%
+**Compliance:** v5.4.0 directive language + 3-phase execution

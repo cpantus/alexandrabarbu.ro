@@ -4,12 +4,73 @@
 **Complexity**: medium
 **Thinking**: think
 **Dependencies**: component-registry.json
+**Version:** 2.0 (v5.4.0 - Directive Language + Task Decomposition Override)
 
 ---
 
 ## PURPOSE
 
 Prevent functional duplication by checking if requested functionality already exists before creating new components. Maps task intent to existing components and determines whether to extend, configure, or create.
+
+---
+
+## Task Decomposition Override (v5.4.0)
+
+When performing pre-creation checks, **DO NOT use your default task decomposition.**
+
+### ❌ PROHIBITED SEQUENCE (Skip Duplication Check):
+1. Create new component immediately without searching
+2. Skip keyword and capability analysis
+3. Forget to check domain ownership
+4. Deploy duplicate functionality
+
+### ✅ MANDATORY SEQUENCE (Systematic Duplication Prevention):
+
+**Phase 1: Input Validation** (Analyze task intent and search registry)
+1. **Intent Parsing**: Extract action verbs, domain nouns, technical terms
+   - Reference: Task description
+   - Output: Keywords + inferred capabilities
+
+2. **Registry Search**: Check component-registry.json for matches
+   - Reference: Keyword matches + capability matches + domain ownership
+   - Output: Matching components list (exact + similar)
+
+3. **Overlap Analysis**: Calculate functional overlap with existing components
+   - Reference: Matching components capabilities vs requested functionality
+   - Output: Overlap percentage + recommendation (extend/configure/create)
+
+**Output Acknowledgment After Phase 1:**
+```
+Pre-Creation Check Analysis:
+- Intent: [Optimize CLI commands with modern tools]
+- Keywords: [CLI, bash, optimization, modern tools]
+- Matches: [bash-optimizer.ts (85% overlap), pre-tool-use-bash.ts (70% overlap)]
+- Recommendation: [EXTEND bash-optimizer.ts, DO NOT create new component]
+```
+
+**Phase 2: Staged Execution** (Determine action based on overlap)
+4. If overlap >70%: Plan extension of existing component
+5. If overlap 40-70%: Evaluate whether to extend or create
+6. If overlap <40%: Plan new component creation
+
+**Phase 3: Output Generation** (Produce decision with justification)
+7. Generate recommendation with detailed rationale
+8. Provide specific extension points if extending
+9. Document decision for future reference
+
+**IF you use ❌ sequence instead of ✅ sequence = ARCHITECTURE VIOLATION**
+
+**Rationale:** Pre-creation checks MUST prevent duplication by systematically searching existing components. Skipping Phase 1 leads to duplicate hooks, patterns, and skills that should have extended existing components.
+
+---
+
+## Language Standards (v5.4.0)
+
+**YOU MUST use directive language:**
+- ✅ "MUST check registry before creating", "NEVER create duplicates"
+- ❌ "Should check registry", "Try to avoid duplicates"
+
+**Enforcement Note:** Meta-patterns with weak language will be rejected by validation hooks.
 
 ---
 

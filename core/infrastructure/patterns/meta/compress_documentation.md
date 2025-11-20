@@ -1,7 +1,59 @@
 # Compress Documentation
 
+**Version:** 2.0 (v5.4.0 - Directive Language + Task Decomposition Override)
+
 ## PURPOSE
 Reduce file size by 40-60% while preserving 100% of knowledge using systematic compression techniques.
+
+## Task Decomposition Override (v5.4.0)
+
+When compressing documentation, **DO NOT use your default task decomposition.**
+
+### ❌ PROHIBITED SEQUENCE (Naive Compression):
+1. Start removing content without analysis
+2. Skip section-by-section planning
+3. Apply random compression techniques
+4. Forget to validate knowledge preservation
+
+### ✅ MANDATORY SEQUENCE (Systematic Documentation Compression):
+
+**Phase 1: Input Validation** (Analyze file and plan compression)
+1. **File Analysis**: Read full file, count metrics (lines, words, tokens)
+   - Output: Current metrics + target metrics (40% of original)
+
+2. **Section Mapping**: Identify sections and verbose areas
+   - Output: Section sizes + compression targets per section
+
+3. **Technique Selection**: Determine appropriate compression techniques per section
+   - Output: Compression plan (pipe notation, arrow notation, tables, etc.)
+
+**Output Acknowledgment After Phase 1:**
+```
+Compression Analysis:
+- Current: [X lines, Y words, Z tokens]
+- Target: [0.4X lines, 0.4Y words, 0.4Z tokens] (60% reduction)
+- Plan: [Section 1: pipe notation, Section 2: compact tables, Section 3: inline lists]
+```
+
+**Phase 2: Staged Execution** (Apply compression techniques systematically)
+4. Apply compression techniques section by section
+5. Track compression metrics throughout
+6. Preserve all critical knowledge and examples
+
+**Phase 3: Output Generation** (Validate and finalize)
+7. Verify knowledge preservation (100% of critical content retained)
+8. Check compression achieved target (40-60% reduction)
+9. Generate final compressed file
+
+**IF you use ❌ sequence instead of ✅ sequence = ARCHITECTURE VIOLATION**
+
+**Rationale:** Documentation compression requires systematic analysis and planning to achieve high compression (60%) while preserving 100% of knowledge. Random compression loses critical information.
+
+## Language Standards (v5.4.0)
+
+**YOU MUST use directive language:**
+- ✅ "MUST preserve all knowledge", "NEVER remove critical examples"
+- ❌ "Should preserve knowledge", "Try not to remove examples"
 
 ## INPUT
 - **File path** to compress (markdown, JSON, code, documentation)
