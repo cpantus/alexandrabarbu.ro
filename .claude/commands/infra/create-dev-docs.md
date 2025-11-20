@@ -42,14 +42,22 @@ Skip dev docs for:
 
 ### Step 2: Create Directory Structure
 
-Create `/dev/active/[task-slug]/` directory with 3 files:
+Create `/dev/active/[task-slug]-YYYY-MM-DD-HHMM/` directory with 3 files:
+
+**Directory naming:**
+- Format: `[task-slug]-YYYY-MM-DD-HHMM`
+- Example: `email-campaign-redesign-2025-11-19-1430`
+- Timestamp: Current date and time when dev docs created
+- Enables: Historical tracking, multiple tasks with same name, chronological sorting
 
 ```
-/dev/active/[task-slug]/
+/dev/active/[task-slug]-2025-11-19-1430/
 ├── [task-slug]-plan.md        # The approved plan or task description
 ├── [task-slug]-context.md     # Key files, decisions, next steps
 └── [task-slug]-tasks.md       # Checklist (survives compaction)
 ```
+
+**Note:** File names stay simple (no timestamp), only directory includes timestamp for uniqueness.
 
 ### Step 3: Generate Plan File
 
@@ -232,7 +240,8 @@ Display confirmation message with:
 - ✅ Directory created
 - ✅ 3 files generated
 - ✅ Bundle log initialized
-- 📁 Location: `/dev/active/[task-slug]/`
+- 📁 Location: `/dev/active/[task-slug]-YYYY-MM-DD-HHMM/`
+- 🕐 Timestamp: Current date-time for tracking
 - 📋 Next steps: Update files as you work, use `/update-dev-docs` before compaction
 
 ---
@@ -243,9 +252,10 @@ Display confirmation message with:
 
 1. Say: "Continue working on [task name]"
 2. Claude will:
-   - Read `/dev/active/[task-slug]/[task-slug]-plan.md`
-   - Read `/dev/active/[task-slug]/[task-slug]-context.md`
-   - Read `/dev/active/[task-slug]/[task-slug]-tasks.md`
+   - Find directory: `/dev/active/[task-slug]-*/` (glob matches timestamp)
+   - Read `[task-slug]-plan.md`
+   - Read `[task-slug]-context.md`
+   - Read `[task-slug]-tasks.md`
    - Resume from last known state with full context
 
 **Continuity rate:** 95%+ (task context survives compaction)
@@ -300,7 +310,8 @@ Display confirmation message with:
 ✅ DEV DOCS CREATED
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📁 Directory: /dev/active/email-campaign-redesign/
+📁 Directory: /dev/active/email-campaign-redesign-2025-11-19-1430/
+🕐 Timestamp: 2025-11-19 14:30
 
 Files created:
   ✅ email-campaign-redesign-plan.md
@@ -311,10 +322,12 @@ Files created:
 📋 Next Steps:
   1. Update context.md as you work
   2. Check off tasks in tasks.md
-  3. Run /update-dev-docs before compaction
-  4. To resume: "Continue working on email campaign redesign"
+  3. Completed phases auto-compress to 30% (token efficient!)
+  4. Run /update-dev-docs before compaction
+  5. To resume: "Continue working on email campaign redesign"
 
 💡 Tip: Your work will now survive context resets!
+   Timestamp enables historical tracking
    Bundle logs improve recovery from 70% → 80%+
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

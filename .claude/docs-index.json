@@ -1,400 +1,53 @@
 {
-  "version": "1.3.0",
-  "lastUpdated": "2025-01-12",
-  "totalDocs": 13,
+  "version": "1.0",
+  "description": "Infrastructure documentation auto-loading configuration",
   "docs": {
-    "pattern-system": {
-      "file": "pattern-system.md",
-      "description": "24 marketing patterns for content, strategy, analysis, and optimization",
-      "estimatedTokens": 805,
-      "priority": "high",
-      "triggers": {
-        "keywords": [
-          "/pattern",
-          "/chain",
-          "create_",
-          "write_",
-          "generate_",
-          "improve_",
-          "optimize_",
-          "linkedin post",
-          "email campaign",
-          "blog article",
-          "ad copy",
-          "landing page",
-          "social thread",
-          "campaign plan",
-          "product position",
-          "value prop",
-          "competitive analysis",
-          "extract insights",
-          "compare performance",
-          "funnel analysis",
-          "ab test",
-          "subject lines",
-          "cta optimization"
-        ],
-        "intentPatterns": [
-          "/pattern\\s+",
-          "/chain\\s+",
-          "\\b(linkedin|email|blog|ad|landing)\\b.*\\b(post|campaign|article|copy|page)\\b",
-          "\\b(create|write|generate)\\b.*\\b(content|campaign|analysis)\\b",
-          "pattern.*\\bfor\\b",
-          "use.*pattern",
-          "which.*pattern"
-        ]
-      },
-      "cacheKey": "pattern-system"
-    },
-    "workflow-system": {
-      "file": "workflow-system.md",
-      "description": "Scout/Plan/Build workflows with research integration, background agents, telemetry, observability",
-      "estimatedTokens": 1650,
-      "priority": "high",
-      "triggers": {
-        "keywords": [
-          "/workflow",
-          "/background",
-          "/observe",
-          "/cost-report",
-          "/research",
-          "--with-research",
-          "scout",
-          "planner",
-          "builder",
-          "research scout",
-          "background agent",
-          "async",
-          "out-of-loop",
-          "multi-agent"
-        ],
-        "intentPatterns": [
-          "/workflow\\s+",
-          "/background\\s+",
-          "/observe\\b",
-          "/cost-report\\b",
-          "/research\\s+",
-          "--with-research",
-          "scout.*plan.*build",
-          "\\b(scout|planner|builder)\\b.*\\b(workflow|agent)\\b",
-          "research.*integration",
-          "background.*agent",
-          "async.*task",
-          "multi-?agent.*workflow",
-          "out-of-loop"
-        ]
-      },
-      "cacheKey": "workflow-system"
-    },
-    "orchestrator-guide": {
-      "file": "orchestrator-guide.md",
-      "description": "Fleet coordination, task decomposition, agent CRUD operations",
-      "estimatedTokens": 1178,
-      "priority": "high",
-      "triggers": {
-        "keywords": [
-          "/orchestrate",
-          "/agent-create",
-          "/agent-status",
-          "/agent-kill",
-          "/agent-cleanup",
-          "fleet",
-          "coordinate",
-          "decompose",
-          "complex task",
-          "large task",
-          "multi-step"
-        ],
-        "intentPatterns": [
-          "/orchestrate\\s+",
-          "/agent-(create|status|kill|cleanup)\\b",
-          "\\b(fleet|coordinate|decompose)\\b",
-          "orchestrate.*task",
-          "complex.*\\b(task|project|campaign)\\b",
-          "coordinate.*agents",
-          "spawn.*agents",
-          "large.*task"
-        ]
-      },
-      "cacheKey": "orchestrator-guide"
-    },
-    "agent-orchestration": {
-      "file": "agent-orchestration.md",
-      "description": "Infrastructure agents: orchestrator, research scout, task coordinator, demo personalize",
-      "estimatedTokens": 1850,
-      "priority": "medium",
-      "triggers": {
-        "keywords": [
-          "/research",
-          "research scout",
-          "best practices",
-          "technology comparison",
-          "external knowledge",
-          "orchestrator",
-          "task-coordinator",
-          "task-implementer",
-          "demo-personalize",
-          "agent coordination",
-          "research agent",
-          "knowledge gathering"
-        ],
-        "intentPatterns": [
-          "/research\\s+",
-          "\\b(research|external).*\\b(scout|agent|knowledge)\\b",
-          "\\b(best practices|technology comparison|documentation)\\b",
-          "orchestrator|task-coordinator|task-implementer",
-          "\\bagent.*\\b(coordination|orchestration)\\b",
-          "which.*agent",
-          "research.*topic"
-        ]
-      },
-      "cacheKey": "agent-orchestration"
-    },
-    "dev-docs-guide": {
-      "file": "dev-docs-guide.md",
-      "description": "Context persistence, dev docs workflow, 95%+ recovery from compaction",
-      "estimatedTokens": 413,
-      "priority": "medium",
-      "triggers": {
-        "keywords": [
-          "/create-dev-docs",
-          "/update-dev-docs",
-          "/review-dev-docs",
-          "dev docs",
-          "development documentation",
-          "large task",
-          "multi-session",
-          "persist",
-          "compaction",
-          "context reset",
-          "resume work"
-        ],
-        "intentPatterns": [
-          "/.*dev-?docs\\b",
-          "\\b(large|complex|multi-session)\\b.*\\btask\\b",
-          "\\b(persist|survive|recover)\\b.*\\b(context|compaction)\\b",
-          "context.*reset",
-          "resume.*work",
-          "before.*compaction"
-        ]
-      },
-      "cacheKey": "dev-docs-guide"
-    },
-    "workflow-guidelines": {
-      "file": "marketing-plugin/docs/workflow-guidelines.md",
-      "description": "Task-specific approaches for content, strategy, analysis, optimization, growth",
-      "estimatedTokens": 272,
-      "priority": "medium",
-      "triggers": {
-        "keywords": [
-          "workflow",
-          "guidelines",
-          "approach",
-          "best practices",
-          "content creation",
-          "campaign strategy",
-          "performance analysis",
-          "optimization",
-          "growth",
-          "viral",
-          "seo",
-          "automation"
-        ],
-        "intentPatterns": [
-          "\\b(workflow|approach|best practices)\\b.*\\bfor\\b",
-          "how.*\\b(create|develop|analyze|optimize)\\b",
-          "\\b(content creation|campaign strategy|performance analysis)\\b",
-          "\\b(growth|viral|seo|automation)\\b.*\\b(workflow|approach)\\b",
-          "what.*workflow",
-          "recommended.*approach"
-        ]
-      },
-      "cacheKey": "workflow-guidelines"
-    },
-    "teaching-mode": {
-      "file": "marketing-plugin/teaching/teaching-mode.md",
-      "description": "Learning mode protocol, script-following, STOP-CHECK gates",
-      "estimatedTokens": 421,
-      "priority": "low",
-      "triggers": {
-        "keywords": [
-          "/start-",
-          "lesson",
-          "module",
-          "teaching",
-          "course",
-          "STOP-CHECK",
-          "student",
-          "learning mode",
-          "script-following"
-        ],
-        "intentPatterns": [
-          "/start-\\d+-\\d+",
-          "\\b(lesson|module|teaching|course)\\b",
-          "learning.*mode",
-          "teaching.*protocol",
-          "STOP-CHECK",
-          "script-following",
-          "demonstrate-guide-practice"
-        ]
-      },
-      "cacheKey": "teaching-mode"
-    },
-    "skills-system": {
-      "file": "skills-system.md",
-      "description": "7 auto-activating skills, activation rules, manual loading",
-      "estimatedTokens": 241,
-      "priority": "low",
-      "triggers": {
-        "keywords": [
-          "/load skills",
-          "skill system",
-          "auto-activation",
-          "brand voice",
-          "audience research",
-          "campaign strategy",
-          "seo optimization",
-          "analytics"
-        ],
-        "intentPatterns": [
-          "/load\\s+skills",
-          "skill.*\\b(system|activation|loading)\\b",
-          "how.*skills.*work",
-          "auto-?activat",
-          "which.*skills",
-          "available.*skills"
-        ]
-      },
-      "cacheKey": "skills-system"
-    },
-    "output-style-marketing-expert": {
-      "file": "marketing-plugin/docs/output-style-marketing-expert.md",
-      "description": "Marketing-expert output style guide: personality transformation, activation, troubleshooting",
-      "estimatedTokens": 650,
-      "priority": "low",
-      "triggers": {
-        "keywords": [
-          "/output-style",
-          "/demo",
-          "output style",
-          "marketing-expert mode",
-          "marketing expert mode",
-          "personality transformation",
-          "switch personality",
-          "change personality",
-          "activate marketing-expert",
-          "deactivate marketing-expert"
-        ],
-        "intentPatterns": [
-          "/output-style\\b",
-          "/demo\\b",
-          "output.*style.*\\b(marketing|expert|switch|activate|change|transform)\\b",
-          "marketing.*expert.*\\b(style|mode|activate|switch)\\b",
-          "\\b(personality|communication).*\\b(transformation|switch|change)\\b",
-          "\\b(activate|switch|enable|disable|change)\\b.*\\b(output|personality|communication).*\\bstyle\\b",
-          "what.*output.*style.*\\b(is|active|available)\\b",
-          "how.*\\b(activate|switch|enable|change)\\b.*\\b(output|personality).*style"
-        ]
-      },
-      "cacheKey": "output-style-marketing-expert"
-    },
-    "cli-tool-standards": {
-      "file": "cli-tool-standards.md",
-      "description": "Modern CLI tool table, usage patterns, enforcement via pre-tool-use-bash",
-      "estimatedTokens": 580,
-      "priority": "medium",
-      "triggers": {
-        "keywords": [
-          "grep",
-          "find",
-          "cat",
-          "jq",
-          "yq",
-          "CLI tools",
-          "rg",
-          "fd",
-          "bat",
-          "exa",
-          "modern tools",
-          "tool alternatives",
-          "ripgrep",
-          "CLI standards"
-        ],
-        "intentPatterns": [
-          "which.*tool",
-          "instead of (grep|find|cat)",
-          "modern.*cli",
-          "tool.*alternative",
-          "\\b(rg|fd|bat|exa)\\b",
-          "cli.*standards",
-          "tool.*savings",
-          "forbidden.*tools"
-        ]
-      },
-      "cacheKey": "cli-tool-standards"
+    "core-principles": {
+      "path": "CORE.md",
+      "triggers": ["architecture", "infrastructure", "principles", "rules"],
+      "cache": true,
+      "description": "Core behavior rules and infrastructure principles"
     },
     "hook-architecture": {
-      "file": "hook-architecture.md",
-      "description": "Hook lifecycle, event types, implementations, creation guide",
-      "estimatedTokens": 720,
-      "priority": "low",
-      "triggers": {
-        "keywords": [
-          "hook",
-          "lifecycle",
-          "UserPromptSubmit",
-          "PreToolUse",
-          "PostToolUse",
-          "hook system",
-          "create hook",
-          "hook event",
-          "SessionStart",
-          "PostPlanApproval"
-        ],
-        "intentPatterns": [
-          "create.*hook",
-          "hook.*lifecycle",
-          "which.*hook",
-          "hook.*system",
-          "hook.*architecture",
-          "\\b(pre|post)-tool-use\\b",
-          "hook.*event",
-          "UserPromptSubmit",
-          "extend.*hook"
-        ]
-      },
-      "cacheKey": "hook-architecture"
+      "path": "docs/hook-architecture.md",
+      "triggers": ["hooks", "lifecycle", "events"],
+      "cache": true,
+      "description": "Hook system design and implementation guide"
     },
-    "prompt-caching-guide": {
-      "file": "prompt-caching-guide.md",
-      "description": "Prompt caching rules, YAML structure, file organization, cost optimization",
-      "estimatedTokens": 950,
-      "priority": "low",
-      "triggers": {
-        "keywords": [
-          "prompt caching",
-          "cache",
-          "cacheable",
-          "CACHEABLE CONTEXT",
-          "promptCaching",
-          "cacheFiles",
-          "optimize agent cost",
-          "cost optimization",
-          "cache rules"
-        ],
-        "intentPatterns": [
-          "how.*cache",
-          "prompt.*caching",
-          "cache.*prompt",
-          "optimize.*cost",
-          "cacheable.*context",
-          "promptCaching",
-          "cache.*files",
-          "caching.*rules",
-          "agent.*cache"
-        ]
-      },
-      "cacheKey": "prompt-caching-guide"
+    "pattern-system": {
+      "path": "docs/pattern-system.md",
+      "triggers": ["patterns", "workflows", "execution templates"],
+      "cache": true,
+      "description": "Pattern system structure and usage"
+    },
+    "skills-system": {
+      "path": "docs/skills-system.md",
+      "triggers": ["skills", "knowledge", "auto-activation"],
+      "cache": true,
+      "description": "Skills system and auto-activation logic"
+    },
+    "agent-orchestration": {
+      "path": "docs/agent-orchestration.md",
+      "triggers": ["agents", "orchestration", "coordination"],
+      "cache": true,
+      "description": "Multi-agent coordination patterns"
+    },
+    "workflow-system": {
+      "path": "docs/workflow-system.md",
+      "triggers": ["workflow", "scout", "plan", "build"],
+      "cache": true,
+      "description": "Scout/Plan/Build workflow system"
+    },
+    "cli-tool-standards": {
+      "path": "docs/cli-tool-standards.md",
+      "triggers": ["cli", "tools", "bash", "commands"],
+      "cache": true,
+      "description": "Modern CLI tool usage standards"
     }
+  },
+  "metadata": {
+    "lastUpdated": "2025-11-12",
+    "author": "system",
+    "notes": "Infrastructure-only documentation. No domain-specific docs included."
   }
 }
