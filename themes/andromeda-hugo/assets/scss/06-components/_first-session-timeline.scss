@@ -1,0 +1,245 @@
+/* ============================================
+   First Session Timeline Section Component
+   BEM: .c-first-session-timeline
+   ============================================ */
+
+/**
+ * First session timeline section component with therapy-focused styling
+ * Displays what to expect during first therapy session using timeline-step molecules
+ *
+ * Features:
+ * - 4 semantic color variants (primary, secondary, tertiary, neutral)
+ * - Centered section header with subtitle, title, description
+ * - Timeline container for timeline-step molecules
+ * - Reassurance note area (uses info-box molecule)
+ * - Optional CTA button centered below timeline
+ * - Responsive spacing (mobile → tablet → desktop)
+ * - Full accessibility (WCAG AA, reduced motion, keyboard nav)
+ *
+ * Version: 2.0.0 (BEM refactor, molecule composition)
+ * Last Updated: 2025-11-20
+ */
+
+/* ==================== BASE BLOCK ==================== */
+
+.c-first-session-timeline {
+  // Vertical spacing
+  padding-block: $space-12; // 96px desktop
+
+  // Section background (subtle neutral by default)
+  background-color: $color-neutral-50;
+
+  // Ensure proper stacking
+  position: relative;
+  z-index: 1;
+}
+
+/* ==================== SECTION HEADER ==================== */
+
+.c-first-session-timeline__header {
+  // Centered layout
+  max-width: 800px; // Narrow for readability
+  margin-inline: auto;
+  margin-block-end: $space-8; // 64px gap before timeline
+  text-align: center;
+}
+
+.c-first-session-timeline__subtitle {
+  // Uppercase eyebrow label
+  font-family: $font-sans; // Work Sans
+  font-size: $font-sm; // 14px
+  font-weight: 600; // Semibold
+  letter-spacing: 0.1em; // Wide tracking
+  text-transform: uppercase;
+  color: $color-primary-600; // Emerald
+  margin-block-end: $space-2; // 16px
+
+  // Override for variant modifiers (below)
+}
+
+.c-first-session-timeline__title {
+  // Heading atom provides styling, just add spacing
+  margin-block-end: $space-3; // 24px
+}
+
+.c-first-session-timeline__description {
+  // Lead text
+  font-family: $font-sans; // Work Sans
+  font-size: $font-lg; // 18px
+  line-height: 1.625; // Relaxed
+  color: $color-text-secondary; // Muted gray
+  margin: 0;
+}
+
+/* ==================== TIMELINE CONTAINER ==================== */
+
+.c-first-session-timeline__timeline {
+  // Constrain width for better readability
+  max-width: 1000px;
+  margin-inline: auto;
+  margin-block-end: $space-6; // 48px gap before reassurance
+
+  // Timeline-step molecules handle their own layout (vertical connector line, etc.)
+  // This container just provides spacing and constraints
+}
+
+/* ==================== REASSURANCE NOTE ==================== */
+
+.c-first-session-timeline__reassurance {
+  // Constrain width (slightly wider than header)
+  max-width: 900px;
+  margin-inline: auto;
+  margin-block-end: $space-4; // 32px gap before CTA
+
+  // Info-box molecule provides all styling
+}
+
+/* ==================== CALL TO ACTION ==================== */
+
+.c-first-session-timeline__cta {
+  // Center button
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // Button atom provides all styling
+}
+
+/* ==================== COLOR VARIANT MODIFIERS ==================== */
+
+// Primary variant (emerald) - DEFAULT
+.c-first-session-timeline--primary {
+  .c-first-session-timeline__subtitle {
+    color: $color-primary-600; // Emerald
+  }
+
+  // Timeline-step molecules already use color rotation
+  // No additional styling needed
+}
+
+// Secondary variant (terracotta) - Warm, personal
+.c-first-session-timeline--secondary {
+  background-color: mix($color-secondary-50, $color-white, 50%); // Very subtle terracotta tint
+
+  .c-first-session-timeline__subtitle {
+    color: $color-secondary-600; // Terracotta
+  }
+}
+
+// Tertiary variant (calm blue) - Informational
+.c-first-session-timeline--tertiary {
+  background-color: mix($color-tertiary-50, $color-white, 50%); // Very subtle blue tint
+
+  .c-first-session-timeline__subtitle {
+    color: $color-tertiary-600; // Blue
+  }
+}
+
+// Neutral variant (gray) - Subtle, professional
+.c-first-session-timeline--neutral {
+  background-color: $color-white; // Clean white background
+
+  .c-first-session-timeline__subtitle {
+    color: $color-neutral-700; // Dark gray
+  }
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+// Tablet (768px - 991px)
+@media (max-width: $breakpoint-lg - 1) {
+  .c-first-session-timeline {
+    padding-block: $space-10; // 80px tablet
+  }
+
+  .c-first-session-timeline__header {
+    margin-block-end: $space-6; // 48px
+  }
+
+  .c-first-session-timeline__timeline {
+    margin-block-end: $space-4; // 32px
+  }
+
+  .c-first-session-timeline__description {
+    font-size: $font-base; // 16px on tablet
+  }
+}
+
+// Mobile (< 768px)
+@media (max-width: $breakpoint-md - 1) {
+  .c-first-session-timeline {
+    padding-block: $space-8; // 64px mobile
+  }
+
+  .c-first-session-timeline__header {
+    max-width: 100%; // Full width on mobile
+    margin-block-end: $space-5; // 40px
+  }
+
+  .c-first-session-timeline__subtitle {
+    font-size: $font-xs; // 12px on mobile
+  }
+
+  .c-first-session-timeline__timeline {
+    max-width: 100%; // Full width on mobile
+    margin-block-end: $space-3; // 24px
+  }
+
+  .c-first-session-timeline__reassurance {
+    max-width: 100%; // Full width on mobile
+  }
+
+  .c-first-session-timeline__description {
+    font-size: $font-base; // 16px on mobile
+  }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .c-first-session-timeline {
+    // Timeline-step molecules handle their own reduced motion
+    // No animations in this section component itself
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .c-first-session-timeline__subtitle {
+    font-weight: 700; // Bolder for high contrast
+  }
+
+  .c-first-session-timeline__description {
+    color: $color-text-primary; // Darker for better contrast
+  }
+}
+
+// Focus indicators (for keyboard navigation)
+.c-first-session-timeline {
+  // CTA button has its own focus styles (via button atom)
+  // Info-box has its own focus styles (via info-box molecule)
+  // Timeline-step molecules have their own focus styles
+}
+
+/* ==================== PRINT STYLES ==================== */
+
+@media print {
+  .c-first-session-timeline {
+    padding-block: $space-4; // Reduced spacing for print
+    background-color: $color-white; // White background for print
+    page-break-inside: avoid; // Keep section together if possible
+  }
+
+  .c-first-session-timeline__cta {
+    display: none; // Hide CTA button in print
+  }
+}
+
+/* ==================== LEGACY COMPATIBILITY ==================== */
+
+// Legacy class mapping (if needed for backward compatibility)
+// Remove after migration complete
+.first-session-timeline {
+  @extend .c-first-session-timeline;
+}

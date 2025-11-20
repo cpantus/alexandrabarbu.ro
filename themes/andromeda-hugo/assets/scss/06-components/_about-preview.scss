@@ -1,0 +1,194 @@
+// ==================================
+// About Preview Section - BEM Component
+// ==================================
+//
+// Purpose: Therapist introduction with photo, bio, credentials
+// Features: 2-column layout, warm colors, responsive stack
+// Breakpoints: Stack on mobile, side-by-side on desktop
+//
+// Version: 1.0.0
+// Updated: 2025-11-20
+//
+
+// ============================================================================
+// BLOCK: About Preview Section
+// ============================================================================
+
+.c-about-preview {
+  padding: var(--spacing-section-y) 0;
+  background: var(--color-surface-secondary);
+}
+
+// ============================================================================
+// ELEMENT: Grid Layout
+// ============================================================================
+
+.c-about-preview__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-3xl);
+  align-items: center;
+
+  // Desktop: 2 columns (image left, content right)
+  @media (min-width: 992px) {
+    grid-template-columns: 5fr 7fr; // Slightly larger content column
+  }
+}
+
+// ============================================================================
+// ELEMENT: Image Column
+// ============================================================================
+
+.c-about-preview__image-col {
+  // Mobile: full width
+  width: 100%;
+}
+
+.c-about-preview__image-wrapper {
+  position: relative;
+  border-radius: var(--border-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+
+  // Decorative gradient overlay (subtle)
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(77, 179, 128, 0.1) 0%,
+      rgba(204, 107, 73, 0.1) 100%
+    );
+    pointer-events: none;
+  }
+}
+
+.c-about-preview__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+
+  // Aspect ratio control
+  aspect-ratio: 4/5;
+
+  @media (max-width: 991px) {
+    aspect-ratio: 16/9; // Wider on mobile
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+// ============================================================================
+// ELEMENT: Content Column
+// ============================================================================
+
+.c-about-preview__content-col {
+  // Mobile: full width
+  width: 100%;
+}
+
+.c-about-preview__header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.c-about-preview__subtitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-secondary);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--spacing-xs);
+}
+
+.c-about-preview__title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-heading);
+  margin-bottom: 0;
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+// ============================================================================
+// ELEMENT: Bio Text
+// ============================================================================
+
+.c-about-preview__bio {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-xl);
+
+  // Markdown paragraphs
+  p {
+    margin-bottom: var(--spacing-md);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// ============================================================================
+// ELEMENT: Credentials List
+// ============================================================================
+
+.c-about-preview__credentials {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--spacing-2xl) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.c-about-preview__credential {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+}
+
+.c-about-preview__credential-icon {
+  color: var(--color-brand-primary);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.c-about-preview__credential-text {
+  font-weight: var(--font-weight-medium);
+}
+
+// ============================================================================
+// ELEMENT: CTA Button
+// ============================================================================
+
+.c-about-preview__cta {
+  // Button styling comes from atoms/button
+  margin-top: var(--spacing-md);
+}
+
+// ============================================================================
+// ACCESSIBILITY
+// ============================================================================
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .c-about-preview__image-wrapper::after {
+    animation: none;
+  }
+}
+
+// Focus styles
+.c-about-preview__cta:focus {
+  outline: 2px solid var(--color-brand-secondary);
+  outline-offset: 2px;
+}

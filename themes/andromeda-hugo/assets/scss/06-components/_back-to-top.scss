@@ -1,0 +1,246 @@
+/* ==========================================================================
+   Back to Top Button Molecule - BEM Component
+   ========================================================================== */
+
+/**
+ * Back to Top Button Component - Floating scroll-to-top button
+ * BEM Structure: .c-back-to-top
+ * Variants: primary (default), secondary, tertiary, neutral
+ * Features: Auto-show on scroll, smooth scroll to top, glassmorphism, responsive
+ */
+
+/* Component Root
+   ========================================================================== */
+
+.c-back-to-top {
+  /* Position: Fixed bottom-right corner */
+  position: fixed;
+  bottom: $space-4;    /* 32px */
+  right: $space-4;     /* 32px */
+  z-index: $z-sticky;
+
+  /* Layout: Circular button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;         /* 7 × 8pt */
+  height: 56px;        /* 7 × 8pt */
+
+  /* Appearance: Glassmorphism */
+  background-color: $color-primary;
+  border: none;
+  border-radius: 50%;
+  box-shadow: $shadow-lg;
+
+  /* Typography: Icon color */
+  color: $color-white;
+
+  /* Cursor */
+  cursor: pointer;
+
+  /* Transition */
+  transition: opacity $duration-base $ease-out,
+              transform $duration-base $ease-out,
+              box-shadow $duration-base $ease-out,
+              background-color $duration-base $ease-out;
+
+  /* Initial State: Hidden */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.8);
+
+  /* Responsive: Smaller on mobile */
+  @media (max-width: $breakpoint-md) {
+    width: 48px;       /* 6 × 8pt */
+    height: 48px;      /* 6 × 8pt */
+    bottom: $space-3;  /* 24px */
+    right: $space-3;   /* 24px */
+  }
+}
+
+/* Visible State (Added by JavaScript when scrolled down)
+   ========================================================================== */
+
+.c-back-to-top.visible,
+.c-back-to-top--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* Hover State
+   ========================================================================== */
+
+.c-back-to-top:hover {
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: $shadow-xl;
+}
+
+/* Focus State (Keyboard Navigation)
+   ========================================================================== */
+
+.c-back-to-top:focus {
+  outline: 2px solid $color-white;
+  outline-offset: 4px;
+}
+
+.c-back-to-top:focus-visible {
+  outline: 2px solid $color-white;
+  outline-offset: 4px;
+}
+
+/* Active State (Click/Press)
+   ========================================================================== */
+
+.c-back-to-top:active {
+  transform: translateY(0) scale(0.95);
+}
+
+/* Icon Element
+   ========================================================================== */
+
+.c-back-to-top__icon {
+  /* Icon size controlled by icon atom (md = 32px) */
+  /* Color inherited from button (white) */
+  flex-shrink: 0;
+}
+
+/* Color Variant Modifiers
+   ========================================================================== */
+
+/* Primary Variant (Emerald - default) */
+.c-back-to-top--primary {
+  background-color: $color-primary;
+
+  &:hover {
+    background-color: $color-primary-600;
+  }
+
+  &:active {
+    background-color: $color-primary-700;
+  }
+}
+
+/* Secondary Variant (Terracotta) */
+.c-back-to-top--secondary {
+  background-color: $color-secondary;
+
+  &:hover {
+    background-color: $color-secondary-600;
+  }
+
+  &:active {
+    background-color: $color-secondary-700;
+  }
+}
+
+/* Tertiary Variant (Blue) */
+.c-back-to-top--tertiary {
+  background-color: $color-tertiary;
+
+  &:hover {
+    background-color: $color-tertiary-600;
+  }
+
+  &:active {
+    background-color: $color-tertiary-700;
+  }
+}
+
+/* Neutral Variant (Gray) */
+.c-back-to-top--neutral {
+  background-color: $color-neutral-600;
+
+  &:hover {
+    background-color: $color-neutral-700;
+  }
+
+  &:active {
+    background-color: $color-neutral-800;
+  }
+}
+
+/* Accessibility Enhancements
+   ========================================================================== */
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .c-back-to-top {
+    transition: opacity $duration-fast $ease-out;
+
+    /* Disable transform animations */
+    &.visible,
+    &--visible {
+      transform: none;
+    }
+
+    &:hover {
+      transform: none;
+    }
+
+    &:active {
+      transform: none;
+    }
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .c-back-to-top {
+    border: 2px solid currentColor;
+  }
+
+  .c-back-to-top:focus,
+  .c-back-to-top:focus-visible {
+    outline-width: 3px;
+  }
+}
+
+/* Print Styles
+   ========================================================================== */
+
+@media print {
+  .c-back-to-top {
+    /* Hide back-to-top button in print */
+    display: none;
+  }
+}
+
+/* Backward Compatibility (Legacy Classes)
+   ========================================================================== */
+
+/* Map legacy back-to-top class to BEM component */
+.back-to-top {
+  @extend .c-back-to-top;
+}
+
+/**
+ * Component Notes:
+ *
+ * 1. **Position**: Fixed bottom-right corner with 8pt grid spacing (32px desktop, 24px mobile)
+ * 2. **Size**: 56px circular button desktop (7 × 8pt), 48px mobile (6 × 8pt)
+ * 3. **Visibility**: Hidden by default, shown via .visible or .c-back-to-top--visible class (added by JS)
+ * 4. **Icon**: Icon atom (chevron-up) with md size (32px), white color
+ * 5. **Glassmorphism**: Solid color background with large shadow, lift effect on hover
+ * 6. **Hover Effect**: Lift 4px + scale 1.1x + shadow upgrade
+ * 7. **Active Effect**: Scale down to 0.95x (tactile feedback)
+ * 8. **Color Variants**: 4 semantic variants (primary, secondary, tertiary, neutral)
+ * 9. **Focus State**: White outline 2px with 4px offset (WCAG AA compliance)
+ * 10. **Reduced Motion**: Disable transform animations, fade only
+ * 11. **Print**: Hidden in print media
+ * 12. **Compatibility**: Legacy .back-to-top class mapped via @extend
+ *
+ * JavaScript Interaction:
+ * - Loaded via assets/js/back-to-top.js
+ * - Adds .visible or .c-back-to-top--visible class when scrolled >300px
+ * - Smooth scroll to top on click (window.scrollTo with behavior: 'smooth')
+ * - Respects prefers-reduced-motion (instant scroll if reduced motion preferred)
+ * - Throttled scroll events for performance (~60fps)
+ * - Keyboard accessible (Enter/Space keys)
+ *
+ * Spacing (8pt Grid):
+ * - Position: $space-4 (32px) bottom/right desktop, $space-3 (24px) mobile
+ * - Size: 56px (7 × 8pt) desktop, 48px (6 × 8pt) mobile
+ * - Lift: 4px on hover
+ * - Focus outline offset: 4px
+ */

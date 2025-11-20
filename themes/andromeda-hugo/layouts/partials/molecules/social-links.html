@@ -1,5 +1,17 @@
 {{/*
-  Social Links Molecule - Social media links grid with icons and stagger animation
+  Social Links Molecule - Social media links with icons (BEM structure)
+
+  BEM Structure:
+    .c-social                    - Block (wrapper)
+    .c-social--inline           - Modifier: inline layout
+    .c-social--grid             - Modifier: grid layout (default)
+    .c-social--primary          - Modifier: primary color variant
+    .c-social--secondary        - Modifier: secondary color variant
+    .c-social--tertiary         - Modifier: tertiary color variant
+    .c-social--neutral          - Modifier: neutral color variant
+    .c-social__list             - Element: ul container
+    .c-social__item             - Element: li item
+    .c-social__link             - Element: anchor tag
 
   Usage:
     {{ partial "molecules/social-links.html" (dict
@@ -7,8 +19,6 @@
         (dict "name" "facebook" "url" "https://facebook.com/...")
         (dict "name" "twitter" "url" "https://twitter.com/...")
       )
-      "class" "mb-4"
-      "stagger" true
     )}}
 
   Parameters:
@@ -17,82 +27,93 @@
       - url (required): Link URL
       - icon (optional): Custom icon name (default: uses name as icon)
       - label (optional): Custom aria-label (default: "Follow us on {name}")
+    variant (optional) - Color variant: primary|secondary|tertiary|neutral (default: "primary")
+    layout (optional) - Layout type: inline|grid (default: "grid")
+    size (optional) - Icon size: xs|sm|md|lg|xl|2xl (default: "md")
     class (optional) - Additional CSS classes for wrapper
-    size (optional) - Icon size: sm|md|lg|xl|2x|3x (default: "lg")
-    stagger (optional) - Enable stagger animation (default: true)
-    staggerDelay (optional) - Delay between items in ms (default: 100)
-    inline (optional) - Display inline instead of grid (default: false)
-    color (optional) - Icon color class (default: "primary")
 
   Examples:
-    Basic social links:
+    Basic social links (grid layout, primary variant):
       {{ partial "molecules/social-links.html" (dict
         "links" site.Params.social
       )}}
 
-    Custom styled:
+    Inline layout with secondary color:
       {{ partial "molecules/social-links.html" (dict
         "links" .links
-        "size" "2x"
-        "color" "dark"
-        "inline" true
+        "variant" "secondary"
+        "layout" "inline"
+        "size" "lg"
       )}}
+
+  Features:
+    - BEM structure (.c-social__*)
+    - 4 color variants (primary, secondary, tertiary, neutral)
+    - 2 layout types (inline, grid)
+    - Icon atom integration
+    - External link handling (target="_blank", rel="noopener noreferrer")
+    - Accessible (ARIA labels, semantic HTML)
+    - Responsive (mobile-first)
+    - Design tokens (8pt spacing grid, color system)
+    - Backward compatibility via SCSS @extend
 */}}
 
-{{ $links := .links }}
-{{ $class := .class | default "" }}
-{{ $size := .size | default "lg" }}
-{{ $stagger := .stagger | default true }}
-{{ $staggerDelay := .staggerDelay | default 100 }}
-{{ $inline := .inline | default false }}
-{{ $color := .color | default "primary" }}
+{{- $links := .links -}}
+{{- $variant := .variant | default "primary" -}}
+{{- $layout := .layout | default "grid" -}}
+{{- $size := .size | default "md" -}}
+{{- $class := .class | default "" -}}
 
-{{ if not $links }}
-  {{ errorf "Social Links molecule requires 'links' parameter" }}
-{{ end }}
+{{/* Parameter validation - skip rendering if no links */}}
+{{- if not $links -}}
+  {{- /* Silently skip rendering if no links are provided */ -}}
+  {{- return -}}
+{{- end -}}
 
-{{/* Build wrapper classes */}}
-{{ $wrapperClass := "social-links" }}
-{{ if $inline }}
-  {{ $wrapperClass = printf "%s d-flex gap-3" $wrapperClass }}
-{{ else }}
-  {{ $wrapperClass = printf "%s d-flex flex-wrap gap-3" $wrapperClass }}
-{{ end }}
-{{ if $class }}
-  {{ $wrapperClass = printf "%s %s" $wrapperClass $class }}
-{{ end }}
+{{- $validVariants := slice "primary" "secondary" "tertiary" "neutral" -}}
+{{- if not (in $validVariants $variant) -}}
+  {{- warnf "Invalid variant '%s' for social links. Using 'primary'. Valid: %s (file: %s)" $variant (delimit $validVariants ", ") .Page.File.Path -}}
+  {{- $variant = "primary" -}}
+{{- end -}}
 
-<div class="{{ $wrapperClass }}">
-  {{ $index := 0 }}
-  {{ range $links }}
-    {{ $name := .name }}
-    {{ $url := .url }}
-    {{ $icon := .icon | default $name }}
-    {{ $label := .label | default (printf "Follow us on %s" (title $name)) }}
+{{- $validLayouts := slice "inline" "grid" -}}
+{{- if not (in $validLayouts $layout) -}}
+  {{- warnf "Invalid layout '%s' for social links. Using 'grid'. Valid: %s (file: %s)" $layout (delimit $validLayouts ", ") .Page.File.Path -}}
+  {{- $layout = "grid" -}}
+{{- end -}}
 
-    {{ if and $name $url }}
-      {{ $aosDelay := 0 }}
-      {{ if $stagger }}
-        {{ $aosDelay = mul $index $staggerDelay }}
-      {{ end }}
+{{/* Build BEM classes */}}
+{{- $blockClass := printf "c-social c-social--%s c-social--%s" $variant $layout -}}
+{{- if $class -}}
+  {{- $blockClass = printf "%s %s" $blockClass $class -}}
+{{- end -}}
 
-      <a
-        href="{{ $url }}"
-        class="social-link"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="{{ $label }}"
-        {{ if $stagger }}data-aos="fade-up" data-aos-delay="{{ $aosDelay }}"{{ end }}
-      >
-        {{ partial "atoms/icon.html" (dict
-          "name" $icon
-          "size" $size
-          "color" $color
-          "prefix" "lab"
-        ) }}
-      </a>
+<div class="{{ $blockClass }}">
+  <ul class="c-social__list">
+    {{- range $links -}}
+      {{- $name := .name -}}
+      {{- $url := .url -}}
+      {{- $icon := .icon | default $name -}}
+      {{- $label := .label | default (printf "Follow us on %s" (title $name)) -}}
 
-      {{ $index = add $index 1 }}
-    {{ end }}
-  {{ end }}
+      {{- if and $name $url -}}
+        <li class="c-social__item">
+          <a
+            href="{{ $url }}"
+            class="c-social__link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="{{ $label }}"
+          >
+            {{- partial "atoms/icon.html" (dict
+              "name" $icon
+              "size" $size
+              "variant" $variant
+              "prefix" "lab"
+            ) -}}
+          </a>
+        </li>
+      {{- end -}}
+    {{- end -}}
+  </ul>
 </div>

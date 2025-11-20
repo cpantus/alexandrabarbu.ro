@@ -1,121 +1,232 @@
-{{/* Enhanced Testimonials Section - Display client testimonials with verification and details */}}
+{{/*
+  Testimonials Enhanced Section - Client testimonials with ratings, verification, and outcomes
+
+  Usage:
+    sections:
+      - type: "testimonials-enhanced"
+
+    testimonials_enhanced:
+      enable: true
+      title: "What Clients Say"
+      subtitle: "TESTIMONIALS"
+      description: "Hear from people who've found healing and growth through therapy."
+      variant: "primary"
+      background: "light"
+      testimonials:
+        - quote: "Therapy helped me understand myself better."
+          name: "A.M."
+          age_range: "25-35"
+          therapy_type: "Individual therapy"
+          duration: "6 months"
+          rating: 5
+          verified: true
+          outcome: "Reduced anxiety, improved relationships"
+      privacy_note: "All testimonials are from real clients. Names are anonymized for privacy."
+      cta_button:
+        text: "Start Your Journey"
+        url: "/contact"
+        icon: "arrow-right"
+
+  Parameters:
+    enable (optional) - Enable/disable section (default: true)
+    title (optional) - Section title
+    subtitle (optional) - Section subtitle/eyebrow
+    description (optional) - Section description
+    variant (optional) - Color variant: primary|secondary|tertiary|neutral (default: "primary")
+    background (optional) - Background color: light|white|primary-50 (default: "light")
+    testimonials (required) - Array of testimonial objects:
+      - quote (required) - Testimonial text
+      - name (optional) - Client name/initials
+      - age_range (optional) - Age range (e.g., "25-35")
+      - therapy_type (optional) - Type of therapy
+      - duration (optional) - Duration of therapy
+      - rating (optional) - Star rating (1-5)
+      - verified (optional) - Verified client badge
+      - outcome (optional) - Therapy outcome/result
+    privacy_note (optional) - Privacy disclaimer text
+    cta_button (optional) - Call to action button
+
+  BEM Structure:
+    .c-testimonials              Block
+    .c-testimonials--primary     Modifier: color variant
+    .c-testimonials__header      Element: section header
+    .c-testimonials__grid        Element: testimonials grid
+    .c-testimonials__item        Element: single testimonial card
+    .c-testimonials__rating      Element: star rating
+    .c-testimonials__quote       Element: quote text
+    .c-testimonials__author      Element: author details
+    .c-testimonials__privacy     Element: privacy note
+    .c-testimonials__cta         Element: CTA wrapper
+
+  Version: 2.0.0 (BEM refactor)
+  Last Updated: 2025-11-20
+*/}}
+
+{{- /* ========================================
+     PARAMETER EXTRACTION & VALIDATION
+     ======================================== */ -}}
 {{- $section := .Params.testimonials_enhanced -}}
+{{- if not $section -}}
+  {{- return -}}
+{{- end -}}
 
-{{- with $section -}}
-  {{- if .enable -}}
-    <section class="section testimonials-enhanced {{ if .background }}bg-{{ .background }}{{ else }}bg-light{{ end }}">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            {{- if or .subtitle .title .description -}}
-              <div class="section-title text-center mb-5" data-aos="fade-up">
-                {{- if .subtitle -}}
-                  <p class="subtitle text-muted">{{ .subtitle | markdownify }}</p>
+{{- $enable := $section.enable | default true -}}
+{{- if not $enable -}}
+  {{- return -}}
+{{- end -}}
+
+{{- $title := $section.title | default "" -}}
+{{- $subtitle := $section.subtitle | default "" -}}
+{{- $description := $section.description | default "" -}}
+{{- $variant := $section.variant | default "primary" -}}
+{{- $background := $section.background | default "light" -}}
+{{- $testimonials := $section.testimonials | default slice -}}
+{{- $privacyNote := $section.privacy_note | default "" -}}
+{{- $ctaButton := $section.cta_button -}}
+
+{{- /* Validate variant */ -}}
+{{- $validVariants := slice "primary" "secondary" "tertiary" "neutral" -}}
+{{- if not (in $validVariants $variant) -}}
+  {{- warnf "testimonials-enhanced: invalid variant '%s'. Using 'primary'. Valid: %s" $variant (delimit $validVariants ", ") -}}
+  {{- $variant = "primary" -}}
+{{- end -}}
+
+{{- /* ========================================
+     SECTION ID & BEM CLASSES
+     ======================================== */ -}}
+{{- $blockClass := "c-testimonials" -}}
+{{- $modifiers := slice (printf "c-testimonials--%s" $variant) -}}
+{{- if $background -}}
+  {{- $modifiers = $modifiers | append (printf "c-testimonials--bg-%s" $background) -}}
+{{- end -}}
+{{- $allClasses := delimit (append (slice $blockClass) $modifiers) " " -}}
+
+{{- /* ========================================
+     SECTION MARKUP
+     ======================================== */ -}}
+<section class="{{ $allClasses }}">
+  <div class="o-container">
+
+    {{- /* ========================================
+         SECTION HEADER
+         ======================================== */ -}}
+    {{- if or $title $subtitle $description -}}
+    <div class="c-testimonials__header">
+      {{- if $subtitle -}}
+        <p class="c-testimonials__subtitle">{{ $subtitle | markdownify }}</p>
+      {{- end -}}
+
+      {{- if $title -}}
+        {{ partial "atoms/heading.html" (dict
+          "text" $title
+          "level" 2
+          "variant" $variant
+          "class" "c-testimonials__title"
+        ) }}
+      {{- end -}}
+
+      {{- if $description -}}
+        <p class="c-testimonials__description">{{ $description | markdownify }}</p>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    {{- /* ========================================
+         TESTIMONIALS GRID
+         ======================================== */ -}}
+    {{- if $testimonials -}}
+    <div class="c-testimonials__grid">
+      {{- range $index, $testimonial := $testimonials -}}
+        {{- /* Color rotation for visual variety */ -}}
+        {{- $colorVariants := slice "primary" "secondary" "coral" -}}
+        {{- $colorIndex := mod $index (len $colorVariants) -}}
+        {{- $itemVariant := index $colorVariants $colorIndex -}}
+
+        <div class="c-testimonials__item c-testimonials__item--{{ $itemVariant }}">
+          {{- /* Star Rating */ -}}
+          {{- if $testimonial.rating -}}
+            <div class="c-testimonials__rating">
+              {{- range seq $testimonial.rating -}}
+                {{ partial "atoms/icon.html" (dict "name" "star" "size" "sm" "class" "c-testimonials__star c-testimonials__star--filled") }}
+              {{- end -}}
+              {{- if lt $testimonial.rating 5 -}}
+                {{- range seq (sub 5 $testimonial.rating) -}}
+                  {{ partial "atoms/icon.html" (dict "name" "star" "size" "sm" "class" "c-testimonials__star c-testimonials__star--empty") }}
                 {{- end -}}
-                {{- if .title -}}
-                  {{ partial "atoms/heading.html" (dict
-                    "text" .title
-                    "level" 2
-                    "class" "title mb-3"
-                  ) }}
-                {{- end -}}
-                {{- if .description -}}
-                  <p class="lead text-muted">{{ .description | markdownify }}</p>
-                {{- end -}}
-              </div>
-            {{- end -}}
-
-            <div class="testimonials-grid">
-              {{- range $index, $testimonial := .testimonials -}}
-                {{- $colorVariants := slice "primary" "secondary" "coral" -}}
-                {{- $colorVariant := index $colorVariants (mod $index 3) -}}
-                <div class="testimonial-card variant-{{ $colorVariant }}" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
-                    <div class="card-body">
-                    {{/* Rating stars */}}
-                    {{- if .rating -}}
-                      <div class="testimonial-rating mb-3">
-                        {{- range seq .rating -}}
-                          {{ partial "atoms/icon.html" (dict "name" "star" "class" "text-warning") }}
-                        {{- end -}}
-                        {{- if lt .rating 5 -}}
-                          {{- range seq (sub 5 .rating) -}}
-                            {{ partial "atoms/icon.html" (dict "name" "star" "class" "text-muted opacity-25") }}
-                          {{- end -}}
-                        {{- end -}}
-                      </div>
-                    {{- end -}}
-
-                    {{/* Quote */}}
-                    {{- if .quote -}}
-                      <blockquote class="testimonial-quote mb-4">
-                        <p class="mb-0 fst-italic">"{{ .quote }}"</p>
-                      </blockquote>
-                    {{- end -}}
-
-                    {{/* Client details */}}
-                    <div class="testimonial-author d-flex align-items-start">
-                      <div class="author-info flex-grow-1">
-                        {{- if .name -}}
-                          <p class="author-name fw-semibold mb-1">{{ .name }}</p>
-                        {{- end -}}
-
-                        <div class="author-meta small text-muted">
-                          {{- if .age_range -}}
-                            <span class="me-2">{{ .age_range }}</span>
-                          {{- end -}}
-                          {{- if .therapy_type -}}
-                            <span class="d-block">{{ .therapy_type }}</span>
-                          {{- end -}}
-                          {{- if .duration -}}
-                            <span class="d-block">{{ .duration }}</span>
-                          {{- end -}}
-                        </div>
-                      </div>
-
-                      {{/* Verification badge */}}
-                      {{- if .verified -}}
-                        <div class="verification-badge ms-2" title="Verified client">
-                          {{ partial "atoms/icon.html" (dict "name" "shield-check" "class" "text-success") }}
-                        </div>
-                      {{- end -}}
-                    </div>
-
-                    {{/* Therapy outcome (optional) */}}
-                    {{- if .outcome -}}
-                      <div class="testimonial-outcome mt-3 pt-3 border-top">
-                        <p class="small text-muted mb-0">
-                          {{ partial "atoms/icon.html" (dict "name" "check-circle" "class" "text-primary me-1") }}
-                          {{ .outcome }}
-                        </p>
-                      </div>
-                    {{- end -}}
-                    </div>
-                </div>
               {{- end -}}
             </div>
+          {{- end -}}
 
-            {{- if .privacy_note -}}
-              <div class="privacy-note text-center mt-5" data-aos="fade-up">
-                <p class="small text-muted">
-                  {{ partial "atoms/icon.html" (dict "name" "lock" "class" "text-muted me-1") }}
-                  {{ .privacy_note | markdownify }}
-                </p>
+          {{- /* Quote Text */ -}}
+          {{- if $testimonial.quote -}}
+            <blockquote class="c-testimonials__quote">
+              <p>"{{ $testimonial.quote }}"</p>
+            </blockquote>
+          {{- end -}}
+
+          {{- /* Author Info */ -}}
+          <div class="c-testimonials__author">
+            <div class="c-testimonials__author-details">
+              {{- if $testimonial.name -}}
+                <p class="c-testimonials__author-name">{{ $testimonial.name }}</p>
+              {{- end -}}
+
+              <div class="c-testimonials__author-meta">
+                {{- if $testimonial.age_range -}}
+                  <span class="c-testimonials__meta-item">{{ $testimonial.age_range }}</span>
+                {{- end -}}
+                {{- if $testimonial.therapy_type -}}
+                  <span class="c-testimonials__meta-item">{{ $testimonial.therapy_type }}</span>
+                {{- end -}}
+                {{- if $testimonial.duration -}}
+                  <span class="c-testimonials__meta-item">{{ $testimonial.duration }}</span>
+                {{- end -}}
               </div>
-            {{- end -}}
+            </div>
 
-            {{- if .cta_button -}}
-              <div class="testimonials-cta text-center mt-4" data-aos="fade-up">
-                {{ partial "atoms/button.html" (dict
-                  "text" .cta_button.text
-                  "url" .cta_button.url
-                  "variant" (.cta_button.variant | default "primary")
-                  "icon" .cta_button.icon
-                ) }}
+            {{- /* Verification Badge */ -}}
+            {{- if $testimonial.verified -}}
+              <div class="c-testimonials__verified" title="Verified client">
+                {{ partial "atoms/icon.html" (dict "name" "shield-check" "size" "md" "variant" "success") }}
               </div>
             {{- end -}}
           </div>
+
+          {{- /* Outcome */ -}}
+          {{- if $testimonial.outcome -}}
+            <div class="c-testimonials__outcome">
+              {{ partial "atoms/icon.html" (dict "name" "check-circle" "size" "sm" "variant" $itemVariant "class" "c-testimonials__outcome-icon") }}
+              <span class="c-testimonials__outcome-text">{{ $testimonial.outcome }}</span>
+            </div>
+          {{- end -}}
         </div>
-      </div>
-    </section>
-  {{- end -}}
-{{- end -}}
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    {{- /* ========================================
+         PRIVACY NOTE
+         ======================================== */ -}}
+    {{- if $privacyNote -}}
+    <div class="c-testimonials__privacy">
+      {{ partial "atoms/icon.html" (dict "name" "lock" "size" "sm" "class" "c-testimonials__privacy-icon") }}
+      <span class="c-testimonials__privacy-text">{{ $privacyNote | markdownify }}</span>
+    </div>
+    {{- end -}}
+
+    {{- /* ========================================
+         CALL TO ACTION
+         ======================================== */ -}}
+    {{- if $ctaButton -}}
+    <div class="c-testimonials__cta">
+      {{ partial "atoms/button.html" (dict
+        "text" $ctaButton.text
+        "url" $ctaButton.url
+        "variant" (default $variant $ctaButton.variant)
+        "icon" $ctaButton.icon
+      ) }}
+    </div>
+    {{- end -}}
+
+  </div>
+</section>

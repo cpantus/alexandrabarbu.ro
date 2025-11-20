@@ -1,39 +1,110 @@
-{{/* Values Section - Originally from Career/Corporate page */}}
-{{ $values := .Params.values_section }}
-{{ if not $values }}
-  {{ $values = .Params.our_values }}
-{{ end }}
+{{/*
+  Values Introduction Section
 
-{{ with $values }}
-  {{ if .enable }}
-    <section class="section pb-0">
-      <div class="container">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-lg-5" data-aos="fade-up">
-            <div class="section-title mb-0">
-              <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
-              {{ partial "atoms/heading.html" (dict "level" "h2" "text" .title "class" "title" "markdown" true "colorVariant" "primary") }}
-              <p>{{ .description | markdownify }}</p>
-              {{ if .button_link }}
-                {{ partial "atoms/button.html" (dict
-                  "text" .button_label
-                  "href" .button_link
-                  "variant" (.button_variant | default "primary")
-                  "class" "mt-4"
-                ) }}
-              {{ end }}
-            </div>
-          </div>
-          <div
-            class="col-lg-5 mt-3 mt-lg-0"
-            data-aos="fade-up"
-            data-aos-delay="100">
-            <div class="ps-0 ps-lg-4">
-              {{ partial "atoms/image.html" (dict "src" .image "alt" "our value" "size" "560x") }}
-            </div>
-          </div>
+  Displays a value proposition introduction with title, description, optional CTA button, and side image.
+  Two-column layout: left text content + right image.
+
+  Front Matter Parameters:
+  - .Params.values_section OR .Params.our_values (object)
+    - enable (bool, required): Enable/disable section
+    - subtitle (string, optional): Small text above title (e.g., "OUR VALUES")
+    - title (string, required): Main section heading
+    - description (string, required): Description paragraph
+    - button_link (string, optional): CTA button URL
+    - button_label (string, optional): CTA button text
+    - button_variant (string, optional): Button variant (primary/secondary/tertiary/neutral, default: primary)
+    - image (string, required): Image path for right side
+    - variant (string, optional): Color variant (primary/secondary/tertiary/neutral, default: primary)
+
+  BEM Structure:
+  - .c-values-intro (section block)
+  - .c-values-intro__container (container wrapper)
+  - .c-values-intro__content (text content wrapper)
+  - .c-values-intro__subtitle (small text above title)
+  - .c-values-intro__description (description text)
+  - .c-values-intro__image-wrapper (image wrapper)
+
+  Example Usage:
+  ```yaml
+  sections:
+    - type: "values-intro"
+
+  values_section:
+    enable: true
+    subtitle: "Our Values"
+    title: "Science-Based Therapy"
+    description: "We use evidence-based methods like CBT, DBT, and ACT to help you achieve lasting change."
+    button_link: "/services"
+    button_label: "Explore Services"
+    button_variant: "primary"
+    image: "images/values.jpg"
+    variant: "primary"
+  ```
+
+  Features:
+  - Two-column responsive layout (side-by-side desktop, stacked mobile)
+  - Color variants for theming
+  - Optional CTA button
+  - Heading/button/image atom integration
+  - Markdown support for subtitle and description
+  - Null-safe (handles missing optional params)
+  - Responsive spacing (8pt grid)
+
+  Created: 2025-11-20 (Phase 5 refactor)
+  Version: 1.0.0 (BEM)
+*/}}
+
+{{- $section := .Params.values_section -}}
+{{- if not $section -}}
+  {{- $section = .Params.our_values -}}
+{{- end -}}
+
+{{- with $section -}}
+  {{- if .enable -}}
+    {{- $variant := .variant | default "primary" -}}
+
+    <section class="c-values-intro c-values-intro--{{ $variant }}">
+      <div class="c-values-intro__container">
+        <div class="c-values-intro__content">
+          {{- if .subtitle -}}
+            <p class="c-values-intro__subtitle">{{ .subtitle | markdownify }}</p>
+          {{- end -}}
+
+          {{- if .title -}}
+            {{ partial "atoms/heading.html" (dict
+              "level" "h2"
+              "text" .title
+              "class" "c-values-intro__title"
+              "markdown" true
+              "variant" $variant
+            ) }}
+          {{- end -}}
+
+          {{- if .description -}}
+            <p class="c-values-intro__description">{{ .description | markdownify }}</p>
+          {{- end -}}
+
+          {{- if .button_link -}}
+            {{ partial "atoms/button.html" (dict
+              "text" .button_label
+              "url" .button_link
+              "variant" (.button_variant | default $variant)
+              "class" "c-values-intro__button"
+            ) }}
+          {{- end -}}
         </div>
+
+        {{- if .image -}}
+          <div class="c-values-intro__image-wrapper">
+            {{ partial "atoms/image.html" (dict
+              "src" .image
+              "alt" (.title | default "Our values")
+              "size" "560x"
+              "class" "c-values-intro__image"
+            ) }}
+          </div>
+        {{- end -}}
       </div>
     </section>
-  {{ end }}
-{{ end }}
+  {{- end -}}
+{{- end -}}

@@ -1,0 +1,291 @@
+/* ==========================================================================
+   Cookie Consent Banner Molecule - BEM Component
+   ========================================================================== */
+
+/**
+ * Cookie Consent Component - GDPR-compliant consent banner
+ * BEM Structure: .c-cookie-consent
+ * Variants: primary (default), secondary, tertiary, neutral
+ * Features: Fixed bottom positioning, glassmorphism, slide-up animation, responsive layout
+ */
+
+/* Component Root
+   ========================================================================== */
+
+.c-cookie-consent {
+  /* Position: Fixed bottom */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-modal;
+
+  /* Appearance: Glassmorphism */
+  background: rgba($color-white, 0.95);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid $color-neutral-200;
+  box-shadow: $shadow-2xl;
+
+  /* Initial State: Hidden */
+  display: none;
+  opacity: 0;
+  transform: translateY(100%);
+
+  /* Transition */
+  transition: opacity $duration-normal $ease-out,
+              transform $duration-normal $ease-out;
+}
+
+/* Visible State (Added by JavaScript)
+   ========================================================================== */
+
+.c-cookie-consent.visible,
+.c-cookie-consent--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Content Wrapper
+   ========================================================================== */
+
+.c-cookie-consent__content {
+  /* Layout: Container with max-width */
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: $space-4;    /* 32px */
+
+  /* Responsive: Smaller padding on mobile */
+  @media (max-width: $breakpoint-md) {
+    padding: $space-3;  /* 24px */
+  }
+
+  /* Desktop: Flexbox row layout */
+  @media (min-width: $breakpoint-lg) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-4;      /* 32px */
+  }
+}
+
+/* Text Content Area
+   ========================================================================== */
+
+.c-cookie-consent__text {
+  /* Layout */
+  flex: 1;
+  margin-bottom: $space-3;  /* 24px - spacing for mobile stack */
+
+  /* Desktop: Remove bottom margin */
+  @media (min-width: $breakpoint-lg) {
+    margin-bottom: 0;
+  }
+}
+
+/* Title (Heading Atom)
+   ========================================================================== */
+
+.c-cookie-consent__title {
+  /* Spacing */
+  margin-bottom: $space-2;  /* 16px */
+
+  /* Typography already controlled by heading atom */
+}
+
+/* Message Text
+   ========================================================================== */
+
+.c-cookie-consent__message {
+  /* Typography */
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  line-height: $line-height-relaxed;
+  color: $color-text-secondary;
+
+  /* Spacing */
+  margin-bottom: 0;
+
+  /* Links within message */
+  a {
+    color: $color-primary;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      color: $color-primary-700;
+    }
+  }
+}
+
+/* Actions (Button Container)
+   ========================================================================== */
+
+.c-cookie-consent__actions {
+  /* Layout: Flexbox row */
+  display: flex;
+  gap: $space-2;        /* 16px */
+  flex-wrap: wrap;
+
+  /* Mobile: Stack buttons vertically */
+  @media (max-width: $breakpoint-sm) {
+    flex-direction: column;
+  }
+
+  /* Desktop: Shrink to fit */
+  @media (min-width: $breakpoint-lg) {
+    flex-shrink: 0;
+  }
+}
+
+/* Button Elements (Button Atoms)
+   ========================================================================== */
+
+.c-cookie-consent__button {
+  /* Buttons already styled by button atom */
+  /* No additional styling needed */
+}
+
+/* Color Variant Modifiers
+   ========================================================================== */
+
+/* Primary Variant (Emerald - default) */
+.c-cookie-consent--primary {
+  /* Border color accent */
+  border-top-color: $color-primary-200;
+
+  /* Title color already controlled by heading atom variant */
+}
+
+/* Secondary Variant (Terracotta) */
+.c-cookie-consent--secondary {
+  /* Border color accent */
+  border-top-color: $color-secondary-200;
+
+  /* Title color already controlled by heading atom variant */
+}
+
+/* Tertiary Variant (Blue) */
+.c-cookie-consent--tertiary {
+  /* Border color accent */
+  border-top-color: $color-tertiary-200;
+
+  /* Title color already controlled by heading atom variant */
+}
+
+/* Neutral Variant (Gray) */
+.c-cookie-consent--neutral {
+  /* Border color accent */
+  border-top-color: $color-neutral-300;
+
+  /* Title color already controlled by heading atom variant */
+}
+
+/* Accessibility Enhancements
+   ========================================================================== */
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .c-cookie-consent {
+    /* Faster transitions */
+    transition: opacity $duration-fast $ease-out;
+
+    /* Disable transform animation */
+    transform: none;
+
+    &.visible,
+    &--visible {
+      transform: none;
+    }
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .c-cookie-consent {
+    /* Stronger border */
+    border-top-width: 2px;
+    border-top-color: currentColor;
+
+    /* Remove glassmorphism */
+    background: $color-white;
+    backdrop-filter: none;
+  }
+
+  .c-cookie-consent__message {
+    color: $color-text-primary;
+  }
+}
+
+/* Print Styles
+   ========================================================================== */
+
+@media print {
+  .c-cookie-consent {
+    /* Hide cookie banner in print */
+    display: none !important;
+  }
+}
+
+/* Backward Compatibility (Legacy Classes)
+   ========================================================================== */
+
+/* Map legacy cookie-consent class to BEM component */
+.cookie-consent {
+  @extend .c-cookie-consent;
+}
+
+/* Map legacy cookie-consent-content class */
+.cookie-consent-content {
+  @extend .c-cookie-consent__content;
+}
+
+/* Map legacy cookie-consent-text class */
+.cookie-consent-text {
+  @extend .c-cookie-consent__text;
+}
+
+/* Map legacy cookie-consent-buttons class */
+.cookie-consent-buttons {
+  @extend .c-cookie-consent__actions;
+}
+
+/**
+ * Component Notes:
+ *
+ * 1. **Position**: Fixed bottom with full width, z-index above all content
+ * 2. **Glassmorphism**: rgba white background with 16px backdrop blur
+ * 3. **Animation**: Slide-up from bottom with opacity fade (300ms)
+ * 4. **Visibility**: Hidden by default, shown via .visible or .c-cookie-consent--visible class (added by JS)
+ * 5. **Layout**: Flexbox row on desktop (text left, buttons right), stack on mobile
+ * 6. **Heading**: Heading atom (h5) with variant matching banner variant
+ * 7. **Message**: Small text (14px) with links styled in primary color
+ * 8. **Buttons**: Button atoms (sm size) - Accept (solid) vs Decline (outline)
+ * 9. **Color Variants**: 4 semantic variants affecting border-top accent color
+ * 10. **Responsive**: Stack buttons vertically on mobile (<576px)
+ * 11. **Accessibility**: WCAG AA, keyboard nav, reduced motion, high contrast
+ * 12. **Print**: Hidden in print media
+ * 13. **Compatibility**: Legacy class mappings via @extend
+ *
+ * JavaScript Interaction:
+ * - Loaded via assets/js/cookie-consent.js
+ * - Checks localStorage for 'cookie-consent' preference
+ * - Shows banner after 1s delay if no preference exists
+ * - Adds .visible/.c-cookie-consent--visible class to trigger animation
+ * - Stores choice as 'accepted' or 'essential-only'
+ * - Triggers analytics opt-in if window.gtag exists
+ * - Custom events: 'cookieConsentAccepted', 'cookieConsentEssentialOnly'
+ *
+ * GDPR Compliance:
+ * - Explicit consent required (banner blocks content until choice made)
+ * - Two consent levels: Accept all vs Essential only
+ * - Preference persisted in localStorage
+ * - Analytics disabled by default until consent given
+ * - Clear messaging about cookie usage
+ *
+ * Spacing (8pt Grid):
+ * - Content padding: $space-4 (32px) desktop, $space-3 (24px) mobile
+ * - Title margin-bottom: $space-2 (16px)
+ * - Text margin-bottom: $space-3 (24px) mobile only
+ * - Button gap: $space-2 (16px)
+ * - Desktop text-buttons gap: $space-4 (32px)
+ */

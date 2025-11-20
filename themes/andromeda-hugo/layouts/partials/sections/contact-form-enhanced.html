@@ -1,83 +1,157 @@
-{{/* Enhanced Contact Form with Trust Elements */}}
-<section class="section contact-enhanced">
-  <div class="container">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-lg-5 col-md-8 text-center mb-5 mb-lg-0" data-aos="fade-up">
-        <div class="pe-0 pe-lg-5">
-          <div class="floating">
-            {{ partial "atoms/image.html" (dict "src" .Params.contact_image "alt" "contact image" "size" "575x") }}
-          </div>
-          
+{{/*
+==============================================================================
+CONTACT FORM ENHANCED SECTION - BEM Refactored
+==============================================================================
+Two-column layout with image + trust badges on left, contact form on right.
+
+FEATURES:
+- Full BEM structure (.c-contact-form-section)
+- Molecule composition (image, tag, heading, form-field, button atoms)
+- Trust badge display below image
+- First consultation info box
+- i18n support
+- 4 color variants (primary, secondary, tertiary, neutral)
+- Responsive layout (stacks on mobile)
+- No Bootstrap dependencies
+- No AOS attributes (section-level animations)
+
+USAGE:
+sections:
+  - type: "contact-form-enhanced"
+
+contact_form_enhanced:
+  variant: "primary"                    # Optional: primary|secondary|tertiary|neutral (default: primary)
+  contact_image: "images/contact.jpg"   # Required: Contact image
+  trust_badges:                         # Optional: Trust signals
+    - "Confidențialitate garantată"
+    - "Răspuns în 24h"
+    - "Programare flexibilă"
+  first_consultation:                   # Optional: First session info
+    title: "Prima consultație"
+    duration: "Gratuită • 15 minute"
+    description: "Evaluare inițială și planificare"
+
+SITE PARAMS REQUIRED:
+params:
+  contact_form_action: "https://formspree.io/f/your-form-id"
+
+DEPENDENCIES:
+- atoms/image.html
+- atoms/tag.html
+- atoms/heading.html
+- molecules/form-field.html
+- atoms/button.html
+- i18n translations: send_a_message, full_name, email, your_message, send_message
+- _contact-form-enhanced.scss
+
+VERSION: 2.0.0 (BEM Refactor)
+LAST UPDATED: 2025-11-20
+==============================================================================
+*/}}
+
+{{- $variant := .Params.contact_form_enhanced.variant | default "primary" -}}
+{{- $contactImage := .Params.contact_form_enhanced.contact_image -}}
+{{- $trustBadges := .Params.contact_form_enhanced.trust_badges -}}
+{{- $firstConsultation := .Params.contact_form_enhanced.first_consultation -}}
+
+<section class="c-contact-form-section c-contact-form-section--{{ $variant }}">
+  <div class="o-container">
+    <div class="c-contact-form-section__grid">
+
+      {{/* LEFT COLUMN: Image + Trust Badges */}}
+      <div class="c-contact-form-section__media">
+        <div class="c-contact-form-section__image-wrapper">
+          {{ with $contactImage }}
+            {{ partial "atoms/image.html" (dict
+              "src" .
+              "alt" "Contact"
+              "size" "575x"
+              "class" "c-contact-form-section__image"
+            ) }}
+          {{ end }}
+
           {{/* Trust badges below image */}}
-          {{ with .Params.trust_badges }}
-          <div class="mt-4">
-            <div class="d-flex flex-wrap justify-content-center gap-2">
-              {{ range . }}
-              <span class="badge bg-light text-primary px-3 py-2 trust-badge">
-                {{ partial "atoms/icon.html" (dict "name" "check-circle") }} {{ . }}
-              </span>
-              {{ end }}
-            </div>
+          {{ with $trustBadges }}
+          <div class="c-contact-form-section__trust-badges">
+            {{ range . }}
+              {{ partial "atoms/tag.html" (dict
+                "text" .
+                "variant" $variant
+                "icon" "check-circle"
+                "class" "c-contact-form-section__trust-badge"
+              ) }}
+            {{ end }}
           </div>
           {{ end }}
         </div>
       </div>
-      
+
+      {{/* RIGHT COLUMN: Contact Form */}}
       {{ with site.Params.contact_form_action }}
-      <div class="col-lg-5 col-md-10" data-aos="fade-up" data-aos-delay="100">
-        <div class="contact-form contact-form-enhanced" id="contact-form">
-          <div class="mb-4">
-            {{ partial "atoms/heading.html" (dict
-              "text" (T `send_a_message` | default "Trimite un mesaj")
-              "level" 3
-              "variant" "gradient"
-              "colorVariant" "primary"
-            ) }}
-            {{ with $.Params.first_consultation }}
-            <div class="consultation-info-box">
-              <strong>{{ .title }}:</strong> {{ .duration }}<br>
-              <small>{{ .description }}</small>
-            </div>
-            {{ end }}
+      <div class="c-contact-form-section__form-wrapper">
+        <div class="c-contact-form-section__header">
+          {{ partial "atoms/heading.html" (dict
+            "text" (T "send_a_message" | default "Trimite un mesaj")
+            "level" 3
+            "variant" "gradient"
+            "colorVariant" $variant
+            "class" "c-contact-form-section__title"
+          ) }}
+
+          {{/* First consultation info box */}}
+          {{ with $firstConsultation }}
+          <div class="c-contact-form-section__consultation-info">
+            <strong class="c-contact-form-section__consultation-title">{{ .title }}:</strong> {{ .duration }}<br>
+            <small class="c-contact-form-section__consultation-description">{{ .description }}</small>
           </div>
-          <form id="contact-form" action="{{ . }}" method="POST">
-            <p id="form-status" class="form-status"></p>
-            {{ partial "atoms/input.html" (dict
-              "type" "text"
-              "name" "name"
-              "id" "name"
-              "label" (T `full_name` | default "Nume complet")
-              "required" true
-              "class" "mb-4"
-            ) }}
-            {{ partial "atoms/input.html" (dict
-              "type" "email"
-              "name" "email"
-              "id" "email"
-              "label" (T `email` | default "Email")
-              "required" true
-              "class" "mb-4"
-            ) }}
-            {{ partial "atoms/input.html" (dict
-              "type" "textarea"
-              "name" "message"
-              "id" "message"
-              "label" (T `your_message` | default "Mesajul tău")
-              "rows" 4
-              "required" true
-              "class" "mb-4"
-            ) }}
-            {{ partial "atoms/button.html" (dict
-              "text" (T `send_message` | default "Trimite mesaj")
-              "type" "submit"
-              "variant" ($.Params.button_variant | default "primary")
-              "fullWidth" true
-              "class" "mt-4"
-            ) }}
-          </form>
+          {{ end }}
         </div>
+
+        <form class="c-contact-form-section__form" action="{{ . }}" method="POST">
+          <p id="form-status" class="c-contact-form-section__status"></p>
+
+          {{ partial "molecules/form-field.html" (dict
+            "type" "text"
+            "name" "name"
+            "id" "name"
+            "label" (T "full_name" | default "Nume complet")
+            "required" true
+            "variant" $variant
+            "class" "c-contact-form-section__field"
+          ) }}
+
+          {{ partial "molecules/form-field.html" (dict
+            "type" "email"
+            "name" "email"
+            "id" "email"
+            "label" (T "email" | default "Email")
+            "required" true
+            "variant" $variant
+            "class" "c-contact-form-section__field"
+          ) }}
+
+          {{ partial "molecules/form-field.html" (dict
+            "type" "textarea"
+            "name" "message"
+            "id" "message"
+            "label" (T "your_message" | default "Mesajul tău")
+            "rows" 4
+            "required" true
+            "variant" $variant
+            "class" "c-contact-form-section__field"
+          ) }}
+
+          {{ partial "atoms/button.html" (dict
+            "text" (T "send_message" | default "Trimite mesaj")
+            "type" "submit"
+            "variant" $variant
+            "fullWidth" true
+            "class" "c-contact-form-section__submit"
+          ) }}
+        </form>
       </div>
       {{ end }}
+
     </div>
   </div>
 </section>

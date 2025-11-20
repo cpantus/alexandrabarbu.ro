@@ -6,21 +6,26 @@
 // Purpose: Font families, sizes, weights, line heights, icon sizes
 // Philosophy: Soft Hierarchy, Warm Professional
 //
-// Last Updated: 2025-11-19
-// Version: 2.0.0 (ITCSS Refactor - Phase 1)
+// Last Updated: 2025-01-19
+// Version: 3.0.0 (Design System Refactor - New Typography: Crimson Pro + Work Sans)
 //
 
 // ----------------------------------
 // Google Fonts Import
 // ----------------------------------
-// Load Cormorant Garamond (headings) + Source Sans 3 (body)
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
+// Load Crimson Pro (headings) + Work Sans (body) - Variable fonts
+// Psychology practice branding: Elegant, professional, warm, trustworthy
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap');
 
 // ----------------------------------
 // Font Families
 // ----------------------------------
-$font-heading: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;    // Headings ONLY
-$font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif; // Body text ONLY
+$font-heading: 'Crimson Pro', Georgia, 'Times New Roman', serif;    // Headings ONLY - Elegant, calligraphic
+$font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif; // Body text ONLY - Friendly, legible
+
+// Semantic aliases (for component compatibility)
+$font-sans: $font-body;                                              // Sans-serif font (alias for body)
+$font-serif: $font-heading;                                          // Serif font (alias for heading)
 
 // Legacy aliases (for BEM component compatibility)
 $font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;  // Headlines - Modern, friendly, rounded
@@ -40,6 +45,7 @@ $font-weight-body: 400;                    // Body text weight (NEVER bold in pa
 // Legacy weight aliases (for BEM component compatibility)
 $weight-light: 300;
 $weight-normal: 400;
+$weight-regular: 400;    // Alias for normal
 $weight-medium: 500;
 $weight-semibold: 600;
 $weight-bold: 700;
@@ -59,6 +65,13 @@ $text-4xl: 36px;                           // H1
 $text-5xl: 48px;                           // Display-2
 $text-6xl: 64px;                           // Display-1 base
 $text-7xl: clamp(64px, 6vw, 112px);       // Display-1 fluid (responsive)
+
+// Font size aliases (for component compatibility)
+$font-xs: $text-xs;                        // 12px
+$font-sm: $text-sm;                        // 14px
+$font-base: $text-base;                    // 16px
+$font-lg: $text-lg;                        // 18px
+$font-xl: $text-xl;                        // 20px
 
 // ----------------------------------
 // Line Heights
@@ -93,6 +106,54 @@ $icon-circle-sm: 32px;                     // Small circular icon container
 $icon-circle-md: 48px;                     // Medium circular icon container (MOST COMMON)
 $icon-circle-lg: 64px;                     // Large circular icon container
 $icon-circle-xl: 84px;                     // Extra large circular icon container
+
+// ==================================
+// SEMANTIC ALIASES (Component-Friendly Names)
+// ==================================
+// These aliases map component-style semantic names to existing token names
+// for backward compatibility and improved developer experience.
+
+// ----------------------------------
+// Font Family Aliases
+// ----------------------------------
+$font-family-sans: $font-body;                 // Sans-serif for body text
+$font-family-serif: $font-heading;             // Serif for headings
+$font-family-heading: $font-heading;           // Heading font family
+$font-family-body: $font-body;                 // Body font family
+
+// ----------------------------------
+// Font Size Aliases
+// ----------------------------------
+$font-size-xs: $text-xs;                       // 12px
+$font-size-sm: $text-sm;                       // 14px
+$font-size-base: $text-base;                   // 16px
+$font-size-md: $text-lg;                       // 18px (alias for lg)
+$font-size-lg: $text-lg;                       // 18px
+$font-size-xl: $text-xl;                       // 20px
+$font-size-2xl: $text-2xl;                     // 24px
+$font-size-3xl: $text-3xl;                     // 30px
+$font-size-4xl: $text-4xl;                     // 36px
+$font-size-5xl: $text-5xl;                     // 48px
+$font-size-6xl: $text-6xl;                     // 64px
+$font-size-7xl: $text-7xl;                     // clamp(64px, 6vw, 112px)
+
+// ----------------------------------
+// Font Weight Aliases
+// ----------------------------------
+$font-weight-light: $weight-light;             // 300
+$font-weight-normal: $weight-normal;           // 400
+$font-weight-medium: $weight-medium;           // 500
+$font-weight-semibold: $weight-semibold;       // 600
+$font-weight-bold: $weight-bold;               // 700
+$font-weight-extrabold: $weight-extrabold;     // 800
+
+// ----------------------------------
+// Line Height Aliases
+// ----------------------------------
+$line-height-tight: $leading-tight;            // 1.25
+$line-height-snug: $leading-snug;              // 1.375
+$line-height-normal: $leading-normal;          // 1.5
+$line-height-relaxed: $leading-relaxed;        // 1.625
 
 // ==================================
 // END OF TYPOGRAPHY TOKENS

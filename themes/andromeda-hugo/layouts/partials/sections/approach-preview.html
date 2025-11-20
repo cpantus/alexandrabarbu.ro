@@ -1,0 +1,151 @@
+{{/*
+  ============================================================================
+  Approach Preview Section - BEM Architecture
+  ============================================================================
+  Displays 4 core therapeutic principles in a 2x2 grid
+
+  Features:
+  - 4-principle grid (2x2 desktop, stacked mobile)
+  - Icons, titles, descriptions
+  - Optional CTA to full approach page
+  - Gradient backgrounds and icons
+
+  Data Structure:
+  ---------------
+  approach_preview:
+    title: "My Therapeutic Approach"           # Section heading
+    subtitle: "Guiding Principles"             # Optional eyebrow
+    description: "Brief intro text..."         # Optional description
+    principles:                                 # Array of 4 principles
+      - title: "Evidence-Based"
+        description: "I use scientifically validated methods..."
+        icon: "las la-flask"                   # Line Awesome icon
+      - title: "Personalized"
+        description: "Every therapy plan is adapted..."
+        icon: "las la-user-circle"
+    button_text: "Discover Complete Approach"   # Optional CTA
+    button_url: "/abordare/"
+    button_variant: "primary"
+
+  Parameters:
+  -----------
+  None - Data-driven from front matter
+
+  Usage:
+  ------
+  ```yaml
+  sections:
+    - type: "approach-preview"
+
+  approach_preview:
+    title: "Abordarea Mea Terapeutică"
+    principles:
+      - title: "Bazat pe Dovezi"
+        description: "Folosesc metode validate științific..."
+        icon: "las la-flask"
+      - title: "Personalizat"
+        description: "Fiecare plan este adaptat..."
+        icon: "las la-user-circle"
+  ```
+
+  BEM Structure:
+  --------------
+  .c-approach-preview                    - Section wrapper
+  .c-approach-preview__header            - Header container
+  .c-approach-preview__subtitle          - Eyebrow text
+  .c-approach-preview__title             - Main heading
+  .c-approach-preview__description       - Optional intro text
+  .c-approach-preview__grid              - Principles grid
+  .c-approach-preview__principle         - Individual principle card
+  .c-approach-preview__icon              - Principle icon
+  .c-approach-preview__principle-title   - Principle heading
+  .c-approach-preview__principle-text    - Principle description
+  .c-approach-preview__cta-wrapper       - CTA container
+  .c-approach-preview__cta               - CTA button
+
+  Dependencies:
+  -------------
+  - atoms/heading.html (title)
+  - atoms/button.html (optional CTA)
+  - atoms/icon.html (principle icons)
+  - _approach-preview.scss (BEM styles)
+
+  Version: 1.0.0
+  Updated: 2025-11-20
+  ============================================================================
+*/}}
+
+{{- $data := .Params.approach_preview -}}
+{{- if not $data -}}
+  {{- $data = site.Data.shared_sections.approach_preview -}}
+{{- end -}}
+
+{{- if $data -}}
+<section class="c-approach-preview section">
+  <div class="o-container">
+
+    {{/* Section Header */}}
+    {{- if or $data.title $data.subtitle $data.description -}}
+    <div class="c-approach-preview__header text-center">
+      {{- if $data.subtitle -}}
+        <p class="c-approach-preview__subtitle text-uppercase">{{ $data.subtitle }}</p>
+      {{- end -}}
+      {{- if $data.title -}}
+        {{ partial "atoms/heading.html" (dict
+          "text" $data.title
+          "level" 2
+          "class" "c-approach-preview__title"
+        ) }}
+      {{- end -}}
+      {{- if $data.description -}}
+        <p class="c-approach-preview__description">{{ $data.description }}</p>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    {{/* Principles Grid */}}
+    {{- if $data.principles -}}
+    <div class="c-approach-preview__grid">
+      {{- range $index, $principle := $data.principles -}}
+        <div class="c-approach-preview__principle" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+
+          {{/* Principle Icon */}}
+          {{- if $principle.icon -}}
+            {{ partial "atoms/icon.html" (dict
+              "icon" $principle.icon
+              "class" "c-approach-preview__icon"
+              "size" "3x"
+            ) }}
+          {{- end -}}
+
+          {{/* Principle Title */}}
+          {{- if $principle.title -}}
+            <h3 class="c-approach-preview__principle-title">{{ $principle.title }}</h3>
+          {{- end -}}
+
+          {{/* Principle Description */}}
+          {{- if $principle.description -}}
+            <p class="c-approach-preview__principle-text">{{ $principle.description }}</p>
+          {{- end -}}
+
+        </div>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    {{/* Optional CTA */}}
+    {{- if $data.button_url -}}
+    <div class="c-approach-preview__cta-wrapper text-center">
+      {{ partial "atoms/button.html" (dict
+        "text" (default (i18n "learn_more") $data.button_text)
+        "url" ($data.button_url | relLangURL)
+        "variant" (default "primary" $data.button_variant)
+        "class" "c-approach-preview__cta"
+        "icon" "las la-arrow-right"
+      ) }}
+    </div>
+    {{- end -}}
+
+  </div>
+</section>
+{{- end -}}

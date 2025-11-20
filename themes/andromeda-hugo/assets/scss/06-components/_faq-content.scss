@@ -1,0 +1,180 @@
+/* ===========================================================================
+   FAQ CONTENT SECTION - BEM Component
+   =========================================================================== */
+
+/**
+ * FAQ section with centered accordion layout.
+ *
+ * STRUCTURE:
+ * .c-faq-section
+ *   .c-faq-section__wrapper
+ *     .c-faq-section__header
+ *       heading atom
+ *       .c-faq-section__subtitle
+ *     .c-faq-section__content
+ *       accordion molecule (rendered from markdown)
+ *     .c-faq-section__footer
+ *       .c-faq-section__footer-text
+ *
+ * MODIFIERS:
+ * .c-faq-section--primary
+ * .c-faq-section--secondary
+ * .c-faq-section--tertiary
+ * .c-faq-section--neutral
+ *
+ * USAGE: FAQ accordion section
+ */
+
+/* BASE COMPONENT
+   =========================================================================== */
+
+.c-faq-section {
+  padding: 0; // No top padding (follows previous section)
+  padding-bottom: $section-padding-y;
+
+  @media (max-width: $breakpoint-md - 1) {
+    padding-bottom: $section-padding-y-mobile;
+  }
+}
+
+/* WRAPPER (Centered, max-width)
+   =========================================================================== */
+
+.c-faq-section__wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* HEADER
+   =========================================================================== */
+
+.c-faq-section__header {
+  text-align: center;
+  margin-bottom: $space-6;
+
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-5;
+  }
+}
+
+.c-faq-section__subtitle {
+  color: $color-text-muted;
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+  margin-top: $space-2;
+  margin-bottom: 0;
+}
+
+/* CONTENT (Accordion from markdown)
+   =========================================================================== */
+
+.c-faq-section__content {
+  // Accordion molecule handles styling
+}
+
+/* FOOTER
+   =========================================================================== */
+
+.c-faq-section__footer {
+  text-align: center;
+  margin-top: $space-4;
+}
+
+.c-faq-section__footer-text {
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+  line-height: $line-height-relaxed;
+  margin: 0;
+
+  // Markdown support
+  p {
+    margin: 0 0 $space-2 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: $color-primary-600;
+    text-decoration: underline;
+    transition: color $duration-fast $easing-ease-out;
+
+    &:hover,
+    &:focus {
+      color: $color-primary-700;
+    }
+  }
+}
+
+/* COLOR VARIANTS
+   =========================================================================== */
+
+.c-faq-section--primary {
+  .c-faq-section__footer-text a {
+    color: $color-primary-600;
+
+    &:hover,
+    &:focus {
+      color: $color-primary-700;
+    }
+  }
+}
+
+.c-faq-section--secondary {
+  .c-faq-section__footer-text a {
+    color: $color-secondary-600;
+
+    &:hover,
+    &:focus {
+      color: $color-secondary-700;
+    }
+  }
+}
+
+.c-faq-section--tertiary {
+  .c-faq-section__footer-text a {
+    color: $color-tertiary-600;
+
+    &:hover,
+    &:focus {
+      color: $color-tertiary-700;
+    }
+  }
+}
+
+.c-faq-section--neutral {
+  .c-faq-section__footer-text a {
+    color: $color-neutral-700;
+
+    &:hover,
+    &:focus {
+      color: $color-neutral-800;
+    }
+  }
+}
+
+/* ACCESSIBILITY
+   =========================================================================== */
+
+@media (prefers-contrast: high) {
+  .c-faq-section__footer-text a {
+    text-decoration-thickness: 2px;
+  }
+}
+
+/* PRINT STYLES
+   =========================================================================== */
+
+@media print {
+  .c-faq-section {
+    page-break-inside: avoid;
+  }
+}
+
+/* LEGACY COMPATIBILITY
+   =========================================================================== */
+
+.section.pt-0.faq-section {
+  @extend .c-faq-section;
+}

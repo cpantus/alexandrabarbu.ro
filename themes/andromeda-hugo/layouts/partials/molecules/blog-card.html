@@ -1,5 +1,6 @@
 {{/*
   Blog Card Molecule - Article/resource card with image, title, excerpt, and metadata
+  BEM Component: .c-blog-card (refactored 2025-11-20)
 
   Usage:
     {{ partial "molecules/blog-card.html" (dict
@@ -10,48 +11,93 @@
     )}}
 
   Parameters:
-    title (required) - Card title
-    link (optional) - Link URL
-    image (optional) - Featured image path
+    title (required)      - Card title
+    link (optional)       - Link URL (card becomes clickable if provided)
+    image (optional)      - Featured image path
     description (optional) - Article excerpt/description
-    date (optional) - Publication date
-    author (optional) - Author name
-    category (optional) - Category name (for filtering)
-    type (optional) - Badge type text (e.g., "Article", "Video", "Guide")
-    readTime (optional) - Reading time (e.g., "5 min")
-    class (optional) - Additional CSS classes
-    aos (optional) - AOS animation name
-    aosDelay (optional) - AOS delay in ms
+    date (optional)       - Publication date (displayed in metadata)
+    author (optional)     - Author name (displayed in metadata)
+    category (optional)   - Category name (for filtering via data-category attribute)
+    type (optional)       - Badge type text (e.g., "Article", "Video", "Guide")
+    readTime (optional)   - Reading time (e.g., "5 min")
+    variant (optional)    - Color variant: "primary" (default), "secondary", "tertiary", "neutral"
+    class (optional)      - Additional CSS classes
 
-  Metadata display:
-    - Shows date, author, read time if provided
-    - Category used for data-category attribute (filtering)
-    - Type badge displayed over image
+  Color Variants:
+    - "primary" (default) - Emerald accent (professional, trust)
+    - "secondary"        - Terracotta accent (warm, personal)
+    - "tertiary"         - Blue accent (informational)
+    - "neutral"          - Gray accent (subtle, low-emphasis)
+
+  BEM Structure:
+    .c-blog-card                    - Root element
+    .c-blog-card--{variant}         - Color variant modifier
+    .c-blog-card__image-wrapper     - Image container
+    .c-blog-card__image             - Image element
+    .c-blog-card__badge             - Type badge (overlaid on image)
+    .c-blog-card__body              - Content container
+    .c-blog-card__meta              - Metadata row (date, author, read time)
+    .c-blog-card__meta-item         - Individual metadata item
+    .c-blog-card__title             - Article title
+    .c-blog-card__description       - Excerpt text
+    .c-blog-card__action            - Action button container
+
+  Features:
+    - 4 semantic color variants (primary, secondary, tertiary, neutral)
+    - Image with overlay badge for content type
+    - Metadata with icon atoms (date, author, read time)
+    - Heading atom integration with color variants
+    - Button atom integration for "read more" action
+    - Hover effects (lift card, highlight title)
+    - Flexbox layout (description grows to fill space)
+    - Responsive behavior (image aspect ratio maintains, text scales)
+    - Parameter validation with clear error messages
+    - Backward compatibility via SCSS @extend
 
   Examples:
-    Full blog card:
+    Full blog card with all metadata:
       {{ partial "molecules/blog-card.html" (dict
         "image" "images/blog/anxiety.jpg"
         "title" "Managing Workplace Anxiety"
-        "description" "Practical strategies for reducing stress at work..."
+        "description" "Practical strategies for reducing stress at work and maintaining mental health."
         "link" "/blog/workplace-anxiety"
         "date" "2025-01-15"
         "author" "Dr. Alexandra Barbu"
         "category" "anxiety"
         "type" "Article"
         "readTime" "8 min"
-        "aos" "fade-up"
+        "variant" "primary"
       )}}
 
-    Simple resource card:
+    Simple resource card with minimal metadata:
       {{ partial "molecules/blog-card.html" (dict
         "title" "CBT Techniques Guide"
         "description" "Download our free guide to cognitive behavioral therapy techniques."
         "link" "/resources/cbt-guide.pdf"
         "type" "PDF Guide"
+        "variant" "secondary"
+      )}}
+
+    Card without image:
+      {{ partial "molecules/blog-card.html" (dict
+        "title" "Understanding Cognitive Distortions"
+        "description" "Learn to identify and challenge common thinking patterns that contribute to anxiety and depression."
+        "link" "/blog/cognitive-distortions"
+        "date" "2025-01-10"
+        "readTime" "6 min"
+        "variant" "tertiary"
+      )}}
+
+    Card without link (display only):
+      {{ partial "molecules/blog-card.html" (dict
+        "title" "Upcoming Workshop"
+        "description" "Join us for a workshop on mindfulness and stress reduction techniques."
+        "date" "2025-02-01"
+        "variant" "neutral"
       )}}
 */}}
 
+{{/* Parameter extraction with defaults */}}
 {{ $title := .title }}
 {{ $link := .link }}
 {{ $image := .image }}
@@ -61,97 +107,121 @@
 {{ $category := .category | default "all" }}
 {{ $type := .type }}
 {{ $readTime := .readTime }}
+{{ $variant := .variant | default "primary" }}
 {{ $class := .class | default "" }}
-{{ $aos := .aos }}
-{{ $aosDelay := .aosDelay }}
 
-{{/* Build AOS attributes */}}
-{{ $aosAttrs := "" }}
-{{ if $aos }}
-  {{ $aosAttrs = printf `data-aos="%s"` $aos }}
-  {{ if $aosDelay }}
-    {{ $aosAttrs = printf `%s data-aos-delay="%d"` $aosAttrs $aosDelay }}
-  {{ end }}
+{{/* Parameter validation */}}
+{{ if not $title }}
+  {{ errorf "[blog-card.html] Missing required parameter 'title' at %s" .Position }}
 {{ end }}
 
-<div class="blog-card-molecule {{ $class }}" data-category="{{ $category }}">
-  <div class="card blog-card h-100 border-0 shadow-sm" {{ $aosAttrs | safeHTMLAttr }}>
-    {{/* Featured Image with Badge */}}
-    {{ if $image }}
-      <div class="blog-card-image position-relative">
-        {{ partial "atoms/image.html" (dict
-          "src" $image
-          "alt" $title
-          "class" "card-img-top"
+{{/* Build BEM class with variant modifier */}}
+{{ $bemClass := "c-blog-card" }}
+{{ if $variant }}
+  {{ $bemClass = printf "%s c-blog-card--%s" $bemClass $variant }}
+{{ end }}
+{{ if $class }}
+  {{ $bemClass = printf "%s %s" $bemClass $class }}
+{{ end }}
+
+<div class="{{ $bemClass }}" data-category="{{ $category }}">
+  {{/* Featured Image with Badge */}}
+  {{ if $image }}
+    <div class="c-blog-card__image-wrapper">
+      {{ partial "atoms/image.html" (dict
+        "src" $image
+        "alt" $title
+        "class" "c-blog-card__image"
+      ) }}
+      {{ if $type }}
+        {{ partial "atoms/tag.html" (dict
+          "text" $type
+          "variant" $variant
+          "class" "c-blog-card__badge"
         ) }}
-        {{ if $type }}
-          <span class="badge bg-secondary blog-badge position-absolute top-0 end-0 m-3">{{ $type }}</span>
+      {{ end }}
+    </div>
+  {{ end }}
+
+  {{/* Card Body */}}
+  <div class="c-blog-card__body">
+    {{/* Metadata */}}
+    {{ if or $date $author $readTime }}
+      <div class="c-blog-card__meta">
+        {{ if $date }}
+          <span class="c-blog-card__meta-item">
+            {{ partial "atoms/icon.html" (dict
+              "name" "calendar"
+              "size" "sm"
+              "variant" "neutral"
+              "class" "c-blog-card__meta-icon"
+            ) }}
+            <span class="c-blog-card__meta-text">{{ $date }}</span>
+          </span>
+        {{ end }}
+        {{ if $author }}
+          <span class="c-blog-card__meta-item">
+            {{ partial "atoms/icon.html" (dict
+              "name" "user"
+              "size" "sm"
+              "variant" "neutral"
+              "class" "c-blog-card__meta-icon"
+            ) }}
+            <span class="c-blog-card__meta-text">{{ $author }}</span>
+          </span>
+        {{ end }}
+        {{ if $readTime }}
+          <span class="c-blog-card__meta-item">
+            {{ partial "atoms/icon.html" (dict
+              "name" "clock"
+              "size" "sm"
+              "variant" "neutral"
+              "class" "c-blog-card__meta-icon"
+            ) }}
+            <span class="c-blog-card__meta-text">{{ $readTime }}</span>
+          </span>
         {{ end }}
       </div>
     {{ end }}
 
-    {{/* Card Body */}}
-    <div class="card-body d-flex flex-column">
-      {{/* Metadata */}}
-      {{ if or $date $author $readTime }}
-        <div class="blog-meta mb-3 d-flex flex-wrap gap-3 text-muted small">
-          {{ if $date }}
-            <span>
-              {{ partial "atoms/icon.html" (dict "name" "calendar" "size" "sm" "class" "me-1") }}
-              {{ $date }}
-            </span>
-          {{ end }}
-          {{ if $author }}
-            <span>
-              {{ partial "atoms/icon.html" (dict "name" "user" "size" "sm" "class" "me-1") }}
-              {{ $author }}
-            </span>
-          {{ end }}
-          {{ if $readTime }}
-            <span>
-              {{ partial "atoms/icon.html" (dict "name" "clock" "size" "sm" "class" "me-1") }}
-              {{ $readTime }}
-            </span>
-          {{ end }}
-        </div>
-      {{ end }}
-
-      {{/* Title */}}
-      {{ if $title }}
-        {{ if $link }}
-          <a href="{{ $link | relLangURL }}" class="text-decoration-none">
-            {{ partial "atoms/heading.html" (dict
-              "text" $title
-              "level" 4
-              "class" "card-title mb-3"
-              "markdown" true
-            ) }}
-          </a>
-        {{ else }}
+    {{/* Title */}}
+    {{ if $title }}
+      {{ if $link }}
+        <a href="{{ $link | relLangURL }}" class="c-blog-card__title-link">
           {{ partial "atoms/heading.html" (dict
             "text" $title
             "level" 4
-            "class" "card-title mb-3"
+            "variant" $variant
+            "class" "c-blog-card__title"
             "markdown" true
           ) }}
-        {{ end }}
-      {{ end }}
-
-      {{/* Description/Excerpt */}}
-      {{ if $description }}
-        <p class="card-text flex-grow-1">{{ $description | markdownify }}</p>
-      {{ end }}
-
-      {{/* Read More Link */}}
-      {{ if $link }}
-        {{ partial "atoms/button.html" (dict
-          "text" (i18n "read_more" | default "Citete mai mult")
-          "href" ($link | relLangURL)
-          "variant" "outline-primary"
-          "size" "sm"
-          "class" "mt-3 align-self-start"
+        </a>
+      {{ else }}
+        {{ partial "atoms/heading.html" (dict
+          "text" $title
+          "level" 4
+          "variant" $variant
+          "class" "c-blog-card__title"
+          "markdown" true
         ) }}
       {{ end }}
-    </div>
+    {{ end }}
+
+    {{/* Description/Excerpt */}}
+    {{ if $description }}
+      <p class="c-blog-card__description">{{ $description | markdownify }}</p>
+    {{ end }}
+
+    {{/* Read More Link */}}
+    {{ if $link }}
+      <div class="c-blog-card__action">
+        {{ partial "atoms/button.html" (dict
+          "text" (i18n "read_more" | default "Citeste mai mult")
+          "href" ($link | relLangURL)
+          "variant" (printf "outline-%s" $variant)
+          "size" "sm"
+        ) }}
+      </div>
+    {{ end }}
   </div>
 </div>

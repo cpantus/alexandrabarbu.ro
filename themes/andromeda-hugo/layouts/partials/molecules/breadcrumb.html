@@ -8,7 +8,7 @@
         (dict "text" "Services" "url" "/services/")
         (dict "text" "Current Page" "active" true)
       )
-      "class" "mb-4"
+      "variant" "primary"
     )}}
 
   Parameters:
@@ -16,74 +16,100 @@
       - text (required): Item text
       - url (optional): Item URL (omit for active item)
       - active (optional): Mark as active/current (default: false)
+    variant (optional) - Color variant: primary|secondary|tertiary|neutral (default: neutral)
     class (optional) - Additional CSS classes for nav wrapper
     align (optional) - Alignment: left|center|right (default: left)
+    separator (optional) - Custom separator icon or text (default: "chevron-right")
     autoGenerate (optional) - Auto-generate from current page (default: true if no items)
     homeText (optional) - Text for home link (default: i18n "home")
+    homeIcon (optional) - Icon for home link (default: "home")
+    showHomeIcon (optional) - Show icon next to home text: true|false (default: false)
 
   Examples:
     Auto-generated breadcrumb:
       {{ partial "molecules/breadcrumb.html" . }}
 
-    Custom breadcrumb:
+    Custom breadcrumb with variant:
       {{ partial "molecules/breadcrumb.html" (dict
         "items" (slice
           (dict "text" "Home" "url" "/")
           (dict "text" "Blog" "url" "/blog/")
           (dict "text" .Title "active" true)
         )
+        "variant" "primary"
+        "showHomeIcon" true
       )}}
 */}}
 
-{{ $items := .items }}
-{{ $class := .class | default "" }}
-{{ $align := .align | default "left" }}
-{{ $autoGenerate := .autoGenerate }}
-{{ $homeText := .homeText | default (T "home") | default "Home" }}
+{{- $items := .items -}}
+{{- $variant := .variant | default "neutral" -}}
+{{- $class := .class | default "" -}}
+{{- $align := .align | default "left" -}}
+{{- $separator := .separator | default "chevron-right" -}}
+{{- $autoGenerate := .autoGenerate -}}
+{{- $homeText := .homeText | default (T "home") | default "Home" -}}
+{{- $homeIcon := .homeIcon | default "home" -}}
+{{- $showHomeIcon := .showHomeIcon | default false -}}
 
 {{/* Auto-generate breadcrumb if no items provided */}}
-{{ if not $items }}
-  {{ $autoGenerate = true }}
-{{ end }}
+{{- if not $items -}}
+  {{- $autoGenerate = true -}}
+{{- end -}}
 
-{{ if $autoGenerate }}
-  {{ $items = slice }}
+{{- if $autoGenerate -}}
+  {{- $items = slice -}}
 
   {{/* Add home link */}}
-  {{ $items = $items | append (dict "text" $homeText "url" "/" ) }}
+  {{- $items = $items | append (dict "text" $homeText "url" "/" ) -}}
 
   {{/* Add current page as active */}}
-  {{ $items = $items | append (dict "text" .Title "active" true) }}
-{{ end }}
+  {{- $items = $items | append (dict "text" .Title "active" true) -}}
+{{- end -}}
 
-{{/* Build alignment classes */}}
-{{ $alignClass := "justify-content-start" }}
-{{ if eq $align "center" }}
-  {{ $alignClass = "justify-content-center" }}
-{{ else if eq $align "right" }}
-  {{ $alignClass = "justify-content-end" }}
-{{ end }}
+{{/* Build breadcrumb classes */}}
+{{- $breadcrumbClass := "c-breadcrumb" -}}
+{{- $breadcrumbClass = printf "%s c-breadcrumb--%s" $breadcrumbClass $variant -}}
+{{- $breadcrumbClass = printf "%s c-breadcrumb--align-%s" $breadcrumbClass $align -}}
+{{- if $class -}}
+  {{- $breadcrumbClass = printf "%s %s" $breadcrumbClass $class -}}
+{{- end -}}
 
-<nav aria-label="breadcrumb" class="{{ $class }}">
-  <ol class="breadcrumb {{ $alignClass }}">
-    {{ range $index, $item := $items }}
-      {{ $text := $item.text }}
-      {{ $url := $item.url }}
-      {{ $active := $item.active | default false }}
+<nav aria-label="breadcrumb" class="{{ $breadcrumbClass }}">
+  <ol class="c-breadcrumb__list">
+    {{- range $index, $item := $items -}}
+      {{- $text := $item.text -}}
+      {{- $url := $item.url -}}
+      {{- $active := $item.active | default false -}}
 
       {{/* Determine if this is the last item */}}
-      {{ $isLast := eq (add $index 1) (len $items) }}
-      {{ if $isLast }}
-        {{ $active = true }}
-      {{ end }}
+      {{- $isLast := eq (add $index 1) (len $items) -}}
+      {{- if $isLast -}}
+        {{- $active = true -}}
+      {{- end -}}
 
-      <li class="breadcrumb-item{{ if $active }} active{{ end }}"{{ if $active }} aria-current="page"{{ end }}>
-        {{ if and $url (not $active) }}
-          <a href="{{ $url | relLangURL }}">{{ $text }}</a>
-        {{ else }}
-          {{ $text }}
-        {{ end }}
+      <li class="c-breadcrumb__item{{ if $active }} c-breadcrumb__item--active{{ end }}"{{ if $active }} aria-current="page"{{ end }}>
+        {{- if and $url (not $active) -}}
+          {{- if and (eq $index 0) $showHomeIcon -}}
+            <a href="{{ $url | relLangURL }}" class="c-breadcrumb__link">
+              {{ partial "atoms/icon.html" (dict "icon" $homeIcon "size" "xs" "class" "c-breadcrumb__home-icon") }}
+              <span class="c-breadcrumb__text">{{ $text }}</span>
+            </a>
+          {{- else -}}
+            <a href="{{ $url | relLangURL }}" class="c-breadcrumb__link">
+              <span class="c-breadcrumb__text">{{ $text }}</span>
+            </a>
+          {{- end -}}
+        {{- else -}}
+          <span class="c-breadcrumb__text c-breadcrumb__text--current">{{ $text }}</span>
+        {{- end -}}
+
+        {{/* Add separator if not last item */}}
+        {{- if not $isLast -}}
+          <span class="c-breadcrumb__separator" aria-hidden="true">
+            {{ partial "atoms/icon.html" (dict "icon" $separator "size" "xs" "class" "c-breadcrumb__separator-icon") }}
+          </span>
+        {{- end -}}
       </li>
-    {{ end }}
+    {{- end -}}
   </ol>
 </nav>

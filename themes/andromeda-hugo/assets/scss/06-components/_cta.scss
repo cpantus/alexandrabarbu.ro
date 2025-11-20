@@ -1,0 +1,318 @@
+/*
+================================================================================
+CTA (Call-to-Action) Section Component
+================================================================================
+Centered call-to-action section with title, description, and button(s).
+
+BEM Structure: .c-cta
+
+Modifiers:
+- Variants: --primary, --secondary, --tertiary, --neutral, --success, --warning, --info, --error
+- Background: --bg-solid, --bg-gradient, --bg-light, --bg-none
+
+Elements:
+- __content: Content wrapper
+- __title: CTA title
+- __description: CTA description
+- __buttons: Button container
+
+Version: 5.0.1
+*/
+
+// ============================================================================
+// Base Component
+// ============================================================================
+
+.c-cta {
+  padding: $space-12 0; // 96px top/bottom
+  position: relative;
+  overflow: hidden;
+
+  @media (max-width: $breakpoint-md - 1) {
+    padding: $space-8 0; // 64px on mobile
+  }
+}
+
+// ============================================================================
+// Content Wrapper
+// ============================================================================
+
+.c-cta__content {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4; // 32px between elements
+  align-items: center;
+
+  @media (max-width: $breakpoint-md - 1) {
+    gap: $space-3; // 24px on mobile
+  }
+}
+
+// ============================================================================
+// Title
+// ============================================================================
+
+.c-cta__title {
+  font-family: $font-family-serif;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  margin-bottom: 0;
+
+  @media (max-width: $breakpoint-lg - 1) {
+    font-size: $font-size-3xl;
+  }
+
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-2xl;
+  }
+}
+
+// ============================================================================
+// Description
+// ============================================================================
+
+.c-cta__description {
+  font-family: $font-family-sans;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-relaxed;
+  margin-bottom: 0;
+
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-base;
+  }
+}
+
+// ============================================================================
+// Buttons
+// ============================================================================
+
+.c-cta__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-3; // 24px between buttons
+  justify-content: center;
+  align-items: center;
+  margin-top: $space-2; // 16px extra spacing
+
+  @media (max-width: $breakpoint-sm - 1) {
+    flex-direction: column;
+    width: 100%;
+    gap: $space-2; // 16px on mobile
+
+    // Make buttons full-width on mobile
+    .c-button {
+      width: 100%;
+    }
+  }
+}
+
+// ============================================================================
+// Color Variants (8 Unified Variants)
+// ============================================================================
+
+// Mixin for variant styling
+@mixin cta-variant-colors($bg-color, $text-color) {
+  background-color: $bg-color;
+  color: $text-color;
+
+  .c-cta__title {
+    color: $text-color;
+  }
+
+  .c-cta__description {
+    color: $text-color;
+    opacity: 0.9;
+  }
+}
+
+@mixin cta-variant-gradient($color-start, $color-end) {
+  background: linear-gradient(135deg, $color-start 0%, $color-end 100%);
+  color: $color-white;
+
+  .c-cta__title {
+    color: $color-white;
+  }
+
+  .c-cta__description {
+    color: $color-white;
+    opacity: 0.95;
+  }
+}
+
+// Apply variants based on background style
+.c-cta--primary.c-cta--bg-solid {
+  @include cta-variant-colors($color-primary, $color-white);
+}
+
+.c-cta--secondary.c-cta--bg-solid {
+  @include cta-variant-colors($color-secondary, $color-white);
+}
+
+.c-cta--tertiary.c-cta--bg-solid {
+  @include cta-variant-colors($color-tertiary, $color-white);
+}
+
+.c-cta--neutral.c-cta--bg-solid {
+  @include cta-variant-colors($color-gray-100, $color-text);
+}
+
+.c-cta--success.c-cta--bg-solid {
+  @include cta-variant-colors($color-success, $color-white);
+}
+
+.c-cta--warning.c-cta--bg-solid {
+  @include cta-variant-colors($color-warning, $color-white);
+}
+
+.c-cta--info.c-cta--bg-solid {
+  @include cta-variant-colors($color-info, $color-white);
+}
+
+.c-cta--error.c-cta--bg-solid {
+  @include cta-variant-colors($color-error, $color-white);
+}
+
+// ============================================================================
+// Background Variants
+// ============================================================================
+
+// None (transparent)
+.c-cta--bg-none {
+  background: transparent;
+
+  .c-cta__title {
+    color: $color-primary;
+  }
+
+  .c-cta__description {
+    color: $color-text;
+  }
+}
+
+// Light background (10% opacity)
+.c-cta--primary.c-cta--bg-light {
+  background: rgba($color-primary, 0.1);
+
+  .c-cta__title {
+    color: $color-primary;
+  }
+
+  .c-cta__description {
+    color: $color-text;
+  }
+}
+
+.c-cta--secondary.c-cta--bg-light {
+  background: rgba($color-secondary, 0.1);
+
+  .c-cta__title {
+    color: $color-secondary;
+  }
+
+  .c-cta__description {
+    color: $color-text;
+  }
+}
+
+.c-cta--tertiary.c-cta--bg-light {
+  background: rgba($color-tertiary, 0.1);
+
+  .c-cta__title {
+    color: $color-tertiary;
+  }
+
+  .c-cta__description {
+    color: $color-text;
+  }
+}
+
+// Gradient backgrounds
+.c-cta--primary.c-cta--bg-gradient {
+  @include cta-variant-gradient($color-primary, darken($color-primary, 10%));
+}
+
+.c-cta--secondary.c-cta--bg-gradient {
+  @include cta-variant-gradient($color-secondary, darken($color-secondary, 10%));
+}
+
+.c-cta--tertiary.c-cta--bg-gradient {
+  @include cta-variant-gradient($color-tertiary, darken($color-tertiary, 10%));
+}
+
+.c-cta--neutral.c-cta--bg-gradient {
+  @include cta-variant-gradient($color-gray-200, $color-gray-300);
+  color: $color-text;
+
+  .c-cta__title,
+  .c-cta__description {
+    color: $color-text;
+  }
+}
+
+// ============================================================================
+// Decorative Elements (Optional)
+// ============================================================================
+
+// Add subtle pattern or texture
+.c-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.03;
+  background-image:
+    radial-gradient(circle at 25px 25px, currentColor 2%, transparent 0%),
+    radial-gradient(circle at 75px 75px, currentColor 2%, transparent 0%);
+  background-size: 100px 100px;
+  pointer-events: none;
+}
+
+// Remove pattern on light/none backgrounds
+.c-cta--bg-light::before,
+.c-cta--bg-none::before {
+  display: none;
+}
+
+// ============================================================================
+// Accessibility
+// ============================================================================
+
+// Ensure sufficient contrast
+@media (prefers-contrast: high) {
+  .c-cta--bg-solid {
+    border: 2px solid currentColor;
+  }
+
+  .c-cta__description {
+    opacity: 1;
+  }
+}
+
+// ============================================================================
+// Print Styles
+// ============================================================================
+
+@media print {
+  .c-cta {
+    padding: $space-4 0;
+    background: none !important;
+    page-break-inside: avoid;
+  }
+
+  .c-cta__title,
+  .c-cta__description {
+    color: $color-text !important;
+  }
+
+  .c-cta::before {
+    display: none;
+  }
+}

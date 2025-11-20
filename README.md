@@ -1,22 +1,23 @@
 # Alexandra Barbu - Psychology Practice Website
 
-**v4.0 Creative Design Excellence** | **Hugo + Enhanced Design System** | **Production Ready**
+**v5.0.1 Flattened Architecture** | **Hugo + ITCSS + Enhanced Design** | **Production Ready**
 
 ---
 
 ## Quick Start
 
 ```bash
-cd themes/andromeda-hugo             # Run from theme directory
-hugo server --buildDrafts            # Dev server
-hugo --gc --minify                   # Build production
+# IMPORTANT: Project structure is flattened - run Hugo from project root!
+cd /home/cere/Work/alex/alexandrabarbu.ro    # Project root (NOT theme directory)
+hugo server --buildDrafts                     # Dev server
+hugo --gc --minify                            # Build production
 ```
 
 ---
 
 ## Core Concept
 
-Pages = Header + Sections (2-7) + Footer. Choose from 24 section types (5 enhanced v4.0):
+Pages = Header + Sections (2-7) + Footer. Choose from 21 active section types (5 enhanced v4.0):
 
 ```yaml
 # content/page.md
@@ -30,12 +31,12 @@ sections:
 
 ---
 
-## Available Sections (24)
+## Available Sections (21 active + 1 deprecated dir)
 
-**Core**: hero-breadcrumb, values-intro, feature-details, blog-grid, cta-standard
-**Interactive**: video-popup, faq-mini, faq-content, method-tabs
+**Core**: hero-breadcrumb, values-intro, blog-grid
+**Interactive**: video-popup, faq-mini, faq-content
 **Forms**: contact-form-enhanced, signup-form-enhanced, newsletter-signup
-**Info**: contact-info-cards, onboarding-steps, privacy-guarantee, confidentiality-notice, job-listings
+**Info**: contact-info-cards, contact-options, privacy-guarantee, first-session-timeline
 **Enhanced v4.0** ⭐:
 - `values-compass` (NEW) - Compass-pattern layout with glassmorphism
 - `feature-blocks` - Zigzag layout with parallax scrolling
@@ -78,11 +79,11 @@ benefits_section:
 
 ```
 Atoms (5)        → button, heading, icon, image, input
-Molecules (17)   → card, form-field, accordion, nav, back-to-top, cookie-consent, etc.
+Molecules (21)   → card, form-field, accordion, nav, back-to-top, cookie-consent, etc.
 Organisms (2)    → header, footer
-Sections (24)    → Page sections (benefits-grid, pricing, blog-grid, etc.)
+Sections (21)    → Page sections (values-compass, pricing, credentials, blog-grid, etc.)
 
-Page = Header + Sections + Footer
+Total: 49 components | Page = Header + Sections + Footer
 ```
 
 ---
@@ -90,13 +91,22 @@ Page = Header + Sections + Footer
 ## File Structure
 
 ```
-themes/andromeda-hugo/layouts/
-├── _default/flexible.html      # Layout engine
-└── partials/
-    ├── atoms/                  # 5 components
-    ├── molecules/              # 17 components
-    ├── organisms/              # 2 components
-    └── sections/               # 24 sections
+alexandrabarbu.ro/              # ← Project root (flattened structure!)
+├── layouts/                    # Hugo templates at root level
+│   ├── _default/flexible.html  # Layout engine
+│   └── partials/
+│       ├── atoms/              # 5 components
+│       ├── molecules/          # 21 components
+│       ├── organisms/          # 2 components
+│       └── sections/           # 21 sections + _deprecated/
+├── assets/                     # Assets at root level
+│   ├── scss/                   # ITCSS architecture
+│   └── js/                     # Vanilla JS (no Bootstrap/jQuery)
+├── content/                    # Content at root level
+├── config/                     # Configuration
+└── data/                       # Data files
+
+NOTE: No themes/andromeda-hugo/ subdirectory - structure flattened in commit 4886ab2
 ```
 
 ---
@@ -104,9 +114,9 @@ themes/andromeda-hugo/layouts/
 ## Testing
 
 ```bash
-cd themes/andromeda-hugo                       # Run from theme directory
-../../scripts/test-components.sh               # Verify all 48 components
-../../scripts/test-performance.sh              # Build time, bundle size
+# Run from project root!
+scripts/test-components.sh               # Verify all 49 components (5+21+2+21)
+scripts/test-performance.sh              # Build time, bundle size
 ```
 
 ---
@@ -121,7 +131,7 @@ cd themes/andromeda-hugo                       # Run from theme directory
 
 ## Tech Stack
 
-Hugo v0.148.1+ Extended, Bootstrap 5.3, SCSS, AOS, Line Awesome, Poppins/Open Sans
+Hugo v0.148.1+ Extended, ITCSS + BEM, SCSS, Vanilla JS (no Bootstrap/jQuery), Line Awesome icons, Cormorant Garamond + Source Sans 3 fonts
 
 ---
 
@@ -213,13 +223,13 @@ hugo --gc --minify
 ## Quick Commands
 
 ```bash
-cd themes/andromeda-hugo                        # MUST run from theme directory
+# ALWAYS run from project root!
 hugo server --buildDrafts                       # Dev server
 hugo new content/page.md --kind service-page    # New page
-../../scripts/test-components.sh                # Test
+scripts/test-components.sh                      # Test
 hugo --gc --minify                              # Build
 ```
 
-**Status**: Production Ready ✅ | 53 components | Creative Design Excellence v4.0 | <520KB pages
+**Status**: Production Ready ✅ | 49 components (5+21+2+21) | ITCSS + BEM + v4.0 Design | <520KB pages | Flattened architecture
 
-**Next**: Read `PROJECT.md` (v4.0 enhancements) | `ARCHITECTURE.md` (technical) | `themes/andromeda-hugo/CLAUDE.md` (development)
+**Next**: Read `CLAUDE.md` (instructions) | `ARCHITECTURE.md` (Hugo components) | `CLAUDE-ITCSS-ADDENDUM.md` (ITCSS architecture)

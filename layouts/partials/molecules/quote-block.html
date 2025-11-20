@@ -1,0 +1,113 @@
+{{- /*
+  Quote Block Molecule
+
+  Displays a testimonial or quote with optional attribution and photo.
+  Used for inline quotes in content, testimonials, and endorsements.
+
+  Parameters:
+  - quote (required): Quote text (supports markdown)
+  - author (optional): Author name
+  - role (optional): Author role/title
+  - avatar (optional): Author photo path
+  - avatarAlt (optional): Alt text for avatar
+  - variant (optional): Color variant (primary|secondary|tertiary|success|warning|error|info|neutral) - default: primary
+  - size (optional): Quote size (sm|md|lg) - default: md
+  - centered (optional): Center-align quote (boolean) - default: false
+
+  Example Usage:
+  {{ partial "molecules/quote-block.html" (dict
+    "quote" "Therapy helped me understand myself better and develop healthy coping strategies."
+    "author" "Maria T."
+    "role" "Client"
+    "avatar" "images/testimonials/maria.jpg"
+    "avatarAlt" "Maria T."
+    "variant" "primary"
+    "size" "md"
+    "centered" false
+  ) }}
+
+  {{ partial "molecules/quote-block.html" (dict
+    "quote" "Alexandra's approach is warm, professional, and deeply effective."
+    "author" "Dr. Ion Popescu"
+    "role" "Referring Physician"
+    "variant" "secondary"
+    "centered" true
+  ) }}
+*/ -}}
+
+{{- /* Parameter validation */ -}}
+{{- if not .quote -}}
+  {{- warnf "quote-block.html: Missing required parameter 'quote'" -}}
+{{- end -}}
+
+{{- /* Set defaults */ -}}
+{{- $variant := .variant | default "primary" -}}
+{{- $size := .size | default "md" -}}
+{{- $centered := .centered | default false -}}
+
+{{- /* Validate variant */ -}}
+{{- $validVariants := slice "primary" "secondary" "tertiary" "success" "warning" "error" "info" "neutral" -}}
+{{- if not (in $validVariants $variant) -}}
+  {{- warnf "quote-block.html: Invalid variant '%s'. Using 'primary'. Valid options: %s" $variant (delimit $validVariants ", ") -}}
+  {{- $variant = "primary" -}}
+{{- end -}}
+
+{{- /* Validate size */ -}}
+{{- $validSizes := slice "sm" "md" "lg" -}}
+{{- if not (in $validSizes $size) -}}
+  {{- warnf "quote-block.html: Invalid size '%s'. Using 'md'. Valid options: %s" $size (delimit $validSizes ", ") -}}
+  {{- $size = "md" -}}
+{{- end -}}
+
+{{- /* Build classes */ -}}
+{{- $containerClass := "c-quote-block" -}}
+{{- $containerClass = printf "%s c-quote-block--%s c-quote-block--%s" $containerClass $variant $size -}}
+{{- if $centered -}}
+  {{- $containerClass = printf "%s c-quote-block--centered" $containerClass -}}
+{{- end -}}
+
+<blockquote class="{{ $containerClass }}">
+  {{- /* Quote icon */ -}}
+  <div class="c-quote-block__icon-wrapper">
+    {{- partial "atoms/icon.html" (dict
+      "name" "las la-quote-left"
+      "variant" $variant
+      "size" (cond (eq $size "sm") "md" (cond (eq $size "md") "lg" "xl"))
+      "class" "c-quote-block__icon"
+    ) -}}
+  </div>
+
+  {{- /* Quote text */ -}}
+  <div class="c-quote-block__text">
+    {{ .quote | markdownify }}
+  </div>
+
+  {{- /* Attribution */ -}}
+  {{- if or .author .role .avatar -}}
+    <footer class="c-quote-block__footer">
+      {{- if .avatar -}}
+        {{- partial "atoms/avatar.html" (dict
+          "src" .avatar
+          "alt" (.avatarAlt | default .author | default "Author")
+          "size" (cond (eq $size "sm") "sm" "md")
+          "class" "c-quote-block__avatar"
+        ) -}}
+      {{- end -}}
+
+      {{- if or .author .role -}}
+        <div class="c-quote-block__attribution">
+          {{- if .author -}}
+            <cite class="c-quote-block__author">
+              {{ .author }}
+            </cite>
+          {{- end -}}
+          {{- if .role -}}
+            <span class="c-quote-block__role">
+              {{ .role }}
+            </span>
+          {{- end -}}
+        </div>
+      {{- end -}}
+    </footer>
+  {{- end -}}
+</blockquote>

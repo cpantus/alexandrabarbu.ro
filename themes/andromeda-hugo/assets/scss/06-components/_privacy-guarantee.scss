@@ -1,338 +1,229 @@
-/*
-  Privacy Guarantee Section - BEM Component
+// ============================================================================
+// COMPONENT: Privacy Guarantee Section
+// ============================================================================
+// Displays privacy & confidentiality assurance for therapy clients.
+//
+// BEM Structure:
+//   .c-privacy-guarantee                Block
+//   .c-privacy-guarantee__header        Section header wrapper
+//   .c-privacy-guarantee__subtitle      Subtitle text
+//   .c-privacy-guarantee__intro         Intro text wrapper
+//   .c-privacy-guarantee__grid          Guarantees grid (ul)
+//   .c-privacy-guarantee__item          Individual guarantee (li)
+//   .c-privacy-guarantee__cta           CTA wrapper
+//
+// Modifiers:
+//   .c-privacy-guarantee--primary       Emerald color variant
+//   .c-privacy-guarantee--secondary     Terracotta color variant
+//   .c-privacy-guarantee--tertiary      Tertiary color variant
+//   .c-privacy-guarantee--neutral       Neutral gray variant
+//
+// Dependencies:
+// - Design tokens (colors, spacing, typography)
+// - molecules/feature-highlight.html
+// - atoms/heading.html
+// - atoms/button.html
+//
+// VERSION: 1.0.0 (2025-11-20)
+// ============================================================================
 
-  Modern BEM architecture with legacy compatibility
-  Part of Phase 3 ITCSS refactoring (Session 18)
-
-  Features:
-  - Glassmorphism card design
-  - Gradient icon circle
-  - Trust badges with transparency
-  - Responsive layout (mobile-first)
-  - v4.0 design enhancements
-
-  Usage:
-  <section class="c-privacy-guarantee">
-    <div class="container">
-      <div class="c-privacy-guarantee__card">
-        <div class="c-privacy-guarantee__icon">
-          <svg>...</svg>
-        </div>
-        <h3 class="c-privacy-guarantee__title">Title</h3>
-        <p class="c-privacy-guarantee__description">Text</p>
-        <div class="c-privacy-guarantee__badges">
-          <span class="c-privacy-guarantee__badge">Badge</span>
-        </div>
-      </div>
-    </div>
-  </section>
-*/
-
-/* ============================================
-   SECTION CONTAINER
-   ============================================ */
-
+// ----------------------------------------------------------------------------
+// Block
+// ----------------------------------------------------------------------------
 .c-privacy-guarantee {
-  padding: $space-12 0;
-  background: rgba($green-50, 0.3);
-  position: relative;
+  padding: $space-12 0; // 96px top/bottom
+  background-color: $color-bg-page;
 
-  /* Compact modifier for reduced padding */
-  &--compact {
-    padding: $space-8 0;
+  // Tablet
+  @media (max-width: $breakpoint-lg - 1) {
+    padding: $space-10 0; // 80px
   }
 
-  /* Responsive padding adjustments */
-  @media (max-width: 767px) {
-    padding: $space-8 0;
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    padding: $space-8 0; // 64px
+  }
+}
 
-    &--compact {
-      padding: $space-6 0;
+// ----------------------------------------------------------------------------
+// Header
+// ----------------------------------------------------------------------------
+.c-privacy-guarantee__header {
+  text-align: center;
+  margin-bottom: $space-6; // 48px
+
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-4; // 32px
+  }
+}
+
+.c-privacy-guarantee__subtitle {
+  font-family: $font-family-sans;
+  font-size: $font-size-lg; // 18px
+  font-weight: 400;
+  color: $color-text-secondary;
+  line-height: $line-height-normal;
+  margin-top: $space-2; // 16px
+  margin-bottom: 0;
+
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-base; // 16px
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Intro Text
+// ----------------------------------------------------------------------------
+.c-privacy-guarantee__intro {
+  max-width: 48rem; // 768px
+  margin: 0 auto $space-8; // 0 auto 64px
+  text-align: center;
+
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-6; // 48px
+  }
+
+  p {
+    font-family: $font-family-sans;
+    font-size: $font-size-lg; // 18px
+    font-weight: 400;
+    color: $color-text-secondary;
+    line-height: $line-height-relaxed;
+    margin: 0 0 $space-3; // 0 0 24px
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    // Mobile
+    @media (max-width: $breakpoint-md - 1) {
+      font-size: $font-size-base; // 16px
     }
   }
 }
 
-/* ============================================
-   CARD CONTAINER
-   ============================================ */
-
-.c-privacy-guarantee__card {
-  background: $gradient-glass-light;
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: $radius-xl;
-  padding: $space-6;
-  box-shadow: $shadow-glass;
-  text-align: center;
-  max-width: 640px;
+// ----------------------------------------------------------------------------
+// Guarantees Grid
+// ----------------------------------------------------------------------------
+.c-privacy-guarantee__grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $space-6; // 48px
+  max-width: 75rem; // 1200px
   margin: 0 auto;
 
-  /* Hover effect - subtle lift */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: $shadow-xl;
+  // Tablet (2 columns)
+  @media (max-width: $breakpoint-lg - 1) and (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-4; // 32px
   }
 
-  /* Responsive padding */
-  @media (max-width: 767px) {
-    padding: $space-5;
-  }
-
-  @media (max-width: 575px) {
-    padding: $space-4;
+  // Mobile (1 column)
+  @media (max-width: $breakpoint-md - 1) {
+    grid-template-columns: 1fr;
+    gap: $space-4; // 32px
   }
 }
 
-/* ============================================
-   ICON
-   ============================================ */
+.c-privacy-guarantee__item {
+  // No styles needed - feature-highlight molecule handles all styling
+}
 
-.c-privacy-guarantee__icon {
-  width: 64px;
-  height: 64px;
-  background: $gradient-icon-emerald;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto $space-4;
-  box-shadow: $shadow-md;
+// ----------------------------------------------------------------------------
+// CTA
+// ----------------------------------------------------------------------------
+.c-privacy-guarantee__cta {
+  text-align: center;
+  margin-top: $space-8; // 64px
 
-  /* Icon element inside */
-  svg,
-  i,
-  .las {
-    width: 32px;
-    height: 32px;
-    font-size: 32px;
-    line-height: 32px;
-    color: #fff;
+  // Tablet
+  @media (max-width: $breakpoint-lg - 1) {
+    margin-top: $space-6; // 48px
   }
 
-  /* Icon size variants */
-  &--sm {
-    width: 48px;
-    height: 48px;
-
-    svg,
-    i,
-    .las {
-      width: 24px;
-      height: 24px;
-      font-size: 24px;
-      line-height: 24px;
-    }
-  }
-
-  &--lg {
-    width: 80px;
-    height: 80px;
-
-    svg,
-    i,
-    .las {
-      width: 40px;
-      height: 40px;
-      font-size: 40px;
-      line-height: 40px;
-    }
-  }
-
-  /* Icon color variants */
-  &--secondary {
-    background: $gradient-icon-terracotta;
-  }
-
-  &--coral {
-    background: $gradient-icon-coral;
-  }
-
-  &--premium {
-    background: $gradient-icon-premium;
-  }
-
-  /* Responsive icon sizing */
-  @media (max-width: 767px) {
-    width: 56px;
-    height: 56px;
-
-    svg,
-    i,
-    .las {
-      width: 28px;
-      height: 28px;
-      font-size: 28px;
-      line-height: 28px;
-    }
-
-    &--sm {
-      width: 40px;
-      height: 40px;
-
-      svg,
-      i,
-      .las {
-        width: 20px;
-        height: 20px;
-        font-size: 20px;
-        line-height: 20px;
-      }
-    }
-
-    &--lg {
-      width: 64px;
-      height: 64px;
-
-      svg,
-      i,
-      .las {
-        width: 32px;
-        height: 32px;
-        font-size: 32px;
-        line-height: 32px;
-      }
-    }
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    margin-top: $space-6; // 48px
   }
 }
 
-/* ============================================
-   CONTENT
-   ============================================ */
+// ----------------------------------------------------------------------------
+// Color Variants
+// ----------------------------------------------------------------------------
+// Variants primarily affect heading and feature-highlight molecules
+// Section background remains consistent
 
-.c-privacy-guarantee__title {
-  color: $color-primary;
-  font-size: $text-2xl;
-  font-weight: $weight-semibold;
-  margin-bottom: $space-3;
-  line-height: 1.3;
+.c-privacy-guarantee--primary {
+  // Emerald variant (default) - no special section styles needed
+}
 
-  /* Responsive font sizes */
-  @media (max-width: 767px) {
-    font-size: $text-xl;
-  }
+.c-privacy-guarantee--secondary {
+  // Terracotta variant - no special section styles needed
+}
 
-  @media (max-width: 575px) {
-    font-size: $text-lg;
+.c-privacy-guarantee--tertiary {
+  // Tertiary variant - no special section styles needed
+}
+
+.c-privacy-guarantee--neutral {
+  // Neutral gray variant - no special section styles needed
+}
+
+// ----------------------------------------------------------------------------
+// Accessibility Enhancements
+// ----------------------------------------------------------------------------
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .c-privacy-guarantee__subtitle,
+  .c-privacy-guarantee__intro p {
+    color: $color-text-primary;
+    font-weight: 500;
   }
 }
 
-.c-privacy-guarantee__description {
-  color: $gray-700;
-  font-size: $text-base;
-  line-height: 1.7;
-  margin-bottom: $space-6;
-
-  /* Responsive font sizes */
-  @media (max-width: 767px) {
-    font-size: $text-sm;
-    margin-bottom: $space-5;
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .c-privacy-guarantee__grid {
+    // feature-highlight molecules handle their own reduced motion
   }
 }
 
-/* ============================================
-   TRUST BADGES
-   ============================================ */
+// Print styles
+@media print {
+  .c-privacy-guarantee {
+    padding: 2rem 0;
+    page-break-inside: avoid;
+  }
 
-.c-privacy-guarantee__badges {
-  display: flex;
-  gap: $space-4;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: $space-6;
+  .c-privacy-guarantee__header {
+    margin-bottom: 1.5rem;
+  }
 
-  /* Responsive gap */
-  @media (max-width: 575px) {
-    gap: $space-3;
-    margin-top: $space-5;
+  .c-privacy-guarantee__intro {
+    margin-bottom: 1.5rem;
+  }
+
+  .c-privacy-guarantee__grid {
+    gap: 1.5rem;
+  }
+
+  .c-privacy-guarantee__cta {
+    display: none; // Hide CTA in print
   }
 }
 
-.c-privacy-guarantee__badge {
-  padding: $space-2 $space-4;
-  background: rgba($green-500, 0.1);
-  border: 1px solid rgba($green-500, 0.2);
-  border-radius: $radius-lg;
-  font-size: $text-sm;
-  font-weight: $weight-medium;
-  color: $color-primary;
-  white-space: nowrap;
-  transition: all 0.3s ease;
+// ----------------------------------------------------------------------------
+// Legacy Compatibility (if needed)
+// ----------------------------------------------------------------------------
+// Map old class names to new BEM structure for backward compatibility
 
-  /* Hover effect */
-  &:hover {
-    background: rgba($green-500, 0.15);
-    border-color: rgba($green-500, 0.3);
-    transform: translateY(-2px);
-  }
-
-  /* Badge color variants */
-  &--secondary {
-    background: rgba($terracotta-500, 0.1);
-    border-color: rgba($terracotta-500, 0.2);
-    color: $color-secondary;
-
-    &:hover {
-      background: rgba($terracotta-500, 0.15);
-      border-color: rgba($terracotta-500, 0.3);
-    }
-  }
-
-  &--coral {
-    background: rgba($coral-500, 0.1);
-    border-color: rgba($coral-500, 0.2);
-    color: $coral-600;
-
-    &:hover {
-      background: rgba($coral-500, 0.15);
-      border-color: rgba($coral-500, 0.3);
-    }
-  }
-
-  &--premium {
-    background: rgba($plum-500, 0.1);
-    border-color: rgba($plum-500, 0.2);
-    color: $plum-600;
-
-    &:hover {
-      background: rgba($plum-500, 0.15);
-      border-color: rgba($plum-500, 0.3);
-    }
-  }
-
-  /* Responsive font size */
-  @media (max-width: 575px) {
-    padding: $space-2 $space-3;  // Fixed: $space-1-5 doesn't exist, using $space-2 (8px)
-    font-size: $text-xs;
-  }
-}
-
-/* ============================================
-   LEGACY COMPATIBILITY
-   ============================================ */
-
-/* Section wrapper */
 .privacy-section {
   @extend .c-privacy-guarantee;
-}
-
-/* Card */
-.privacy-card {
-  @extend .c-privacy-guarantee__card;
-}
-
-/* Icon */
-.privacy-icon {
-  @extend .c-privacy-guarantee__icon;
-}
-
-/* Trust badges container */
-.trust-badges {
-  @extend .c-privacy-guarantee__badges;
-}
-
-/* Badge elements */
-.privacy-card .badge {
-  @extend .c-privacy-guarantee__badge;
 }

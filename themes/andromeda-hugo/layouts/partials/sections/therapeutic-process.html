@@ -1,0 +1,144 @@
+{{/*
+  ============================================================================
+  Therapeutic Process Section - BEM Architecture
+  ============================================================================
+  Detailed therapy process timeline for service pages
+
+  Features:
+  - Multi-phase process timeline
+  - Phase descriptions and durations
+  - Visual timeline with connecting elements
+  - Service-specific process details
+
+  Data Structure:
+  ---------------
+  therapeutic_process:
+    title: "The Therapeutic Process"         # Section heading
+    subtitle: "What to Expect"               # Optional eyebrow
+    phases:                                   # Array of process phases
+      - number: "1"
+        title: "Initial Assessment"
+        description: "First 1-2 sessions..."
+        duration: "1-2 sessions"
+        icon: "las la-clipboard-list"        # Optional icon
+      - number: "2"
+        title: "Treatment Plan"
+        description: "We create a personalized plan..."
+        duration: "1 session"
+
+  Parameters:
+  -----------
+  None - Data-driven from front matter
+
+  Usage:
+  ------
+  ```yaml
+  sections:
+    - type: "therapeutic-process"
+
+  therapeutic_process:
+    title: "Procesul Terapeutic"
+    phases:
+      - number: "1"
+        title: "Evaluare Inițială"
+        description: "Primele 1-2 ședințe..."
+        duration: "1-2 ședințe"
+  ```
+
+  BEM Structure:
+  --------------
+  .c-therapeutic-process               - Section wrapper
+  .c-therapeutic-process__header       - Header container
+  .c-therapeutic-process__subtitle     - Eyebrow text
+  .c-therapeutic-process__title        - Main heading
+  .c-therapeutic-process__timeline     - Timeline container
+  .c-therapeutic-process__phase        - Individual phase
+  .c-therapeutic-process__phase-number - Phase number badge
+  .c-therapeutic-process__phase-content - Phase text content
+  .c-therapeutic-process__phase-title  - Phase heading
+  .c-therapeutic-process__duration     - Duration badge
+  .c-therapeutic-process__description  - Phase description
+  .c-therapeutic-process__connector    - Connecting line
+
+  Dependencies:
+  -------------
+  - atoms/heading.html (title)
+  - atoms/icon.html (optional phase icons)
+  - _therapeutic-process.scss (BEM styles)
+
+  Version: 1.0.0
+  Updated: 2025-11-20
+  ============================================================================
+*/}}
+
+{{- $data := .Params.therapeutic_process -}}
+{{- if not $data -}}
+  {{- $data = site.Data.shared_sections.therapeutic_process -}}
+{{- end -}}
+
+{{- if $data -}}
+<section class="c-therapeutic-process section">
+  <div class="o-container">
+
+    {{/* Section Header */}}
+    {{- if or $data.title $data.subtitle -}}
+    <div class="c-therapeutic-process__header text-center">
+      {{- if $data.subtitle -}}
+        <p class="c-therapeutic-process__subtitle text-uppercase">{{ $data.subtitle }}</p>
+      {{- end -}}
+      {{- if $data.title -}}
+        {{ partial "atoms/heading.html" (dict
+          "text" $data.title
+          "level" 2
+          "class" "c-therapeutic-process__title"
+        ) }}
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    {{/* Timeline */}}
+    {{- if $data.phases -}}
+    <div class="c-therapeutic-process__timeline">
+      {{- range $index, $phase := $data.phases -}}
+        <div class="c-therapeutic-process__phase" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+
+          {{/* Phase Number/Icon */}}
+          <div class="c-therapeutic-process__phase-number">
+            {{- if $phase.icon -}}
+              {{ partial "atoms/icon.html" (dict
+                "icon" $phase.icon
+                "class" "c-therapeutic-process__icon"
+              ) }}
+            {{- else if $phase.number -}}
+              <span class="c-therapeutic-process__number-text">{{ $phase.number }}</span>
+            {{- end -}}
+          </div>
+
+          {{/* Phase Content */}}
+          <div class="c-therapeutic-process__phase-content">
+
+            {{/* Duration Badge */}}
+            {{- if $phase.duration -}}
+              <span class="c-therapeutic-process__duration">{{ $phase.duration }}</span>
+            {{- end -}}
+
+            {{/* Phase Title */}}
+            {{- if $phase.title -}}
+              <h3 class="c-therapeutic-process__phase-title">{{ $phase.title }}</h3>
+            {{- end -}}
+
+            {{/* Phase Description */}}
+            {{- if $phase.description -}}
+              <p class="c-therapeutic-process__description">{{ $phase.description }}</p>
+            {{- end -}}
+
+          </div>
+
+        </div>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+  </div>
+</section>
+{{- end -}}

@@ -1,0 +1,168 @@
+{{/*
+  ============================================================================
+  About Preview Section - BEM Architecture
+  ============================================================================
+  Therapist introduction section with photo, bio, credentials, and CTA
+
+  Features:
+  - 2-column layout (image left, content right)
+  - Professional photo with warm styling
+  - Short bio (2-3 paragraphs)
+  - Credential badges
+  - CTA to full about page
+  - Responsive stack on mobile
+
+  Data Structure:
+  ---------------
+  about_preview:
+    title: "Meet Alexandra"                    # Section heading
+    subtitle: "Your Therapist"                 # Optional eyebrow
+    image: "images/alexandra-portrait.jpg"     # Professional headshot
+    bio: "I'm a clinical psychologist..."      # Short introduction
+    credentials:                                # Array of credentials
+      - text: "Licensed Clinical Psychologist"
+        icon: "las la-certificate"
+      - text: "15+ years experience"
+        icon: "las la-clock"
+    button_text: "Read My Story"
+    button_url: "/despre-mine/"
+    button_variant: "secondary"                # Optional: primary/secondary
+
+  Parameters:
+  -----------
+  None - Data-driven from front matter
+
+  Usage:
+  ------
+  ```yaml
+  sections:
+    - type: "about-preview"
+
+  about_preview:
+    title: "Despre Mine"
+    image: "images/alexandra.jpg"
+    bio: "Sunt psiholog clinician cu peste 15 ani de experiență..."
+    credentials:
+      - text: "Psiholog Clinician Licențiat"
+        icon: "las la-certificate"
+      - text: "15+ ani experiență"
+        icon: "las la-clock"
+    button_text: "Citește Povestea Mea"
+    button_url: "/despre-mine/"
+  ```
+
+  BEM Structure:
+  --------------
+  .c-about-preview                - Section wrapper
+  .c-about-preview__container     - Inner container
+  .c-about-preview__grid          - 2-column grid
+  .c-about-preview__image-col     - Image column
+  .c-about-preview__image-wrapper - Image container
+  .c-about-preview__image         - Image element
+  .c-about-preview__content-col   - Content column
+  .c-about-preview__subtitle      - Eyebrow text
+  .c-about-preview__title         - Main heading
+  .c-about-preview__bio           - Bio text
+  .c-about-preview__credentials   - Credentials list
+  .c-about-preview__credential    - Individual credential
+  .c-about-preview__credential-icon - Credential icon
+  .c-about-preview__credential-text - Credential text
+  .c-about-preview__cta           - CTA button
+
+  Dependencies:
+  -------------
+  - atoms/heading.html (title)
+  - atoms/button.html (CTA)
+  - atoms/icon.html (credential icons)
+  - atoms/image.html (portrait)
+  - _about-preview.scss (BEM styles)
+
+  Version: 1.0.0
+  Updated: 2025-11-20
+  ============================================================================
+*/}}
+
+{{- $data := .Params.about_preview -}}
+{{- if not $data -}}
+  {{- $data = site.Data.shared_sections.about_preview -}}
+{{- end -}}
+
+{{- if $data -}}
+<section class="c-about-preview section">
+  <div class="o-container">
+
+    {{/* 2-Column Grid */}}
+    <div class="c-about-preview__grid">
+
+      {{/* Image Column */}}
+      <div class="c-about-preview__image-col" data-aos="fade-right">
+        {{- if $data.image -}}
+          <div class="c-about-preview__image-wrapper">
+            {{ partial "atoms/image.html" (dict
+              "src" $data.image
+              "alt" (default $data.title "Therapist portrait")
+              "class" "c-about-preview__image"
+            ) }}
+          </div>
+        {{- end -}}
+      </div>
+
+      {{/* Content Column */}}
+      <div class="c-about-preview__content-col" data-aos="fade-left">
+
+        {{/* Header */}}
+        {{- if or $data.title $data.subtitle -}}
+        <div class="c-about-preview__header">
+          {{- if $data.subtitle -}}
+            <p class="c-about-preview__subtitle text-uppercase">{{ $data.subtitle }}</p>
+          {{- end -}}
+          {{- if $data.title -}}
+            {{ partial "atoms/heading.html" (dict
+              "text" $data.title
+              "level" 2
+              "class" "c-about-preview__title"
+            ) }}
+          {{- end -}}
+        </div>
+        {{- end -}}
+
+        {{/* Bio Text */}}
+        {{- if $data.bio -}}
+          <div class="c-about-preview__bio">{{ $data.bio | markdownify }}</div>
+        {{- end -}}
+
+        {{/* Credentials List */}}
+        {{- if $data.credentials -}}
+        <ul class="c-about-preview__credentials">
+          {{- range $data.credentials -}}
+            <li class="c-about-preview__credential">
+              {{- if .icon -}}
+                {{ partial "atoms/icon.html" (dict
+                  "icon" .icon
+                  "class" "c-about-preview__credential-icon"
+                ) }}
+              {{- end -}}
+              <span class="c-about-preview__credential-text">{{ .text }}</span>
+            </li>
+          {{- end -}}
+        </ul>
+        {{- end -}}
+
+        {{/* CTA Button */}}
+        {{- if $data.button_url -}}
+          {{ partial "atoms/button.html" (dict
+            "text" (default (i18n "learn_more") $data.button_text)
+            "url" ($data.button_url | relLangURL)
+            "variant" (default "secondary" $data.button_variant)
+            "class" "c-about-preview__cta"
+            "icon" "las la-arrow-right"
+          ) }}
+        {{- end -}}
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+{{- end -}}

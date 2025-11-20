@@ -1,0 +1,200 @@
+// ==================================
+// Simple Process Section - BEM Component
+// ==================================
+//
+// Purpose: 3-step visual timeline for therapy process
+// Features: Horizontal desktop, vertical mobile, connecting lines
+// Breakpoints: Vertical mobile, horizontal desktop
+//
+// Version: 1.0.0
+// Updated: 2025-11-20
+//
+
+// ============================================================================
+// BLOCK: Simple Process Section
+// ============================================================================
+
+.c-simple-process {
+  padding: var(--spacing-section-y) 0;
+  background: var(--color-surface-secondary);
+}
+
+// ============================================================================
+// ELEMENT: Header
+// ============================================================================
+
+.c-simple-process__header {
+  max-width: 800px;
+  margin: 0 auto var(--spacing-5xl);
+}
+
+.c-simple-process__subtitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-secondary);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--spacing-xs);
+}
+
+.c-simple-process__title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: 0;
+  font-family: var(--font-family-heading);
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+// ============================================================================
+// ELEMENT: Timeline Container
+// ============================================================================
+
+.c-simple-process__timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3xl);
+  max-width: 1000px;
+  margin: 0 auto;
+
+  // Desktop: horizontal layout
+  @media (min-width: 992px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0;
+  }
+}
+
+// ============================================================================
+// ELEMENT: Step
+// ============================================================================
+
+.c-simple-process__step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+
+  // Desktop: ensure equal width
+  @media (min-width: 992px) {
+    max-width: 280px;
+  }
+}
+
+// ============================================================================
+// ELEMENT: Step Number Circle
+// ============================================================================
+
+.c-simple-process__step-number {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary-warm);
+  border-radius: var(--border-radius-full);
+  color: var(--color-white);
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-bold);
+  box-shadow: var(--shadow-lg);
+  margin-bottom: var(--spacing-lg);
+  transition: transform var(--transition-normal);
+
+  // Hover effect
+  .c-simple-process__step:hover & {
+    transform: scale(1.1);
+  }
+}
+
+.c-simple-process__step-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.c-simple-process__number-text {
+  font-family: var(--font-family-heading);
+  line-height: 1;
+}
+
+// ============================================================================
+// ELEMENT: Step Content
+// ============================================================================
+
+.c-simple-process__step-content {
+  flex: 1;
+}
+
+.c-simple-process__step-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+  font-family: var(--font-family-heading);
+}
+
+.c-simple-process__step-description {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: 0;
+}
+
+// ============================================================================
+// ELEMENT: Connector Line
+// ============================================================================
+
+.c-simple-process__connector {
+  display: none; // Hidden on mobile
+
+  // Desktop: horizontal connecting line
+  @media (min-width: 992px) {
+    display: block;
+    position: absolute;
+    top: 45px; // Center with number circle
+    left: calc(50% + 45px); // Start from edge of circle
+    width: calc(100% - 90px); // Full width minus circle diameter
+    height: 3px;
+    background: linear-gradient(
+      to right,
+      var(--color-brand-primary) 0%,
+      var(--color-brand-secondary) 100%
+    );
+    z-index: -1;
+
+    // Dashed style for subtlety
+    background-image: linear-gradient(
+      to right,
+      var(--color-brand-primary) 50%,
+      transparent 50%
+    );
+    background-size: 20px 3px;
+    background-repeat: repeat-x;
+  }
+}
+
+// ============================================================================
+// ACCESSIBILITY
+// ============================================================================
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .c-simple-process__step-number {
+    transition: none;
+
+    .c-simple-process__step:hover & {
+      transform: none;
+    }
+  }
+}
+
+// Focus styles (if interactive)
+.c-simple-process__step:focus-within {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 4px;
+  border-radius: var(--border-radius-lg);
+}

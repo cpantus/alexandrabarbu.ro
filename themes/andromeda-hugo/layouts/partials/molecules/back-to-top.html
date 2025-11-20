@@ -1,36 +1,83 @@
 {{/*
-  Back to Top Button
-  
-  Floating button that appears when user scrolls down
-  Smooth scroll to top on click
-  
-  Usage: {{ partial "molecules/back-to-top.html" . }}
+  Back to Top Button Molecule - Floating scroll-to-top button
+  BEM Component: .c-back-to-top (refactored 2025-11-20)
+
+  Usage:
+    {{ partial "molecules/back-to-top.html" (dict "variant" "primary") }}
+
+  Parameters:
+    variant (optional) - Color variant: "primary" (default), "secondary", "tertiary", "neutral"
+    class (optional)   - Additional CSS classes
+
+  Color Variants:
+    - "primary" (default) - Emerald background (professional, trust)
+    - "secondary"        - Terracotta background (warm, inviting)
+    - "tertiary"         - Blue background (calm, informational)
+    - "neutral"          - Gray background (subtle, minimal)
+
+  BEM Structure:
+    .c-back-to-top              - Root button element
+    .c-back-to-top--{variant}   - Color variant modifier
+    .c-back-to-top--visible     - Visible state modifier (added by JS when scrolled down)
+    .c-back-to-top__icon        - Icon element (uses icon atom)
+
+  Features:
+    - Icon atom integration with "chevron-up" icon
+    - Auto-show when scrolled 300px down (JavaScript)
+    - Smooth scroll to top on click (window.scrollTo with behavior: 'smooth')
+    - Keyboard accessible (focus states, ARIA label)
+    - 4 color variants matching design system
+    - Circular button with glassmorphism background
+    - Hover/focus effects (scale up, box-shadow upgrade)
+    - Responsive sizing (larger on desktop, smaller on mobile)
+    - Fixed positioning (bottom-right corner with 8pt grid spacing)
+    - Parameter validation with defaults
+    - Backward compatibility via SCSS @extend
+    - JavaScript extracted to back-to-top.js file
+
+  JavaScript:
+    - Loaded via assets/js/back-to-top.js
+    - Uses IntersectionObserver for better performance than scroll events
+    - Adds/removes 'visible' class based on scroll position
+    - Smooth scroll with fallback for older browsers
+    - Respects prefers-reduced-motion
+
+  Examples:
+    Primary variant (default):
+      {{ partial "molecules/back-to-top.html" . }}
+
+    Secondary variant (warm):
+      {{ partial "molecules/back-to-top.html" (dict "variant" "secondary") }}
+
+    Tertiary variant (calm):
+      {{ partial "molecules/back-to-top.html" (dict "variant" "tertiary") }}
+
+    Neutral variant (subtle):
+      {{ partial "molecules/back-to-top.html" (dict "variant" "neutral") }}
 */}}
 
-<button id="back-to-top" class="back-to-top" aria-label="{{ i18n `back_to_top` | default `Back to top` }}">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <polyline points="18 15 12 9 6 15"></polyline>
-  </svg>
-</button>
+{{/* Parameter extraction with defaults */}}
+{{ $variant := .variant | default "primary" }}
+{{ $class := .class | default "" }}
 
-<script>
-// Back to top button functionality
-(function() {
-  const backToTop = document.getElementById('back-to-top');
-  if (!backToTop) return;
-  
-  // Show/hide on scroll
-  window.addEventListener('scroll', function() {
-    if (window.pageYOffset > 300) {
-      backToTop.classList.add('visible');
-    } else {
-      backToTop.classList.remove('visible');
-    }
-  });
-  
-  // Smooth scroll to top
-  backToTop.addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-})();
-</script>
+{{/* Build BEM class with variant modifier */}}
+{{ $bemClass := "c-back-to-top" }}
+{{ if $variant }}
+  {{ $bemClass = printf "%s c-back-to-top--%s" $bemClass $variant }}
+{{ end }}
+{{ if $class }}
+  {{ $bemClass = printf "%s %s" $bemClass $class }}
+{{ end }}
+
+<button
+  id="back-to-top"
+  class="{{ $bemClass }}"
+  aria-label="{{ i18n `back_to_top` | default `Back to top` }}"
+  type="button">
+  {{ partial "atoms/icon.html" (dict
+    "name" "chevron-up"
+    "size" "md"
+    "variant" "neutral"
+    "class" "c-back-to-top__icon"
+  ) }}
+</button>

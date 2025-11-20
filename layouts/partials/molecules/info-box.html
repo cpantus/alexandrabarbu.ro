@@ -1,0 +1,125 @@
+{{- /*
+  Info Box Molecule
+
+  Displays an informational callout box with icon, title, and content.
+  Used for tips, notes, warnings, important information, etc.
+
+  Parameters:
+  - type (optional): Box type determines icon and default variant (tip|note|warning|important|success) - default: note
+  - icon (optional): Custom icon name (overrides type default)
+  - title (optional): Box title
+  - content (required): Box content (supports markdown)
+  - variant (optional): Color variant (primary|secondary|tertiary|success|warning|error|info|neutral) - default: determined by type
+  - dismissible (optional): Add close button (boolean) - default: false
+
+  Example Usage:
+  {{ partial "molecules/info-box.html" (dict
+    "type" "tip"
+    "title" "Pro Tip"
+    "content" "Regular therapy sessions lead to better outcomes than sporadic appointments."
+    "variant" "success"
+  ) }}
+
+  {{ partial "molecules/info-box.html" (dict
+    "type" "warning"
+    "title" "Important Notice"
+    "content" "If you're experiencing a crisis, please call the emergency hotline at 112."
+    "dismissible" true
+  ) }}
+
+  {{ partial "molecules/info-box.html" (dict
+    "icon" "las la-info-circle"
+    "title" "Did You Know?"
+    "content" "Cognitive Behavioral Therapy (CBT) is one of the most researched and effective therapeutic approaches."
+    "variant" "info"
+  ) }}
+*/ -}}
+
+{{- /* Parameter validation */ -}}
+{{- if not .content -}}
+  {{- warnf "info-box.html: Missing required parameter 'content'" -}}
+{{- end -}}
+
+{{- /* Set defaults */ -}}
+{{- $type := .type | default "note" -}}
+{{- $dismissible := .dismissible | default false -}}
+
+{{- /* Determine icon and variant based on type */ -}}
+{{- $icon := "" -}}
+{{- $variant := .variant -}}
+
+{{- if eq $type "tip" -}}
+  {{- $icon = "las la-lightbulb" -}}
+  {{- $variant = $variant | default "success" -}}
+{{- else if eq $type "note" -}}
+  {{- $icon = "las la-sticky-note" -}}
+  {{- $variant = $variant | default "info" -}}
+{{- else if eq $type "warning" -}}
+  {{- $icon = "las la-exclamation-triangle" -}}
+  {{- $variant = $variant | default "warning" -}}
+{{- else if eq $type "important" -}}
+  {{- $icon = "las la-exclamation-circle" -}}
+  {{- $variant = $variant | default "error" -}}
+{{- else if eq $type "success" -}}
+  {{- $icon = "las la-check-circle" -}}
+  {{- $variant = $variant | default "success" -}}
+{{- else -}}
+  {{- $icon = "las la-info-circle" -}}
+  {{- $variant = $variant | default "info" -}}
+{{- end -}}
+
+{{- /* Override with custom icon if provided */ -}}
+{{- if .icon -}}
+  {{- $icon = .icon -}}
+{{- end -}}
+
+{{- /* Validate variant */ -}}
+{{- $validVariants := slice "primary" "secondary" "tertiary" "success" "warning" "error" "info" "neutral" -}}
+{{- if not (in $validVariants $variant) -}}
+  {{- warnf "info-box.html: Invalid variant '%s'. Using 'info'. Valid options: %s" $variant (delimit $validVariants ", ") -}}
+  {{- $variant = "info" -}}
+{{- end -}}
+
+{{- /* Build classes */ -}}
+{{- $containerClass := "c-info-box" -}}
+{{- $containerClass = printf "%s c-info-box--%s c-info-box--type-%s" $containerClass $variant $type -}}
+{{- if $dismissible -}}
+  {{- $containerClass = printf "%s c-info-box--dismissible" $containerClass -}}
+{{- end -}}
+
+<div class="{{ $containerClass }}" role="alert" aria-live="polite">
+  {{- /* Icon */ -}}
+  <div class="c-info-box__icon-wrapper">
+    {{- partial "atoms/icon.html" (dict
+      "name" $icon
+      "variant" $variant
+      "size" "lg"
+      "class" "c-info-box__icon"
+    ) -}}
+  </div>
+
+  <div class="c-info-box__content">
+    {{- /* Title */ -}}
+    {{- if .title -}}
+      <div class="c-info-box__title">
+        {{ .title }}
+      </div>
+    {{- end -}}
+
+    {{- /* Content */ -}}
+    <div class="c-info-box__text">
+      {{ .content | markdownify }}
+    </div>
+  </div>
+
+  {{- /* Dismissible close button */ -}}
+  {{- if $dismissible -}}
+    <button type="button" class="c-info-box__close" aria-label="{{ i18n "close" | default "Close" }}" onclick="this.parentElement.remove()">
+      {{- partial "atoms/icon.html" (dict
+        "name" "las la-times"
+        "size" "sm"
+        "class" "c-info-box__close-icon"
+      ) -}}
+    </button>
+  {{- end -}}
+</div>

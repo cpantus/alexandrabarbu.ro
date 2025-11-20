@@ -84,6 +84,10 @@
   position: relative;
   margin-bottom: $space-16;
   z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-8;
+  align-items: center;
 
   // Staggered entrance animation (v4.0)
   @include staggered-entrance(fade-in-up, 200ms);
@@ -123,10 +127,13 @@
   // Responsive adjustments
   @media (max-width: $breakpoint-lg) {
     margin-bottom: $space-12;
+    gap: $space-6;
   }
 
   @media (max-width: $breakpoint-md) {
     margin-bottom: $space-10;
+    grid-template-columns: 1fr; // Stack on mobile
+    gap: $space-5;
 
     // Remove diagonal divider on mobile
     &:not(:last-child)::after {
@@ -340,25 +347,49 @@
 
 // Zigzag Pattern (Alternating Left/Right Layout)
 // ----------------------------------------------------------------------------
-// Even items: Image left, Text right
+// Even items: Image left, Text right (reverse order)
 .c-feature-blocks__item--even {
+  .c-feature-blocks__content {
+    order: 2; // Content on right
+    transform-origin: right center;
+  }
+
   .c-feature-blocks__image-wrapper {
+    order: 1; // Image on left
     transform-origin: left center;
   }
 
-  .c-feature-blocks__content {
-    transform-origin: right center;
+  @media (max-width: $breakpoint-md) {
+    .c-feature-blocks__content {
+      order: 1; // Stack: content first on mobile
+    }
+
+    .c-feature-blocks__image-wrapper {
+      order: 2; // Image second on mobile
+    }
   }
 }
 
-// Odd items: Text left, Image right
+// Odd items: Text left, Image right (natural order)
 .c-feature-blocks__item--odd {
+  .c-feature-blocks__content {
+    order: 1; // Content on left
+    transform-origin: left center;
+  }
+
   .c-feature-blocks__image-wrapper {
+    order: 2; // Image on right
     transform-origin: right center;
   }
 
-  .c-feature-blocks__content {
-    transform-origin: left center;
+  @media (max-width: $breakpoint-md) {
+    .c-feature-blocks__content {
+      order: 1; // Stack: content first on mobile
+    }
+
+    .c-feature-blocks__image-wrapper {
+      order: 2; // Image second on mobile
+    }
   }
 }
 

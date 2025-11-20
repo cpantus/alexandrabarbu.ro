@@ -1,0 +1,330 @@
+/* ==========================================================================
+   #LANGUAGE-SELECTOR
+   ========================================================================== */
+
+/**
+ * Language Selector Molecule
+ *
+ * Dropdown selector for multilingual site navigation with flag icons.
+ * Supports desktop/mobile display modes and 4 semantic color variants.
+ *
+ * BEM Structure:
+ * - .c-language-selector                 → Container
+ * - .c-language-selector--mobile         → Mobile variant modifier
+ * - .c-language-selector--desktop        → Desktop variant modifier
+ * - .c-language-selector--primary        → Primary color variant
+ * - .c-language-selector--secondary      → Secondary color variant
+ * - .c-language-selector--tertiary       → Tertiary color variant
+ * - .c-language-selector--neutral        → Neutral color variant
+ * - .c-language-selector__select         → Select element
+ * - .c-language-selector__option         → Option element
+ *
+ * Usage:
+ *   <div class="c-language-selector c-language-selector--desktop c-language-selector--primary">
+ *     <select class="c-language-selector__select">
+ *       <option class="c-language-selector__option">🇷🇴 Romanian</option>
+ *     </select>
+ *   </div>
+ *
+ * Design Tokens:
+ * - Typography: Crimson Pro (language names)
+ * - Spacing: 8pt grid ($space-2, $space-3)
+ * - Colors: $color-primary, $color-secondary, $color-tertiary, $color-neutral
+ * - Transitions: $transition-base (250ms)
+ * - Breakpoints: $breakpoint-lg (992px)
+ *
+ * Features:
+ * - Flag emoji support (🌍)
+ * - Responsive mobile/desktop variants
+ * - 4 semantic color variants
+ * - Smooth transitions
+ * - Focus indicators
+ * - High contrast mode support
+ * - Reduced motion support
+ */
+
+/* Container
+   ========================================================================== */
+
+.c-language-selector {
+  position: relative;
+  display: inline-block;
+
+  /* Remove default appearance for custom styling */
+  &::after {
+    content: '';
+    position: absolute;
+    right: $space-2;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid currentColor;
+    pointer-events: none;
+    opacity: 0.6;
+    transition: opacity $transition-base;
+  }
+
+  &:hover::after,
+  &:focus-within::after {
+    opacity: 1;
+  }
+}
+
+/* Select Element
+   ========================================================================== */
+
+.c-language-selector__select {
+  /* Reset default styles */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* Typography */
+  font-family: $font-heading;
+  font-size: $font-size-base;
+  font-weight: 600;
+  line-height: $line-height-normal;
+  color: inherit;
+
+  /* Layout */
+  display: inline-block;
+  padding: $space-2 calc(#{$space-4} + #{$space-1}) $space-2 $space-2; /* Extra padding-right for arrow */
+  min-width: 140px;
+
+  /* Borders */
+  border: none;
+  border-radius: $border-radius-md;
+
+  /* Background */
+  background-color: transparent;
+  background-image: none;
+
+  /* Cursor */
+  cursor: pointer;
+
+  /* Transitions */
+  transition: all $transition-base;
+
+  /* Remove outline, use box-shadow for focus */
+  outline: none;
+
+  /* Flag emoji spacing */
+  letter-spacing: 0.02em;
+
+  /* Focus state */
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.2);
+  }
+
+  /* Hover state */
+  &:hover {
+    opacity: 0.8;
+  }
+
+  /* Disabled state */
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+/* Option Element
+   ========================================================================== */
+
+.c-language-selector__option {
+  font-family: $font-heading;
+  font-weight: 600;
+  padding: $space-2;
+  color: $color-text;
+  background-color: $color-white;
+
+  /* Flag emoji spacing */
+  letter-spacing: 0.02em;
+}
+
+/* Variant: Mobile
+   ========================================================================== */
+
+.c-language-selector--mobile {
+  display: block;
+
+  .c-language-selector__select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Show on mobile only */
+  @media (min-width: $breakpoint-lg) {
+    display: none;
+  }
+}
+
+/* Variant: Desktop
+   ========================================================================== */
+
+.c-language-selector--desktop {
+  display: none;
+
+  /* Show on desktop only */
+  @media (min-width: $breakpoint-lg) {
+    display: inline-block;
+  }
+}
+
+/* Color Variant: Primary (Emerald)
+   ========================================================================== */
+
+.c-language-selector--primary {
+  .c-language-selector__select {
+    color: $color-primary-700;
+    background-color: rgba($color-primary, 0.08);
+
+    &:hover {
+      background-color: rgba($color-primary, 0.12);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($color-primary, 0.2);
+      background-color: rgba($color-primary, 0.12);
+    }
+  }
+
+  &::after {
+    color: $color-primary-700;
+  }
+}
+
+/* Color Variant: Secondary (Terracotta)
+   ========================================================================== */
+
+.c-language-selector--secondary {
+  .c-language-selector__select {
+    color: $color-secondary-700;
+    background-color: rgba($color-secondary, 0.08);
+
+    &:hover {
+      background-color: rgba($color-secondary, 0.12);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($color-secondary, 0.2);
+      background-color: rgba($color-secondary, 0.12);
+    }
+  }
+
+  &::after {
+    color: $color-secondary-700;
+  }
+}
+
+/* Color Variant: Tertiary (Calm Blue)
+   ========================================================================== */
+
+.c-language-selector--tertiary {
+  .c-language-selector__select {
+    color: $color-tertiary-700;
+    background-color: rgba($color-tertiary, 0.08);
+
+    &:hover {
+      background-color: rgba($color-tertiary, 0.12);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($color-tertiary, 0.2);
+      background-color: rgba($color-tertiary, 0.12);
+    }
+  }
+
+  &::after {
+    color: $color-tertiary-700;
+  }
+}
+
+/* Color Variant: Neutral (Gray)
+   ========================================================================== */
+
+.c-language-selector--neutral {
+  .c-language-selector__select {
+    color: $color-neutral-700;
+    background-color: rgba($color-neutral, 0.08);
+
+    &:hover {
+      background-color: rgba($color-neutral, 0.12);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($color-neutral, 0.2);
+      background-color: rgba($color-neutral, 0.12);
+    }
+  }
+
+  &::after {
+    color: $color-neutral-700;
+  }
+}
+
+/* Accessibility Enhancements
+   ========================================================================== */
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .c-language-selector__select {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .c-language-selector,
+  .c-language-selector__select,
+  .c-language-selector::after {
+    transition: none;
+  }
+}
+
+/* Keyboard navigation - Enhanced focus indicator */
+.c-language-selector__select:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Print Styles
+   ========================================================================== */
+
+@media print {
+  .c-language-selector {
+    display: none;
+  }
+}
+
+/* Legacy Compatibility
+   ========================================================================== */
+
+/**
+ * Backward compatibility for old class names.
+ * Extend old classes to new BEM structure.
+ *
+ * Old classes:
+ * - .language-selector-mobile → .c-language-selector--mobile
+ * - .language-selector-desktop → .c-language-selector--desktop
+ * - .language-select-enhanced → .c-language-selector__select
+ */
+
+.language-selector-mobile {
+  @extend .c-language-selector;
+  @extend .c-language-selector--mobile;
+  @extend .c-language-selector--primary; /* Default to primary */
+}
+
+.language-selector-desktop {
+  @extend .c-language-selector;
+  @extend .c-language-selector--desktop;
+  @extend .c-language-selector--primary; /* Default to primary */
+}
+
+.language-select-enhanced {
+  @extend .c-language-selector__select;
+}

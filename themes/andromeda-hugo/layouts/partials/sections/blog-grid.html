@@ -1,100 +1,189 @@
-{{/* Blog Grid Section - Articles/resources with filtering */}}
-{{ $section := .Params.blog_grid }}
+{{/*
+==============================================================================
+Blog Grid Section - BEM Architecture
+==============================================================================
 
-{{ with $section }}
-  {{ if .enable }}
-    <section class="section blog-grid">
-      <div class="container-xxl position-relative">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="section-title text-center mb-5">
-              {{ if .subtitle }}
-                <p class="text-uppercase">{{ .subtitle | markdownify }}</p>
-              {{ end }}
-              {{ if .title }}
-                {{ partial "atoms/heading.html" (dict "level" "h2" "text" .title "class" "title") }}
-              {{ end }}
-              {{ if .description }}
-                <p>{{ .description | markdownify }}</p>
-              {{ end }}
-            </div>
+Section for displaying blog posts/articles/resources in a grid layout with
+optional category filtering, staggered animations, and load more functionality.
 
-            {{/* Category Filter Tabs */}}
-            {{ if .categories }}
-              <ul class="nav nav-pills justify-content-center mb-5" id="blogFilter" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link active" data-filter="all">
-                    {{ i18n "all" | default "Toate" }}
-                  </button>
-                </li>
-                {{ range .categories }}
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" data-filter="{{ .slug }}">{{ .name }}</button>
-                  </li>
-                {{ end }}
-              </ul>
-            {{ end }}
+DATA STRUCTURE:
+===============
+blog_grid:
+  enable: boolean
+  title: string (optional section title)
+  subtitle: string (optional section subtitle, uppercase)
+  description: string (optional section description)
+  columns: number (2, 3, or 4 - default: 3)
+  categories: array (optional filter categories)
+    - name: string (category display name)
+      slug: string (category identifier)
+  items: array of blog posts
+    - title: string (post title)
+      description: string (post excerpt)
+      image: string (post image path)
+      type: string (optional badge text, e.g., "Article", "Guide")
+      category: string (category slug for filtering)
+      link: string (post URL)
+      date: string (optional post date)
+      author: string (optional author name)
+      readTime: string (optional reading time)
+  show_load_more: boolean (show load more button)
+  button_variant: string (load more button variant, default: "primary")
 
-            {{/* Blog/Resource Grid */}}
-            <div class="row blog-items" id="blogItems">
-              {{ range $index, $item := .items }}
-                {{- $colorVariants := slice "primary" "secondary" -}}
-                {{- $colorVariant := index $colorVariants (mod $index 2) -}}
-                <div class="col-lg-4 col-md-6 mb-4 blog-item" data-category="{{ $item.category | default "all" }}">
-                  <div class="card card-v4 card-hover-lift h-100" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
-                    {{ if $item.image }}
-                      <div class="blog-card-image">
-                        {{ partial "atoms/image.html" (dict
-                          "src" $item.image
-                          "alt" $item.title
-                          "class" "card-img-top"
-                        ) }}
-                        {{ if $item.type }}
-                          <span class="badge bg-{{ $colorVariant }} blog-badge">{{ $item.type }}</span>
-                        {{ end }}
-                      </div>
-                    {{ end }}
-                    <div class="card-body">
-                      {{ if $item.title }}
-                        {{ partial "atoms/heading.html" (dict
-                          "level" "h4"
-                          "text" $item.title
-                          "class" "card-title"
-                          "colorVariant" $colorVariant
-                        ) }}
-                      {{ end }}
-                      {{ if $item.description }}
-                        <p class="card-text">{{ $item.description | markdownify }}</p>
-                      {{ end }}
-                      {{ if $item.link }}
-                        {{ partial "atoms/button.html" (dict
-                          "text" (i18n "read_more" | default "Citește mai mult")
-                          "url" ($item.link | relLangURL)
-                          "variant" (printf "outline-%s" $colorVariant)
-                          "size" "sm"
-                        ) }}
-                      {{ end }}
-                    </div>
-                  </div>
-                </div>
-              {{ end }}
-            </div>
+MOLECULES USED:
+===============
+- blog-card.html (individual post card - already BEM refactored)
 
-            {{/* Load More Button */}}
-            {{ if .show_load_more }}
-              <div class="row mt-4">
-                <div class="col-lg-12 text-center">
-                  {{ partial "atoms/button.html" (dict
-                    "text" (i18n "load_more" | default "Încarcă mai multe")
-                    "variant" (.button_variant | default "primary")
-                    "id" "loadMoreBtn"
-                  ) }}
-                </div>
-              </div>
-            {{ end }}
+ATOMS USED:
+===========
+- heading.html (section title)
+- button.html (read more, load more)
+- image.html (post images)
+
+BEM CLASSES:
+============
+.c-blog-grid                - Section wrapper
+.c-blog-grid__header        - Section header (title, subtitle, description)
+.c-blog-grid__subtitle      - Section subtitle (uppercase text)
+.c-blog-grid__description   - Section description
+.c-blog-grid__filters       - Category filter tabs wrapper
+.c-blog-grid__filter        - Individual filter button
+.c-blog-grid__filter--active - Active filter modifier
+.c-blog-grid__grid          - Grid container for cards
+.c-blog-grid__grid--2col    - 2-column grid modifier
+.c-blog-grid__grid--3col    - 3-column grid modifier (default)
+.c-blog-grid__grid--4col    - 4-column grid modifier
+.c-blog-grid__item          - Grid item wrapper for blog card
+.c-blog-grid__load-more     - Load more button wrapper
+
+FEATURES:
+=========
+- CSS Grid layout (2/3/4 columns configurable)
+- Category filtering (JavaScript-based)
+- Staggered entrance animations (fadeInUp)
+- Hover effects (lift + image zoom + gradient overlay)
+- Load more functionality (JavaScript integration)
+- Responsive (columns reduce on smaller screens)
+- Blog card molecule composition
+- Full atom integration
+
+USAGE EXAMPLE:
+==============
+```yaml
+sections:
+  - type: "blog-grid"
+
+blog_grid:
+  enable: true
+  title: "Latest Articles"
+  subtitle: "Resources"
+  description: "Evidence-based insights on mental health and well-being"
+  columns: 3
+  categories:
+    - name: "All"
+      slug: "all"
+    - name: "Anxiety"
+      slug: "anxiety"
+    - name: "Depression"
+      slug: "depression"
+  items:
+    - title: "Understanding CBT Techniques"
+      description: "Learn how Cognitive Behavioral Therapy can help manage anxiety and depression effectively."
+      image: "images/blog/cbt-techniques.jpg"
+      type: "Article"
+      category: "anxiety"
+      link: "/blog/understanding-cbt"
+      date: "2025-01-15"
+      author: "Dr. Alexandra Barbu"
+      readTime: "5 min"
+    - title: "Mindfulness for Beginners"
+      description: "A practical guide to starting your mindfulness practice today."
+      image: "images/blog/mindfulness.jpg"
+      type: "Guide"
+      category: "depression"
+      link: "/blog/mindfulness-beginners"
+  show_load_more: true
+  button_variant: "primary"
+```
+
+VERSION: 5.0.1 (BEM Refactor)
+UPDATED: 2025-11-20
+==============================================================================
+*/}}
+
+{{- $section := .Params.blog_grid -}}
+
+{{- with $section -}}
+  {{- if .enable -}}
+    <section class="c-blog-grid">
+      <div class="o-container">
+        {{/* Section Header */}}
+        {{- if or .title .subtitle .description -}}
+          <div class="c-blog-grid__header">
+            {{- if .subtitle -}}
+              <p class="c-blog-grid__subtitle">{{ .subtitle | markdownify }}</p>
+            {{- end -}}
+            {{- if .title -}}
+              {{ partial "atoms/heading.html" (dict
+                "level" "h2"
+                "text" .title
+                "variant" "section"
+                "align" "center"
+              ) }}
+            {{- end -}}
+            {{- if .description -}}
+              <p class="c-blog-grid__description">{{ .description | markdownify }}</p>
+            {{- end -}}
           </div>
+        {{- end -}}
+
+        {{/* Category Filter Tabs */}}
+        {{- with .categories -}}
+          <div class="c-blog-grid__filters" role="tablist" aria-label="{{ T "filter_by_category" | default "Filter by category" }}">
+            <button class="c-blog-grid__filter c-blog-grid__filter--active" data-filter="all" role="tab" aria-selected="true">
+              {{ T "all" | default "All" }}
+            </button>
+            {{- range . -}}
+              <button class="c-blog-grid__filter" data-filter="{{ .slug }}" role="tab" aria-selected="false">
+                {{ .name }}
+              </button>
+            {{- end -}}
+          </div>
+        {{- end -}}
+
+        {{/* Blog Grid */}}
+        {{- $columns := .columns | default 3 -}}
+        {{- $gridClass := printf "c-blog-grid__grid c-blog-grid__grid--%dcol" $columns -}}
+        <div class="{{ $gridClass }}" id="blogItems">
+          {{- range $index, $item := .items -}}
+            <div class="c-blog-grid__item" data-category="{{ $item.category | default "all" }}">
+              {{ partial "molecules/blog-card.html" (dict
+                "title" $item.title
+                "description" $item.description
+                "image" $item.image
+                "type" $item.type
+                "category" $item.category
+                "link" $item.link
+                "date" $item.date
+                "author" $item.author
+                "readTime" $item.readTime
+                "index" $index
+              ) }}
+            </div>
+          {{- end -}}
         </div>
+
+        {{/* Load More Button */}}
+        {{- if .show_load_more -}}
+          <div class="c-blog-grid__load-more">
+            {{ partial "atoms/button.html" (dict
+              "text" (T "load_more" | default "Load More")
+              "variant" (.button_variant | default "primary")
+              "id" "loadMoreBtn"
+            ) }}
+          </div>
+        {{- end -}}
       </div>
     </section>
-  {{ end }}
-{{ end }}
+  {{- end -}}
+{{- end -}}

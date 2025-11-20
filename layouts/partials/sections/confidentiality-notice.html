@@ -1,0 +1,170 @@
+{{- /*
+================================================================================
+SECTION: Confidentiality Notice
+================================================================================
+Displays formal/legal confidentiality information, limitations, and exceptions.
+
+PARAMETERS:
+  .title          (string)  Section heading
+  .subtitle       (string)  Optional subtitle
+  .intro          (string)  Optional intro text (markdown supported)
+  .variant        (string)  Color variant: primary|secondary|tertiary|neutral (default: primary)
+  .notices        (array)   Array of notice objects (info-box molecules)
+  .limits         (array)   Optional array of limitation strings
+  .link_text      (string)  Optional link text (e.g., "Read Full Privacy Policy")
+  .link_url       (string)  Optional link URL
+
+NOTICE OBJECT:
+  .type           (string)  Notice type: tip|note|warning|important|success
+  .title          (string)  Notice title
+  .content        (string)  Notice content (markdown supported)
+  .icon           (string)  Optional icon name (overrides default type icon)
+
+USAGE EXAMPLE:
+---
+sections:
+  - type: "confidentiality-notice"
+
+confidentiality_notice:
+  title: "Limitele Confidențialității"
+  subtitle: "Informații importante despre protecția datelor"
+  intro: "Confidențialitatea este protejată de lege, dar există situații limitate în care informațiile pot fi dezvăluite."
+  variant: "primary"
+  notices:
+    - type: "important"
+      title: "Protecție Legală"
+      content: "Toate informațiile din terapie sunt protejate de **secretul profesional** conform Codului Deontologic al Psihologilor."
+    - type: "warning"
+      title: "Excepții Legale"
+      content: "Confidențialitatea poate fi încălcată doar în situații de **pericol iminent** pentru client sau alte persoane, conform legii."
+    - type: "note"
+      title: "Minori și Tutori"
+      content: "Pentru clienți minori, părinții/tutorii au dreptul legal la informații despre procesul terapeutic, cu respectarea intimității clientului."
+  limits:
+    - "Pericol iminent de suicid sau omucidere"
+    - "Abuz asupra minorilor sau persoanelor vulnerabile"
+    - "Ordin judecătoresc sau citație"
+    - "Evaluare psihologică solicitată de instanță"
+  link_text: "Citește Politica Completă de Confidențialitate"
+  link_url: "/politica-confidentialitate"
+---
+
+MOLECULE DEPENDENCIES:
+- atoms/heading.html
+- atoms/link.html
+- atoms/icon.html
+- molecules/info-box.html
+
+SCSS:
+- assets/scss/06-components/_confidentiality-notice.scss
+
+BEM CLASSES:
+- .c-confidentiality-notice             Block
+- .c-confidentiality-notice__header     Section header
+- .c-confidentiality-notice__intro      Intro text
+- .c-confidentiality-notice__notices    Notices wrapper
+- .c-confidentiality-notice__limits     Limits wrapper
+- .c-confidentiality-notice__limits-list Limits list (ul)
+- .c-confidentiality-notice__link       Link wrapper
+
+ACCESSIBILITY:
+- Semantic HTML (section, ul)
+- Heading hierarchy
+- Keyboard navigable
+- Screen reader friendly
+- High contrast support
+
+VERSION: 1.0.0 (2025-11-20)
+AUTHOR: Claude Code
+*/ -}}
+
+{{- $section := .Params.confidentiality_notice -}}
+{{- if $section -}}
+
+{{- $variant := $section.variant | default "primary" -}}
+{{- $notices := $section.notices -}}
+{{- $limits := $section.limits -}}
+
+<section class="c-confidentiality-notice c-confidentiality-notice--{{ $variant }}" id="confidentiality-notice">
+  <div class="o-container">
+
+    {{- /* Section Header */ -}}
+    {{- if or $section.title $section.subtitle -}}
+    <div class="c-confidentiality-notice__header">
+      {{- if $section.title -}}
+        {{ partial "atoms/heading.html" (dict
+          "text" $section.title
+          "level" 2
+          "variant" $variant
+          "alignment" "center"
+        ) }}
+      {{- end -}}
+
+      {{- if $section.subtitle -}}
+      <p class="c-confidentiality-notice__subtitle">{{ $section.subtitle }}</p>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    {{- /* Optional Intro Text */ -}}
+    {{- if $section.intro -}}
+    <div class="c-confidentiality-notice__intro">
+      {{- if findRE "^<p>" $section.intro -}}
+        {{- $section.intro | safeHTML -}}
+      {{- else -}}
+        <p>{{ $section.intro | markdownify }}</p>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    {{- /* Notices Grid */ -}}
+    {{- if $notices -}}
+    <div class="c-confidentiality-notice__notices">
+      {{- range $notices -}}
+        {{ partial "molecules/info-box.html" (dict
+          "type" .type
+          "title" .title
+          "content" .content
+          "icon" .icon
+          "variant" $variant
+        ) }}
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    {{- /* Optional Limits List */ -}}
+    {{- if $limits -}}
+    <div class="c-confidentiality-notice__limits">
+      <h3 class="c-confidentiality-notice__limits-title">
+        {{ partial "atoms/icon.html" (dict
+          "icon" "exclamation-triangle"
+          "size" "md"
+          "variant" "warning"
+        ) }}
+        <span>Situații în care confidențialitatea poate fi limitată:</span>
+      </h3>
+      <ul class="c-confidentiality-notice__limits-list">
+        {{- range $limits -}}
+        <li>{{ . }}</li>
+        {{- end -}}
+      </ul>
+    </div>
+    {{- end -}}
+
+    {{- /* Optional Link to Full Policy */ -}}
+    {{- if and $section.link_text $section.link_url -}}
+    <div class="c-confidentiality-notice__link">
+      {{ partial "atoms/link.html" (dict
+        "text" $section.link_text
+        "url" $section.link_url
+        "variant" $variant
+        "icon" "arrow-right"
+        "icon_position" "right"
+      ) }}
+    </div>
+    {{- end -}}
+
+  </div>
+</section>
+
+{{- end -}}

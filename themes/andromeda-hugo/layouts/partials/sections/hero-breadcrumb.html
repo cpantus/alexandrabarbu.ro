@@ -1,36 +1,101 @@
-{{/* Hero Breadcrumb Section - Shared across pages */}}
-{{/* Uses design tokens for section padding via .page-header class */}}
-{{/* Compositional purity: Uses atoms/heading.html for h1 */}}
-<section class="page-header">
-  <div class="container-xxl position-relative">
-    <div class="row align-items-center">
-      <div class="col-lg-6">
-        <div class="section-title text-center text-lg-start mb-0">
-          {{/* Use atoms/heading.html for consistent typography */}}
-          {{ partial "atoms/heading.html" (dict "text" .Title "level" "h1" "class" "mb-3" "colorVariant" "primary") }}
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb justify-content-center justify-content-lg-start">
-              <li class="breadcrumb-item">
-                <a href="{{ "/" | relLangURL }}">{{ i18n "home" | default "Home" }}</a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">
-                {{ .Title }}
-              </li>
-            </ol>
-          </nav>
-        </div>
+{{/*
+  Hero Breadcrumb Section - Page header with title and breadcrumb navigation
+
+  Usage:
+    Add to page front matter:
+    ---
+    sections:
+      - type: "hero-breadcrumb"
+    ---
+
+  Optional parameters in front matter:
+    hero_breadcrumb:
+      subtitle: "Optional subtitle text"
+      variant: "primary|secondary|tertiary|neutral" (default: primary)
+      breadcrumb_variant: "primary|secondary|tertiary|neutral" (default: neutral)
+      show_breadcrumb: true|false (default: true)
+      hero_image: "images/hero.jpg" (optional custom image)
+
+  Features:
+    - BEM structure (.c-hero-breadcrumb)
+    - Uses heading atom for h1
+    - Uses breadcrumb molecule for navigation
+    - Uses image atom for hero image
+    - Responsive layout (stacked mobile, side-by-side desktop)
+    - Optional subtitle support
+    - Color variant support
+    - Auto-generated breadcrumb from current page
+
+  Example:
+    hero_breadcrumb:
+      subtitle: "Our Services"
+      variant: "primary"
+      hero_image: "images/services-hero.jpg"
+*/}}
+
+{{- $section := .Params.hero_breadcrumb -}}
+{{- $variant := "primary" -}}
+{{- $breadcrumbVariant := "neutral" -}}
+{{- $showBreadcrumb := true -}}
+{{- $subtitle := "" -}}
+{{- $heroImage := .Params.hero_image -}}
+
+{{/* Override with section params if provided */}}
+{{- if $section -}}
+  {{- $variant = $section.variant | default $variant -}}
+  {{- $breadcrumbVariant = $section.breadcrumb_variant | default $breadcrumbVariant -}}
+  {{- $showBreadcrumb = $section.show_breadcrumb | default $showBreadcrumb -}}
+  {{- $subtitle = $section.subtitle | default $subtitle -}}
+  {{- $heroImage = $section.hero_image | default $heroImage -}}
+{{- end -}}
+
+<section class="c-hero-breadcrumb c-hero-breadcrumb--{{ $variant }}">
+  <div class="c-hero-breadcrumb__container o-container">
+    <div class="c-hero-breadcrumb__grid">
+      {{/* Content column */}}
+      <div class="c-hero-breadcrumb__content">
+        {{/* Optional subtitle */}}
+        {{- if $subtitle -}}
+          <p class="c-hero-breadcrumb__subtitle">{{ $subtitle | markdownify }}</p>
+        {{- end -}}
+
+        {{/* Page title using heading atom */}}
+        {{ partial "atoms/heading.html" (dict
+          "text" .Title
+          "level" "h1"
+          "class" "c-hero-breadcrumb__title"
+          "variant" $variant
+        ) }}
+
+        {{/* Breadcrumb navigation using molecule */}}
+        {{- if $showBreadcrumb -}}
+          <div class="c-hero-breadcrumb__breadcrumb">
+            {{ partial "molecules/breadcrumb.html" (dict
+              "variant" $breadcrumbVariant
+              "Title" .Title
+            ) }}
+          </div>
+        {{- end -}}
       </div>
-      <div class="col-lg-6">
-        <div class="hero-shapes">
-          {{ with .Params.hero_image }}
-          {{/* Use atoms/image.html for consistent image handling */}}
-          {{ partial "atoms/image.html" (dict "src" . "alt" $.Title "class" "img-fluid") }}
-          {{ else }}
-          {{/* Decorative SVG shapes - inline is appropriate for simple graphics */}}
-          <img src="{{ "images/shapes/shape-1.svg" | relURL }}" alt="shape" class="shape-1">
-          <img src="{{ "images/shapes/shape-2.svg" | relURL }}" alt="shape" class="shape-2">
-          {{ end }}
-        </div>
+
+      {{/* Media column */}}
+      <div class="c-hero-breadcrumb__media">
+        {{- if $heroImage -}}
+          {{/* Custom hero image using image atom */}}
+          <div class="c-hero-breadcrumb__image">
+            {{ partial "atoms/image.html" (dict
+              "src" $heroImage
+              "alt" .Title
+              "class" "c-hero-breadcrumb__img"
+            ) }}
+          </div>
+        {{- else -}}
+          {{/* Decorative SVG shapes */}}
+          <div class="c-hero-breadcrumb__shapes" aria-hidden="true">
+            <img src="{{ "images/shapes/shape-1.svg" | relURL }}" alt="" class="c-hero-breadcrumb__shape c-hero-breadcrumb__shape--1">
+            <img src="{{ "images/shapes/shape-2.svg" | relURL }}" alt="" class="c-hero-breadcrumb__shape c-hero-breadcrumb__shape--2">
+          </div>
+        {{- end -}}
       </div>
     </div>
   </div>

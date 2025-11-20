@@ -1,0 +1,258 @@
+/* ==========================================================================
+   #LOGO
+   ========================================================================== */
+
+/**
+ * Logo Molecule
+ *
+ * Site logo (inline SVG) with flexible sizing, colors, and optional linking.
+ * Supports 4 semantic color variants and 3 size variants.
+ *
+ * BEM Structure:
+ * - .c-logo                         → Container
+ * - .c-logo--linked                 → Linked variant modifier
+ * - .c-logo--primary                → Primary color variant
+ * - .c-logo--secondary              → Secondary color variant
+ * - .c-logo--tertiary               → Tertiary color variant
+ * - .c-logo--neutral                → Neutral color variant
+ * - .c-logo--sm                     → Small size variant (150px)
+ * - .c-logo--md                     → Medium size variant (200px, default)
+ * - .c-logo--lg                     → Large size variant (300px)
+ * - .c-logo__link                   → Link wrapper element
+ * - .c-logo__svg                    → SVG element
+ *
+ * Usage:
+ *   <div class="c-logo c-logo--primary c-logo--md">
+ *     <svg class="c-logo__svg">...</svg>
+ *   </div>
+ *
+ * Design Tokens:
+ * - Colors: $color-primary, $color-secondary, $color-tertiary, $color-neutral
+ * - Transitions: $transition-base (250ms)
+ * - Spacing: 8pt grid
+ * - Sizes: 150px (sm), 200px (md), 300px (lg)
+ *
+ * Features:
+ * - Inline SVG with currentColor for theming
+ * - Responsive scaling
+ * - Optional link wrapper
+ * - 4 color variants
+ * - 3 size variants
+ * - Smooth transitions
+ * - Focus indicators
+ * - Accessibility support
+ */
+
+/* Container
+   ========================================================================== */
+
+.c-logo {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 0; /* Remove extra space below inline SVG */
+}
+
+/* SVG Element
+   ========================================================================== */
+
+.c-logo__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  /* Smooth transitions for color changes */
+  transition: color $transition-base, transform $transition-base;
+}
+
+/* Link Wrapper
+   ========================================================================== */
+
+.c-logo__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+  border-radius: $border-radius-sm;
+
+  /* Smooth transitions */
+  transition: opacity $transition-base, transform $transition-base;
+
+  /* Hover effect */
+  &:hover {
+    opacity: 0.85;
+
+    .c-logo__svg {
+      transform: scale(1.02);
+    }
+  }
+
+  /* Focus state */
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.2);
+  }
+
+  &:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 4px;
+  }
+
+  /* Active/pressed state */
+  &:active {
+    opacity: 0.7;
+
+    .c-logo__svg {
+      transform: scale(0.98);
+    }
+  }
+}
+
+/* Size Variant: Small (150px)
+   ========================================================================== */
+
+.c-logo--sm {
+  width: 150px;
+  height: auto;
+
+  /* Responsive: even smaller on mobile */
+  @media (max-width: $breakpoint-sm) {
+    width: 120px;
+  }
+}
+
+/* Size Variant: Medium (200px, default)
+   ========================================================================== */
+
+.c-logo--md {
+  width: 200px;
+  height: auto;
+
+  /* Responsive: smaller on mobile */
+  @media (max-width: $breakpoint-sm) {
+    width: 160px;
+  }
+}
+
+/* Size Variant: Large (300px)
+   ========================================================================== */
+
+.c-logo--lg {
+  width: 300px;
+  height: auto;
+
+  /* Responsive: smaller on tablet */
+  @media (max-width: $breakpoint-md) {
+    width: 240px;
+  }
+
+  /* Responsive: even smaller on mobile */
+  @media (max-width: $breakpoint-sm) {
+    width: 200px;
+  }
+}
+
+/* Color Variant: Primary (Emerald)
+   ========================================================================== */
+
+.c-logo--primary {
+  color: $color-primary;
+
+  .c-logo__link:focus {
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.2);
+  }
+}
+
+/* Color Variant: Secondary (Terracotta)
+   ========================================================================== */
+
+.c-logo--secondary {
+  color: $color-secondary;
+
+  .c-logo__link:focus {
+    box-shadow: 0 0 0 3px rgba($color-secondary, 0.2);
+  }
+}
+
+/* Color Variant: Tertiary (Calm Blue)
+   ========================================================================== */
+
+.c-logo--tertiary {
+  color: $color-tertiary;
+
+  .c-logo__link:focus {
+    box-shadow: 0 0 0 3px rgba($color-tertiary, 0.2);
+  }
+}
+
+/* Color Variant: Neutral (Gray)
+   ========================================================================== */
+
+.c-logo--neutral {
+  color: $color-neutral-700;
+
+  .c-logo__link:focus {
+    box-shadow: 0 0 0 3px rgba($color-neutral, 0.2);
+  }
+}
+
+/* Accessibility Enhancements
+   ========================================================================== */
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .c-logo {
+    /* Ensure sufficient contrast */
+    filter: contrast(1.2);
+  }
+
+  .c-logo__link:focus {
+    outline: 3px solid currentColor;
+    outline-offset: 4px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .c-logo,
+  .c-logo__svg,
+  .c-logo__link {
+    transition: none;
+  }
+
+  .c-logo__link:hover .c-logo__svg,
+  .c-logo__link:active .c-logo__svg {
+    transform: none;
+  }
+}
+
+/* Print Styles
+   ========================================================================== */
+
+@media print {
+  .c-logo {
+    /* Ensure logo prints in black for best contrast */
+    color: #000 !important;
+  }
+
+  .c-logo--sm {
+    width: 100px;
+  }
+
+  .c-logo--md {
+    width: 150px;
+  }
+
+  .c-logo--lg {
+    width: 200px;
+  }
+}
+
+/* Dark Mode Support (if implemented)
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  .c-logo--neutral {
+    /* Lighten neutral color for dark backgrounds */
+    color: $color-neutral-300;
+  }
+}

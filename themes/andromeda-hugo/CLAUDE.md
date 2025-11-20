@@ -78,16 +78,16 @@ assets/js/
 
 ---
 
-## Active Sections (21 total)
+## Active Sections (26 total)
 
-**Core (4)**: hero-breadcrumb, values-intro, blog-grid, cta-standard
-**Interactive (2)**: video-popup, faq-mini
+**Core (5)**: hero-breadcrumb, values-intro, blog-grid, cta-standard, feature-details
+**Interactive (4)**: video-popup, faq-mini, faq-content, method-tabs
 **Forms (3)**: contact-form-enhanced, signup-form-enhanced, newsletter-signup
-**Trust (3)**: contact-info-cards, contact-options, privacy-guarantee
-**Enhanced v4.0 (5)** ⭐: values-compass (NEW), feature-blocks, pricing-tables, stats-numbers, credentials-showcase
+**Trust (5)**: contact-info-cards, contact-options, privacy-guarantee, onboarding-steps, confidentiality-notice
+**Enhanced v4.0 (5)** ⭐: values-compass, feature-blocks, pricing-tables, stats-numbers, credentials-showcase
 **Specialized (4)**: first-session-timeline, service-faq-inline, testimonials-enhanced, problem-empathy
 
-**Deprecated (13)**: benefits-grid, service-highlights, timeline-process, onboarding-steps, method-tabs, related-services, feature-details, confidentiality-notice, professional-affiliations, therapist-match, office-gallery, job-listings, related-content
+**Deprecated (8)**: benefits-grid, service-highlights, timeline-process, related-services, professional-affiliations, therapist-match, office-gallery, job-listings
 
 ---
 
@@ -282,6 +282,6 @@ values_compass:
 
 ---
 
-**Status**: Production ✅ | 21 active sections | <3s builds | <520KB pages | WebP | Multilingual | **v5.0: ITCSS + BEM + v4.0 Design**
+**Status**: Production ✅ | 26 active sections | <3s builds | <520KB pages | WebP | Multilingual | **v5.0: ITCSS + BEM + v4.0 Design**
 
-**Version**: 5.0.0 | **Updated**: 2025-11-19 | **Hugo**: v0.148.1 extended | **Architecture**: ITCSS + BEM
+**Version**: 5.0.1 | **Updated**: 2025-11-20 | **Hugo**: v0.148.1 extended | **Architecture**: ITCSS + BEM

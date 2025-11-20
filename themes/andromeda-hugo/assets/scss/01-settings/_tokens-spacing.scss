@@ -16,7 +16,11 @@
 // Base: 8px grid (4px smallest increment)
 
 $space-0: 0;
+$space-05: 2px;      // 0.5x spacing (very small, same as quarter)
+$space-quarter: 2px; // Quarter spacing (rarely used)
+$space-half: 4px;    // Half spacing (same as space-1)
 $space-1: 4px;       // Minimum spacing
+$space-1-5: 6px;     // 1.5x spacing (between 1 and 2)
 $space-2: 8px;       // Atom-to-atom gap
 $space-3: 12px;      // Atom internal padding (buttons, inputs)
 $space-4: 16px;      // Molecule internal padding (cards)
@@ -51,6 +55,23 @@ $breakpoint-sm: 576px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
+
+// ----------------------------------
+// Semantic Spacing Mappings
+// ----------------------------------
+// Section padding (vertical)
+$section-padding-y: $space-24;         // 96px (desktop)
+$section-padding-y-mobile: $space-16;  // 64px (mobile)
+$section-padding-x: 0;                 // Horizontal (handled by container)
+
+// Card padding
+$card-padding: $space-4;               // 16px (standard card padding)
+$card-padding-large: $space-6;         // 24px (large cards)
+
+// Grid gaps
+$grid-gap: $space-6;                   // 24px (standard grid gap)
+$grid-gap-small: $space-4;             // 16px (compact grid)
+$grid-gap-large: $space-8;             // 32px (spacious grid)
 
 // ==================================
 // END OF SPACING TOKENS

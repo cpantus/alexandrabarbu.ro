@@ -1,0 +1,218 @@
+// ============================================================================
+// COMPONENT: Onboarding Steps Section
+// ============================================================================
+// Displays client onboarding/intake process timeline.
+//
+// BEM Structure:
+//   .c-onboarding-steps                Block
+//   .c-onboarding-steps__header        Section header wrapper
+//   .c-onboarding-steps__subtitle      Subtitle text
+//   .c-onboarding-steps__intro         Intro text wrapper
+//   .c-onboarding-steps__grid          Steps grid (ol)
+//   .c-onboarding-steps__item          Individual step (li)
+//   .c-onboarding-steps__cta           CTA wrapper
+//
+// Modifiers:
+//   .c-onboarding-steps--primary       Emerald color variant
+//   .c-onboarding-steps--secondary     Terracotta color variant
+//   .c-onboarding-steps--tertiary      Tertiary color variant
+//   .c-onboarding-steps--neutral       Neutral gray variant
+//
+// Dependencies:
+// - Design tokens (colors, spacing, typography)
+// - molecules/process-step.html
+// - atoms/heading.html
+// - atoms/button.html
+//
+// VERSION: 1.0.0 (2025-11-20)
+// ============================================================================
+
+// ----------------------------------------------------------------------------
+// Block
+// ----------------------------------------------------------------------------
+.c-onboarding-steps {
+  padding: $space-12 0; // 96px top/bottom
+  background-color: $color-bg-section;
+
+  // Tablet
+  @media (max-width: $breakpoint-lg - 1) {
+    padding: $space-10 0; // 80px
+  }
+
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    padding: $space-8 0; // 64px
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Header
+// ----------------------------------------------------------------------------
+.c-onboarding-steps__header {
+  text-align: center;
+  margin-bottom: $space-6; // 48px
+
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-4; // 32px
+  }
+}
+
+.c-onboarding-steps__subtitle {
+  font-family: $font-family-sans;
+  font-size: $font-size-lg; // 18px
+  font-weight: 400;
+  color: $color-text-secondary;
+  line-height: $line-height-normal;
+  margin-top: $space-2; // 16px
+  margin-bottom: 0;
+
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-base; // 16px
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Intro Text
+// ----------------------------------------------------------------------------
+.c-onboarding-steps__intro {
+  max-width: 48rem; // 768px
+  margin: 0 auto $space-8; // 0 auto 64px
+  text-align: center;
+
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-6; // 48px
+  }
+
+  p {
+    font-family: $font-family-sans;
+    font-size: $font-size-lg; // 18px
+    font-weight: 400;
+    color: $color-text-secondary;
+    line-height: $line-height-relaxed;
+    margin: 0;
+
+    // Mobile
+    @media (max-width: $breakpoint-md - 1) {
+      font-size: $font-size-base; // 16px
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Steps Grid
+// ----------------------------------------------------------------------------
+.c-onboarding-steps__grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $space-6; // 48px
+  max-width: 75rem; // 1200px
+  margin: 0 auto;
+
+  // Tablet (2 columns)
+  @media (max-width: $breakpoint-lg - 1) and (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-4; // 32px
+  }
+
+  // Mobile (1 column)
+  @media (max-width: $breakpoint-md - 1) {
+    grid-template-columns: 1fr;
+    gap: $space-4; // 32px
+  }
+}
+
+.c-onboarding-steps__item {
+  // No styles needed - process-step molecule handles all styling
+}
+
+// ----------------------------------------------------------------------------
+// CTA
+// ----------------------------------------------------------------------------
+.c-onboarding-steps__cta {
+  text-align: center;
+  margin-top: $space-8; // 64px
+
+  // Tablet
+  @media (max-width: $breakpoint-lg - 1) {
+    margin-top: $space-6; // 48px
+  }
+
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    margin-top: $space-6; // 48px
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Color Variants
+// ----------------------------------------------------------------------------
+// Variants primarily affect heading and button atoms, not section itself
+// Process-step molecules inherit variant prop from section
+
+.c-onboarding-steps--primary {
+  // Emerald variant (default) - no special section styles needed
+}
+
+.c-onboarding-steps--secondary {
+  // Terracotta variant - no special section styles needed
+}
+
+.c-onboarding-steps--tertiary {
+  // Tertiary variant - no special section styles needed
+}
+
+.c-onboarding-steps--neutral {
+  // Neutral gray variant - no special section styles needed
+}
+
+// ----------------------------------------------------------------------------
+// Accessibility Enhancements
+// ----------------------------------------------------------------------------
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .c-onboarding-steps__subtitle,
+  .c-onboarding-steps__intro p {
+    color: $color-text-primary;
+    font-weight: 500;
+  }
+}
+
+// Print styles
+@media print {
+  .c-onboarding-steps {
+    padding: 2rem 0;
+    page-break-inside: avoid;
+  }
+
+  .c-onboarding-steps__header {
+    margin-bottom: 1.5rem;
+  }
+
+  .c-onboarding-steps__intro {
+    margin-bottom: 1.5rem;
+  }
+
+  .c-onboarding-steps__grid {
+    gap: 1.5rem;
+  }
+
+  .c-onboarding-steps__cta {
+    display: none; // Hide CTA in print
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Legacy Compatibility (if needed)
+// ----------------------------------------------------------------------------
+// Map old class names to new BEM structure for backward compatibility
+
+.onboarding-steps-section {
+  @extend .c-onboarding-steps;
+}

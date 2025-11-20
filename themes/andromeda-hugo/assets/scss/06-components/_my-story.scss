@@ -1,0 +1,187 @@
+// ==================================
+// My Story Section - BEM Component
+// ==================================
+//
+// Purpose: Personal narrative section with rich text and images
+// Features: Markdown content, pull quotes, image embeds
+// Layout: Single column with max-width for readability
+//
+// Version: 1.0.0
+// Updated: 2025-11-20
+//
+
+// ============================================================================
+// BLOCK: My Story Section
+// ============================================================================
+
+.c-my-story {
+  padding: var(--spacing-section-y) 0;
+  background: var(--color-surface-primary);
+}
+
+// ============================================================================
+// ELEMENT: Header
+// ============================================================================
+
+.c-my-story__header {
+  max-width: 800px;
+  margin: 0 auto var(--spacing-4xl);
+}
+
+.c-my-story__subtitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-secondary);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--spacing-xs);
+}
+
+.c-my-story__title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: 0;
+  font-family: var(--font-family-heading);
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+// ============================================================================
+// ELEMENT: Content Container
+// ============================================================================
+
+.c-my-story__container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+// ============================================================================
+// ELEMENT: Main Content (Markdown)
+// ============================================================================
+
+.c-my-story__content {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-3xl);
+
+  // Markdown elements
+  h2, h3, h4 {
+    font-family: var(--font-family-heading);
+    color: var(--color-text-primary);
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
+  }
+
+  h2 {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+  }
+
+  h3 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  p {
+    margin-bottom: var(--spacing-lg);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: var(--color-brand-primary);
+    text-decoration: underline;
+    transition: color var(--transition-fast);
+
+    &:hover {
+      color: var(--color-brand-secondary);
+    }
+  }
+
+  ul, ol {
+    margin-bottom: var(--spacing-lg);
+    padding-left: var(--spacing-xl);
+  }
+
+  li {
+    margin-bottom: var(--spacing-sm);
+  }
+}
+
+// ============================================================================
+// ELEMENT: Pull Quote
+// ============================================================================
+
+.c-my-story__pull-quote {
+  background: linear-gradient(
+    135deg,
+    rgba(77, 179, 128, 0.05) 0%,
+    rgba(204, 107, 73, 0.05) 100%
+  );
+  border-left: 4px solid var(--color-brand-primary);
+  padding: var(--spacing-xl) var(--spacing-2xl);
+  margin: var(--spacing-3xl) 0;
+  border-radius: var(--border-radius-md);
+}
+
+.c-my-story__quote-text {
+  font-size: var(--font-size-xl);
+  font-style: italic;
+  color: var(--color-text-primary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-md);
+  font-family: var(--font-family-heading);
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+.c-my-story__quote-author {
+  display: block;
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  font-style: normal;
+  font-weight: var(--font-weight-medium);
+}
+
+// ============================================================================
+// ELEMENT: Image
+// ============================================================================
+
+.c-my-story__image-wrapper {
+  margin: var(--spacing-3xl) 0;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.c-my-story__image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.c-my-story__image-caption {
+  margin-top: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  text-align: center;
+  font-style: italic;
+}
+
+// ============================================================================
+// ACCESSIBILITY
+// ============================================================================
+
+// Link focus styles
+.c-my-story__content a:focus {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}

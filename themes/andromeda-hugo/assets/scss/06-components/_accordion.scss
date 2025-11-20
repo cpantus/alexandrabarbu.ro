@@ -1,0 +1,400 @@
+// ==================================
+// ACCORDION COMPONENT - BEM Architecture
+// ==================================
+//
+// Purpose: Reusable collapsible accordion molecule (vanilla JS)
+// Features: Glassmorphism, smooth animations, color variants, accessible
+//
+// Last Updated: 2025-11-20 (Phase 3 - Molecule Refactor)
+// Version: 1.0.0 (ITCSS + BEM)
+//
+// BEM Structure:
+// Block: .c-accordion
+// Elements: __item, __header, __button, __button-text, __button-icon, __panel, __content
+// Modifiers: --primary, --secondary, --tertiary, --neutral, --active
+//
+
+/*------------------------------------------------------------------
+  # Base Accordion Block
+-------------------------------------------------------------------*/
+
+.c-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3; // 24px (8pt grid)
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/*------------------------------------------------------------------
+  # Accordion Item
+-------------------------------------------------------------------*/
+
+.c-accordion__item {
+  background: $gradient-glass-light;
+  @include glassmorphism($radius-md, 0.95);
+  border-radius: $radius-md; // 12px
+  overflow: hidden;
+  box-shadow: $shadow-xs;
+  transition: all $duration-base $easing-medium;
+  position: relative;
+
+  // Gradient left border (variant-specific)
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px; // 4px (design accent)
+    background: transparent;
+    opacity: 0;
+    transition: opacity $duration-base $easing-medium;
+  }
+
+  // Hover effect
+  &:hover {
+    box-shadow: $shadow-sm;
+
+    &::before {
+      opacity: 0.6;
+    }
+  }
+
+  // Active (expanded) state
+  &--active {
+    box-shadow: $shadow-md;
+
+    &::before {
+      opacity: 1;
+    }
+
+    .c-accordion__button-icon {
+      transform: rotate(180deg);
+    }
+
+    .c-accordion__button-text {
+      color: $color-primary;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Accordion Header
+-------------------------------------------------------------------*/
+
+.c-accordion__header {
+  // Container for button
+}
+
+/*------------------------------------------------------------------
+  # Accordion Button
+-------------------------------------------------------------------*/
+
+.c-accordion__button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4; // 32px (8pt grid)
+  width: 100%;
+  padding: $space-5 $space-6; // 40px 48px (8pt grid)
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  transition: background $duration-fast $easing-subtle;
+  text-align: left;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  // Focus state for accessibility
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: -2px;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    padding: $space-4 $space-5; // 32px 40px
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $space-4; // 32px
+    gap: $space-3; // 24px
+  }
+}
+
+.c-accordion__button-text {
+  font-family: $font-primary; // Crimson Pro
+  font-size: $text-lg; // 1.125rem / 18px
+  font-weight: $weight-semibold; // 600
+  color: $gray-900;
+  line-height: $leading-snug; // 1.375
+  margin: 0;
+  flex: 1;
+  transition: color $duration-fast $easing-subtle;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $text-base; // 1rem / 16px
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: $text-sm; // 0.9375rem / 15px
+  }
+}
+
+.c-accordion__button-icon {
+  width: 32px; // 32px (4 × 8pt)
+  height: 32px; // 32px (4 × 8pt)
+  border-radius: $radius-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, $emerald-100 0%, $terracotta-100 100%);
+  flex-shrink: 0;
+  transition: transform $duration-base $easing-medium, background $duration-fast $easing-subtle;
+
+  i {
+    color: $color-primary;
+    font-size: $text-base; // 1rem
+    font-weight: $weight-bold; // 700
+    transition: color $duration-fast $easing-subtle;
+  }
+
+  .c-accordion__item--active & {
+    background: $gradient-warm-vibrant;
+
+    i {
+      color: white;
+    }
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    width: 28px; // 28px (~3.5 × 8pt)
+    height: 28px; // 28px
+
+    i {
+      font-size: $text-sm; // 0.875rem
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Accordion Panel (Collapsible Content)
+-------------------------------------------------------------------*/
+
+.c-accordion__panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height $duration-slow $easing-medium;
+
+  &--open {
+    max-height: 1000px; // Large enough for any content
+  }
+
+  // Accessibility: hidden state
+  &[hidden] {
+    display: block; // Override hidden for CSS animation
+    visibility: hidden;
+  }
+
+  &:not([hidden]) {
+    visibility: visible;
+  }
+}
+
+.c-accordion__content {
+  padding: 0 $space-6 $space-6 $space-6; // 0 48px 48px 48px (8pt grid)
+  border-top: 1px solid rgba($gray-300, 0.3);
+
+  // Typography for content
+  p {
+    font-family: $font-secondary; // Work Sans
+    font-size: $text-base; // 1rem
+    line-height: $leading-relaxed; // 1.625
+    color: $gray-700;
+    margin: $space-4 0 0; // 32px top margin
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul,
+  ol {
+    margin: $space-3 0; // 24px vertical margin
+    padding-left: $space-6; // 48px indent
+
+    li {
+      font-family: $font-secondary; // Work Sans
+      font-size: $text-sm; // 0.9375rem
+      line-height: $leading-normal; // 1.5
+      color: $gray-700;
+      margin-bottom: $space-2; // 16px between items
+    }
+  }
+
+  @media (max-width: $breakpoint-md) {
+    padding: 0 $space-5 $space-5 $space-5; // 0 40px 40px 40px
+
+    p {
+      font-size: $text-sm; // 0.9375rem
+    }
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: 0 $space-4 $space-4 $space-4; // 0 32px 32px 32px
+
+    p {
+      font-size: $text-xs; // 0.875rem
+      margin-top: $space-3; // 24px
+    }
+
+    ul,
+    ol {
+      padding-left: $space-5; // 40px
+
+      li {
+        font-size: $text-xs; // 0.875rem
+      }
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Color Variants (Block Modifiers)
+-------------------------------------------------------------------*/
+
+// Primary variant (emerald)
+.c-accordion--primary {
+  .c-accordion__item::before {
+    background: $gradient-icon-emerald;
+  }
+
+  .c-accordion__item--active .c-accordion__button-text {
+    color: $emerald-600;
+  }
+}
+
+// Secondary variant (terracotta)
+.c-accordion--secondary {
+  .c-accordion__item::before {
+    background: $gradient-icon-terracotta;
+  }
+
+  .c-accordion__item--active .c-accordion__button-text {
+    color: $terracotta-600;
+  }
+
+  .c-accordion__button-icon i {
+    color: $terracotta-600;
+  }
+}
+
+// Tertiary variant (navy)
+.c-accordion--tertiary {
+  .c-accordion__item::before {
+    background: linear-gradient(180deg, $navy-400 0%, $navy-600 100%);
+  }
+
+  .c-accordion__item--active .c-accordion__button-text {
+    color: $navy-600;
+  }
+
+  .c-accordion__button-icon i {
+    color: $navy-600;
+  }
+}
+
+// Neutral variant (gray)
+.c-accordion--neutral {
+  .c-accordion__item::before {
+    background: linear-gradient(180deg, $gray-400 0%, $gray-600 100%);
+  }
+
+  .c-accordion__item--active .c-accordion__button-text {
+    color: $gray-700;
+  }
+
+  .c-accordion__button-icon i {
+    color: $gray-600;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Legacy Compatibility (Bootstrap → BEM)
+-------------------------------------------------------------------*/
+
+// Bootstrap accordion classes mapped to BEM
+.accordion {
+  @extend .c-accordion;
+
+  &-flush {
+    // Flush variant removes outer borders (not implemented yet)
+  }
+}
+
+.accordion-item {
+  @extend .c-accordion__item;
+}
+
+.accordion-header {
+  @extend .c-accordion__header;
+}
+
+.accordion-button {
+  @extend .c-accordion__button;
+
+  &:not(.collapsed) {
+    // Active state
+    & + .accordion-collapse {
+      .accordion-body {
+        // Open state
+      }
+    }
+  }
+}
+
+.accordion-collapse {
+  @extend .c-accordion__panel;
+
+  &.show {
+    @extend .c-accordion__panel--open;
+  }
+}
+
+.accordion-body {
+  @extend .c-accordion__content;
+}
+
+// ==================================
+// USAGE GUIDE
+// ==================================
+//
+// Basic accordion:
+//   <div class="c-accordion">...</div>
+//
+// Accordion with variant:
+//   <div class="c-accordion c-accordion--secondary">...</div>
+//
+// Accordion item structure:
+//   <div class="c-accordion__item c-accordion__item--active">
+//     <div class="c-accordion__header">
+//       <button class="c-accordion__button">
+//         <span class="c-accordion__button-text">Question</span>
+//         <span class="c-accordion__button-icon">
+//           <i class="las la-angle-down"></i>
+//         </span>
+//       </button>
+//     </div>
+//     <div class="c-accordion__panel c-accordion__panel--open">
+//       <div class="c-accordion__content">
+//         <p>Answer content...</p>
+//       </div>
+//     </div>
+//   </div>
+//
+// VERSION HISTORY:
+// 1.0.0 (2025-11-20) - Initial accordion molecule with BEM + 8pt grid + Crimson Pro
+//

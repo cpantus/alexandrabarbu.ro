@@ -1,0 +1,292 @@
+/* ============================================
+   Service FAQ Inline Section Component
+   BEM: .c-service-faq
+   ============================================ */
+
+/**
+ * Service-specific FAQ section with rich features (icons, badges, highlights, notes)
+ * Uses vanilla-collapse.js for accordion functionality
+ *
+ * Version: 2.0.0 (BEM refactor)
+ * Last Updated: 2025-11-20
+ */
+
+/* ==================== BASE BLOCK ==================== */
+
+.c-service-faq {
+  padding-block: $space-12; // 96px desktop
+  background-color: $color-neutral-50;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==================== SECTION HEADER ==================== */
+
+.c-service-faq__header {
+  max-width: 800px;
+  margin-inline: auto;
+  margin-block-end: $space-8; // 64px
+  text-align: center;
+}
+
+.c-service-faq__subtitle {
+  font-family: $font-sans;
+  font-size: $font-sm; // 14px
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $color-primary-600;
+  margin-block-end: $space-2; // 16px
+}
+
+.c-service-faq__title {
+  margin-block-end: $space-3; // 24px
+}
+
+.c-service-faq__description {
+  font-family: $font-sans;
+  font-size: $font-lg; // 18px
+  line-height: 1.625;
+  color: $color-text-secondary;
+  margin: 0;
+}
+
+/* ==================== ACCORDION CONTAINER ==================== */
+
+.c-service-faq__accordion {
+  max-width: 1000px;
+  margin-inline: auto;
+  margin-block-end: $space-6; // 48px
+}
+
+/* ==================== FAQ ITEM ==================== */
+
+.c-service-faq__item {
+  background-color: $color-white;
+  border-radius: 12px;
+  margin-block-end: $space-3; // 24px
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.25s ease-out;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  &:last-child {
+    margin-block-end: 0;
+  }
+}
+
+.c-service-faq__item--active {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* ==================== QUESTION BUTTON ==================== */
+
+.c-service-faq__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: $space-2; // 16px
+  padding: $space-4; // 32px
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  font-family: $font-serif; // Crimson Pro
+  font-size: $font-lg; // 18px
+  font-weight: 600;
+  color: $color-text-primary;
+  transition: background-color 0.25s ease-out;
+
+  &:hover {
+    background-color: $color-neutral-50;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary-500;
+    outline-offset: 2px;
+  }
+}
+
+.c-service-faq__question-icon {
+  flex-shrink: 0;
+}
+
+.c-service-faq__question-text {
+  flex: 1;
+}
+
+.c-service-faq__question-badge {
+  flex-shrink: 0;
+  margin-inline-start: auto;
+}
+
+.c-service-faq__question-chevron {
+  flex-shrink: 0;
+  transition: transform 0.25s ease-out;
+
+  .c-service-faq__item--active & {
+    transform: rotate(180deg);
+  }
+}
+
+/* ==================== ANSWER PANEL ==================== */
+
+.c-service-faq__answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease-out;
+
+  &--open {
+    max-height: 2000px; // Large enough for content
+  }
+}
+
+.c-service-faq__answer-content {
+  padding: 0 $space-4 $space-4; // 0 32px 32px
+}
+
+.c-service-faq__answer-text {
+  font-family: $font-sans;
+  font-size: $font-base; // 16px
+  line-height: 1.625;
+  color: $color-text-secondary;
+  margin-block-end: $space-3; // 24px
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.c-service-faq__answer-highlights {
+  list-style: none;
+  padding: 0;
+  margin: $space-3 0; // 24px 0
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-2; // 16px
+    margin-block-end: $space-2; // 16px
+    font-family: $font-sans;
+    font-size: $font-base; // 16px
+    color: $color-text-secondary;
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+}
+
+.c-service-faq__answer-note {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-2; // 16px
+  padding: $space-3; // 24px
+  background-color: $color-neutral-50;
+  border-radius: 8px;
+  margin-block-start: $space-3; // 24px
+  font-family: $font-sans;
+  font-size: $font-sm; // 14px
+  font-style: italic;
+  color: $color-text-tertiary;
+}
+
+/* ==================== CONTACT NOTE ==================== */
+
+.c-service-faq__contact {
+  max-width: 900px;
+  margin-inline: auto;
+  margin-block-start: $space-6; // 48px
+}
+
+.c-service-faq__contact-cta {
+  display: flex;
+  justify-content: center;
+  margin-block-start: $space-3; // 24px
+}
+
+/* ==================== COLOR VARIANTS ==================== */
+
+.c-service-faq--primary .c-service-faq__subtitle {
+  color: $color-primary-600;
+}
+
+.c-service-faq--secondary {
+  background-color: mix($color-secondary-50, $color-white, 50%);
+
+  .c-service-faq__subtitle {
+    color: $color-secondary-600;
+  }
+}
+
+.c-service-faq--tertiary {
+  background-color: mix($color-tertiary-50, $color-white, 50%);
+
+  .c-service-faq__subtitle {
+    color: $color-tertiary-600;
+  }
+}
+
+.c-service-faq--neutral {
+  background-color: $color-white;
+
+  .c-service-faq__subtitle {
+    color: $color-neutral-700;
+  }
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: $breakpoint-lg - 1) {
+  .c-service-faq {
+    padding-block: $space-10; // 80px
+  }
+
+  .c-service-faq__header {
+    margin-block-end: $space-6; // 48px
+  }
+}
+
+@media (max-width: $breakpoint-md - 1) {
+  .c-service-faq {
+    padding-block: $space-8; // 64px
+  }
+
+  .c-service-faq__question {
+    padding: $space-3; // 24px
+    font-size: $font-base; // 16px
+  }
+
+  .c-service-faq__answer-content {
+    padding: 0 $space-3 $space-3; // 0 24px 24px
+  }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .c-service-faq__question-chevron,
+  .c-service-faq__answer {
+    transition: none;
+  }
+}
+
+@media print {
+  .c-service-faq {
+    padding-block: $space-4;
+    background-color: $color-white;
+  }
+
+  .c-service-faq__item--active .c-service-faq__answer {
+    max-height: none;
+  }
+}
+
+/* ==================== LEGACY COMPATIBILITY ==================== */
+
+.service-faq-inline {
+  @extend .c-service-faq;
+}

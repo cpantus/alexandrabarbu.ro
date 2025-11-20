@@ -272,11 +272,26 @@
 .icon-circle-glass {
   @extend .c-icon--glass;
 
-  &.icon-sm { @extend .c-icon--glass.c-icon--sm; }
-  &.icon-lg { @extend .c-icon--glass.c-icon--lg; }
-  &.icon-xl { @extend .c-icon--glass.c-icon--xl; }
-  &.icon-secondary { @extend .c-icon--glass.c-icon--secondary; }
-  &.icon-coral { @extend .c-icon--glass.c-icon--coral; }
+  &.icon-sm {
+    @extend .c-icon--glass;
+    @extend .c-icon--sm;
+  }
+  &.icon-lg {
+    @extend .c-icon--glass;
+    @extend .c-icon--lg;
+  }
+  &.icon-xl {
+    @extend .c-icon--glass;
+    @extend .c-icon--xl;
+  }
+  &.icon-secondary {
+    @extend .c-icon--glass;
+    @extend .c-icon--secondary;
+  }
+  &.icon-coral {
+    @extend .c-icon--glass;
+    @extend .c-icon--coral;
+  }
 }
 
 /**
@@ -285,9 +300,18 @@
 .icon-flat {
   @extend .c-icon--flat;
 
-  &.icon-secondary { @extend .c-icon--flat.c-icon--secondary; }
-  &.icon-coral { @extend .c-icon--flat.c-icon--coral; }
-  &.icon-sage { @extend .c-icon--flat.c-icon--sage; }
+  &.icon-secondary {
+    @extend .c-icon--flat;
+    @extend .c-icon--secondary;
+  }
+  &.icon-coral {
+    @extend .c-icon--flat;
+    @extend .c-icon--coral;
+  }
+  &.icon-sage {
+    @extend .c-icon--flat;
+    @extend .c-icon--sage;
+  }
 }
 
 /**

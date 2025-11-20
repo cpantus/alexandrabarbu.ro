@@ -1,30 +1,77 @@
-{{/* FAQ Section - Hugo Way with Shortcodes */}}
-{{ with .Params.faq_section }}
-<section class="section pt-0 faq-section">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        {{ with .title }}
-        <div class="text-center mb-5">
-          {{- $headingVariant := $.Params.faq_section.heading_color_variant | default "primary" -}}
-          {{ partial "atoms/heading.html" (dict "level" "h3" "text" . "class" "gradient-text" "colorVariant" $headingVariant) }}
-          {{ with $.Params.faq_section.subtitle }}
-          <p class="text-muted">{{ . }}</p>
-          {{ end }}
-        </div>
-        {{ end }}
+{{/*
+==============================================================================
+FAQ CONTENT SECTION - BEM Refactored
+==============================================================================
+FAQ section with accordion integration. Renders FAQ items from markdown content
+using shortcodes.
 
-        <div class="accordion faq-accordion faq-accordion-v4" id="faqAccordion">
-          {{/* FAQ content will be rendered from markdown using shortcodes */}}
-          {{ $.Content }}
-        </div>
-        
-        {{ with .footer_text }}
-        <div class="text-center mt-4">
-          <p class="text-muted">{{ . | markdownify }}</p>
-        </div>
+FEATURES:
+- Full BEM structure (.c-faq-section)
+- Integrates with accordion molecule
+- Renders FAQ from markdown content (Hugo shortcodes)
+- Optional subtitle and footer text
+- 4 color variants (primary, secondary, tertiary, neutral)
+- Centered layout with max-width
+- No Bootstrap dependencies
+
+USAGE:
+sections:
+  - type: "faq-content"
+
+faq_section:
+  title: "Întrebări frecvente"          # Required: Section title
+  subtitle: "Răspunsuri la cele mai..."  # Optional: Subtitle
+  heading_color_variant: "primary"       # Optional: primary|secondary|tertiary|neutral (default: primary)
+  footer_text: "Nu ai găsit răspunsul?"  # Optional: Footer message (supports markdown)
+
+CONTENT (in markdown):
+Use FAQ shortcode in page content to add questions/answers.
+
+DEPENDENCIES:
+- atoms/heading.html
+- molecules/accordion.html (indirectly via shortcodes)
+- _faq-content.scss
+
+VERSION: 2.0.0 (BEM Refactor)
+LAST UPDATED: 2025-11-20
+==============================================================================
+*/}}
+
+{{ with .Params.faq_section }}
+<section class="c-faq-section c-faq-section--{{ .heading_color_variant | default "primary" }}">
+  <div class="o-container">
+    <div class="c-faq-section__wrapper">
+
+      {{/* Section header */}}
+      {{ with .title }}
+      <div class="c-faq-section__header">
+        {{ partial "atoms/heading.html" (dict
+          "level" 3
+          "text" .
+          "class" "gradient-text"
+          "colorVariant" ($.Params.faq_section.heading_color_variant | default "primary")
+        ) }}
+
+        {{ with $.Params.faq_section.subtitle }}
+        <p class="c-faq-section__subtitle">{{ . }}</p>
         {{ end }}
       </div>
+      {{ end }}
+
+      {{/* FAQ accordion content from markdown */}}
+      <div class="c-faq-section__content">
+        <div class="accordion faq-accordion faq-accordion-v4" id="faqAccordion">
+          {{ $.Content }}
+        </div>
+      </div>
+
+      {{/* Footer text */}}
+      {{ with .footer_text }}
+      <div class="c-faq-section__footer">
+        <p class="c-faq-section__footer-text">{{ . | markdownify }}</p>
+      </div>
+      {{ end }}
+
     </div>
   </div>
 </section>

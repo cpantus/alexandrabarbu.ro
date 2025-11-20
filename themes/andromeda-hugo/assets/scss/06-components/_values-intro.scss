@@ -1,285 +1,237 @@
-/*
-  Values Intro Section - BEM Component
+/**
+ * Values Introduction Section
+ *
+ * Two-column layout with text content + image.
+ * Responsive: side-by-side desktop, stacked mobile.
+ *
+ * BEM Structure:
+ * - .c-values-intro (section block)
+ * - .c-values-intro__container (flexbox container)
+ * - .c-values-intro__content (text content wrapper)
+ * - .c-values-intro__subtitle (small text above title)
+ * - .c-values-intro__title (main heading - from heading atom)
+ * - .c-values-intro__description (description paragraph)
+ * - .c-values-intro__button (CTA button - from button atom)
+ * - .c-values-intro__image-wrapper (image side wrapper)
+ * - .c-values-intro__image (image - from image atom)
+ *
+ * Modifiers:
+ * - .c-values-intro--primary (emerald theme)
+ * - .c-values-intro--secondary (terracotta theme)
+ * - .c-values-intro--tertiary (calm blue theme)
+ * - .c-values-intro--neutral (gray theme)
+ *
+ * Features:
+ * - 8pt spacing grid
+ * - Flexbox two-column layout (50/50 split desktop)
+ * - Responsive breakpoints (stacks on tablet/mobile)
+ * - Color variant theming
+ * - WCAG AA accessibility
+ *
+ * Created: 2025-11-20 (Phase 5 refactor)
+ */
 
-  Modern BEM architecture with legacy compatibility
-  Part of Phase 3 ITCSS refactoring (Session 18)
-
-  Features:
-  - Gradient background overlay
-  - Glassmorphism cards for value items
-  - Staggered fade-in animations
-  - Enhanced CTA buttons with gradient
-  - Responsive layout (mobile-first)
-  - v4.0 design enhancements
-
-  Usage:
-  <section class="c-values-intro">
-    <div class="container">
-      <h2 class="c-values-intro__title">Title</h2>
-      <div class="c-values-intro__items">
-        <div class="c-values-intro__item">...</div>
-      </div>
-      <a href="#" class="c-values-intro__cta">CTA</a>
-    </div>
-  </section>
-*/
-
-/* ============================================
-   SECTION CONTAINER
-   ============================================ */
-
+//
+// Block
+//
 .c-values-intro {
-  padding: $space-12 0;
-  position: relative;
-  overflow: hidden;
+  padding: $space-12 0; // 96px vertical
+  background-color: $color-bg-page;
 
-  /* Gradient background overlay */
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: $gradient-healing-depth;
-    opacity: 0.04;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  /* Ensure content appears above overlay */
-  .container {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Compact modifier for reduced padding */
-  &--compact {
-    padding: $space-8 0;
-  }
-
-  /* Responsive padding adjustments */
-  @media (max-width: 767px) {
-    padding: $space-8 0;
-
-    &--compact {
-      padding: $space-6 0;
-    }
+  // Responsive: reduce vertical spacing on mobile
+  @media (max-width: $breakpoint-md - 1) {
+    padding: $space-8 0; // 64px vertical
   }
 }
 
-/* ============================================
-   SECTION TITLE
-   ============================================ */
-
-.c-values-intro__title {
-  text-align: center;
-  margin-bottom: $space-8;
-  color: $gray-900;
-
-  /* Fade-in animation */
-  @media (prefers-reduced-motion: no-preference) {
-    animation: fadeInUp 0.8s ease-out;
-  }
-
-  /* Responsive margin */
-  @media (max-width: 767px) {
-    margin-bottom: $space-6;
-  }
-}
-
-.c-values-intro__subtitle {
-  text-align: center;
-  color: $gray-600;
-  font-size: $text-lg;
-  margin-bottom: $space-6;
-  line-height: 1.6;
-
-  @media (max-width: 767px) {
-    font-size: $text-base;
-    margin-bottom: $space-5;
-  }
-}
-
-/* ============================================
-   VALUE ITEMS GRID
-   ============================================ */
-
-.c-values-intro__items {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: $space-6;
-  margin-bottom: $space-8;
-
-  /* Responsive gap adjustments */
-  @media (max-width: 767px) {
-    gap: $space-4;
-    margin-bottom: $space-6;
-  }
-
-  @media (max-width: 575px) {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ============================================
-   VALUE ITEM CARDS
-   ============================================ */
-
-.c-values-intro__item {
-  background: $gradient-glass-light;
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: $radius-xl;
-  padding: $space-6;
-  box-shadow: $shadow-glass;
-  transition: all 0.3s ease;
-
-  /* Staggered entrance animation */
-  @media (prefers-reduced-motion: no-preference) {
-    animation: fadeIn 0.6s ease-out backwards;
-
-    /* Stagger delays for first 6 items */
-    @for $i from 1 through 6 {
-      &:nth-child(#{$i}) {
-        animation-delay: #{$i * 0.1}s;
-      }
-    }
-  }
-
-  /* Hover effect - lift with shadow */
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: $shadow-warm-lg;
-  }
-
-  /* Responsive padding */
-  @media (max-width: 767px) {
-    padding: $space-5;
-  }
-
-  @media (max-width: 575px) {
-    padding: $space-4;
-  }
-}
-
-.c-values-intro__item-icon {
-  width: 48px;
-  height: 48px;
-  margin-bottom: $space-3;
+//
+// Container (flexbox two-column)
+//
+.c-values-intro__container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $space-4; // 32px horizontal
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: $space-8; // 64px gap between columns
 
-  svg,
-  i,
-  .las {
-    font-size: 32px;
-    color: $color-primary;
+  // Tablet: reduce gap
+  @media (max-width: $breakpoint-lg - 1) {
+    gap: $space-6; // 48px gap
   }
 
-  @media (max-width: 575px) {
-    width: 40px;
-    height: 40px;
+  // Mobile: stack vertically
+  @media (max-width: $breakpoint-md - 1) {
+    flex-direction: column;
+    gap: $space-6; // 48px gap between stacked items
+    padding: 0 $space-3; // 24px horizontal
+  }
+}
 
-    svg,
-    i,
-    .las {
-      font-size: 28px;
+//
+// Content (text side)
+//
+.c-values-intro__content {
+  flex: 1;
+  max-width: 560px;
+
+  // Mobile: full width
+  @media (max-width: $breakpoint-md - 1) {
+    max-width: 100%;
+  }
+}
+
+//
+// Subtitle (small text above title)
+//
+.c-values-intro__subtitle {
+  font-family: $font-family-sans;
+  font-size: $font-size-sm; // 14px
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color-text-muted;
+  margin: 0 0 $space-2 0; // 16px bottom margin
+
+  // Mobile: smaller size
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-xs; // 12px
+  }
+}
+
+//
+// Title (from heading atom)
+//
+.c-values-intro__title {
+  margin-bottom: $space-4; // 32px
+
+  // Mobile: reduce margin
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-3; // 24px
+  }
+}
+
+//
+// Description
+//
+.c-values-intro__description {
+  font-family: $font-family-sans;
+  font-size: $font-size-lg; // 18px
+  line-height: $line-height-normal; // 1.5
+  color: $color-text-secondary;
+  margin: 0 0 $space-4 0; // 32px bottom margin
+
+  // Mobile: smaller size
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-base; // 16px
+    margin-bottom: $space-3; // 24px
+  }
+}
+
+//
+// Button (from button atom)
+//
+.c-values-intro__button {
+  // Spacing handled by button component
+  // No additional styles needed
+}
+
+//
+// Image Wrapper (image side)
+//
+.c-values-intro__image-wrapper {
+  flex: 1;
+  max-width: 560px;
+
+  // Mobile: full width
+  @media (max-width: $breakpoint-md - 1) {
+    max-width: 100%;
+    order: -1; // Move image above text on mobile
+  }
+}
+
+//
+// Image (from image atom)
+//
+.c-values-intro__image {
+  width: 100%;
+  height: auto;
+  border-radius: $border-radius-lg; // 16px
+  box-shadow: $shadow-md;
+
+  // Hover effect
+  transition: transform $duration-base $easing-ease-out,
+    box-shadow $duration-base $easing-ease-out;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+
+  // Reduced motion: disable transform
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &:hover {
+      transform: none;
     }
   }
 }
 
-.c-values-intro__item-title {
-  font-size: $text-xl;
-  font-weight: $weight-semibold;
-  color: $gray-900;
-  margin-bottom: $space-2;
-  line-height: 1.3;
+//
+// Variant Modifiers (color theming)
+//
+.c-values-intro--primary {
+  // Emerald theme (default)
+  // Subtitle inherits primary color via heading atom variant
+}
 
-  @media (max-width: 767px) {
-    font-size: $text-lg;
+.c-values-intro--secondary {
+  // Terracotta theme
+  // Subtitle inherits secondary color via heading atom variant
+}
+
+.c-values-intro--tertiary {
+  // Calm blue theme
+  // Subtitle inherits tertiary color via heading atom variant
+}
+
+.c-values-intro--neutral {
+  // Gray theme
+  // Subtitle inherits neutral color via heading atom variant
+}
+
+//
+// Accessibility Enhancements
+//
+@media (prefers-contrast: high) {
+  .c-values-intro__subtitle {
+    color: $color-text-primary;
+  }
+
+  .c-values-intro__description {
+    color: $color-text-primary;
   }
 }
 
-.c-values-intro__item-description {
-  font-size: $text-base;
-  color: $gray-700;
-  line-height: 1.6;
+//
+// Print Styles
+//
+@media print {
+  .c-values-intro {
+    padding: $space-6 0;
+  }
 
-  @media (max-width: 767px) {
-    font-size: $text-sm;
+  .c-values-intro__image {
+    box-shadow: none;
   }
 }
 
-/* ============================================
-   CTA BUTTON
-   ============================================ */
-
-.c-values-intro__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: $space-3 $space-6;
-  background: $gradient-warm-vibrant;
-  color: #fff;
-  font-weight: $weight-semibold;
-  border-radius: $radius-lg;
-  box-shadow: $shadow-warm;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  margin: 0 auto;
-
-  /* Center the button */
-  &-wrapper {
-    text-align: center;
-  }
-
-  /* Hover effect - lift with enhanced shadow */
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: $shadow-warm-lg;
-    text-decoration: none;
-    color: #fff;
-  }
-
-  /* Active/pressed state */
-  &:active {
-    transform: translateY(0);
-  }
-
-  /* Responsive sizing */
-  @media (max-width: 575px) {
-    padding: $space-3 $space-5;
-    font-size: $text-sm;
-  }
-}
-
-/* ============================================
-   LEGACY COMPATIBILITY
-   ============================================ */
-
-/* Section wrapper */
-.values-section {
-  @extend .c-values-intro;
-}
-
-/* Section title */
-.values-section .section-title {
-  @extend .c-values-intro__title;
-}
-
-/* Value items grid */
-.values-items {
-  @extend .c-values-intro__items;
-}
-
-/* Value item cards */
-.value-item {
-  @extend .c-values-intro__item;
-}
-
-/* Enhanced button */
-.btn-enhanced {
-  @extend .c-values-intro__cta;
+//
+// Legacy Compatibility (if needed)
+//
+.values-intro,
+.section.pb-0 {
+  // Extend BEM class if legacy classes detected
+  // @extend .c-values-intro; (uncomment if needed)
 }

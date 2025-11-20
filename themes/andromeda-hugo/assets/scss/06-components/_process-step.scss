@@ -1,0 +1,203 @@
+// =============================================================================
+// Process Step Component
+// =============================================================================
+//
+// Description:
+//   Simplified step card for process flows and therapy timelines.
+//   Displays numbered step with title and description.
+//
+// BEM Structure:
+//   - Block: .c-process-step
+//   - Elements: __number, __number-text, __content, __title, __description
+//   - Modifiers: --primary, --secondary, --tertiary, --neutral, --success, --warning, --error, --info
+//
+// Dependencies:
+//   - Design Tokens: _tokens-colors.scss, _tokens-spacing.scss, _tokens-typography.scss
+//   - Atoms: .c-heading
+//
+// Version: 1.0.0
+// Last Updated: 2025-11-20
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Block: Process Step
+// -----------------------------------------------------------------------------
+
+.c-process-step {
+  // Layout
+  display: flex;
+  gap: $space-4; // 32px
+  align-items: flex-start;
+
+  // Spacing (8pt grid)
+  padding: $space-4; // 32px
+
+  // Responsive
+  @media (max-width: $breakpoint-sm) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: $space-3; // 24px
+    padding: $space-3; // 24px
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Element: Number
+// -----------------------------------------------------------------------------
+
+.c-process-step__number {
+  // Layout
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  // Sizing (8pt grid)
+  width: 64px; // 8 × 8pt
+  height: 64px; // 8 × 8pt
+
+  // Visual
+  border-radius: 50%;
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl; // 24px
+  font-weight: 600;
+
+  // Transitions
+  transition: transform $duration-base $ease-out;
+
+  // Responsive
+  @media (max-width: $breakpoint-sm) {
+    width: 56px; // 7 × 8pt
+    height: 56px; // 7 × 8pt
+    font-size: $font-size-xl; // 20px
+  }
+}
+
+.c-process-step__number-text {
+  display: block;
+}
+
+// -----------------------------------------------------------------------------
+// Element: Content
+// -----------------------------------------------------------------------------
+
+.c-process-step__content {
+  // Layout
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2; // 16px
+}
+
+// -----------------------------------------------------------------------------
+// Element: Title
+// -----------------------------------------------------------------------------
+
+.c-process-step__title {
+  // Typography (Crimson Pro serif)
+  font-family: $font-family-heading;
+  font-size: $font-size-xl; // 20px
+  font-weight: 600;
+  line-height: $line-height-snug; // 1.375
+
+  // Spacing
+  margin: 0;
+
+  // Responsive
+  @media (max-width: $breakpoint-sm) {
+    font-size: $font-size-lg; // 18px
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Element: Description
+// -----------------------------------------------------------------------------
+
+.c-process-step__description {
+  // Typography (Work Sans sans-serif)
+  font-family: $font-family-body;
+  font-size: $font-size-base; // 16px
+  font-weight: 400;
+  line-height: $line-height-normal; // 1.5
+  color: $color-text-secondary;
+
+  // Spacing
+  margin: 0;
+
+  // Responsive
+  @media (max-width: $breakpoint-sm) {
+    font-size: $font-size-sm; // 14px
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Modifiers: Color Variants
+// -----------------------------------------------------------------------------
+
+// Primary Variant (Emerald)
+.c-process-step--primary .c-process-step__number {
+  background: linear-gradient(135deg, $color-primary-400, $color-primary-600);
+  color: $color-white;
+}
+
+// Secondary Variant (Terracotta)
+.c-process-step--secondary .c-process-step__number {
+  background: linear-gradient(135deg, $color-secondary-400, $color-secondary-600);
+  color: $color-white;
+}
+
+// Tertiary Variant
+.c-process-step--tertiary .c-process-step__number {
+  background: linear-gradient(135deg, $color-tertiary-400, $color-tertiary-600);
+  color: $color-white;
+}
+
+// Neutral Variant
+.c-process-step--neutral .c-process-step__number {
+  background: linear-gradient(135deg, $color-neutral-300, $color-neutral-500);
+  color: $color-white;
+}
+
+// Success Variant
+.c-process-step--success .c-process-step__number {
+  background: linear-gradient(135deg, $color-success-400, $color-success-600);
+  color: $color-white;
+}
+
+// Warning Variant
+.c-process-step--warning .c-process-step__number {
+  background: linear-gradient(135deg, $color-warning-400, $color-warning-600);
+  color: $color-gray-900;
+}
+
+// Error Variant
+.c-process-step--error .c-process-step__number {
+  background: linear-gradient(135deg, $color-error-400, $color-error-600);
+  color: $color-white;
+}
+
+// Info Variant
+.c-process-step--info .c-process-step__number {
+  background: linear-gradient(135deg, $color-info-400, $color-info-600);
+  color: $color-white;
+}
+
+// -----------------------------------------------------------------------------
+// Accessibility Enhancements
+// -----------------------------------------------------------------------------
+
+// Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  .c-process-step__number {
+    transition: none;
+  }
+}
+
+// Print Styles
+@media print {
+  .c-process-step {
+    break-inside: avoid;
+  }
+}

@@ -1,0 +1,331 @@
+/**
+ * Footer Navigation Component
+ * BEM Component: .c-footer-nav
+ *
+ * Displays social links, email, and quick links in footer
+ *
+ * Structure:
+ *   .c-footer-nav                    - Root container
+ *   .c-footer-nav--{variant}         - Color variant modifier
+ *   .c-footer-nav__section           - Individual section (social or quick links)
+ *   .c-footer-nav__section--social   - Social section modifier
+ *   .c-footer-nav__section--links    - Quick links section modifier
+ *   .c-footer-nav__title             - Section heading
+ *   .c-footer-nav__email             - Email link container
+ *   .c-footer-nav__social            - Social links container (uses social-links molecule)
+ *   .c-footer-nav__links             - Quick links list
+ *   .c-footer-nav__item              - Individual quick link item
+ *   .c-footer-nav__link              - Link element (email or quick link)
+ *
+ * Variants:
+ *   --primary (default) - Emerald accents
+ *   --secondary         - Terracotta accents
+ *   --tertiary          - Blue accents
+ *   --neutral           - Gray accents
+ *
+ * Features:
+ *   - Social links molecule integration
+ *   - Responsive layout (stacked mobile → side-by-side desktop)
+ *   - 8pt spacing grid
+ *   - Crimson Pro typography for headings
+ *   - Work Sans typography for body text
+ *   - Color variants via design tokens
+ *   - Hover effects on links
+ *   - Print styles (optimized for print)
+ *   - Accessibility (high contrast, focus indicators)
+ *   - Backward compatibility via @extend
+ *
+ * Usage:
+ *   <div class="c-footer-nav">
+ *     <div class="c-footer-nav__section c-footer-nav__section--social">...</div>
+ *     <div class="c-footer-nav__section c-footer-nav__section--links">...</div>
+ *   </div>
+ */
+
+// ============================================================================
+// Root Component
+// ============================================================================
+
+.c-footer-nav {
+  // Layout
+  display: flex;
+  flex-direction: column;
+  gap: $space-6; // 48px between sections on mobile
+
+  // Spacing (8pt grid)
+  padding: $space-6 0; // 48px vertical padding
+
+  // Typography
+  font-family: $font-family-sans;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  color: $color-text-primary;
+
+  // Responsive layout - side by side on tablet+
+  @media (min-width: $breakpoint-md) {
+    flex-direction: row;
+    gap: $space-8; // 64px between sections on desktop
+    padding: $space-8 0; // 64px vertical padding
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    max-width: 66.666%; // 2/3 width on desktop (complements footer-info at 1/3)
+  }
+}
+
+// ============================================================================
+// Section Elements
+// ============================================================================
+
+.c-footer-nav__section {
+  flex: 1 1 auto;
+  min-width: 0; // Allow flex items to shrink below content size
+
+  // Social section - slightly wider
+  &--social {
+    @media (min-width: $breakpoint-md) {
+      flex: 1.5 1 auto;
+    }
+  }
+
+  // Links section
+  &--links {
+    @media (min-width: $breakpoint-md) {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+.c-footer-nav__title {
+  margin-bottom: $space-3; // 24px below heading
+  font-family: $font-family-serif;
+  font-size: $font-size-lg;
+  font-weight: 600;
+  color: $color-text-heading;
+}
+
+// ============================================================================
+// Email Section
+// ============================================================================
+
+.c-footer-nav__email {
+  margin-bottom: $space-4; // 32px below email
+}
+
+// ============================================================================
+// Social Links Section
+// ============================================================================
+
+.c-footer-nav__social {
+  margin-top: $space-3; // 24px above social links
+
+  // Override social-links molecule spacing for footer context
+  .c-social {
+    margin-top: 0;
+  }
+}
+
+// ============================================================================
+// Quick Links Section
+// ============================================================================
+
+.c-footer-nav__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c-footer-nav__item {
+  margin-bottom: $space-2; // 16px between items
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.c-footer-nav__link {
+  display: inline-block;
+  color: $color-primary-600;
+  text-decoration: none;
+  transition: color $duration-base $easing-out, text-decoration $duration-base $easing-out;
+
+  &:hover,
+  &:focus {
+    color: $color-primary-700;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary-600;
+    outline-offset: 2px;
+    border-radius: $border-radius-sm;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+// ============================================================================
+// Color Variants
+// ============================================================================
+
+// Primary variant (emerald - default)
+.c-footer-nav--primary {
+  .c-footer-nav__title {
+    color: $color-primary-700;
+  }
+
+  .c-footer-nav__link {
+    color: $color-primary-600;
+
+    &:hover,
+    &:focus {
+      color: $color-primary-700;
+    }
+
+    &:focus {
+      outline-color: $color-primary-600;
+    }
+  }
+}
+
+// Secondary variant (terracotta - warm)
+.c-footer-nav--secondary {
+  .c-footer-nav__title {
+    color: $color-secondary-700;
+  }
+
+  .c-footer-nav__link {
+    color: $color-secondary-600;
+
+    &:hover,
+    &:focus {
+      color: $color-secondary-700;
+    }
+
+    &:focus {
+      outline-color: $color-secondary-600;
+    }
+  }
+}
+
+// Tertiary variant (blue - calm)
+.c-footer-nav--tertiary {
+  .c-footer-nav__title {
+    color: $color-tertiary-700;
+  }
+
+  .c-footer-nav__link {
+    color: $color-tertiary-600;
+
+    &:hover,
+    &:focus {
+      color: $color-tertiary-700;
+    }
+
+    &:focus {
+      outline-color: $color-tertiary-600;
+    }
+  }
+}
+
+// Neutral variant (gray - subtle)
+.c-footer-nav--neutral {
+  .c-footer-nav__title {
+    color: $color-neutral-800;
+  }
+
+  .c-footer-nav__link {
+    color: $color-neutral-700;
+
+    &:hover,
+    &:focus {
+      color: $color-neutral-900;
+    }
+
+    &:focus {
+      outline-color: $color-neutral-600;
+    }
+  }
+}
+
+// ============================================================================
+// Accessibility Enhancements
+// ============================================================================
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .c-footer-nav {
+    .c-footer-nav__title {
+      font-weight: 700; // Bolder for high contrast
+    }
+
+    .c-footer-nav__link {
+      text-decoration: underline; // Always underlined in high contrast
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .c-footer-nav {
+    page-break-inside: avoid;
+    flex-direction: column; // Stack sections for print
+
+    .c-footer-nav__social {
+      display: none; // Hide social links in print
+    }
+
+    .c-footer-nav__link {
+      color: $color-text-primary; // Black text for print
+      text-decoration: none;
+
+      // Print URL after link for quick links only
+      .c-footer-nav__section--links & {
+        &::after {
+          content: " (" attr(href) ")";
+          font-size: $font-size-sm;
+          color: $color-text-muted;
+        }
+      }
+    }
+  }
+}
+
+// ============================================================================
+// Backward Compatibility
+// ============================================================================
+
+// Legacy Bootstrap classes → BEM mapping
+.col-lg-3.col-md-6.col-sm-6.mt-5.mt-sm-0:has(.footer-widget) {
+  @extend .c-footer-nav__section;
+  @extend .c-footer-nav__section--social;
+}
+
+.col-lg-2.col-md-6.col-sm-6.mt-5.mt-lg-0:has(.footer-widget) {
+  @extend .c-footer-nav__section;
+  @extend .c-footer-nav__section--links;
+}
+
+.footer-widget {
+  h4.mb-4 {
+    @extend .c-footer-nav__title;
+  }
+
+  .footer-links.list-unstyled {
+    @extend .c-footer-nav__links;
+
+    li {
+      @extend .c-footer-nav__item;
+
+      a {
+        @extend .c-footer-nav__link;
+      }
+    }
+  }
+
+  .social-links.list-inline {
+    @extend .c-footer-nav__social;
+  }
+}

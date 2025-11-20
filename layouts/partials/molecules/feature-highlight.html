@@ -1,0 +1,86 @@
+{{- /*
+  Feature Highlight Molecule
+
+  Displays a single feature/benefit with icon, title, and description.
+  Simpler than service-preview-card, used for inline feature highlights in service pages.
+
+  Parameters:
+  - icon (required): Icon name (e.g., "las la-check-circle")
+  - title (required): Feature title
+  - description (optional): Feature description
+  - variant (optional): Color variant (primary|secondary|tertiary|success|warning|error|info|neutral) - default: primary
+  - centered (optional): Center-align content (boolean) - default: false
+  - compact (optional): Compact spacing (boolean) - default: false
+
+  Example Usage:
+  {{ partial "molecules/feature-highlight.html" (dict
+    "icon" "las la-check-circle"
+    "title" "Evidence-Based Methods"
+    "description" "CBT, DBT, and ACT approaches backed by scientific research."
+    "variant" "primary"
+    "centered" false
+    "compact" false
+  ) }}
+
+  {{ partial "molecules/feature-highlight.html" (dict
+    "icon" "las la-user-shield"
+    "title" "Confidential & Safe"
+    "description" "Your privacy is our priority."
+    "variant" "secondary"
+    "centered" true
+  ) }}
+*/ -}}
+
+{{- /* Parameter validation */ -}}
+{{- if not .icon -}}
+  {{- warnf "feature-highlight.html: Missing required parameter 'icon'" -}}
+{{- end -}}
+{{- if not .title -}}
+  {{- warnf "feature-highlight.html: Missing required parameter 'title'" -}}
+{{- end -}}
+
+{{- /* Set defaults */ -}}
+{{- $variant := .variant | default "primary" -}}
+{{- $centered := .centered | default false -}}
+{{- $compact := .compact | default false -}}
+
+{{- /* Validate variant */ -}}
+{{- $validVariants := slice "primary" "secondary" "tertiary" "success" "warning" "error" "info" "neutral" -}}
+{{- if not (in $validVariants $variant) -}}
+  {{- warnf "feature-highlight.html: Invalid variant '%s'. Using 'primary'. Valid options: %s" $variant (delimit $validVariants ", ") -}}
+  {{- $variant = "primary" -}}
+{{- end -}}
+
+{{- /* Build classes */ -}}
+{{- $containerClass := "c-feature-highlight" -}}
+{{- $containerClass = printf "%s c-feature-highlight--%s" $containerClass $variant -}}
+{{- if $centered -}}
+  {{- $containerClass = printf "%s c-feature-highlight--centered" $containerClass -}}
+{{- end -}}
+{{- if $compact -}}
+  {{- $containerClass = printf "%s c-feature-highlight--compact" $containerClass -}}
+{{- end -}}
+
+<div class="{{ $containerClass }}">
+  {{- partial "atoms/icon.html" (dict
+    "name" .icon
+    "variant" $variant
+    "size" "lg"
+    "class" "c-feature-highlight__icon"
+  ) -}}
+
+  <div class="c-feature-highlight__content">
+    {{- partial "atoms/heading.html" (dict
+      "level" "h3"
+      "text" .title
+      "variant" "default"
+      "class" "c-feature-highlight__title"
+    ) -}}
+
+    {{- if .description -}}
+      <p class="c-feature-highlight__description">
+        {{ .description | markdownify }}
+      </p>
+    {{- end -}}
+  </div>
+</div>

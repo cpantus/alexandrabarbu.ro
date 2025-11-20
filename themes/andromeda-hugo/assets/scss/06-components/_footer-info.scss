@@ -1,0 +1,372 @@
+/**
+ * Footer Info Component
+ * BEM Component: .c-footer-info
+ *
+ * Displays logo, site description, and contact information in footer
+ *
+ * Structure:
+ *   .c-footer-info                    - Root container
+ *   .c-footer-info--{variant}         - Color variant modifier
+ *   .c-footer-info__logo-section      - Logo and description wrapper
+ *   .c-footer-info__logo-link         - Logo link wrapper
+ *   .c-footer-info__description       - Site description text
+ *   .c-footer-info__contact           - Contact information section
+ *   .c-footer-info__title             - Section heading
+ *   .c-footer-info__list              - Contact details list
+ *   .c-footer-info__item              - Individual contact item
+ *   .c-footer-info__item--address     - Address item modifier
+ *   .c-footer-info__item--phone       - Phone item modifier
+ *   .c-footer-info__link              - Contact link (phone, email)
+ *
+ * Variants:
+ *   --primary (default) - Emerald accents
+ *   --secondary         - Terracotta accents
+ *   --tertiary          - Blue accents
+ *   --neutral           - Gray accents
+ *
+ * Features:
+ *   - Logo molecule integration
+ *   - Responsive layout (full-width mobile → 1/3 width desktop)
+ *   - 8pt spacing grid
+ *   - Crimson Pro typography for headings
+ *   - Work Sans typography for body text
+ *   - Color variants via design tokens
+ *   - Hover effects on links
+ *   - Print styles (optimized for print)
+ *   - Accessibility (high contrast, focus indicators)
+ *   - Backward compatibility via @extend
+ *
+ * Usage:
+ *   <div class="c-footer-info">
+ *     <div class="c-footer-info__logo-section">...</div>
+ *     <div class="c-footer-info__contact">...</div>
+ *   </div>
+ */
+
+// ============================================================================
+// Root Component
+// ============================================================================
+
+.c-footer-info {
+  // Layout
+  display: block;
+  width: 100%;
+
+  // Spacing (8pt grid)
+  padding: $space-6 0; // 48px vertical padding
+
+  // Typography
+  font-family: $font-family-sans;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  color: $color-text-primary;
+
+  // Responsive layout
+  @media (min-width: $breakpoint-md) {
+    padding: $space-8 0; // 64px on tablet+
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    max-width: 33.333%; // 1/3 width on desktop
+  }
+}
+
+// ============================================================================
+// Logo Section
+// ============================================================================
+
+.c-footer-info__logo-section {
+  margin-bottom: $space-6; // 48px gap before contact section
+}
+
+.c-footer-info__logo-link {
+  display: inline-block;
+  margin-bottom: $space-4; // 32px below logo
+  transition: opacity $duration-base $easing-out;
+
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary-600;
+    outline-offset: $space-1; // 8px
+    border-radius: $border-radius-sm;
+  }
+
+  // Reduced motion support
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.c-footer-info__description {
+  margin: 0 0 $space-3 0; // 24px below description
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+  color: $color-text-secondary;
+
+  // Max width for readability
+  max-width: 60ch;
+
+  // Paragraph spacing
+  p {
+    margin-bottom: $space-2; // 16px
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Link styling within description
+  a {
+    color: $color-primary-600;
+    text-decoration: underline;
+    transition: color $duration-base $easing-out;
+
+    &:hover,
+    &:focus {
+      color: $color-primary-700;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+}
+
+// ============================================================================
+// Contact Section
+// ============================================================================
+
+.c-footer-info__contact {
+  margin-top: $space-6; // 48px above contact section
+}
+
+.c-footer-info__title {
+  margin-bottom: $space-3; // 24px below heading
+  font-family: $font-family-serif;
+  font-size: $font-size-lg;
+  font-weight: 600;
+  color: $color-text-heading;
+}
+
+.c-footer-info__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c-footer-info__item {
+  margin-bottom: $space-2; // 16px between items
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+  color: $color-text-secondary;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  // Address icon (optional enhancement)
+  &--address {
+    position: relative;
+    padding-left: $space-4; // 32px for icon
+
+    &::before {
+      content: '📍';
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: $font-size-lg;
+    }
+  }
+
+  // Phone icon (optional enhancement)
+  &--phone {
+    position: relative;
+    padding-left: $space-4; // 32px for icon
+
+    &::before {
+      content: '📞';
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: $font-size-lg;
+    }
+  }
+}
+
+.c-footer-info__link {
+  color: $color-primary-600;
+  text-decoration: none;
+  transition: color $duration-base $easing-out, text-decoration $duration-base $easing-out;
+
+  &:hover,
+  &:focus {
+    color: $color-primary-700;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary-600;
+    outline-offset: 2px;
+    border-radius: $border-radius-sm;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+// ============================================================================
+// Color Variants
+// ============================================================================
+
+// Primary variant (emerald - default)
+.c-footer-info--primary {
+  .c-footer-info__title {
+    color: $color-primary-700;
+  }
+
+  .c-footer-info__link {
+    color: $color-primary-600;
+
+    &:hover,
+    &:focus {
+      color: $color-primary-700;
+    }
+  }
+}
+
+// Secondary variant (terracotta - warm)
+.c-footer-info--secondary {
+  .c-footer-info__title {
+    color: $color-secondary-700;
+  }
+
+  .c-footer-info__link {
+    color: $color-secondary-600;
+
+    &:hover,
+    &:focus {
+      color: $color-secondary-700;
+    }
+  }
+
+  .c-footer-info__logo-link:focus {
+    outline-color: $color-secondary-600;
+  }
+}
+
+// Tertiary variant (blue - calm)
+.c-footer-info--tertiary {
+  .c-footer-info__title {
+    color: $color-tertiary-700;
+  }
+
+  .c-footer-info__link {
+    color: $color-tertiary-600;
+
+    &:hover,
+    &:focus {
+      color: $color-tertiary-700;
+    }
+  }
+
+  .c-footer-info__logo-link:focus {
+    outline-color: $color-tertiary-600;
+  }
+}
+
+// Neutral variant (gray - subtle)
+.c-footer-info--neutral {
+  .c-footer-info__title {
+    color: $color-neutral-800;
+  }
+
+  .c-footer-info__link {
+    color: $color-neutral-700;
+
+    &:hover,
+    &:focus {
+      color: $color-neutral-900;
+    }
+  }
+
+  .c-footer-info__logo-link:focus {
+    outline-color: $color-neutral-600;
+  }
+}
+
+// ============================================================================
+// Accessibility Enhancements
+// ============================================================================
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .c-footer-info {
+    .c-footer-info__title {
+      font-weight: 700; // Bolder for high contrast
+    }
+
+    .c-footer-info__link {
+      text-decoration: underline; // Always underlined in high contrast
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .c-footer-info {
+    page-break-inside: avoid;
+
+    .c-footer-info__logo-link {
+      &:hover,
+      &:focus {
+        opacity: 1; // No hover effects in print
+      }
+    }
+
+    .c-footer-info__link {
+      color: $color-text-primary; // Black text for print
+      text-decoration: underline;
+
+      // Print URL after link
+      &::after {
+        content: " (" attr(href) ")";
+        font-size: $font-size-sm;
+        color: $color-text-muted;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// Backward Compatibility
+// ============================================================================
+
+// Legacy Bootstrap classes → BEM mapping
+.col-lg-4.col-md-6.col-sm-6:has(.footer-widget) {
+  @extend .c-footer-info;
+}
+
+.footer-widget h4.mb-4 {
+  @extend .c-footer-info__title;
+}
+
+.footer-links.list-unstyled {
+  @extend .c-footer-info__list;
+
+  li {
+    @extend .c-footer-info__item;
+
+    a {
+      @extend .c-footer-info__link;
+    }
+  }
+}
+
+.navbar-brand.d-inline-block.mb-4 {
+  @extend .c-footer-info__logo-link;
+}

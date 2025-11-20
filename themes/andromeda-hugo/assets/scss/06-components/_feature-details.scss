@@ -1,0 +1,410 @@
+/*
+================================================================================
+Feature Details Section Component
+================================================================================
+Displays detailed feature blocks in alternating (zigzag) layout.
+
+BEM Structure: .c-feature-details
+
+Modifiers:
+- Variants: --primary, --secondary, --tertiary, --neutral, --success, --warning, --info, --error
+- Background: --bg-none, --bg-light, --bg-gradient
+
+Elements:
+- __header: Section header wrapper
+- __subtitle: Section subtitle
+- __title: Section title
+- __blocks: Container for all feature blocks
+- __block: Individual feature block
+- __content: Text content wrapper
+- __feature-subtitle: Feature subtitle (uppercase label)
+- __feature-title: Feature title
+- __feature-description: Feature description
+- __markdown: Extended markdown content
+- __image-wrapper: Image container
+- __image: Feature image
+
+Version: 5.0.1
+*/
+
+// ============================================================================
+// Base Component
+// ============================================================================
+
+.c-feature-details {
+  padding: $space-12 0; // 96px top/bottom
+  position: relative;
+
+  @media (max-width: $breakpoint-md - 1) {
+    padding: $space-8 0; // 64px on mobile
+  }
+}
+
+// ============================================================================
+// Section Header
+// ============================================================================
+
+.c-feature-details__header {
+  text-align: center;
+  margin-bottom: $space-10; // 80px
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-6; // 48px on mobile
+  }
+}
+
+.c-feature-details__subtitle {
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: $space-2; // 16px
+  opacity: 0.8;
+}
+
+.c-feature-details__title {
+  font-family: $font-family-serif;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  margin-bottom: 0;
+
+  @media (max-width: $breakpoint-lg - 1) {
+    font-size: $font-size-3xl;
+  }
+
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-2xl;
+  }
+}
+
+// ============================================================================
+// Feature Blocks Container
+// ============================================================================
+
+.c-feature-details__blocks {
+  display: flex;
+  flex-direction: column;
+  gap: $space-10; // 80px between blocks
+
+  @media (max-width: $breakpoint-lg - 1) {
+    gap: $space-8; // 64px on tablet
+  }
+
+  @media (max-width: $breakpoint-md - 1) {
+    gap: $space-6; // 48px on mobile
+  }
+}
+
+// ============================================================================
+// Individual Feature Block (Zigzag Layout)
+// ============================================================================
+
+.c-feature-details__block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-8; // 64px gap between text and image
+  align-items: center;
+
+  @media (max-width: $breakpoint-lg - 1) {
+    gap: $space-6; // 48px on tablet
+  }
+
+  @media (max-width: $breakpoint-md - 1) {
+    grid-template-columns: 1fr;
+    gap: $space-4; // 32px on mobile
+  }
+
+  // Standard (left text, right image)
+  // No additional styles needed - default grid order
+
+  // Reverse (right text, left image)
+  &--reverse {
+    .c-feature-details__content {
+      order: 2;
+
+      @media (max-width: $breakpoint-md - 1) {
+        order: 1; // Reset on mobile (text always first)
+      }
+    }
+
+    .c-feature-details__image-wrapper {
+      order: 1;
+
+      @media (max-width: $breakpoint-md - 1) {
+        order: 2; // Reset on mobile (image always second)
+      }
+    }
+  }
+}
+
+// ============================================================================
+// Text Content
+// ============================================================================
+
+.c-feature-details__content {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3; // 24px between elements
+}
+
+.c-feature-details__feature-subtitle {
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0;
+  opacity: 0.7;
+}
+
+.c-feature-details__feature-title {
+  font-family: $font-family-serif;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  margin-bottom: 0;
+
+  @media (max-width: $breakpoint-lg - 1) {
+    font-size: $font-size-2xl;
+  }
+
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-xl;
+  }
+}
+
+.c-feature-details__feature-description {
+  font-family: $font-family-sans;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-relaxed;
+  margin-bottom: 0;
+  opacity: 0.9;
+
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-base;
+  }
+}
+
+// ============================================================================
+// Extended Markdown Content
+// ============================================================================
+
+.c-feature-details__markdown {
+  font-family: $font-family-sans;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-relaxed;
+  margin-top: $space-2; // 16px extra spacing before markdown
+
+  // Style markdown elements
+  p {
+    margin-bottom: $space-3; // 24px
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul,
+  ol {
+    margin-bottom: $space-3;
+    padding-left: $space-4; // 32px indent
+  }
+
+  li {
+    margin-bottom: $space-2; // 16px between list items
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    font-weight: $font-weight-semibold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $font-family-serif;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-snug;
+    margin-bottom: $space-2;
+  }
+
+  h3 {
+    font-size: $font-size-xl;
+  }
+
+  h4 {
+    font-size: $font-size-lg;
+  }
+
+  h5,
+  h6 {
+    font-size: $font-size-base;
+  }
+}
+
+// ============================================================================
+// Image
+// ============================================================================
+
+.c-feature-details__image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+}
+
+.c-feature-details__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: $border-radius-lg;
+  transition: transform $transition-normal $easing-ease-out;
+
+  // Hover effect
+  .c-feature-details__image-wrapper:hover & {
+    transform: scale(1.02);
+  }
+}
+
+// ============================================================================
+// Color Variants (8 Unified Variants)
+// ============================================================================
+
+@mixin feature-details-variant($color) {
+  .c-feature-details__subtitle,
+  .c-feature-details__feature-subtitle {
+    color: $color;
+  }
+
+  .c-feature-details__title,
+  .c-feature-details__feature-title {
+    color: $color;
+  }
+
+  .c-feature-details__markdown {
+    strong {
+      color: $color;
+    }
+  }
+}
+
+// Apply variants
+.c-feature-details--primary {
+  @include feature-details-variant($color-primary);
+}
+
+.c-feature-details--secondary {
+  @include feature-details-variant($color-secondary);
+}
+
+.c-feature-details--tertiary {
+  @include feature-details-variant($color-tertiary);
+}
+
+.c-feature-details--neutral {
+  @include feature-details-variant($color-text);
+}
+
+.c-feature-details--success {
+  @include feature-details-variant($color-success);
+}
+
+.c-feature-details--warning {
+  @include feature-details-variant($color-warning);
+}
+
+.c-feature-details--info {
+  @include feature-details-variant($color-info);
+}
+
+.c-feature-details--error {
+  @include feature-details-variant($color-error);
+}
+
+// ============================================================================
+// Background Variants
+// ============================================================================
+
+// None (default)
+.c-feature-details--bg-none {
+  background: transparent;
+}
+
+// Light background
+.c-feature-details--bg-light {
+  background: rgba($color-primary-50, 0.5);
+}
+
+// Gradient background
+.c-feature-details--bg-gradient {
+  background: linear-gradient(
+    135deg,
+    rgba($color-primary-50, 0.3) 0%,
+    rgba($color-secondary-50, 0.3) 100%
+  );
+}
+
+// ============================================================================
+// Accessibility
+// ============================================================================
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .c-feature-details__image {
+    transition: none;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .c-feature-details__image-wrapper {
+    border: 2px solid currentColor;
+  }
+}
+
+// ============================================================================
+// Print Styles
+// ============================================================================
+
+@media print {
+  .c-feature-details {
+    padding: 0;
+    page-break-inside: avoid;
+  }
+
+  .c-feature-details__block {
+    page-break-inside: avoid;
+  }
+
+  .c-feature-details__image {
+    max-height: 300px;
+    object-fit: contain;
+  }
+}
+
+// ============================================================================
+// Legacy Compatibility (@extend for old classes)
+// ============================================================================
+
+.section-sm {
+  @extend .c-feature-details;
+}
+
+.feature-markdown-content {
+  @extend .c-feature-details__markdown;
+}

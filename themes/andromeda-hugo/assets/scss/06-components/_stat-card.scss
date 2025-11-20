@@ -1,0 +1,428 @@
+// ============================================================================
+// Stat Card Molecule - BEM Component
+// ============================================================================
+// Animated statistic/number display with icon, value (prefix/number/suffix), and label
+// Supports 4 color variants, 3 size variants, and count-up animation
+//
+// BEM Structure:
+//   .c-stat-card                    Block
+//   .c-stat-card--primary           Modifier: color variant (4 variants)
+//   .c-stat-card--sm                Modifier: size variant (3 sizes)
+//   .c-stat-card__icon              Element: icon wrapper
+//   .c-stat-card__value             Element: number value wrapper
+//   .c-stat-card__prefix            Element: prefix text
+//   .c-stat-card__number            Element: main number (animated)
+//   .c-stat-card__suffix            Element: suffix text
+//   .c-stat-card__label             Element: label wrapper
+//   .c-stat-card__label-text        Element: label heading text
+//
+// Color Variants: primary, secondary, tertiary, neutral
+// Size Variants: sm, md (default), lg
+//
+// Animation: Compatible with stats-counter.js (data-count attribute)
+//
+// Version: 2.0.0 (BEM refactor)
+// Last Updated: 2025-11-20
+// ============================================================================
+
+@use "sass:map";
+@use "../01-settings/tokens-colors" as colors;
+@use "../01-settings/tokens-spacing" as spacing;
+@use "../01-settings/tokens-typography" as type;
+@use "../01-settings/tokens-shadows" as shadows;
+@use "../01-settings/tokens-motion" as motion;
+
+// ============================================================================
+// BLOCK: Stat Card
+// ============================================================================
+
+.c-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: $space-3; // 24px
+  padding: $space-4; // 32px
+  transition: transform $duration-base $easing-medium;
+
+  // ========================================
+  // Hover effect: subtle lift
+  // ========================================
+
+  &:hover {
+    transform: translateY(-2px);
+
+    .c-stat-card__icon {
+      transform: scale(1.1);
+    }
+  }
+
+  // ========================================
+  // Responsive padding
+  // ========================================
+
+  @media (max-width: 576px) {
+    padding: $space-3; // 24px
+    gap: $space-2; // 16px
+  }
+}
+
+// ============================================================================
+// ELEMENT: Icon Wrapper
+// ============================================================================
+
+.c-stat-card__icon {
+  transition: transform $duration-base $easing-medium;
+
+  // Margin bottom for spacing (replaced by gap in modern browsers, fallback)
+  margin-bottom: $space-2; // 16px
+
+  // Inside flexbox with gap, margin not needed
+  .c-stat-card:not(.c-stat-card--no-gap) & {
+    margin-bottom: 0;
+  }
+}
+
+// ============================================================================
+// ELEMENT: Value Wrapper (prefix + number + suffix)
+// ============================================================================
+
+.c-stat-card__value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: $space-1; // 8px (tight spacing between prefix/number/suffix)
+  margin-bottom: $space-2; // 16px
+  line-height: 1;
+
+  // Inside flexbox with gap, margin not needed
+  .c-stat-card:not(.c-stat-card--no-gap) & {
+    margin-bottom: 0;
+  }
+}
+
+// ============================================================================
+// ELEMENT: Prefix
+// ============================================================================
+
+.c-stat-card__prefix {
+  font-family: $font-primary; // Crimson Pro
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+// ============================================================================
+// ELEMENT: Number (main animated value)
+// ============================================================================
+
+.c-stat-card__number {
+  font-family: $font-primary; // Crimson Pro
+  font-weight: 700;
+  line-height: 1;
+  transition: color $duration-fast $easing-subtle;
+
+  // ========================================
+  // Animation state (when counting)
+  // ========================================
+
+  &[data-count] {
+    // Add a subtle pulse during counting (handled by stats-counter.js)
+    // JS adds .counting class during animation
+  }
+
+  &.counting {
+    animation: stat-pulse 0.3s ease-in-out;
+  }
+}
+
+// ============================================================================
+// ELEMENT: Suffix
+// ============================================================================
+
+.c-stat-card__suffix {
+  font-family: $font-primary; // Crimson Pro
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+// ============================================================================
+// ELEMENT: Label Wrapper
+// ============================================================================
+
+.c-stat-card__label {
+  // No additional styles needed (spacing handled by gap)
+}
+
+// ============================================================================
+// ELEMENT: Label Text (heading)
+// ============================================================================
+
+.c-stat-card__label-text {
+  margin: 0;
+  color: $gray-700;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+// ============================================================================
+// MODIFIER: Color Variants (4 semantic variants)
+// ============================================================================
+
+// Primary (emerald) - Default, trust, professional
+.c-stat-card--primary {
+  .c-stat-card__number,
+  .c-stat-card__prefix,
+  .c-stat-card__suffix {
+    color: $color-primary; // Emerald
+  }
+}
+
+// Secondary (terracotta) - Warm, personal connection
+.c-stat-card--secondary {
+  .c-stat-card__number,
+  .c-stat-card__prefix,
+  .c-stat-card__suffix {
+    color: $color-secondary; // Terracotta
+  }
+}
+
+// Tertiary (blue) - Informational content
+.c-stat-card--tertiary {
+  .c-stat-card__number,
+  .c-stat-card__prefix,
+  .c-stat-card__suffix {
+    color: $teal-600; // Calm blue
+  }
+}
+
+// Neutral (gray) - Subtle, backgrounds
+.c-stat-card--neutral {
+  .c-stat-card__number,
+  .c-stat-card__prefix,
+  .c-stat-card__suffix {
+    color: $gray-700; // Dark gray
+  }
+}
+
+// ============================================================================
+// MODIFIER: Size Variants (3 sizes)
+// ============================================================================
+
+// Small size
+.c-stat-card--sm {
+  padding: $space-3; // 24px
+  gap: $space-2; // 16px
+
+  .c-stat-card__value {
+    gap: 4px; // Tighter spacing
+  }
+
+  .c-stat-card__number,
+  .c-stat-card__prefix,
+  .c-stat-card__suffix {
+    font-size: 1.875rem; // 30px (h3 equivalent)
+  }
+
+  .c-stat-card__label-text {
+    font-size: 0.9375rem; // 15px
+  }
+
+  @media (max-width: 768px) {
+    .c-stat-card__number,
+    .c-stat-card__prefix,
+    .c-stat-card__suffix {
+      font-size: 1.5rem; // 24px
+    }
+  }
+
+  @media (max-width: 576px) {
+    padding: $space-2; // 16px
+
+    .c-stat-card__number,
+    .c-stat-card__prefix,
+    .c-stat-card__suffix {
+      font-size: 1.25rem; // 20px
+    }
+
+    .c-stat-card__label-text {
+      font-size: 0.875rem; // 14px
+    }
+  }
+}
+
+// Medium size (default)
+.c-stat-card--md {
+  padding: $space-4; // 32px
+  gap: $space-3; // 24px
+
+  .c-stat-card__value {
+    gap: $space-1; // 8px
+  }
+
+  .c-stat-card__number,
+  .c-stat-card__prefix,
+  .c-stat-card__suffix {
+    font-size: 3rem; // 48px (h2/display-4 equivalent)
+  }
+
+  .c-stat-card__label-text {
+    font-size: 1rem; // 16px
+  }
+
+  @media (max-width: 768px) {
+    .c-stat-card__number,
+    .c-stat-card__prefix,
+    .c-stat-card__suffix {
+      font-size: 2.5rem; // 40px
+    }
+  }
+
+  @media (max-width: 576px) {
+    padding: $space-3; // 24px
+
+    .c-stat-card__number,
+    .c-stat-card__prefix,
+    .c-stat-card__suffix {
+      font-size: 2rem; // 32px
+    }
+
+    .c-stat-card__label-text {
+      font-size: 0.9375rem; // 15px
+    }
+  }
+}
+
+// Large size
+.c-stat-card--lg {
+  padding: $space-6; // 48px
+  gap: $space-4; // 32px
+
+  .c-stat-card__value {
+    gap: $space-2; // 16px
+  }
+
+  .c-stat-card__number,
+  .c-stat-card__prefix,
+  .c-stat-card__suffix {
+    font-size: 4rem; // 64px (h1/display-3 equivalent)
+  }
+
+  .c-stat-card__label-text {
+    font-size: 1.125rem; // 18px
+  }
+
+  @media (max-width: 768px) {
+    .c-stat-card__number,
+    .c-stat-card__prefix,
+    .c-stat-card__suffix {
+      font-size: 3rem; // 48px
+    }
+
+    .c-stat-card__label-text {
+      font-size: 1rem; // 16px
+    }
+  }
+
+  @media (max-width: 576px) {
+    padding: $space-4; // 32px
+    gap: $space-3; // 24px
+
+    .c-stat-card__number,
+    .c-stat-card__prefix,
+    .c-stat-card__suffix {
+      font-size: 2.5rem; // 40px
+    }
+
+    .c-stat-card__label-text {
+      font-size: 0.9375rem; // 15px
+    }
+  }
+}
+
+// ============================================================================
+// ANIMATION: Pulse effect during counting
+// ============================================================================
+
+@keyframes stat-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+// ============================================================================
+// BACKWARD COMPATIBILITY (Legacy Classes)
+// ============================================================================
+// Extend BEM classes to support old naming conventions
+// Remove in Phase 8 (SCSS Architecture Refinement)
+
+.stat-card {
+  @extend .c-stat-card;
+}
+
+.stat-number {
+  @extend .c-stat-card__value;
+}
+
+// Legacy Bootstrap utility classes (text-center, mb-3, etc.)
+// Handled by global Bootstrap compatibility layer
+
+// Legacy heading classes (h1, h2, h3, display-3, display-4)
+// Handled by size modifiers + responsive scaling above
+
+// Legacy color classes (text-primary, text-secondary, etc.)
+// Handled by color variant modifiers
+
+// ============================================================================
+// ACCESSIBILITY ENHANCEMENTS
+// ============================================================================
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .c-stat-card__number,
+  .c-stat-card__prefix,
+  .c-stat-card__suffix {
+    font-weight: 800; // Bolder text for better visibility
+  }
+
+  .c-stat-card__label-text {
+    font-weight: 600;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .c-stat-card,
+  .c-stat-card__icon {
+    transition: none;
+  }
+
+  .c-stat-card:hover .c-stat-card__icon {
+    transform: none;
+  }
+
+  .c-stat-card__number.counting {
+    animation: none;
+  }
+
+  @keyframes stat-pulse {
+    // Disable animation
+    0%, 100% {
+      transform: scale(1);
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .c-stat-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .c-stat-card:hover {
+    transform: none;
+  }
+}

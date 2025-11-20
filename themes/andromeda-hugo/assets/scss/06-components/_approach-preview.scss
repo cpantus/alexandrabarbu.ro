@@ -1,0 +1,194 @@
+// ==================================
+// Approach Preview Section - BEM Component
+// ==================================
+//
+// Purpose: 4 therapeutic principles in 2x2 grid
+// Features: Icon cards, gradient backgrounds, responsive grid
+// Breakpoints: Stack mobile, 2x2 grid desktop
+//
+// Version: 1.0.0
+// Updated: 2025-11-20
+//
+
+// ============================================================================
+// BLOCK: Approach Preview Section
+// ============================================================================
+
+.c-approach-preview {
+  padding: var(--spacing-section-y) 0;
+  background: var(--color-surface-primary);
+}
+
+// ============================================================================
+// ELEMENT: Header
+// ============================================================================
+
+.c-approach-preview__header {
+  max-width: 800px;
+  margin: 0 auto var(--spacing-5xl);
+}
+
+.c-approach-preview__subtitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-primary);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--spacing-xs);
+}
+
+.c-approach-preview__title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+  font-family: var(--font-family-heading);
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+.c-approach-preview__description {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: 0;
+}
+
+// ============================================================================
+// ELEMENT: Principles Grid
+// ============================================================================
+
+.c-approach-preview__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-2xl);
+  margin-bottom: var(--spacing-3xl);
+
+  // Tablet: 2 columns
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// ============================================================================
+// ELEMENT: Principle Card
+// ============================================================================
+
+.c-approach-preview__principle {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.7) 100%
+  );
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(77, 179, 128, 0.15);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-2xl);
+  text-align: center;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+
+  // Hover effect
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(77, 179, 128, 0.3);
+  }
+
+  // Mobile: full padding
+  @media (max-width: 767px) {
+    padding: var(--spacing-xl);
+  }
+}
+
+// ============================================================================
+// ELEMENT: Principle Icon
+// ============================================================================
+
+.c-approach-preview__icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary-warm);
+  border-radius: var(--border-radius-full);
+  color: var(--color-white);
+  font-size: 2rem;
+  box-shadow: var(--shadow-md);
+
+  // Icon inside
+  i {
+    line-height: 1;
+  }
+
+  // Hover effect (inherit from card)
+  .c-approach-preview__principle:hover & {
+    transform: scale(1.08);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+// ============================================================================
+// ELEMENT: Principle Title
+// ============================================================================
+
+.c-approach-preview__principle-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+  font-family: var(--font-family-heading);
+}
+
+// ============================================================================
+// ELEMENT: Principle Text
+// ============================================================================
+
+.c-approach-preview__principle-text {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: 0;
+}
+
+// ============================================================================
+// ELEMENT: CTA Wrapper & Button
+// ============================================================================
+
+.c-approach-preview__cta-wrapper {
+  margin-top: var(--spacing-2xl);
+}
+
+.c-approach-preview__cta {
+  // Button styling from atoms/button
+}
+
+// ============================================================================
+// ACCESSIBILITY
+// ============================================================================
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .c-approach-preview__principle {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .c-approach-preview__icon {
+    .c-approach-preview__principle:hover & {
+      transform: none;
+    }
+  }
+}
+
+// Focus styles
+.c-approach-preview__cta:focus {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}

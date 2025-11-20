@@ -1,78 +1,83 @@
 {{/*
-  Mobile Menu Molecule
+  Mobile Menu Molecule - Hamburger navigation toggle with collapsible menu
 
-  Displays mobile hamburger menu toggle button
-  Includes collapsible menu container with navigation
+  BEM Structure: .c-mobile-menu
+
+  Displays mobile hamburger menu toggle button with animated icon
+  Includes collapsible menu container with navigation, language selector, and CTA
 
   Usage:
     {{ partial "molecules/mobile-menu.html" . }}
+
+  Features:
+    - BEM structure (.c-mobile-menu)
+    - Icon atoms (menu + close icons)
+    - Vanilla JavaScript collapse (no Bootstrap dependency)
+    - Animated hamburger → X transition
+    - Integrates language-selector and navigation molecules
+    - Optional CTA button
+    - WCAG AA accessible (keyboard nav, ARIA labels, focus indicators)
+    - Responsive behavior (mobile only, hidden on desktop ≥992px)
+
+  JavaScript:
+    Requires vanilla-collapse.js for collapse functionality:
+      data-toggle="collapse"
+      data-target="#navHeader"
+      aria-controls="navHeader"
+      aria-expanded="false"
+
+  SCSS:
+    styles/scss/06-components/_mobile-menu.scss
+
+  Backward Compatibility:
+    Legacy Bootstrap classes mapped via @extend in SCSS:
+      .nav-controller → .c-mobile-menu__controller
+      .navbar-toggler → .c-mobile-menu__toggle
+      .navbar-collapse → .c-mobile-menu__panel
+      .navbar-right → .c-mobile-menu__actions
 */}}
 
-<div class="nav-controller d-flex align-items-center">
+<div class="c-mobile-menu__controller">
   {{/* Mobile Language Selector */}}
   {{ partial "molecules/language-selector.html" (dict "variant" "mobile" "context" .) }}
 
   {{/* Hamburger Toggle Button */}}
   <button
-    class="navbar-toggler"
+    class="c-mobile-menu__toggle"
     type="button"
-    data-bs-toggle="collapse"
-    data-bs-target="#navHeader"
+    data-toggle="collapse"
+    data-target="#navHeader"
     aria-controls="navHeader"
     aria-expanded="false"
-    aria-label="Toggle navigation">
-    {{/* Hamburger Icon (hidden when menu open) */}}
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="hide"
-      width="32"
-      height="32"
-      viewBox="0 0 24 24"
-      stroke-width="2"
-      stroke="currentColor"
-      fill="none"
-      stroke-linecap="round"
-      stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-      <line x1="4" y1="6" x2="20" y2="6"></line>
-      <line x1="4" y1="12" x2="20" y2="12"></line>
-      <line x1="4" y1="18" x2="20" y2="18"></line>
-    </svg>
-    {{/* Close Icon (shown when menu open) */}}
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="show"
-      width="32"
-      height="32"
-      viewBox="0 0 24 24"
-      stroke-width="2"
-      stroke="currentColor"
-      fill="none"
-      stroke-linecap="round"
-      stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-      <line x1="18" y1="6" x2="6" y2="18"></line>
-      <line x1="6" y1="6" x2="18" y2="18"></line>
-    </svg>
+    aria-label="{{ i18n "toggle_navigation" | default "Toggle navigation" }}">
+    {{/* Hamburger Icon (visible when menu closed) */}}
+    <span class="c-mobile-menu__icon c-mobile-menu__icon--menu">
+      {{ partial "atoms/icon.html" (dict "name" "menu" "size" "lg" "variant" "neutral") }}
+    </span>
+    {{/* Close Icon (visible when menu open) */}}
+    <span class="c-mobile-menu__icon c-mobile-menu__icon--close">
+      {{ partial "atoms/icon.html" (dict "name" "x" "size" "lg" "variant" "neutral") }}
+    </span>
   </button>
 </div>
 
-{{/* Collapsible Menu Container */}}
-<div class="collapse navbar-collapse" id="navHeader">
+{{/* Collapsible Menu Panel */}}
+<div class="c-mobile-menu__panel collapse" id="navHeader">
   {{/* Navigation Menu */}}
   {{ partial "molecules/navigation.html" . }}
 
-  {{/* Desktop Language Selector & CTA Button */}}
-  <div class="navbar-right">
+  {{/* Desktop Actions: Language Selector & CTA Button */}}
+  <div class="c-mobile-menu__actions">
     {{ partial "molecules/language-selector.html" (dict "variant" "desktop" "context" .) }}
 
     {{/* Optional CTA Button */}}
     {{ if site.Params.navigation_button.enable }}
-      <a
-        href="{{ site.Params.navigation_button.link | relURL }}"
-        class="btn btn-primary">
-        {{ site.Params.navigation_button.label }}
-      </a>
+      {{ partial "atoms/button.html" (dict
+        "text" site.Params.navigation_button.label
+        "url" (site.Params.navigation_button.link | relURL)
+        "variant" "primary"
+        "class" "c-mobile-menu__cta"
+      ) }}
     {{ end }}
   </div>
 </div>

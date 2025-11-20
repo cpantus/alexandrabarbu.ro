@@ -1,138 +1,240 @@
+{{/*
+================================================================================
+Contact Options Section
+================================================================================
+Displays various contact methods as cards with commitment levels, features,
+and alternative contact methods.
+
+BEM Structure: .c-contact-options
+
+Parameters:
+- title (optional): Section title
+- subtitle (optional): Section subtitle
+- description (optional): Section description
+- variant (optional): Color variant (primary|secondary|tertiary|neutral) [default: primary]
+- options (required): Array of contact option objects
+  - title: Option title
+  - description: Option description
+  - icon (optional): Icon name
+  - badge (optional): Badge text (e.g., "Popular", "Recommended")
+  - featured (optional): Mark as featured [default: false]
+  - commitment_level (optional): low|medium|high
+  - commitment_label (optional): Label for commitment level
+  - features (optional): Array of feature strings
+  - response_time (optional): Response time text
+  - button_text: Button text
+  - button_url: Button URL
+  - button_icon (optional): Button icon
+- alternative_methods (optional): Alternative contact section
+  - title: Alternative methods title
+  - note: Optional note text
+  - methods: Array of method objects
+    - label: Method label
+    - icon: Method icon
+    - url: Method URL
+    - external (optional): External link flag
+
+Data Sources:
+1. Page front matter: .Params.contact_options
+
+Usage:
+```yaml
+sections:
+  - type: "contact-options"
+
+contact_options:
+  variant: "primary"
+  title: "How Would You Like to Connect?"
+  subtitle: "Choose Your Preferred Method"
+  description: "Select the contact option that works best for you"
+  options:
+    - title: "Book Online"
+      description: "Schedule directly via our online calendar"
+      icon: "calendar"
+      badge: "Most Popular"
+      featured: true
+      commitment_level: "low"
+      commitment_label: "Time Required"
+      features:
+        - "Instant confirmation"
+        - "See available times"
+        - "Easy rescheduling"
+      response_time: "Immediate booking"
+      button_text: "Book Now"
+      button_url: "/book"
+      button_icon: "arrow-right"
+  alternative_methods:
+    title: "Or reach out directly:"
+    note: "Response within 24 hours"
+    methods:
+      - label: "Email"
+        icon: "envelope"
+        url: "mailto:contact@example.com"
+      - label: "Phone"
+        icon: "phone"
+        url: "tel:+1234567890"
+```
+
+Version: 5.0.1 (BEM refactor)
+*/}}
+
 {{- $section := .Params.contact_options -}}
+
 {{- if $section -}}
-{{- $sectionID := printf "contact-options-%d" (now.Unix) -}}
+  {{- $variant := $section.variant | default "primary" -}}
 
-<section class="section contact-options" id="{{ $sectionID }}">
-  <div class="container">
-    <!-- Section Header -->
-    {{- if or $section.title $section.subtitle -}}
-    <div class="row justify-content-center">
-      <div class="col-lg-8 text-center mb-5">
-        {{- if $section.subtitle -}}
-        <p class="text-primary text-uppercase fw-semibold mb-2">{{ $section.subtitle }}</p>
-        {{- end -}}
-        {{- if $section.title -}}
-        {{ partial "atoms/heading.html" (dict "text" $section.title "level" 2 "class" "mb-3") }}
-        {{- end -}}
-        {{- if $section.description -}}
-        <p class="text-muted lead">{{ $section.description }}</p>
-        {{- end -}}
-      </div>
-    </div>
-    {{- end -}}
+  <section class="c-contact-options c-contact-options--{{ $variant }}">
+    <div class="o-container">
 
-    <!-- Contact Option Cards -->
-    {{- if $section.options -}}
-    <div class="row g-4 mb-5">
-      {{- range $index, $option := $section.options -}}
-      <div class="col-lg-4 col-md-6">
-        <div class="contact-option-card h-100"
-             data-aos="fade-up"
-             data-aos-delay="{{ mul $index 100 }}">
-
-          <!-- Badge -->
-          {{- if $option.badge -}}
-          <div class="option-badge">{{ $option.badge }}</div>
+      {{/* Section Header (Optional) */}}
+      {{- if or $section.subtitle $section.title $section.description -}}
+        <div class="c-contact-options__header">
+          {{- if $section.subtitle -}}
+            <p class="c-contact-options__subtitle">{{ $section.subtitle }}</p>
           {{- end -}}
+          {{- if $section.title -}}
+            {{ partial "atoms/heading.html" (dict
+              "level" 2
+              "text" $section.title
+              "class" "c-contact-options__title"
+              "variant" $variant
+            ) }}
+          {{- end -}}
+          {{- if $section.description -}}
+            <p class="c-contact-options__description">{{ $section.description }}</p>
+          {{- end -}}
+        </div>
+      {{- end -}}
 
-          <!-- Icon -->
-          <div class="option-icon {{ if $option.featured }}featured{{ end }}">
-            {{- if $option.icon -}}
-            {{ partial "atoms/icon.html" (dict "name" $option.icon "size" "48") }}
-            {{- else -}}
-            {{ partial "atoms/icon.html" (dict "name" "envelope" "size" "48") }}
-            {{- end -}}
-          </div>
+      {{/* Contact Option Cards */}}
+      {{- if $section.options -}}
+        <div class="c-contact-options__grid">
+          {{- range $index, $option := $section.options -}}
+            <div class="c-contact-options__card {{ if $option.featured }}c-contact-options__card--featured{{ end }}">
 
-          <!-- Content -->
-          <div class="option-content">
-            {{ partial "atoms/heading.html" (dict "text" $option.title "level" 4 "class" "mb-2") }}
+              {{/* Badge */}}
+              {{- if $option.badge -}}
+                <div class="c-contact-options__badge">{{ $option.badge }}</div>
+              {{- end -}}
 
-            {{- if $option.commitment_level -}}
-            <div class="commitment-indicator mb-3">
-              {{- $bars := 3 -}}
-              {{- if eq $option.commitment_level "low" }}{{ $bars = 1 }}{{ end -}}
-              {{- if eq $option.commitment_level "medium" }}{{ $bars = 2 }}{{ end -}}
-              {{- if eq $option.commitment_level "high" }}{{ $bars = 3 }}{{ end -}}
+              {{/* Icon */}}
+              <div class="c-contact-options__icon {{ if $option.featured }}c-contact-options__icon--featured{{ end }}">
+                {{ partial "atoms/icon.html" (dict
+                  "name" ($option.icon | default "envelope")
+                  "variant" (cond $option.featured "primary" "secondary")
+                  "size" "2xl"
+                ) }}
+              </div>
 
-              <div class="commitment-bars">
-                {{- range seq 3 -}}
-                <span class="bar{{ if le . $bars }} active{{ end }}"></span>
+              {{/* Content */}}
+              <div class="c-contact-options__content">
+                {{ partial "atoms/heading.html" (dict
+                  "level" 4
+                  "text" $option.title
+                  "class" "c-contact-options__card-title"
+                ) }}
+
+                {{/* Commitment Level Indicator */}}
+                {{- if $option.commitment_level -}}
+                  <div class="c-contact-options__commitment">
+                    {{- $bars := 3 -}}
+                    {{- if eq $option.commitment_level "low" }}{{ $bars = 1 }}{{ end -}}
+                    {{- if eq $option.commitment_level "medium" }}{{ $bars = 2 }}{{ end -}}
+                    {{- if eq $option.commitment_level "high" }}{{ $bars = 3 }}{{ end -}}
+
+                    <div class="c-contact-options__commitment-bars">
+                      {{- range seq 3 -}}
+                        <span class="c-contact-options__commitment-bar {{ if le . $bars }}c-contact-options__commitment-bar--active{{ end }}"></span>
+                      {{- end -}}
+                    </div>
+                    <span class="c-contact-options__commitment-label">{{ $option.commitment_label | default "Commitment" }}</span>
+                  </div>
+                {{- end -}}
+
+                {{/* Description */}}
+                {{- if $option.description -}}
+                  <p class="c-contact-options__card-description">{{ $option.description }}</p>
+                {{- end -}}
+
+                {{/* Features */}}
+                {{- if $option.features -}}
+                  <ul class="c-contact-options__features">
+                    {{- range $option.features -}}
+                      <li class="c-contact-options__feature">
+                        {{ partial "atoms/icon.html" (dict
+                          "name" "check"
+                          "variant" "success"
+                          "size" "sm"
+                          "class" "c-contact-options__feature-icon"
+                        ) }}
+                        <span>{{ . }}</span>
+                      </li>
+                    {{- end -}}
+                  </ul>
+                {{- end -}}
+
+                {{/* Response Time */}}
+                {{- if $option.response_time -}}
+                  <div class="c-contact-options__response-time">
+                    {{ partial "atoms/icon.html" (dict
+                      "name" "clock"
+                      "variant" "primary"
+                      "size" "sm"
+                      "class" "c-contact-options__response-icon"
+                    ) }}
+                    <span>{{ $option.response_time }}</span>
+                  </div>
                 {{- end -}}
               </div>
-              <span class="commitment-label">{{ $option.commitment_label | default "Commitment" }}</span>
+
+              {{/* CTA Button */}}
+              <div class="c-contact-options__cta">
+                {{ partial "atoms/button.html" (dict
+                  "text" $option.button_text
+                  "url" $option.button_url
+                  "variant" (cond $option.featured "primary" "outline-primary")
+                  "icon" $option.button_icon
+                  "class" "c-contact-options__button"
+                ) }}
+              </div>
+
             </div>
-            {{- end -}}
-
-            {{- if $option.description -}}
-            <p class="text-muted mb-3">{{ $option.description }}</p>
-            {{- end -}}
-
-            {{- if $option.features -}}
-            <ul class="option-features">
-              {{- range $option.features -}}
-              <li>
-                {{ partial "atoms/icon.html" (dict "name" "check" "class" "text-success me-2") }}
-                <span>{{ . }}</span>
-              </li>
-              {{- end -}}
-            </ul>
-            {{- end -}}
-
-            {{- if $option.response_time -}}
-            <div class="response-time mt-3">
-              {{ partial "atoms/icon.html" (dict "name" "clock" "class" "text-primary me-2") }}
-              <span class="text-muted">{{ $option.response_time }}</span>
-            </div>
-            {{- end -}}
-          </div>
-
-          <!-- CTA -->
-          <div class="option-cta mt-auto">
-            {{- $buttonVariant := "outline-primary" -}}
-            {{- if $option.featured -}}
-              {{- $buttonVariant = "primary" -}}
-            {{- end -}}
-            {{ partial "atoms/button.html" (dict
-              "text" $option.button_text
-              "url" $option.button_url
-              "variant" $buttonVariant
-              "icon" $option.button_icon
-              "class" "w-100"
-            ) }}
-          </div>
-        </div>
-      </div>
-      {{- end -}}
-    </div>
-    {{- end -}}
-
-    <!-- Alternative Contact Methods -->
-    {{- if $section.alternative_methods -}}
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <div class="alternative-methods text-center p-4 rounded-3 bg-light">
-          {{ partial "atoms/heading.html" (dict "level" "h5" "text" ($section.alternative_methods.title | default "Or reach out directly:") "class" "mb-4") }}
-
-          <div class="method-buttons d-flex flex-wrap justify-content-center gap-3">
-            {{- range $section.alternative_methods.methods -}}
-            <a href="{{ .url }}"
-               class="method-button"
-               {{ if .external }}target="_blank" rel="noopener noreferrer"{{ end }}>
-              {{ partial "atoms/icon.html" (dict "name" .icon "class" "me-2") }}
-              <span>{{ .label }}</span>
-            </a>
-            {{- end -}}
-          </div>
-
-          {{- if $section.alternative_methods.note -}}
-          <p class="text-muted mt-3 mb-0 small">{{ $section.alternative_methods.note }}</p>
           {{- end -}}
         </div>
-      </div>
-    </div>
-    {{- end -}}
-  </div>
-</section>
+      {{- end -}}
 
+      {{/* Alternative Contact Methods */}}
+      {{- if $section.alternative_methods -}}
+        <div class="c-contact-options__alternative">
+          <div class="c-contact-options__alternative-inner">
+            {{ partial "atoms/heading.html" (dict
+              "level" 5
+              "text" ($section.alternative_methods.title | default "Or reach out directly:")
+              "class" "c-contact-options__alternative-title"
+            ) }}
+
+            <div class="c-contact-options__alternative-methods">
+              {{- range $section.alternative_methods.methods -}}
+                <a href="{{ .url }}"
+                   class="c-contact-options__method"
+                   {{ if .external }}target="_blank" rel="noopener noreferrer"{{ end }}>
+                  {{ partial "atoms/icon.html" (dict
+                    "name" .icon
+                    "size" "sm"
+                    "class" "c-contact-options__method-icon"
+                  ) }}
+                  <span>{{ .label }}</span>
+                </a>
+              {{- end -}}
+            </div>
+
+            {{- if $section.alternative_methods.note -}}
+              <p class="c-contact-options__alternative-note">{{ $section.alternative_methods.note }}</p>
+            {{- end -}}
+          </div>
+        </div>
+      {{- end -}}
+
+    </div>
+  </section>
 {{- end -}}

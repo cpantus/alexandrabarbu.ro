@@ -1,0 +1,280 @@
+/**
+ * FAQ Mini Section
+ *
+ * Compact FAQ section with 3-5 questions using accordion molecule.
+ * Centered narrow layout with title, subtitle, accordion, and footer link.
+ *
+ * BEM Structure:
+ * - .c-faq-mini-section (section block)
+ * - .c-faq-mini-section__container (centered narrow container)
+ * - .c-faq-mini-section__header (header wrapper for title/subtitle)
+ * - .c-faq-mini-section__title (main heading - from heading atom)
+ * - .c-faq-mini-section__subtitle (subtitle text)
+ * - .c-faq-mini-section__accordion-wrapper (accordion container)
+ * - .c-faq-mini-section__accordion (accordion molecule)
+ * - .c-faq-mini-section__footer (footer wrapper)
+ * - .c-faq-mini-section__footer-text (footer description)
+ * - .c-faq-mini-section__footer-link (footer CTA link)
+ *
+ * Modifiers:
+ * - .c-faq-mini-section--primary (emerald theme)
+ * - .c-faq-mini-section--secondary (terracotta theme)
+ * - .c-faq-mini-section--tertiary (calm blue theme)
+ * - .c-faq-mini-section--neutral (gray theme)
+ *
+ * Features:
+ * - 8pt spacing grid
+ * - Centered narrow layout (max-width 800px)
+ * - Responsive breakpoints
+ * - Color variant theming
+ * - WCAG AA accessibility
+ * - Accordion molecule integration
+ *
+ * Created: 2025-11-20 (Phase 5 refactor)
+ */
+
+//
+// Block
+//
+.c-faq-mini-section {
+  padding: $space-12 0; // 96px vertical
+  background-color: $color-bg-page;
+
+  // Responsive: reduce vertical spacing on mobile
+  @media (max-width: $breakpoint-md - 1) {
+    padding: $space-8 0; // 64px vertical
+  }
+}
+
+//
+// Container (centered narrow)
+//
+.c-faq-mini-section__container {
+  max-width: 800px; // Narrow for FAQ readability
+  margin: 0 auto;
+  padding: 0 $space-4; // 32px horizontal
+
+  // Mobile: reduce horizontal padding
+  @media (max-width: $breakpoint-md - 1) {
+    padding: 0 $space-3; // 24px horizontal
+  }
+}
+
+//
+// Header (title + subtitle)
+//
+.c-faq-mini-section__header {
+  text-align: center;
+  margin-bottom: $space-6; // 48px
+
+  // Mobile: reduce margin
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-4; // 32px
+  }
+}
+
+//
+// Title (from heading atom)
+//
+.c-faq-mini-section__title {
+  margin-bottom: $space-2; // 16px
+
+  // Mobile: reduce margin
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-1; // 8px
+  }
+}
+
+//
+// Subtitle
+//
+.c-faq-mini-section__subtitle {
+  font-family: $font-family-sans;
+  font-size: $font-size-base; // 16px
+  line-height: $line-height-normal; // 1.5
+  color: $color-text-muted;
+  margin: 0;
+
+  // Mobile: smaller size
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-sm; // 14px
+  }
+}
+
+//
+// Accordion Wrapper
+//
+.c-faq-mini-section__accordion-wrapper {
+  margin-bottom: $space-4; // 32px
+
+  // Mobile: reduce margin
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-3; // 24px
+  }
+}
+
+//
+// Accordion (from accordion molecule)
+//
+.c-faq-mini-section__accordion {
+  // Styles handled by accordion molecule component
+  // No additional styles needed
+}
+
+//
+// Footer (optional footer text + link)
+//
+.c-faq-mini-section__footer {
+  text-align: center;
+}
+
+//
+// Footer Text
+//
+.c-faq-mini-section__footer-text {
+  font-family: $font-family-sans;
+  font-size: $font-size-base; // 16px
+  line-height: $line-height-normal; // 1.5
+  color: $color-text-muted;
+  margin: 0;
+
+  // Mobile: smaller size
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-sm; // 14px
+  }
+}
+
+//
+// Footer Link
+//
+.c-faq-mini-section__footer-link {
+  font-family: $font-family-sans;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color $duration-fast $easing-ease-out;
+
+  // Default color (primary)
+  color: $color-primary-600;
+
+  &:hover {
+    color: $color-primary-700;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary-500;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  // Reduced motion: disable transition
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+//
+// Variant Modifiers (color theming for footer link)
+//
+.c-faq-mini-section--primary {
+  .c-faq-mini-section__footer-link {
+    color: $color-primary-600;
+
+    &:hover {
+      color: $color-primary-700;
+    }
+
+    &:focus {
+      outline-color: $color-primary-500;
+    }
+  }
+}
+
+.c-faq-mini-section--secondary {
+  .c-faq-mini-section__footer-link {
+    color: $color-secondary-600;
+
+    &:hover {
+      color: $color-secondary-700;
+    }
+
+    &:focus {
+      outline-color: $color-secondary-500;
+    }
+  }
+}
+
+.c-faq-mini-section--tertiary {
+  .c-faq-mini-section__footer-link {
+    color: $color-tertiary-600;
+
+    &:hover {
+      color: $color-tertiary-700;
+    }
+
+    &:focus {
+      outline-color: $color-tertiary-500;
+    }
+  }
+}
+
+.c-faq-mini-section--neutral {
+  .c-faq-mini-section__footer-link {
+    color: $color-neutral-700;
+
+    &:hover {
+      color: $color-neutral-900;
+    }
+
+    &:focus {
+      outline-color: $color-neutral-600;
+    }
+  }
+}
+
+//
+// Accessibility Enhancements
+//
+@media (prefers-contrast: high) {
+  .c-faq-mini-section__subtitle {
+    color: $color-text-primary;
+  }
+
+  .c-faq-mini-section__footer-text {
+    color: $color-text-primary;
+  }
+
+  .c-faq-mini-section__footer-link {
+    font-weight: 600;
+    text-decoration: underline;
+  }
+}
+
+//
+// Print Styles
+//
+@media print {
+  .c-faq-mini-section {
+    padding: $space-6 0;
+  }
+
+  .c-faq-mini-section__footer-link {
+    text-decoration: underline;
+    color: $color-text-primary;
+
+    &::after {
+      content: " (" attr(href) ")";
+      font-size: $font-size-xs;
+      color: $color-text-muted;
+    }
+  }
+}
+
+//
+// Legacy Compatibility (if needed)
+//
+.faq-mini-section,
+.section.pt-0.faq-mini-section {
+  // Extend BEM class if legacy classes detected
+  // @extend .c-faq-mini-section; (uncomment if needed)
+}

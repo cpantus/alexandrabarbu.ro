@@ -1,33 +1,114 @@
-{{/* Mini FAQ Section */}}
-{{ with .Params.faq_items }}
-<section class="section pt-0 faq-mini-section">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <div class="text-center mb-5">
-          {{- $faqTitle := $.Params.faq_mini_title | default (i18n "faq_title" | default "Întrebări Frecvente") -}}
-          {{- $faqSubtitle := $.Params.faq_mini_subtitle | default (i18n "faq_subtitle" | default "Răspunsuri la cele mai comune întrebări") -}}
-          {{- $headingVariant := $.Params.faq_mini_heading_variant | default "primary" -}}
-          {{ partial "atoms/heading.html" (dict "level" "h3" "text" $faqTitle "colorVariant" $headingVariant) }}
-          <p class="text-muted">{{ $faqSubtitle }}</p>
-        </div>
+{{/*
+  FAQ Mini Section
 
+  Displays a compact FAQ section with 3-5 questions using accordion component.
+  Centered layout with optional title/subtitle and footer link.
+
+  Front Matter Parameters:
+  - .Params.faq_items (array, required): FAQ items array
+    - question (string, required): FAQ question
+    - answer (string, required): FAQ answer (markdown supported)
+  - .Params.faq_mini_title (string, optional): Section title (default: i18n "faq_title")
+  - .Params.faq_mini_subtitle (string, optional): Section subtitle (default: i18n "faq_subtitle")
+  - .Params.faq_mini_heading_variant (string, optional): Heading color variant (default: primary)
+  - .Params.faq_mini_footer (string, optional): Footer text (default: i18n "faq_footer")
+  - .Params.faq_mini_link_text (string, optional): Footer link text (default: i18n "contact_us")
+  - .Params.faq_mini_link_url (string, optional): Footer link URL (default: #contact-form)
+  - .Params.faq_mini_variant (string, optional): Color variant (primary/secondary/tertiary/neutral, default: primary)
+
+  BEM Structure:
+  - .c-faq-mini-section (section block)
+  - .c-faq-mini-section__container (container wrapper)
+  - .c-faq-mini-section__header (header wrapper)
+  - .c-faq-mini-section__subtitle (subtitle text)
+  - .c-faq-mini-section__accordion-wrapper (accordion container)
+  - .c-faq-mini-section__footer (footer wrapper)
+  - .c-faq-mini-section__footer-text (footer description)
+  - .c-faq-mini-section__footer-link (footer CTA link)
+
+  Example Usage:
+  ```yaml
+  sections:
+    - type: "faq-mini"
+
+  faq_items:
+    - question: "How long is a therapy session?"
+      answer: "Sessions are 50 minutes long, the standard duration for individual therapy."
+    - question: "How many sessions will I need?"
+      answer: "This varies by individual. Most clients see progress in 8-12 sessions."
+    - question: "Is everything confidential?"
+      answer: "Yes, all sessions are completely confidential under professional ethics guidelines."
+
+  faq_mini_title: "Frequently Asked Questions"
+  faq_mini_subtitle: "Quick answers to common questions"
+  faq_mini_heading_variant: "primary"
+  faq_mini_footer: "Have more questions?"
+  faq_mini_link_text: "Contact us directly"
+  faq_mini_link_url: "/contact"
+  faq_mini_variant: "primary"
+  ```
+
+  Features:
+  - Centered narrow layout (max-width 800px)
+  - Accordion molecule integration
+  - First item open by default
+  - Color variants for theming
+  - i18n support for all text labels
+  - Optional footer with link
+  - Heading atom integration
+  - Markdown support for answers
+  - Responsive spacing (8pt grid)
+
+  Created: 2025-11-20 (Phase 5 refactor)
+  Version: 1.0.0 (BEM)
+*/}}
+
+{{- with .Params.faq_items -}}
+  {{- $variant := $.Params.faq_mini_variant | default "primary" -}}
+  {{- $faqTitle := $.Params.faq_mini_title | default (i18n "faq_title" | default "Frequently Asked Questions") -}}
+  {{- $faqSubtitle := $.Params.faq_mini_subtitle | default (i18n "faq_subtitle" | default "Quick answers to common questions") -}}
+  {{- $headingVariant := $.Params.faq_mini_heading_variant | default $variant -}}
+  {{- $faqFooter := $.Params.faq_mini_footer | default (i18n "faq_footer" | default "Have more questions?") -}}
+  {{- $faqLink := $.Params.faq_mini_link_text | default (i18n "contact_us" | default "Contact us directly") -}}
+  {{- $faqLinkUrl := $.Params.faq_mini_link_url | default "#contact-form" -}}
+
+  <section class="c-faq-mini-section c-faq-mini-section--{{ $variant }}">
+    <div class="c-faq-mini-section__container">
+      <div class="c-faq-mini-section__header">
+        {{- if $faqTitle -}}
+          {{ partial "atoms/heading.html" (dict
+            "level" "h3"
+            "text" $faqTitle
+            "variant" $headingVariant
+            "class" "c-faq-mini-section__title"
+          ) }}
+        {{- end -}}
+
+        {{- if $faqSubtitle -}}
+          <p class="c-faq-mini-section__subtitle">{{ $faqSubtitle }}</p>
+        {{- end -}}
+      </div>
+
+      <div class="c-faq-mini-section__accordion-wrapper">
         {{ partial "molecules/accordion.html" (dict
           "items" .
           "id" "faqAccordion"
           "defaultOpen" 0
-          "class" "faq-accordion faq-accordion-v4"
+          "variant" $variant
+          "class" "c-faq-mini-section__accordion"
         ) }}
+      </div>
 
-        <div class="text-center mt-4">
-          {{- $faqFooter := $.Params.faq_mini_footer | default (i18n "faq_footer" | default "Ai alte întrebări?") -}}
-          {{- $faqLink := $.Params.faq_mini_link_text | default (i18n "contact_us" | default "Contactează-ne direct") -}}
-          <p class="text-muted">{{ $faqFooter }}
-            <a href="#contact-form" class="text-primary">{{ $faqLink }}</a>
+      {{- if or $faqFooter $faqLink -}}
+        <div class="c-faq-mini-section__footer">
+          <p class="c-faq-mini-section__footer-text">
+            {{ $faqFooter }}
+            {{- if $faqLink -}}
+              {{- " " -}}<a href="{{ $faqLinkUrl }}" class="c-faq-mini-section__footer-link">{{ $faqLink }}</a>
+            {{- end -}}
           </p>
         </div>
-      </div>
+      {{- end -}}
     </div>
-  </div>
-</section>
-{{ end }}
+  </section>
+{{- end -}}

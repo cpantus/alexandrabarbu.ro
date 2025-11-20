@@ -24,7 +24,7 @@
 .c-card {
   @include card-v4('primary', false);
 
-  // Variant modifiers
+  // Variant modifiers (8 unified variants)
   &--primary {
     @include card-v4('primary', false);
   }
@@ -33,12 +33,37 @@
     @include card-v4('secondary', false);
   }
 
+  &--tertiary {
+    @include card-v4('tertiary', false);
+  }
+
+  &--success {
+    @include card-v4('success', false);
+  }
+
+  &--warning {
+    @include card-v4('warning', false);
+  }
+
+  &--error {
+    @include card-v4('error', false);
+  }
+
+  &--info {
+    @include card-v4('info', false);
+  }
+
+  &--neutral {
+    @include card-v4('neutral', false);
+  }
+
+  // Legacy variants (backward compatibility)
   &--coral {
     @include card-v4('coral', false);
   }
 
   &--sage {
-    @include card-v4('sage', false);
+    @include card-v4('sage', false);  // Alias for success
   }
 
   // State modifiers
@@ -416,7 +441,7 @@
   @extend .c-card;
 }
 
-// Variant compatibility
+// Variant compatibility (8 unified variants)
 .card-primary {
   @extend .c-card--primary;
 }
@@ -425,6 +450,31 @@
   @extend .c-card--secondary;
 }
 
+.card-tertiary {
+  @extend .c-card--tertiary;
+}
+
+.card-success {
+  @extend .c-card--success;
+}
+
+.card-warning {
+  @extend .c-card--warning;
+}
+
+.card-error {
+  @extend .c-card--error;
+}
+
+.card-info {
+  @extend .c-card--info;
+}
+
+.card-neutral {
+  @extend .c-card--neutral;
+}
+
+// Legacy variant compatibility
 .card-coral {
   @extend .c-card--coral;
 }

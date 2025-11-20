@@ -5,7 +5,8 @@
 {{ $scripts := slice }}
 
 {{/* Add existing theme JavaScript files */}}
-{{ range (slice "js/vanilla-collapse.js" "js/vanilla-dropdown.js" "js/values-compass-interactions.js" "js/stats-counter.js" "js/scroll-animations.js" "js/gsap-enhancements.js") }}
+{{/* Removed: js/gsap-enhancements.js (GSAP library not loaded, Phase 7) */}}
+{{ range (slice "js/vanilla-collapse.js" "js/vanilla-dropdown.js" "js/values-compass-interactions.js" "js/stats-counter.js" "js/scroll-animations.js" "js/back-to-top.js" "js/cookie-consent.js" "js/emergency-banner.js" "js/language-selector.js") }}
   {{ $resource := resources.Get . }}
   {{ if $resource }}
     {{ $scripts = $scripts | append $resource }}

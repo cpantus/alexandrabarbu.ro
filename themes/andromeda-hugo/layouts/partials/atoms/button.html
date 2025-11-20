@@ -17,7 +17,7 @@
   Parameters:
     text (required) - Button text/label
     href (optional) - Link URL (for link buttons)
-    variant (optional) - primary|secondary|outline-primary|outline-secondary (default: primary)
+    variant (optional) - primary|secondary|tertiary|success|warning|error|info|neutral|outline-primary|outline-secondary (default: primary)
     size (optional) - sm|md|lg (default: md)
     type (optional) - link|button|submit (default: link if href exists, else button)
     class (optional) - Additional CSS classes
@@ -42,12 +42,12 @@
 {{ $animate := .animate }}
 {{ $animateOptions := .animateOptions | default dict }}
 
-{{/* Build button classes */}}
-{{ $btnClass := printf "btn btn-%s" $variant }}
+{{/* Build button classes (BEM naming) */}}
+{{ $btnClass := printf "c-button c-button--%s" $variant }}
 {{ if eq $size "sm" }}
-  {{ $btnClass = printf "%s btn-sm" $btnClass }}
+  {{ $btnClass = printf "%s c-button--sm" $btnClass }}
 {{ else if eq $size "lg" }}
-  {{ $btnClass = printf "%s btn-lg" $btnClass }}
+  {{ $btnClass = printf "%s c-button--lg" $btnClass }}
 {{ end }}
 {{ if $fullWidth }}
   {{ $btnClass = printf "%s w-100" $btnClass }}

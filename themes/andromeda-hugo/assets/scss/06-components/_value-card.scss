@@ -1,0 +1,218 @@
+// =============================================================================
+// Value Card Component
+// =============================================================================
+//
+// Description:
+//   Card for displaying core values, principles, or philosophy points.
+//   Used on About page and Approach page to showcase organizational values.
+//
+// BEM Structure:
+//   - Block: .c-value-card
+//   - Elements: __icon, __header, __title, __body, __description
+//   - Modifiers: --primary, --secondary, --tertiary, --neutral, --success, --warning, --error, --info
+//
+// Dependencies:
+//   - Design Tokens: _tokens-colors.scss, _tokens-spacing.scss, _tokens-typography.scss
+//   - Atoms: .c-icon, .c-heading
+//
+// Version: 1.0.0
+// Last Updated: 2025-11-20
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Block: Value Card
+// -----------------------------------------------------------------------------
+
+.c-value-card {
+  // Layout
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  // Spacing (8pt grid)
+  padding: $space-5; // 40px
+  gap: $space-3; // 24px
+
+  // Visual
+  background: transparent;
+
+  // Transitions
+  transition: transform $duration-base $ease-out;
+
+  // Hover State
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  // Responsive
+  @media (max-width: $breakpoint-md) {
+    padding: $space-4; // 32px
+    gap: $space-3; // 24px
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $space-3; // 24px
+    gap: $space-2; // 16px
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Element: Icon
+// -----------------------------------------------------------------------------
+
+.c-value-card__icon {
+  // Layout
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  // Animation
+  transition: transform $duration-base $ease-out;
+
+  // Hover effect (scale icon)
+  .c-value-card:hover & {
+    transform: scale(1.05) rotate(2deg);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Element: Header
+// -----------------------------------------------------------------------------
+
+.c-value-card__header {
+  // Layout
+  width: 100%;
+}
+
+// -----------------------------------------------------------------------------
+// Element: Title
+// -----------------------------------------------------------------------------
+
+.c-value-card__title {
+  // Typography (Crimson Pro serif)
+  font-family: $font-family-heading;
+  font-size: $font-size-xl; // 20px
+  font-weight: 600;
+  line-height: $line-height-snug; // 1.375
+
+  // Spacing
+  margin: 0;
+
+  // Responsive
+  @media (max-width: $breakpoint-sm) {
+    font-size: $font-size-lg; // 18px
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Element: Body
+// -----------------------------------------------------------------------------
+
+.c-value-card__body {
+  // Layout
+  width: 100%;
+  flex-grow: 1;
+}
+
+.c-value-card__description {
+  // Typography (Work Sans sans-serif)
+  font-family: $font-family-body;
+  font-size: $font-size-base; // 16px
+  font-weight: 400;
+  line-height: $line-height-relaxed; // 1.625
+  color: $color-text-secondary;
+
+  // Spacing
+  margin: 0;
+
+  // Responsive
+  @media (max-width: $breakpoint-sm) {
+    font-size: $font-size-sm; // 14px
+    line-height: $line-height-normal; // 1.5
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Modifiers: Color Variants
+// -----------------------------------------------------------------------------
+
+// Primary Variant (Emerald)
+.c-value-card--primary {
+  // Icon inherits color from atom
+}
+
+// Secondary Variant (Terracotta)
+.c-value-card--secondary {
+  // Icon inherits color from atom
+}
+
+// Tertiary Variant
+.c-value-card--tertiary {
+  // Icon inherits color from atom
+}
+
+// Neutral Variant
+.c-value-card--neutral {
+  // Icon inherits color from atom
+}
+
+// Success Variant
+.c-value-card--success {
+  // Icon inherits color from atom
+}
+
+// Warning Variant
+.c-value-card--warning {
+  // Icon inherits color from atom
+}
+
+// Error Variant
+.c-value-card--error {
+  // Icon inherits color from atom
+}
+
+// Info Variant
+.c-value-card--info {
+  // Icon inherits color from atom
+}
+
+// -----------------------------------------------------------------------------
+// Accessibility Enhancements
+// -----------------------------------------------------------------------------
+
+// Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  .c-value-card,
+  .c-value-card__icon {
+    transition: none;
+  }
+
+  .c-value-card:hover {
+    transform: none;
+  }
+
+  .c-value-card:hover .c-value-card__icon {
+    transform: none;
+  }
+}
+
+// High Contrast Mode
+@media (prefers-contrast: high) {
+  .c-value-card {
+    border: 1px solid $color-border-medium;
+  }
+}
+
+// Print Styles
+@media print {
+  .c-value-card {
+    break-inside: avoid;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}

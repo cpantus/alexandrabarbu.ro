@@ -5,188 +5,220 @@ layout: "flexible"
 
 sections:
   - type: "hero-breadcrumb"
-  - type: "credentials-showcase"
   - type: "problem-empathy"
-  - type: "feature-blocks"
-  - type: "values-intro"
-  - type: "values-compass"
-  - type: "credentials-showcase"
-  - type: "video-popup"
-
+  - type: "services-preview"
+  - type: "about-preview"
+  - type: "approach-preview"
+  - type: "testimonials-enhanced"
+  - type: "simple-process"
   - type: "faq-mini"
-  - type: "contact-form-enhanced"
+  - type: "cta-standard"
 
-# Hero Image
-hero_image: "images/hero/alexandra-barbu-cabinet.jpg"
+# ============================================================================
+# 1. HERO SECTION
+# ============================================================================
 
-# Strategic color variant assignments (Phase 1D - balanced distribution)
-# Pattern: primary (emerald) → secondary (terracotta) → outline-primary → secondary
-button_variant: "primary"  # Global default for sections without specific variant
+hero_breadcrumb:
+  title: "Terapie Psihologică Profesională în București"
+  subtitle: "Ajutor specializat pentru depresie, anxietate și relații"
+  description: "Abordare integrativă bazată pe dovezi științifice. Consultație gratuită de 30 minute pentru a ne cunoaște."
+  image: "images/hero/alexandra-barbu-cabinet.jpg"
+  button_text: "Programează Consultație Gratuită"
+  button_url: "/contact/"
+  button_variant: "primary"
+  secondary_button_text: "Află Mai Multe"
+  secondary_button_url: "#problema"
 
-# 1. Credentials Showcase - Trust Building
-credentials_showcase:
-  enable: true
-  subtitle: "Calificare Profesională"
-  title: "Expertiză și Credibilitate"
-  description: "Acreditări și experiență care garantează servicii de calitate"
-  background: "light"
-  credentials:
-    - icon: "user-md"
-      label: "Licențiat Psiholog Clinician"
-      value: "Certificare CPR"
-      variant: "primary"
-    - icon: "award"
-      label: "10+ Ani Experiență"
-      value: "500+ Clienți Ajutați"
-      variant: "secondary"  # Terracotta - personal connection
-    - icon: "certificate"
-      label: "Membru CPR"
-      value: "Colegiul Psihologilor din România"
-      variant: "info"
-    - icon: "graduation-cap"
-      label: "Formare Continuă"
-      value: "TCC, EMDR, Mindfulness"
-      variant: "coral"  # Compassionate learning
-  show_trust_text: true
-  trust_text: "Certificări și acreditări verificate. Membră în bună regulă a organizațiilor profesionale de psihoterapie."
+# ============================================================================
+# 2. PROBLEMA/EMPATIE SECTION
+# ============================================================================
 
-# 2. Problem/Empathy Section
 problem_empathy:
-  enable: true
-  subtitle: "Nu ești singur"
   title: "Recunoști Aceste Semne?"
+  subtitle: "Nu ești singur"
   description: "Multe persoane se confruntă cu provocări similare. Primul pas către vindecare este recunoașterea nevoii de ajutor."
   challenges:
-    - title: "Anxietate și Stres Constant"
-      description: "Te simți copleșit de grijile zilnice, tensionat fără motiv aparent, cu dificultăți de concentrare."
-      icon: "brain"
-      index: 0
-    - title: "Relații Dificile"
-      description: "Conflicte recurente cu partenerul, dificultăți în comunicare, sentimente de singurătate în relație."
-      icon: "users"
-      index: 1
-    - title: "Traume Nerezolvate"
-      description: "Amintiri dureroase care te bântuie, flashback-uri, reacții emoționale intense la stimuli aparent inofensivi."
-      icon: "brain"
-      index: 2
-    - title: "Scăderea Stării de Bine"
+    - title: "Te simți copleșit de anxietate"
+      description: "Grijile constante, tensiune fără motiv aparent, atacuri de panică, dificultăți de concentrare."
+      icon: "las la-brain"
+    - title: "Relațiile tale suferă"
+      description: "Conflicte recurente, dificultăți în comunicare, sentimente de singurătate sau neînțelegere."
+      icon: "las la-heart-broken"
+    - title: "Nu mai găsești bucurie în viață"
       description: "Lipsă de energie, pierderea plăcerii în activități, tulburări de somn, sentiment de gol interior."
-      icon: "sad-tear"
-      index: 3
+      icon: "las la-sad-tear"
+    - title: "Te simți blocat în trecut"
+      description: "Traume nerezolvate, amintiri dureroase, flashback-uri, reacții emoționale intense."
+      icon: "las la-clock"
   empathy_text: "Înțeleg prin ce treci. Aceste provocări sunt reale și merită atenție profesională. **Terapia poate fi punctul de cotitură** către o viață mai echilibrată și mai împlinită."
 
-# 3. Services Preview
-feature_blocks:
-  - title: "Terapie Individuală"
-    subtitle: "Dezvoltare personală"
-    description: "Abordare personalizată pentru anxietate, depresie, traume și dezvoltare personală. Metode dovedite științific adaptate nevoilor tale unice."
-    image: "images/services/terapie-individuala.jpg"
-  - title: "Terapie de Cuplu"
-    subtitle: "Relații sănătoase"
-    description: "Îmbunătățirea comunicării, rezolvarea conflictelor și reconstruirea intimității. Redescoperă conexiunea cu partenerul tău."
-    image: "images/services/terapie-cuplu.jpg"
-  - title: "Terapie de Familie"
-    subtitle: "Armonie familială"
-    description: "Dinamici familiale sănătoase, rezolvarea conflictelor intergeneraționale și crearea unui mediu familial sigur."
-    image: "images/services/terapie-familie.jpg"
-  - title: "Psihologie Organizațională"
-    subtitle: "Performanță la locul de muncă"
-    description: "Coaching pentru lideri, gestionarea stresului profesional și dezvoltarea echipelor performante."
-    image: "images/services/psihologie-organizationala.jpg"
+# ============================================================================
+# 3. SERVICII PREVIEW
+# ============================================================================
 
-# 4. About Preview
-values_intro:
-  enable: true
-  button_variant: "secondary"  # Terracotta - personal/warm connection
-  subtitle: "Despre mine"
-  title: "Alexandra Barbu"
-  description: |
-    **Psihoterapeut integrativ** cu peste 10 ani de experiență în ajutarea persoanelor să depășească provocările emoționale și să-și îmbunătățească calitatea vieții.
+services_preview:
+  title: "Cum Te Pot Ajuta"
+  subtitle: "Servicii Specializate"
+  services:
+    - title: "Terapie Individuală"
+      description: "Abordare personalizată pentru depresie, anxietate, traume și creștere personală. Metode dovedite științific adaptate nevoilor tale unice."
+      icon: "las la-user"
+      url: "/servicii/terapie-individuala/"
+      button_text: "Află Mai Multe"
+      button_variant: "primary"
+    - title: "Terapie de Cuplu"
+      description: "Reconstruiește conexiunea și comunicarea în relație. Redescoperă intimitatea și rezolvă conflictele constructiv."
+      icon: "las la-heart"
+      url: "/servicii/terapie-cuplu/"
+      button_text: "Află Mai Multe"
+      button_variant: "secondary"
+    - title: "Terapie de Familie"
+      description: "Vindecare și armonizare a dinamicii familiale. Creează un mediu familial sigur și susținător."
+      icon: "las la-users"
+      url: "/servicii/terapie-familie/"
+      button_text: "Află Mai Multe"
+      button_variant: "primary"
+    - title: "Psihologie Organizațională"
+      description: "Optimizare echipe și cultură organizațională sănătoasă. Leadership și performanță la locul de muncă."
+      icon: "las la-building"
+      url: "/servicii/psihologie-organizationala/"
+      button_text: "Află Mai Multe"
+      button_variant: "secondary"
 
-    **Specializări:**
-    - Terapie Cognitiv-Comportamentală (TCC)
-    - Mindfulness și Compassiune
-    - EMDR pentru traume
-    - Terapie Sistemică
+# ============================================================================
+# 4. DESPRE PREVIEW
+# ============================================================================
 
-    Abordarea mea se bazează pe **empatie, respect și colaborare**. Cred că fiecare persoană are resurse interioare pentru vindecare - rolul meu este să te ghidez în descoperirea și activarea lor.
-  image: "images/about/alexandra-barbu-profile.jpg"
-  button:
-    enable: true
-    label: "Despre Mine"
-    link: "despre-mine"
+about_preview:
+  title: "Despre Mine"
+  subtitle: "Terapeutul Tău"
+  image: "images/about/alexandra-barbu-portrait.jpg"
+  bio: |
+    Sunt psiholog clinician cu peste 15 ani de experiență în terapie individuală și de cuplu. Cred în puterea vindecării prin compasiune, înțelegere și tehnici bazate pe dovezi.
 
-# 5. Approach Preview
-benefits_section:
-  enable: true
-  button_variant: "secondary"  # Terracotta - warm approach
-  subtitle: "Abordarea mea"
-  title: "Filozofie Terapeutică Integrativă"
-  description: "Combin cele mai eficiente metode terapeutice pentru rezultate durabile."
-  benefits:
-    - title: "Bazată pe Știință"
-      icon: "flask"
-      description: "Folosesc metode validate științific: Terapie Cognitiv-Comportamentală (CBT), Terapie Dialectic-Comportamentală (DBT), și Terapie de Acceptare și Angajament (ACT)."
-    - title: "Centrată pe Client"
-      icon: "heart"
-      description: "Tu ești în centrul procesului terapeutic. Prioritizez confortul, ritmul și alegerile tale în fiecare ședință."
-    - title: "Orientată spre Soluții"
-      icon: "bullseye"
-      description: "Focusul este pe dezvoltarea de soluții concrete și durabile, nu doar pe analiza problemelor. Rezultate măsurabile și progres real."
+    Abordarea mea se bazează pe **empatie, respect și colaborare**. Fiecare persoană are resurse interioare pentru vindecare - rolul meu este să te ghidez în descoperirea și activarea lor.
+  credentials:
+    - text: "Psiholog Clinician Licențiat"
+      icon: "las la-certificate"
+    - text: "15+ ani experiență"
+      icon: "las la-clock"
+    - text: "Certificări: TCC, EMDR, Mindfulness"
+      icon: "las la-award"
+    - text: "Membru Colegiul Psihologilor din România"
+      icon: "las la-graduation-cap"
+  button_text: "Citește Povestea Mea"
+  button_url: "/despre-mine/"
+  button_variant: "secondary"
 
-# 6. Testimonials
-video_popup:
-  enable: true
-  subtitle: "Experiențe reale"
+# ============================================================================
+# 5. ABORDARE PREVIEW
+# ============================================================================
+
+approach_preview:
+  title: "Abordarea Mea Terapeutică"
+  subtitle: "Principii Fundamentale"
+  description: "Combin cele mai eficiente metode terapeutice pentru rezultate durabile și transformare reală."
+  principles:
+    - title: "Bazat pe Dovezi"
+      description: "Folosesc metode validate științific: TCC, DBT, ACT, EMDR. Tehnici dovedite pentru rezultate măsurabile."
+      icon: "las la-flask"
+    - title: "Personalizat"
+      description: "Fiecare plan de terapie este adaptat nevoilor tale unice. Nu există două călătorii de vindecare identice."
+      icon: "las la-user-circle"
+    - title: "Compasiune"
+      description: "Creez un spațiu sigur, lipsit de judecată, unde te poți exprima liber și poți fi vulnerabil."
+      icon: "las la-heart"
+    - title: "Rezultate Măsurabile"
+      description: "Urmărim progresul împreună și ajustăm abordarea pentru rezultate optime. Transparență totală."
+      icon: "las la-chart-line"
+  button_text: "Descoperă Abordarea Completă"
+  button_url: "/abordare/"
+  button_variant: "primary"
+
+# ============================================================================
+# 6. TESTIMONIALE
+# ============================================================================
+
+testimonials_enhanced:
   title: "Ce Spun Clienții Mei"
+  subtitle: "Experiențe Reale"
   description: "Feedback autentic de la persoane care au parcurs terapia cu mine."
-  video_url: "https://www.youtube.com/watch?v=VIDEO_ID"
-  thumbnail: "images/testimonials/video-thumbnail.jpg"
   testimonials:
-    - quote: "Terapia cu Alexandra m-a ajutat să înțeleg și să gestionez anxietatea. Acum pot să trăiesc fără teama constantă."
-      author: "Maria T."
-      role: "Client Terapie Individuală"
+    - quote: "Alexandra m-a ajutat să găsesc puterea de a depăși depresia. Acum văd viața diferit și am instrumente concrete pentru a gestiona provocările."
+      author: "Maria, 34 ani"
+      role: "Terapie Individuală"
       rating: 5
-    - quote: "Am salvat căsnicia. Alexandra ne-a învățat să comunicăm cu adevărat, nu doar să vorbim."
-      author: "Andrei și Elena P."
-      role: "Clienți Terapie de Cuplu"
+      verified: true
+      outcome: "Reducere simptome depresie: 80%"
+    - quote: "Relația noastră era pe marginea prăpastiei. Acum comunicăm cu adevărat, ne înțelegem și ne susținem reciproc. Mulțumim!"
+      author: "Andrei și Elena"
+      role: "Terapie de Cuplu"
       rating: 5
-    - quote: "EMDR-ul a fost transformator. Trauma care mă bloca de ani de zile nu mai are aceeași putere asupra mea."
-      author: "Cristina M."
-      role: "Client EMDR"
+      verified: true
+      outcome: "Îmbunătățire satisfacție relație: 90%"
+    - quote: "Tehnicile învățate în terapie m-au ajutat să gestionez anxietatea zilnică. Nu mai trăiesc cu frica constantă."
+      author: "Ioana, 28 ani"
+      role: "Terapie Individuală - Anxietate"
       rating: 5
+      verified: true
+      outcome: "Reducere atacuri de panică: 95%"
 
-# 8. FAQ Preview
+# ============================================================================
+# 7. PROCES SIMPLU
+# ============================================================================
+
+simple_process:
+  title: "3 Pași Către Vindecare"
+  subtitle: "Cum Începem"
+  steps:
+    - number: "1"
+      title: "Programează Consultația Gratuită"
+      description: "30 de minute pentru a ne cunoaște și a stabili dacă pot să te ajut. Fără obligații, complet confidențial."
+      icon: "las la-calendar"
+    - number: "2"
+      title: "Evaluare și Plan Personalizat"
+      description: "Înțelegem provocările tale și creăm împreună un plan de acțiune adaptat obiectivelor tale."
+      icon: "las la-clipboard-list"
+    - number: "3"
+      title: "Începe Călătoria de Vindecare"
+      description: "Lucrăm împreună spre obiectivele tale de sănătate mentală. Pași concreți, rezultate măsurabile."
+      icon: "las la-seedling"
+
+# ============================================================================
+# 8. FAQ PREVIEW
+# ============================================================================
+
 faq_mini:
-  enable: true
   title: "Întrebări Frecvente"
+  subtitle: "Răspunsuri Rapide"
   faqs:
-    - question: "Cât durează o ședință de terapie?"
-      answer: "O ședință standard durează 50 de minute. Prima ședință poate dura până la 90 de minute pentru evaluarea inițială completă."
-    - question: "Este terapia online la fel de eficientă?"
-      answer: "Da! Studiile arată că terapia online este la fel de eficientă ca cea față-în-față pentru majoritatea problemelor. Oferă flexibilitate și confort, fiind ideală pentru persoane cu program încărcat."
-    - question: "Câte ședințe voi avea nevoie?"
-      answer: "Depinde de complexitatea problemei. Unele persoane văd îmbunătățiri în 6-8 ședințe, altele beneficiază de terapie pe termen mai lung (3-6 luni). Stabilim împreună durata optimă."
-    - question: "Este confidențial tot ce discut în terapie?"
-      answer: "Absolut. Confidențialitatea este fundamentală în terapie. Tot ce discutăm rămâne între noi, cu excepția situațiilor prevăzute de lege (risc de vătămare)."
+    - question: "Cât durează o ședință?"
+      answer: "O ședință durează 50-60 de minute. Prima ședință poate fi mai lungă (90 minute) pentru evaluarea completă."
+    - question: "Cât costă terapia?"
+      answer: "Tariful pentru o ședință individuală este 250 lei. Există pachete cu discount. Vezi detalii complete pe pagina de Contact."
+    - question: "Este confidențial?"
+      answer: "Da, complet confidențial. Respectăm strictele standarde de confidențialitate GDPR și etica profesională."
+    - question: "Câte ședințe sunt necesare?"
+      answer: "Variază după nevoi. Unii clienți beneficiază de 6-10 ședințe, alții de terapie pe termen mai lung (3-6 luni). Stabilim împreună."
+  link_text: "Vezi Toate Întrebările"
+  link_url: "/contact/#faq"
 
-# 9. CTA Final
-contact_form_enhanced:
-  enable: true
-  button_variant: "primary"  # Emerald - main action/CTA
-  subtitle: "Începe astăzi"
-  title: "Fă Primul Pas către o Viață Mai Bună"
-  description: |
-    **Consultația inițială este gratuită** - 30 de minute în care explorăm împreună cum te pot ajuta.
+# ============================================================================
+# 9. CTA FINAL
+# ============================================================================
 
-    ✓ Fără obligații
-    ✓ Confidențial 100%
-    ✓ Online sau la cabinet
-  form_action: "https://formspree.io/f/YOUR_FORM_ID"
-  calendly_url: "https://calendly.com/alexandra-barbu/consultatie-gratuita"
-  show_guarantees: true
+cta_standard:
+  title: "Gata Să Faci Primul Pas?"
+  subtitle: "Începe Astăzi"
+  description: "Nu trebuie să treci prin asta singur. Programează o consultație gratuită astăzi și să începem împreună călătoria spre vindecare."
+  button_text: "Programează Consultație Gratuită"
+  button_url: "/contact/"
+  button_variant: "primary"
   guarantees:
-    - "Primul răspuns în 24 de ore"
-    - "Programare flexibilă (inclusiv weekend)"
-    - "Opțiune online sau fizic"
+    - text: "Consultație inițială gratuită 30 minute"
+      icon: "las la-check-circle"
+    - text: "Complet confidențial"
+      icon: "las la-shield-alt"
+    - text: "Online sau la cabinet"
+      icon: "las la-laptop-house"
 ---

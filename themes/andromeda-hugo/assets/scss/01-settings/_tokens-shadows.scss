@@ -90,5 +90,23 @@ $blob-gentle: 55% 45% 45% 55% / 50% 60% 40% 50%;
 // Rule: ALL components of same type use SAME radius
 
 // ==================================
+// SEMANTIC ALIASES (Component-Friendly Names)
+// ==================================
+// These aliases map component-style semantic names to existing token names
+// for backward compatibility and improved developer experience.
+
+// ----------------------------------
+// Border Radius Aliases
+// ----------------------------------
+$border-radius-sm: $radius-sm;                 // 8px - Small radius
+$border-radius-base: $radius-md;               // 12px - Base radius (alias for md)
+$border-radius-md: $radius-md;                 // 12px - Medium radius
+$border-radius-lg: $radius-lg;                 // 16px - Large radius
+$border-radius-xl: $radius-xl;                 // 24px - Extra large radius
+$border-radius-2xl: $radius-2xl;               // 32px - 2x extra large radius
+$border-radius-full: $radius-full;             // 9999px - Fully rounded
+$border-radius-circle: $radius-full;           // 9999px - Circle alias
+
+// ==================================
 // END OF SHADOW & RADIUS TOKENS
 // ==================================

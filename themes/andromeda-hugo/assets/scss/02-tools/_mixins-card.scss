@@ -36,7 +36,7 @@
     transform: translateY(-2px) scale(1.02);
     background: rgba(255, 255, 255, 0.95);
 
-    // Variant-specific gradient glow (soft, elegant)
+    // Variant-specific gradient glow (soft, elegant) - 8 unified variants
     @if $variant == 'primary' {
       box-shadow:
         0 0 0 1px rgba($emerald-400, 0.2),
@@ -47,16 +47,43 @@
         0 0 0 1px rgba($terracotta-400, 0.2),
         0 8px 24px -4px rgba($terracotta-500, 0.25),
         0 16px 48px -8px rgba($terracotta-400, 0.15);
-    } @else if $variant == 'coral' {
+    } @else if $variant == 'tertiary' {
       box-shadow:
-        0 0 0 1px rgba($coral-400, 0.2),
-        0 8px 24px -4px rgba($coral-500, 0.25),
-        0 16px 48px -8px rgba($coral-400, 0.15);
-    } @else if $variant == 'sage' {
+        0 0 0 1px rgba($navy-400, 0.2),
+        0 8px 24px -4px rgba($navy-500, 0.25),
+        0 16px 48px -8px rgba($navy-400, 0.15);
+    } @else if $variant == 'success' or $variant == 'sage' {
+      // success = sage (backward compatibility)
       box-shadow:
         0 0 0 1px rgba($sage-400, 0.2),
         0 8px 24px -4px rgba($sage-500, 0.25),
         0 16px 48px -8px rgba($sage-400, 0.15);
+    } @else if $variant == 'warning' {
+      box-shadow:
+        0 0 0 1px rgba($amber-400, 0.2),
+        0 8px 24px -4px rgba($amber-500, 0.25),
+        0 16px 48px -8px rgba($amber-400, 0.15);
+    } @else if $variant == 'error' {
+      box-shadow:
+        0 0 0 1px rgba($red-400, 0.2),
+        0 8px 24px -4px rgba($red-500, 0.25),
+        0 16px 48px -8px rgba($red-400, 0.15);
+    } @else if $variant == 'info' {
+      box-shadow:
+        0 0 0 1px rgba($teal-400, 0.2),
+        0 8px 24px -4px rgba($teal-500, 0.25),
+        0 16px 48px -8px rgba($teal-400, 0.15);
+    } @else if $variant == 'neutral' {
+      box-shadow:
+        0 0 0 1px rgba($gray-400, 0.2),
+        0 8px 24px -4px rgba($gray-500, 0.25),
+        0 16px 48px -8px rgba($gray-400, 0.15);
+    } @else if $variant == 'coral' {
+      // coral kept for specific use cases (testimonials, warm content)
+      box-shadow:
+        0 0 0 1px rgba($coral-400, 0.2),
+        0 8px 24px -4px rgba($coral-500, 0.25),
+        0 16px 48px -8px rgba($coral-400, 0.15);
     } @else {
       box-shadow: $shadow-md; // Fallback
     }

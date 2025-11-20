@@ -1,0 +1,142 @@
+{{/*
+  ============================================================================
+  Services Preview Section - BEM Architecture
+  ============================================================================
+  Displays 4 main therapy services in a responsive card grid
+
+  Features:
+  - 4-service card grid (1 col mobile, 2 col tablet, 4 col desktop)
+  - Service icons, titles, descriptions
+  - CTAs to individual service pages
+  - Glassmorphism card style (v4.0)
+  - Staggered entrance animations
+
+  Data Structure:
+  ---------------
+  services_preview:
+    title: "How I Can Help"                    # Section heading
+    subtitle: "Specialized Therapy Services"    # Optional eyebrow
+    services:                                   # Array of 4 services
+      - title: "Individual Therapy"
+        description: "Personalized approach for depression, anxiety..."
+        icon: "las la-user"                    # Line Awesome icon class
+        url: "/servicii/terapie-individuala/"
+        button_variant: "primary"              # Optional: primary/secondary
+
+  Parameters:
+  -----------
+  None - Data-driven from front matter
+
+  Usage:
+  ------
+  ```yaml
+  sections:
+    - type: "services-preview"
+
+  services_preview:
+    title: "Cum Te Pot Ajuta"
+    services:
+      - title: "Terapie Individuală"
+        description: "Abordare personalizată pentru depresie, anxietate..."
+        icon: "las la-user"
+        url: "/servicii/terapie-individuala/"
+      - title: "Terapie de Cuplu"
+        description: "Reconstruiește conexiunea și comunicarea..."
+        icon: "las la-heart"
+        url: "/servicii/terapie-cuplu/"
+  ```
+
+  BEM Structure:
+  --------------
+  .c-services-preview               - Section wrapper
+  .c-services-preview__header       - Header container
+  .c-services-preview__subtitle     - Eyebrow text
+  .c-services-preview__title        - Main heading
+  .c-services-preview__grid         - Services card grid
+  .c-services-preview__card         - Individual service card
+  .c-services-preview__icon         - Service icon
+  .c-services-preview__card-title   - Service title
+  .c-services-preview__description  - Service description
+  .c-services-preview__cta          - CTA button
+
+  Dependencies:
+  -------------
+  - atoms/heading.html (section title)
+  - atoms/button.html (CTAs)
+  - atoms/icon.html (service icons)
+  - _services-preview.scss (BEM styles)
+
+  Version: 1.0.0
+  Updated: 2025-11-20
+  ============================================================================
+*/}}
+
+{{- $data := .Params.services_preview -}}
+{{- if not $data -}}
+  {{- $data = site.Data.shared_sections.services_preview -}}
+{{- end -}}
+
+{{- if $data -}}
+<section class="c-services-preview section">
+  <div class="o-container">
+
+    {{/* Section Header */}}
+    {{- if or $data.title $data.subtitle -}}
+    <div class="c-services-preview__header text-center mb-5">
+      {{- if $data.subtitle -}}
+        <p class="c-services-preview__subtitle text-uppercase mb-2">{{ $data.subtitle }}</p>
+      {{- end -}}
+      {{- if $data.title -}}
+        {{ partial "atoms/heading.html" (dict
+          "text" $data.title
+          "level" 2
+          "class" "c-services-preview__title"
+        ) }}
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    {{/* Services Grid */}}
+    {{- if $data.services -}}
+    <div class="c-services-preview__grid">
+      {{- range $index, $service := $data.services -}}
+        <div class="c-services-preview__card" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+
+          {{/* Service Icon */}}
+          {{- if $service.icon -}}
+            {{ partial "atoms/icon.html" (dict
+              "icon" $service.icon
+              "class" "c-services-preview__icon"
+              "size" "3x"
+            ) }}
+          {{- end -}}
+
+          {{/* Service Title */}}
+          {{- if $service.title -}}
+            <h3 class="c-services-preview__card-title">{{ $service.title }}</h3>
+          {{- end -}}
+
+          {{/* Service Description */}}
+          {{- if $service.description -}}
+            <p class="c-services-preview__description">{{ $service.description }}</p>
+          {{- end -}}
+
+          {{/* CTA Button */}}
+          {{- if $service.url -}}
+            {{ partial "atoms/button.html" (dict
+              "text" (default (i18n "learn_more") $service.button_text)
+              "url" ($service.url | relLangURL)
+              "variant" (default "primary" $service.button_variant)
+              "class" "c-services-preview__cta"
+              "icon" "las la-arrow-right"
+            ) }}
+          {{- end -}}
+
+        </div>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+  </div>
+</section>
+{{- end -}}

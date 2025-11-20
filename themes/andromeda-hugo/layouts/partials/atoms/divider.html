@@ -1,0 +1,42 @@
+{{/*
+  Divider Atom - Visual separator for content sections
+
+  Usage:
+    {{ partial "atoms/divider.html" (dict
+      "orientation" "horizontal"
+      "variant" "neutral"
+      "spacing" "md"
+    )}}
+
+  Parameters:
+    orientation (optional) - Direction: horizontal|vertical (default: horizontal)
+    variant (optional) - Color variant: primary|secondary|neutral (default: neutral)
+    spacing (optional) - Space around divider: sm|md|lg (default: md)
+    thickness (optional) - Line thickness: thin|base|thick (default: base)
+    class (optional) - Additional CSS classes
+    attributes (optional) - Additional HTML attributes as dict
+
+  Examples:
+    Horizontal divider: {{ partial "atoms/divider.html" (dict "orientation" "horizontal") }}
+    Vertical divider: {{ partial "atoms/divider.html" (dict "orientation" "vertical") }}
+    Thick primary: {{ partial "atoms/divider.html" (dict "thickness" "thick" "variant" "primary") }}
+*/}}
+
+{{ $orientation := .orientation | default "horizontal" }}
+{{ $variant := .variant | default "neutral" }}
+{{ $spacing := .spacing | default "md" }}
+{{ $thickness := .thickness | default "base" }}
+{{ $class := .class | default "" }}
+{{ $attributes := .attributes | default dict }}
+
+{{/* Build divider classes */}}
+{{ $dividerClass := "c-divider" }}
+{{ $dividerClass = printf "%s c-divider--%s" $dividerClass $orientation }}
+{{ $dividerClass = printf "%s c-divider--%s" $dividerClass $variant }}
+{{ $dividerClass = printf "%s c-divider--spacing-%s" $dividerClass $spacing }}
+{{ $dividerClass = printf "%s c-divider--thickness-%s" $dividerClass $thickness }}
+{{ if $class }}
+  {{ $dividerClass = printf "%s %s" $dividerClass $class }}
+{{ end }}
+
+<hr class="{{ $dividerClass }}"{{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}} aria-hidden="true">

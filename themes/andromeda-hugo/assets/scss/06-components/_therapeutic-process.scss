@@ -1,0 +1,203 @@
+// ==================================
+// Therapeutic Process Section - BEM Component
+// ==================================
+//
+// Purpose: Detailed therapy process timeline for service pages
+// Features: Vertical timeline with phase details and durations
+// Layout: Timeline with connecting line
+//
+// Version: 1.0.0
+// Updated: 2025-11-20
+//
+
+// ============================================================================
+// BLOCK: Therapeutic Process Section
+// ============================================================================
+
+.c-therapeutic-process {
+  padding: var(--spacing-section-y) 0;
+  background: var(--color-surface-primary);
+}
+
+// ============================================================================
+// ELEMENT: Header
+// ============================================================================
+
+.c-therapeutic-process__header {
+  max-width: 800px;
+  margin: 0 auto var(--spacing-5xl);
+}
+
+.c-therapeutic-process__subtitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-primary);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--spacing-xs);
+}
+
+.c-therapeutic-process__title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: 0;
+  font-family: var(--font-family-heading);
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+// ============================================================================
+// ELEMENT: Timeline
+// ============================================================================
+
+.c-therapeutic-process__timeline {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+  position: relative;
+
+  // Timeline connecting line
+  &::before {
+    content: '';
+    position: absolute;
+    left: 40px;
+    top: 50px;
+    bottom: 50px;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      var(--color-brand-primary) 0%,
+      var(--color-brand-secondary) 100%
+    );
+
+    @media (max-width: 767px) {
+      left: 20px;
+    }
+  }
+}
+
+// ============================================================================
+// ELEMENT: Phase
+// ============================================================================
+
+.c-therapeutic-process__phase {
+  display: flex;
+  gap: var(--spacing-xl);
+  align-items: flex-start;
+  position: relative;
+
+  @media (max-width: 767px) {
+    gap: var(--spacing-md);
+  }
+}
+
+// ============================================================================
+// ELEMENT: Phase Number
+// ============================================================================
+
+.c-therapeutic-process__phase-number {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary-warm);
+  border-radius: var(--border-radius-full);
+  color: var(--color-white);
+  font-size: 2rem;
+  font-weight: var(--font-weight-bold);
+  box-shadow: var(--shadow-lg);
+  z-index: 1;
+
+  @media (max-width: 767px) {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+}
+
+.c-therapeutic-process__icon {
+  font-size: 2rem;
+  line-height: 1;
+
+  @media (max-width: 767px) {
+    font-size: 1.5rem;
+  }
+}
+
+.c-therapeutic-process__number-text {
+  font-family: var(--font-family-heading);
+  line-height: 1;
+}
+
+// ============================================================================
+// ELEMENT: Phase Content
+// ============================================================================
+
+.c-therapeutic-process__phase-content {
+  flex: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.85) 100%
+  );
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(77, 179, 128, 0.1);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+
+  // Hover effect
+  .c-therapeutic-process__phase:hover & {
+    transform: translateX(8px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(77, 179, 128, 0.3);
+  }
+}
+
+.c-therapeutic-process__duration {
+  display: inline-block;
+  background: var(--color-brand-secondary);
+  color: var(--color-white);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--border-radius-full);
+  margin-bottom: var(--spacing-sm);
+}
+
+.c-therapeutic-process__phase-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+  font-family: var(--font-family-heading);
+}
+
+.c-therapeutic-process__description {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: 0;
+}
+
+// ============================================================================
+// ACCESSIBILITY
+// ============================================================================
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .c-therapeutic-process__phase-content {
+    transition: none;
+
+    .c-therapeutic-process__phase:hover & {
+      transform: none;
+    }
+  }
+}

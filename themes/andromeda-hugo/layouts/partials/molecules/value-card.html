@@ -1,0 +1,106 @@
+{{- /*
+  Value Card Molecule
+
+  Description:
+    Card for displaying core values, principles, or philosophy points. Shows
+    icon, title, and description. Used on About page (values & philosophy)
+    and Approach page (work principles).
+
+  BEM Structure:
+    - Block: .c-value-card
+    - Elements: __icon, __header, __title, __body, __description
+    - Modifiers: --primary, --secondary, --tertiary, --neutral, --success, --warning, --error, --info
+
+  Parameters:
+    - title (string, required): Value/principle name
+    - icon (string, required): Icon class (Line Awesome)
+    - description (string, required): Value/principle description
+    - variant (string, optional): Color variant (primary|secondary|tertiary|neutral|success|warning|error|info, default: primary)
+    - icon_style (string, optional): Icon display style (flat|wrapper|glass, default: wrapper)
+
+  Usage:
+    {{ partial "molecules/value-card.html" (dict
+      "title" "Evidence-Based"
+      "icon" "las la-flask"
+      "description" "All therapeutic interventions are grounded in scientific research and proven methodologies"
+      "variant" "primary"
+      "icon_style" "wrapper"
+    ) }}
+
+  Dependencies:
+    - Atoms: icon.html, heading.html
+    - SCSS: _value-card.scss
+
+  Accessibility:
+    - Semantic HTML with article element
+    - Heading hierarchy (h3 for title)
+    - Descriptive icon ARIA labels
+    - Focus indicators via CSS
+
+  Version: 1.0.0
+  Last Updated: 2025-11-20
+*/ -}}
+
+{{- /* Parameter Extraction */ -}}
+{{- $title := .title -}}
+{{- $icon := .icon -}}
+{{- $description := .description -}}
+{{- $variant := .variant | default "primary" -}}
+{{- $icon_style := .icon_style | default "wrapper" -}}
+
+{{- /* Validation */ -}}
+{{- if not $title -}}
+  {{- warnf "value-card: 'title' parameter is required" -}}
+{{- end -}}
+{{- if not $icon -}}
+  {{- warnf "value-card: 'icon' parameter is required" -}}
+{{- end -}}
+{{- if not $description -}}
+  {{- warnf "value-card: 'description' parameter is required" -}}
+{{- end -}}
+
+{{- /* Valid Variants */ -}}
+{{- $valid_variants := slice "primary" "secondary" "tertiary" "neutral" "success" "warning" "error" "info" -}}
+{{- if not (in $valid_variants $variant) -}}
+  {{- warnf "value-card: Invalid variant '%s'. Using 'primary'. Valid options: %s" $variant (delimit $valid_variants ", ") -}}
+  {{- $variant = "primary" -}}
+{{- end -}}
+
+{{- /* Valid Icon Styles */ -}}
+{{- $valid_icon_styles := slice "flat" "wrapper" "glass" -}}
+{{- if not (in $valid_icon_styles $icon_style) -}}
+  {{- warnf "value-card: Invalid icon_style '%s'. Using 'wrapper'. Valid options: %s" $icon_style (delimit $valid_icon_styles ", ") -}}
+  {{- $icon_style = "wrapper" -}}
+{{- end -}}
+
+{{- /* Build Modifier Class */ -}}
+{{- $modifier_class := printf "c-value-card--%s" $variant -}}
+
+<article class="c-value-card {{ $modifier_class }}">
+  {{- /* Icon */ -}}
+  <div class="c-value-card__icon">
+    {{ partial "atoms/icon.html" (dict
+      "icon" $icon
+      "size" "2xl"
+      "variant" $variant
+      "wrapper" (ne $icon_style "flat")
+      "wrapper_size" "lg"
+      "glass" (eq $icon_style "glass")
+    ) }}
+  </div>
+
+  {{- /* Header with Title */ -}}
+  <header class="c-value-card__header">
+    {{ partial "atoms/heading.html" (dict
+      "level" 3
+      "text" $title
+      "class" "c-value-card__title"
+      "variant" $variant
+    ) }}
+  </header>
+
+  {{- /* Body with Description */ -}}
+  <div class="c-value-card__body">
+    <p class="c-value-card__description">{{ $description | markdownify }}</p>
+  </div>
+</article>

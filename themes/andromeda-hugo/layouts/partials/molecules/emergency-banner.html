@@ -1,57 +1,117 @@
 {{/*
-  Emergency Resources Banner
-  
-  Displays crisis hotline information for psychology practice
-  Can be dismissed, shows on all pages for mental health support
-  
-  Usage: {{ partial "molecules/emergency-banner.html" . }}
+  Emergency Banner Molecule - Crisis resources banner
+  BEM Component: .c-emergency-banner (refactored 2025-11-20)
+
+  Usage:
+    {{ partial "molecules/emergency-banner.html" (dict "variant" "warning") }}
+
+  Parameters:
+    variant (optional) - Color variant: "warning" (default), "error", "info", "primary"
+    class (optional)   - Additional CSS classes
+
+  Color Variants:
+    - "warning" (default) - Amber/orange accent (urgent attention)
+    - "error"            - Red accent (critical emergency)
+    - "info"             - Blue accent (informational)
+    - "primary"          - Emerald accent (supportive)
+
+  BEM Structure:
+    .c-emergency-banner              - Root container (fixed top banner)
+    .c-emergency-banner--{variant}   - Color variant modifier
+    .c-emergency-banner--hiding      - Hiding state modifier (added by JS during dismissal)
+    .c-emergency-banner__container   - Content container (max-width wrapper)
+    .c-emergency-banner__content     - Flexbox content wrapper
+    .c-emergency-banner__icon        - Alert icon (uses icon atom)
+    .c-emergency-banner__text        - Text content area
+    .c-emergency-banner__title       - Bold title text
+    .c-emergency-banner__message     - Hotline/support message
+    .c-emergency-banner__close       - Close button (uses icon atom)
+
+  Features:
+    - Psychology practice crisis support (Telefonul Sufletului 24/7)
+    - Dismissible with sessionStorage (persists across page navigation in session)
+    - Fixed top positioning (doesn't block content)
+    - Icon atom integration (alert-circle + x icons)
+    - 4 color variants for different urgency levels
+    - Responsive layout (stack on mobile)
+    - Slide-down animation on dismiss
+    - Keyboard accessible (close button)
+    - JavaScript extracted to emergency-banner.js file
+    - Site param controlled (site.Params.emergency_banner.enable)
+
+  JavaScript:
+    - Loaded via assets/js/emergency-banner.js
+    - Checks sessionStorage for 'emergency-banner-dismissed'
+    - Hides banner if dismissed in current session
+    - Adds .hiding class on dismiss, then removes from DOM
+    - sessionStorage clears on browser close (shows again in new session)
+
+  Site Params (config/_default/params.toml):
+    [emergency_banner]
+    enable = true  # Show/hide emergency banner globally
+
+  i18n Keys (define in i18n/ro.yaml and i18n/en.yaml):
+    - emergency_title: Banner title (default: "Criză? Ai nevoie de ajutor urgent?")
+    - emergency_message: Hotline message (default: "Telefonul Sufletului: 0800 801 200 (gratuit, 24/7)")
+    - close: Close button label (default: "Închide")
+
+  Examples:
+    Warning variant (default - urgent):
+      {{ partial "molecules/emergency-banner.html" . }}
+
+    Error variant (critical):
+      {{ partial "molecules/emergency-banner.html" (dict "variant" "error") }}
+
+    Info variant (informational):
+      {{ partial "molecules/emergency-banner.html" (dict "variant" "info") }}
+
+    Primary variant (supportive):
+      {{ partial "molecules/emergency-banner.html" (dict "variant" "primary") }}
 */}}
 
 {{ if site.Params.emergency_banner.enable }}
-<div id="emergency-banner" class="emergency-banner">
-  <div class="container-xxl">
-    <div class="emergency-banner-content">
-      <div class="emergency-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="8" x2="12" y2="12"></line>
-          <line x1="12" y1="16" x2="12.01" y2="16"></line>
-        </svg>
+  {{/* Parameter extraction with defaults */}}
+  {{ $variant := .variant | default "warning" }}
+  {{ $class := .class | default "" }}
+
+  {{/* Build BEM class with variant modifier */}}
+  {{ $bemClass := "c-emergency-banner" }}
+  {{ if $variant }}
+    {{ $bemClass = printf "%s c-emergency-banner--%s" $bemClass $variant }}
+  {{ end }}
+  {{ if $class }}
+    {{ $bemClass = printf "%s %s" $bemClass $class }}
+  {{ end }}
+
+  <div id="emergency-banner" class="{{ $bemClass }}">
+    <div class="c-emergency-banner__container">
+      <div class="c-emergency-banner__content">
+        {{ partial "atoms/icon.html" (dict
+          "name" "alert-circle"
+          "size" "md"
+          "variant" $variant
+          "class" "c-emergency-banner__icon"
+        ) }}
+        <div class="c-emergency-banner__text">
+          <strong class="c-emergency-banner__title">
+            {{ i18n "emergency_title" | default "Criză? Ai nevoie de ajutor urgent?" }}
+          </strong>
+          <span class="c-emergency-banner__message">
+            {{ i18n "emergency_message" | default "Telefonul Sufletului: 0800 801 200 (gratuit, 24/7)" }}
+          </span>
+        </div>
+        <button
+          id="emergency-close"
+          class="c-emergency-banner__close"
+          type="button"
+          aria-label="{{ i18n `close` | default `Închide` }}">
+          {{ partial "atoms/icon.html" (dict
+            "name" "x"
+            "size" "sm"
+            "variant" "neutral"
+          ) }}
+        </button>
       </div>
-      <div class="emergency-text">
-        <strong>{{ i18n `emergency_title` | default `Criză? Ai nevoie de ajutor urgent?` }}</strong>
-        <span>{{ i18n `emergency_message` | default `Telefonul Sufletului: 0800 801 200 (gratuit, 24/7)` }}</span>
-      </div>
-      <button id="emergency-close" class="emergency-close" aria-label="{{ i18n `close` | default `Închide` }}">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
     </div>
   </div>
-</div>
-
-<script>
-// Emergency banner functionality
-(function() {
-  const banner = document.getElementById('emergency-banner');
-  const closeBtn = document.getElementById('emergency-close');
-  
-  if (!banner || !closeBtn) return;
-  
-  // Check if user dismissed banner in this session
-  const dismissed = sessionStorage.getItem('emergency-banner-dismissed');
-  
-  if (dismissed) {
-    banner.style.display = 'none';
-  }
-  
-  closeBtn.addEventListener('click', function() {
-    banner.classList.add('hiding');
-    sessionStorage.setItem('emergency-banner-dismissed', 'true');
-    setTimeout(() => banner.style.display = 'none', 300);
-  });
-})();
-</script>
 {{ end }}

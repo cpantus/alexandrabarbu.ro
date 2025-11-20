@@ -1,0 +1,89 @@
+{{- /*
+  Process Step Molecule
+
+  Description:
+    Simplified step card for process flows and therapy timelines. Shows
+    step number, title, and description. Used for simplified process
+    explanations (Homepage: 3 steps to healing, Service pages: therapy
+    process, Approach page: therapy stages).
+
+  BEM Structure:
+    - Block: .c-process-step
+    - Elements: __number, __content, __title, __description
+    - Modifiers: --primary, --secondary, --tertiary, --neutral, --success, --warning, --error, --info
+
+  Parameters:
+    - step (number, required): Step number (1, 2, 3, etc.)
+    - title (string, required): Step title
+    - description (string, required): Step description
+    - variant (string, optional): Color variant (default: primary)
+
+  Usage:
+    {{ partial "molecules/process-step.html" (dict
+      "step" 1
+      "title" "Initial Consultation"
+      "description" "We discuss your needs and goals"
+      "variant" "primary"
+    ) }}
+
+  Dependencies:
+    - Atoms: heading.html
+    - SCSS: _process-step.scss
+
+  Accessibility:
+    - Semantic HTML with article element
+    - Heading hierarchy (h3 for title)
+    - Step number with ARIA label
+    - Focus indicators via CSS
+
+  Version: 1.0.0
+  Last Updated: 2025-11-20
+*/ -}}
+
+{{- /* Parameter Extraction */ -}}
+{{- $step := .step -}}
+{{- $title := .title -}}
+{{- $description := .description -}}
+{{- $variant := .variant | default "primary" -}}
+
+{{- /* Validation */ -}}
+{{- if not $step -}}
+  {{- warnf "process-step: 'step' parameter is required" -}}
+{{- end -}}
+{{- if not $title -}}
+  {{- warnf "process-step: 'title' parameter is required" -}}
+{{- end -}}
+{{- if not $description -}}
+  {{- warnf "process-step: 'description' parameter is required" -}}
+{{- end -}}
+
+{{- /* Valid Variants */ -}}
+{{- $valid_variants := slice "primary" "secondary" "tertiary" "neutral" "success" "warning" "error" "info" -}}
+{{- if not (in $valid_variants $variant) -}}
+  {{- warnf "process-step: Invalid variant '%s'. Using 'primary'. Valid options: %s" $variant (delimit $valid_variants ", ") -}}
+  {{- $variant = "primary" -}}
+{{- end -}}
+
+{{- /* Build Modifier Class */ -}}
+{{- $modifier_class := printf "c-process-step--%s" $variant -}}
+
+<article class="c-process-step {{ $modifier_class }}">
+  {{- /* Step Number */ -}}
+  <div class="c-process-step__number" aria-label="{{ i18n "step" }} {{ $step }}">
+    <span class="c-process-step__number-text">{{ $step }}</span>
+  </div>
+
+  {{- /* Content */ -}}
+  <div class="c-process-step__content">
+    {{- /* Title */ -}}
+    {{ partial "atoms/heading.html" (dict
+      "level" 3
+      "text" $title
+      "class" "c-process-step__title"
+      "variant" $variant
+    ) }}
+
+    {{- /* Description */ -}}
+    <p class="c-process-step__description">{{ $description | markdownify }}</p>
+  </div>
+</article>

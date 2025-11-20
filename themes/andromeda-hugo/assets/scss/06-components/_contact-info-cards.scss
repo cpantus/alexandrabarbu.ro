@@ -1,0 +1,116 @@
+/* ===========================================================================
+   CONTACT INFO CARDS SECTION - BEM Component
+   =========================================================================== */
+
+/**
+ * Contact methods grid using contact-method-card molecules.
+ *
+ * STRUCTURE:
+ * .c-contact-info-section
+ *   .c-contact-info-section__wrapper
+ *     .c-contact-info-section__header (optional)
+ *       .c-contact-info-section__title (heading atom)
+ *       .c-contact-info-section__subtitle
+ *     .c-contact-info-section__grid
+ *       .c-contact-info-section__item
+ *         contact-method-card molecule
+ *
+ * USAGE: Contact methods grid (phone, email, location)
+ */
+
+/* BASE COMPONENT
+   =========================================================================== */
+
+.c-contact-info-section {
+  padding: 0; // No top padding (follows previous section)
+  padding-bottom: $section-padding-y;
+
+  @media (max-width: $breakpoint-md - 1) {
+    padding-bottom: $section-padding-y-mobile;
+  }
+}
+
+/* WRAPPER (Centered, max-width)
+   =========================================================================== */
+
+.c-contact-info-section__wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* HEADER (Optional)
+   =========================================================================== */
+
+.c-contact-info-section__header {
+  text-align: center;
+  margin-bottom: $space-6;
+
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-5;
+  }
+}
+
+.c-contact-info-section__title {
+  margin-bottom: $space-2;
+}
+
+.c-contact-info-section__subtitle {
+  color: $color-text-muted;
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+  margin: 0;
+}
+
+/* GRID LAYOUT
+   =========================================================================== */
+
+.c-contact-info-section__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-4;
+
+  @media (max-width: $breakpoint-md - 1) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-3;
+  }
+
+  @media (max-width: $breakpoint-sm - 1) {
+    grid-template-columns: 1fr;
+    gap: $space-4;
+  }
+}
+
+.c-contact-info-section__item {
+  // Contact-method-card molecule handles styling
+}
+
+/* ACCESSIBILITY
+   =========================================================================== */
+
+// No additional accessibility styles needed
+// Contact-method-card molecule handles accessibility
+
+/* PRINT STYLES
+   =========================================================================== */
+
+@media print {
+  .c-contact-info-section {
+    page-break-inside: avoid;
+  }
+
+  .c-contact-info-section__grid {
+    display: block;
+  }
+
+  .c-contact-info-section__item {
+    margin-bottom: $space-3;
+    page-break-inside: avoid;
+  }
+}
+
+/* LEGACY COMPATIBILITY
+   =========================================================================== */
+
+.section.pt-0 > .container > .row.justify-content-center > .col-lg-10 > .row {
+  @extend .c-contact-info-section__grid;
+}

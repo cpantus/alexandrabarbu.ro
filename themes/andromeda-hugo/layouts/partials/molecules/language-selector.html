@@ -1,143 +1,133 @@
 {{/*
-  Language Selector Molecule (Enhanced v2.0)
+  Language Selector Molecule (BEM Refactor v3.0)
 
-  Displays language switcher for multilingual sites with flags and persistence
-  Supports both desktop and mobile variants
+  Displays language switcher for multilingual sites with flags and localStorage persistence.
+  Supports desktop/mobile display modes and 4 semantic color variants.
+
+  BEM Structure:
+    .c-language-selector                 → Container
+    .c-language-selector--mobile         → Mobile variant modifier
+    .c-language-selector--desktop        → Desktop variant modifier
+    .c-language-selector--primary        → Primary color variant
+    .c-language-selector--secondary      → Secondary color variant
+    .c-language-selector--tertiary       → Tertiary color variant
+    .c-language-selector--neutral        → Neutral color variant
+    .c-language-selector__select         → Select element
+    .c-language-selector__option         → Option element
 
   Usage:
-    {{ partial "molecules/language-selector.html" (dict "variant" "desktop" "context" .) }}
-    {{ partial "molecules/language-selector.html" (dict "variant" "mobile" "context" .) }}
+    Desktop (primary):
+      {{ partial "molecules/language-selector.html" (dict "variant" "desktop" "color" "primary" "context" .) }}
 
-  Params:
-    - variant: "desktop" or "mobile" (default: "desktop")
-    - context: page context (required)
+    Mobile (secondary):
+      {{ partial "molecules/language-selector.html" (dict "variant" "mobile" "color" "secondary" "context" .) }}
+
+    Navbar:
+      {{ partial "molecules/language-selector.html" (dict "variant" "desktop" "color" "neutral" "context" .) }}
+
+  Parameters:
+    - variant (string, optional): "desktop" or "mobile" (default: "desktop")
+    - color (string, optional): "primary", "secondary", "tertiary", "neutral" (default: "primary")
+    - context (context, required): Page context for translations
+    - autoRedirect (bool, optional): Enable homepage auto-redirect (default: true)
 
   Features:
-    - Flag emojis for visual language identification
-    - localStorage persistence for language preference
-    - ARIA labels for accessibility
-    - Auto-redirect to preferred language on homepage
+    - 🎨 4 semantic color variants for flexible theming
+    - 🌍 Flag emoji icons for visual language identification
+    - 💾 localStorage persistence for user preference
+    - ♿ ARIA labels for accessibility
+    - 🔄 Optional auto-redirect to preferred language on homepage
+    - 📱 Responsive mobile/desktop variants
+    - 🎯 BEM class structure for maintainability
+    - 🌐 Fallback for missing flag emojis
+
+  JavaScript Integration:
+    - Requires: assets/js/language-selector.js
+    - Functions: window.languageSelector.switch(url)
+    - Events: languageChanged (custom event)
+
+  Design Tokens:
+    - Typography: Crimson Pro (language names)
+    - Spacing: 8pt grid
+    - Colors: 4 semantic variants
+    - Transitions: 250ms ease-out
+
+  Accessibility:
+    - ARIA labels for screen readers
+    - Keyboard navigation support
+    - High contrast mode support
+    - Focus indicators
 */}}
 
-{{ $variant := .variant | default "desktop" }}
-{{ $context := .context | default . }}
+{{- $variant := .variant | default "desktop" -}}
+{{- $color := .color | default "primary" -}}
+{{- $context := .context | default . -}}
+{{- $autoRedirect := .autoRedirect | default true -}}
 
-{{/* Language flag mapping */}}
-{{ $languageFlags := dict "ro" "🇷🇴" "en" "🇬🇧" }}
+{{/* Validation */}}
+{{- if not $context -}}
+  {{- errorf "language-selector.html: Missing required 'context' parameter" -}}
+{{- end -}}
+
+{{- if not (in (slice "desktop" "mobile") $variant) -}}
+  {{- warnf "language-selector.html: Invalid variant '%s', using 'desktop'. Valid: desktop, mobile" $variant -}}
+  {{- $variant = "desktop" -}}
+{{- end -}}
+
+{{- if not (in (slice "primary" "secondary" "tertiary" "neutral") $color) -}}
+  {{- warnf "language-selector.html: Invalid color '%s', using 'primary'. Valid: primary, secondary, tertiary, neutral" $color -}}
+  {{- $color = "primary" -}}
+{{- end -}}
+
+{{/* Language flag mapping - easily extensible */}}
+{{- $languageFlags := dict
+  "ro" "🇷🇴"
+  "en" "🇬🇧"
+  "fr" "🇫🇷"
+  "de" "🇩🇪"
+  "es" "🇪🇸"
+  "it" "🇮🇹"
+-}}
 
 {{/* Check if site has multiple languages */}}
-{{ if gt (len site.Languages) 1 }}
-  {{ if eq $variant "mobile" }}
-    {{/* Mobile Language Selector */}}
-    <div class="language-selector-mobile d-block d-lg-none">
-      <select
-        class="language-select-enhanced border-0 font-weight-bold"
-        id="select-language-mobile"
-        onchange="window.switchLanguage(this.value)"
-        aria-label="{{ i18n `select_language` | default `Select Language` }}">
-        {{ $pageLang := $context.Lang }}
-        {{/* Loop through all site languages */}}
-        {{ range site.Languages }}
-          {{ $langCode := .Lang }}
-          {{ $langName := .LanguageName }}
-          {{ $flag := index $languageFlags $langCode | default "🌐" }}
-          {{/* Check if this is the current language */}}
-          {{ if eq $langCode $pageLang }}
-            <option value="{{ $context.RelPermalink }}" data-lang="{{ $langCode }}" selected>
-              {{ $flag }} {{ $langName }}
-            </option>
-          {{ else }}
-            {{/* Find translation for this language */}}
-            {{ range $context.Translations }}
-              {{ if eq .Lang $langCode }}
-                <option value="{{ .RelPermalink }}" data-lang="{{ $langCode }}">
-                  {{ $flag }} {{ $langName }}
-                </option>
-              {{ end }}
-            {{ end }}
-          {{ end }}
-        {{ end }}
-      </select>
-    </div>
-  {{ else }}
-    {{/* Desktop Language Selector */}}
-    <div class="language-selector-desktop d-none d-lg-inline">
-      <select
-        class="language-select-enhanced border-0 font-weight-bold"
-        id="select-language-desktop"
-        onchange="window.switchLanguage(this.value)"
-        aria-label="{{ i18n `select_language` | default `Select Language` }}">
-        {{ $pageLang := $context.Lang }}
-        {{/* Loop through all site languages */}}
-        {{ range site.Languages }}
-          {{ $langCode := .Lang }}
-          {{ $langName := .LanguageName }}
-          {{ $flag := index $languageFlags $langCode | default "🌐" }}
-          {{/* Check if this is the current language */}}
-          {{ if eq $langCode $pageLang }}
-            <option value="{{ $context.RelPermalink }}" data-lang="{{ $langCode }}" selected>
-              {{ $flag }} {{ $langName }}
-            </option>
-          {{ else }}
-            {{/* Find translation for this language */}}
-            {{ range $context.Translations }}
-              {{ if eq .Lang $langCode }}
-                <option value="{{ .RelPermalink }}" data-lang="{{ $langCode }}">
-                  {{ $flag }} {{ $langName }}
-                </option>
-              {{ end }}
-            {{ end }}
-          {{ end }}
-        {{ end }}
-      </select>
-    </div>
-  {{ end }}
+{{- if gt (len site.Languages) 1 -}}
+  {{/* Generate unique ID for mobile/desktop instances */}}
+  {{- $uniqueID := printf "language-selector-%s-%s" $variant (replace $color " " "-") -}}
 
-  {{/* Language Persistence JavaScript */}}
-  <script>
-    (function() {
-      // Switch language and save preference
-      window.switchLanguage = function(url) {
-        const selectedOption = document.querySelector(`option[value="${url}"]`);
-        const langCode = selectedOption ? selectedOption.dataset.lang : null;
+  <div class="c-language-selector c-language-selector--{{ $variant }} c-language-selector--{{ $color }}">
+    <select
+      class="c-language-selector__select"
+      id="{{ $uniqueID }}"
+      data-auto-redirect="{{ $autoRedirect }}"
+      aria-label="{{ i18n `select_language` | default `Select Language` }}">
 
-        if (langCode) {
-          // Save preference to localStorage
-          try {
-            localStorage.setItem('preferredLanguage', langCode);
-            console.log('Language preference saved:', langCode);
-          } catch (e) {
-            console.warn('Could not save language preference:', e);
-          }
-        }
+      {{- $pageLang := $context.Lang -}}
 
-        // Navigate to selected page
-        window.location.href = url;
-      };
+      {{/* Current language option (selected) */}}
+      {{- with site.GetPage (printf "/%s" $pageLang) -}}
+        {{- $flag := index $languageFlags $pageLang | default "🌐" -}}
+        {{- $langName := site.Language.LanguageName | default $pageLang -}}
+        <option
+          value="{{ $context.RelPermalink }}"
+          data-lang="{{ $pageLang }}"
+          class="c-language-selector__option"
+          selected>
+          {{ $flag }} {{ $langName }}
+        </option>
+      {{- end -}}
 
-      // Auto-redirect homepage to preferred language
-      window.addEventListener('DOMContentLoaded', function() {
-        try {
-          const preferredLang = localStorage.getItem('preferredLanguage');
-          const currentPath = window.location.pathname;
-          const currentLang = document.documentElement.lang;
-
-          // Only redirect on homepage
-          if (currentPath === '/' && preferredLang && preferredLang !== currentLang) {
-            console.log('Redirecting to preferred language:', preferredLang);
-
-            // Find the translation link for preferred language
-            const selector = `select option[data-lang="${preferredLang}"]`;
-            const preferredOption = document.querySelector(selector);
-
-            if (preferredOption && preferredOption.value) {
-              window.location.href = preferredOption.value;
-            }
-          }
-        } catch (e) {
-          console.warn('Language auto-redirect failed:', e);
-        }
-      });
-    })();
-  </script>
-{{ end }}
+      {{/* Translation options */}}
+      {{- range $context.Translations -}}
+        {{- $langCode := .Lang -}}
+        {{- $flag := index $languageFlags $langCode | default "🌐" -}}
+        {{- $langName := .Language.LanguageName | default $langCode -}}
+        <option
+          value="{{ .RelPermalink }}"
+          data-lang="{{ $langCode }}"
+          class="c-language-selector__option">
+          {{ $flag }} {{ $langName }}
+        </option>
+      {{- end -}}
+    </select>
+  </div>
+{{- end -}}

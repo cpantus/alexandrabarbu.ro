@@ -75,6 +75,72 @@
   z-index: 1;
 }
 
+// Section Header (for optional section title)
+// ----------------------------------------------------------------------------
+.c-pricing__section-header {
+  text-align: center;
+  margin-bottom: $space-8;
+
+  @media (max-width: $breakpoint-md) {
+    margin-bottom: $space-6;
+  }
+}
+
+.c-pricing__subtitle {
+  font-size: $text-lg;
+  color: $color-text-secondary;
+  line-height: $leading-relaxed;
+  margin-top: $space-3;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Special Offer Badge
+// ----------------------------------------------------------------------------
+.c-pricing__offer {
+  text-align: center;
+  margin: $space-6 0;
+
+  p {
+    display: inline-block;
+    padding: $space-2 $space-4;
+    background: rgba($green-50, 0.8);
+    color: $color-primary;
+    font-size: $text-sm;
+    font-weight: $font-weight-heading-bold; // 600 per design rules
+    border-radius: $radius-full;
+    box-shadow: $shadow-sm;
+    margin: 0;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    margin: $space-4 0;
+  }
+}
+
+// Pricing Cards Grid
+// ----------------------------------------------------------------------------
+.c-pricing__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-6;
+  margin-top: $space-8;
+
+  // Tablet: 2 columns
+  @media (max-width: $breakpoint-lg) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-5;
+  }
+
+  // Mobile: 1 column
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr;
+    gap: $space-6;
+    margin-top: $space-6;
+  }
+}
+
 // Pricing Card
 // ----------------------------------------------------------------------------
 .c-pricing__card {
@@ -353,6 +419,10 @@
 // ----------------------------------------------------------------------------
 .c-pricing__switch {
   margin-bottom: $space-8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 
   label {
     cursor: pointer;
@@ -362,6 +432,29 @@
       color: $color-primary;
       font-weight: $font-weight-heading-bold; // 600 per design rules
     }
+  }
+}
+
+/**
+ * Pricing Toggle Label (.c-pricing__label)
+ * Option labels (Monthly / Yearly)
+ */
+.c-pricing__label {
+  margin: 0;
+  cursor: pointer;
+  transition: color $duration-fast $easing-subtle; // Level 1 text motion (200ms)
+  font-family: $font-primary;
+  font-size: $text-lg; // h5 equivalent
+  font-weight: $font-weight-heading;
+
+  &.active {
+    color: $color-primary;
+    font-weight: $font-weight-heading-bold; // 600 per design rules
+  }
+
+  // Hover state for non-active labels
+  &:not(.active):hover {
+    color: $gray-600;
   }
 }
 

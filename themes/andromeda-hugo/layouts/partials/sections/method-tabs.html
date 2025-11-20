@@ -1,0 +1,339 @@
+{{/*
+================================================================================
+Method Tabs Section
+================================================================================
+Displays therapeutic methods in tabbed interface with detailed information.
+
+BEM Structure: .c-method-tabs
+
+Parameters:
+- enable (optional): Enable/disable section [default: true]
+- title (optional): Section title
+- subtitle (optional): Section subtitle
+- description (optional): Section description
+- variant (optional): Color variant (primary|secondary|tertiary|neutral) [default: primary]
+- methods (required): Array of method objects
+  - name: Method name (short_name used for tab if provided)
+  - short_name (optional): Abbreviated name for tab button
+  - title: Method full title
+  - icon (optional): Icon name
+  - description: Brief description
+  - what_is (optional): "What is" explanation
+  - how_works (optional): "How it works" explanation
+  - benefits/for_what/best_for (optional): Benefits list
+  - techniques (optional): Techniques list
+  - duration (optional): Duration information
+  - success_rate (optional): Success rate information
+
+Data Sources:
+1. Page front matter: .Params.method_tabs
+2. Site data: .Site.Data.services.method_tabs
+
+Usage:
+```yaml
+sections:
+  - type: "method-tabs"
+
+method_tabs:
+  enable: true
+  variant: "primary"
+  title: "Therapeutic Methods"
+  subtitle: "Evidence-Based Approaches"
+  description: "Explore our range of therapy methods"
+  methods:
+    - name: "CBT"
+      short_name: "CBT"
+      title: "Cognitive Behavioral Therapy"
+      icon: "brain"
+      description: "Evidence-based approach for anxiety and depression"
+      what_is: "CBT helps identify and change negative thought patterns"
+      how_works: "Through structured sessions focused on present issues"
+      benefits:
+        - "Effective for anxiety and depression"
+        - "Short-term, goal-oriented"
+        - "Practical tools and techniques"
+      techniques:
+        - "Thought records"
+        - "Behavioral activation"
+        - "Exposure therapy"
+      duration: "12-20 sessions"
+      success_rate: "60-80% improvement"
+```
+
+Version: 5.0.1 (BEM refactor + vanilla JS)
+*/}}
+
+{{- $section := .Params.method_tabs -}}
+{{- if not $section -}}
+  {{- with .Site.Data.services -}}
+    {{- $section = .method_tabs -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $section -}}
+  {{- $enable := $section.enable | default true -}}
+
+  {{- if $enable -}}
+    {{- $variant := $section.variant | default "primary" -}}
+    {{- $methods := $section.methods -}}
+
+    {{/* Validation */}}
+    {{- if not $methods -}}
+      {{- warnf "method-tabs section requires: methods array. Page: %s" .Page.RelPermalink -}}
+    {{- end -}}
+
+    <section class="c-method-tabs c-method-tabs--{{ $variant }}">
+      <div class="o-container">
+
+        {{/* Section Header (Optional) */}}
+        {{- if or $section.subtitle $section.title $section.description -}}
+          <div class="c-method-tabs__header">
+            {{- if $section.subtitle -}}
+              <p class="c-method-tabs__subtitle">{{ $section.subtitle | markdownify }}</p>
+            {{- end -}}
+            {{- if $section.title -}}
+              {{ partial "atoms/heading.html" (dict
+                "level" 2
+                "text" $section.title
+                "class" "c-method-tabs__title"
+                "variant" $variant
+              ) }}
+            {{- end -}}
+            {{- if $section.description -}}
+              <p class="c-method-tabs__description">{{ $section.description | markdownify }}</p>
+            {{- end -}}
+          </div>
+        {{- end -}}
+
+        {{- if $methods -}}
+          <div class="c-method-tabs__wrapper">
+
+            {{/* Tab Navigation */}}
+            <div class="c-method-tabs__nav" role="tablist" aria-label="Therapeutic methods">
+              {{- range $index, $method := $methods -}}
+                {{- $tabVariants := slice "primary" "secondary" "tertiary" -}}
+                {{- $tabVariant := index $tabVariants (mod $index 3) -}}
+                {{- $tabId := printf "method-tab-%d" $index -}}
+                {{- $panelId := printf "method-panel-%d" $index -}}
+
+                <button
+                  class="c-method-tabs__tab c-method-tabs__tab--{{ $tabVariant }} {{ if eq $index 0 }}c-method-tabs__tab--active{{ end }}"
+                  id="{{ $tabId }}"
+                  role="tab"
+                  aria-controls="{{ $panelId }}"
+                  aria-selected="{{ if eq $index 0 }}true{{ else }}false{{ end }}"
+                  data-tab-index="{{ $index }}">
+
+                  {{- if $method.icon -}}
+                    {{ partial "atoms/icon.html" (dict
+                      "name" $method.icon
+                      "variant" $tabVariant
+                      "size" "md"
+                      "class" "c-method-tabs__tab-icon"
+                    ) }}
+                  {{- end -}}
+
+                  <span class="c-method-tabs__tab-text">
+                    {{ $method.short_name | default $method.name | default $method.title }}
+                  </span>
+                </button>
+              {{- end -}}
+            </div>
+
+            {{/* Tab Content Panels */}}
+            <div class="c-method-tabs__panels">
+              {{- range $index, $method := $methods -}}
+                {{- $panelId := printf "method-panel-%d" $index -}}
+                {{- $tabId := printf "method-tab-%d" $index -}}
+
+                <div
+                  class="c-method-tabs__panel {{ if eq $index 0 }}c-method-tabs__panel--active{{ end }}"
+                  id="{{ $panelId }}"
+                  role="tabpanel"
+                  aria-labelledby="{{ $tabId }}"
+                  {{- if ne $index 0 }} hidden{{ end }}>
+
+                  <div class="c-method-tabs__content">
+
+                    {{/* Method Title */}}
+                    {{- if or $method.title $method.name -}}
+                      {{ partial "atoms/heading.html" (dict
+                        "level" 3
+                        "text" ($method.title | default $method.name)
+                        "class" "c-method-tabs__method-title"
+                      ) }}
+                    {{- end -}}
+
+                    {{/* Method Description */}}
+                    {{- if $method.description -}}
+                      <p class="c-method-tabs__method-description">{{ $method.description | markdownify }}</p>
+                    {{- end -}}
+
+                    {{/* What Is */}}
+                    {{- if $method.what_is -}}
+                      <div class="c-method-tabs__section">
+                        {{ partial "atoms/heading.html" (dict
+                          "level" 4
+                          "text" (i18n "what_is" | default "What is it?")
+                          "class" "c-method-tabs__section-title"
+                        ) }}
+                        <p>{{ $method.what_is | markdownify }}</p>
+                      </div>
+                    {{- end -}}
+
+                    {{/* How It Works */}}
+                    {{- if $method.how_works -}}
+                      <div class="c-method-tabs__section">
+                        {{ partial "atoms/heading.html" (dict
+                          "level" 4
+                          "text" (i18n "how_it_works" | default "How it works")
+                          "class" "c-method-tabs__section-title"
+                        ) }}
+                        <p>{{ $method.how_works | markdownify }}</p>
+                      </div>
+                    {{- end -}}
+
+                    {{/* Benefits */}}
+                    {{- with (or $method.for_what $method.benefits $method.best_for) -}}
+                      <div class="c-method-tabs__section">
+                        {{ partial "atoms/heading.html" (dict
+                          "level" 4
+                          "text" (i18n "benefits" | default "Benefits")
+                          "class" "c-method-tabs__section-title"
+                        ) }}
+                        <ul class="c-method-tabs__list c-method-tabs__list--check">
+                          {{- range . -}}
+                            <li class="c-method-tabs__list-item">
+                              {{ partial "atoms/icon.html" (dict
+                                "name" "check"
+                                "variant" "primary"
+                                "size" "sm"
+                                "class" "c-method-tabs__list-icon"
+                              ) }}
+                              <span>{{ . | markdownify }}</span>
+                            </li>
+                          {{- end -}}
+                        </ul>
+                      </div>
+                    {{- end -}}
+
+                    {{/* Techniques */}}
+                    {{- with $method.techniques -}}
+                      <div class="c-method-tabs__section">
+                        {{ partial "atoms/heading.html" (dict
+                          "level" 4
+                          "text" (i18n "techniques" | default "Techniques")
+                          "class" "c-method-tabs__section-title"
+                        ) }}
+                        <ul class="c-method-tabs__list">
+                          {{- range . -}}
+                            <li class="c-method-tabs__list-item">
+                              {{ partial "atoms/icon.html" (dict
+                                "name" "arrow-right"
+                                "variant" "secondary"
+                                "size" "sm"
+                                "class" "c-method-tabs__list-icon"
+                              ) }}
+                              <span>{{ . | markdownify }}</span>
+                            </li>
+                          {{- end -}}
+                        </ul>
+                      </div>
+                    {{- end -}}
+
+                    {{/* Meta Information */}}
+                    {{- if or $method.duration $method.success_rate -}}
+                      <div class="c-method-tabs__meta">
+                        {{- if $method.duration -}}
+                          <p class="c-method-tabs__meta-item">
+                            <strong>{{ i18n "duration" | default "Duration" }}:</strong> {{ $method.duration }}
+                          </p>
+                        {{- end -}}
+                        {{- if $method.success_rate -}}
+                          <p class="c-method-tabs__meta-item">
+                            <strong>{{ i18n "success_rate" | default "Success rate" }}:</strong> {{ $method.success_rate }}
+                          </p>
+                        {{- end -}}
+                      </div>
+                    {{- end -}}
+
+                  </div>
+                </div>
+              {{- end -}}
+            </div>
+
+          </div>
+        {{- end -}}
+
+      </div>
+    </section>
+
+    {{/* Vanilla JavaScript for tab switching */}}
+    <script>
+    (function() {
+      'use strict';
+
+      const tabLists = document.querySelectorAll('.c-method-tabs__nav');
+
+      tabLists.forEach(tabList => {
+        const tabs = tabList.querySelectorAll('.c-method-tabs__tab');
+        const panels = tabList.closest('.c-method-tabs__wrapper').querySelectorAll('.c-method-tabs__panel');
+
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            const tabIndex = parseInt(tab.dataset.tabIndex, 10);
+            switchTab(tabs, panels, tabIndex);
+          });
+
+          // Keyboard navigation
+          tab.addEventListener('keydown', (e) => {
+            let newIndex = -1;
+            const currentIndex = parseInt(tab.dataset.tabIndex, 10);
+
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+              e.preventDefault();
+              newIndex = currentIndex + 1 >= tabs.length ? 0 : currentIndex + 1;
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+              e.preventDefault();
+              newIndex = currentIndex - 1 < 0 ? tabs.length - 1 : currentIndex - 1;
+            } else if (e.key === 'Home') {
+              e.preventDefault();
+              newIndex = 0;
+            } else if (e.key === 'End') {
+              e.preventDefault();
+              newIndex = tabs.length - 1;
+            }
+
+            if (newIndex !== -1) {
+              tabs[newIndex].focus();
+              switchTab(tabs, panels, newIndex);
+            }
+          });
+        });
+      });
+
+      function switchTab(tabs, panels, newIndex) {
+        // Deactivate all tabs and panels
+        tabs.forEach(t => {
+          t.classList.remove('c-method-tabs__tab--active');
+          t.setAttribute('aria-selected', 'false');
+          t.setAttribute('tabindex', '-1');
+        });
+
+        panels.forEach(p => {
+          p.classList.remove('c-method-tabs__panel--active');
+          p.setAttribute('hidden', '');
+        });
+
+        // Activate new tab and panel
+        tabs[newIndex].classList.add('c-method-tabs__tab--active');
+        tabs[newIndex].setAttribute('aria-selected', 'true');
+        tabs[newIndex].removeAttribute('tabindex');
+
+        panels[newIndex].classList.add('c-method-tabs__panel--active');
+        panels[newIndex].removeAttribute('hidden');
+      }
+    })();
+    </script>
+  {{- end -}}
+{{- end -}}

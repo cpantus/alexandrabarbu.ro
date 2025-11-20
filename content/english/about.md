@@ -1,43 +1,198 @@
 ---
 title: "About Me - Psychotherapist Alexandra Barbu"
-description: "15+ years experience in psychotherapy. Specialization in CBT, EMDR, Mindfulness. Empathetic and evidence-based approach."
+description: "15+ years experience in psychotherapy. CBT, EMDR, Mindfulness specialization. Empathic and evidence-based approach."
 layout: "flexible"
+
 sections:
   - type: "hero-breadcrumb"
-  - type: "values-intro"
+  - type: "my-story"
+  - type: "training-certifications"
+  - type: "values-compass"
   - type: "stats-numbers"
-  - type: "contact-form-enhanced"
-hero_image: "images/about/alexandra-barbu-portrait.jpg"
-breadcrumb:
-  - name: "Home"
-    url: "/en/"
-  - name: "About"
-    url: "/en/about/"
-values_intro:
-  enable: true
-  title: "Who I Am and Why I Do Psychotherapy"
-  description: "I'm Alexandra Barbu, a psychotherapist with over 15 years of experience helping people overcome anxiety, depression, trauma and find deeper meaning in life."
-  values:
-    - title: "Authentic Empathy"
-      description: "I understand that asking for help requires courage. You will be heard without judgment."
-      icon: "heart"
-    - title: "Evidence-Based Approach"
-      description: "I use only scientifically validated methods (CBT, EMDR, Mindfulness)."
-      icon: "microscope"
-stats:
-  enable: true
+  - type: "approach-preview"
+  - type: "cta-standard"
+
+# ============================================================================
+# 1. HERO SECTION
+# ============================================================================
+
+hero_breadcrumb:
+  title: "About Me"
+  subtitle: "My Story and Therapeutic Approach"
+  description: "15+ years of experience helping people overcome emotional challenges and find balance in life."
+  image: "images/about/alexandra-barbu-portrait.jpg"
+  breadcrumb:
+    - name: "Home"
+      url: "/en/"
+    - name: "About"
+      url: "/en/about/"
+
+# ============================================================================
+# 2. MY STORY
+# ============================================================================
+
+my_story:
+  title: "My Story"
+  subtitle: "Journey to Psychotherapy"
+  content: |
+    ## Why I Became a Psychotherapist
+
+    I chose the path of psychotherapy not by chance, but from deep conviction. During my psychology studies, I witnessed extraordinary transformations in the lives of people who benefited from professional therapy. I saw how people overwhelmed by anxiety learned to live with peace, how couples in conflict rediscovered connection, how old traumas can be healed.
+
+    These experiences marked me profundly. I understood that psychotherapy is not just a profession - it's a calling, a responsibility and a privilege.
+
+    ## My Professional Journey
+
+    After completing my studies in Clinical Psychology at the University of Bucharest, I first worked in hospitals and clinics, then opened my own private practice. Each person I worked with taught me something new about human nature, resilience and the power of healing.
+
+    I continued to study constantly - certifications in CBT, EMDR, Mindfulness, Systemic Therapy. Not for diplomas, but to offer my clients the most effective tools available.
+
+    ## What Guides Me Today
+
+    Today, after over 15 years of practice and over 5000 hours of therapy provided, I am more convinced than ever that **every person has inner resources for healing**. My role is not to "fix" someone, but to create a safe space where those resources can be discovered and activated.
+
+    I believe in the power of empathy, the importance of scientific evidence and the uniqueness of each healing journey.
+  pull_quote: "Every person has inner resources for healing - my role is to create the safe space where they can be discovered."
+  pull_quote_author: "Alexandra Barbu"
+  image: "images/about/alexandra-cabinet-informal.jpg"
+  image_caption: "In my office, I create a warm and welcoming space for healing"
+
+# ============================================================================
+# 3. TRAINING & CERTIFICATIONS
+# ============================================================================
+
+training_certifications:
+  title: "Professional Training"
+  subtitle: "Education and Credentials"
   items:
+    - degree: "PhD in Clinical Psychology"
+      institution: "University of Bucharest"
+      year: "2005"
+      description: "Doctoral thesis: The effectiveness of CBT in treating anxiety disorders"
+    - degree: "Master in Integrative Psychotherapy"
+      institution: "University of Bucharest"
+      year: "2003"
+      description: "Specialization in multiple therapeutic approaches"
+    - degree: "Bachelor in Psychology"
+      institution: "University of Bucharest"
+      year: "2000"
+    - title: "CBT (Cognitive Behavioral Therapy) Certification"
+      institution: "Beck Institute for Cognitive Behavior Therapy"
+      year: "2008"
+      type: "certification"
+    - title: "EMDR (Eye Movement Desensitization and Reprocessing) Certification"
+      institution: "EMDR International Association"
+      year: "2012"
+      type: "certification"
+    - title: "Mindfulness-Based Cognitive Therapy Certification"
+      institution: "Center for Mindfulness, University of Massachusetts"
+      year: "2015"
+      type: "certification"
+    - title: "Member of Romanian College of Psychologists"
+      institution: "Romanian College of Psychologists"
+      year: "2001-present"
+      type: "certification"
+      description: "Member in good standing, ethical code respected"
+    - title: "Continuous Training"
+      institution: "International conferences and trainings"
+      year: "Annually"
+      type: "certification"
+      description: "Constant participation in psychology conferences and continuous training"
+
+# ============================================================================
+# 4. VALUES & PHILOSOPHY
+# ============================================================================
+
+values_compass:
+  title: "My Values"
+  subtitle: "What Guides My Practice"
+  description: "These fundamental principles are at the foundation of every therapy session"
+  benefits:
+    - title: "Compassion"
+      icon: "las la-heart"
+      description: "I believe in the power of empathy and understanding. Every person deserves to be heard without judgment."
+    - title: "Integrity"
+      icon: "las la-shield-alt"
+      description: "Honesty and transparency in all interactions. My promises are real, not marketing."
+    - title: "Collaboration"
+      icon: "las la-handshake"
+      description: "We work together as partners in healing. You are the expert of your own life, I bring therapeutic expertise."
+    - title: "Excellence"
+      icon: "las la-star"
+      description: "Commitment to the highest professional standards. Continuous training is mandatory, not optional."
+    - title: "Respect"
+      icon: "las la-user-check"
+      description: "Every person is unique and deserves respect. There is no judgment, only understanding and support."
+    - title: "Growth"
+      icon: "las la-seedling"
+      description: "I believe everyone can grow and evolve, regardless of age or past. Change is possible."
+
+# ============================================================================
+# 5. STATS & EXPERIENCE
+# ============================================================================
+
+stats_numbers:
+  title: "My Experience in Numbers"
+  subtitle: "Real Data"
+  description: "Over 15 years dedicated to mental health"
+  stats:
     - number: "15"
       suffix: "+"
-      label: "Years of experience in psychotherapy"
-      icon: "award"
+      label: "Years of Experience"
+      icon: "las la-calendar"
     - number: "500"
       suffix: "+"
-      label: "People helped"
-      icon: "users"
-contact_form:
-  enable: true
-  title: "Let's Get Acquainted"
-  description: "If you resonate with my approach, schedule a free 15-minute consultation."
-  calendly_url: "https://calendly.com/alexandrabarbu/consultation-15min"
+      label: "Clients Helped"
+      icon: "las la-users"
+    - number: "5000"
+      suffix: "+"
+      label: "Hours of Therapy Provided"
+      icon: "las la-clock"
+    - number: "8"
+      label: "Specialized Certifications"
+      icon: "las la-certificate"
+
+# ============================================================================
+# 6. MY APPROACH
+# ============================================================================
+
+approach_preview:
+  title: "How I Work"
+  subtitle: "Therapeutic Principles"
+  description: "My approach combines the most effective methods for lasting results"
+  principles:
+    - title: "Evidence-Based"
+      description: "I use only scientifically validated methods: CBT, DBT, ACT, EMDR. No pseudoscience, only proven techniques."
+      icon: "las la-flask"
+    - title: "Personalized"
+      description: "No two people are identical. Every therapy plan is adapted to your needs, values and pace."
+      icon: "las la-user-circle"
+    - title: "Solution-Oriented"
+      description: "The focus is on developing concrete and sustainable solutions, not just analyzing problems."
+      icon: "las la-bullseye"
+    - title: "Total Transparency"
+      description: "We track progress together, with clear objectives and measurable results. No surprises, just real progress."
+      icon: "las la-chart-line"
+  button_text: "Discover Complete Approach"
+  button_url: "/en/approach/"
+  button_variant: "primary"
+
+# ============================================================================
+# 7. CTA SECTION
+# ============================================================================
+
+cta_standard:
+  title: "Let's Get to Know Each Other"
+  subtitle: "Free Consultation"
+  description: "Book a free 30-minute consultation to see if we can work together. No obligations, completely confidential."
+  button_text: "Book Consultation"
+  button_url: "/en/contact/"
+  button_variant: "secondary"
+  guarantees:
+    - text: "30-minute free consultation"
+      icon: "las la-check-circle"
+    - text: "No pressure or obligations"
+      icon: "las la-shield-alt"
+    - text: "100% confidentiality"
+      icon: "las la-lock"
 ---

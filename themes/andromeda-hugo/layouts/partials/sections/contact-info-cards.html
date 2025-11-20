@@ -1,38 +1,94 @@
-{{/* Contact Info Cards Section */}}
+{{/*
+==============================================================================
+CONTACT INFO CARDS SECTION - BEM Refactored
+==============================================================================
+Contact methods grid (phone, email, location) using contact-method-card molecules.
+
+FEATURES:
+- Full BEM structure (.c-contact-info-section)
+- Uses contact-method-card molecule composition
+- Grid layout (3 columns → 2 → 1 responsive)
+- Auto-variant cycling for color distribution
+- Optional section title
+- No Bootstrap dependencies
+- No AOS attributes (section-level animations)
+
+USAGE:
+sections:
+  - type: "contact-info-cards"
+
+contact_methods:
+  - icon: "phone"
+    label: "Telefon"
+    value: "+40 123 456 789"
+    subtitle: "Luni - Vineri, 9:00 - 18:00"
+    link: "tel:+40123456789"    # Optional
+    variant: "primary"            # Optional (auto-cycles if not set)
+    size: "md"                    # Optional: sm|md|lg (default: md)
+  - icon: "envelope"
+    label: "Email"
+    value: "contact@example.com"
+    subtitle: "Răspundem în 24h"
+    link: "mailto:contact@example.com"
+  - icon: "map-marker"
+    label: "Locație"
+    value: "Strada Exemplu 123"
+    subtitle: "București, România"
+    link: "https://maps.google.com/..."
+
+OPTIONAL PARAMS:
+contact_info_title: "Contactează-ne"  # Optional: Section title
+contact_info_subtitle: "Subtitle..."  # Optional: Section subtitle
+
+DEPENDENCIES:
+- molecules/contact-method-card.html
+- atoms/heading.html (if title provided)
+- _contact-info-cards.scss
+
+VERSION: 2.0.0 (BEM Refactor)
+LAST UPDATED: 2025-11-20
+==============================================================================
+*/}}
+
 {{ with .Params.contact_methods }}
-<section class="section pt-0">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <div class="row">
-          {{ range . }}
-          <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="contact-method-card">
-              <div class="text-center">
-                {{ if .link }}
-                  <a href="{{ .link }}" class="contact-icon-link">
-                    <div class="contact-icon">
-                      <i class="{{ .icon }}"></i>
-                    </div>
-                  </a>
-                {{ else }}
-                  <div class="contact-icon">
-                    <i class="{{ .icon }}"></i>
-                  </div>
-                {{ end }}
-                {{ partial "atoms/heading.html" (dict "level" "h4" "text" .title "class" "mb-2") }}
-                {{ if .link }}
-                  <a href="{{ .link }}" class="text-dark mb-1 fw-bold text-decoration-none d-block hover-link">{{ .info }}</a>
-                {{ else }}
-                  <p class="text-dark mb-1 fw-bold">{{ .info }}</p>
-                {{ end }}
-                <small class="text-muted">{{ .subtitle }}</small>
-              </div>
-            </div>
-          </div>
-          {{ end }}
-        </div>
+<section class="c-contact-info-section">
+  <div class="o-container">
+    <div class="c-contact-info-section__wrapper">
+
+      {{/* Optional section title */}}
+      {{ with $.Params.contact_info_title }}
+      <div class="c-contact-info-section__header">
+        {{ partial "atoms/heading.html" (dict
+          "level" 2
+          "text" .
+          "class" "c-contact-info-section__title"
+        ) }}
+        {{ with $.Params.contact_info_subtitle }}
+        <p class="c-contact-info-section__subtitle">{{ . }}</p>
+        {{ end }}
       </div>
+      {{ end }}
+
+      {{/* Contact methods grid */}}
+      <div class="c-contact-info-section__grid">
+        {{ range $index, $method := . }}
+          {{/* Auto-cycle variants if not explicitly set */}}
+          {{- $variant := $method.variant | default (index (slice "primary" "secondary" "tertiary") (mod $index 3)) -}}
+
+          <div class="c-contact-info-section__item">
+            {{ partial "molecules/contact-method-card.html" (dict
+              "icon" $method.icon
+              "label" $method.label
+              "value" $method.value
+              "subtitle" $method.subtitle
+              "link" $method.link
+              "variant" $variant
+              "size" ($method.size | default "md")
+            ) }}
+          </div>
+        {{ end }}
+      </div>
+
     </div>
   </div>
 </section>

@@ -1,0 +1,389 @@
+/*
+================================================================================
+Method Tabs Section Component
+================================================================================
+Tabbed interface for displaying therapeutic methods with detailed information.
+
+BEM Structure: .c-method-tabs
+
+Version: 5.0.1
+*/
+
+// ============================================================================
+// Base Component
+// ============================================================================
+
+.c-method-tabs {
+  padding: $space-12 0;
+  position: relative;
+
+  @media (max-width: $breakpoint-md - 1) {
+    padding: $space-8 0;
+  }
+}
+
+// ============================================================================
+// Section Header
+// ============================================================================
+
+.c-method-tabs__header {
+  text-align: center;
+  margin-bottom: $space-8;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-6;
+  }
+}
+
+.c-method-tabs__subtitle {
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: $space-2;
+  opacity: 0.8;
+}
+
+.c-method-tabs__title {
+  font-size: $font-size-4xl;
+  margin-bottom: $space-2;
+
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-2xl;
+  }
+}
+
+.c-method-tabs__description {
+  font-size: $font-size-lg;
+  line-height: $line-height-relaxed;
+  opacity: 0.9;
+}
+
+// ============================================================================
+// Tab Wrapper
+// ============================================================================
+
+.c-method-tabs__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+}
+
+// ============================================================================
+// Tab Navigation
+// ============================================================================
+
+.c-method-tabs__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  justify-content: center;
+  padding: $space-2;
+  background: rgba($color-gray-100, 0.5);
+  border-radius: $border-radius-lg;
+
+  @media (max-width: $breakpoint-sm - 1) {
+    flex-direction: column;
+    gap: $space-2;
+  }
+}
+
+// ============================================================================
+// Tab Button
+// ============================================================================
+
+.c-method-tabs__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-3 $space-4;
+  font-family: $font-family-sans;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  line-height: 1;
+  color: $color-text;
+  background: $color-white;
+  border: 2px solid transparent;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  transition:
+    all $transition-base $easing-ease-out,
+    transform $transition-fast $easing-ease-out;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+
+  &:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  // Active state
+  &--active {
+    font-weight: $font-weight-semibold;
+    box-shadow: $shadow-md;
+  }
+
+  @media (max-width: $breakpoint-sm - 1) {
+    width: 100%;
+    justify-content: center;
+    padding: $space-3;
+  }
+}
+
+// Tab icon
+.c-method-tabs__tab-icon {
+  flex-shrink: 0;
+}
+
+// Tab text
+.c-method-tabs__tab-text {
+  white-space: nowrap;
+}
+
+// Tab variants (color modifiers)
+.c-method-tabs__tab--primary.c-method-tabs__tab--active {
+  color: $color-primary;
+  background: rgba($color-primary, 0.1);
+  border-color: $color-primary;
+}
+
+.c-method-tabs__tab--secondary.c-method-tabs__tab--active {
+  color: $color-secondary;
+  background: rgba($color-secondary, 0.1);
+  border-color: $color-secondary;
+}
+
+.c-method-tabs__tab--tertiary.c-method-tabs__tab--active {
+  color: $color-tertiary;
+  background: rgba($color-tertiary, 0.1);
+  border-color: $color-tertiary;
+}
+
+// ============================================================================
+// Tab Panels Container
+// ============================================================================
+
+.c-method-tabs__panels {
+  position: relative;
+  min-height: 400px;
+}
+
+// ============================================================================
+// Individual Tab Panel
+// ============================================================================
+
+.c-method-tabs__panel {
+  display: none;
+  opacity: 0;
+  transition: opacity $transition-normal $easing-ease-out;
+
+  &--active {
+    display: block;
+    opacity: 1;
+  }
+}
+
+// ============================================================================
+// Panel Content
+// ============================================================================
+
+.c-method-tabs__content {
+  padding: $space-6;
+  background: $color-white;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+
+  @media (max-width: $breakpoint-md - 1) {
+    padding: $space-4;
+  }
+}
+
+// Method title
+.c-method-tabs__method-title {
+  font-size: $font-size-3xl;
+  margin-bottom: $space-3;
+
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-xl;
+  }
+}
+
+// Method description
+.c-method-tabs__method-description {
+  font-size: $font-size-lg;
+  line-height: $line-height-relaxed;
+  margin-bottom: $space-4;
+  opacity: 0.9;
+}
+
+// ============================================================================
+// Content Sections
+// ============================================================================
+
+.c-method-tabs__section {
+  margin-top: $space-4;
+  padding-top: $space-4;
+  border-top: 1px solid rgba($color-gray-300, 0.5);
+
+  &:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+}
+
+.c-method-tabs__section-title {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  margin-bottom: $space-3;
+  color: $color-primary;
+}
+
+// ============================================================================
+// Lists
+// ============================================================================
+
+.c-method-tabs__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.c-method-tabs__list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-2;
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+}
+
+.c-method-tabs__list-icon {
+  flex-shrink: 0;
+  margin-top: 4px; // Align with first line of text
+}
+
+// Check list variant
+.c-method-tabs__list--check {
+  .c-method-tabs__list-icon {
+    color: $color-primary;
+  }
+}
+
+// ============================================================================
+// Meta Information
+// ============================================================================
+
+.c-method-tabs__meta {
+  margin-top: $space-4;
+  padding-top: $space-4;
+  border-top: 1px solid rgba($color-gray-300, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-4;
+}
+
+.c-method-tabs__meta-item {
+  margin: 0;
+  font-size: $font-size-base;
+
+  strong {
+    font-weight: $font-weight-semibold;
+    color: $color-primary;
+  }
+}
+
+// ============================================================================
+// Color Variants (Section-level)
+// ============================================================================
+
+.c-method-tabs--primary {
+  .c-method-tabs__subtitle,
+  .c-method-tabs__section-title {
+    color: $color-primary;
+  }
+}
+
+.c-method-tabs--secondary {
+  .c-method-tabs__subtitle,
+  .c-method-tabs__section-title {
+    color: $color-secondary;
+  }
+}
+
+.c-method-tabs--tertiary {
+  .c-method-tabs__subtitle,
+  .c-method-tabs__section-title {
+    color: $color-tertiary;
+  }
+}
+
+// ============================================================================
+// Accessibility
+// ============================================================================
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .c-method-tabs__tab,
+  .c-method-tabs__panel {
+    transition: none;
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .c-method-tabs__tab {
+    border-width: 3px;
+  }
+
+  .c-method-tabs__content {
+    border: 2px solid $color-gray-300;
+  }
+}
+
+// ============================================================================
+// Print Styles
+// ============================================================================
+
+@media print {
+  .c-method-tabs {
+    padding: 0;
+  }
+
+  .c-method-tabs__nav {
+    display: none;
+  }
+
+  .c-method-tabs__panel {
+    display: block !important;
+    opacity: 1 !important;
+    page-break-inside: avoid;
+    margin-bottom: $space-4;
+  }
+
+  .c-method-tabs__content {
+    box-shadow: none;
+    border: 1px solid $color-gray-300;
+  }
+}
+
+// ============================================================================
+// Legacy Compatibility (@extend for old classes)
+// ============================================================================
+
+.method-tabs {
+  @extend .c-method-tabs;
+}
+
+.methods-tabs-wrapper {
+  @extend .c-method-tabs__wrapper;
+}

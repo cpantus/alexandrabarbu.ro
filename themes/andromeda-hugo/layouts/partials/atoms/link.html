@@ -1,0 +1,72 @@
+{{/*
+  Link Atom - Styled text link with hover/focus states
+
+  Usage:
+    {{ partial "atoms/link.html" (dict
+      "text" "Learn More"
+      "url" "/about"
+      "variant" "primary"
+      "external" false
+    )}}
+
+  Parameters:
+    text (required) - Link text content
+    url (required) - Link destination URL
+    variant (optional) - Color variant: primary|secondary|tertiary|neutral (default: primary)
+    external (optional) - Is external link (adds icon, target_blank): true|false (default: false)
+    icon (optional) - Icon class to display (e.g., "arrow-right")
+    iconPosition (optional) - Icon position: left|right (default: right)
+    class (optional) - Additional CSS classes
+    attributes (optional) - Additional HTML attributes as dict
+    ariaLabel (optional) - ARIA label for screen readers
+
+  Examples:
+    Internal link: {{ partial "atoms/link.html" (dict "text" "Read More" "url" "/blog") }}
+    External link: {{ partial "atoms/link.html" (dict "text" "Visit Site" "url" "https://example.com" "external" true) }}
+    With icon: {{ partial "atoms/link.html" (dict "text" "Next" "url" "/next" "icon" "arrow-right") }}
+*/}}
+
+{{ $text := .text }}
+{{ $url := .url }}
+{{ $variant := .variant | default "primary" }}
+{{ $external := .external | default false }}
+{{ $icon := .icon }}
+{{ $iconPosition := .iconPosition | default "right" }}
+{{ $class := .class | default "" }}
+{{ $attributes := .attributes | default dict }}
+{{ $ariaLabel := .ariaLabel }}
+
+{{/* Build link classes */}}
+{{ $linkClass := "c-link" }}
+{{ $linkClass = printf "%s c-link--%s" $linkClass $variant }}
+{{ if $external }}
+  {{ $linkClass = printf "%s c-link--external" $linkClass }}
+{{ end }}
+{{ if $class }}
+  {{ $linkClass = printf "%s %s" $linkClass $class }}
+{{ end }}
+
+{{/* Build link attributes */}}
+{{ $linkAttrs := dict }}
+{{ if $external }}
+  {{ $linkAttrs = merge $linkAttrs (dict "target" "_blank" "rel" "noopener noreferrer") }}
+{{ end }}
+{{ if $ariaLabel }}
+  {{ $linkAttrs = merge $linkAttrs (dict "aria-label" $ariaLabel) }}
+{{ end }}
+{{ $linkAttrs = merge $linkAttrs $attributes }}
+
+{{/* Auto-add external icon if external link and no custom icon */}}
+{{ if and $external (not $icon) }}
+  {{ $icon = "external-link-alt" }}
+{{ end }}
+
+<a href="{{ $url }}" class="{{ $linkClass }}"{{- range $key, $value := $linkAttrs }} {{ $key }}="{{ $value }}"{{ end -}}>
+  {{- if and $icon (eq $iconPosition "left") -}}
+    {{ partial "atoms/icon.html" (dict "icon" $icon "size" "xs" "class" "c-link__icon c-link__icon--left") }}
+  {{- end -}}
+  <span class="c-link__text">{{ $text }}</span>
+  {{- if and $icon (eq $iconPosition "right") -}}
+    {{ partial "atoms/icon.html" (dict "icon" $icon "size" "xs" "class" "c-link__icon c-link__icon--right") }}
+  {{- end -}}
+</a>

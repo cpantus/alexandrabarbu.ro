@@ -31,6 +31,11 @@
 @import 'mixins-glassmorphism';  // Glassmorphism & organic blob mixins (v4.0)
 
 // ----------------------------------
+// Mixins - Transitions (Phase 8)
+// ----------------------------------
+@import 'mixins-transitions';     // Standard transition mixins for animations
+
+// ----------------------------------
 // TODO Phase 2 Remaining:
 // - Extract additional mixins from _design-system.scss
 // - Extract hover/animation mixins from _design-enhancements.scss

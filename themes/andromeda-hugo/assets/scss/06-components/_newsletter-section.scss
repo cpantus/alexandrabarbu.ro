@@ -1,0 +1,177 @@
+/**
+ * Newsletter Signup Section
+ * Colored background email subscription form
+ * BEM: .c-newsletter-section
+ * Created: 2025-11-20 (Phase 5)
+ */
+
+.c-newsletter-section {
+  padding: $space-12 0;
+  position: relative;
+
+  @media (max-width: $breakpoint-md - 1) {
+    padding: $space-8 0;
+  }
+}
+
+.c-newsletter-section__container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $space-4;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-8;
+  align-items: center;
+
+  @media (max-width: $breakpoint-lg - 1) {
+    gap: $space-6;
+  }
+
+  @media (max-width: $breakpoint-md - 1) {
+    grid-template-columns: 1fr;
+    padding: 0 $space-3;
+  }
+}
+
+.c-newsletter-section__content {
+  // Left column content
+}
+
+.c-newsletter-section__icon-wrapper {
+  margin-bottom: $space-3;
+}
+
+.c-newsletter-section__title {
+  margin-bottom: $space-4;
+  color: #fff;
+}
+
+.c-newsletter-section__description {
+  font-family: $font-family-sans;
+  font-size: $font-size-lg;
+  line-height: $line-height-normal;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: $space-4;
+
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-base;
+  }
+}
+
+.c-newsletter-section__benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.c-newsletter-section__benefits-item {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-2;
+  margin-bottom: $space-2;
+  font-family: $font-family-sans;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  color: #fff;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.c-newsletter-section__benefits-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.c-newsletter-section__form {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: $border-radius-lg;
+  padding: $space-6;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  @media (max-width: $breakpoint-md - 1) {
+    padding: $space-4;
+  }
+}
+
+.c-newsletter-section__form-element {
+  // Form styles
+}
+
+.c-newsletter-section__field {
+  margin-bottom: $space-4;
+}
+
+.c-newsletter-section__gdpr {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-2;
+  margin-bottom: $space-4;
+}
+
+.c-newsletter-section__gdpr-checkbox {
+  flex-shrink: 0;
+  margin-top: 2px;
+  width: 16px;
+  height: 16px;
+}
+
+.c-newsletter-section__gdpr-label {
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  line-height: $line-height-relaxed;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.c-newsletter-section__submit {
+  // Button styles handled by button atom
+}
+
+// Variant modifiers (background colors)
+.c-newsletter-section--primary {
+  background: linear-gradient(135deg, $color-primary-600 0%, $color-primary-700 100%);
+  color: #fff;
+}
+
+.c-newsletter-section--secondary {
+  background: linear-gradient(135deg, $color-secondary-600 0%, $color-secondary-700 100%);
+  color: #fff;
+}
+
+.c-newsletter-section--tertiary {
+  background: linear-gradient(135deg, $color-tertiary-600 0%, $color-tertiary-700 100%);
+  color: #fff;
+}
+
+.c-newsletter-section--neutral {
+  background: linear-gradient(135deg, $color-neutral-700 0%, $color-neutral-800 100%);
+  color: #fff;
+}
+
+// Accessibility
+@media (prefers-reduced-motion: reduce) {
+  .c-newsletter-section__form {
+    backdrop-filter: none;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+// Print
+@media print {
+  .c-newsletter-section {
+    padding: $space-6 0;
+    background: none !important;
+    color: $color-text-primary !important;
+  }
+
+  .c-newsletter-section__form {
+    display: none;
+  }
+}

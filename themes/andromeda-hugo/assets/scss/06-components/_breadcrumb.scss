@@ -1,0 +1,496 @@
+/*------------------------------------*\
+  #BREADCRUMB
+\*------------------------------------*/
+
+/**
+ * Breadcrumb Component - Navigation breadcrumb with BEM structure
+ *
+ * Displays hierarchical navigation path with links and separators.
+ * Supports color variants, alignment options, and responsive behavior.
+ *
+ * Structure:
+ *   .c-breadcrumb                      Block
+ *     .c-breadcrumb__list              List container (ol)
+ *       .c-breadcrumb__item            List item (li)
+ *         .c-breadcrumb__link          Link (a)
+ *         .c-breadcrumb__text          Text content (span)
+ *         .c-breadcrumb__separator     Separator between items (span)
+ *
+ * Variants:
+ *   .c-breadcrumb--primary             Emerald color scheme
+ *   .c-breadcrumb--secondary           Terracotta color scheme
+ *   .c-breadcrumb--tertiary            Calm blue color scheme
+ *   .c-breadcrumb--neutral             Neutral gray scheme (default)
+ *
+ * Modifiers:
+ *   .c-breadcrumb--align-left          Left aligned (default)
+ *   .c-breadcrumb--align-center        Center aligned
+ *   .c-breadcrumb--align-right         Right aligned
+ *   .c-breadcrumb__item--active        Active/current item
+ *   .c-breadcrumb__text--current       Current page text
+ *
+ * Usage:
+ *   <nav class="c-breadcrumb c-breadcrumb--primary">
+ *     <ol class="c-breadcrumb__list">
+ *       <li class="c-breadcrumb__item">
+ *         <a href="/" class="c-breadcrumb__link">
+ *           <span class="c-breadcrumb__text">Home</span>
+ *         </a>
+ *         <span class="c-breadcrumb__separator">...</span>
+ *       </li>
+ *     </ol>
+ *   </nav>
+ */
+
+/*------------------------------------*\
+  #BLOCK
+\*------------------------------------*/
+
+.c-breadcrumb {
+  // Display & positioning
+  display: block;
+  width: 100%;
+
+  // Spacing
+  margin-bottom: $space-4; // 32px
+  padding: 0;
+
+  // Typography
+  font-family: $font-family-sans;
+  font-size: $font-size-sm; // 14px
+  line-height: $line-height-normal;
+  font-weight: 400;
+}
+
+/*------------------------------------*\
+  #ELEMENTS
+\*------------------------------------*/
+
+/**
+ * List container
+ */
+.c-breadcrumb__list {
+  // Reset list styles
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  // Display as flex row
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-1; // 8px
+
+  // Default alignment
+  justify-content: flex-start;
+}
+
+/**
+ * List item
+ */
+.c-breadcrumb__item {
+  // Display
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1; // 8px
+
+  // Reset styles
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Link
+ */
+.c-breadcrumb__link {
+  // Display
+  display: inline-flex;
+  align-items: center;
+  gap: $space-half; // 4px
+
+  // Typography
+  color: $color-text-secondary;
+  text-decoration: none;
+  font-weight: 400;
+
+  // Transitions
+  transition: color $transition-base;
+
+  // Hover state
+  &:hover {
+    color: $color-primary-600;
+    text-decoration: underline;
+    text-decoration-color: $color-primary-300;
+    text-underline-offset: 4px;
+  }
+
+  // Focus state
+  &:focus {
+    outline: 2px solid $color-primary-500;
+    outline-offset: 2px;
+    border-radius: $border-radius-sm;
+  }
+
+  // Active state
+  &:active {
+    color: $color-primary-700;
+  }
+
+  // Accessibility - high contrast mode
+  @media (prefers-contrast: high) {
+    font-weight: 500;
+  }
+}
+
+/**
+ * Text content
+ */
+.c-breadcrumb__text {
+  // Display
+  display: inline-block;
+
+  // Typography
+  color: inherit;
+}
+
+/**
+ * Current page text (no link)
+ */
+.c-breadcrumb__text--current {
+  color: $color-text-primary;
+  font-weight: 500;
+
+  // Accessibility
+  @media (prefers-contrast: high) {
+    font-weight: 600;
+  }
+}
+
+/**
+ * Separator
+ */
+.c-breadcrumb__separator {
+  // Display
+  display: inline-flex;
+  align-items: center;
+
+  // Color
+  color: $color-text-muted;
+
+  // Spacing
+  margin: 0 $space-half; // 0 4px
+
+  // Accessibility - reduce size for reduced motion
+  @media (prefers-reduced-motion: reduce) {
+    margin: 0 $space-1; // 0 8px
+  }
+}
+
+/**
+ * Separator icon
+ */
+.c-breadcrumb__separator-icon {
+  // Inherit color from separator
+  color: inherit;
+}
+
+/**
+ * Home icon
+ */
+.c-breadcrumb__home-icon {
+  // Color
+  color: $color-text-secondary;
+
+  // Transitions
+  transition: color $transition-base;
+
+  // Hover (when inside link)
+  .c-breadcrumb__link:hover & {
+    color: $color-primary-600;
+  }
+}
+
+/*------------------------------------*\
+  #MODIFIERS
+\*------------------------------------*/
+
+/**
+ * Active/current item
+ */
+.c-breadcrumb__item--active {
+  // Current item is not clickable
+  pointer-events: none;
+
+  // Visually distinct
+  .c-breadcrumb__text {
+    color: $color-text-primary;
+    font-weight: 500;
+  }
+}
+
+/**
+ * Alignment variants
+ */
+.c-breadcrumb--align-center {
+  .c-breadcrumb__list {
+    justify-content: center;
+  }
+}
+
+.c-breadcrumb--align-right {
+  .c-breadcrumb__list {
+    justify-content: flex-end;
+  }
+}
+
+/**
+ * Color variants
+ */
+
+// Primary variant (emerald)
+.c-breadcrumb--primary {
+  .c-breadcrumb__link {
+    color: $color-primary-700;
+
+    &:hover {
+      color: $color-primary-600;
+      text-decoration-color: $color-primary-300;
+    }
+
+    &:focus {
+      outline-color: $color-primary-500;
+    }
+
+    &:active {
+      color: $color-primary-800;
+    }
+  }
+
+  .c-breadcrumb__home-icon {
+    color: $color-primary-600;
+
+    .c-breadcrumb__link:hover & {
+      color: $color-primary-500;
+    }
+  }
+
+  .c-breadcrumb__separator {
+    color: $color-primary-400;
+  }
+}
+
+// Secondary variant (terracotta)
+.c-breadcrumb--secondary {
+  .c-breadcrumb__link {
+    color: $color-secondary-700;
+
+    &:hover {
+      color: $color-secondary-600;
+      text-decoration-color: $color-secondary-300;
+    }
+
+    &:focus {
+      outline-color: $color-secondary-500;
+    }
+
+    &:active {
+      color: $color-secondary-800;
+    }
+  }
+
+  .c-breadcrumb__home-icon {
+    color: $color-secondary-600;
+
+    .c-breadcrumb__link:hover & {
+      color: $color-secondary-500;
+    }
+  }
+
+  .c-breadcrumb__separator {
+    color: $color-secondary-400;
+  }
+}
+
+// Tertiary variant (calm blue)
+.c-breadcrumb--tertiary {
+  .c-breadcrumb__link {
+    color: $color-tertiary-700;
+
+    &:hover {
+      color: $color-tertiary-600;
+      text-decoration-color: $color-tertiary-300;
+    }
+
+    &:focus {
+      outline-color: $color-tertiary-500;
+    }
+
+    &:active {
+      color: $color-tertiary-800;
+    }
+  }
+
+  .c-breadcrumb__home-icon {
+    color: $color-tertiary-600;
+
+    .c-breadcrumb__link:hover & {
+      color: $color-tertiary-500;
+    }
+  }
+
+  .c-breadcrumb__separator {
+    color: $color-tertiary-400;
+  }
+}
+
+// Neutral variant (default gray)
+.c-breadcrumb--neutral {
+  // Uses default link styles (already neutral)
+}
+
+/*------------------------------------*\
+  #RESPONSIVE
+\*------------------------------------*/
+
+/**
+ * Mobile (<768px)
+ * - Smaller font size
+ * - Tighter spacing
+ */
+@media (max-width: $breakpoint-md - 1) {
+  .c-breadcrumb {
+    font-size: $font-size-xs; // 12px
+    margin-bottom: $space-2; // 16px
+  }
+
+  .c-breadcrumb__list {
+    gap: $space-half; // 4px
+  }
+
+  .c-breadcrumb__item {
+    gap: $space-half; // 4px
+  }
+
+  .c-breadcrumb__separator {
+    margin: 0 $space-quarter; // 0 2px
+  }
+}
+
+/**
+ * Tablet (768px - 991px)
+ * - Standard sizing
+ */
+@media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg - 1) {
+  .c-breadcrumb {
+    // Default styles apply
+  }
+}
+
+/**
+ * Desktop (≥992px)
+ * - Full spacing
+ * - Hover effects enhanced
+ */
+@media (min-width: $breakpoint-lg) {
+  .c-breadcrumb__link {
+    // Add subtle scale on hover
+    &:hover {
+      transform: translateY(-1px);
+    }
+
+    // Smooth transitions
+    transition: color $transition-base, transform $transition-base;
+  }
+}
+
+/*------------------------------------*\
+  #ACCESSIBILITY
+\*------------------------------------*/
+
+/**
+ * Screen reader only text
+ */
+.c-breadcrumb__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/**
+ * High contrast mode
+ */
+@media (prefers-contrast: high) {
+  .c-breadcrumb__link {
+    text-decoration: underline;
+    font-weight: 500;
+
+    &:focus {
+      outline-width: 3px;
+    }
+  }
+
+  .c-breadcrumb__separator {
+    font-weight: 600;
+  }
+}
+
+/**
+ * Reduced motion
+ */
+@media (prefers-reduced-motion: reduce) {
+  .c-breadcrumb__link {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+/**
+ * Dark mode support (if implemented)
+ */
+@media (prefers-color-scheme: dark) {
+  .c-breadcrumb__link {
+    color: $color-text-secondary-dark;
+
+    &:hover {
+      color: $color-primary-400;
+    }
+  }
+
+  .c-breadcrumb__text--current {
+    color: $color-text-primary-dark;
+  }
+
+  .c-breadcrumb__separator {
+    color: $color-text-muted-dark;
+  }
+}
+
+/*------------------------------------*\
+  #PRINT
+\*------------------------------------*/
+
+@media print {
+  .c-breadcrumb {
+    // Simplify for print
+    font-size: 10pt;
+    margin-bottom: 12pt;
+  }
+
+  .c-breadcrumb__link {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  .c-breadcrumb__separator {
+    color: #666;
+  }
+}

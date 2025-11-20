@@ -1,107 +1,192 @@
+{{/*
+  First Session Timeline Section - What to expect in your first therapy session
+
+  Usage:
+    sections:
+      - type: "first-session-timeline"
+
+    first_session_timeline:
+      title: "What to Expect in Your First Session"
+      subtitle: "YOUR FIRST VISIT"
+      description: "Understanding what happens during your initial consultation."
+      variant: "primary"
+      steps:
+        - icon: "calendar-check"
+          title: "Welcome & Introduction"
+          description: "We'll start with a warm welcome and brief introductions."
+          duration: "5 min"
+          highlights:
+            - "Meet your therapist"
+            - "Tour of the office"
+      reassurance:
+        text: "Remember: The first session is about getting to know each other. There's no pressure to share everything at once."
+        icon: "heart"
+        variant: "info"
+      cta:
+        text: "Schedule Your First Session"
+        url: "/contact"
+        icon: "calendar-plus"
+
+  Parameters:
+    title (optional) - Section title
+    subtitle (optional) - Section subtitle/eyebrow
+    description (optional) - Section description
+    variant (optional) - Color variant for section header: primary|secondary|tertiary|neutral (default: "primary")
+    steps (required) - Array of timeline step objects:
+      - icon (optional) - Icon name for step
+      - title (required) - Step title
+      - description (optional) - Step description (supports markdown)
+      - duration (optional) - Duration text (e.g., "10 min")
+      - highlights (optional) - Array of highlight items
+    reassurance (optional) - Reassurance note object:
+      - text (required) - Reassurance message
+      - icon (optional) - Icon name (default: "heart")
+      - variant (optional) - info-box variant: tip|note|warning|important|success (default: "tip")
+    cta (optional) - Call to action button:
+      - text (required) - Button text
+      - url (required) - Button URL
+      - icon (optional) - Button icon
+      - variant (optional) - Button variant (default: inherits section variant)
+
+  BEM Structure:
+    .c-first-session-timeline           Block
+    .c-first-session-timeline--primary  Modifier: color variant
+    .c-first-session-timeline__header   Element: section header
+    .c-first-session-timeline__timeline Element: timeline container
+    .c-first-session-timeline__cta      Element: CTA wrapper
+
+  Version: 2.0.0 (BEM refactor, molecule composition)
+  Last Updated: 2025-11-20
+*/}}
+
+{{- /* ========================================
+     PARAMETER EXTRACTION & VALIDATION
+     ======================================== */ -}}
 {{- $section := .Params.first_session_timeline -}}
-{{- if $section -}}
+{{- if not $section -}}
+  {{- return -}}
+{{- end -}}
+
+{{- $title := $section.title | default "" -}}
+{{- $subtitle := $section.subtitle | default "" -}}
+{{- $description := $section.description | default "" -}}
+{{- $variant := $section.variant | default "primary" -}}
+{{- $steps := $section.steps | default slice -}}
+{{- $reassurance := $section.reassurance -}}
+{{- $cta := $section.cta -}}
+
+{{- /* Validate variant */ -}}
+{{- $validVariants := slice "primary" "secondary" "tertiary" "neutral" -}}
+{{- if not (in $validVariants $variant) -}}
+  {{- warnf "first-session-timeline: invalid variant '%s'. Using 'primary'. Valid: %s" $variant (delimit $validVariants ", ") -}}
+  {{- $variant = "primary" -}}
+{{- end -}}
+
+{{- /* Validate required steps */ -}}
+{{- if not $steps -}}
+  {{- warnf "first-session-timeline: 'steps' array is empty. Section will not render timeline." -}}
+{{- end -}}
+
+{{- /* ========================================
+     SECTION ID & BEM CLASSES
+     ======================================== */ -}}
 {{- $sectionID := printf "first-session-%d" (now.Unix) -}}
+{{- $blockClass := "c-first-session-timeline" -}}
+{{- $modifiers := slice (printf "c-first-session-timeline--%s" $variant) -}}
+{{- $allClasses := delimit (append (slice $blockClass) $modifiers) " " -}}
 
-<section class="section first-session-timeline bg-light" id="{{ $sectionID }}">
-  <div class="container">
-    <!-- Section Header -->
-    {{- if or $section.title $section.subtitle -}}
-    <div class="row justify-content-center">
-      <div class="col-lg-8 text-center mb-5">
-        {{- if $section.subtitle -}}
-        <p class="text-primary text-uppercase fw-semibold mb-2">{{ $section.subtitle }}</p>
-        {{- end -}}
-        {{- if $section.title -}}
-        {{ partial "atoms/heading.html" (dict "text" $section.title "level" 2 "class" "mb-3" "colorVariant" "primary") }}
-        {{- end -}}
-        {{- if $section.description -}}
-        <p class="text-muted lead">{{ $section.description }}</p>
-        {{- end -}}
-      </div>
-    </div>
-    {{- end -}}
+{{- /* ========================================
+     SECTION MARKUP
+     ======================================== */ -}}
+<section class="{{ $allClasses }}" id="{{ $sectionID }}">
+  <div class="o-container">
 
-    <!-- Timeline -->
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <div class="timeline-container">
-          {{- range $index, $step := $section.steps -}}
-          {{- $isLast := eq (add $index 1) (len $section.steps) -}}
-          {{- $colorVariants := slice "primary" "secondary" "coral" -}}
-          {{- $colorIndex := mod $index (len $colorVariants) -}}
-          {{- $colorVariant := index $colorVariants $colorIndex -}}
+    {{- /* ========================================
+         SECTION HEADER
+         ======================================== */ -}}
+    {{- if or $title $subtitle $description -}}
+    <div class="c-first-session-timeline__header">
+      {{- if $subtitle -}}
+        <p class="c-first-session-timeline__subtitle">{{ $subtitle }}</p>
+      {{- end -}}
 
-          <div class="timeline-step{{ if not $isLast }} timeline-step-connected{{ end }}"
-               data-aos="fade-up"
-               data-aos-delay="{{ mul $index 100 }}">
-
-            <!-- Timeline Marker -->
-            <div class="timeline-marker">
-              <div class="timeline-icon">
-                {{- if $step.icon -}}
-                {{ partial "atoms/icon.html" (dict "name" $step.icon "size" "24" "withWrapper" true "wrapperVariant" $colorVariant "wrapperSize" "md") }}
-                {{- else -}}
-                <span class="timeline-number icon-circle icon-circle-{{ $colorVariant }} icon-circle-md">{{ add $index 1 }}</span>
-                {{- end -}}
-              </div>
-              {{- if $step.duration -}}
-              <div class="timeline-duration">{{ $step.duration }}</div>
-              {{- end -}}
-            </div>
-
-            <!-- Timeline Content -->
-            <div class="timeline-content">
-              {{- if $step.title -}}
-              {{ partial "atoms/heading.html" (dict "text" $step.title "level" 4 "class" "mb-2" "colorVariant" $colorVariant) }}
-              {{- end -}}
-
-              {{- if $step.description -}}
-              <p class="text-muted mb-3">{{ $step.description | markdownify }}</p>
-              {{- end -}}
-
-              {{- if $step.highlights -}}
-              <ul class="timeline-highlights">
-                {{- range $step.highlights -}}
-                <li>
-                  {{ partial "atoms/icon.html" (dict "name" "check-circle" "class" "text-primary me-2") }}
-                  <span>{{ . }}</span>
-                </li>
-                {{- end -}}
-              </ul>
-              {{- end -}}
-            </div>
-          </div>
-          {{- end -}}
-        </div>
-      </div>
-    </div>
-
-    {{- if $section.reassurance -}}
-    <!-- Reassurance Note -->
-    <div class="row justify-content-center mt-5">
-      <div class="col-lg-8">
-        <div class="reassurance-box text-center p-4 rounded-3 bg-white border border-primary border-opacity-25">
-          {{ partial "atoms/icon.html" (dict "name" "heart" "size" "32" "class" "text-primary mb-3") }}
-          <p class="mb-0 text-muted">{{ $section.reassurance }}</p>
-        </div>
-      </div>
-    </div>
-    {{- end -}}
-
-    {{- if $section.cta -}}
-    <!-- Call to Action -->
-    <div class="row justify-content-center mt-4">
-      <div class="col-auto">
-        {{ partial "atoms/button.html" (dict
-          "text" $section.cta.text
-          "url" $section.cta.url
-          "variant" (default "primary" (default $section.button_variant $section.cta.variant))
-          "icon" $section.cta.icon
+      {{- if $title -}}
+        {{ partial "atoms/heading.html" (dict
+          "text" $title
+          "level" 2
+          "variant" $variant
+          "class" "c-first-session-timeline__title"
         ) }}
-      </div>
+      {{- end -}}
+
+      {{- if $description -}}
+        <p class="c-first-session-timeline__description">{{ $description }}</p>
+      {{- end -}}
     </div>
     {{- end -}}
+
+    {{- /* ========================================
+         TIMELINE (using timeline-step molecules)
+         ======================================== */ -}}
+    {{- if $steps -}}
+    <div class="c-first-session-timeline__timeline">
+      {{- range $index, $step := $steps -}}
+        {{- /* Color rotation for visual variety */ -}}
+        {{- $colorVariants := slice "primary" "secondary" "coral" -}}
+        {{- $colorIndex := mod $index (len $colorVariants) -}}
+        {{- $stepVariant := index $colorVariants $colorIndex -}}
+
+        {{- /* Use timeline-step molecule */ -}}
+        {{ partial "molecules/timeline-step.html" (dict
+          "index" $index
+          "icon" $step.icon
+          "title" $step.title
+          "description" $step.description
+          "duration" $step.duration
+          "highlights" $step.highlights
+          "variant" $stepVariant
+          "layout" "standard"
+        ) }}
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    {{- /* ========================================
+         REASSURANCE NOTE (using info-box molecule)
+         ======================================== */ -}}
+    {{- if $reassurance -}}
+    <div class="c-first-session-timeline__reassurance">
+      {{- /* Handle $reassurance as either string or object */ -}}
+      {{- $reassType := "tip" -}}
+      {{- $reassIcon := "heart" -}}
+      {{- $reassContent := $reassurance -}}
+      {{- if reflect.IsMap $reassurance -}}
+        {{- $reassType = default "tip" $reassurance.variant -}}
+        {{- $reassIcon = default "heart" $reassurance.icon -}}
+        {{- $reassContent = $reassurance.text -}}
+      {{- end -}}
+      {{ partial "molecules/info-box.html" (dict
+        "type" $reassType
+        "icon" $reassIcon
+        "content" $reassContent
+        "centered" true
+      ) }}
+    </div>
+    {{- end -}}
+
+    {{- /* ========================================
+         CALL TO ACTION
+         ======================================== */ -}}
+    {{- if $cta -}}
+    <div class="c-first-session-timeline__cta">
+      {{ partial "atoms/button.html" (dict
+        "text" $cta.text
+        "url" $cta.url
+        "variant" (default $variant $cta.variant)
+        "icon" $cta.icon
+      ) }}
+    </div>
+    {{- end -}}
+
   </div>
 </section>
-
-{{- end -}}

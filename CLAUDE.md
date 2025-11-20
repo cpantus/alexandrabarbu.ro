@@ -1,15 +1,15 @@
 # Claude Instructions - Andromeda Hugo Theme
 
-**Version**: 5.0.0 - Creative Design Excellence + ITCSS Architecture
+**Version**: 5.1.0 - Complete 2025 Refactor + ITCSS Architecture
 
 ---
 
 ## CRITICAL Rules
 
-1. **Run Hugo from project root**: `hugo server` (not from theme directory)
+1. **Run Hugo from project root**: `hugo server` (always from /home/cere/Work/alex/alexandrabarbu.ro/)
 2. **Preserve multilingual**: Maintain RO (root path) + EN (`/en/`) content parity
-3. **Flexible layout only**: Pages = Header + Sections (2-7) + Footer. Use 34 section types.
-4. **Reuse components**: 5 atoms → 21 molecules → 2 organisms → 34 sections
+3. **Flexible layout only**: Pages = Header + Sections (2-7) + Footer. Use 26 active section types.
+4. **Reuse components**: 9 atoms → 29 molecules → 2 organisms → 26 sections = **66 components**
 5. **Test both languages**: Verify `/{page}` (RO) and `/en/{page}` (EN)
 6. **Enhanced design system**: Use glassmorphism, gradients, and organic shapes (v4.0)
 
@@ -17,64 +17,76 @@
 
 ## Architecture
 
-**Component Hierarchy** (v4.0 Enhanced):
+**Component Hierarchy** (2025 Refactor Complete):
 ```
-Atoms (5)        → button, heading, icon, image, input
-Molecules (21)   → card, form-field, accordion, nav, credential-badge, etc.
+Atoms (9)        → button, heading, icon, image, tag, divider, link, spinner, avatar
+Molecules (29)   → card, form-field, accordion, nav, credential-badge, social-links, etc.
 Organisms (2)    → header, footer
-Sections (34)    → 27 core + 2 specialized + 5 enhanced premium components
+Sections (26)    → 5 core + 4 interactive + 3 forms + 5 trust + 5 enhanced v4.0 + 4 specialized
 
 Page = Header + Sections Array + Footer
 ```
 
-**File Structure**:
+**File Structure** (Flattened - No theme subdirectory!):
 ```
-layouts/
-├── _default/flexible.html      # Layout engine (STABLE)
-└── partials/
-    ├── atoms/                  # 5 basic components
-    ├── molecules/              # 21 composite components
-    ├── organisms/              # 2 complex (header, footer)
-    └── sections/               # 34 page sections (5 enhanced v4.0)
-
-assets/scss/                    # ITCSS Architecture (v5.0.0) ✅
-├── main-new.scss               # ITCSS entry point (ACTIVE)
-├── 01-settings/                # Design tokens (8 files - variables only)
-│   ├── _tokens-colors.scss
-│   ├── _tokens-typography.scss
-│   ├── _tokens-spacing.scss
-│   ├── _tokens-shadows.scss
-│   ├── _tokens-motion.scss
-│   ├── _tokens-gradients.scss
-│   └── _tokens-components.scss
-├── 02-tools/                   # Mixins & functions (no CSS output)
-│   ├── _mixins-card.scss
-│   ├── _mixins-icon.scss
-│   ├── _mixins-glassmorphism.scss
-│   └── _functions-colors.scss
-├── 03-generic/                 # CSS resets, normalize
-├── 05-objects/                 # Layout primitives (.o-container, .o-grid)
-└── 06-components/              # 20 BEM components (.c-*)
-    ├── _card.scss              # All v4.0 features preserved
-    ├── _button.scss
-    ├── _icon.scss
-    ├── _badge.scss
-    ├── _values-compass.scss    # New v4.0
-    ├── _stats.scss             # Enhanced v4.0
-    ├── _feature-blocks.scss    # Enhanced v4.0
-    ├── _pricing.scss           # Enhanced v4.0
-    ├── _credentials.scss       # Enhanced v4.0
-    └── ... (11 more BEM components)
-
-assets/js/
-├── values-compass-interactions.js # Mobile touch
-├── stats-counter.js               # Animated counting
-└── scroll-animations.js           # Parallax + scroll effects
+alexandrabarbu.ro/              # ← PROJECT ROOT (run Hugo here)
+├── layouts/                    # Hugo templates (root level)
+│   ├── _default/flexible.html  # Layout engine (STABLE)
+│   └── partials/
+│       ├── atoms/              # 5 basic components
+│       ├── molecules/          # 21 composite components
+│       ├── organisms/          # 2 complex (header, footer)
+│       └── sections/           # 21 page sections (5 enhanced v4.0, 1 _deprecated dir)
+│
+├── assets/                     # Assets at root level (NOT in themes/)
+│   ├── scss/                   # ITCSS Architecture (v5.0.0) ✅
+│   │   ├── main-new.scss       # ITCSS entry point (ACTIVE)
+│   │   ├── 01-settings/        # Design tokens (variables only)
+│   │   │   ├── _tokens-colors.scss
+│   │   │   ├── _tokens-typography.scss  # Crimson Pro + Work Sans
+│   │   │   ├── _tokens-spacing.scss
+│   │   │   ├── _tokens-shadows.scss
+│   │   │   ├── _tokens-motion.scss
+│   │   │   ├── _tokens-gradients.scss
+│   │   │   └── _tokens-components.scss
+│   │   ├── 02-tools/           # Mixins & functions (no CSS output)
+│   │   │   ├── _mixins-card.scss
+│   │   │   ├── _mixins-icon.scss
+│   │   │   ├── _mixins-glassmorphism.scss
+│   │   │   └── _functions-colors.scss
+│   │   ├── 03-generic/         # CSS resets, normalize
+│   │   ├── 05-objects/         # Layout primitives (.o-container, .o-grid)
+│   │   └── 06-components/      # 20 BEM components (.c-*)
+│   │       ├── _card.scss      # All v4.0 features preserved
+│   │       ├── _button.scss
+│   │       ├── _icon.scss
+│   │       ├── _badge.scss
+│   │       ├── _values-compass.scss    # New v4.0
+│   │       ├── _stats.scss             # Enhanced v4.0
+│   │       ├── _feature-blocks.scss    # Enhanced v4.0
+│   │       ├── _pricing.scss           # Enhanced v4.0
+│   │       ├── _credentials.scss       # Enhanced v4.0
+│   │       └── ... (11 more BEM components)
+│   │
+│   └── js/                     # JavaScript at root level
+│       ├── vanilla-collapse.js # Mobile nav, accordions (replaces Bootstrap)
+│       ├── vanilla-dropdown.js # Navigation dropdowns (replaces Bootstrap)
+│       ├── values-compass-interactions.js # Mobile touch
+│       ├── stats-counter.js    # Animated counting
+│       ├── scroll-animations.js # Parallax + scroll effects
+│       └── gsap-enhancements.js # GSAP animations
+│
+├── content/                    # Site content (root level)
+├── config/                     # Hugo configuration
+├── data/                       # Data files
+└── i18n/                       # Translations
 ```
+
+**IMPORTANT**: Structure was flattened in commit 4886ab2. No `themes/andromeda-hugo/` directory exists!
 
 **SCSS Architecture**: The theme uses ITCSS (Inverted Triangle CSS) + BEM naming for scalable, maintainable styling. All v4.0 design features are preserved.
 
-**For SCSS/styling work**: See `themes/andromeda-hugo/ARCHITECTURE.md` (complete ITCSS guide) and `themes/andromeda-hugo/CLAUDE-ITCSS-ADDENDUM.md` (quick reference).
+**For SCSS/styling work**: See `ARCHITECTURE.md` (Hugo components) and `CLAUDE-ITCSS-ADDENDUM.md` (ITCSS quick reference).
 
 ---
 
@@ -190,10 +202,10 @@ hugo new content/landing/promo.md --kind landing-page
 ## Development Commands
 
 ```bash
-hugo server --buildDrafts              # Dev server (run from project root)
+hugo server --buildDrafts              # Dev server (MUST run from project root!)
 hugo --gc --minify                     # Production build
 hugo --templateMetrics                 # Performance check
-scripts/test-components.sh             # Verify 48 components
+scripts/test-components.sh             # Verify 49 components (5+21+2+21)
 ```
 
 ---
@@ -309,9 +321,10 @@ credentials_showcase:
 - Text: `#374151` (warm gray)
 
 **Typography**:
-- Headings: Poppins (300-700)
-- Body: Open Sans (300-700)
-- Base: 17px
+- Headings: Cormorant Garamond (300-700) - Elegant serif
+- Body: Source Sans 3 (300-700) - Modern sans-serif
+- Base: 16px
+- Font loading: Google Fonts @import in `_tokens-typography.scss`
 
 **Breakpoints**:
 ```
@@ -541,6 +554,6 @@ values_compass:
 
 ---
 
-**Status**: Production Ready ✅ | 53 components | <3s builds | <520KB pages | WebP images | Multilingual | **v5.0: ITCSS + BEM + v4.0 Design**
+**Status**: Production Ready ✅ | 66 components (9 atoms + 29 molecules + 2 organisms + 26 sections) | <3s builds | <520KB pages | WebP images | Multilingual | **v5.1.0: Complete 2025 Refactor** | Full BEM + ITCSS
 
-**Version**: 5.0.0 | **Updated**: 2025-11-19 | **Hugo**: v0.148.1 extended | **Architecture**: ITCSS + BEM
+**Version**: 5.1.0 | **Updated**: 2025-11-20 | **Hugo**: v0.152.2 extended | **Architecture**: ITCSS + BEM | **Fonts**: Crimson Pro (serif) + Work Sans (sans)

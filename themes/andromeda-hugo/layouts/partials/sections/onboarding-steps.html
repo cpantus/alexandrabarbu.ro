@@ -1,0 +1,160 @@
+{{- /*
+  Onboarding Steps Section
+
+  Description:
+    Displays client onboarding/intake process timeline as a grid of numbered
+    process steps. Used for "How to Start" or "Getting Started" sections.
+    Shows sequential steps with numbers, titles, and descriptions.
+
+  BEM Structure:
+    - Block: .c-onboarding-steps
+    - Elements: __header, __subtitle, __intro, __grid, __item, __cta
+    - Modifiers: --primary, --secondary, --tertiary, --neutral
+
+  Front Matter Structure:
+    onboarding_steps:
+      variant: "primary"              # Optional: primary (default), secondary, tertiary, neutral
+      title: "How We Begin"           # Required: Section title
+      subtitle: "Your Journey Starts" # Optional: Section subtitle
+      intro: "Getting started..."     # Optional: Intro paragraph
+      steps:                          # Required: Array of steps
+        - step: 1                     # Required: Step number
+          title: "Initial Contact"    # Required: Step title
+          description: "Reach out"    # Required: Step description
+        - step: 2
+          title: "Assessment"
+          description: "We discuss"
+      cta:                            # Optional: Call-to-action
+        text: "Get Started"           # Required if cta present
+        url: "/contact/"              # Required if cta present
+        variant: "primary"            # Optional: Button variant
+
+  Dependencies:
+    - Molecules: process-step.html
+    - Atoms: heading.html, button.html
+    - SCSS: _onboarding-steps.scss
+
+  Accessibility:
+    - Semantic HTML with ordered list (ol)
+    - Heading hierarchy (h2 for title)
+    - Process-step molecules have proper ARIA labels
+    - Focus indicators via CSS
+
+  Version: 1.0.0
+  Last Updated: 2025-11-20
+*/ -}}
+
+{{- /* Extract Section Data */ -}}
+{{- $section := .Params.onboarding_steps -}}
+
+{{- /* Only render if section exists and has steps */ -}}
+{{- with $section -}}
+  {{- if .steps -}}
+
+    {{- /* Section Parameters */ -}}
+    {{- $variant := .variant | default "primary" -}}
+    {{- $title := .title -}}
+    {{- $subtitle := .subtitle -}}
+    {{- $intro := .intro -}}
+    {{- $steps := .steps -}}
+    {{- $cta := .cta -}}
+
+    {{- /* Validation */ -}}
+    {{- if not $title -}}
+      {{- warnf "onboarding-steps: 'title' parameter is required (page: %s)" $.Page.File.Path -}}
+    {{- end -}}
+    {{- if not $steps -}}
+      {{- warnf "onboarding-steps: 'steps' array is required (page: %s)" $.Page.File.Path -}}
+    {{- end -}}
+
+    {{- /* Valid Variants */ -}}
+    {{- $valid_variants := slice "primary" "secondary" "tertiary" "neutral" -}}
+    {{- if not (in $valid_variants $variant) -}}
+      {{- warnf "onboarding-steps: Invalid variant '%s'. Using 'primary'. Valid: %s (page: %s)" $variant (delimit $valid_variants ", ") $.Page.File.Path -}}
+      {{- $variant = "primary" -}}
+    {{- end -}}
+
+    {{- /* Build Modifier Class */ -}}
+    {{- $modifier_class := printf "c-onboarding-steps--%s" $variant -}}
+
+    <section class="c-onboarding-steps {{ $modifier_class }}">
+      <div class="o-container">
+
+        {{- /* Section Header */ -}}
+        {{- if or $title $subtitle -}}
+          <div class="c-onboarding-steps__header">
+            {{- /* Title */ -}}
+            {{- if $title -}}
+              {{ partial "atoms/heading.html" (dict
+                "level" 2
+                "text" ($title | markdownify)
+                "variant" $variant
+              ) }}
+            {{- end -}}
+
+            {{- /* Subtitle */ -}}
+            {{- if $subtitle -}}
+              <p class="c-onboarding-steps__subtitle">{{ $subtitle | markdownify }}</p>
+            {{- end -}}
+          </div>
+        {{- end -}}
+
+        {{- /* Intro Text (Optional) */ -}}
+        {{- if $intro -}}
+          <div class="c-onboarding-steps__intro">
+            <p>{{ $intro | markdownify }}</p>
+          </div>
+        {{- end -}}
+
+        {{- /* Steps Grid */ -}}
+        <ol class="c-onboarding-steps__grid">
+          {{- range $index, $step_item := $steps -}}
+            {{- /* Validate step data */ -}}
+            {{- if not $step_item.step -}}
+              {{- warnf "onboarding-steps: Step %d missing 'step' number (page: %s)" $index $.Page.File.Path -}}
+            {{- end -}}
+            {{- if not $step_item.title -}}
+              {{- warnf "onboarding-steps: Step %d missing 'title' (page: %s)" $index $.Page.File.Path -}}
+            {{- end -}}
+            {{- if not $step_item.description -}}
+              {{- warnf "onboarding-steps: Step %d missing 'description' (page: %s)" $index $.Page.File.Path -}}
+            {{- end -}}
+
+            {{- /* Determine step variant (rotate through variants for visual variety) */ -}}
+            {{- $step_variants := slice "primary" "secondary" "tertiary" "neutral" -}}
+            {{- $step_variant_idx := mod $index (len $step_variants) -}}
+            {{- $step_variant := index $step_variants $step_variant_idx -}}
+
+            <li class="c-onboarding-steps__item">
+              {{ partial "molecules/process-step.html" (dict
+                "step" $step_item.step
+                "title" $step_item.title
+                "description" $step_item.description
+                "variant" $step_variant
+              ) }}
+            </li>
+          {{- end -}}
+        </ol>
+
+        {{- /* Optional CTA */ -}}
+        {{- if $cta -}}
+          {{- if and $cta.text $cta.url -}}
+            <div class="c-onboarding-steps__cta">
+              {{ partial "atoms/button.html" (dict
+                "text" $cta.text
+                "url" $cta.url
+                "variant" ($cta.variant | default $variant)
+              ) }}
+            </div>
+          {{- else -}}
+            {{- warnf "onboarding-steps: CTA requires both 'text' and 'url' (page: %s)" $.Page.File.Path -}}
+          {{- end -}}
+        {{- end -}}
+
+      </div>
+    </section>
+
+  {{- else -}}
+    {{- warnf "onboarding-steps: No steps provided (page: %s)" $.Page.File.Path -}}
+  {{- end -}}
+{{- end -}}

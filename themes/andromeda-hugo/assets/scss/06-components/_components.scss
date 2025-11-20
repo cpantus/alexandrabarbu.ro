@@ -23,9 +23,40 @@
 // Core Components (BEM refactored)
 @import 'card';                    // ✅ Phase 3: BEM refactored with legacy compat
 @import 'button';                  // ✅ Phase 3: Extracted from custom.scss + BEM
+@import 'heading';                 // ✅ Phase 2: BEM refactored with 8 unified variants
 @import 'icon';                    // ✅ Phase 3: BEM refactored with legacy compat
 @import 'badge';                   // ✅ Phase 3: Extracted from credentials.scss + BEM
+@import 'tag';                     // ✅ Phase 2: New atom component with 8 unified variants
+@import 'divider';                 // ✅ Phase 2: New atom - horizontal/vertical separators
+@import 'link';                    // ✅ Phase 2: New atom - styled text links with underline animation
+@import 'spinner';                 // ✅ Phase 2: New atom - animated loading indicator
+@import 'avatar';                  // ✅ Phase 2: New atom - circular profile photos
 @import 'form';                    // ✅ Phase 3: Extracted from custom.scss + contact-form + BEM
+@import 'accordion';               // ✅ Phase 3: New molecule - collapsible accordion with BEM + vanilla JS
+@import 'navigation';              // ✅ Phase 3: BEM refactored - main nav with dropdown support + vanilla JS
+@import 'breadcrumb';              // ✅ Phase 3: BEM refactored - navigation breadcrumb with variants + icons
+@import 'social-links';            // ✅ Phase 3: BEM refactored - social media links with 4 variants + 2 layouts
+@import 'video-embed';             // ✅ Phase 3: BEM refactored - video player with 3 aspect ratios + modal playback
+@import 'timeline-step';           // ✅ Phase 3: BEM refactored - timeline/process step with 4 variants + 3 layouts
+@import 'stat-card';               // ✅ Phase 3: BEM refactored - animated stat display with 4 variants + 3 sizes
+@import 'blog-card';               // ✅ Phase 3: BEM refactored - blog/article card with 4 variants + metadata + hover
+@import 'back-to-top';             // ✅ Phase 3: BEM refactored - floating scroll-to-top button with 4 variants + auto-show
+@import 'cookie-consent';          // ✅ Phase 3: BEM refactored - GDPR cookie banner with 4 variants + localStorage
+@import 'emergency-banner';        // ✅ Phase 3: BEM refactored - crisis resources banner with 4 variants + sessionStorage
+@import 'footer-info';             // ✅ Phase 3: BEM refactored - footer logo, description & contact with 4 variants + heading atom
+@import 'footer-nav';              // ✅ Phase 3: BEM refactored - footer navigation with social-links molecule + quick links + 4 variants
+@import 'language-selector';       // ✅ Phase 3: BEM refactored - multilingual language switcher with 4 variants + localStorage
+@import 'logo';                    // ✅ Phase 3: BEM refactored - site logo with 4 color variants + 3 size variants + optional linking
+@import 'mobile-menu';             // ✅ Phase 3: BEM refactored - hamburger menu toggle with collapsible panel + animated icons
+@import 'nav-item';                // ✅ Phase 3: BEM refactored - navigation link with dropdown support + badges + active state
+@import 'service-card';            // ✅ Phase 3: NEW molecule - service preview card with icon/image, title, excerpt, CTA button
+@import 'value-card';              // ✅ Phase 3: NEW molecule - value/principle card with icon, title, description (About/Approach pages)
+@import 'process-step';            // ✅ Phase 3: NEW molecule - numbered process step with title & description (therapy timelines)
+@import 'resource-card';           // ✅ Phase 3: NEW molecule - blog/article/guide card with image, category, title, excerpt, metadata (Resources section)
+@import 'contact-method';          // ✅ Phase 3: NEW molecule - contact method card with icon, label, value (phone/email/location on Contact page)
+@import 'feature-highlight';       // ✅ Phase 3: NEW molecule - inline feature display with icon, title, description (Service pages)
+@import 'quote-block';             // ✅ Phase 3: NEW molecule - testimonial/quote block with optional attribution & avatar (Testimonials)
+@import 'info-box';                // ✅ Phase 3: NEW molecule - informational callout box with icon, title, content (tips/notes/warnings)
 
 // Section Components (BEM refactored)
 @import 'hero-breadcrumb';         // ✅ Phase 3: BEM refactored with legacy compat
@@ -34,11 +65,40 @@
 @import 'video-popup';             // ✅ Phase 3: BEM refactored with legacy compat
 @import 'blog-grid';               // ✅ Phase 3: BEM refactored with legacy compat
 @import 'newsletter';              // ✅ Phase 3: BEM refactored with legacy compat
-@import 'privacy-guarantee';       // ✅ Phase 3: BEM refactored with legacy compat
+// @import 'privacy-guarantee';    // ❌ OLD - Replaced by Phase 5 NEW version (line 85)
 @import 'values-intro';            // ✅ Phase 3: BEM refactored with legacy compat
 @import 'signup-form';             // ✅ Phase 3: BEM refactored with legacy compat
 @import 'problem-empathy';         // ✅ Phase 3: BEM refactored with legacy compat
 @import 'credentials';             // ✅ Phase 3: BEM refactored with legacy compat
+@import 'contact-form-enhanced';   // ✅ Phase 5: BEM refactored - two-column contact form with trust badges (Forms section)
+@import 'faq-content';             // ✅ Phase 5: BEM refactored - FAQ accordion section (Interactive section)
+@import 'contact-info-cards';      // ✅ Phase 5: BEM refactored - contact methods grid using contact-method-card (Info & Trust section)
+@import 'video-section';           // ✅ Phase 5: BEM refactored - centered video section with title/description (Interactive section)
+@import 'faq-mini-section';        // ✅ Phase 5: BEM refactored - compact FAQ section with 3-5 questions (Interactive section)
+@import 'signup-section';          // ✅ Phase 5: BEM refactored - two-column signup form with benefits (Forms section)
+@import 'newsletter-section';      // ✅ Phase 5: BEM refactored - colored background email subscription (Forms section)
+@import 'feature-details';         // ✅ Phase 5: BEM refactored - zigzag feature blocks with markdown support (Core section)
+@import 'cta';                     // ✅ Phase 5: NEW - standard call-to-action section (Core section)
+@import 'method-tabs';             // ✅ Phase 5: BEM refactored - tabbed therapeutic methods with vanilla JS (Interactive section)
+@import 'contact-options';         // ✅ Phase 5: BEM refactored - contact method cards with commitment indicators (Info/Trust section)
+@import 'onboarding-steps';        // ✅ Phase 5: NEW - client onboarding process timeline with process-step molecules (Info/Trust section)
+@import 'privacy-guarantee';       // ✅ Phase 5: NEW - privacy & confidentiality assurance with feature-highlight molecules (Info/Trust section)
+@import 'confidentiality-notice';  // ✅ Phase 5: NEW - formal confidentiality info with info-box molecules + limits list (Info/Trust section)
+@import 'first-session-timeline';  // ✅ Phase 5: BEM refactored - first therapy session timeline using timeline-step molecules (Specialized Therapy section)
+@import 'service-faq-inline';      // ✅ Phase 5: BEM refactored - service-specific FAQ with rich features (icons, badges, highlights, notes) - Specialized Therapy
+@import 'testimonials-enhanced';   // ✅ Phase 5: BEM refactored - client testimonials with ratings, verification, outcomes - Specialized Therapy
+
+// Site Structure Implementation 2025-01 (New Sections)
+@import 'services-preview';        // ✅ NEW - 4-service card grid for homepage/services main page
+@import 'about-preview';           // 🔄 NEW - therapist introduction section with photo & credentials
+@import 'approach-preview';        // 🔄 NEW - 4 therapeutic principles preview
+@import 'simple-process';          // 🔄 NEW - 3-step visual timeline (how therapy works)
+@import 'my-story';                // 🔄 NEW - personal narrative section with photos
+@import 'training-certifications'; // 🔄 NEW - education timeline with credentials
+@import 'therapeutic-process';     // 🔄 NEW - detailed process timeline for service pages
+@import 'methods-used';            // 🔄 NEW - therapy methods accordion/tabs
+@import 'benefits-results';        // 🔄 NEW - therapy benefits list with outcomes
+@import 'pricing-packages';        // 🔄 NEW - service-specific pricing tables
 
 // Enhanced v4.0 Section Components (BEM refactored - Phase 3)
 @import 'values-compass';          // ✅ Phase 3: BEM refactored with legacy compat
@@ -51,7 +111,6 @@
 //
 // Planned imports:
 // @import 'contact-form';          // Phase 3: .c-contact-form BEM
-// @import 'headings';              // Phase 3: .c-heading BEM
 
 // ==================================
 // COMPONENT CREATION RULES

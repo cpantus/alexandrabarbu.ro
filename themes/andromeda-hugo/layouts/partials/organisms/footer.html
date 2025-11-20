@@ -1,90 +1,145 @@
 {{/*
-  Footer Organism
+  Footer Organism - BEM Refactored
 
   Main site footer composition using atomic design molecules
-  - Optional CTA section
+
+  Features:
+  - Optional CTA section before footer
   - Logo and site info (footer-info molecule)
   - Social links and quick links (footer-nav molecule)
-  - Copyright notice
+  - Copyright notice with legal links
+  - 8pt spacing grid throughout
+
+  BEM Structure:
+  - Block: .c-footer
+  - Elements: __cta, __cta-container, __cta-content, __cta-title, __cta-text,
+              __cta-button, __main, __container, __divider, __content, __copyright,
+              __copyright-container, __copyright-text
+  - Modifiers: --with-cta (applied when CTA enabled)
 
   Usage:
     {{ partial "organisms/footer.html" . }}
-    {{ partialCached "organisms/footer.html" . .Language }} // With caching
+    {{ partialCached "organisms/footer.html" . .Language }}  // With caching
+
+  Dependencies:
+  - molecules/footer-info.html (logo + description)
+  - molecules/footer-nav.html (social links + quick links)
+  - atoms/button.html (CTA button)
+  - atoms/heading.html (CTA title)
+
+  Accessibility:
+  - Semantic HTML footer element
+  - WCAG AA contrast
+  - Keyboard navigation
+  - Screen reader support
+
+  Responsive:
+  - Mobile (<768px): Stacked layout
+  - Tablet (768-991px): 2-column grid
+  - Desktop (>=992px): 3-column grid
+
+  Version: 5.0.1 (Phase 4 - Organism Refactor)
+  Last Updated: 2025-11-20
 */}}
 
-{{/* Optional CTA Section */}}
-{{ with site.Params.cta }}
-  {{ if .enable }}
-    <section class="call-to-action has-bg-color overflow-hidden">
-      <div class="container-xxl position-relative">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="block">
-              <div class="section-title text-center mb-0" data-aos="fade-up">
-                <h2 class="title underline-none">{{ .title | markdownify }}</h2>
-                <p>{{ .content | markdownify }}</p>
-                <a href="{{ .button_link }}" class="btn btn-primary mt-4">
-                  {{ .button }}
-                </a>
-              </div>
-            </div>
+{{- $currentLang := site.Language.Lang -}}
+{{- $hasCTA := and site.Params.cta site.Params.cta.enable -}}
 
-            <div class="has-circle has-bg-anim" data-aos="fade-in">
-              <svg
-                class="text-primary"
-                style="opacity:.12"
-                width="100%"
-                height="100%"
-                viewBox="0 0 1381 283"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M1379 0.998871C1346.3 58.3528 1186.5 172.501 961.409 121.133C645.85 49.1205 596.5 68.5008 448.172 194.674C386.651 247.006 248.005 308.633 1 265.688"
-                  stroke="currentColor"
-                  stroke-width="4"
-                  stroke-dasharray="10 10" />
-              </svg>
-              <span class="circle-1 ratio-32"></span>
-              <span class="circle-2 ratio-85 fill"></span>
-              <span class="circle-3 ratio-47"></span>
-              <span class="circle-4 ratio-20 fill"></span>
-              <span class="circle-5 ratio-73"></span>
-              <span class="circle-6 ratio-37"></span>
-            </div>
-          </div>
-        </div>
+{{/* Optional CTA Section */}}
+{{ if $hasCTA }}
+<section class="c-footer__cta">
+  <div class="c-footer__cta-container">
+    <div class="c-footer__cta-content">
+      {{ partial "atoms/heading.html" (dict
+        "level" "h2"
+        "text" site.Params.cta.title
+        "variant" "gradient"
+        "alignment" "center"
+        "context" .
+      ) }}
+      <p class="c-footer__cta-text">{{ site.Params.cta.content | markdownify }}</p>
+      <div class="c-footer__cta-button">
+        {{ partial "atoms/button.html" (dict
+          "text" site.Params.cta.button
+          "url" site.Params.cta.button_link
+          "variant" "primary"
+          "size" "lg"
+        ) }}
       </div>
-    </section>
-  {{ end }}
+    </div>
+  </div>
+</section>
 {{ end }}
 
 {{/* Main Footer */}}
-<footer
-  class="footer pb-5 {{ if site.Params.cta.enable }}{{ else }}mt-0{{ end }}">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12">
-        <div class="border-top pb-5"></div>
+<footer class="c-footer {{ if $hasCTA }}c-footer--with-cta{{ end }}">
+  <div class="c-footer__main">
+    <div class="c-footer__container">
+      <div class="c-footer__divider"></div>
+      <div class="c-footer__content">
+        {{/* Column 1: Footer Info (Logo + Description + Contact) */}}
+        {{ partial "molecules/footer-info.html" (dict) }}
+
+        {{/* Column 2: Social Links & Email */}}
+        <div class="c-footer-nav__section c-footer-nav__section--social">
+          {{ partial "atoms/heading.html" (dict
+            "text" (i18n "socials" | default "Social Media")
+            "level" 4
+            "variant" "primary"
+            "class" "c-footer-nav__title"
+          ) }}
+
+          {{/* Email Link */}}
+          {{ with site.Params.contact_info.email }}
+            {{ range first 1 . }}
+              {{ if . }}
+                <div class="c-footer-nav__email">
+                  <a href="mailto:{{ . }}" class="c-footer-nav__link">{{ . }}</a>
+                </div>
+              {{ end }}
+            {{ end }}
+          {{ end }}
+
+          {{/* Social Media Links */}}
+          <div class="c-footer-nav__social">
+            {{ partial "molecules/social-links.html" (dict
+              "variant" "primary"
+              "layout" "inline"
+              "class" "c-footer-nav__social-links"
+            ) }}
+          </div>
+        </div>
+
+        {{/* Column 3: Quick Links */}}
+        <div class="c-footer-nav__section c-footer-nav__section--links">
+          {{ partial "atoms/heading.html" (dict
+            "text" (i18n "quick_links" | default "Link-uri Rapide")
+            "level" 4
+            "variant" "primary"
+            "class" "c-footer-nav__title"
+          ) }}
+
+          {{/* Quick Links from Footer Menu */}}
+          {{ if site.Menus.footer }}
+            <ul class="c-footer-nav__links">
+              {{ range site.Menus.footer }}
+                <li class="c-footer-nav__item">
+                  <a href="{{ .URL | relLangURL }}" class="c-footer-nav__link">
+                    {{ .Name }}
+                  </a>
+                </li>
+              {{ end }}
+            </ul>
+          {{ end }}
+        </div>
       </div>
-
-      {{/* Footer Info (Logo + Description) */}}
-      {{ partial "molecules/footer-info.html" . }}
-
-      {{/* Footer Navigation (Social Links + Quick Links) */}}
-      {{ partial "molecules/footer-nav.html" . }}
     </div>
   </div>
 </footer>
 
 {{/* Copyright */}}
-<div class="footer-bottom">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="py-4 border-top text-center">
-          <p class="mb-0 content">{{ site.Params.copyright | markdownify }}</p>
-        </div>
-      </div>
-    </div>
+<div class="c-footer__copyright">
+  <div class="c-footer__copyright-container">
+    <p class="c-footer__copyright-text">{{ site.Params.copyright | markdownify }}</p>
   </div>
 </div>

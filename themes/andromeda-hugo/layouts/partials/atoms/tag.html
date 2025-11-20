@@ -1,0 +1,61 @@
+{{/*
+  Tag Atom - Small label/tag component for status and categories
+
+  Usage:
+    {{ partial "atoms/tag.html" (dict
+      "text" "New"
+      "variant" "primary"
+      "size" "md"
+      "icon" "check"
+      "iconPosition" "left"
+    )}}
+
+  Parameters:
+    text (required) - Tag text content
+    variant (optional) - Color variant: primary|secondary|tertiary|success|warning|error|info|neutral (default: primary)
+    size (optional) - Size: sm|md|lg (default: md)
+    icon (optional) - Icon class (e.g., "check", "star", "info-circle")
+    iconPosition (optional) - Icon position: left|right (default: left)
+    class (optional) - Additional CSS classes
+    attributes (optional) - Additional HTML attributes as dict
+    ariaLabel (optional) - ARIA label for screen readers
+
+  Examples:
+    Primary tag: {{ partial "atoms/tag.html" (dict "text" "New" "variant" "primary") }}
+    Success with icon: {{ partial "atoms/tag.html" (dict "text" "Verified" "variant" "success" "icon" "check") }}
+    Small warning: {{ partial "atoms/tag.html" (dict "text" "Beta" "variant" "warning" "size" "sm") }}
+*/}}
+
+{{ $text := .text }}
+{{ $variant := .variant | default "primary" }}
+{{ $size := .size | default "md" }}
+{{ $icon := .icon }}
+{{ $iconPosition := .iconPosition | default "left" }}
+{{ $class := .class | default "" }}
+{{ $attributes := .attributes | default dict }}
+{{ $ariaLabel := .ariaLabel }}
+
+{{/* Build tag classes */}}
+{{ $tagClass := "c-tag" }}
+{{ $tagClass = printf "%s c-tag--%s" $tagClass $variant }}
+{{ $tagClass = printf "%s c-tag--%s" $tagClass $size }}
+{{ if $class }}
+  {{ $tagClass = printf "%s %s" $tagClass $class }}
+{{ end }}
+
+{{/* Build ARIA attributes */}}
+{{ $ariaAttrs := dict }}
+{{ if $ariaLabel }}
+  {{ $ariaAttrs = merge $ariaAttrs (dict "aria-label" $ariaLabel) }}
+{{ end }}
+{{ $ariaAttrs = merge $ariaAttrs $attributes }}
+
+<span class="{{ $tagClass }}"{{- range $key, $value := $ariaAttrs }} {{ $key }}="{{ $value }}"{{ end -}}>
+  {{- if and $icon (eq $iconPosition "left") -}}
+    {{ partial "atoms/icon.html" (dict "icon" $icon "size" "xs" "class" "c-tag__icon c-tag__icon--left") }}
+  {{- end -}}
+  <span class="c-tag__text">{{ $text }}</span>
+  {{- if and $icon (eq $iconPosition "right") -}}
+    {{ partial "atoms/icon.html" (dict "icon" $icon "size" "xs" "class" "c-tag__icon c-tag__icon--right") }}
+  {{- end -}}
+</span>

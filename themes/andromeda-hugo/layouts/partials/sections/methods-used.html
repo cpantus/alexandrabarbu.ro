@@ -1,0 +1,156 @@
+{{/*
+  ============================================================================
+  Methods Used Section - BEM Architecture
+  ============================================================================
+  Therapy methods showcase with accordion/tabs
+
+  Features:
+  - Accordion-style expandable method descriptions
+  - Method titles, descriptions, benefits
+  - Evidence-based approach explanation
+  - Responsive design
+
+  Data Structure:
+  ---------------
+  methods_used:
+    title: "Methods I Use"                   # Section heading
+    subtitle: "Evidence-Based Approaches"    # Optional eyebrow
+    description: "Intro text..."             # Optional description
+    methods:                                  # Array of methods
+      - title: "CBT (Cognitive Behavioral Therapy)"
+        description: "What it is..."
+        how_it_works: "Mechanism explanation..."
+        benefits: "Why it works..."
+        icon: "las la-brain"                 # Optional icon
+      - title: "DBT (Dialectical Behavior Therapy)"
+        description: "..."
+
+  Parameters:
+  -----------
+  None - Data-driven from front matter
+
+  Usage:
+  ------
+  ```yaml
+  sections:
+    - type: "methods-used"
+
+  methods_used:
+    title: "Metodele Pe Care Le Folosesc"
+    methods:
+      - title: "TCC (Terapie Cognitiv-Comportamentală)"
+        description: "Ce este..."
+        how_it_works: "Cum funcționează..."
+  ```
+
+  BEM Structure:
+  --------------
+  .c-methods-used                 - Section wrapper
+  .c-methods-used__header         - Header container
+  .c-methods-used__subtitle       - Eyebrow text
+  .c-methods-used__title          - Main heading
+  .c-methods-used__description    - Intro text
+  .c-methods-used__accordion      - Accordion container
+  .c-methods-used__method         - Individual method item
+  .c-methods-used__method-header  - Method header (clickable)
+  .c-methods-used__method-icon    - Method icon
+  .c-methods-used__method-title   - Method title
+  .c-methods-used__method-content - Method content (expandable)
+  .c-methods-used__subsection     - Subsection (what/how/why)
+
+  Dependencies:
+  -------------
+  - atoms/heading.html (title)
+  - atoms/icon.html (method icons)
+  - molecules/accordion.html (expandable sections)
+  - _methods-used.scss (BEM styles)
+
+  Version: 1.0.0
+  Updated: 2025-11-20
+  ============================================================================
+*/}}
+
+{{- $data := .Params.methods_used -}}
+{{- if not $data -}}
+  {{- $data = site.Data.shared_sections.methods_used -}}
+{{- end -}}
+
+{{- if $data -}}
+<section class="c-methods-used section">
+  <div class="o-container">
+
+    {{/* Section Header */}}
+    {{- if or $data.title $data.subtitle $data.description -}}
+    <div class="c-methods-used__header text-center">
+      {{- if $data.subtitle -}}
+        <p class="c-methods-used__subtitle text-uppercase">{{ $data.subtitle }}</p>
+      {{- end -}}
+      {{- if $data.title -}}
+        {{ partial "atoms/heading.html" (dict
+          "text" $data.title
+          "level" 2
+          "class" "c-methods-used__title"
+        ) }}
+      {{- end -}}
+      {{- if $data.description -}}
+        <p class="c-methods-used__description">{{ $data.description }}</p>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    {{/* Methods Accordion */}}
+    {{- if $data.methods -}}
+    <div class="c-methods-used__accordion">
+      {{- range $index, $method := $data.methods -}}
+        <div class="c-methods-used__method" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+
+          {{/* Method Header (clickable) */}}
+          <div class="c-methods-used__method-header" role="button" tabindex="0" aria-expanded="false">
+            {{- if $method.icon -}}
+              {{ partial "atoms/icon.html" (dict
+                "icon" $method.icon
+                "class" "c-methods-used__method-icon"
+              ) }}
+            {{- end -}}
+            <h3 class="c-methods-used__method-title">{{ $method.title }}</h3>
+            <span class="c-methods-used__toggle-icon">
+              <i class="las la-angle-down"></i>
+            </span>
+          </div>
+
+          {{/* Method Content (expandable) */}}
+          <div class="c-methods-used__method-content">
+
+            {{/* Description */}}
+            {{- if $method.description -}}
+              <div class="c-methods-used__subsection">
+                <p>{{ $method.description }}</p>
+              </div>
+            {{- end -}}
+
+            {{/* How It Works */}}
+            {{- if $method.how_it_works -}}
+              <div class="c-methods-used__subsection">
+                <h4>{{ i18n "how_it_works" | default "How It Works" }}</h4>
+                <p>{{ $method.how_it_works }}</p>
+              </div>
+            {{- end -}}
+
+            {{/* Benefits */}}
+            {{- if $method.benefits -}}
+              <div class="c-methods-used__subsection">
+                <h4>{{ i18n "benefits" | default "Benefits" }}</h4>
+                <p>{{ $method.benefits }}</p>
+              </div>
+            {{- end -}}
+
+          </div>
+
+        </div>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+  </div>
+</section>
+{{- end -}}

@@ -1,41 +1,112 @@
 {{/*
-  Footer Info Molecule
-
-  Displays logo, site description, contact information, and copyright
-  - Logo and site info
-  - Location and contact details
-  - Copyright notice
+  Footer Info Molecule - Logo, description, and contact information
+  BEM Component: .c-footer-info (refactored 2025-11-20)
 
   Usage:
     {{ partial "molecules/footer-info.html" . }}
+
+  Parameters:
+    variant (optional) - Color variant: "primary" (default), "secondary", "tertiary", "neutral"
+    class (optional)   - Additional CSS classes
+
+  Color Variants:
+    - "primary" (default) - Emerald accents (professional, trustworthy)
+    - "secondary"        - Terracotta accents (warm, inviting)
+    - "tertiary"         - Blue accents (calm, informational)
+    - "neutral"          - Gray accents (subtle, minimal)
+
+  BEM Structure:
+    .c-footer-info              - Root container
+    .c-footer-info--{variant}   - Color variant modifier
+    .c-footer-info__logo-link   - Logo link wrapper
+    .c-footer-info__description - Site description text
+    .c-footer-info__contact     - Contact information section
+    .c-footer-info__title       - Section heading
+    .c-footer-info__list        - Contact details list
+    .c-footer-info__item        - Individual contact item
+
+  Features:
+    - Logo molecule integration
+    - Markdown-enabled description (site.Params.footer_info)
+    - Contact information from site params (address, phone)
+    - Heading atom integration
+    - 4 color variants matching design system
+    - Responsive layout (full-width on mobile, 1/3 width on desktop)
+    - 8pt spacing grid
+    - Crimson Pro typography for headings
+    - Work Sans typography for body text
+    - Design tokens only (no magic numbers)
+    - Backward compatibility via SCSS @extend
+
+  Site Params (config/_default/params.toml):
+    footer_info = "Brief site description or tagline"
+    [contact_info]
+    address = "Street Address, City, Country"
+    phone = ["123-456-7890"]
+
+  i18n Keys (define in i18n/ro.yaml and i18n/en.yaml):
+    - location_contact: Section heading (default: "Locație & Contact")
+
+  Examples:
+    Default usage:
+      {{ partial "molecules/footer-info.html" . }}
+
+    With variant:
+      {{ partial "molecules/footer-info.html" (dict "variant" "secondary") }}
 */}}
 
-{{/* Logo and Site Description */}}
-<div class="col-lg-4 col-md-6 col-sm-6">
-  <div class="pe-4">
+{{/* Parameter extraction with defaults */}}
+{{ $variant := .variant | default "primary" }}
+{{ $class := .class | default "" }}
+
+{{/* Build BEM class with variant modifier */}}
+{{ $bemClass := "c-footer-info" }}
+{{ if $variant }}
+  {{ $bemClass = printf "%s c-footer-info--%s" $bemClass $variant }}
+{{ end }}
+{{ if $class }}
+  {{ $bemClass = printf "%s %s" $bemClass $class }}
+{{ end }}
+
+<div class="{{ $bemClass }}">
+  {{/* Logo and Site Description */}}
+  <div class="c-footer-info__logo-section">
     <a
-      class="navbar-brand d-inline-block mb-4"
-      href="{{ site.BaseURL | relLangURL }}">
+      class="c-footer-info__logo-link"
+      href="{{ site.BaseURL | relLangURL }}"
+      aria-label="{{ site.Title }}">
       {{ partial "molecules/logo.html" . }}
     </a>
-    <p class="mb-0">{{ site.Params.footer_info | markdownify }}</p>
+    {{ with site.Params.footer_info }}
+      <p class="c-footer-info__description">
+        {{ . | markdownify }}
+      </p>
+    {{ end }}
   </div>
-</div>
 
-{{/* Location and Contact Information */}}
-<div class="col-lg-3 col-md-6 col-sm-6 mt-5 mt-lg-0">
-  <div class="footer-widget">
-    <h4 class="mb-4">{{ T `location_contact` }}</h4>
-
-    {{ with site.Params.contact_info }}
-      <ul class="footer-links list-unstyled">
-        <li>{{ .address | markdownify }}</li>
+  {{/* Location and Contact Information */}}
+  {{ with site.Params.contact_info }}
+    <div class="c-footer-info__contact">
+      {{ partial "atoms/heading.html" (dict
+        "text" (i18n "location_contact" | default "Locație & Contact")
+        "level" 4
+        "variant" $variant
+        "class" "c-footer-info__title"
+      ) }}
+      <ul class="c-footer-info__list">
+        {{ with .address }}
+          <li class="c-footer-info__item c-footer-info__item--address">
+            {{ . | markdownify }}
+          </li>
+        {{ end }}
         {{ range first 1 .phone }}
           {{ if . }}
-            <li><a href="tel:{{ . }}">{{ . }}</a></li>
+            <li class="c-footer-info__item c-footer-info__item--phone">
+              <a href="tel:{{ . }}" class="c-footer-info__link">{{ . }}</a>
+            </li>
           {{ end }}
         {{ end }}
       </ul>
-    {{ end }}
-  </div>
+    </div>
+  {{ end }}
 </div>

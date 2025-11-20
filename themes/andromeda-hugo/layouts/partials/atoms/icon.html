@@ -1,37 +1,55 @@
 {{/*
-  Icon Atom - Icon component with Line Awesome icons
+  Icon Atom - Icon component with BEM naming (Phase 2 Refactored)
 
   Usage:
     {{ partial "atoms/icon.html" (dict
       "name" "check-circle"
-      "size" "2rem"
-      "color" "primary"
+      "size" "md"
+      "variant" "primary"
       "class" "me-2"
     )}}
 
-    With gradient circle wrapper (v4.0+):
+    With gradient circle wrapper (BEM):
     {{ partial "atoms/icon.html" (dict
       "name" "check-circle"
       "withWrapper" true
-      "wrapperVariant" "primary"
-      "wrapperSize" "md"
+      "variant" "primary"
+      "size" "md"
+    )}}
+
+    Flat icon (no wrapper):
+    {{ partial "atoms/icon.html" (dict
+      "name" "heart"
+      "flat" true
+      "variant" "secondary"
     )}}
 
   Parameters:
     name (required) - Icon name (without "la-" prefix, e.g., "check-circle", "arrow-right")
-    size (optional) - Icon size: xs|sm|md|lg|xl|2x|3x or custom size (e.g., "2rem", "24px")
-    color (optional) - Color class: primary|secondary|success|danger|warning|info|light|dark|muted
+    size (optional) - Wrapper size: sm|md|lg|xl (default: "md") - only for withWrapper=true
+    variant (optional) - Color variant: primary|secondary|tertiary|success|warning|error|info|neutral (default: "primary")
     class (optional) - Additional CSS classes
-    style (optional) - Inline styles (for custom sizing or positioning)
     prefix (optional) - Icon library prefix (default: "las" for Line Awesome Solid)
     ariaLabel (optional) - Accessibility label for screen readers
     ariaHidden (optional) - Hide from screen readers (default: false)
     attributes (optional) - Additional HTML attributes as dict
 
     withWrapper (optional) - Wrap icon with gradient circle background (default: false)
-    wrapperVariant (optional) - Gradient variant: primary|secondary|coral|sage|premium|info (default: "primary")
-    wrapperSize (optional) - Wrapper size: sm|md|lg|xl (default: "md")
-    wrapperClass (optional) - Additional CSS classes for wrapper
+    flat (optional) - Flat icon with color, no background (default: false)
+    glass (optional) - Glassmorphism style (requires withWrapper=true) (default: false)
+
+    animation (optional) - Animation modifier: pulse|rotate|float (default: none)
+    responsive (optional) - Auto-scale based on viewport (default: false)
+
+  Unified Color Variants (Phase 2):
+    - primary: Emerald green (main actions, trust, professional)
+    - secondary: Terracotta (warm actions, personal connection)
+    - tertiary: Navy blue (informational, support)
+    - success: Sage green (positive feedback, achievements)
+    - warning: Amber (caution, important notices)
+    - error: Red (errors, critical alerts)
+    - info: Teal (informational content)
+    - neutral: Gray (subtle, backgrounds)
 
   Icon Libraries:
     - las: Line Awesome Solid (default)
@@ -39,128 +57,137 @@
     - lab: Line Awesome Brands
     - la: Line Awesome base
 
-  Size Presets (mapped to design tokens in SCSS):
-    - xs: 0.75rem  ($icon-xs)
-    - sm: 0.875rem ($icon-sm)
-    - md: 1rem     ($icon-base) (default)
-    - lg: 1.25rem  ($icon-md)
-    - xl: 1.5rem   ($icon-lg)
-    - 2x: 2rem     ($icon-xl / $icon-2x)
-    - 3x: 3rem     ($icon-3x)
-    - 4x: 4rem     ($icon-4x)
-
-  Wrapper Sizes (for gradient circles):
-    - sm: 48px circle (icon: 20px)
-    - md: 64px circle (icon: 28px) (default)
-    - lg: 80px circle (icon: 36px)
-    - xl: 96px circle (icon: 44px)
-
-  Note: These sizes match the design token values in _design-tokens.scss.
-  For circular icon backgrounds, use $icon-circle-sm/md/lg/xl in SCSS.
+  Wrapper Sizes (BEM modifiers):
+    - sm: 32px circle (icon: 16px)
+    - md: 48px circle (icon: 24px) (default)
+    - lg: 64px circle (icon: 32px)
+    - xl: 84px circle (icon: 42px)
 
   Examples:
-    Check icon: {{ partial "atoms/icon.html" (dict "name" "check-circle" "color" "success") }}
-    Large shield: {{ partial "atoms/icon.html" (dict "name" "shield-alt" "size" "4x" "color" "primary") }}
+    Check icon: {{ partial "atoms/icon.html" (dict "name" "check-circle" "variant" "success") }}
+    Large shield: {{ partial "atoms/icon.html" (dict "name" "shield-alt" "size" "xl" "variant" "primary" "withWrapper" true) }}
     Arrow right: {{ partial "atoms/icon.html" (dict "name" "arrow-right" "class" "ms-2") }}
-    Gradient circle: {{ partial "atoms/icon.html" (dict "name" "heart" "withWrapper" true "wrapperVariant" "coral" "wrapperSize" "lg") }}
+    Gradient circle: {{ partial "atoms/icon.html" (dict "name" "heart" "withWrapper" true "variant" "secondary" "size" "lg") }}
+    Flat icon: {{ partial "atoms/icon.html" (dict "name" "star" "flat" true "variant" "primary") }}
+    Pulse animation: {{ partial "atoms/icon.html" (dict "name" "bell" "withWrapper" true "animation" "pulse") }}
 */}}
 
+{{/* Parse parameters */}}
 {{ $name := .name }}
-{{ $size := .size | default "" }}
-{{ $color := .color }}
+{{ $size := .size | default "md" }}
+{{ $variant := .variant | default "primary" }}
 {{ $class := .class | default "" }}
-{{ $style := .style | default "" }}
 {{ $prefix := .prefix | default "las" }}
 {{ $ariaLabel := .ariaLabel }}
 {{ $ariaHidden := .ariaHidden | default false }}
 {{ $attributes := .attributes | default dict }}
 
-{{/* v4.0+ Gradient wrapper parameters */}}
+{{/* Wrapper and style parameters */}}
 {{ $withWrapper := .withWrapper | default false }}
-{{ $wrapperVariant := .wrapperVariant | default "primary" }}
-{{ $wrapperSize := .wrapperSize | default "md" }}
+{{ $flat := .flat | default false }}
+{{ $glass := .glass | default false }}
+{{ $animation := .animation | default "" }}
+{{ $responsive := .responsive | default false }}
+
+{{/* Legacy parameters (backward compatibility) */}}
+{{ $color := .color }}  {{/* Old color parameter for backward compat */}}
+{{ $wrapperVariant := .wrapperVariant }}  {{/* Old wrapperVariant for backward compat */}}
+{{ $wrapperSize := .wrapperSize }}  {{/* Old wrapperSize for backward compat */}}
 {{ $wrapperClass := .wrapperClass | default "" }}
 
-{{/* Validate required parameter */}}
-{{ if not $name }}
-  {{ errorf "Icon atom requires 'name' parameter" }}
+{{/* Map legacy parameters to new unified parameters */}}
+{{ if $color }}
+  {{ $variant = $color }}
+{{ end }}
+{{ if $wrapperVariant }}
+  {{ $variant = $wrapperVariant }}
+{{ end }}
+{{ if $wrapperSize }}
+  {{ $size = $wrapperSize }}
 {{ end }}
 
-{{/* Build icon classes */}}
+{{/* Validate required parameter - skip rendering if no name */}}
+{{ if not $name }}
+  {{/* Silently skip rendering if no icon name is provided */}}
+  {{ return }}
+{{ end }}
+
+{{/* Build icon base classes (Line Awesome) */}}
 {{ $iconClass := printf "%s la-%s" $prefix $name }}
 
-{{/* Add color class */}}
-{{ if $color }}
-  {{ $iconClass = printf "%s text-%s" $iconClass $color }}
-{{ end }}
-
-{{/* Add custom classes */}}
+{{/* Add custom classes to icon */}}
 {{ if $class }}
   {{ $iconClass = printf "%s %s" $iconClass $class }}
 {{ end }}
 
-{{/* Build inline styles */}}
-{{ $inlineStyle := "" }}
-
-{{/* Handle size parameter */}}
-{{ if $size }}
-  {{/* Check if size is a preset */}}
-  {{ if eq $size "xs" }}
-    {{ $inlineStyle = "font-size: 0.75rem;" }}
-  {{ else if eq $size "sm" }}
-    {{ $inlineStyle = "font-size: 0.875rem;" }}
-  {{ else if eq $size "md" }}
-    {{ $inlineStyle = "font-size: 1rem;" }}
-  {{ else if eq $size "lg" }}
-    {{ $inlineStyle = "font-size: 1.25rem;" }}
-  {{ else if eq $size "xl" }}
-    {{ $inlineStyle = "font-size: 1.5rem;" }}
-  {{ else if eq $size "2x" }}
-    {{ $inlineStyle = "font-size: 2rem;" }}
-  {{ else if eq $size "3x" }}
-    {{ $inlineStyle = "font-size: 3rem;" }}
-  {{ else if eq $size "4x" }}
-    {{ $inlineStyle = "font-size: 4rem;" }}
-  {{ else }}
-    {{/* Custom size value (e.g., "2.5rem", "24px") */}}
-    {{ $inlineStyle = printf "font-size: %s;" $size }}
-  {{ end }}
-{{ end }}
-
-{{/* Append custom style */}}
-{{ if $style }}
-  {{ $inlineStyle = printf "%s %s" $inlineStyle $style }}
-{{ end }}
-
-{{/* Trim spaces */}}
-{{ $inlineStyle = trim $inlineStyle " " }}
-
-{{/* Render icon with optional gradient wrapper */}}
+{{/* Render icon with BEM wrapper or bare */}}
 {{- if $withWrapper -}}
-  {{/* Build wrapper classes - format: icon-circle icon-{size} icon-{variant} */}}
-  {{ $wrapperClasses := "icon-circle" }}
-  {{ if ne $wrapperSize "md" }}
-    {{ $wrapperClasses = printf "%s icon-%s" $wrapperClasses $wrapperSize }}
+  {{/* Build BEM wrapper classes - format: c-icon c-icon--{size} c-icon--{variant} */}}
+  {{ $wrapperClasses := "c-icon" }}
+
+  {{/* Add size modifier (only if not default 'md') */}}
+  {{ if ne $size "md" }}
+    {{ $wrapperClasses = printf "%s c-icon--%s" $wrapperClasses $size }}
   {{ end }}
-  {{ if ne $wrapperVariant "primary" }}
-    {{ $wrapperClasses = printf "%s icon-%s" $wrapperClasses $wrapperVariant }}
+
+  {{/* Add variant modifier (only if not default 'primary') */}}
+  {{ if ne $variant "primary" }}
+    {{ $wrapperClasses = printf "%s c-icon--%s" $wrapperClasses $variant }}
   {{ end }}
+
+  {{/* Add glassmorphism modifier */}}
+  {{ if $glass }}
+    {{ $wrapperClasses = printf "%s c-icon--glass" $wrapperClasses }}
+  {{ end }}
+
+  {{/* Add animation modifier */}}
+  {{ if $animation }}
+    {{ $wrapperClasses = printf "%s c-icon--%s" $wrapperClasses $animation }}
+  {{ end }}
+
+  {{/* Add responsive modifier */}}
+  {{ if $responsive }}
+    {{ $wrapperClasses = printf "%s c-icon--responsive" $wrapperClasses }}
+  {{ end }}
+
+  {{/* Add legacy wrapper class for backward compatibility */}}
   {{ if $wrapperClass }}
     {{ $wrapperClasses = printf "%s %s" $wrapperClasses $wrapperClass }}
   {{ end }}
 
-  {{/* Render wrapped icon */}}
+  {{/* Render wrapped icon (BEM) */}}
   <div class="{{ $wrapperClasses }}">
     <i class="{{ $iconClass }}"
-      {{- if $inlineStyle }} style="{{ $inlineStyle }}"{{ end }}
       {{- if $ariaLabel }} aria-label="{{ $ariaLabel }}"{{ end }}
       {{- if $ariaHidden }} aria-hidden="true"{{ end }}
       {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}></i>
   </div>
+
+{{- else if $flat -}}
+  {{/* Build BEM flat icon classes - format: c-icon c-icon--flat c-icon--{variant} */}}
+  {{ $flatClasses := "c-icon c-icon--flat" }}
+
+  {{/* Add variant modifier */}}
+  {{ if ne $variant "primary" }}
+    {{ $flatClasses = printf "%s c-icon--%s" $flatClasses $variant }}
+  {{ end }}
+
+  {{/* Add custom classes */}}
+  {{ if $class }}
+    {{ $flatClasses = printf "%s %s" $flatClasses $class }}
+  {{ end }}
+
+  {{/* Render flat icon wrapper (BEM) */}}
+  <div class="{{ $flatClasses }}">
+    <i class="{{ $iconClass }}"
+      {{- if $ariaLabel }} aria-label="{{ $ariaLabel }}"{{ end }}
+      {{- if $ariaHidden }} aria-hidden="true"{{ end }}
+      {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}></i>
+  </div>
+
 {{- else -}}
-  {{/* Render unwrapped icon (backward compatible) */}}
+  {{/* Render bare icon (no wrapper) - backward compatible */}}
   <i class="{{ $iconClass }}"
-    {{- if $inlineStyle }} style="{{ $inlineStyle }}"{{ end }}
     {{- if $ariaLabel }} aria-label="{{ $ariaLabel }}"{{ end }}
     {{- if $ariaHidden }} aria-hidden="true"{{ end }}
     {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}></i>

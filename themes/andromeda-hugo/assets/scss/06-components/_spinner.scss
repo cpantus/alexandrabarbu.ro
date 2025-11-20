@@ -1,0 +1,158 @@
+// ==================================
+// SPINNER COMPONENT - BEM Architecture
+// ==================================
+//
+// Purpose: Animated loading indicator for async operations
+// Features: 3 sizes, 3 color variants, smooth CSS animation
+//
+// Last Updated: 2025-11-20 (Phase 2 - Atom Refactor)
+// Version: 1.0.0 (ITCSS + BEM)
+//
+// BEM Structure:
+// Block: .c-spinner
+// Elements: __circle, __sr-only
+// Modifiers: --sm, --md, --lg, --primary, --secondary, --neutral
+//
+
+/*------------------------------------------------------------------
+  # Base Spinner Block
+-------------------------------------------------------------------*/
+
+/**
+ * Base spinner component
+ * Inline-block container for the spinning circle
+ */
+.c-spinner {
+  display: inline-block;
+  position: relative;
+}
+
+/*------------------------------------------------------------------
+  # Spinner Elements
+-------------------------------------------------------------------*/
+
+/**
+ * Spinner circle element
+ * Animated circular border
+ */
+.c-spinner__circle {
+  display: block;
+  border-style: solid;
+  border-radius: $radius-full;  // Perfect circle
+  animation: spin $duration-slower linear infinite;  // 800ms continuous spin
+
+  // Border uses 25% segment technique for spinner effect
+  // Top border is colored, others are transparent
+}
+
+/**
+ * Screen reader only text
+ * Accessible loading message hidden visually
+ */
+.c-spinner__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/*------------------------------------------------------------------
+  # Spinner Size Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Small spinner - 16px × 16px, 2px border
+ */
+.c-spinner--sm .c-spinner__circle {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+/**
+ * Medium spinner (default) - 32px × 32px, 3px border
+ */
+.c-spinner--md .c-spinner__circle {
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
+}
+
+/**
+ * Large spinner - 48px × 48px, 4px border
+ */
+.c-spinner--lg .c-spinner__circle {
+  width: 48px;
+  height: 48px;
+  border-width: 4px;
+}
+
+/*------------------------------------------------------------------
+  # Spinner Variant Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Primary spinner - emerald (brand color, default)
+ */
+.c-spinner--primary .c-spinner__circle {
+  border-color: rgba($emerald-500, 0.2);  // Light gray background
+  border-top-color: $emerald-500;         // Colored segment
+}
+
+/**
+ * Secondary spinner - terracotta (warm alternative)
+ */
+.c-spinner--secondary .c-spinner__circle {
+  border-color: rgba($terracotta-500, 0.2);
+  border-top-color: $terracotta-500;
+}
+
+/**
+ * Neutral spinner - gray (subtle, loading states)
+ */
+.c-spinner--neutral .c-spinner__circle {
+  border-color: rgba($gray-500, 0.2);
+  border-top-color: $gray-500;
+}
+
+/*------------------------------------------------------------------
+  # Animations
+-------------------------------------------------------------------*/
+
+/**
+ * Spin animation
+ * Continuous 360° rotation
+ */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Accessibility
+-------------------------------------------------------------------*/
+
+/**
+ * Ensure spinners are accessible
+ * - role="status" on container (handled in HTML)
+ * - aria-label for screen reader announcement (handled in HTML)
+ * - Visible loading message hidden with .c-spinner__sr-only
+ * - Respects prefers-reduced-motion (pause animation)
+ */
+
+@media (prefers-reduced-motion: reduce) {
+  .c-spinner__circle {
+    animation: none;
+    // Show static spinner instead of animated
+    // Optional: Could replace with different visual indicator
+  }
+}

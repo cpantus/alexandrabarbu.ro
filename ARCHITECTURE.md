@@ -1,14 +1,18 @@
 # Architecture Documentation
 
-**System**: Hugo + Atomic Design | **Purpose**: Enable Claude Code to understand and extend project
+**System**: Hugo + Atomic Design + ITCSS | **Purpose**: Enable Claude Code to understand and extend project
+
+**Version**: 5.0.1 | **Updated**: 2025-11-19 | **Structure**: Flattened (no theme subdirectory)
 
 ---
 
 ## System Overview
 
-Component-based Hugo site: Pages = Header + Sections (2-7) + Footer
+Component-based Hugo site with flattened architecture: Pages = Header + Sections (2-7) + Footer
 
-**Hierarchy**: Atoms (5) → Molecules (17) → Organisms (2) → Sections (24) = 48 components
+**Hierarchy**: Atoms (5) → Molecules (21) → Organisms (2) → Sections (21) = **49 components**
+
+**Critical**: Project structure was flattened in commit 4886ab2. All files are at root level - there is NO `themes/andromeda-hugo/` subdirectory!
 
 ---
 
@@ -44,31 +48,29 @@ header.html, footer.html (cached by language for 30-50% build time reduction)
 
 **Usage**: `{{ partialCached "organisms/header.html" . .Language }}`
 
-### Sections (24) - `layouts/partials/sections/`
+### Sections (21 active + 1 _deprecated dir) - `layouts/partials/sections/`
 1. hero-breadcrumb.html - Page header
 2. values-intro.html - Intro with image
-3. feature-blocks.html - Alternating blocks
-4. feature-details.html - Feature cards
-5. benefits-grid.html - Icon grid
-6. pricing-tables.html - Pricing + toggle
-7. job-listings.html - Career grid
-8. video-popup.html - Video section
-9. contact-form-enhanced.html - Contact form
-10. contact-info-cards.html - Contact cards
-11. confidentiality-notice.html - Privacy
-12. faq-mini.html - FAQ accordion
-13. faq-content.html - FAQ content
-14. onboarding-steps.html - Process steps
-15. signup-form-enhanced.html - Signup form
-16. privacy-guarantee.html - Privacy section
-17. blog-grid.html - Blog post grid
-18. method-tabs.html - Tabbed content
-19. newsletter-signup.html - Newsletter subscription
-20. problem-empathy.html - Problem statement
-21. stats-numbers.html - Statistics display
-22. timeline-process.html - Process timeline
-23. related-services.html - Related content
-24. service-highlights.html - Service features
+3. feature-blocks.html - Zigzag layout (enhanced v4.0)
+4. pricing-tables.html - Pricing + toggle (enhanced v4.0)
+5. video-popup.html - Video section
+6. contact-form-enhanced.html - Contact form
+7. contact-info-cards.html - Contact cards
+8. contact-options.html - Alternative contact
+9. faq-mini.html - FAQ accordion
+10. faq-content.html - FAQ content
+11. signup-form-enhanced.html - Signup form
+12. privacy-guarantee.html - Privacy section
+13. blog-grid.html - Blog post grid
+14. newsletter-signup.html - Newsletter subscription
+15. problem-empathy.html - Problem statement
+16. stats-numbers.html - Statistics (enhanced v4.0)
+17. values-compass.html - Compass layout (NEW v4.0)
+18. credentials-showcase.html - Credentials (enhanced v4.0)
+19. first-session-timeline.html - Session walkthrough
+20. service-faq-inline.html - Service FAQ
+21. testimonials-enhanced.html - Client testimonials
+22. _deprecated/ - Deprecated sections directory
 
 **Data from front matter**:
 ```yaml
@@ -120,19 +122,29 @@ Page (content/*.md) → flexible.html → Header → Sections → Footer → HTM
 
 ---
 
-## File Locations
+## File Locations (Flattened Structure)
 
 ```
-themes/andromeda-hugo/layouts/
-├── _default/flexible.html              # MAIN ENGINE
-├── partials/
-│   ├── atoms/                          # 5 basic
-│   ├── molecules/                      # 17 composite
-│   ├── organisms/                      # 2 complex
-│   ├── sections/                       # 24 sections
-│   └── essentials/
-│       ├── header.html                 # Calls organism
-│       └── footer.html                 # Calls organism
+alexandrabarbu.ro/                      # ← PROJECT ROOT (run Hugo here!)
+├── layouts/                            # At root level (NOT in themes/)
+│   ├── _default/flexible.html          # MAIN ENGINE
+│   ├── partials/
+│   │   ├── atoms/                      # 5 basic
+│   │   ├── molecules/                  # 21 composite
+│   │   ├── organisms/                  # 2 complex
+│   │   ├── sections/                   # 21 sections + _deprecated/
+│   │   └── essentials/
+│   │       ├── header.html             # Calls organism
+│   │       └── footer.html             # Calls organism
+│   └── shortcodes/                     # Local shortcode implementations
+├── assets/                             # At root level
+│   ├── scss/                           # ITCSS + BEM architecture
+│   └── js/                             # Vanilla JS (no Bootstrap/jQuery)
+├── content/                            # Site content at root
+├── config/                             # Hugo configuration
+└── data/                               # Data files
+
+IMPORTANT: No themes/andromeda-hugo/ directory exists. Structure flattened Nov 2025.
 ```
 
 ---
@@ -181,13 +193,13 @@ content/fr/  # French
 
 **Understand**: README.md → ARCHITECTURE.md → themes/andromeda-hugo/docs/components/
 **Add features**: New page (archetypes) | New section (sections/) | New molecule (molecules/)
-**Verify**: `ls layouts/partials/atoms/ | wc -l` (5), molecules (17), organisms (2), sections (24)
+**Verify**: `ls layouts/partials/atoms/ | wc -l` (5), molecules (21), organisms (2), sections (21 + _deprecated)
 
 ---
 
 ## Success Metrics ✅
 
-Build <3s | Pages <500KB | CSS <50KB gzipped | Reusability >80% | Duplication <10% | New page <30s
+Build <3s | Pages <500KB | CSS <50KB gzipped | Reusability >80% | Duplication <10% | New page <30s | 49 components total | No Bootstrap/jQuery (vanilla JS)
 
 ---
 
@@ -198,4 +210,4 @@ Build <3s | Pages <500KB | CSS <50KB gzipped | Reusability >80% | Duplication <1
 - `layouts/partials/organisms/footer.html` - Footer composition
 - `archetypes/*.md` - Page templates
 
-**Docs**: `themes/andromeda-hugo/docs/components/` for detailed component API
+**Docs**: `docs/components/` for detailed component API (at root level)

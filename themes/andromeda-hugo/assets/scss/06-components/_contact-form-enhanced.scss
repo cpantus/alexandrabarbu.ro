@@ -1,0 +1,282 @@
+/* ===========================================================================
+   CONTACT FORM ENHANCED SECTION - BEM Component
+   =========================================================================== */
+
+/**
+ * Two-column contact form section with image + trust badges on left,
+ * form on right.
+ *
+ * STRUCTURE:
+ * .c-contact-form-section
+ *   .c-contact-form-section__grid
+ *     .c-contact-form-section__media
+ *       .c-contact-form-section__image-wrapper
+ *         .c-contact-form-section__image
+ *         .c-contact-form-section__trust-badges
+ *           .c-contact-form-section__trust-badge (tag molecule)
+ *     .c-contact-form-section__form-wrapper
+ *       .c-contact-form-section__header
+ *         .c-contact-form-section__title (heading atom)
+ *         .c-contact-form-section__consultation-info
+ *       .c-contact-form-section__form
+ *         .c-contact-form-section__status
+ *         .c-contact-form-section__field (form-field molecule)
+ *         .c-contact-form-section__submit (button atom)
+ *
+ * MODIFIERS:
+ * .c-contact-form-section--primary
+ * .c-contact-form-section--secondary
+ * .c-contact-form-section--tertiary
+ * .c-contact-form-section--neutral
+ *
+ * USAGE: Two-column layout for contact forms with trust signals
+ */
+
+/* BASE COMPONENT
+   =========================================================================== */
+
+.c-contact-form-section {
+  padding: $section-padding-y 0;
+  background-color: $color-bg-section;
+
+  @media (max-width: $breakpoint-md - 1) {
+    padding: $section-padding-y-mobile 0;
+  }
+}
+
+/* GRID LAYOUT
+   =========================================================================== */
+
+.c-contact-form-section__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-12;
+  align-items: center;
+
+  @media (max-width: $breakpoint-lg - 1) {
+    gap: $space-8;
+  }
+
+  @media (max-width: $breakpoint-md - 1) {
+    grid-template-columns: 1fr;
+    gap: $space-6;
+  }
+}
+
+/* MEDIA COLUMN (Image + Trust Badges)
+   =========================================================================== */
+
+.c-contact-form-section__media {
+  @media (max-width: $breakpoint-md - 1) {
+    order: 2; // Form first on mobile
+  }
+}
+
+.c-contact-form-section__image-wrapper {
+  position: relative;
+  padding-right: $space-0;
+
+  @media (min-width: $breakpoint-lg) {
+    padding-right: $space-5;
+  }
+}
+
+.c-contact-form-section__image {
+  width: 100%;
+  height: auto;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-lg;
+
+  // Floating animation (optional)
+  animation: float 6s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.c-contact-form-section__trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  justify-content: center;
+  margin-top: $space-4;
+}
+
+.c-contact-form-section__trust-badge {
+  // Tag molecule handles styling
+}
+
+/* FORM COLUMN
+   =========================================================================== */
+
+.c-contact-form-section__form-wrapper {
+  @media (max-width: $breakpoint-md - 1) {
+    order: 1; // Form first on mobile
+  }
+}
+
+.c-contact-form-section__header {
+  margin-bottom: $space-4;
+}
+
+.c-contact-form-section__title {
+  margin-bottom: $space-3;
+}
+
+.c-contact-form-section__consultation-info {
+  padding: $space-3 $space-4;
+  background: linear-gradient(135deg, rgba($color-primary-500, 0.05) 0%, rgba($color-secondary-500, 0.05) 100%);
+  border-left: 4px solid $color-primary-500;
+  border-radius: $border-radius-md;
+  margin-top: $space-3;
+  font-size: $font-size-sm;
+  line-height: $line-height-relaxed;
+}
+
+.c-contact-form-section__consultation-title {
+  color: $color-primary-600;
+  font-weight: $font-weight-semibold;
+  font-family: $font-family-heading;
+}
+
+.c-contact-form-section__consultation-description {
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+}
+
+.c-contact-form-section__form {
+  // Form element - no additional styling needed
+}
+
+.c-contact-form-section__status {
+  padding: $space-3 $space-4;
+  margin-bottom: $space-4;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+  display: none; // Hidden by default, shown by JS
+
+  &.success {
+    display: block;
+    background-color: rgba($color-success-500, 0.1);
+    border-left: 4px solid $color-success-500;
+    color: $color-success-700;
+  }
+
+  &.error {
+    display: block;
+    background-color: rgba($color-error-500, 0.1);
+    border-left: 4px solid $color-error-500;
+    color: $color-error-700;
+  }
+}
+
+.c-contact-form-section__field {
+  margin-bottom: $space-4;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.c-contact-form-section__submit {
+  margin-top: $space-4;
+}
+
+/* COLOR VARIANTS
+   =========================================================================== */
+
+.c-contact-form-section--primary {
+  .c-contact-form-section__consultation-info {
+    background: linear-gradient(135deg, rgba($color-primary-500, 0.05) 0%, rgba($color-primary-600, 0.05) 100%);
+    border-left-color: $color-primary-500;
+  }
+
+  .c-contact-form-section__consultation-title {
+    color: $color-primary-600;
+  }
+}
+
+.c-contact-form-section--secondary {
+  .c-contact-form-section__consultation-info {
+    background: linear-gradient(135deg, rgba($color-secondary-500, 0.05) 0%, rgba($color-secondary-600, 0.05) 100%);
+    border-left-color: $color-secondary-500;
+  }
+
+  .c-contact-form-section__consultation-title {
+    color: $color-secondary-600;
+  }
+}
+
+.c-contact-form-section--tertiary {
+  .c-contact-form-section__consultation-info {
+    background: linear-gradient(135deg, rgba($color-tertiary-500, 0.05) 0%, rgba($color-tertiary-600, 0.05) 100%);
+    border-left-color: $color-tertiary-500;
+  }
+
+  .c-contact-form-section__consultation-title {
+    color: $color-tertiary-600;
+  }
+}
+
+.c-contact-form-section--neutral {
+  .c-contact-form-section__consultation-info {
+    background: linear-gradient(135deg, rgba($color-neutral-500, 0.05) 0%, rgba($color-neutral-600, 0.05) 100%);
+    border-left-color: $color-neutral-500;
+  }
+
+  .c-contact-form-section__consultation-title {
+    color: $color-neutral-700;
+  }
+}
+
+/* ANIMATIONS
+   =========================================================================== */
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* ACCESSIBILITY
+   =========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .c-contact-form-section__image {
+    animation: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .c-contact-form-section__consultation-info {
+    border-width: 2px;
+  }
+
+  .c-contact-form-section__status {
+    border-width: 2px;
+  }
+}
+
+/* PRINT STYLES
+   =========================================================================== */
+
+@media print {
+  .c-contact-form-section {
+    page-break-inside: avoid;
+  }
+
+  .c-contact-form-section__form {
+    display: none; // Hide form in print
+  }
+}
+
+/* LEGACY COMPATIBILITY
+   =========================================================================== */
+
+.section.contact-enhanced {
+  @extend .c-contact-form-section;
+}

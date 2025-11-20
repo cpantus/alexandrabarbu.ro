@@ -1,98 +1,128 @@
 {{/*
-  Footer Navigation Molecule
-
-  Displays footer quick links menu and social links
-  - Social media links with icons
-  - Quick links from footer menu
+  Footer Navigation Molecule - Social links, email, and quick links
+  BEM Component: .c-footer-nav (refactored 2025-11-20)
 
   Usage:
-    {{ partial "molecules/footer-nav.html" . }}
+    {{ partial "molecules/footer-nav.html" (dict "variant" "primary") }}
+
+  Parameters:
+    variant (optional) - Color variant: "primary" (default), "secondary", "tertiary", "neutral"
+    class (optional)   - Additional CSS classes
+
+  Color Variants:
+    - "primary" (default) - Emerald accents (professional, trustworthy)
+    - "secondary"        - Terracotta accents (warm, inviting)
+    - "tertiary"         - Blue accents (calm, informational)
+    - "neutral"          - Gray accents (subtle, minimal)
+
+  BEM Structure:
+    .c-footer-nav              - Root container
+    .c-footer-nav--{variant}   - Color variant modifier
+    .c-footer-nav__section     - Individual section (social or quick links)
+    .c-footer-nav__title       - Section heading
+    .c-footer-nav__email       - Email link
+    .c-footer-nav__social      - Social links container (uses social-links molecule)
+    .c-footer-nav__links       - Quick links list
+    .c-footer-nav__link        - Individual quick link
+
+  Features:
+    - Social links molecule integration (uses social-links.html)
+    - Heading atom integration
+    - Email from site params (contact_info.email)
+    - Quick links from footer menu (site.Menus.footer)
+    - 4 color variants matching design system
+    - Responsive layout (full-width mobile → columns on desktop)
+    - 8pt spacing grid
+    - Crimson Pro typography for headings
+    - Work Sans typography for body text
+    - Design tokens only (no magic numbers)
+    - Backward compatibility via SCSS @extend
+
+  Site Params (config/_default/params.toml):
+    [contact_info]
+    email = ["contact@example.com"]
+
+  Menus (config/_default/menus.ro.toml, menus.en.toml):
+    [[footer]]
+    name = "Privacy Policy"
+    url = "/privacy/"
+
+  i18n Keys (define in i18n/ro.yaml and i18n/en.yaml):
+    - socials: Social section heading (default: "Social")
+    - quick_links: Quick links section heading (default: "Link-uri Rapide")
+
+  Examples:
+    Default usage:
+      {{ partial "molecules/footer-nav.html" . }}
+
+    With variant:
+      {{ partial "molecules/footer-nav.html" (dict "variant" "secondary") }}
 */}}
 
-<div class="col-lg-3 col-md-6 col-sm-6 mt-5 mt-sm-0">
-  <div class="footer-widget">
-    <h4 class="mb-4">{{ T `socials` }}</h4>
+{{/* Parameter extraction with defaults */}}
+{{ $variant := .variant | default "primary" }}
+{{ $class := .class | default "" }}
+
+{{/* Build BEM class with variant modifier */}}
+{{ $bemClass := "c-footer-nav" }}
+{{ if $variant }}
+  {{ $bemClass = printf "%s c-footer-nav--%s" $bemClass $variant }}
+{{ end }}
+{{ if $class }}
+  {{ $bemClass = printf "%s %s" $bemClass $class }}
+{{ end }}
+
+<div class="{{ $bemClass }}">
+  {{/* Social & Email Section */}}
+  <div class="c-footer-nav__section c-footer-nav__section--social">
+    {{ partial "atoms/heading.html" (dict
+      "text" (i18n "socials" | default "Social")
+      "level" 4
+      "variant" $variant
+      "class" "c-footer-nav__title"
+    ) }}
 
     {{/* Email Link */}}
     {{ with site.Params.contact_info.email }}
-      <ul class="footer-links list-unstyled mb-4">
-        {{ range first 1 . }}
-          {{ if . }}
-            <li><a href="mailto:{{ . }}">{{ . }}</a></li>
-          {{ end }}
+      {{ range first 1 . }}
+        {{ if . }}
+          <div class="c-footer-nav__email">
+            <a href="mailto:{{ . }}" class="c-footer-nav__link">{{ . }}</a>
+          </div>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+
+    {{/* Social Media Links (using social-links molecule) */}}
+    <div class="c-footer-nav__social">
+      {{ partial "molecules/social-links.html" (dict
+        "variant" $variant
+        "layout" "inline"
+        "class" "c-footer-nav__social-links"
+      ) }}
+    </div>
+  </div>
+
+  {{/* Quick Links Section */}}
+  <div class="c-footer-nav__section c-footer-nav__section--links">
+    {{ partial "atoms/heading.html" (dict
+      "text" (i18n "quick_links" | default "Link-uri Rapide")
+      "level" 4
+      "variant" $variant
+      "class" "c-footer-nav__title"
+    ) }}
+
+    {{/* Quick Links from Footer Menu */}}
+    {{ if site.Menus.footer }}
+      <ul class="c-footer-nav__links">
+        {{ range site.Menus.footer }}
+          <li class="c-footer-nav__item">
+            <a href="{{ .URL | relLangURL }}" class="c-footer-nav__link">
+              {{ .Name }}
+            </a>
+          </li>
         {{ end }}
       </ul>
     {{ end }}
-
-    {{/* Social Media Links */}}
-    <ul class="social-links list-inline">
-      {{ with site.Data.social.facebook }}
-        {{ if . }}
-          <li class="list-inline-item">
-            <a target="_blank" aria-label="Facebook" rel="nofollow noopener" href="{{ . | safeURL }}">
-              <i class="lab la-facebook-f"></i>
-            </a>
-          </li>
-        {{ end }}
-      {{ end }}
-      {{ with site.Data.social.instagram }}
-        {{ if . }}
-          <li class="list-inline-item">
-            <a target="_blank" aria-label="Instagram" rel="nofollow noopener" href="{{ . | safeURL }}">
-              <i class="lab la-instagram"></i>
-            </a>
-          </li>
-        {{ end }}
-      {{ end }}
-      {{ with site.Data.social.tiktok }}
-        {{ if . }}
-          <li class="list-inline-item">
-            <a target="_blank" aria-label="TikTok" rel="nofollow noopener" href="{{ . | safeURL }}">
-              <i class="lab la-tiktok"></i>
-            </a>
-          </li>
-        {{ end }}
-      {{ end }}
-      {{ with site.Data.social.youtube }}
-        {{ if . }}
-          <li class="list-inline-item">
-            <a target="_blank" aria-label="YouTube" rel="nofollow noopener" href="{{ . | safeURL }}">
-              <i class="lab la-youtube"></i>
-            </a>
-          </li>
-        {{ end }}
-      {{ end }}
-      {{ with site.Data.social.linkedin }}
-        {{ if . }}
-          <li class="list-inline-item">
-            <a target="_blank" aria-label="LinkedIn" rel="nofollow noopener" href="{{ . | safeURL }}">
-              <i class="lab la-linkedin"></i>
-            </a>
-          </li>
-        {{ end }}
-      {{ end }}
-      {{ with site.Data.social.twitter }}
-        {{ if . }}
-          <li class="list-inline-item">
-            <a target="_blank" aria-label="Twitter" rel="nofollow noopener" href="{{ . | safeURL }}">
-              <i class="lab la-twitter"></i>
-            </a>
-          </li>
-        {{ end }}
-      {{ end }}
-    </ul>
-  </div>
-</div>
-
-<div class="col-lg-2 col-md-6 col-sm-6 mt-5 mt-lg-0">
-  <div class="footer-widget">
-    <h4 class="mb-4">{{ T `quick_links` }}</h4>
-
-    {{/* Quick Links from Footer Menu */}}
-    <ul class="footer-links list-unstyled">
-      {{ range site.Menus.footer }}
-        <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
-      {{ end }}
-    </ul>
   </div>
 </div>

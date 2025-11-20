@@ -82,6 +82,72 @@
   }
 }
 
+// Subtitle (uppercase text above title)
+.c-blog-grid__subtitle {
+  text-transform: uppercase;
+  font-size: $text-sm;
+  font-weight: $weight-semibold;
+  color: $color-primary;
+  letter-spacing: 1px;
+  margin-bottom: $space-2;
+}
+
+// Description (below title)
+.c-blog-grid__description {
+  margin-top: $space-4;
+}
+
+// -----------------------------------------------------------------------------
+// Category Filters
+// -----------------------------------------------------------------------------
+.c-blog-grid__filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $space-3;
+  flex-wrap: wrap;
+  margin-bottom: $space-8;
+
+  @media (max-width: $breakpoint-sm) {
+    gap: $space-2;
+    margin-bottom: $space-6;
+  }
+}
+
+.c-blog-grid__filter {
+  padding: $space-2 $space-4;
+  font-family: $font-secondary;
+  font-size: $text-base;
+  font-weight: $weight-medium;
+  color: $gray-700;
+  background: white;
+  border: 2px solid $gray-300;
+  border-radius: $radius-full;
+  cursor: pointer;
+  transition: all $duration-fast $easing-subtle;
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-primary;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $space-1 $space-3;
+    font-size: $text-sm;
+  }
+}
+
+.c-blog-grid__filter--active {
+  background: $gradient-warm-vibrant;
+  border-color: $color-primary;
+  color: white;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
 // -----------------------------------------------------------------------------
 // Grid Container
 // -----------------------------------------------------------------------------
@@ -368,6 +434,19 @@
     i {
       transform: translateX(4px);
     }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Load More Button Wrapper
+// -----------------------------------------------------------------------------
+.c-blog-grid__load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: $space-12;
+
+  @media (max-width: $breakpoint-sm) {
+    margin-top: $space-8;
   }
 }
 

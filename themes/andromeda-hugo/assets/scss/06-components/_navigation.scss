@@ -1,0 +1,338 @@
+// ==================================
+// NAVIGATION COMPONENT - BEM Architecture
+// ==================================
+//
+// Purpose: Reusable navigation molecule for main site menu (vanilla JS)
+// Features: Dropdown support, active states, hover effects, keyboard navigation, responsive
+//
+// Last Updated: 2025-11-20 (Phase 3 - Molecule Refactor)
+// Version: 1.0.0 (ITCSS + BEM)
+//
+// BEM Structure:
+// Block: .c-navigation
+// Elements: __list, __item, __link, __link-text, __link-icon, __dropdown, __dropdown-item, __dropdown-link
+// Modifiers: --dropdown, --active, --open, --end
+//
+
+/*------------------------------------------------------------------
+  # Navigation List
+-------------------------------------------------------------------*/
+
+.c-navigation__list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: $space-2; // 16px (8pt grid)
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  // Mobile: Stack vertically
+  @media (max-width: $breakpoint-md - 1) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: $space-1; // 8px
+  }
+}
+
+/*------------------------------------------------------------------
+  # Navigation Item
+-------------------------------------------------------------------*/
+
+.c-navigation__item {
+  position: relative;
+  margin: 0;
+  padding: 0;
+
+  // Active state (current page)
+  &--active {
+    > .c-navigation__link {
+      color: $color-primary;
+      font-weight: $font-weight-medium;
+
+      &::after {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  // Open state (dropdown expanded)
+  &--open {
+    > .c-navigation__link {
+      color: $color-primary;
+    }
+
+    > .c-navigation__dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Navigation Link
+-------------------------------------------------------------------*/
+
+.c-navigation__link {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1; // 8px
+  padding: $space-2 $space-3; // 16px 24px
+  color: $color-text-primary;
+  font-family: $font-family-sans;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-snug;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: all $duration-fast $easing-medium;
+  position: relative;
+
+  // Underline effect (hidden by default)
+  &::after {
+    content: '';
+    position: absolute;
+    left: $space-3;
+    right: $space-3;
+    bottom: $space-1;
+    height: 2px;
+    background: $gradient-warm;
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: all $duration-base $easing-medium;
+  }
+
+  // Hover state
+  &:hover,
+  &:focus {
+    color: $color-primary;
+    background: rgba($color-primary, 0.05);
+
+    &::after {
+      opacity: 0.6;
+      transform: scaleX(0.8);
+    }
+  }
+
+  // Focus state (keyboard navigation)
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+
+  // Active (pressed) state
+  &:active {
+    transform: translateY(1px);
+  }
+
+  // Dropdown variant
+  &--dropdown {
+    padding-right: $space-2; // Reduce right padding for icon
+  }
+}
+
+/*------------------------------------------------------------------
+  # Navigation Link Text
+-------------------------------------------------------------------*/
+
+.c-navigation__link-text {
+  display: block;
+}
+
+/*------------------------------------------------------------------
+  # Navigation Link Icon (Dropdown Indicator)
+-------------------------------------------------------------------*/
+
+.c-navigation__link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform $duration-base $easing-medium;
+
+  .c-navigation__item--open & {
+    transform: rotate(180deg);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Navigation Dropdown Menu
+-------------------------------------------------------------------*/
+
+.c-navigation__dropdown {
+  position: absolute;
+  top: calc(100% + $space-1); // 8px below parent
+  left: 0;
+  min-width: 220px;
+  background: $gradient-glass-light;
+  @include glassmorphism($radius-md, 0.98);
+  border-radius: $radius-md;
+  box-shadow: $shadow-lg;
+  list-style: none;
+  margin: 0;
+  padding: $space-2; // 16px
+  z-index: $z-dropdown;
+
+  // Hidden by default
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-$space-2); // Slide up animation
+  pointer-events: none;
+  transition: all $duration-base $easing-medium;
+
+  // Mobile: Full width, no absolute positioning
+  @media (max-width: $breakpoint-md - 1) {
+    position: static;
+    width: 100%;
+    min-width: auto;
+    transform: translateY(0);
+    box-shadow: none;
+    background: rgba($color-primary, 0.03);
+    margin-top: $space-1;
+  }
+
+  // Open state (added via JS)
+  &--open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  // End-aligned variant (right-aligned for viewport edge)
+  &--end {
+    left: auto;
+    right: 0;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Dropdown Item
+-------------------------------------------------------------------*/
+
+.c-navigation__dropdown-item {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &:not(:last-child) {
+    margin-bottom: $space-1; // 8px
+  }
+}
+
+/*------------------------------------------------------------------
+  # Dropdown Link
+-------------------------------------------------------------------*/
+
+.c-navigation__dropdown-link {
+  display: block;
+  padding: $space-2 $space-3; // 16px 24px
+  color: $color-text-primary;
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-snug;
+  text-decoration: none;
+  border-radius: $radius-sm;
+  transition: all $duration-fast $easing-medium;
+  position: relative;
+
+  // Hover state
+  &:hover,
+  &:focus {
+    color: $color-primary;
+    background: rgba($color-primary, 0.08);
+    transform: translateX($space-1); // Slide right effect
+  }
+
+  // Focus state (keyboard navigation)
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: -2px;
+  }
+
+  // Active state (current page within dropdown)
+  &--active {
+    color: $color-primary;
+    font-weight: $font-weight-medium;
+    background: rgba($color-primary, 0.1);
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: $space-2;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 20px;
+      background: $gradient-warm;
+      border-radius: 2px;
+    }
+
+    // Adjust padding for indicator
+    padding-left: calc($space-3 + $space-1); // Add space for indicator
+  }
+}
+
+/*------------------------------------------------------------------
+  # Responsive Behavior
+-------------------------------------------------------------------*/
+
+// Tablet: Adjust spacing
+@media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg - 1) {
+  .c-navigation__list {
+    gap: $space-1; // Reduce gap on tablet
+  }
+
+  .c-navigation__link {
+    padding: $space-2; // Reduce padding on tablet
+  }
+
+  .c-navigation__dropdown {
+    min-width: 200px; // Narrower dropdowns
+  }
+}
+
+// Large screens: Enhanced spacing
+@media (min-width: $breakpoint-xl) {
+  .c-navigation__list {
+    gap: $space-3; // 24px on large screens
+  }
+
+  .c-navigation__link {
+    font-size: $font-size-md; // Slightly larger font
+  }
+}
+
+/*------------------------------------------------------------------
+  # Accessibility Enhancements
+-------------------------------------------------------------------*/
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .c-navigation__link,
+  .c-navigation__dropdown,
+  .c-navigation__dropdown-link,
+  .c-navigation__link-icon {
+    transition: none;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .c-navigation__link {
+    &:focus {
+      outline-width: 3px;
+    }
+  }
+
+  .c-navigation__dropdown {
+    border: 2px solid currentColor;
+  }
+}

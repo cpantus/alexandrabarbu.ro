@@ -1,0 +1,249 @@
+// =============================================================================
+// Social Links Component (BEM)
+// =============================================================================
+// Version: 1.0.0
+// Description: Social media links with icons, grid/inline layouts, color variants
+// Dependencies: 01-settings (tokens), atoms/icon
+// BEM Block: .c-social
+//
+// Structure:
+//   .c-social                    - Block (wrapper)
+//   .c-social--primary          - Modifier: primary color variant
+//   .c-social--secondary        - Modifier: secondary color variant
+//   .c-social--tertiary         - Modifier: tertiary color variant
+//   .c-social--neutral          - Modifier: neutral color variant
+//   .c-social--inline           - Modifier: inline layout
+//   .c-social--grid             - Modifier: grid layout (default)
+//   .c-social__list             - Element: ul container
+//   .c-social__item             - Element: li item
+//   .c-social__link             - Element: anchor tag
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Block: Social container
+// -----------------------------------------------------------------------------
+.c-social {
+  // Layout
+  display: block;
+  width: 100%;
+}
+
+// -----------------------------------------------------------------------------
+// Element: List container (ul)
+// -----------------------------------------------------------------------------
+.c-social__list {
+  // Reset list styles
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  // Layout
+  display: flex;
+  align-items: center;
+
+  // Spacing (8pt grid)
+  gap: $space-3; // 24px - comfortable spacing between icons
+
+  // Default: grid layout (wrap)
+  flex-wrap: wrap;
+
+  @media (max-width: $breakpoint-md - 1) {
+    gap: $space-2; // 16px on mobile
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Element: List item (li)
+// -----------------------------------------------------------------------------
+.c-social__item {
+  // Reset
+  margin: 0;
+  padding: 0;
+
+  // Layout
+  display: block;
+}
+
+// -----------------------------------------------------------------------------
+// Element: Link (anchor)
+// -----------------------------------------------------------------------------
+.c-social__link {
+  // Layout
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  // Size (icon wrapper size)
+  width: $space-6; // 48px (6 × 8pt) - comfortable touch target
+  height: $space-6;
+
+  // Spacing
+  padding: $space-2; // 16px internal padding
+
+  // Visual
+  border-radius: $border-radius-circle; // Circular
+  background-color: transparent;
+  transition: all $transition-base $easing-ease-out;
+
+  // Typography
+  text-decoration: none;
+  color: inherit; // Icon color controlled by icon atom
+
+  // Accessibility
+  cursor: pointer;
+
+  // States: Hover
+  &:hover {
+    background-color: rgba($color-primary, 0.1);
+    transform: translateY(-2px);
+
+    // Icon hover effect (handled by icon atom)
+  }
+
+  // States: Focus
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+
+  // States: Active
+  &:active {
+    transform: translateY(0);
+  }
+
+  // Responsive: Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    width: $space-5; // 40px on mobile
+    height: $space-5;
+    padding: $space-1-5; // 12px internal padding
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Modifier: Inline layout
+// -----------------------------------------------------------------------------
+.c-social--inline {
+  .c-social__list {
+    flex-wrap: nowrap; // Don't wrap items
+    justify-content: flex-start;
+
+    @media (max-width: $breakpoint-md - 1) {
+      justify-content: center; // Center on mobile
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Modifier: Grid layout (default, explicit for clarity)
+// -----------------------------------------------------------------------------
+.c-social--grid {
+  .c-social__list {
+    flex-wrap: wrap; // Wrap items
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Modifier: Color variants (primary, secondary, tertiary, neutral)
+// -----------------------------------------------------------------------------
+// NOTE: Icon colors are controlled by icon atom via variant prop.
+// These modifiers apply hover background colors.
+
+.c-social--primary {
+  .c-social__link {
+    &:hover {
+      background-color: rgba($color-primary, 0.1);
+    }
+
+    &:focus {
+      outline-color: $color-primary;
+    }
+  }
+}
+
+.c-social--secondary {
+  .c-social__link {
+    &:hover {
+      background-color: rgba($color-secondary, 0.1);
+    }
+
+    &:focus {
+      outline-color: $color-secondary;
+    }
+  }
+}
+
+.c-social--tertiary {
+  .c-social__link {
+    &:hover {
+      background-color: rgba($color-tertiary, 0.1);
+    }
+
+    &:focus {
+      outline-color: $color-tertiary;
+    }
+  }
+}
+
+.c-social--neutral {
+  .c-social__link {
+    &:hover {
+      background-color: rgba($color-neutral-300, 0.1);
+    }
+
+    &:focus {
+      outline-color: $color-neutral-500;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Accessibility: Reduced motion
+// -----------------------------------------------------------------------------
+@media (prefers-reduced-motion: reduce) {
+  .c-social__link {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+
+    &:active {
+      transform: none;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Accessibility: High contrast mode
+// -----------------------------------------------------------------------------
+@media (prefers-contrast: high) {
+  .c-social__link {
+    &:focus {
+      outline-width: 3px;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Print styles
+// -----------------------------------------------------------------------------
+@media print {
+  .c-social {
+    display: none; // Hide social links in print
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Backward Compatibility (Legacy classes via @extend)
+// -----------------------------------------------------------------------------
+// Support old class names for gradual migration
+// TODO: Remove after all templates migrated to BEM classes
+
+.social-links {
+  @extend .c-social;
+  @extend .c-social--grid; // Default was grid
+
+  .social-link {
+    @extend .c-social__link;
+  }
+}

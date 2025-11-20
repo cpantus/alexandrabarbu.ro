@@ -1,0 +1,326 @@
+// =============================================================================
+// Service Preview Card Component
+// =============================================================================
+//
+// Description:
+//   Service preview card for services overview grid. Used on services landing
+//   page to showcase individual service offerings with icon, title, excerpt,
+//   and CTA button.
+//
+// BEM Structure:
+//   - Block: .c-service-card
+//   - Elements: __icon, __image, __img, __header, __title, __excerpt, __text, __footer, __link
+//   - Modifiers: --primary, --secondary, --tertiary, --neutral, --success, --warning, --error, --info
+//
+// Dependencies:
+//   - Design Tokens: _tokens-colors.scss, _tokens-spacing.scss, _tokens-typography.scss, _tokens-shadows.scss, _tokens-motion.scss
+//   - Atoms: .c-icon, .c-heading, .c-button
+//
+// Version: 1.0.0
+// Last Updated: 2025-11-20
+//
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Block: Service Card
+// -----------------------------------------------------------------------------
+
+.c-service-card {
+  // Layout
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  // Spacing (8pt grid)
+  padding: $space-6; // 48px
+  gap: $space-4; // 32px
+
+  // Visual
+  background: $color-bg-card;
+  border: 1px solid $color-border-light;
+  border-radius: $border-radius-lg; // 16px
+
+  // Transitions
+  transition:
+    transform $duration-base $ease-out,
+    box-shadow $duration-base $ease-out,
+    border-color $duration-base $ease-out;
+
+  // Hover State
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+    border-color: $color-border-medium;
+  }
+
+  // Focus-within (when button inside is focused)
+  &:focus-within {
+    outline: 2px solid $color-primary-500;
+    outline-offset: 2px;
+  }
+
+  // Responsive
+  @media (max-width: $breakpoint-md) {
+    padding: $space-5; // 40px
+    gap: $space-3; // 24px
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    padding: $space-4; // 32px
+    gap: $space-3; // 24px
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Element: Icon
+// -----------------------------------------------------------------------------
+
+.c-service-card__icon {
+  // Layout
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  // Animation
+  transition: transform $duration-base $ease-out;
+
+  // Hover effect (scale icon)
+  .c-service-card:hover & {
+    transform: scale(1.05);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Element: Image
+// -----------------------------------------------------------------------------
+
+.c-service-card__image {
+  // Layout
+  width: 100%;
+  max-width: 120px;
+  flex-shrink: 0;
+
+  // Visual
+  border-radius: $border-radius-md; // 12px
+  overflow: hidden;
+
+  // Animation
+  transition: transform $duration-base $ease-out;
+
+  // Hover effect
+  .c-service-card:hover & {
+    transform: scale(1.03);
+  }
+}
+
+.c-service-card__img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+// -----------------------------------------------------------------------------
+// Element: Header
+// -----------------------------------------------------------------------------
+
+.c-service-card__header {
+  // Layout
+  width: 100%;
+}
+
+// -----------------------------------------------------------------------------
+// Element: Title
+// -----------------------------------------------------------------------------
+
+.c-service-card__title {
+  // Typography (Crimson Pro serif)
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl; // 24px
+  font-weight: 600;
+  line-height: $line-height-snug; // 1.375
+
+  // Spacing
+  margin: 0;
+
+  // Responsive
+  @media (max-width: $breakpoint-sm) {
+    font-size: $font-size-xl; // 20px
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Element: Excerpt
+// -----------------------------------------------------------------------------
+
+.c-service-card__excerpt {
+  // Layout
+  width: 100%;
+  flex-grow: 1;
+}
+
+.c-service-card__text {
+  // Typography (Work Sans sans-serif)
+  font-family: $font-family-body;
+  font-size: $font-size-base; // 16px
+  font-weight: 400;
+  line-height: $line-height-normal; // 1.5
+  color: $color-text-secondary;
+
+  // Spacing
+  margin: 0;
+
+  // Responsive
+  @media (max-width: $breakpoint-sm) {
+    font-size: $font-size-sm; // 14px
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Element: Footer
+// -----------------------------------------------------------------------------
+
+.c-service-card__footer {
+  // Layout
+  width: 100%;
+  margin-top: auto; // Push to bottom
+}
+
+.c-service-card__link {
+  width: 100%; // Full-width button
+}
+
+// -----------------------------------------------------------------------------
+// Modifiers: Color Variants
+// -----------------------------------------------------------------------------
+
+// Primary Variant (Emerald)
+.c-service-card--primary {
+  &:hover {
+    border-color: $color-primary-300;
+  }
+
+  &:focus-within {
+    outline-color: $color-primary-500;
+  }
+}
+
+// Secondary Variant (Terracotta)
+.c-service-card--secondary {
+  &:hover {
+    border-color: $color-secondary-300;
+  }
+
+  &:focus-within {
+    outline-color: $color-secondary-500;
+  }
+}
+
+// Tertiary Variant
+.c-service-card--tertiary {
+  &:hover {
+    border-color: $color-tertiary-300;
+  }
+
+  &:focus-within {
+    outline-color: $color-tertiary-500;
+  }
+}
+
+// Neutral Variant
+.c-service-card--neutral {
+  &:hover {
+    border-color: $color-neutral-400;
+  }
+
+  &:focus-within {
+    outline-color: $color-neutral-600;
+  }
+}
+
+// Success Variant
+.c-service-card--success {
+  &:hover {
+    border-color: $color-success-300;
+  }
+
+  &:focus-within {
+    outline-color: $color-success-500;
+  }
+}
+
+// Warning Variant
+.c-service-card--warning {
+  &:hover {
+    border-color: $color-warning-300;
+  }
+
+  &:focus-within {
+    outline-color: $color-warning-500;
+  }
+}
+
+// Error Variant
+.c-service-card--error {
+  &:hover {
+    border-color: $color-error-300;
+  }
+
+  &:focus-within {
+    outline-color: $color-error-500;
+  }
+}
+
+// Info Variant
+.c-service-card--info {
+  &:hover {
+    border-color: $color-info-300;
+  }
+
+  &:focus-within {
+    outline-color: $color-info-500;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Accessibility Enhancements
+// -----------------------------------------------------------------------------
+
+// Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  .c-service-card,
+  .c-service-card__icon,
+  .c-service-card__image {
+    transition: none;
+  }
+
+  .c-service-card:hover {
+    transform: none;
+  }
+}
+
+// High Contrast Mode
+@media (prefers-contrast: high) {
+  .c-service-card {
+    border-width: 2px;
+
+    &:hover {
+      border-width: 3px;
+    }
+  }
+}
+
+// Print Styles
+@media print {
+  .c-service-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid $color-border-medium;
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}

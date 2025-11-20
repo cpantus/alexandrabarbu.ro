@@ -1,0 +1,288 @@
+// ==========================================================================
+// Mobile Menu Component
+// ==========================================================================
+//
+// BEM Structure: .c-mobile-menu
+//
+// Hamburger navigation toggle with collapsible menu panel
+//
+// Elements:
+//   - .c-mobile-menu__controller - Container for language selector + toggle button
+//   - .c-mobile-menu__toggle - Hamburger toggle button
+//   - .c-mobile-menu__icon - Icon wrapper (menu or close)
+//   - .c-mobile-menu__icon--menu - Hamburger icon (visible when closed)
+//   - .c-mobile-menu__icon--close - Close icon (visible when open)
+//   - .c-mobile-menu__panel - Collapsible menu panel
+//   - .c-mobile-menu__actions - Desktop actions (language + CTA)
+//   - .c-mobile-menu__cta - CTA button
+//
+// States:
+//   - [aria-expanded="true"] - Menu open state
+//   - .collapse - Hidden state (height: 0)
+//   - .show - Visible state (height: auto)
+//
+// Features:
+//   - Animated hamburger → X transition
+//   - Smooth collapse animation (height + opacity)
+//   - Responsive behavior (mobile only, hidden ≥992px)
+//   - 48px touch target (WCAG AA)
+//   - Design tokens (8pt spacing, color system)
+//   - Accessibility (keyboard nav, focus indicators, ARIA)
+//
+// Usage:
+//   See layouts/partials/molecules/mobile-menu.html
+//
+// Depends on:
+//   - 01-settings/_tokens-spacing.scss
+//   - 01-settings/_tokens-colors.scss
+//   - 01-settings/_tokens-motion.scss
+//   - vanilla-collapse.js (collapse functionality)
+//
+// ==========================================================================
+
+// Controller Container (flexbox layout for language selector + toggle button)
+.c-mobile-menu__controller {
+  display: flex;
+  align-items: center;
+  gap: $space-2; // 16px spacing between language selector and toggle button
+
+  // Responsive: Visible on mobile/tablet, hidden on desktop
+  @media (min-width: 992px) {
+    display: none; // Hidden on desktop (navigation molecule handles desktop layout)
+  }
+}
+
+// Toggle Button (Hamburger button)
+.c-mobile-menu__toggle {
+  // Reset button styles
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  // Size: 48px touch target (WCAG AA)
+  width: 48px;
+  height: 48px;
+
+  // Layout: center icon
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Visual
+  border-radius: $border-radius-sm; // 4px rounded corners
+  transition: background-color $duration-fast $ease-out;
+
+  // Hover state
+  &:hover {
+    background-color: rgba($color-emerald-500, 0.1); // Subtle emerald tint
+  }
+
+  // Focus state (keyboard navigation)
+  &:focus {
+    outline: 2px solid $color-emerald-500;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba($color-emerald-500, 0.1);
+  }
+
+  // Active state (pressed)
+  &:active {
+    background-color: rgba($color-emerald-500, 0.15);
+    transform: scale(0.95);
+  }
+}
+
+// Icon Wrapper (controls visibility of menu/close icons)
+.c-mobile-menu__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; // Icon size (lg size from icon atom)
+  height: 32px;
+
+  // Default: hidden
+  opacity: 0;
+  transform: rotate(90deg) scale(0.8);
+  transition: opacity $duration-fast $ease-out, transform $duration-base $ease-out;
+
+  // Icon modifier: Menu icon (hamburger - visible when menu closed)
+  &--menu {
+    position: relative;
+
+    // Visible when menu closed (aria-expanded="false")
+    .c-mobile-menu__toggle[aria-expanded="false"] & {
+      opacity: 1;
+      transform: rotate(0) scale(1);
+    }
+  }
+
+  // Icon modifier: Close icon (X - visible when menu open)
+  &--close {
+    position: absolute;
+
+    // Visible when menu open (aria-expanded="true")
+    .c-mobile-menu__toggle[aria-expanded="true"] & {
+      opacity: 1;
+      transform: rotate(0) scale(1);
+    }
+  }
+}
+
+// Collapsible Menu Panel
+.c-mobile-menu__panel {
+  // Collapse base state (hidden)
+  &.collapse {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height $duration-normal $ease-out,
+                opacity $duration-normal $ease-out,
+                visibility $duration-normal step-end;
+  }
+
+  // Show state (visible)
+  &.show {
+    max-height: 100vh; // Allow full viewport height
+    overflow: visible;
+    opacity: 1;
+    visibility: visible;
+    transition: max-height $duration-normal $ease-out,
+                opacity $duration-normal $ease-out,
+                visibility $duration-normal step-start;
+  }
+
+  // Responsive: Desktop layout
+  @media (min-width: 992px) {
+    // Always visible on desktop
+    display: flex !important; // Override collapse classes
+    align-items: center;
+    justify-content: space-between;
+    max-height: none;
+    opacity: 1;
+    visibility: visible;
+    overflow: visible;
+    width: 100%;
+  }
+
+  // Spacing: Add top padding when visible
+  &.show {
+    padding-top: $space-3; // 24px top spacing
+
+    @media (min-width: 992px) {
+      padding-top: 0; // No top padding on desktop
+    }
+  }
+}
+
+// Desktop Actions Container (language selector + CTA button)
+.c-mobile-menu__actions {
+  display: flex;
+  align-items: center;
+  gap: $space-3; // 24px spacing between language selector and CTA
+
+  // Responsive: Stack vertically on mobile
+  @media (max-width: 991px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: $space-2; // 16px vertical spacing
+    margin-top: $space-4; // 32px top spacing
+  }
+
+  // Responsive: Horizontal layout on desktop
+  @media (min-width: 992px) {
+    flex-direction: row;
+    margin-top: 0;
+  }
+}
+
+// CTA Button (optional navigation button)
+.c-mobile-menu__cta {
+  // Responsive: Full width on mobile
+  @media (max-width: 991px) {
+    width: 100%;
+    justify-content: center;
+  }
+
+  // Responsive: Auto width on desktop
+  @media (min-width: 992px) {
+    width: auto;
+  }
+}
+
+// ==========================================================================
+// Accessibility Enhancements
+// ==========================================================================
+
+// High Contrast Mode (Windows High Contrast Mode support)
+@media (prefers-contrast: high) {
+  .c-mobile-menu__toggle {
+    outline: 2px solid currentColor;
+
+    &:focus {
+      outline: 3px solid currentColor;
+      outline-offset: 3px;
+    }
+  }
+}
+
+// Reduced Motion (respect user preference)
+@media (prefers-reduced-motion: reduce) {
+  .c-mobile-menu__toggle,
+  .c-mobile-menu__icon,
+  .c-mobile-menu__panel {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+// Focus Within (highlight parent when child has focus)
+.c-mobile-menu__panel:focus-within {
+  outline: 2px solid rgba($color-emerald-500, 0.3);
+  outline-offset: 4px;
+}
+
+// ==========================================================================
+// Print Styles
+// ==========================================================================
+
+@media print {
+  // Hide mobile menu controls in print
+  .c-mobile-menu__controller {
+    display: none;
+  }
+
+  // Show full panel content in print
+  .c-mobile-menu__panel {
+    display: block !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    overflow: visible !important;
+  }
+}
+
+// ==========================================================================
+// Backward Compatibility (Legacy Bootstrap Classes)
+// ==========================================================================
+
+// Map legacy Bootstrap classes to BEM structure via @extend
+.nav-controller {
+  @extend .c-mobile-menu__controller;
+}
+
+.navbar-toggler {
+  @extend .c-mobile-menu__toggle;
+}
+
+.navbar-collapse {
+  @extend .c-mobile-menu__panel;
+}
+
+.navbar-right {
+  @extend .c-mobile-menu__actions;
+}
+
+// ==========================================================================
+// End Mobile Menu Component
+// ==========================================================================

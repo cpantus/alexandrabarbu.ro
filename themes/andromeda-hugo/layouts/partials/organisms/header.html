@@ -1,112 +1,133 @@
 {{/*
-  Header Organism
+  Header Organism - BEM Refactored
 
   Main site header composition using atomic design molecules
-  - Logo molecule
-  - Navigation molecule
-  - Language selector molecule
-  - Mobile menu molecule
+
+  Features:
+  - Skip-to-content link (WCAG 2.1 AA keyboard navigation)
+  - Logo molecule with brand link
+  - Primary navigation molecule
+  - Language selector molecule (mobile + desktop variants)
+  - Mobile menu toggle with icon atoms
+  - Optional CTA button atom
+  - Sticky header with glassmorphism backdrop
+  - Responsive collapse behavior (vanilla-collapse.js)
+
+  BEM Structure:
+  - Block: .c-header
+  - Elements: __container, __inner, __brand, __nav-controller, __toggle, __collapse, __nav, __actions, __cta
+  - Modifiers: --sticky (applied on scroll via JS)
 
   Usage:
     {{ partial "organisms/header.html" . }}
-    {{ partialCached "organisms/header.html" . .Language }} // With caching
+    {{ partialCached "organisms/header.html" . .Language }}  // With caching
+
+  Dependencies:
+  - molecules/logo.html
+  - molecules/language-selector.html (mobile + desktop variants)
+  - molecules/navigation.html
+  - atoms/icon.html (menu + x icons)
+  - atoms/button.html (optional CTA)
+  - vanilla-collapse.js (mobile menu toggle)
+
+  Accessibility:
+  - Skip-to-content link (keyboard users)
+  - ARIA labels on toggle button
+  - ARIA expanded state management
+  - Semantic HTML nav element
+  - Focus indicators on all interactive elements
+
+  Responsive:
+  - Mobile (< 992px): Collapsed menu with hamburger toggle
+  - Desktop (>= 992px): Full navigation, desktop language selector visible
+
+  Version: 5.0.1 (Phase 4 - Organism Refactor)
+  Last Updated: 2025-11-20
 */}}
 
+{{- $currentLang := site.Language.Lang -}}
+
 <!-- Skip to Content Link (WCAG 2.1 AA - Keyboard Navigation) -->
-<a href="#main-content" class="skip-to-content visually-hidden-focusable">
-  {{ if eq site.Language.Lang "ro" }}
+<a href="#main-content" class="c-header__skip-link visually-hidden-focusable">
+  {{- if eq $currentLang "ro" -}}
     Sari la conținut
-  {{ else }}
+  {{- else -}}
     Skip to main content
-  {{ end }}
+  {{- end -}}
 </a>
 
-<!-- Header Height Fix -->
-<div class="header-height-fix"></div>
+<!-- Header Height Spacer (prevents content jump when header is fixed) -->
+<div class="c-header__spacer"></div>
 
-<!-- Navigation -->
-<header class="header-nav">
-  <div class="container-xxl">
-    <div class="row">
-      <div class="col-12">
-        <nav class="navbar navbar-expand-lg navbar-light p-0">
-          {{/* Logo */}}
-          <a class="navbar-brand" href="{{ site.BaseURL | relLangURL }}">
-            {{ partial "molecules/logo.html" . }}
-          </a>
+<!-- Main Header -->
+<header class="c-header">
+  <div class="c-header__container">
+    <div class="c-header__inner">
 
-          {{/* Navigation Controller (mobile language selector & hamburger) */}}
-          <div class="nav-controller d-flex align-items-center">
-            {{/* Mobile Language Selector */}}
-            {{ partial "molecules/language-selector.html" (dict "variant" "mobile" "context" .) }}
+      {{/* Logo Brand Link */}}
+      <a class="c-header__brand" href="{{ site.BaseURL | relLangURL }}" aria-label="{{ if eq $currentLang "ro" }}Pagina principală{{ else }}Home page{{ end }}">
+        {{ partial "molecules/logo.html" (dict "variant" "primary" "size" "md" "hasLink" false "context" .) }}
+      </a>
 
-            {{/* Hamburger Toggle Button */}}
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navHeader"
-              aria-controls="navHeader"
-              aria-expanded="false"
-              aria-label="Toggle navigation">
-              {{/* Hamburger Icon (hidden when menu open) */}}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="hide"
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <line x1="4" y1="6" x2="20" y2="6"></line>
-                <line x1="4" y1="12" x2="20" y2="12"></line>
-                <line x1="4" y1="18" x2="20" y2="18"></line>
-              </svg>
-              {{/* Close Icon (shown when menu open) */}}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="show"
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-          </div>
+      {{/* Navigation Controller (Mobile: Language Selector + Hamburger) */}}
+      <div class="c-header__nav-controller">
 
-          {{/* Collapsible Menu Container */}}
-          <div class="collapse navbar-collapse" id="navHeader">
-            {{/* Navigation Menu */}}
-            {{ partial "molecules/navigation.html" . }}
+        {{/* Mobile Language Selector */}}
+        <div class="c-header__lang-mobile">
+          {{ partial "molecules/language-selector.html" (dict "variant" "mobile" "context" .) }}
+        </div>
 
-            {{/* Desktop Language Selector & CTA Button */}}
-            <div class="navbar-right">
-              {{ partial "molecules/language-selector.html" (dict "variant" "desktop" "context" .) }}
-
-              {{/* Optional CTA Button */}}
-              {{ if site.Params.navigation_button.enable }}
-                <a
-                  href="{{ site.Params.navigation_button.link | relURL }}"
-                  class="btn btn-primary">
-                  {{ site.Params.navigation_button.label }}
-                </a>
-              {{ end }}
-            </div>
-          </div>
-        </nav>
+        {{/* Mobile Menu Toggle Button */}}
+        <button
+          class="c-header__toggle"
+          type="button"
+          data-toggle="collapse"
+          data-target="#headerNav"
+          aria-controls="headerNav"
+          aria-expanded="false"
+          aria-label="{{ if eq $currentLang "ro" }}Comută navigarea{{ else }}Toggle navigation{{ end }}">
+          {{/* Menu Icon (shown when menu closed) */}}
+          <span class="c-header__toggle-icon c-header__toggle-icon--open">
+            {{ partial "atoms/icon.html" (dict "icon" "las la-bars" "size" "lg" "variant" "primary") }}
+          </span>
+          {{/* Close Icon (shown when menu open) */}}
+          <span class="c-header__toggle-icon c-header__toggle-icon--close">
+            {{ partial "atoms/icon.html" (dict "icon" "las la-times" "size" "lg" "variant" "primary") }}
+          </span>
+        </button>
       </div>
+
+      {{/* Collapsible Navigation Container */}}
+      <div class="c-header__collapse" id="headerNav">
+
+        {{/* Primary Navigation */}}
+        <nav class="c-header__nav" aria-label="{{ if eq $currentLang "ro" }}Navigare principală{{ else }}Primary navigation{{ end }}">
+          {{ partial "molecules/navigation.html" . }}
+        </nav>
+
+        {{/* Actions (Desktop Language Selector + Optional CTA) */}}
+        <div class="c-header__actions">
+
+          {{/* Desktop Language Selector */}}
+          <div class="c-header__lang-desktop">
+            {{ partial "molecules/language-selector.html" (dict "variant" "desktop" "context" .) }}
+          </div>
+
+          {{/* Optional CTA Button */}}
+          {{ if site.Params.navigation_button.enable }}
+            <div class="c-header__cta">
+              {{ partial "atoms/button.html" (dict
+                "text" site.Params.navigation_button.label
+                "url" (site.Params.navigation_button.link | relURL)
+                "variant" "primary"
+                "size" "md"
+              ) }}
+            </div>
+          {{ end }}
+        </div>
+      </div>
+
     </div>
   </div>
 </header>
-<!-- /Navigation -->
+<!-- /Main Header -->

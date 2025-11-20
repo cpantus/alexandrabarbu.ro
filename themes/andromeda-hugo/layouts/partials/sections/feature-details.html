@@ -1,0 +1,139 @@
+{{/*
+================================================================================
+Feature Details Section
+================================================================================
+Displays detailed feature blocks in alternating (zigzag) layout.
+Each block has subtitle, title, description, optional markdown content, and image.
+
+BEM Structure: .c-feature-details
+
+Parameters:
+- title (optional): Section title
+- subtitle (optional): Section subtitle
+- features (required): Array of feature objects
+  - subtitle: Feature subtitle (uppercase label)
+  - title: Feature title
+  - description: Feature description
+  - markdown (optional): Extended markdown content
+  - image: Feature image path
+- variant (optional): Color variant (primary|secondary|tertiary|neutral|success|warning|info|error) [default: primary]
+- background (optional): Background style (none|light|gradient) [default: none]
+
+Data Sources:
+1. Page front matter: .Params.feature_details
+2. Site data: .Site.Data.services.feature_details
+
+Usage:
+```yaml
+sections:
+  - type: "feature-details"
+
+feature_details:
+  variant: "primary"
+  background: "light"
+  title: "Our Approach"
+  subtitle: "Comprehensive Care"
+  features:
+    - subtitle: "Step 1"
+      title: "Initial Assessment"
+      description: "Comprehensive evaluation of your needs"
+      markdown: |
+        - Detailed consultation
+        - Goal setting
+        - Treatment planning
+      image: "images/assessment.jpg"
+    - subtitle: "Step 2"
+      title: "Personalized Treatment"
+      description: "Evidence-based therapy tailored to you"
+      image: "images/treatment.jpg"
+```
+
+Version: 5.0.1 (BEM refactor)
+*/}}
+
+{{- $section := .Params.feature_details -}}
+{{- if not $section -}}
+  {{- with .Site.Data.services -}}
+    {{- $section = .feature_details -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $section -}}
+  {{- $variant := $section.variant | default "primary" -}}
+  {{- $background := $section.background | default "none" -}}
+  {{- $features := $section.features -}}
+
+  <section class="c-feature-details c-feature-details--{{ $variant }} c-feature-details--bg-{{ $background }}">
+    <div class="o-container">
+
+      {{/* Section Header (Optional) */}}
+      {{- if or $section.title $section.subtitle -}}
+        <div class="c-feature-details__header">
+          {{- if $section.subtitle -}}
+            <p class="c-feature-details__subtitle">{{ $section.subtitle }}</p>
+          {{- end -}}
+          {{- if $section.title -}}
+            {{ partial "atoms/heading.html" (dict
+              "level" 2
+              "text" $section.title
+              "class" "c-feature-details__title"
+              "variant" $variant
+            ) }}
+          {{- end -}}
+        </div>
+      {{- end -}}
+
+      {{/* Feature Blocks */}}
+      {{- if $features -}}
+        <div class="c-feature-details__blocks">
+          {{- range $index, $feature := $features -}}
+            {{- $isEven := eq (mod $index 2) 0 -}}
+
+            <div class="c-feature-details__block {{ if not $isEven }}c-feature-details__block--reverse{{ end }}">
+
+              {{/* Text Content */}}
+              <div class="c-feature-details__content">
+                {{- if $feature.subtitle -}}
+                  <p class="c-feature-details__feature-subtitle">{{ $feature.subtitle | markdownify }}</p>
+                {{- end -}}
+
+                {{- if $feature.title -}}
+                  {{ partial "atoms/heading.html" (dict
+                    "level" 3
+                    "text" ($feature.title | markdownify)
+                    "class" "c-feature-details__feature-title"
+                  ) }}
+                {{- end -}}
+
+                {{- if $feature.description -}}
+                  <p class="c-feature-details__feature-description">{{ $feature.description | markdownify }}</p>
+                {{- end -}}
+
+                {{/* Extended Markdown Content */}}
+                {{- if $feature.markdown -}}
+                  <div class="c-feature-details__markdown">
+                    {{ $feature.markdown | markdownify }}
+                  </div>
+                {{- end -}}
+              </div>
+
+              {{/* Image */}}
+              {{- if $feature.image -}}
+                <div class="c-feature-details__image-wrapper">
+                  {{ partial "atoms/image.html" (dict
+                    "Src" $feature.image
+                    "Alt" ($feature.title | default "Feature image")
+                    "Size" "600x"
+                    "Class" "c-feature-details__image"
+                  ) }}
+                </div>
+              {{- end -}}
+
+            </div>
+          {{- end -}}
+        </div>
+      {{- end -}}
+
+    </div>
+  </section>
+{{- end -}}

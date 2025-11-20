@@ -1,0 +1,155 @@
+// ==========================================================================
+// Feature Highlight Component
+// ==========================================================================
+//
+// Feature highlight molecule for inline feature display in service pages.
+// Uses BEM naming convention with 8 color variants.
+//
+// Hierarchy:
+// .c-feature-highlight               - Block (container)
+//   .c-feature-highlight__icon       - Element (feature icon)
+//   .c-feature-highlight__content    - Element (text content wrapper)
+//   .c-feature-highlight__title      - Element (feature title)
+//   .c-feature-highlight__description - Element (feature description)
+//
+// Modifiers:
+//   --primary / --secondary / --tertiary / --success / --warning / --error / --info / --neutral
+//   --centered                       - Center-aligned content
+//   --compact                        - Compact spacing
+//
+// ==========================================================================
+
+// Block
+// ==========================================================================
+.c-feature-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-3;
+}
+
+// Icon Element
+// ==========================================================================
+.c-feature-highlight__icon {
+  flex-shrink: 0;
+  margin-top: $space-05; // Optical alignment with title
+}
+
+// Content Elements
+// ==========================================================================
+.c-feature-highlight__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+}
+
+.c-feature-highlight__title {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-snug;
+  color: $color-text-heading;
+  margin: 0;
+}
+
+.c-feature-highlight__description {
+  font-family: $font-family-body;
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+  color: $color-text-secondary;
+  margin: 0;
+
+  // Markdown support
+  p {
+    margin: 0;
+
+    & + p {
+      margin-top: $space-2;
+    }
+  }
+}
+
+// Color Variant Modifiers
+// ==========================================================================
+// Note: Icon colors are handled by icon atom variant parameter
+// Variants here control any additional styling differences
+
+.c-feature-highlight--primary {}
+.c-feature-highlight--secondary {}
+.c-feature-highlight--tertiary {}
+.c-feature-highlight--success {}
+.c-feature-highlight--warning {}
+.c-feature-highlight--error {}
+.c-feature-highlight--info {}
+.c-feature-highlight--neutral {}
+
+// Layout Modifier
+// ==========================================================================
+.c-feature-highlight--centered {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  .c-feature-highlight__icon {
+    margin-top: 0;
+  }
+}
+
+// Spacing Modifier
+// ==========================================================================
+.c-feature-highlight--compact {
+  gap: $space-2;
+
+  .c-feature-highlight__content {
+    gap: $space-05;
+  }
+
+  .c-feature-highlight__title {
+    font-size: $font-size-base;
+  }
+
+  .c-feature-highlight__description {
+    font-size: $font-size-sm;
+  }
+}
+
+// Responsive Styles
+// ==========================================================================
+
+// Mobile (< 576px)
+@media (max-width: $breakpoint-sm - 1) {
+  .c-feature-highlight {
+    gap: $space-2;
+  }
+
+  .c-feature-highlight__title {
+    font-size: $font-size-base;
+  }
+
+  .c-feature-highlight__description {
+    font-size: $font-size-sm;
+  }
+}
+
+// Accessibility
+// ==========================================================================
+
+// High Contrast Mode
+@media (prefers-contrast: high) {
+  .c-feature-highlight__title {
+    font-weight: $font-weight-bold;
+  }
+}
+
+// Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  // No animations in this component by default
+}
+
+// Print Styles
+// ==========================================================================
+@media print {
+  .c-feature-highlight {
+    break-inside: avoid;
+  }
+}

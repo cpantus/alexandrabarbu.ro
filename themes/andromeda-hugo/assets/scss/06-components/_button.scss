@@ -170,6 +170,144 @@
   }
 }
 
+/**
+ * Tertiary button - calm navy blue
+ */
+.c-button--tertiary {
+  background: linear-gradient(135deg, lighten($color-tertiary, 5%), darken($color-tertiary, 5%));
+  color: white;
+  box-shadow: 0 2px 8px rgba($color-tertiary, 0.25);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: linear-gradient(135deg, lighten($color-tertiary, 8%), darken($color-tertiary, 2%));
+    box-shadow: 0 4px 12px rgba($color-tertiary, 0.35);
+    color: white;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background: linear-gradient(135deg, lighten($color-tertiary, 5%), darken($color-tertiary, 5%));
+    box-shadow: 0 2px 8px rgba($color-tertiary, 0.25);
+  }
+}
+
+/**
+ * Success button - positive green
+ */
+.c-button--success {
+  background: linear-gradient(135deg, lighten($color-success, 5%), darken($color-success, 5%));
+  color: white;
+  box-shadow: 0 2px 8px rgba($color-success, 0.25);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: linear-gradient(135deg, lighten($color-success, 8%), darken($color-success, 2%));
+    box-shadow: 0 4px 12px rgba($color-success, 0.35);
+    color: white;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background: linear-gradient(135deg, lighten($color-success, 5%), darken($color-success, 5%));
+    box-shadow: 0 2px 8px rgba($color-success, 0.25);
+  }
+}
+
+/**
+ * Warning button - attention amber
+ */
+.c-button--warning {
+  background: linear-gradient(135deg, lighten($color-warning, 5%), darken($color-warning, 5%));
+  color: white;
+  box-shadow: 0 2px 8px rgba($color-warning, 0.25);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: linear-gradient(135deg, lighten($color-warning, 8%), darken($color-warning, 2%));
+    box-shadow: 0 4px 12px rgba($color-warning, 0.35);
+    color: white;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background: linear-gradient(135deg, lighten($color-warning, 5%), darken($color-warning, 5%));
+    box-shadow: 0 2px 8px rgba($color-warning, 0.25);
+  }
+}
+
+/**
+ * Error button - critical red
+ */
+.c-button--error {
+  background: linear-gradient(135deg, lighten($color-error, 5%), darken($color-error, 5%));
+  color: white;
+  box-shadow: 0 2px 8px rgba($color-error, 0.25);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: linear-gradient(135deg, lighten($color-error, 8%), darken($color-error, 2%));
+    box-shadow: 0 4px 12px rgba($color-error, 0.35);
+    color: white;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background: linear-gradient(135deg, lighten($color-error, 5%), darken($color-error, 5%));
+    box-shadow: 0 2px 8px rgba($color-error, 0.25);
+  }
+}
+
+/**
+ * Info button - informational teal
+ */
+.c-button--info {
+  background: linear-gradient(135deg, lighten($color-info, 5%), darken($color-info, 5%));
+  color: white;
+  box-shadow: 0 2px 8px rgba($color-info, 0.25);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: linear-gradient(135deg, lighten($color-info, 8%), darken($color-info, 2%));
+    box-shadow: 0 4px 12px rgba($color-info, 0.35);
+    color: white;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background: linear-gradient(135deg, lighten($color-info, 5%), darken($color-info, 5%));
+    box-shadow: 0 2px 8px rgba($color-info, 0.25);
+  }
+}
+
+/**
+ * Neutral button - subtle gray
+ */
+.c-button--neutral {
+  background: linear-gradient(135deg, lighten($color-neutral, 15%), lighten($color-neutral, 5%));
+  color: $gray-800;
+  box-shadow: 0 2px 8px rgba($color-neutral, 0.2);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: linear-gradient(135deg, lighten($color-neutral, 18%), lighten($color-neutral, 8%));
+    box-shadow: 0 4px 12px rgba($color-neutral, 0.3);
+    color: $gray-900;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background: linear-gradient(135deg, lighten($color-neutral, 15%), lighten($color-neutral, 5%));
+    box-shadow: 0 2px 8px rgba($color-neutral, 0.2);
+  }
+}
+
 /*------------------------------------------------------------------
   # Button Size Modifiers
 -------------------------------------------------------------------*/
@@ -262,6 +400,37 @@
 .btn-outline-secondary {
   @extend .c-button;
   @extend .c-button--outline-secondary;
+}
+
+// New variant compatibility (Phase 2)
+.btn-tertiary {
+  @extend .c-button;
+  @extend .c-button--tertiary;
+}
+
+.btn-success {
+  @extend .c-button;
+  @extend .c-button--success;
+}
+
+.btn-warning {
+  @extend .c-button;
+  @extend .c-button--warning;
+}
+
+.btn-error {
+  @extend .c-button;
+  @extend .c-button--error;
+}
+
+.btn-info {
+  @extend .c-button;
+  @extend .c-button--info;
+}
+
+.btn-neutral {
+  @extend .c-button;
+  @extend .c-button--neutral;
 }
 
 // Size compatibility

@@ -1,0 +1,141 @@
+{{/*
+  ============================================================================
+  Benefits & Results Section - BEM Architecture
+  ============================================================================
+  Therapy benefits list with expected outcomes
+
+  Features:
+  - Grid of benefit cards with icons
+  - Expected outcomes and timelines
+  - Measurable results
+  - Clear, encouraging messaging
+
+  Data Structure:
+  ---------------
+  benefits_results:
+    title: "What You'll Achieve"            # Section heading
+    subtitle: "Expected Results"            # Optional eyebrow
+    description: "Intro text..."            # Optional description
+    items:                                   # Array of benefits
+      - title: "Reduced Anxiety"
+        description: "Learn coping strategies..."
+        icon: "las la-check-circle"
+        timeline: "After 4-6 sessions"      # Optional timeline
+      - title: "Improved Relationships"
+        description: "Better communication..."
+        icon: "las la-heart"
+
+  Parameters:
+  -----------
+  None - Data-driven from front matter
+
+  Usage:
+  ------
+  ```yaml
+  sections:
+    - type: "benefits-results"
+
+  benefits_results:
+    title: "Ce Vei Obține"
+    items:
+      - title: "Reducerea Anxietății"
+        description: "Strategii eficiente..."
+        icon: "las la-check-circle"
+  ```
+
+  BEM Structure:
+  --------------
+  .c-benefits-results                - Section wrapper
+  .c-benefits-results__header        - Header container
+  .c-benefits-results__subtitle      - Eyebrow text
+  .c-benefits-results__title         - Main heading
+  .c-benefits-results__description   - Intro text
+  .c-benefits-results__grid          - Benefits grid
+  .c-benefits-results__item          - Individual benefit card
+  .c-benefits-results__icon          - Benefit icon
+  .c-benefits-results__item-title    - Benefit title
+  .c-benefits-results__item-text     - Benefit description
+  .c-benefits-results__timeline      - Timeline badge
+
+  Dependencies:
+  -------------
+  - atoms/heading.html (title)
+  - atoms/icon.html (benefit icons)
+  - _benefits-results.scss (BEM styles)
+
+  Version: 1.0.0
+  Updated: 2025-11-20
+  ============================================================================
+*/}}
+
+{{- $data := .Params.benefits_results -}}
+{{- if not $data -}}
+  {{- $data = site.Data.shared_sections.benefits_results -}}
+{{- end -}}
+
+{{- if $data -}}
+<section class="c-benefits-results section">
+  <div class="o-container">
+
+    {{/* Section Header */}}
+    {{- if or $data.title $data.subtitle $data.description -}}
+    <div class="c-benefits-results__header text-center">
+      {{- if $data.subtitle -}}
+        <p class="c-benefits-results__subtitle text-uppercase">{{ $data.subtitle }}</p>
+      {{- end -}}
+      {{- if $data.title -}}
+        {{ partial "atoms/heading.html" (dict
+          "text" $data.title
+          "level" 2
+          "class" "c-benefits-results__title"
+        ) }}
+      {{- end -}}
+      {{- if $data.description -}}
+        <p class="c-benefits-results__description">{{ $data.description }}</p>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    {{/* Benefits Grid */}}
+    {{- if $data.items -}}
+    <div class="c-benefits-results__grid">
+      {{- range $index, $item := $data.items -}}
+        <div class="c-benefits-results__item" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+
+          {{/* Benefit Icon */}}
+          {{- if $item.icon -}}
+            {{ partial "atoms/icon.html" (dict
+              "icon" $item.icon
+              "class" "c-benefits-results__icon"
+              "size" "2x"
+            ) }}
+          {{- end -}}
+
+          {{/* Benefit Content */}}
+          <div class="c-benefits-results__content">
+
+            {{/* Timeline Badge */}}
+            {{- if $item.timeline -}}
+              <span class="c-benefits-results__timeline">{{ $item.timeline }}</span>
+            {{- end -}}
+
+            {{/* Benefit Title */}}
+            {{- if $item.title -}}
+              <h3 class="c-benefits-results__item-title">{{ $item.title }}</h3>
+            {{- end -}}
+
+            {{/* Benefit Description */}}
+            {{- if $item.description -}}
+              <p class="c-benefits-results__item-text">{{ $item.description }}</p>
+            {{- end -}}
+
+          </div>
+
+        </div>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+  </div>
+</section>
+{{- end -}}

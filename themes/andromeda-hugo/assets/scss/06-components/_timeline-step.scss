@@ -1,0 +1,524 @@
+// ============================================================================
+// Timeline Step Molecule - BEM Component
+// ============================================================================
+// Timeline/process step with icon/number, title, description, and highlights
+// Supports standard, alternating, and simple layout variants
+//
+// BEM Structure:
+//   .c-timeline-step                     Block
+//   .c-timeline-step--primary            Modifier: color variant
+//   .c-timeline-step--simple             Modifier: layout type
+//   .c-timeline-step--align-right        Modifier: alternating alignment
+//   .c-timeline-step__marker             Element: icon/number wrapper
+//   .c-timeline-step__icon-wrapper       Element: icon circle container
+//   .c-timeline-step__number             Element: step number text
+//   .c-timeline-step__duration           Element: duration badge
+//   .c-timeline-step__content            Element: content card
+//   .c-timeline-step__highlights         Element: bulleted list
+//   .c-timeline-step__highlight-item     Element: highlight list item
+//
+// Color Variants: primary, secondary, tertiary, neutral
+// Layout Variants: standard, alternating, simple
+//
+// Version: 2.0.0 (BEM refactor)
+// Last Updated: 2025-11-20
+// ============================================================================
+
+@use "sass:map";
+@use "../01-settings/tokens-colors" as colors;
+@use "../01-settings/tokens-spacing" as spacing;
+@use "../01-settings/tokens-typography" as type;
+@use "../01-settings/tokens-shadows" as shadows;
+@use "../01-settings/tokens-motion" as motion;
+@use "../01-settings/tokens-gradients" as gradients;
+@use "../02-tools/mixins-glassmorphism" as glass;
+
+// ============================================================================
+// BLOCK: Timeline Step
+// ============================================================================
+
+.c-timeline-step {
+  display: flex;
+  gap: $space-6; // 48px
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+
+  // ========================================
+  // Responsive Gaps
+  // ========================================
+
+  @media (max-width: 768px) {
+    gap: $space-4; // 32px on tablet
+  }
+
+  @media (max-width: 576px) {
+    gap: $space-3; // 24px on mobile
+  }
+}
+
+// ============================================================================
+// ELEMENT: Marker (icon/number container)
+// ============================================================================
+
+.c-timeline-step__marker {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-2; // 16px
+
+  // ========================================
+  // Centered variant (for simple layout)
+  // ========================================
+
+  &--center {
+    margin: 0 auto $space-3; // 24px bottom
+  }
+}
+
+// ============================================================================
+// ELEMENT: Icon Wrapper (gradient circle)
+// ============================================================================
+
+.c-timeline-step__icon-wrapper {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform $duration-base $easing-medium;
+  box-shadow: $shadow-sm;
+
+  // ========================================
+  // White ring around icon
+  // ========================================
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: $shadow-sm;
+    z-index: -1;
+  }
+
+  // ========================================
+  // Hover effect: scale + rotate
+  // ========================================
+
+  .c-timeline-step:hover & {
+    transform: scale(1.08) rotate(4deg);
+  }
+
+  // ========================================
+  // Responsive sizing
+  // ========================================
+
+  @media (max-width: 768px) {
+    width: 48px;
+    height: 48px;
+
+    &::before {
+      inset: -3px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    width: 40px;
+    height: 40px;
+
+    &::before {
+      inset: -2px;
+    }
+  }
+}
+
+// ============================================================================
+// ELEMENT: Step Number
+// ============================================================================
+
+.c-timeline-step__number {
+  color: white;
+  font-family: $font-primary; // Crimson Pro
+  font-size: 1.5rem; // 24px
+  font-weight: 600;
+  line-height: 1;
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    font-size: 1.125rem; // 18px
+  }
+
+  @media (max-width: 576px) {
+    font-size: 1rem; // 16px
+  }
+}
+
+// ============================================================================
+// ELEMENT: Duration Badge
+// ============================================================================
+
+.c-timeline-step__duration {
+  display: flex;
+  align-items: center;
+  gap: $space-1; // 8px
+  padding: $space-1 $space-2; // 8px 16px
+  background: linear-gradient(135deg, rgba($color-primary, 0.05), rgba($color-primary, 0.1));
+  border-radius: 12px;
+  font-size: 0.875rem; // 14px
+  font-weight: 500;
+  color: $gray-700;
+  white-space: nowrap;
+}
+
+.c-timeline-step__duration-icon {
+  opacity: 0.7;
+}
+
+.c-timeline-step__duration-text {
+  font-family: $font-secondary; // Work Sans
+}
+
+// ============================================================================
+// ELEMENT: Content Card
+// ============================================================================
+
+.c-timeline-step__content {
+  flex: 1;
+  padding: $space-6; // 48px
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: $shadow-sm;
+  transition: all $duration-base $easing-medium;
+  position: relative;
+  overflow: hidden;
+
+  // ========================================
+  // Gradient border on hover
+  // ========================================
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 2px;
+    background: linear-gradient(135deg, $color-primary, $color-secondary);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity $duration-base $easing-medium;
+  }
+
+  // ========================================
+  // Hover effect: lift + border
+  // ========================================
+
+  .c-timeline-step:hover & {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  // ========================================
+  // Centered variant (simple layout)
+  // ========================================
+
+  &--center {
+    text-align: center;
+    padding: $space-4 $space-3; // 32px 24px
+  }
+
+  // ========================================
+  // Responsive padding
+  // ========================================
+
+  @media (max-width: 768px) {
+    padding: $space-5; // 40px
+  }
+
+  @media (max-width: 576px) {
+    padding: $space-4; // 32px
+  }
+}
+
+// ============================================================================
+// ELEMENT: Title
+// ============================================================================
+
+.c-timeline-step__title {
+  margin-bottom: $space-3; // 24px
+  transition: color $duration-fast $easing-subtle;
+
+  // Hover effect
+  .c-timeline-step:hover & {
+    color: darken($color-primary, 10%);
+  }
+
+  @media (max-width: 576px) {
+    margin-bottom: $space-2; // 16px
+  }
+}
+
+// ============================================================================
+// ELEMENT: Description
+// ============================================================================
+
+.c-timeline-step__description {
+  font-family: $font-secondary; // Work Sans
+  font-size: 0.9375rem; // 15px
+  line-height: 1.6;
+  color: $gray-600;
+  margin: 0 0 $space-3; // 24px bottom
+
+  // Last child: remove bottom margin
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 0.875rem; // 14px
+    margin-bottom: $space-2; // 16px
+  }
+}
+
+// ============================================================================
+// ELEMENT: Highlights List
+// ============================================================================
+
+.c-timeline-step__highlights {
+  list-style: none;
+  padding: 0;
+  margin: $space-4 0 0; // 32px top
+  display: flex;
+  flex-direction: column;
+  gap: $space-2; // 16px
+
+  @media (max-width: 576px) {
+    margin-top: $space-3; // 24px
+    gap: $space-1; // 8px (tighter on mobile)
+  }
+}
+
+.c-timeline-step__highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-2; // 16px
+}
+
+.c-timeline-step__highlight-icon {
+  flex-shrink: 0;
+  margin-top: 2px; // Optical alignment with text
+}
+
+.c-timeline-step__highlight-text {
+  font-family: $font-secondary; // Work Sans
+  font-size: 0.9375rem; // 15px
+  line-height: 1.5;
+  color: $gray-700;
+
+  @media (max-width: 576px) {
+    font-size: 0.875rem; // 14px
+  }
+}
+
+// ============================================================================
+// MODIFIER: Color Variants (4 semantic variants)
+// ============================================================================
+
+// Primary (emerald gradient) - Default, trust, professional
+.c-timeline-step--primary {
+  .c-timeline-step__icon-wrapper {
+    background: linear-gradient(135deg, $green-300, $green-600);
+  }
+}
+
+// Secondary (terracotta gradient) - Warm, personal connection
+.c-timeline-step--secondary {
+  .c-timeline-step__icon-wrapper {
+    background: linear-gradient(135deg, $terracotta-300, $terracotta-600);
+  }
+}
+
+// Tertiary (blue gradient) - Informational content
+.c-timeline-step--tertiary {
+  .c-timeline-step__icon-wrapper {
+    background: linear-gradient(135deg, $teal-300, $teal-600);
+  }
+}
+
+// Neutral (gray gradient) - Subtle, backgrounds
+.c-timeline-step--neutral {
+  .c-timeline-step__icon-wrapper {
+    background: linear-gradient(135deg, $gray-300, $gray-600);
+  }
+}
+
+// ============================================================================
+// MODIFIER: Simple Layout (compact, centered)
+// ============================================================================
+
+.c-timeline-step--simple {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+
+  .c-timeline-step__marker {
+    margin-bottom: $space-3; // 24px
+  }
+
+  .c-timeline-step__content {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+// ============================================================================
+// MODIFIER: Alternating Alignment (right-aligned steps)
+// ============================================================================
+
+.c-timeline-step--align-right {
+  flex-direction: row-reverse;
+
+  .c-timeline-step__content {
+    text-align: right;
+  }
+
+  .c-timeline-step__highlights {
+    align-items: flex-end;
+  }
+
+  .c-timeline-step__highlight-item {
+    flex-direction: row-reverse;
+  }
+
+  // Reset on mobile (always left-aligned)
+  @media (max-width: 768px) {
+    flex-direction: row;
+
+    .c-timeline-step__content {
+      text-align: left;
+    }
+
+    .c-timeline-step__highlights {
+      align-items: flex-start;
+    }
+
+    .c-timeline-step__highlight-item {
+      flex-direction: row;
+    }
+  }
+}
+
+// ============================================================================
+// BACKWARD COMPATIBILITY (Legacy Classes)
+// ============================================================================
+// Extend BEM classes to support old naming conventions
+// Remove in Phase 8 (SCSS Architecture Refinement)
+
+.timeline-step-molecule {
+  @extend .c-timeline-step;
+}
+
+.timeline-step-simple {
+  @extend .c-timeline-step--simple;
+}
+
+.timeline-item {
+  @extend .c-timeline-step;
+}
+
+.timeline-item-right {
+  @extend .c-timeline-step--align-right;
+}
+
+.timeline-marker {
+  @extend .c-timeline-step__marker;
+}
+
+.timeline-icon {
+  @extend .c-timeline-step__icon-wrapper;
+}
+
+.timeline-number,
+.step-number {
+  @extend .c-timeline-step__number;
+}
+
+.timeline-content {
+  @extend .c-timeline-step__content;
+}
+
+.step-number-circle {
+  @extend .c-timeline-step__icon-wrapper;
+}
+
+.step-number-text {
+  @extend .c-timeline-step__number;
+}
+
+// ============================================================================
+// ACCESSIBILITY ENHANCEMENTS
+// ============================================================================
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .c-timeline-step__content {
+    border: 2px solid $gray-400;
+  }
+
+  .c-timeline-step__icon-wrapper::before {
+    border: 2px solid $gray-300;
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .c-timeline-step__icon-wrapper,
+  .c-timeline-step__content,
+  .c-timeline-step__title {
+    transition: none;
+  }
+
+  .c-timeline-step:hover .c-timeline-step__icon-wrapper {
+    transform: none;
+  }
+
+  .c-timeline-step:hover .c-timeline-step__content {
+    transform: none;
+  }
+}
+
+// Print styles (hide animations, simplify)
+@media print {
+  .c-timeline-step {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .c-timeline-step__content::before {
+    display: none; // Hide gradient border
+  }
+
+  .c-timeline-step__icon-wrapper {
+    box-shadow: none;
+
+    &::before {
+      box-shadow: none;
+    }
+  }
+}

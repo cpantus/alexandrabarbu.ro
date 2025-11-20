@@ -1,119 +1,199 @@
-{{/* Enhanced Signup Form Section */}}
-<section class="section user-access">
-  <div class="container">
-    <div class="row justify-content-around align-items-center">
-      <div class="col-lg-4 col-md-7 col-sm-10 col-11" data-aos="fade-up">
-        <div class="text-center">
-          {{ partial "atoms/heading.html" (dict
-            "text" (.Params.welcome_title | default "Bun venit în spațiul tău sigur")
-            "level" 3
-            "align" "center"
-            "class" "mb-4"
-            "colorVariant" "primary"
-          ) }}
-          <p class="mb-4">{{ .Content }}</p>
-          
-          {{/* Account benefits */}}
-          {{ with .Params.account_benefits }}
-          <div class="text-start bg-light rounded p-4 mb-4">
-            {{ partial "atoms/heading.html" (dict
-              "text" "Ce vei primi:"
-              "level" 5
-              "class" "mb-3"
-              "colorVariant" "secondary"
-            ) }}
-            <ul class="list-unstyled">
-              {{ range . }}
-              <li class="mb-2">
-                {{ partial "atoms/icon.html" (dict "name" "check" "color" "primary") }} {{ . }}
-              </li>
-              {{ end }}
-            </ul>
-          </div>
-          {{ end }}
-          
-          <div class="mt-4">
-            {{ partial "atoms/image.html" (dict "src" .Params.image "alt" "sign up banner" "size" "475x") }}
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-lg-4 col-md-8 col-sm-10 col-11 user-access-form" data-aos="fade-up" data-aos-delay="150">
+{{/*
+  Enhanced Signup Form Section
+
+  Two-column account creation form with benefits list and image.
+  Layout: Left column (benefits + image) + Right column (signup form)
+
+  Front Matter Parameters:
+  - .Params.welcome_title (string, optional): Main welcome heading (default: "Bun venit în spațiul tău sigur")
+  - .Content (string, optional): Description text below title
+  - .Params.account_benefits (array, optional): List of benefits/features
+  - .Params.image (string, optional): Image path for left column
+  - .Params.button_variant (string, optional): Button color variant (default: primary)
+  - .Params.variant (string, optional): Section color variant (primary/secondary/tertiary/neutral, default: primary)
+  - site.Params.career_form_action (string, required): Form submission endpoint
+
+  BEM Structure:
+  - .c-signup-section (section block)
+  - .c-signup-section__container (container wrapper)
+  - .c-signup-section__content (left column - benefits/image)
+  - .c-signup-section__benefits (benefits box)
+  - .c-signup-section__benefits-list (benefits list)
+  - .c-signup-section__benefits-item (individual benefit)
+  - .c-signup-section__image-wrapper (image wrapper)
+  - .c-signup-section__form (right column - form)
+  - .c-signup-section__footer (footer link)
+
+  Example Usage:
+  ```yaml
+  sections:
+    - type: "signup-form-enhanced"
+
+  welcome_title: "Welcome to Your Safe Space"
+  content: "Create your account to access personalized therapy resources"
+  account_benefits:
+    - "Access to exclusive therapy resources"
+    - "Track your therapy progress"
+    - "Secure messaging with your therapist"
+    - "Appointment scheduling"
+  image: "images/signup-banner.jpg"
+  button_variant: "primary"
+  variant: "primary"
+  ```
+
+  Features:
+  - Two-column responsive layout
+  - Benefits list with check icons
+  - Form with validation
+  - Terms & conditions checkbox
+  - Newsletter opt-in
+  - GDPR compliant
+  - Responsive (stacks on mobile)
+  - Form-field molecule integration
+
+  Created: 2025-11-20 (Phase 5 refactor)
+  Version: 1.0.0 (BEM)
+*/}}
+
+{{- $variant := .Params.variant | default "primary" -}}
+{{- $welcomeTitle := .Params.welcome_title | default "Bun venit în spațiul tău sigur" -}}
+{{- $buttonVariant := .Params.button_variant | default $variant -}}
+
+<section class="c-signup-section c-signup-section--{{ $variant }}">
+  <div class="c-signup-section__container">
+    {{/* Left Column: Benefits + Image */}}
+    <div class="c-signup-section__content">
+      <div class="c-signup-section__header">
         {{ partial "atoms/heading.html" (dict
-          "text" "Creează-ți Contul"
-          "level" 3
-          "align" "center"
-          "class" "mb-4"
-          "colorVariant" "secondary"
+          "text" $welcomeTitle
+          "level" "h3"
+          "class" "c-signup-section__title"
+          "variant" $variant
         ) }}
 
-        {{ with site.Params.career_form_action }}
-        <form action="{{ . }}" method="POST">
-          {{ partial "atoms/input.html" (dict
+        {{- if .Content -}}
+          <p class="c-signup-section__description">{{ .Content }}</p>
+        {{- end -}}
+      </div>
+
+      {{- with .Params.account_benefits -}}
+        <div class="c-signup-section__benefits">
+          {{ partial "atoms/heading.html" (dict
+            "text" "Ce vei primi:"
+            "level" "h5"
+            "class" "c-signup-section__benefits-title"
+            "variant" "secondary"
+          ) }}
+
+          <ul class="c-signup-section__benefits-list">
+            {{- range . -}}
+              <li class="c-signup-section__benefits-item">
+                {{ partial "atoms/icon.html" (dict
+                  "name" "check"
+                  "variant" $variant
+                  "class" "c-signup-section__benefits-icon"
+                ) }}
+                {{ . }}
+              </li>
+            {{- end -}}
+          </ul>
+        </div>
+      {{- end -}}
+
+      {{- with .Params.image -}}
+        <div class="c-signup-section__image-wrapper">
+          {{ partial "atoms/image.html" (dict
+            "src" .
+            "alt" "Sign up banner"
+            "size" "475x"
+            "class" "c-signup-section__image"
+          ) }}
+        </div>
+      {{- end -}}
+    </div>
+
+    {{/* Right Column: Signup Form */}}
+    <div class="c-signup-section__form">
+      {{ partial "atoms/heading.html" (dict
+        "text" "Creează-ți Contul"
+        "level" "h3"
+        "class" "c-signup-section__form-title"
+        "variant" "secondary"
+      ) }}
+
+      {{- with site.Params.career_form_action -}}
+        <form class="c-signup-section__form-element" action="{{ . }}" method="POST">
+          {{ partial "molecules/form-field.html" (dict
             "type" "text"
             "name" "fname"
-            "id" "fname"
+            "id" "signup-fname"
             "label" "Nume complet"
             "required" true
-            "class" "mb-3"
+            "variant" $variant
+            "class" "c-signup-section__field"
           ) }}
 
-          {{ partial "atoms/input.html" (dict
+          {{ partial "molecules/form-field.html" (dict
             "type" "email"
             "name" "email"
-            "id" "email"
+            "id" "signup-email"
             "label" "Email"
             "required" true
-            "class" "mb-3"
+            "variant" $variant
+            "class" "c-signup-section__field"
           ) }}
 
-          {{ partial "atoms/input.html" (dict
+          {{ partial "molecules/form-field.html" (dict
             "type" "password"
             "name" "password"
-            "id" "password"
+            "id" "signup-password"
             "label" "Parolă"
             "required" true
             "helpText" "Minim 8 caractere"
-            "class" "mb-3"
+            "variant" $variant
+            "class" "c-signup-section__field"
           ) }}
 
-          {{ partial "atoms/input.html" (dict
+          {{ partial "molecules/form-field.html" (dict
             "type" "tel"
             "name" "phone"
-            "id" "phone"
+            "id" "signup-phone"
             "label" "Telefon (opțional)"
-            "class" "mb-3"
+            "variant" $variant
+            "class" "c-signup-section__field"
           ) }}
 
-          {{ partial "atoms/input.html" (dict
+          {{ partial "molecules/form-field.html" (dict
             "type" "checkbox"
             "name" "terms"
-            "id" "terms"
+            "id" "signup-terms"
             "label" (`Accept <a href="/terms-and-conditions/">termenii și condițiile</a> și <a href="/privacy/">politica de confidențialitate</a>` | safeHTML)
             "required" true
-            "class" "mb-3"
+            "variant" $variant
+            "class" "c-signup-section__field"
           ) }}
 
-          {{ partial "atoms/input.html" (dict
+          {{ partial "molecules/form-field.html" (dict
             "type" "checkbox"
             "name" "newsletter"
-            "id" "newsletter"
+            "id" "signup-newsletter"
             "label" "Doresc să primesc resurse și sfaturi terapeutice (opțional)"
-            "class" "mb-4"
+            "variant" $variant
+            "class" "c-signup-section__field c-signup-section__field--last"
           ) }}
 
           {{ partial "atoms/button.html" (dict
             "text" "Creează Cont"
             "type" "submit"
-            "variant" ($.Params.button_variant | default "primary")
+            "variant" $buttonVariant
             "fullWidth" true
+            "class" "c-signup-section__submit"
           ) }}
         </form>
-        {{ end }}
-        
-        <div class="text-center mt-4">
-          <small>Ai deja cont? <a href="/signin/">Conectează-te aici</a></small>
-        </div>
+      {{- end -}}
+
+      <div class="c-signup-section__footer">
+        <small>Ai deja cont? <a href="/signin/" class="c-signup-section__footer-link">Conectează-te aici</a></small>
       </div>
     </div>
   </div>

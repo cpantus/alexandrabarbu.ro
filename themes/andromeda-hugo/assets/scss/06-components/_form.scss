@@ -508,6 +508,291 @@ select.form-control {
 }
 
 /*------------------------------------------------------------------
+  # Form Field Molecule Extensions (Phase 3)
+-------------------------------------------------------------------*/
+
+/**
+ * Color Variants for Form Groups
+ */
+.c-form__group--primary {
+  .c-form__label {
+    color: $color-primary-700;
+  }
+
+  .c-form__input,
+  .c-form__textarea,
+  .c-form__select {
+    border-color: rgba($color-primary, 0.25);
+
+    &:focus {
+      border-color: $color-primary-600;
+      box-shadow: 0 0 0 4px rgba($color-primary, 0.15);
+    }
+  }
+}
+
+.c-form__group--secondary {
+  .c-form__label {
+    color: $color-secondary-700;
+  }
+
+  .c-form__input,
+  .c-form__textarea,
+  .c-form__select {
+    border-color: rgba($color-secondary, 0.25);
+
+    &:focus {
+      border-color: $color-secondary-600;
+      box-shadow: 0 0 0 4px rgba($color-secondary, 0.15);
+    }
+  }
+}
+
+.c-form__group--tertiary {
+  .c-form__label {
+    color: $color-tertiary-700;
+  }
+
+  .c-form__input,
+  .c-form__textarea,
+  .c-form__select {
+    border-color: rgba($color-tertiary, 0.25);
+
+    &:focus {
+      border-color: $color-tertiary-600;
+      box-shadow: 0 0 0 4px rgba($color-tertiary, 0.15);
+    }
+  }
+}
+
+/**
+ * Required Asterisk
+ */
+.c-form__required {
+  color: $color-error;
+  margin-left: $space-half;
+  font-weight: $weight-semibold;
+}
+
+/**
+ * Hint Text (below label)
+ */
+.c-form__hint {
+  display: block;
+  margin-top: $space-1;
+  margin-bottom: $space-2;
+  color: $color-text-muted;
+  font-size: $font-size-xs;
+  line-height: $line-height-normal;
+}
+
+/**
+ * Help Text (below input)
+ */
+.c-form__help-text {
+  display: block;
+  margin-top: $space-2;
+  color: $color-text-secondary;
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+}
+
+/**
+ * Input Wrapper with Icon Support
+ */
+.c-form__input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  // Icon positioning
+  &--icon-left {
+    .c-form__input,
+    .c-form__textarea,
+    .c-form__select {
+      padding-left: $space-10; // Make room for icon
+    }
+  }
+
+  &--icon-right {
+    .c-form__input,
+    .c-form__textarea,
+    .c-form__select {
+      padding-right: $space-10; // Make room for icon
+    }
+  }
+}
+
+/**
+ * Form Icons
+ */
+.c-form__icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-text-muted;
+  pointer-events: none;
+  z-index: 1;
+
+  &--left {
+    left: $space-3;
+  }
+
+  &--right {
+    right: $space-3;
+  }
+
+  // Change color on focus
+  .c-form__input:focus ~ &,
+  .c-form__textarea:focus ~ &,
+  .c-form__select:focus ~ & {
+    color: $color-primary;
+  }
+}
+
+/**
+ * Checkbox and Radio Wrappers
+ */
+.c-form__check {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.c-form__check-input {
+  // Extend existing checkbox/radio styles
+  @extend .c-form__checkbox;
+
+  // Additional specificity
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.c-form__check-label {
+  display: inline-block;
+  color: $color-text-primary;
+  font-size: $font-size-base;
+  font-weight: $weight-regular;
+  cursor: pointer;
+  margin: 0;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+/**
+ * Enhanced Validation Feedback
+ */
+.c-form__feedback {
+  // Base styles already defined above
+  // Adding extensions for molecule
+
+  &--invalid {
+    color: $color-error;
+  }
+
+  &--valid {
+    color: $color-success;
+  }
+
+  &--visible {
+    display: flex;
+    align-items: center;
+    gap: $space-1;
+  }
+}
+
+.c-form__feedback-icon {
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.c-form__feedback-text {
+  flex: 1;
+  font-size: $font-size-sm;
+  line-height: $line-height-snug;
+}
+
+/*------------------------------------------------------------------
+  # Responsive Behavior
+-------------------------------------------------------------------*/
+
+@media (max-width: $breakpoint-md - 1) {
+  .c-form__group {
+    margin-bottom: $space-4;
+  }
+
+  .c-form__input,
+  .c-form__textarea,
+  .c-form__select {
+    font-size: $font-size-base;
+    padding: $space-2 $space-3;
+  }
+
+  .c-form__input-wrapper {
+    &--icon-left {
+      .c-form__input,
+      .c-form__textarea,
+      .c-form__select {
+        padding-left: $space-8;
+      }
+    }
+
+    &--icon-right {
+      .c-form__input,
+      .c-form__textarea,
+      .c-form__select {
+        padding-right: $space-8;
+      }
+    }
+  }
+
+  .c-form__icon {
+    &--left {
+      left: $space-2;
+    }
+
+    &--right {
+      right: $space-2;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Accessibility
+-------------------------------------------------------------------*/
+
+@media (prefers-contrast: high) {
+  .c-form__label {
+    font-weight: $weight-semibold;
+  }
+
+  .c-form__input,
+  .c-form__textarea,
+  .c-form__select {
+    border-width: 3px;
+  }
+
+  .c-form__feedback {
+    font-weight: $weight-medium;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-form__input,
+  .c-form__textarea,
+  .c-form__select {
+    transition: none;
+
+    &:focus {
+      transform: none;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
   # Animations
 -------------------------------------------------------------------*/
 

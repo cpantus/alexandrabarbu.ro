@@ -1,18 +1,25 @@
 {{/*
-  Nav Item Molecule - Navigation link with active state support
+  Nav Item Molecule - Navigation link with dropdown and active state support
+
+  BEM Structure: .c-nav-item
+
+  Individual navigation link component with support for icons, badges, dropdowns,
+  and automatic active state detection.
 
   Usage:
     {{ partial "molecules/nav-item.html" (dict
       "text" "Services"
       "url" "/services/"
       "active" true
+      "context" .
     )}}
 
   Parameters:
     text (required) - Link text
     url (required) - Link URL
-    active (optional) - Mark as active/current (default: auto-detect from current page)
-    icon (optional) - Icon name to display before text
+    context (required) - Current page context for active state detection
+    active (optional) - Mark as active/current (default: auto-detect from context)
+    icon (optional) - Icon name to display before/after text
     iconPosition (optional) - Icon position: left|right (default: left)
     badge (optional) - Badge text (e.g., "New", "3")
     badgeVariant (optional) - Badge color variant (default: primary)
@@ -21,10 +28,11 @@
     target (optional) - Link target attribute (e.g., "_blank")
     rel (optional) - Link rel attribute (e.g., "noopener noreferrer")
 
-  Dropdown structure:
+  Dropdown Structure:
     dropdown: [
       { text: "Item 1", url: "/item1/" },
-      { text: "Item 2", url: "/item2/", divider: true }
+      { text: "Item 2", url: "/item2/", icon: "check" },
+      { text: "divider", divider: true }
     ]
 
   Examples:
@@ -32,21 +40,17 @@
       {{ partial "molecules/nav-item.html" (dict
         "text" "About"
         "url" "/about/"
+        "context" .
       )}}
 
-    With icon:
-      {{ partial "molecules/nav-item.html" (dict
-        "text" "Contact"
-        "url" "/contact/"
-        "icon" "envelope"
-      )}}
-
-    With badge:
+    With icon and badge:
       {{ partial "molecules/nav-item.html" (dict
         "text" "Notifications"
         "url" "/notifications/"
+        "icon" "bell"
         "badge" "5"
-        "badgeVariant" "danger"
+        "badgeVariant" "error"
+        "context" .
       )}}
 
     Dropdown nav item:
@@ -54,14 +58,47 @@
         "text" "Services"
         "url" "/services/"
         "dropdown" (slice
-          (dict "text" "Therapy" "url" "/therapy/")
-          (dict "text" "Coaching" "url" "/coaching/")
+          (dict "text" "Therapy" "url" "/therapy/" "icon" "heart")
+          (dict "text" "Coaching" "url" "/coaching/" "icon" "target")
+          (dict "text" "divider" "divider" true)
+          (dict "text" "All Services" "url" "/services/")
         )
+        "context" .
       )}}
+
+  Features:
+    - BEM structure (.c-nav-item)
+    - Auto active state detection (URL matching)
+    - Icon atoms integration (before/after text)
+    - Badge atoms integration (8 color variants)
+    - Dropdown support (multi-level navigation)
+    - External link handling (target="_blank", rel="noopener noreferrer")
+    - Multilingual URL support (relLangURL)
+    - WCAG AA accessible (keyboard nav, ARIA labels, focus indicators)
+    - Responsive behavior (mobile/desktop specific styles)
+
+  JavaScript:
+    Requires vanilla-dropdown.js for dropdown functionality:
+      data-toggle="dropdown"
+      aria-expanded="false"
+
+  SCSS:
+    assets/scss/06-components/_nav-item.scss
+
+  Backward Compatibility:
+    Legacy Bootstrap classes mapped via @extend in SCSS:
+      .nav-item → .c-nav-item
+      .nav-link → .c-nav-item__link
+      .dropdown → .c-nav-item--dropdown
+      .dropdown-toggle → .c-nav-item__link--dropdown
+      .dropdown-menu → .c-nav-item__dropdown
+      .dropdown-item → .c-nav-item__dropdown-link
 */}}
 
+{{/* Extract parameters */}}
 {{ $text := .text }}
 {{ $url := .url }}
+{{ $context := .context | default . }}
 {{ $active := .active }}
 {{ $icon := .icon }}
 {{ $iconPosition := .iconPosition | default "left" }}
@@ -72,6 +109,7 @@
 {{ $target := .target }}
 {{ $rel := .rel }}
 
+{{/* Parameter validation */}}
 {{ if not $text }}
   {{ errorf "Nav Item molecule requires 'text' parameter" }}
 {{ end }}
@@ -82,7 +120,7 @@
 
 {{/* Auto-detect active state if not explicitly set */}}
 {{ if not (isset . "active") }}
-  {{ $currentURL := .RelPermalink | default "" }}
+  {{ $currentURL := $context.RelPermalink | default "" }}
   {{ if eq $currentURL $url }}
     {{ $active = true }}
   {{ else if and (ne $url "/") (hasPrefix $currentURL $url) }}
@@ -91,22 +129,28 @@
 {{ end }}
 
 {{/* Build nav item classes */}}
-{{ $navItemClass := "nav-item" }}
+{{ $navItemClass := "c-nav-item" }}
 {{ if $dropdown }}
-  {{ $navItemClass = printf "%s dropdown" $navItemClass }}
+  {{ $navItemClass = printf "%s c-nav-item--dropdown" $navItemClass }}
+{{ end }}
+{{ if $active }}
+  {{ $navItemClass = printf "%s c-nav-item--active" $navItemClass }}
 {{ end }}
 {{ if $class }}
   {{ $navItemClass = printf "%s %s" $navItemClass $class }}
 {{ end }}
 
 {{/* Build link classes */}}
-{{ $linkClass := "nav-link" }}
+{{ $linkClass := "c-nav-item__link" }}
 {{ if $active }}
-  {{ $linkClass = printf "%s active" $linkClass }}
+  {{ $linkClass = printf "%s c-nav-item__link--active" $linkClass }}
 {{ end }}
 {{ if $dropdown }}
-  {{ $linkClass = printf "%s dropdown-toggle" $linkClass }}
+  {{ $linkClass = printf "%s c-nav-item__link--dropdown" $linkClass }}
 {{ end }}
+
+{{/* Unique dropdown ID */}}
+{{ $dropdownID := anchorize $text }}
 
 {{/* Render navigation item */}}
 <li class="{{ $navItemClass }}">
@@ -115,35 +159,71 @@
     <a
       class="{{ $linkClass }}"
       href="{{ $url | relLangURL }}"
-      id="navDropdown{{ anchorize $text }}"
+      id="navDropdown{{ $dropdownID }}"
       role="button"
-      data-bs-toggle="dropdown"
+      data-toggle="dropdown"
       aria-expanded="false"
       {{ if $active }}aria-current="page"{{ end }}
     >
+      {{/* Icon (left position) */}}
       {{ if and $icon (eq $iconPosition "left") }}
-        {{ partial "atoms/icon.html" (dict "name" $icon "size" "sm" "class" "me-2") }}
+        <span class="c-nav-item__icon c-nav-item__icon--left">
+          {{ partial "atoms/icon.html" (dict "name" $icon "size" "sm" "variant" "neutral") }}
+        </span>
       {{ end }}
-      {{ $text }}
+
+      {{/* Link text */}}
+      <span class="c-nav-item__text">{{ $text }}</span>
+
+      {{/* Icon (right position) */}}
       {{ if and $icon (eq $iconPosition "right") }}
-        {{ partial "atoms/icon.html" (dict "name" $icon "size" "sm" "class" "ms-2") }}
+        <span class="c-nav-item__icon c-nav-item__icon--right">
+          {{ partial "atoms/icon.html" (dict "name" $icon "size" "sm" "variant" "neutral") }}
+        </span>
       {{ end }}
+
+      {{/* Badge */}}
       {{ with $badge }}
-        <span class="badge bg-{{ $badgeVariant }} ms-2">{{ . }}</span>
+        <span class="c-nav-item__badge">
+          {{ partial "atoms/tag.html" (dict "text" . "variant" $badgeVariant "size" "sm") }}
+        </span>
       {{ end }}
+
+      {{/* Dropdown chevron */}}
+      <span class="c-nav-item__chevron">
+        {{ partial "atoms/icon.html" (dict "name" "chevron-down" "size" "xs" "variant" "neutral") }}
+      </span>
     </a>
 
-    <ul class="dropdown-menu" aria-labelledby="navDropdown{{ anchorize $text }}">
+    {{/* Dropdown menu */}}
+    <ul class="c-nav-item__dropdown" aria-labelledby="navDropdown{{ $dropdownID }}">
       {{ range $dropdown }}
         {{ if .divider }}
-          <li><hr class="dropdown-divider"></li>
+          <li class="c-nav-item__divider"></li>
         {{ else }}
           <li>
-            <a class="dropdown-item" href="{{ .url | relLangURL }}">
+            <a
+              class="c-nav-item__dropdown-link"
+              href="{{ .url | relLangURL }}"
+              {{ with .target }}target="{{ . }}"{{ end }}
+              {{ with .rel }}rel="{{ . }}"{{ end }}
+            >
+              {{/* Dropdown item icon */}}
               {{ if .icon }}
-                {{ partial "atoms/icon.html" (dict "name" .icon "size" "sm" "class" "me-2") }}
+                <span class="c-nav-item__dropdown-icon">
+                  {{ partial "atoms/icon.html" (dict "name" .icon "size" "sm" "variant" "neutral") }}
+                </span>
               {{ end }}
-              {{ .text }}
+
+              {{/* Dropdown item text */}}
+              <span class="c-nav-item__dropdown-text">{{ .text }}</span>
+
+              {{/* Dropdown item badge */}}
+              {{ with .badge }}
+                <span class="c-nav-item__dropdown-badge">
+                  {{ partial "atoms/tag.html" (dict "text" . "variant" ($.badgeVariant | default "primary") "size" "xs") }}
+                </span>
+              {{ end }}
             </a>
           </li>
         {{ end }}
@@ -159,15 +239,28 @@
       {{ with $rel }}rel="{{ . }}"{{ end }}
       {{ if $active }}aria-current="page"{{ end }}
     >
+      {{/* Icon (left position) */}}
       {{ if and $icon (eq $iconPosition "left") }}
-        {{ partial "atoms/icon.html" (dict "name" $icon "size" "sm" "class" "me-2") }}
+        <span class="c-nav-item__icon c-nav-item__icon--left">
+          {{ partial "atoms/icon.html" (dict "name" $icon "size" "sm" "variant" "neutral") }}
+        </span>
       {{ end }}
-      {{ $text }}
+
+      {{/* Link text */}}
+      <span class="c-nav-item__text">{{ $text }}</span>
+
+      {{/* Icon (right position) */}}
       {{ if and $icon (eq $iconPosition "right") }}
-        {{ partial "atoms/icon.html" (dict "name" $icon "size" "sm" "class" "ms-2") }}
+        <span class="c-nav-item__icon c-nav-item__icon--right">
+          {{ partial "atoms/icon.html" (dict "name" $icon "size" "sm" "variant" "neutral") }}
+        </span>
       {{ end }}
+
+      {{/* Badge */}}
       {{ with $badge }}
-        <span class="badge bg-{{ $badgeVariant }} ms-2">{{ . }}</span>
+        <span class="c-nav-item__badge">
+          {{ partial "atoms/tag.html" (dict "text" . "variant" $badgeVariant "size" "sm") }}
+        </span>
       {{ end }}
     </a>
   {{ end }}

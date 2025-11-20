@@ -1,39 +1,134 @@
-{{/* Feature Blocks Section - Enhanced with Zigzag Layout */}}
-{{ $data := .Params.feature_blocks }}
-{{ if not $data }}
-  {{ with .Site.Data.services }}
-    {{ $data = .feature_blocks }}
-  {{ end }}
-{{ end }}
+{{/*
+  ============================================================================
+  Feature Blocks Section - BEM Refactored
+  ============================================================================
+  Enhanced v4.0 section with zigzag layout, parallax scrolling, glassmorphism
 
-<section class="feature-blocks-section">
-  <div class="container">
-    {{ range $index, $item := $data }}
-      {{ $n := add $index 1 }}
-      <div class="feature-block-item">
-        <div class="row justify-content-center align-items-center">
-          {{/* Text Content */}}
-          <div class="col-lg-5 {{ if (modBool $n 2) }}order-lg-1{{ end }}">
-            <div class="feature-content">
-              <div class="section-title">
-                {{ if $item.subtitle }}
-                  <p class="subtitle text-uppercase">{{ $item.subtitle | markdownify }}</p>
-                {{ end }}
-                {{/* Use atoms/heading.html for consistent typography */}}
-                {{ partial "atoms/heading.html" (dict "text" ($item.title | markdownify) "level" "h2" "class" "title") }}
-                <p>{{ $item.description | markdownify }}</p>
-              </div>
-            </div>
-          </div>
+  Features:
+  - Alternating image/text sides (zigzag pattern via nth-child CSS)
+  - Parallax scrolling on desktop (≥992px, applied via scroll-animations.js)
+  - Glassmorphism image containers with gradient overlay
+  - Staggered entrance animations (fade-in-up)
+  - Gradient text hover effects
+  - Organic blob backgrounds
+  - Responsive stack on mobile
 
-          {{/* Image - Uses atoms/image.html for consistent handling */}}
-          <div class="col-lg-6 mt-4 mt-lg-0">
-            <div class="feature-image-wrapper parallax-enabled">
-              {{ partial "atoms/image.html" (dict "src" $item.image "alt" $item.title "size" "575x") }}
-            </div>
-          </div>
+  Data Structure:
+  ---------------
+  feature_blocks:
+    - title: "Feature Title"            # Required - Main heading
+      subtitle: "Optional Eyebrow"      # Optional - Small text above title
+      description: "Description text"   # Required - Main body text
+      image: "images/feature.jpg"       # Required - Feature image
+      features:                          # Optional - Bulleted list
+        - "Feature point 1"
+        - "Feature point 2"
+
+  Parameters:
+  -----------
+  None - Data-driven from front matter or shared data
+
+  Usage:
+  ------
+  ```yaml
+  sections:
+    - type: "feature-blocks"
+
+  feature_blocks:
+    - title: "Evidence-Based Methods"
+      subtitle: "Proven Approaches"
+      description: "We use scientifically validated therapeutic techniques..."
+      image: "images/therapy-session.jpg"
+      features:
+        - "CBT (Cognitive Behavioral Therapy)"
+        - "DBT (Dialectical Behavior Therapy)"
+        - "ACT (Acceptance and Commitment Therapy)"
+    - title: "Personalized Care"
+      description: "Every therapy journey is unique..."
+      image: "images/consultation.jpg"
+  ```
+
+  BEM Structure:
+  --------------
+  .c-feature-blocks               - Section wrapper
+  .c-feature-blocks__item         - Individual feature block
+    .c-feature-blocks__item--even - Even items (auto via nth-child)
+    .c-feature-blocks__item--odd  - Odd items (auto via nth-child)
+  .c-feature-blocks__content      - Text content side
+  .c-feature-blocks__subtitle     - Eyebrow text
+  .c-feature-blocks__title        - Heading (h2)
+  .c-feature-blocks__description  - Body paragraph
+  .c-feature-blocks__list         - Features list (ul)
+  .c-feature-blocks__list-item    - List items (li)
+  .c-feature-blocks__image-wrapper - Image container
+    .c-feature-blocks__image-wrapper--parallax - Parallax enabled
+  .c-feature-blocks__image        - Image element
+
+  Dependencies:
+  -------------
+  - atoms/heading.html (h2 titles)
+  - atoms/image.html (feature images)
+  - _feature-blocks.scss (489 lines BEM styles)
+  - scroll-animations.js (parallax effects)
+
+  Version: 5.0.1 (BEM refactor)
+  Updated: 2025-11-20
+  ============================================================================
+*/}}
+
+{{- $data := .Params.feature_blocks -}}
+{{- if not $data -}}
+  {{- with .Site.Data.services -}}
+    {{- $data = .feature_blocks -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $data -}}
+<section class="c-feature-blocks">
+  <div class="o-container">
+    {{- range $index, $item := $data -}}
+      {{- $isEven := eq (mod $index 2) 0 -}}
+      <div class="c-feature-blocks__item {{ if $isEven }}c-feature-blocks__item--even{{ else }}c-feature-blocks__item--odd{{ end }}">
+
+        {{/* Content Side (Text) */}}
+        <div class="c-feature-blocks__content">
+          {{- if $item.subtitle -}}
+            <p class="c-feature-blocks__subtitle">{{ $item.subtitle | markdownify }}</p>
+          {{- end -}}
+
+          {{/* Heading Atom - Primary variant for brand color */}}
+          {{- partial "atoms/heading.html" (dict
+            "text" ($item.title | markdownify)
+            "level" "h2"
+            "variant" "primary"
+            "class" "c-feature-blocks__title"
+          ) -}}
+
+          <p class="c-feature-blocks__description">{{ $item.description | markdownify }}</p>
+
+          {{/* Optional Features List */}}
+          {{- if $item.features -}}
+            <ul class="c-feature-blocks__list">
+              {{- range $item.features -}}
+                <li class="c-feature-blocks__list-item">{{ . | markdownify }}</li>
+              {{- end -}}
+            </ul>
+          {{- end -}}
+        </div>
+
+        {{/* Image Side */}}
+        <div class="c-feature-blocks__image-wrapper c-feature-blocks__image-wrapper--parallax">
+          {{/* Image Atom - Handles responsive srcset, lazy loading, AVIF/WebP */}}
+          {{- partial "atoms/image.html" (dict
+            "src" $item.image
+            "alt" $item.title
+            "size" "800x600"
+            "class" "c-feature-blocks__image"
+            "loading" "lazy"
+          ) -}}
         </div>
       </div>
-    {{ end }}
+    {{- end -}}
   </div>
 </section>
+{{- end -}}

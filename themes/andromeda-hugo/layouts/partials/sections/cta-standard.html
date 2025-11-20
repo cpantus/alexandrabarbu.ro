@@ -1,0 +1,109 @@
+{{/*
+================================================================================
+Standard CTA (Call-to-Action) Section
+================================================================================
+A centered call-to-action section with title, description, and button(s).
+
+BEM Structure: .c-cta
+
+Parameters:
+- title (required): CTA title
+- description (required): CTA description
+- button_text (required): Primary button text
+- button_url (required): Primary button URL
+- button_variant (optional): Button color variant (primary|secondary|tertiary|neutral) [default: primary]
+- secondary_button_text (optional): Secondary button text
+- secondary_button_url (optional): Secondary button URL
+- secondary_button_variant (optional): Secondary button variant [default: secondary]
+- variant (optional): Section color variant (primary|secondary|tertiary|neutral|success|warning|info|error) [default: primary]
+- background (optional): Background style (solid|gradient|light|none) [default: solid]
+
+Data Sources:
+1. Page front matter: .Params.cta_standard
+2. Site data: .Site.Data.shared_sections.cta_standard
+
+Usage:
+```yaml
+sections:
+  - type: "cta-standard"
+
+cta_standard:
+  variant: "primary"
+  background: "gradient"
+  title: "Ready to Start Your Journey?"
+  description: "Take the first step towards positive change. Schedule your consultation today."
+  button_text: "Book Appointment"
+  button_url: "/contact"
+  button_variant: "secondary"
+  secondary_button_text: "Learn More"
+  secondary_button_url: "/approach"
+  secondary_button_variant: "outline-secondary"
+```
+
+Version: 5.0.1 (New component)
+*/}}
+
+{{- $section := .Params.cta_standard -}}
+{{- if not $section -}}
+  {{- with .Site.Data.shared_sections -}}
+    {{- $section = .cta_standard -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $section -}}
+  {{- $variant := $section.variant | default "primary" -}}
+  {{- $background := $section.background | default "solid" -}}
+
+  {{/* Validation */}}
+  {{- if not (and $section.title $section.description $section.button_text $section.button_url) -}}
+    {{- warnf "cta-standard section requires: title, description, button_text, button_url. Page: %s" .Page.RelPermalink -}}
+  {{- end -}}
+
+  <section class="c-cta c-cta--{{ $variant }} c-cta--bg-{{ $background }}">
+    <div class="o-container">
+      <div class="c-cta__content">
+
+        {{/* Title */}}
+        {{- if $section.title -}}
+          {{ partial "atoms/heading.html" (dict
+            "level" 2
+            "text" $section.title
+            "class" "c-cta__title"
+            "variant" (cond (eq $background "solid") "neutral" $variant)
+          ) }}
+        {{- end -}}
+
+        {{/* Description */}}
+        {{- if $section.description -}}
+          <p class="c-cta__description">{{ $section.description }}</p>
+        {{- end -}}
+
+        {{/* Buttons */}}
+        {{- if and $section.button_text $section.button_url -}}
+          <div class="c-cta__buttons">
+
+            {{/* Primary Button */}}
+            {{ partial "atoms/button.html" (dict
+              "text" $section.button_text
+              "url" $section.button_url
+              "variant" ($section.button_variant | default (cond (eq $background "solid") "secondary" "primary"))
+              "size" "lg"
+            ) }}
+
+            {{/* Secondary Button (Optional) */}}
+            {{- if and $section.secondary_button_text $section.secondary_button_url -}}
+              {{ partial "atoms/button.html" (dict
+                "text" $section.secondary_button_text
+                "url" $section.secondary_button_url
+                "variant" ($section.secondary_button_variant | default "outline-secondary")
+                "size" "lg"
+              ) }}
+            {{- end -}}
+
+          </div>
+        {{- end -}}
+
+      </div>
+    </div>
+  </section>
+{{- end -}}

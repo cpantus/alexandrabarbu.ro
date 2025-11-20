@@ -1,5 +1,5 @@
 {{/*
-  Stat Card Molecule - Animated statistic/number display with icon and label
+  Stat Card Molecule - BEM refactored animated statistic/number display with icon and label
 
   Usage:
     {{ partial "molecules/stat-card.html" (dict
@@ -12,23 +12,27 @@
   Parameters:
     value (required) - The numeric value to display
     label (required) - Label/description text
-    icon (optional) - Icon name (from Line Awesome)
+    icon (optional) - Icon name for icon atom
     suffix (optional) - Suffix after number (e.g., "+", "%", "K")
     prefix (optional) - Prefix before number (e.g., "$", "RON")
-    color (optional) - Color variant (primary|secondary|success|info|warning|danger) (default: "primary")
+    variant (optional) - Color variant: primary|secondary|tertiary|neutral (default: "primary")
     animated (optional) - Enable count-up animation (default: true)
-    size (optional) - Display size (sm|md|lg) (default: "md")
+    size (optional) - Display size: sm|md|lg (default: "md")
     class (optional) - Additional CSS classes
-    aos (optional) - AOS animation name (e.g., "fade-up")
-    aosDelay (optional) - AOS delay in ms (e.g., 100)
 
-  Size variants:
-    sm: h3 number, icon 2x
-    md: h2 number (display-4), icon 3x
-    lg: h1 number (display-3), icon 4x
+  Size Variants:
+    sm: Smaller display (icon 2x, heading level 3)
+    md: Medium display (icon 3x, heading level 2) - default
+    lg: Large display (icon 4x, heading level 1)
+
+  Color Variants:
+    primary: Emerald color scheme (default)
+    secondary: Terracotta color scheme
+    tertiary: Calm blue color scheme
+    neutral: Gray color scheme
 
   Examples:
-    Simple stat:
+    Simple stat with percentage:
       {{ partial "molecules/stat-card.html" (dict
         "value" "95"
         "suffix" "%"
@@ -41,90 +45,139 @@
         "suffix" "+"
         "label" "Sessions Completed"
         "icon" "calendar-check"
-        "color" "success"
-        "aos" "fade-up"
-        "aosDelay" 100
+        "variant" "secondary"
       )}}
 
-    Large currency stat:
+    Large currency stat (no animation):
       {{ partial "molecules/stat-card.html" (dict
         "value" "50000"
         "prefix" "RON "
         "label" "Average Revenue"
         "size" "lg"
-        "color" "secondary"
+        "variant" "tertiary"
+        "animated" false
       )}}
+
+  BEM Structure:
+    .c-stat-card                    Block
+    .c-stat-card--primary           Modifier: color variant
+    .c-stat-card--sm                Modifier: size variant
+    .c-stat-card__icon              Element: icon wrapper
+    .c-stat-card__value             Element: number value wrapper
+    .c-stat-card__prefix            Element: prefix text
+    .c-stat-card__number            Element: main number (animated)
+    .c-stat-card__suffix            Element: suffix text
+    .c-stat-card__label             Element: label text
+
+  Version: 2.0.0 (BEM refactor, design token integration)
+  Last Updated: 2025-11-20
 */}}
 
-{{ $value := .value }}
-{{ $label := .label }}
-{{ $icon := .icon }}
-{{ $suffix := .suffix }}
-{{ $prefix := .prefix }}
-{{ $color := .color | default "primary" }}
-{{ $animated := .animated | default true }}
-{{ $size := .size | default "md" }}
-{{ $class := .class | default "" }}
-{{ $aos := .aos }}
-{{ $aosDelay := .aosDelay }}
+{{- /* ========================================
+     PARAMETER EXTRACTION & VALIDATION
+     ======================================== */ -}}
+{{- $value := .value -}}
+{{- $label := .label -}}
+{{- $icon := .icon | default "" -}}
+{{- $suffix := .suffix | default "" -}}
+{{- $prefix := .prefix | default "" -}}
+{{- $variant := .variant | default "primary" -}}
+{{- $animated := .animated -}}
+{{- if not (isset . "animated") -}}
+  {{- $animated = true -}}
+{{- end -}}
+{{- $size := .size | default "md" -}}
+{{- $class := .class | default "" -}}
 
-{{/* Determine sizes based on size parameter */}}
-{{ $numberClass := "h2 display-4" }}
-{{ $iconSize := "3x" }}
-{{ if eq $size "sm" }}
-  {{ $numberClass = "h3" }}
-  {{ $iconSize = "2x" }}
-{{ else if eq $size "lg" }}
-  {{ $numberClass = "h1 display-3" }}
-  {{ $iconSize = "4x" }}
-{{ end }}
+{{- /* Validate required parameters */ -}}
+{{- if not $value -}}
+  {{- errorf "stat-card.html: 'value' parameter is required (numeric value to display)" -}}
+{{- end -}}
+{{- if not $label -}}
+  {{- errorf "stat-card.html: 'label' parameter is required (label/description text)" -}}
+{{- end -}}
 
-{{/* Build wrapper classes */}}
-{{ $wrapperClass := printf "stat-card text-center %s" $class }}
+{{- /* Validate variant (primary|secondary|tertiary|neutral) */ -}}
+{{- $validVariants := slice "primary" "secondary" "tertiary" "neutral" -}}
+{{- if not (in $validVariants $variant) -}}
+  {{- warnf "stat-card.html: invalid variant '%s'. Using 'primary'. Valid: %s" $variant (delimit $validVariants ", ") -}}
+  {{- $variant = "primary" -}}
+{{- end -}}
 
-{{/* Build AOS attributes */}}
-{{ $aosAttrs := "" }}
-{{ if $aos }}
-  {{ $aosAttrs = printf `data-aos="%s"` $aos }}
-  {{ if $aosDelay }}
-    {{ $aosAttrs = printf `%s data-aos-delay="%d"` $aosAttrs $aosDelay }}
-  {{ end }}
-{{ end }}
+{{- /* Validate size (sm|md|lg) */ -}}
+{{- $validSizes := slice "sm" "md" "lg" -}}
+{{- if not (in $validSizes $size) -}}
+  {{- warnf "stat-card.html: invalid size '%s'. Using 'md'. Valid: %s" $size (delimit $validSizes ", ") -}}
+  {{- $size = "md" -}}
+{{- end -}}
 
-<div class="{{ $wrapperClass }}" {{ $aosAttrs | safeHTMLAttr }}>
-  {{/* Icon */}}
-  {{ if $icon }}
-    {{ partial "atoms/icon.html" (dict
-      "name" $icon
-      "size" $iconSize
-      "color" $color
-      "class" "mb-3"
-    ) }}
-  {{ end }}
+{{- /* ========================================
+     SIZE-BASED CONFIGURATION
+     ======================================== */ -}}
+{{- $iconSize := "3x" -}}
+{{- $headingLevel := 2 -}}
+{{- if eq $size "sm" -}}
+  {{- $iconSize = "2x" -}}
+  {{- $headingLevel = 3 -}}
+{{- else if eq $size "lg" -}}
+  {{- $iconSize = "4x" -}}
+  {{- $headingLevel = 1 -}}
+{{- end -}}
 
-  {{/* Number with animation */}}
-  <div class="stat-number mb-2">
-    {{ if $prefix }}
-      <span class="{{ $numberClass }} font-weight-bold text-{{ $color }}">{{ $prefix }}</span>
-    {{ end }}
+{{- /* ========================================
+     BEM CLASS CONSTRUCTION
+     ======================================== */ -}}
+{{- $blockClass := "c-stat-card" -}}
+{{- $modifiers := slice -}}
+{{- $modifiers = $modifiers | append (printf "c-stat-card--%s" $variant) -}}
+{{- $modifiers = $modifiers | append (printf "c-stat-card--%s" $size) -}}
+{{- $allClasses := delimit (append (slice $blockClass) $modifiers) " " -}}
+{{- if $class -}}
+  {{- $allClasses = printf "%s %s" $allClasses $class -}}
+{{- end -}}
 
-    <span class="{{ $numberClass }} font-weight-bold text-{{ $color }}"
-          {{ if $animated }}data-count="{{ $value }}"{{ end }}>
-      {{ $value }}
+{{- /* ========================================
+     COMPONENT MARKUP
+     ======================================== */ -}}
+<div class="{{ $allClasses }}">
+  {{- /* Icon */ -}}
+  {{- if $icon -}}
+    <div class="c-stat-card__icon">
+      {{ partial "atoms/icon.html" (dict
+        "name" $icon
+        "size" $iconSize
+        "variant" $variant
+      ) }}
+    </div>
+  {{- end -}}
+
+  {{- /* Value (number with optional prefix/suffix) */ -}}
+  <div class="c-stat-card__value">
+    {{- /* Prefix */ -}}
+    {{- if $prefix -}}
+      <span class="c-stat-card__prefix">{{ $prefix }}</span>
+    {{- end -}}
+
+    {{- /* Main number (with animation data attribute) */ -}}
+    <span class="c-stat-card__number"{{- if $animated }} data-count="{{ $value }}"{{- end }}>
+      {{- $value -}}
     </span>
 
-    {{ if $suffix }}
-      <span class="{{ $numberClass }} text-{{ $color }}">{{ $suffix }}</span>
-    {{ end }}
+    {{- /* Suffix */ -}}
+    {{- if $suffix -}}
+      <span class="c-stat-card__suffix">{{ $suffix }}</span>
+    {{- end -}}
   </div>
 
-  {{/* Label */}}
-  {{ if $label }}
-    {{ partial "atoms/heading.html" (dict
-      "text" $label
-      "level" 4
-      "class" "mb-0"
-      "markdown" true
-    ) }}
-  {{ end }}
+  {{- /* Label */ -}}
+  {{- if $label -}}
+    <div class="c-stat-card__label">
+      {{ partial "atoms/heading.html" (dict
+        "text" $label
+        "level" 4
+        "variant" "neutral"
+        "class" "c-stat-card__label-text"
+      ) }}
+    </div>
+  {{- end -}}
 </div>

@@ -1,0 +1,184 @@
+// ==================================
+// DIVIDER COMPONENT - BEM Architecture
+// ==================================
+//
+// Purpose: Visual separator for content sections
+// Features: Horizontal/vertical orientation, 3 color variants, spacing control
+//
+// Last Updated: 2025-11-20 (Phase 2 - Atom Refactor)
+// Version: 1.0.0 (ITCSS + BEM)
+//
+// BEM Structure:
+// Block: .c-divider
+// Modifiers: --horizontal, --vertical, --primary, --secondary, --neutral,
+//            --spacing-sm, --spacing-md, --spacing-lg,
+//            --thickness-thin, --thickness-base, --thickness-thick
+//
+
+/*------------------------------------------------------------------
+  # Base Divider Block
+-------------------------------------------------------------------*/
+
+/**
+ * Base divider component
+ * Uses semantic <hr> element for accessibility
+ */
+.c-divider {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/*------------------------------------------------------------------
+  # Orientation Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Horizontal divider (default)
+ * Full-width separator for vertical content flow
+ */
+.c-divider--horizontal {
+  width: 100%;
+  height: 0;
+  border-top-style: solid;
+}
+
+/**
+ * Vertical divider
+ * Height separator for horizontal content flow (flexbox/grid layouts)
+ */
+.c-divider--vertical {
+  width: 0;
+  height: 100%;
+  border-left-style: solid;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/*------------------------------------------------------------------
+  # Thickness Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Thin divider - 1px line
+ */
+.c-divider--thickness-thin.c-divider--horizontal {
+  border-top-width: 1px;
+}
+
+.c-divider--thickness-thin.c-divider--vertical {
+  border-left-width: 1px;
+}
+
+/**
+ * Base divider - 2px line (default)
+ */
+.c-divider--thickness-base.c-divider--horizontal {
+  border-top-width: 2px;
+}
+
+.c-divider--thickness-base.c-divider--vertical {
+  border-left-width: 2px;
+}
+
+/**
+ * Thick divider - 4px line
+ */
+.c-divider--thickness-thick.c-divider--horizontal {
+  border-top-width: 4px;
+}
+
+.c-divider--thickness-thick.c-divider--vertical {
+  border-left-width: 4px;
+}
+
+/*------------------------------------------------------------------
+  # Color Variant Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Primary divider - emerald (brand color, emphasis)
+ */
+.c-divider--primary.c-divider--horizontal {
+  border-top-color: $emerald-300;
+}
+
+.c-divider--primary.c-divider--vertical {
+  border-left-color: $emerald-300;
+}
+
+/**
+ * Secondary divider - terracotta (warm, alternative emphasis)
+ */
+.c-divider--secondary.c-divider--horizontal {
+  border-top-color: $terracotta-300;
+}
+
+.c-divider--secondary.c-divider--vertical {
+  border-left-color: $terracotta-300;
+}
+
+/**
+ * Neutral divider - gray (default, subtle separation)
+ */
+.c-divider--neutral.c-divider--horizontal {
+  border-top-color: $gray-300;
+}
+
+.c-divider--neutral.c-divider--vertical {
+  border-left-color: $gray-300;
+}
+
+/*------------------------------------------------------------------
+  # Spacing Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Small spacing - 16px vertical margin (horizontal) or 16px horizontal margin (vertical)
+ */
+.c-divider--spacing-sm.c-divider--horizontal {
+  margin-top: $space-4;    // 16px
+  margin-bottom: $space-4; // 16px
+}
+
+.c-divider--spacing-sm.c-divider--vertical {
+  margin-left: $space-4;   // 16px
+  margin-right: $space-4;  // 16px
+}
+
+/**
+ * Medium spacing - 32px vertical/horizontal margin (default)
+ */
+.c-divider--spacing-md.c-divider--horizontal {
+  margin-top: $space-8;    // 32px
+  margin-bottom: $space-8; // 32px
+}
+
+.c-divider--spacing-md.c-divider--vertical {
+  margin-left: $space-8;   // 32px
+  margin-right: $space-8;  // 32px
+}
+
+/**
+ * Large spacing - 48px vertical/horizontal margin
+ */
+.c-divider--spacing-lg.c-divider--horizontal {
+  margin-top: $space-12;    // 48px
+  margin-bottom: $space-12; // 48px
+}
+
+.c-divider--spacing-lg.c-divider--vertical {
+  margin-left: $space-12;   // 48px
+  margin-right: $space-12;  // 48px
+}
+
+/*------------------------------------------------------------------
+  # Accessibility
+-------------------------------------------------------------------*/
+
+/**
+ * Ensure dividers are accessible
+ * - Use semantic <hr> element (already done in HTML)
+ * - aria-hidden="true" for decorative dividers (handled in partial)
+ * - Sufficient color contrast for variant colors (all use 300 shades)
+ */

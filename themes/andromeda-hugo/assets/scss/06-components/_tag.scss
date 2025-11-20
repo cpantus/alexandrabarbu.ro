@@ -1,0 +1,199 @@
+// ==================================
+// TAG COMPONENT - BEM Architecture
+// ==================================
+//
+// Purpose: Small label/tag component for status indicators and categories
+// Features: 8 color variants, 3 sizes, optional icons
+//
+// Last Updated: 2025-11-20 (Phase 2 - Atom Refactor)
+// Version: 1.0.0 (ITCSS + BEM)
+//
+// BEM Structure:
+// Block: .c-tag
+// Elements: __text, __icon
+// Modifiers: --primary, --secondary, --tertiary, --success, --warning, --error, --info, --neutral, --sm, --md, --lg
+//
+
+/*------------------------------------------------------------------
+  # Base Tag Block
+-------------------------------------------------------------------*/
+
+/**
+ * Base tag component
+ * Provides foundation styling for all tag variants
+ */
+.c-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;  // 4px gap between icon and text
+  font-family: $font-body;
+  font-weight: $weight-medium;  // 500
+  line-height: 1;
+  border-radius: $radius-sm;  // 8px (tags/badges use small radius)
+  transition: $transition-fast;  // 200ms ease-in-out
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+/*------------------------------------------------------------------
+  # Tag Size Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Small tag - 12px font, 4px vertical + 8px horizontal padding
+ */
+.c-tag--sm {
+  font-size: $text-xs;  // 12px
+  padding: $space-1 $space-2;  // 4px 8px
+}
+
+/**
+ * Medium tag (default) - 14px font, 4px vertical + 12px horizontal padding
+ */
+.c-tag--md {
+  font-size: $text-sm;  // 14px
+  padding: $space-1 $space-3;  // 4px 12px
+}
+
+/**
+ * Large tag - 16px font, 8px vertical + 16px horizontal padding
+ */
+.c-tag--lg {
+  font-size: $text-base;  // 16px
+  padding: $space-2 $space-4;  // 8px 16px
+}
+
+/*------------------------------------------------------------------
+  # Tag Variant Modifiers (8 unified variants)
+-------------------------------------------------------------------*/
+
+/**
+ * Primary tag - emerald (growth, trust, professional)
+ */
+.c-tag--primary {
+  background-color: $emerald-100;
+  color: $emerald-700;
+  border: 1px solid $emerald-300;
+}
+
+/**
+ * Secondary tag - terracotta (warmth, personal, balance)
+ */
+.c-tag--secondary {
+  background-color: $terracotta-100;
+  color: $terracotta-700;
+  border: 1px solid $terracotta-300;
+}
+
+/**
+ * Tertiary tag - navy (informational, support, calm)
+ */
+.c-tag--tertiary {
+  background-color: $navy-100;
+  color: $navy-700;
+  border: 1px solid $navy-300;
+}
+
+/**
+ * Success tag - sage (positive, achievement, growth)
+ */
+.c-tag--success {
+  background-color: $sage-100;
+  color: $sage-700;
+  border: 1px solid $sage-300;
+}
+
+/**
+ * Warning tag - amber (caution, important, attention)
+ */
+.c-tag--warning {
+  background-color: $amber-100;
+  color: $amber-700;
+  border: 1px solid $amber-300;
+}
+
+/**
+ * Error tag - red (critical, error, urgent)
+ */
+.c-tag--error {
+  background-color: $red-100;
+  color: $red-700;
+  border: 1px solid $red-300;
+}
+
+/**
+ * Info tag - teal (informational, clarity, calm)
+ */
+.c-tag--info {
+  background-color: $teal-100;
+  color: $teal-700;
+  border: 1px solid $teal-300;
+}
+
+/**
+ * Neutral tag - gray (subtle, default, background)
+ */
+.c-tag--neutral {
+  background-color: $gray-100;
+  color: $gray-700;
+  border: 1px solid $gray-300;
+}
+
+/*------------------------------------------------------------------
+  # Tag Elements
+-------------------------------------------------------------------*/
+
+/**
+ * Tag text element
+ * Wraps the text content for semantic structure
+ */
+.c-tag__text {
+  // No additional styles needed (inherits from parent)
+  // Added for semantic structure and future flexibility
+}
+
+/**
+ * Tag icon element
+ * Inline icon with proper spacing
+ */
+.c-tag__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;  // Prevent icon from shrinking
+
+  // Icon inherits size from parent .c-tag font-size
+  // (icon.html partial handles font-size based on size prop)
+}
+
+/**
+ * Left-aligned icon modifier
+ * Default behavior (no additional styles needed)
+ */
+.c-tag__icon--left {
+  // Left is default layout (flex gap handles spacing)
+  // Added for semantic structure
+}
+
+/**
+ * Right-aligned icon modifier
+ * Ensures proper spacing when icon is on the right
+ */
+.c-tag__icon--right {
+  // Flex gap automatically handles spacing
+  // Added for semantic structure and future flexibility
+}
+
+/*------------------------------------------------------------------
+  # Accessibility
+-------------------------------------------------------------------*/
+
+/**
+ * Ensure tags are accessible
+ * - Sufficient color contrast (WCAG AA)
+ * - Semantic HTML (span with ARIA if needed)
+ * - Screen reader friendly
+ */
+
+// All color combinations above meet WCAG AA standards:
+// - 100 backgrounds with 700 text colors = 4.5:1+ contrast
+// - 300 borders for visual distinction

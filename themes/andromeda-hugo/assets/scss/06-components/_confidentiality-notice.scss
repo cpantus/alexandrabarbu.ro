@@ -1,0 +1,342 @@
+// ============================================================================
+// COMPONENT: Confidentiality Notice Section
+// ============================================================================
+// Displays formal/legal confidentiality information, limitations, and exceptions.
+//
+// BEM Structure:
+//   .c-confidentiality-notice                   Block
+//   .c-confidentiality-notice__header           Section header wrapper
+//   .c-confidentiality-notice__subtitle         Subtitle text
+//   .c-confidentiality-notice__intro            Intro text wrapper
+//   .c-confidentiality-notice__notices          Notices wrapper
+//   .c-confidentiality-notice__limits           Limits wrapper
+//   .c-confidentiality-notice__limits-title     Limits title with icon
+//   .c-confidentiality-notice__limits-list      Limits list (ul)
+//   .c-confidentiality-notice__link             Link wrapper
+//
+// Modifiers:
+//   .c-confidentiality-notice--primary          Emerald color variant
+//   .c-confidentiality-notice--secondary        Terracotta color variant
+//   .c-confidentiality-notice--tertiary         Tertiary color variant
+//   .c-confidentiality-notice--neutral          Neutral gray variant
+//
+// Dependencies:
+// - Design tokens (colors, spacing, typography)
+// - molecules/info-box.html
+// - atoms/heading.html
+// - atoms/link.html
+// - atoms/icon.html
+//
+// VERSION: 1.0.0 (2025-11-20)
+// ============================================================================
+
+// ----------------------------------------------------------------------------
+// Block
+// ----------------------------------------------------------------------------
+.c-confidentiality-notice {
+  padding: $space-12 0; // 96px top/bottom
+  background-color: $color-bg-section;
+
+  // Tablet
+  @media (max-width: $breakpoint-lg - 1) {
+    padding: $space-10 0; // 80px
+  }
+
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    padding: $space-8 0; // 64px
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Header
+// ----------------------------------------------------------------------------
+.c-confidentiality-notice__header {
+  text-align: center;
+  margin-bottom: $space-6; // 48px
+
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-4; // 32px
+  }
+}
+
+.c-confidentiality-notice__subtitle {
+  font-family: $font-family-sans;
+  font-size: $font-size-lg; // 18px
+  font-weight: 400;
+  color: $color-text-secondary;
+  line-height: $line-height-normal;
+  margin-top: $space-2; // 16px
+  margin-bottom: 0;
+
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-base; // 16px
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Intro Text
+// ----------------------------------------------------------------------------
+.c-confidentiality-notice__intro {
+  max-width: 48rem; // 768px
+  margin: 0 auto $space-8; // 0 auto 64px
+  text-align: center;
+
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-6; // 48px
+  }
+
+  p {
+    font-family: $font-family-sans;
+    font-size: $font-size-lg; // 18px
+    font-weight: 400;
+    color: $color-text-secondary;
+    line-height: $line-height-relaxed;
+    margin: 0 0 $space-3; // 0 0 24px
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    // Mobile
+    @media (max-width: $breakpoint-md - 1) {
+      font-size: $font-size-base; // 16px
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Notices Grid
+// ----------------------------------------------------------------------------
+.c-confidentiality-notice__notices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: $space-4; // 32px
+  margin-bottom: $space-8; // 64px
+
+  // Mobile (1 column)
+  @media (max-width: $breakpoint-md - 1) {
+    grid-template-columns: 1fr;
+    margin-bottom: $space-6; // 48px
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Limits Section
+// ----------------------------------------------------------------------------
+.c-confidentiality-notice__limits {
+  max-width: 48rem; // 768px
+  margin: 0 auto $space-8; // 0 auto 64px
+  padding: $space-6; // 48px
+  background-color: rgba($color-warning-500, 0.05);
+  border: 2px solid $color-warning-300;
+  border-radius: $border-radius-lg;
+
+  // Tablet
+  @media (max-width: $breakpoint-lg - 1) {
+    padding: $space-5; // 40px
+  }
+
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    padding: $space-4; // 32px
+    margin-bottom: $space-6; // 48px
+  }
+}
+
+.c-confidentiality-notice__limits-title {
+  font-family: $font-family-serif;
+  font-size: $font-size-xl; // 20px
+  font-weight: 600;
+  color: $color-warning-700;
+  line-height: $line-height-snug;
+  margin: 0 0 $space-4; // 0 0 32px
+  display: flex;
+  align-items: center;
+  gap: $space-2; // 16px
+
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-lg; // 18px
+    gap: $space-1; // 8px
+  }
+
+  // Icon styling (first child)
+  > :first-child {
+    flex-shrink: 0;
+  }
+
+  // Text wrapper (last child)
+  span {
+    flex: 1;
+  }
+}
+
+.c-confidentiality-notice__limits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    font-family: $font-family-sans;
+    font-size: $font-size-base; // 16px
+    font-weight: 400;
+    color: $color-text-primary;
+    line-height: $line-height-relaxed;
+    padding-left: $space-4; // 32px
+    position: relative;
+    margin-bottom: $space-3; // 24px
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    // Bullet point (custom)
+    &::before {
+      content: "⚠";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: $color-warning-600;
+      font-size: $font-size-lg; // 18px
+      line-height: inherit;
+    }
+
+    // Mobile
+    @media (max-width: $breakpoint-md - 1) {
+      font-size: $font-size-sm; // 14px
+      padding-left: $space-3; // 24px
+      margin-bottom: $space-2; // 16px
+
+      &::before {
+        font-size: $font-size-base; // 16px
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Link Wrapper
+// ----------------------------------------------------------------------------
+.c-confidentiality-notice__link {
+  text-align: center;
+  margin-top: $space-8; // 64px
+
+  // Tablet
+  @media (max-width: $breakpoint-lg - 1) {
+    margin-top: $space-6; // 48px
+  }
+
+  // Mobile
+  @media (max-width: $breakpoint-md - 1) {
+    margin-top: $space-6; // 48px
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Color Variants
+// ----------------------------------------------------------------------------
+// Variants primarily affect atoms/molecules, not section itself
+
+.c-confidentiality-notice--primary {
+  // Emerald variant (default) - no special section styles needed
+}
+
+.c-confidentiality-notice--secondary {
+  // Terracotta variant - no special section styles needed
+}
+
+.c-confidentiality-notice--tertiary {
+  // Tertiary variant - no special section styles needed
+}
+
+.c-confidentiality-notice--neutral {
+  // Neutral gray variant - no special section styles needed
+}
+
+// ----------------------------------------------------------------------------
+// Accessibility Enhancements
+// ----------------------------------------------------------------------------
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .c-confidentiality-notice__subtitle,
+  .c-confidentiality-notice__intro p {
+    color: $color-text-primary;
+    font-weight: 500;
+  }
+
+  .c-confidentiality-notice__limits {
+    background-color: rgba($color-warning-500, 0.15);
+    border-width: 3px;
+  }
+
+  .c-confidentiality-notice__limits-title {
+    color: $color-warning-900;
+  }
+
+  .c-confidentiality-notice__limits-list li {
+    color: $color-text-primary;
+    font-weight: 500;
+
+    &::before {
+      color: $color-warning-900;
+      font-weight: 700;
+    }
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .c-confidentiality-notice__notices {
+    // info-box molecules handle their own reduced motion
+  }
+}
+
+// Print styles
+@media print {
+  .c-confidentiality-notice {
+    padding: 2rem 0;
+    page-break-inside: avoid;
+  }
+
+  .c-confidentiality-notice__header {
+    margin-bottom: 1.5rem;
+  }
+
+  .c-confidentiality-notice__intro {
+    margin-bottom: 1.5rem;
+  }
+
+  .c-confidentiality-notice__notices {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .c-confidentiality-notice__limits {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-color: $color-text-primary;
+    background-color: transparent;
+  }
+
+  .c-confidentiality-notice__limits-list li {
+    margin-bottom: 0.75rem;
+  }
+
+  .c-confidentiality-notice__link {
+    display: none; // Hide link in print
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Legacy Compatibility (if needed)
+// ----------------------------------------------------------------------------
+// Map old class names to new BEM structure for backward compatibility
+
+.confidentiality-section {
+  @extend .c-confidentiality-notice;
+}

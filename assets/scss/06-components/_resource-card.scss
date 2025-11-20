@@ -1,0 +1,442 @@
+// ==========================================================================
+// Resource Card Component
+// ==========================================================================
+//
+// Resource card for displaying blog posts, articles, guides, and resources.
+// Uses BEM naming convention with 8 color variants.
+//
+// Hierarchy:
+// .c-resource-card                   - Block (card container)
+//   .c-resource-card__image-link     - Element (image wrapper link)
+//   .c-resource-card__image          - Element (resource thumbnail)
+//   .c-resource-card__content        - Element (content wrapper)
+//   .c-resource-card__meta           - Element (meta information wrapper)
+//   .c-resource-card__category-icon  - Element (category icon)
+//   .c-resource-card__title          - Element (title heading)
+//   .c-resource-card__title-link     - Element (title link)
+//   .c-resource-card__excerpt        - Element (excerpt text)
+//   .c-resource-card__date           - Element (publication date)
+//   .c-resource-card__author         - Element (author name)
+//   .c-resource-card__read-time      - Element (reading time)
+//   .c-resource-card__meta-icon      - Element (meta icon)
+//   .c-resource-card__link           - Element (read more link)
+//   .c-resource-card__link-icon      - Element (read more arrow icon)
+//
+// Modifiers:
+//   --primary / --secondary / --tertiary / --success / --warning / --error / --info / --neutral
+//   --featured                       - Featured card styling (larger, prominent)
+//
+// ==========================================================================
+
+// Block
+// ==========================================================================
+.c-resource-card {
+  display: flex;
+  flex-direction: column;
+  background: $color-bg-card;
+  border: 1px solid $color-border-light;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  transition: transform $duration-base $ease-out, box-shadow $duration-base $ease-out;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+// Image Elements
+// ==========================================================================
+.c-resource-card__image-link {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: $color-bg-section;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba($color-text-primary, 0.6) 100%);
+    opacity: 0;
+    transition: opacity $duration-base $ease-out;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+.c-resource-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform $duration-slow $ease-out;
+
+  .c-resource-card__image-link:hover & {
+    transform: scale(1.05);
+  }
+}
+
+// Content Elements
+// ==========================================================================
+.c-resource-card__content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: $space-4;
+  gap: $space-2;
+}
+
+// Meta Elements
+// ==========================================================================
+.c-resource-card__meta {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  flex-wrap: wrap;
+
+  &--top {
+    margin-bottom: $space-1;
+  }
+
+  &--bottom {
+    margin-top: auto;
+    padding-top: $space-2;
+    border-top: 1px solid $color-border-light;
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+  }
+}
+
+.c-resource-card__category-icon {
+  margin-right: -$space-1;
+}
+
+.c-resource-card__meta-icon {
+  margin-right: $space-05;
+}
+
+.c-resource-card__date,
+.c-resource-card__author,
+.c-resource-card__read-time {
+  display: flex;
+  align-items: center;
+  gap: $space-1;
+
+  &:not(:last-child)::after {
+    content: '•';
+    margin-left: $space-2;
+    color: $color-border-medium;
+  }
+}
+
+// Title Elements
+// ==========================================================================
+.c-resource-card__title {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  color: $color-text-heading;
+  margin: 0;
+}
+
+.c-resource-card__title-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color $duration-fast $ease-out;
+
+  &:hover {
+    color: $color-primary-600;
+  }
+}
+
+// Excerpt Element
+// ==========================================================================
+.c-resource-card__excerpt {
+  font-family: $font-family-body;
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+  color: $color-text-secondary;
+  margin: 0;
+  flex-grow: 1;
+}
+
+// Read More Link
+// ==========================================================================
+.c-resource-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+  font-family: $font-family-body;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+  color: $color-primary-600;
+  transition: gap $duration-fast $ease-out, color $duration-fast $ease-out;
+  margin-top: $space-2;
+
+  &:hover {
+    gap: $space-2;
+    color: $color-primary-700;
+  }
+}
+
+.c-resource-card__link-icon {
+  transition: transform $duration-fast $ease-out;
+
+  .c-resource-card__link:hover & {
+    transform: translateX(4px);
+  }
+}
+
+// Color Variant Modifiers
+// ==========================================================================
+
+// Primary Variant (Emerald)
+.c-resource-card--primary {
+  .c-resource-card__title-link:hover {
+    color: $color-primary-600;
+  }
+
+  .c-resource-card__link {
+    color: $color-primary-600;
+
+    &:hover {
+      color: $color-primary-700;
+    }
+  }
+}
+
+// Secondary Variant (Terracotta)
+.c-resource-card--secondary {
+  .c-resource-card__title-link:hover {
+    color: $color-secondary-600;
+  }
+
+  .c-resource-card__link {
+    color: $color-secondary-600;
+
+    &:hover {
+      color: $color-secondary-700;
+    }
+  }
+}
+
+// Tertiary Variant (Neutral/Gray)
+.c-resource-card--tertiary {
+  .c-resource-card__title-link:hover {
+    color: $color-tertiary-600;
+  }
+
+  .c-resource-card__link {
+    color: $color-tertiary-600;
+
+    &:hover {
+      color: $color-tertiary-700;
+    }
+  }
+}
+
+// Success Variant (Green)
+.c-resource-card--success {
+  .c-resource-card__title-link:hover {
+    color: $color-success-600;
+  }
+
+  .c-resource-card__link {
+    color: $color-success-600;
+
+    &:hover {
+      color: $color-success-700;
+    }
+  }
+}
+
+// Warning Variant (Amber)
+.c-resource-card--warning {
+  .c-resource-card__title-link:hover {
+    color: $color-warning-600;
+  }
+
+  .c-resource-card__link {
+    color: $color-warning-600;
+
+    &:hover {
+      color: $color-warning-700;
+    }
+  }
+}
+
+// Error Variant (Red)
+.c-resource-card--error {
+  .c-resource-card__title-link:hover {
+    color: $color-error-600;
+  }
+
+  .c-resource-card__link {
+    color: $color-error-600;
+
+    &:hover {
+      color: $color-error-700;
+    }
+  }
+}
+
+// Info Variant (Blue)
+.c-resource-card--info {
+  .c-resource-card__title-link:hover {
+    color: $color-info-600;
+  }
+
+  .c-resource-card__link {
+    color: $color-info-600;
+
+    &:hover {
+      color: $color-info-700;
+    }
+  }
+}
+
+// Neutral Variant (Gray)
+.c-resource-card--neutral {
+  .c-resource-card__title-link:hover {
+    color: $color-neutral-700;
+  }
+
+  .c-resource-card__link {
+    color: $color-neutral-700;
+
+    &:hover {
+      color: $color-neutral-800;
+    }
+  }
+}
+
+// Featured Modifier
+// ==========================================================================
+.c-resource-card--featured {
+  border-width: 2px;
+  box-shadow: $shadow-md;
+
+  .c-resource-card__content {
+    padding: $space-5;
+  }
+
+  .c-resource-card__title {
+    font-size: $font-size-2xl;
+  }
+
+  .c-resource-card__excerpt {
+    font-size: $font-size-lg;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: $shadow-xl;
+  }
+}
+
+// Responsive Styles
+// ==========================================================================
+
+// Mobile (< 576px)
+@media (max-width: $breakpoint-sm - 1) {
+  .c-resource-card__content {
+    padding: $space-3;
+  }
+
+  .c-resource-card__title {
+    font-size: $font-size-lg;
+  }
+
+  .c-resource-card__excerpt {
+    font-size: $font-size-sm;
+  }
+
+  .c-resource-card--featured {
+    .c-resource-card__content {
+      padding: $space-4;
+    }
+
+    .c-resource-card__title {
+      font-size: $font-size-xl;
+    }
+
+    .c-resource-card__excerpt {
+      font-size: $font-size-base;
+    }
+  }
+}
+
+// Tablet (576px - 991px)
+@media (min-width: $breakpoint-sm) and (max-width: $breakpoint-lg - 1) {
+  .c-resource-card__title {
+    font-size: $font-size-lg;
+  }
+}
+
+// Accessibility
+// ==========================================================================
+
+// High Contrast Mode
+@media (prefers-contrast: high) {
+  .c-resource-card {
+    border-width: 2px;
+    border-color: $color-border-dark;
+  }
+
+  .c-resource-card__link {
+    text-decoration: underline;
+  }
+}
+
+// Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  .c-resource-card,
+  .c-resource-card__image,
+  .c-resource-card__image-link::after,
+  .c-resource-card__title-link,
+  .c-resource-card__link,
+  .c-resource-card__link-icon {
+    transition: none;
+  }
+
+  .c-resource-card:hover {
+    transform: none;
+  }
+
+  .c-resource-card__image-link:hover .c-resource-card__image {
+    transform: none;
+  }
+}
+
+// Focus Styles
+.c-resource-card__title-link:focus,
+.c-resource-card__link:focus,
+.c-resource-card__image-link:focus {
+  outline: 2px solid $color-primary-600;
+  outline-offset: 2px;
+}
+
+// Print Styles
+// ==========================================================================
+@media print {
+  .c-resource-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  .c-resource-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .c-resource-card__link-icon {
+    display: none;
+  }
+}

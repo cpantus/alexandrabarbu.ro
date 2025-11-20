@@ -1,0 +1,432 @@
+/* ==========================================================================
+   Blog Card Molecule - BEM Component
+   ========================================================================== */
+
+/**
+ * Blog Card Component - Article/resource card with image, metadata, and actions
+ * BEM Structure: .c-blog-card
+ * Variants: primary (default), secondary, tertiary, neutral
+ * Features: Image with badge, metadata row, hover lift effect, responsive layout
+ */
+
+/* Component Root
+   ========================================================================== */
+
+.c-blog-card {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  /* Appearance */
+  background-color: $color-white;
+  border: 1px solid $color-neutral-200;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-sm;
+
+  /* Transition */
+  transition: transform $duration-base $ease-out,
+              box-shadow $duration-base $ease-out;
+
+  /* Hover State */
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-md;
+  }
+}
+
+/* Image Wrapper
+   ========================================================================== */
+
+.c-blog-card__image-wrapper {
+  /* Layout */
+  position: relative;
+  overflow: hidden;
+  border-top-left-radius: $border-radius-lg;
+  border-top-right-radius: $border-radius-lg;
+
+  /* Aspect Ratio: 16:9 */
+  aspect-ratio: 16 / 9;
+
+  /* Background (for loading state) */
+  background-color: $color-neutral-100;
+}
+
+.c-blog-card__image {
+  /* Fill container */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  /* Smooth loading */
+  transition: opacity $duration-base $ease-out;
+}
+
+/* Type Badge (overlaid on image)
+   ========================================================================== */
+
+.c-blog-card__badge {
+  /* Position */
+  position: absolute;
+  top: $space-3;      /* 24px */
+  right: $space-3;    /* 24px */
+
+  /* Z-index */
+  z-index: $z-dropdown;
+}
+
+/* Card Body (Content Container)
+   ========================================================================== */
+
+.c-blog-card__body {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  /* Spacing */
+  padding: $space-4;  /* 32px */
+
+  /* Typography */
+  font-family: $font-family-sans;
+
+  /* Responsive: Smaller padding on mobile */
+  @media (max-width: $breakpoint-md) {
+    padding: $space-3;  /* 24px */
+  }
+}
+
+/* Metadata Row
+   ========================================================================== */
+
+.c-blog-card__meta {
+  /* Layout */
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-3;      /* 24px */
+  align-items: center;
+
+  /* Spacing */
+  margin-bottom: $space-3;  /* 24px */
+
+  /* Typography */
+  font-size: $font-size-sm;
+  line-height: $line-height-snug;
+  color: $color-text-muted;
+
+  /* Responsive: Smaller gap on mobile */
+  @media (max-width: $breakpoint-md) {
+    gap: $space-2;    /* 16px */
+  }
+}
+
+.c-blog-card__meta-item {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;      /* 8px - between icon and text */
+}
+
+.c-blog-card__meta-icon {
+  /* Size already controlled by icon atom (sm = 24px) */
+  flex-shrink: 0;
+}
+
+.c-blog-card__meta-text {
+  /* No additional styling needed - inherits from parent */
+}
+
+/* Title Link
+   ========================================================================== */
+
+.c-blog-card__title-link {
+  /* Remove default link styling */
+  text-decoration: none;
+  color: inherit;
+
+  /* Hover State */
+  &:hover {
+    .c-blog-card__title {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+  }
+
+  /* Focus State */
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+    border-radius: $border-radius-sm;
+  }
+}
+
+/* Title
+   ========================================================================== */
+
+.c-blog-card__title {
+  /* Spacing */
+  margin-bottom: $space-3;  /* 24px */
+
+  /* Typography */
+  font-family: $font-family-serif;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  color: $color-text-primary;
+
+  /* Transition for underline effect */
+  transition: text-decoration-color $duration-base $ease-out;
+
+  /* Responsive: Smaller font on mobile */
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-lg;
+  }
+}
+
+/* Description
+   ========================================================================== */
+
+.c-blog-card__description {
+  /* Layout */
+  flex-grow: 1;       /* Push action button to bottom */
+
+  /* Spacing */
+  margin-bottom: $space-3;  /* 24px */
+
+  /* Typography */
+  font-family: $font-family-sans;
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+  color: $color-text-secondary;
+
+  /* Line Clamping (3 lines) */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Action Button Container
+   ========================================================================== */
+
+.c-blog-card__action {
+  /* Layout */
+  display: flex;
+  align-items: flex-start;  /* Align to start (left) */
+
+  /* Spacing (button atoms already have appropriate sizing) */
+  margin-top: auto;  /* Push to bottom if description doesn't fill space */
+}
+
+/* Color Variant Modifiers
+   ========================================================================== */
+
+/* Primary Variant (Emerald - default) */
+.c-blog-card--primary {
+  /* Border color on hover */
+  &:hover {
+    border-color: $color-primary-300;
+  }
+
+  /* Badge inherits primary variant from tag atom */
+}
+
+/* Secondary Variant (Terracotta) */
+.c-blog-card--secondary {
+  /* Border color on hover */
+  &:hover {
+    border-color: $color-secondary-300;
+  }
+
+  /* Badge inherits secondary variant from tag atom */
+}
+
+/* Tertiary Variant (Blue) */
+.c-blog-card--tertiary {
+  /* Border color on hover */
+  &:hover {
+    border-color: $color-tertiary-300;
+  }
+
+  /* Badge inherits tertiary variant from tag atom */
+}
+
+/* Neutral Variant (Gray) */
+.c-blog-card--neutral {
+  /* Border color on hover */
+  &:hover {
+    border-color: $color-neutral-400;
+  }
+
+  /* Badge inherits neutral variant from tag atom */
+}
+
+/* Responsive Behavior
+   ========================================================================== */
+
+/* Tablet: Adjust spacing */
+@media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg - 1px) {
+  .c-blog-card__body {
+    padding: $space-3;  /* 24px */
+  }
+
+  .c-blog-card__title {
+    font-size: $font-size-lg;
+  }
+}
+
+/* Desktop: Full spacing */
+@media (min-width: $breakpoint-lg) {
+  .c-blog-card__body {
+    padding: $space-4;  /* 32px */
+  }
+
+  .c-blog-card__title {
+    font-size: $font-size-xl;
+  }
+}
+
+/* Accessibility Enhancements
+   ========================================================================== */
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .c-blog-card {
+    transition: none;
+
+    &:hover {
+      transform: none;  /* Disable lift effect */
+    }
+  }
+
+  .c-blog-card__image {
+    transition: none;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .c-blog-card {
+    border-width: 2px;
+    border-color: currentColor;
+  }
+
+  .c-blog-card__title {
+    font-weight: $font-weight-bold;
+  }
+}
+
+/* Focus Visible (keyboard navigation) */
+.c-blog-card:focus-visible {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}
+
+/* Print Styles
+   ========================================================================== */
+
+@media print {
+  .c-blog-card {
+    /* Remove shadows and transforms */
+    box-shadow: none;
+    transform: none;
+
+    /* Simplified border */
+    border: 1px solid $color-neutral-400;
+
+    /* Page break control */
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .c-blog-card__badge {
+    /* Hide decorative badge in print */
+    display: none;
+  }
+
+  .c-blog-card__action {
+    /* Hide action button in print */
+    display: none;
+  }
+}
+
+/* Backward Compatibility (Legacy Classes)
+   ========================================================================== */
+
+/* Map legacy blog-card-molecule class to BEM component */
+.blog-card-molecule {
+  @extend .c-blog-card;
+}
+
+/* Map legacy blog-card class to BEM component */
+.blog-card {
+  @extend .c-blog-card;
+}
+
+/* Map legacy card class when used within blog-card context */
+.blog-card-molecule .card {
+  @extend .c-blog-card;
+}
+
+/* Map legacy blog-card-image class */
+.blog-card-image {
+  @extend .c-blog-card__image-wrapper;
+}
+
+/* Map legacy blog-badge class */
+.blog-badge {
+  @extend .c-blog-card__badge;
+}
+
+/* Map legacy blog-meta class */
+.blog-meta {
+  @extend .c-blog-card__meta;
+}
+
+/* Map legacy card-body class when used in blog-card */
+.blog-card-molecule .card-body {
+  @extend .c-blog-card__body;
+}
+
+/* Map legacy card-title class when used in blog-card */
+.blog-card-molecule .card-title {
+  @extend .c-blog-card__title;
+}
+
+/* Map legacy card-text class when used in blog-card */
+.blog-card-molecule .card-text {
+  @extend .c-blog-card__description;
+}
+
+/* Map legacy card-img-top class */
+.blog-card-molecule .card-img-top {
+  @extend .c-blog-card__image;
+}
+
+/**
+ * Component Notes:
+ *
+ * 1. **Layout**: Flexbox column layout with flex-grow for description to push button to bottom
+ * 2. **Image**: Aspect ratio 16:9 with object-fit cover, badge overlaid in top-right corner
+ * 3. **Metadata**: Flexbox row with wrapping, icon atoms with text labels
+ * 4. **Title**: Heading atom integration, underline on hover when linked
+ * 5. **Description**: Line clamping to 3 lines with ellipsis
+ * 6. **Action**: Button atom with outline variant matching card variant
+ * 7. **Hover Effect**: Lift card 4px with shadow upgrade
+ * 8. **Color Variants**: 4 semantic variants (primary, secondary, tertiary, neutral)
+ * 9. **Responsive**: Scales padding and font sizes across breakpoints
+ * 10. **Accessibility**: WCAG AA, keyboard nav, reduced motion, high contrast
+ * 11. **Print**: Simplified layout, hide decorative elements
+ * 12. **Compatibility**: Legacy class mappings via @extend
+ *
+ * Typography Scale:
+ * - Title: $font-size-xl (32px) desktop, $font-size-lg (24px) mobile
+ * - Description: $font-size-base (16px)
+ * - Metadata: $font-size-sm (14px)
+ *
+ * Spacing (8pt Grid):
+ * - Card padding: $space-4 (32px) desktop, $space-3 (24px) mobile
+ * - Element gaps: $space-3 (24px) standard, $space-2 (16px) mobile
+ * - Badge position: $space-3 (24px) from edges
+ * - Icon-text gap: $space-1 (8px)
+ */

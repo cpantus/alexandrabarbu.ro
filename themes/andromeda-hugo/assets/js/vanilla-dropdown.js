@@ -1,8 +1,9 @@
 /**
  * Vanilla JavaScript Dropdown Handler
  * Replaces Bootstrap dropdown functionality for navigation
- * Supports: data-toggle="dropdown", outside click, keyboard navigation, mobile touch
- * @version 1.0.0
+ * Supports: data-dropdown-toggle, outside click, keyboard navigation, mobile touch
+ * Supports both Bootstrap classes (legacy) and BEM classes (new)
+ * @version 2.0.0
  */
 
 (function() {
@@ -16,7 +17,10 @@
       this.trigger = element;
       this.menu = this.getMenu();
       this.isOpen = false;
-      this.parent = this.trigger.closest('.nav-item') || this.trigger.parentElement;
+      this.parent = this.trigger.closest('.c-navigation__item') ||
+                    this.trigger.closest('.c-nav-item') ||
+                    this.trigger.closest('.nav-item') ||
+                    this.trigger.parentElement;
 
       if (!this.menu) {
         console.warn('Dropdown menu not found for', element);
@@ -32,13 +36,27 @@
     getMenu() {
       // Try sibling first (most common pattern)
       let menu = this.trigger.nextElementSibling;
+
+      // BEM classes (new - navigation molecule)
+      if (menu && menu.classList.contains('c-navigation__dropdown')) {
+        return menu;
+      }
+
+      // BEM classes (new - nav-item molecule)
+      if (menu && menu.classList.contains('c-nav-item__dropdown')) {
+        return menu;
+      }
+
+      // Bootstrap classes (legacy)
       if (menu && menu.classList.contains('dropdown-menu')) {
         return menu;
       }
 
       // Try parent's child
       const parent = this.trigger.parentElement;
-      menu = parent.querySelector('.dropdown-menu');
+      menu = parent.querySelector('.c-navigation__dropdown') ||
+             parent.querySelector('.c-nav-item__dropdown') ||
+             parent.querySelector('.dropdown-menu');
       return menu;
     }
 
@@ -62,7 +80,7 @@
       });
 
       // Handle menu item clicks
-      const menuItems = this.menu.querySelectorAll('.dropdown-item');
+      const menuItems = this.menu.querySelectorAll('.c-navigation__dropdown-link, .c-nav-item__dropdown-link, .dropdown-item');
       menuItems.forEach(item => {
         item.addEventListener('click', () => {
           this.close();
@@ -88,9 +106,9 @@
       // Close all other dropdowns first
       this.closeOthers();
 
-      // Add show class
-      this.menu.classList.add('show');
-      this.parent.classList.add('show');
+      // Add open/show classes (BEM + Bootstrap)
+      this.menu.classList.add('c-navigation__dropdown--open', 'c-nav-item__dropdown--open', 'show');
+      this.parent.classList.add('c-navigation__item--open', 'c-nav-item--open', 'show');
       this.isOpen = true;
       this.updateAria();
 
@@ -110,8 +128,8 @@
      * Close the dropdown
      */
     close() {
-      this.menu.classList.remove('show');
-      this.parent.classList.remove('show');
+      this.menu.classList.remove('c-navigation__dropdown--open', 'c-nav-item__dropdown--open', 'show');
+      this.parent.classList.remove('c-navigation__item--open', 'c-nav-item--open', 'show');
       this.isOpen = false;
       this.updateAria();
 
@@ -184,7 +202,7 @@
      * Focus the next menu item
      */
     focusNextItem() {
-      const items = Array.from(this.menu.querySelectorAll('.dropdown-item'));
+      const items = Array.from(this.menu.querySelectorAll('.c-navigation__dropdown-link, .c-nav-item__dropdown-link, .dropdown-item'));
       const currentIndex = items.indexOf(document.activeElement);
 
       if (currentIndex < items.length - 1) {
@@ -198,7 +216,7 @@
      * Focus the previous menu item
      */
     focusPreviousItem() {
-      const items = Array.from(this.menu.querySelectorAll('.dropdown-item'));
+      const items = Array.from(this.menu.querySelectorAll('.c-navigation__dropdown-link, .c-nav-item__dropdown-link, .dropdown-item'));
       const currentIndex = items.indexOf(document.activeElement);
 
       if (currentIndex > 0) {
@@ -217,7 +235,7 @@
 
       // Check if dropdown overflows viewport on the right
       if (rect.right > viewportWidth) {
-        this.menu.classList.add('dropdown-menu-end');
+        this.menu.classList.add('c-navigation__dropdown--end', 'c-nav-item__dropdown--end', 'dropdown-menu-end');
       }
     }
 
@@ -237,7 +255,8 @@
    * Initialize all dropdown elements on page load
    */
   function initDropdowns() {
-    const dropdownTriggers = document.querySelectorAll('[data-toggle="dropdown"]');
+    // Support both BEM pattern (data-dropdown-toggle) and Bootstrap pattern (data-toggle="dropdown")
+    const dropdownTriggers = document.querySelectorAll('[data-dropdown-toggle], [data-toggle="dropdown"]');
     dropdownTriggers.forEach(trigger => {
       new Dropdown(trigger);
     });

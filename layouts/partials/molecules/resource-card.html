@@ -1,0 +1,159 @@
+{{- /*
+  Resource Card Molecule
+
+  Displays a blog post, article, guide, or resource with image, category, title, excerpt, and read more link.
+  Used in resources grid, blog listings, and related resources sections.
+
+  Parameters:
+  - image (optional): Image path for resource thumbnail
+  - imageAlt (optional): Alt text for image
+  - category (optional): Resource category/type (e.g., "Article", "Guide", "Exercise")
+  - categoryIcon (optional): Icon name for category
+  - title (required): Resource title
+  - excerpt (optional): Short description/excerpt
+  - url (required): Link to full resource
+  - date (optional): Publication date
+  - author (optional): Author name
+  - readTime (optional): Reading time estimate (e.g., "5 min read")
+  - variant (optional): Color variant (primary|secondary|tertiary|success|warning|error|info|neutral) - default: primary
+  - featured (optional): Featured styling (boolean) - default: false
+
+  Example Usage:
+  {{ partial "molecules/resource-card.html" (dict
+    "image" "images/blog/article.jpg"
+    "imageAlt" "Article thumbnail"
+    "category" "Article"
+    "categoryIcon" "las la-newspaper"
+    "title" "Understanding Anxiety in Modern Life"
+    "excerpt" "Learn about the causes and symptoms of anxiety..."
+    "url" "/blog/understanding-anxiety"
+    "date" "2025-01-15"
+    "author" "Alexandra Barbu"
+    "readTime" "5 min read"
+    "variant" "primary"
+    "featured" false
+  ) }}
+*/ -}}
+
+{{- /* Parameter validation */ -}}
+{{- if not .title -}}
+  {{- warnf "resource-card.html: Missing required parameter 'title'" -}}
+{{- end -}}
+{{- if not .url -}}
+  {{- warnf "resource-card.html: Missing required parameter 'url'" -}}
+{{- end -}}
+
+{{- /* Set defaults */ -}}
+{{- $variant := .variant | default "primary" -}}
+{{- $featured := .featured | default false -}}
+
+{{- /* Validate variant */ -}}
+{{- $validVariants := slice "primary" "secondary" "tertiary" "success" "warning" "error" "info" "neutral" -}}
+{{- if not (in $validVariants $variant) -}}
+  {{- warnf "resource-card.html: Invalid variant '%s'. Using 'primary'. Valid options: %s" $variant (delimit $validVariants ", ") -}}
+  {{- $variant = "primary" -}}
+{{- end -}}
+
+{{- /* Build card classes */ -}}
+{{- $cardClass := "c-resource-card" -}}
+{{- $cardClass = printf "%s c-resource-card--%s" $cardClass $variant -}}
+{{- if $featured -}}
+  {{- $cardClass = printf "%s c-resource-card--featured" $cardClass -}}
+{{- end -}}
+
+<article class="{{ $cardClass }}">
+  {{- /* Image section */ -}}
+  {{- if .image -}}
+    <a href="{{ .url | relLangURL }}" class="c-resource-card__image-link" aria-label="{{ .title }}">
+      {{- partial "atoms/image.html" (dict
+        "src" .image
+        "alt" (.imageAlt | default .title)
+        "class" "c-resource-card__image"
+        "loading" "lazy"
+      ) -}}
+    </a>
+  {{- end -}}
+
+  <div class="c-resource-card__content">
+    {{- /* Category badge */ -}}
+    {{- if .category -}}
+      <div class="c-resource-card__meta c-resource-card__meta--top">
+        {{- if .categoryIcon -}}
+          {{- partial "atoms/icon.html" (dict
+            "name" .categoryIcon
+            "variant" $variant
+            "size" "sm"
+            "class" "c-resource-card__category-icon"
+          ) -}}
+        {{- end -}}
+        {{- partial "atoms/tag.html" (dict
+          "text" .category
+          "variant" $variant
+          "size" "sm"
+        ) -}}
+      </div>
+    {{- end -}}
+
+    {{- /* Title */ -}}
+    <h3 class="c-resource-card__title">
+      <a href="{{ .url | relLangURL }}" class="c-resource-card__title-link">
+        {{ .title }}
+      </a>
+    </h3>
+
+    {{- /* Excerpt */ -}}
+    {{- if .excerpt -}}
+      <p class="c-resource-card__excerpt">
+        {{ .excerpt }}
+      </p>
+    {{- end -}}
+
+    {{- /* Meta information */ -}}
+    {{- if or .date .author .readTime -}}
+      <div class="c-resource-card__meta c-resource-card__meta--bottom">
+        {{- if .date -}}
+          <time class="c-resource-card__date" datetime="{{ .date }}">
+            {{- partial "atoms/icon.html" (dict
+              "name" "las la-calendar"
+              "size" "xs"
+              "class" "c-resource-card__meta-icon"
+            ) -}}
+            <span>{{ dateFormat "2 Jan 2006" .date }}</span>
+          </time>
+        {{- end -}}
+
+        {{- if .author -}}
+          <span class="c-resource-card__author">
+            {{- partial "atoms/icon.html" (dict
+              "name" "las la-user"
+              "size" "xs"
+              "class" "c-resource-card__meta-icon"
+            ) -}}
+            <span>{{ .author }}</span>
+          </span>
+        {{- end -}}
+
+        {{- if .readTime -}}
+          <span class="c-resource-card__read-time">
+            {{- partial "atoms/icon.html" (dict
+              "name" "las la-clock"
+              "size" "xs"
+              "class" "c-resource-card__meta-icon"
+            ) -}}
+            <span>{{ .readTime }}</span>
+          </span>
+        {{- end -}}
+      </div>
+    {{- end -}}
+
+    {{- /* Read more link */ -}}
+    <a href="{{ .url | relLangURL }}" class="c-resource-card__link">
+      {{ i18n "read_more" | default "Read More" }}
+      {{- partial "atoms/icon.html" (dict
+        "name" "las la-arrow-right"
+        "size" "sm"
+        "class" "c-resource-card__link-icon"
+      ) -}}
+    </a>
+  </div>
+</article>

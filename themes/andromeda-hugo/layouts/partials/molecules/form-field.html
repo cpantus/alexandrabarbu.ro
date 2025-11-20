@@ -9,20 +9,37 @@
       "label" "Email Address"
       "placeholder" "you@example.com"
       "required" true
-      "helpText" "We'll never share your email"
-      "errorText" "Please enter a valid email"
-      "class" "mb-4"
+      "variant" "primary"
     )}}
 
   Parameters:
-    All parameters from atoms/input.html, plus:
-    errorText (optional) - Error message to display on validation failure
-    errorId (optional) - ID for error message element (default: "{id}-error")
-    showError (optional) - Whether to show error initially (default: false)
-    validationClass (optional) - Add is-valid or is-invalid class
-    hint (optional) - Hint text displayed below label (different from helpText which goes below input)
-    floatingLabel (optional) - Use floating label style (default: false)
-    icon (optional) - Icon to display inside input (dict with name, position: left|right)
+    type (required) - Input type: text|email|tel|number|password|url|date|textarea|select|checkbox|radio
+    name (required) - Input name attribute
+    id (required) - Input ID attribute
+    label (required) - Label text
+    placeholder (optional) - Placeholder text
+    value (optional) - Initial value
+    required (optional) - Mark as required: true|false (default: false)
+    disabled (optional) - Disable input: true|false (default: false)
+    readonly (optional) - Make readonly: true|false (default: false)
+    variant (optional) - Color variant: primary|secondary|tertiary|neutral (default: neutral)
+    class (optional) - Additional CSS classes for wrapper
+    inputClass (optional) - Additional CSS classes for input element
+    labelClass (optional) - Additional CSS classes for label
+    rows (optional) - Rows for textarea (default: 4)
+    min (optional) - Min value for number inputs
+    max (optional) - Max value for number inputs
+    pattern (optional) - Validation pattern regex
+    helpText (optional) - Help text displayed below input
+    hint (optional) - Hint text displayed below label
+    errorText (optional) - Error message for validation
+    errorId (optional) - ID for error message (default: "{id}-error")
+    showError (optional) - Show error initially: true|false (default: false)
+    validationState (optional) - Validation state: valid|invalid
+    floatingLabel (optional) - Use floating label: true|false (default: false)
+    icon (optional) - Icon dict with name, position (left|right), size
+    options (optional) - Options array for select (dict with value, text)
+    attributes (optional) - Additional HTML attributes
 
   Examples:
     Basic text field:
@@ -41,212 +58,248 @@
         "id" "email"
         "label" "Email"
         "required" true
-        "errorText" "Invalid email address"
-        "validationClass" "is-invalid"
+        "variant" "primary"
+        "errorText" "Please enter a valid email address"
+        "validationState" "invalid"
       )}}
 
-    Textarea with character count:
+    Field with icon:
       {{ partial "molecules/form-field.html" (dict
-        "type" "textarea"
-        "name" "message"
-        "id" "message"
-        "label" "Message"
-        "rows" 5
-        "helpText" "Maximum 500 characters"
+        "type" "text"
+        "name" "search"
+        "id" "search"
+        "label" "Search"
+        "icon" (dict "name" "search" "position" "left")
       )}}
 */}}
 
-{{ $type := .type | default "text" }}
-{{ $name := .name }}
-{{ $id := .id }}
-{{ $label := .label }}
-{{ $placeholder := .placeholder }}
-{{ $value := .value }}
-{{ $required := .required | default false }}
-{{ $disabled := .disabled | default false }}
-{{ $readonly := .readonly | default false }}
-{{ $class := .class | default "" }}
-{{ $inputClass := .inputClass | default "" }}
-{{ $labelClass := .labelClass | default "" }}
-{{ $rows := .rows | default 4 }}
-{{ $min := .min }}
-{{ $max := .max }}
-{{ $pattern := .pattern }}
-{{ $helpText := .helpText }}
-{{ $hint := .hint }}
-{{ $options := .options }}
-{{ $attributes := .attributes | default dict }}
+{{- $type := .type | default "text" -}}
+{{- $name := .name -}}
+{{- $id := .id -}}
+{{- $label := .label -}}
+{{- $placeholder := .placeholder -}}
+{{- $value := .value -}}
+{{- $required := .required | default false -}}
+{{- $disabled := .disabled | default false -}}
+{{- $readonly := .readonly | default false -}}
+{{- $variant := .variant | default "neutral" -}}
+{{- $class := .class | default "" -}}
+{{- $inputClass := .inputClass | default "" -}}
+{{- $labelClass := .labelClass | default "" -}}
+{{- $rows := .rows | default 4 -}}
+{{- $min := .min -}}
+{{- $max := .max -}}
+{{- $pattern := .pattern -}}
+{{- $helpText := .helpText -}}
+{{- $hint := .hint -}}
+{{- $errorText := .errorText -}}
+{{- $errorId := .errorId | default (printf "%s-error" $id) -}}
+{{- $showError := .showError | default false -}}
+{{- $validationState := .validationState -}}
+{{- $floatingLabel := .floatingLabel | default false -}}
+{{- $icon := .icon -}}
+{{- $options := .options -}}
+{{- $attributes := .attributes | default dict -}}
 
-{{/* Form field specific params */}}
-{{ $errorText := .errorText }}
-{{ $errorId := .errorId | default (printf "%s-error" $id) }}
-{{ $showError := .showError | default false }}
-{{ $validationClass := .validationClass }}
-{{ $floatingLabel := .floatingLabel | default false }}
-{{ $icon := .icon }}
-
-{{/* Determine if this is a checkbox/radio type */}}
-{{ $isCheckable := or (eq $type "checkbox") (eq $type "radio") }}
+{{/* Determine if this is a checkable type */}}
+{{- $isCheckable := or (eq $type "checkbox") (eq $type "radio") -}}
 
 {{/* Build wrapper classes */}}
-{{ $wrapperClass := "form-field-molecule" }}
-{{ if $class }}
-  {{ $wrapperClass = printf "%s %s" $wrapperClass $class }}
-{{ end }}
+{{- $wrapperClass := "c-form__group" -}}
+{{- $wrapperClass = printf "%s c-form__group--%s" $wrapperClass $variant -}}
+{{- if $floatingLabel -}}
+  {{- $wrapperClass = printf "%s c-form__group--floating" $wrapperClass -}}
+{{- end -}}
+{{- if $validationState -}}
+  {{- $wrapperClass = printf "%s c-form__group--%s" $wrapperClass $validationState -}}
+{{- end -}}
+{{- if $class -}}
+  {{- $wrapperClass = printf "%s %s" $wrapperClass $class -}}
+{{- end -}}
 
-{{/* Add validation class to input */}}
-{{ if $validationClass }}
-  {{ $inputClass = printf "%s %s" $inputClass $validationClass }}
-{{ end }}
+{{/* Build label classes */}}
+{{- $fullLabelClass := "c-form__label" -}}
+{{- if $labelClass -}}
+  {{- $fullLabelClass = printf "%s %s" $fullLabelClass $labelClass -}}
+{{- end -}}
 
-{{/* Build input group for icons */}}
-{{ $hasIcon := and $icon (isset $icon "name") }}
-{{ $iconPosition := "" }}
-{{ if $hasIcon }}
-  {{ $iconPosition = ($icon.position | default "left") }}
-{{ end }}
+{{/* Build input classes */}}
+{{- $fullInputClass := "" -}}
+{{- if eq $type "textarea" -}}
+  {{- $fullInputClass = "c-form__textarea" -}}
+{{- else if eq $type "select" -}}
+  {{- $fullInputClass = "c-form__select" -}}
+{{- else if $isCheckable -}}
+  {{- $fullInputClass = "c-form__check-input" -}}
+{{- else -}}
+  {{- $fullInputClass = "c-form__input" -}}
+{{- end -}}
+{{- if $inputClass -}}
+  {{- $fullInputClass = printf "%s %s" $fullInputClass $inputClass -}}
+{{- end -}}
+
+{{/* Icon setup */}}
+{{- $hasIcon := and $icon (isset $icon "name") -}}
+{{- $iconPosition := "" -}}
+{{- if $hasIcon -}}
+  {{- $iconPosition = ($icon.position | default "left") -}}
+{{- end -}}
 
 <div class="{{ $wrapperClass }}">
-  {{/* Floating label variant */}}
-  {{ if and $floatingLabel (not $isCheckable) }}
-    <div class="form-floating">
-      {{ if eq $type "textarea" }}
+  {{/* Label (above input for non-floating, non-checkable) */}}
+  {{- if and $label (not $floatingLabel) (not $isCheckable) -}}
+    <label class="{{ $fullLabelClass }}" for="{{ $id }}">
+      {{- $label -}}
+      {{- if $required -}}<span class="c-form__required">*</span>{{- end -}}
+    </label>
+    {{- with $hint -}}
+      <small class="c-form__hint">{{ . }}</small>
+    {{- end -}}
+  {{- end -}}
+
+  {{/* Input wrapper (with icon support) */}}
+  {{- if $hasIcon -}}
+    <div class="c-form__input-wrapper c-form__input-wrapper--icon-{{ $iconPosition }}">
+      {{- if eq $iconPosition "left" -}}
+        <span class="c-form__icon c-form__icon--left">
+          {{ partial "atoms/icon.html" (dict "icon" $icon.name "size" ($icon.size | default "sm")) }}
+        </span>
+      {{- end -}}
+
+      {{/* Input element */}}
+      {{- if eq $type "textarea" -}}
         <textarea
-          class="form-control shadow-none {{ $inputClass }}"
+          class="{{ $fullInputClass }}"
           id="{{ $id }}"
           name="{{ $name }}"
-          placeholder="{{ $placeholder | default $label }}"
+          placeholder="{{ $placeholder }}"
           rows="{{ $rows }}"
-          {{ if $required }}required{{ end }}
-          {{ if $disabled }}disabled{{ end }}
-          {{ if $readonly }}readonly{{ end }}
-          {{ if $showError }}aria-invalid="true" aria-describedby="{{ $errorId }}"{{ end }}
-          {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}
+          {{- if $required }} required{{ end -}}
+          {{- if $disabled }} disabled{{ end -}}
+          {{- if $readonly }} readonly{{ end -}}
+          {{- if $showError }} aria-invalid="true" aria-describedby="{{ $errorId }}"{{ end -}}
+          {{- range $key, $val := $attributes }} {{ $key }}="{{ $val }}"{{ end -}}
         >{{ $value }}</textarea>
-      {{ else if eq $type "select" }}
+      {{- else if eq $type "select" -}}
         <select
-          class="form-select shadow-none {{ $inputClass }}"
+          class="{{ $fullInputClass }}"
           id="{{ $id }}"
           name="{{ $name }}"
-          {{ if $required }}required{{ end }}
-          {{ if $disabled }}disabled{{ end }}
-          {{ if $showError }}aria-invalid="true" aria-describedby="{{ $errorId }}"{{ end }}
-          {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}>
-          {{ range $options }}
+          {{- if $required }} required{{ end -}}
+          {{- if $disabled }} disabled{{ end -}}
+          {{- if $showError }} aria-invalid="true" aria-describedby="{{ $errorId }}"{{ end -}}
+          {{- range $key, $val := $attributes }} {{ $key }}="{{ $val }}"{{ end -}}>
+          {{- range $options -}}
             <option value="{{ .value }}"{{ if eq .value $value }} selected{{ end }}>{{ .text }}</option>
-          {{ end }}
+          {{- end -}}
         </select>
-      {{ else }}
+      {{- else -}}
         <input
           type="{{ $type }}"
-          class="form-control shadow-none {{ $inputClass }}"
+          class="{{ $fullInputClass }}"
           id="{{ $id }}"
           name="{{ $name }}"
-          placeholder="{{ $placeholder | default $label }}"
-          {{ if $value }}value="{{ $value }}"{{ end }}
-          {{ if $required }}required{{ end }}
-          {{ if $disabled }}disabled{{ end }}
-          {{ if $readonly }}readonly{{ end }}
-          {{ if $min }}min="{{ $min }}"{{ end }}
-          {{ if $max }}max="{{ $max }}"{{ end }}
-          {{ if $pattern }}pattern="{{ $pattern }}"{{ end }}
-          {{ if $showError }}aria-invalid="true" aria-describedby="{{ $errorId }}"{{ end }}
-          {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}>
-      {{ end }}
-      <label for="{{ $id }}">{{ $label }}{{ if $required }}<span class="text-danger ms-1">*</span>{{ end }}</label>
-    </div>
+          {{- if $placeholder }} placeholder="{{ $placeholder }}"{{ end -}}
+          {{- if $value }} value="{{ $value }}"{{ end -}}
+          {{- if $required }} required{{ end -}}
+          {{- if $disabled }} disabled{{ end -}}
+          {{- if $readonly }} readonly{{ end -}}
+          {{- if $min }} min="{{ $min }}"{{ end -}}
+          {{- if $max }} max="{{ $max }}"{{ end -}}
+          {{- if $pattern }} pattern="{{ $pattern }}"{{ end -}}
+          {{- if $showError }} aria-invalid="true" aria-describedby="{{ $errorId }}"{{ end -}}
+          {{- range $key, $val := $attributes }} {{ $key }}="{{ $val }}"{{ end -}}>
+      {{- end -}}
 
-  {{/* Standard variant with icon support */}}
-  {{ else if $hasIcon }}
-    {{ if and $label (not $isCheckable) }}
-      <label class="mb-2 {{ $labelClass }}" for="{{ $id }}">
-        {{ $label }}{{ if $required }}<span class="text-danger ms-1">*</span>{{ end }}
-      </label>
-      {{ with $hint }}
-        <small class="text-muted d-block mb-2">{{ . }}</small>
-      {{ end }}
-    {{ end }}
-
-    <div class="input-group">
-      {{ if eq $iconPosition "left" }}
-        <span class="input-group-text">
-          {{ partial "atoms/icon.html" (dict "name" $icon.name "size" ($icon.size | default "md")) }}
+      {{- if eq $iconPosition "right" -}}
+        <span class="c-form__icon c-form__icon--right">
+          {{ partial "atoms/icon.html" (dict "icon" $icon.name "size" ($icon.size | default "sm")) }}
         </span>
-      {{ end }}
-
-      {{ partial "atoms/input.html" (dict
-        "type" $type
-        "name" $name
-        "id" $id
-        "placeholder" $placeholder
-        "value" $value
-        "required" $required
-        "disabled" $disabled
-        "readonly" $readonly
-        "inputClass" $inputClass
-        "rows" $rows
-        "min" $min
-        "max" $max
-        "pattern" $pattern
-        "options" $options
-        "attributes" (merge $attributes (dict
-          "aria-invalid" (cond $showError "true" "false")
-          "aria-describedby" (cond $showError $errorId "")
-        ))
-      ) }}
-
-      {{ if eq $iconPosition "right" }}
-        <span class="input-group-text">
-          {{ partial "atoms/icon.html" (dict "name" $icon.name "size" ($icon.size | default "md")) }}
-        </span>
-      {{ end }}
+      {{- end -}}
     </div>
+  {{- else -}}
+    {{/* Input element (no icon wrapper) */}}
+    {{- if eq $type "textarea" -}}
+      <textarea
+        class="{{ $fullInputClass }}"
+        id="{{ $id }}"
+        name="{{ $name }}"
+        placeholder="{{ $placeholder | default (cond $floatingLabel $label "") }}"
+        rows="{{ $rows }}"
+        {{- if $required }} required{{ end -}}
+        {{- if $disabled }} disabled{{ end -}}
+        {{- if $readonly }} readonly{{ end -}}
+        {{- if $showError }} aria-invalid="true" aria-describedby="{{ $errorId }}"{{ end -}}
+        {{- range $key, $val := $attributes }} {{ $key }}="{{ $val }}"{{ end -}}
+      >{{ $value }}</textarea>
+    {{- else if eq $type "select" -}}
+      <select
+        class="{{ $fullInputClass }}"
+        id="{{ $id }}"
+        name="{{ $name }}"
+        {{- if $required }} required{{ end -}}
+        {{- if $disabled }} disabled{{ end -}}
+        {{- if $showError }} aria-invalid="true" aria-describedby="{{ $errorId }}"{{ end -}}
+        {{- range $key, $val := $attributes }} {{ $key }}="{{ $val }}"{{ end -}}>
+        {{- range $options -}}
+          <option value="{{ .value }}"{{ if eq .value $value }} selected{{ end }}>{{ .text }}</option>
+        {{- end -}}
+      </select>
+    {{- else if $isCheckable -}}
+      <div class="c-form__check">
+        <input
+          type="{{ $type }}"
+          class="{{ $fullInputClass }}"
+          id="{{ $id }}"
+          name="{{ $name }}"
+          {{- if $value }} value="{{ $value }}"{{ end -}}
+          {{- if $required }} required{{ end -}}
+          {{- if $disabled }} disabled{{ end -}}
+          {{- if $readonly }} readonly{{ end -}}
+          {{- if $showError }} aria-invalid="true" aria-describedby="{{ $errorId }}"{{ end -}}
+          {{- range $key, $val := $attributes }} {{ $key }}="{{ $val }}"{{ end -}}>
+        <label class="c-form__check-label" for="{{ $id }}">
+          {{- $label -}}
+          {{- if $required -}}<span class="c-form__required">*</span>{{- end -}}
+        </label>
+      </div>
+    {{- else -}}
+      <input
+        type="{{ $type }}"
+        class="{{ $fullInputClass }}"
+        id="{{ $id }}"
+        name="{{ $name }}"
+        placeholder="{{ $placeholder | default (cond $floatingLabel $label "") }}"
+        {{- if $value }} value="{{ $value }}"{{ end -}}
+        {{- if $required }} required{{ end -}}
+        {{- if $disabled }} disabled{{ end -}}
+        {{- if $readonly }} readonly{{ end -}}
+        {{- if $min }} min="{{ $min }}"{{ end -}}
+        {{- if $max }} max="{{ $max }}"{{ end -}}
+        {{- if $pattern }} pattern="{{ $pattern }}"{{ end -}}
+        {{- if $showError }} aria-invalid="true" aria-describedby="{{ $errorId }}"{{ end -}}
+        {{- range $key, $val := $attributes }} {{ $key }}="{{ $val }}"{{ end -}}>
+    {{- end -}}
+  {{- end -}}
 
-  {{/* Standard variant */}}
-  {{ else }}
-    {{ if and $label (not $isCheckable) }}
-      <label class="mb-2 {{ $labelClass }}" for="{{ $id }}">
-        {{ $label }}{{ if $required }}<span class="text-danger ms-1">*</span>{{ end }}
-      </label>
-      {{ with $hint }}
-        <small class="text-muted d-block mb-2">{{ . }}</small>
-      {{ end }}
-    {{ end }}
-
-    {{ partial "atoms/input.html" (dict
-      "type" $type
-      "name" $name
-      "id" $id
-      "label" (cond $isCheckable $label "")
-      "placeholder" $placeholder
-      "value" $value
-      "required" $required
-      "disabled" $disabled
-      "readonly" $readonly
-      "inputClass" $inputClass
-      "labelClass" $labelClass
-      "rows" $rows
-      "min" $min
-      "max" $max
-      "pattern" $pattern
-      "options" $options
-      "attributes" (merge $attributes (dict
-        "aria-invalid" (cond $showError "true" "false")
-        "aria-describedby" (cond $showError $errorId "")
-      ))
-    ) }}
-  {{ end }}
+  {{/* Label (after input for floating variant) */}}
+  {{- if and $label $floatingLabel (not $isCheckable) -}}
+    <label class="{{ $fullLabelClass }}" for="{{ $id }}">
+      {{- $label -}}
+      {{- if $required -}}<span class="c-form__required">*</span>{{- end -}}
+    </label>
+  {{- end -}}
 
   {{/* Help text */}}
-  {{ with $helpText }}
-    <small class="form-text text-muted d-block mt-2">{{ . }}</small>
-  {{ end }}
+  {{- with $helpText -}}
+    <small class="c-form__help-text">{{ . }}</small>
+  {{- end -}}
 
   {{/* Error message */}}
-  {{ if $errorText }}
-    <div class="invalid-feedback{{ if $showError }} d-block{{ end }}" id="{{ $errorId }}" role="alert">
-      {{ partial "atoms/icon.html" (dict "name" "exclamation-circle" "size" "sm" "class" "me-1") }}
-      {{ $errorText }}
+  {{- if $errorText -}}
+    <div class="c-form__feedback c-form__feedback--invalid{{ if $showError }} c-form__feedback--visible{{ end }}" id="{{ $errorId }}" role="alert">
+      {{ partial "atoms/icon.html" (dict "icon" "exclamation-circle" "size" "xs" "class" "c-form__feedback-icon") }}
+      <span class="c-form__feedback-text">{{ $errorText }}</span>
     </div>
-  {{ end }}
+  {{- end -}}
 </div>

@@ -1,62 +1,116 @@
 {{/*
-  Cookie Consent Banner (GDPR Compliant)
-  
-  Shows banner on first visit, stores preference in localStorage
-  Psychology-practice specific with clear consent options
-  
-  Usage: {{ partial "molecules/cookie-consent.html" . }}
+  Cookie Consent Banner Molecule - GDPR-compliant cookie consent
+  BEM Component: .c-cookie-consent (refactored 2025-11-20)
+
+  Usage:
+    {{ partial "molecules/cookie-consent.html" (dict "variant" "primary") }}
+
+  Parameters:
+    variant (optional) - Color variant: "primary" (default), "secondary", "tertiary", "neutral"
+    class (optional)   - Additional CSS classes
+
+  Color Variants:
+    - "primary" (default) - Emerald accent (professional, trustworthy)
+    - "secondary"        - Terracotta accent (warm, friendly)
+    - "tertiary"         - Blue accent (calm, informational)
+    - "neutral"          - Gray accent (subtle, minimal)
+
+  BEM Structure:
+    .c-cookie-consent              - Root container (fixed bottom banner)
+    .c-cookie-consent--{variant}   - Color variant modifier
+    .c-cookie-consent--visible     - Visible state modifier (added by JS)
+    .c-cookie-consent__content     - Content wrapper (container with padding)
+    .c-cookie-consent__text        - Text content area
+    .c-cookie-consent__title       - Heading element (uses heading atom)
+    .c-cookie-consent__message     - Message text
+    .c-cookie-consent__actions     - Button container
+    .c-cookie-consent__button      - Individual button (uses button atom)
+
+  Features:
+    - GDPR compliant (explicit consent, essential-only option)
+    - localStorage preference storage (persists across sessions)
+    - Auto-show after 1s delay (if no preference stored)
+    - Fade animation (slide-up + opacity)
+    - Two consent options: Accept all vs Essential only
+    - Heading atom integration
+    - Button atom integration (primary + outline variants)
+    - 4 color variants matching design system
+    - Responsive layout (stack buttons on mobile)
+    - Fixed positioning (bottom of viewport)
+    - Glassmorphism background with blur
+    - Keyboard accessible (focus states, ARIA labels)
+    - Psychology practice-specific messaging
+    - JavaScript extracted to cookie-consent.js file
+
+  JavaScript:
+    - Loaded via assets/js/cookie-consent.js
+    - Checks localStorage for existing preference
+    - Shows banner with animation if no preference
+    - Stores choice in localStorage ('accepted' or 'essential-only')
+    - Hides banner with fade-out animation
+    - Respects prefers-reduced-motion
+
+  i18n Keys (define in i18n/ro.yaml and i18n/en.yaml):
+    - cookie_title: Banner heading (default: "🍪 Respectăm Confidențialitatea Ta")
+    - cookie_message: GDPR explanation message
+    - cookie_accept: Accept button text (default: "Accept")
+    - cookie_decline: Essential-only button text (default: "Doar Esențiale")
+
+  Examples:
+    Primary variant (default):
+      {{ partial "molecules/cookie-consent.html" . }}
+
+    Secondary variant (warm):
+      {{ partial "molecules/cookie-consent.html" (dict "variant" "secondary") }}
+
+    Tertiary variant (calm):
+      {{ partial "molecules/cookie-consent.html" (dict "variant" "tertiary") }}
+
+    Neutral variant (subtle):
+      {{ partial "molecules/cookie-consent.html" (dict "variant" "neutral") }}
 */}}
 
-<div id="cookie-consent" class="cookie-consent" style="display: none;">
-  <div class="cookie-consent-content">
-    <div class="cookie-consent-text">
-      <h5>{{ i18n `cookie_title` | default `🍪 Respectăm Confidențialitatea Ta` }}</h5>
-      <p>{{ i18n `cookie_message` | default `Folosim cookies esențiale pentru funcționarea site-ului și cookie-uri de analiză pentru a îmbunătăți experiența ta. Nu folosim cookies de marketing. Datele tale sunt protejate conform GDPR.` }}</p>
+{{/* Parameter extraction with defaults */}}
+{{ $variant := .variant | default "primary" }}
+{{ $class := .class | default "" }}
+
+{{/* Build BEM class with variant modifier */}}
+{{ $bemClass := "c-cookie-consent" }}
+{{ if $variant }}
+  {{ $bemClass = printf "%s c-cookie-consent--%s" $bemClass $variant }}
+{{ end }}
+{{ if $class }}
+  {{ $bemClass = printf "%s %s" $bemClass $class }}
+{{ end }}
+
+<div id="cookie-consent" class="{{ $bemClass }}">
+  <div class="c-cookie-consent__content">
+    <div class="c-cookie-consent__text">
+      {{ partial "atoms/heading.html" (dict
+        "text" (i18n "cookie_title" | default "🍪 Respectăm Confidențialitatea Ta")
+        "level" 5
+        "variant" $variant
+        "class" "c-cookie-consent__title"
+      ) }}
+      <p class="c-cookie-consent__message">
+        {{ i18n "cookie_message" | default "Folosim cookies esențiale pentru funcționarea site-ului și cookie-uri de analiză pentru a îmbunătăți experiența ta. Nu folosim cookies de marketing. Datele tale sunt protejate conform GDPR." | markdownify }}
+      </p>
     </div>
-    <div class="cookie-consent-buttons">
-      <button id="cookie-accept" class="btn btn-primary btn-sm">{{ i18n `cookie_accept` | default `Accept` }}</button>
-      <button id="cookie-decline" class="btn btn-outline-secondary btn-sm">{{ i18n `cookie_decline` | default `Doar Esențiale` }}</button>
+    <div class="c-cookie-consent__actions">
+      {{ partial "atoms/button.html" (dict
+        "text" (i18n "cookie_accept" | default "Accept")
+        "id" "cookie-accept"
+        "variant" $variant
+        "size" "sm"
+        "class" "c-cookie-consent__button"
+      ) }}
+      {{ partial "atoms/button.html" (dict
+        "text" (i18n "cookie_decline" | default "Doar Esențiale")
+        "id" "cookie-decline"
+        "variant" (printf "outline-%s" $variant)
+        "size" "sm"
+        "class" "c-cookie-consent__button"
+      ) }}
     </div>
   </div>
 </div>
-
-<script>
-// Cookie consent functionality
-(function() {
-  const banner = document.getElementById('cookie-consent');
-  const acceptBtn = document.getElementById('cookie-accept');
-  const declineBtn = document.getElementById('cookie-decline');
-  
-  if (!banner || !acceptBtn || !declineBtn) return;
-  
-  // Check if user has already made a choice
-  const consent = localStorage.getItem('cookie-consent');
-  
-  if (!consent) {
-    // Show banner after 1 second
-    setTimeout(() => {
-      banner.style.display = 'block';
-      setTimeout(() => banner.classList.add('visible'), 100);
-    }, 1000);
-  }
-  
-  // Accept all cookies
-  acceptBtn.addEventListener('click', function() {
-    localStorage.setItem('cookie-consent', 'accepted');
-    hideBanner();
-    // Enable analytics here if needed
-    // window.gtag && gtag('consent', 'update', { analytics_storage: 'granted' });
-  });
-  
-  // Accept only essential
-  declineBtn.addEventListener('click', function() {
-    localStorage.setItem('cookie-consent', 'essential-only');
-    hideBanner();
-  });
-  
-  function hideBanner() {
-    banner.classList.remove('visible');
-    setTimeout(() => banner.style.display = 'none', 300);
-  }
-})();
-</script>

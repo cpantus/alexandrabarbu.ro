@@ -5,188 +5,220 @@ layout: "flexible"
 
 sections:
   - type: "hero-breadcrumb"
-  - type: "credentials-showcase"
   - type: "problem-empathy"
-  - type: "feature-blocks"
-  - type: "values-intro"
-  - type: "values-compass"
-  - type: "credentials-showcase"
-  - type: "video-popup"
-
+  - type: "services-preview"
+  - type: "about-preview"
+  - type: "approach-preview"
+  - type: "testimonials-enhanced"
+  - type: "simple-process"
   - type: "faq-mini"
-  - type: "contact-form-enhanced"
+  - type: "cta-standard"
 
-# Hero Image
-hero_image: "images/hero/alexandra-barbu-cabinet.jpg"
+# ============================================================================
+# 1. HERO SECTION
+# ============================================================================
 
-# Strategic color variant assignments (Phase 1D - balanced distribution)
-# Pattern: primary (emerald) → secondary (terracotta) → outline-primary → secondary
-button_variant: "primary"  # Global default for sections without specific variant
+hero_breadcrumb:
+  title: "Professional Psychological Therapy in Bucharest"
+  subtitle: "Specialized help for depression, anxiety and relationships"
+  description: "Evidence-based integrative approach. Free 30-minute consultation to get to know each other."
+  image: "images/hero/alexandra-barbu-cabinet.jpg"
+  button_text: "Book Free Consultation"
+  button_url: "/en/contact/"
+  button_variant: "primary"
+  secondary_button_text: "Learn More"
+  secondary_button_url: "#problem"
 
-# 1. Credentials Showcase - Trust Building
-credentials_showcase:
-  enable: true
-  subtitle: "Professional Qualification"
-  title: "Expertise and Credibility"
-  description: "Accreditations and experience that guarantee quality services"
-  background: "light"
-  credentials:
-    - icon: "user-md"
-      label: "Licensed Clinical Psychologist"
-      value: "CPR Certified"
-      variant: "primary"
-    - icon: "award"
-      label: "10+ Years Experience"
-      value: "500+ Clients Helped"
-      variant: "secondary"  # Terracotta - personal connection
-    - icon: "certificate"
-      label: "CPR Member"
-      value: "Romanian College of Psychologists"
-      variant: "info"
-    - icon: "graduation-cap"
-      label: "Continuous Training"
-      value: "CBT, EMDR, Mindfulness"
-      variant: "coral"  # Compassionate learning
-  show_trust_text: true
-  trust_text: "Verified certifications and accreditations. Member in good standing of professional psychotherapy organizations."
+# ============================================================================
+# 2. PROBLEM/EMPATHY SECTION
+# ============================================================================
 
-# 2. Problem/Empathy Section
 problem_empathy:
-  enable: true
-  subtitle: "You're not alone"
   title: "Do You Recognize These Signs?"
+  subtitle: "You're Not Alone"
   description: "Many people face similar challenges. The first step toward healing is recognizing the need for help."
   challenges:
-    - title: "Constant Anxiety and Stress"
-      description: "You feel overwhelmed by daily worries, tense without apparent reason, with difficulty concentrating."
-      icon: "brain"
-      index: 0
-    - title: "Difficult Relationships"
-      description: "Recurring conflicts with your partner, communication difficulties, feelings of loneliness in the relationship."
-      icon: "users"
-      index: 1
-    - title: "Unresolved Trauma"
-      description: "Painful memories that haunt you, flashbacks, intense emotional reactions to seemingly harmless stimuli."
-      icon: "brain"
-      index: 2
-    - title: "Decreased Well-being"
+    - title: "You feel overwhelmed by anxiety"
+      description: "Constant worries, unexplained tension, panic attacks, difficulty concentrating."
+      icon: "las la-brain"
+    - title: "Your relationships are suffering"
+      description: "Recurring conflicts, communication difficulties, feelings of loneliness or misunderstanding."
+      icon: "las la-heart-broken"
+    - title: "You no longer find joy in life"
       description: "Lack of energy, loss of pleasure in activities, sleep disturbances, feeling of inner emptiness."
-      icon: "sad-tear"
-      index: 3
+      icon: "las la-sad-tear"
+    - title: "You feel stuck in the past"
+      description: "Unresolved trauma, painful memories, flashbacks, intense emotional reactions."
+      icon: "las la-clock"
   empathy_text: "I understand what you're going through. These challenges are real and deserve professional attention. **Therapy can be the turning point** toward a more balanced and fulfilling life."
 
-# 3. Services Preview
-feature_blocks:
-  - title: "Individual Therapy"
-    subtitle: "Personal development"
-    description: "Personalized approach for anxiety, depression, trauma and personal development. Scientifically proven methods adapted to your unique needs."
-    image: "images/services/terapie-individuala.jpg"
-  - title: "Couples Therapy"
-    subtitle: "Healthy relationships"
-    description: "Improving communication, resolving conflicts and rebuilding intimacy. Rediscover the connection with your partner."
-    image: "images/services/terapie-cuplu.jpg"
-  - title: "Family Therapy"
-    subtitle: "Family harmony"
-    description: "Healthy family dynamics, resolving intergenerational conflicts and creating a safe family environment."
-    image: "images/services/terapie-familie.jpg"
-  - title: "Organizational Psychology"
-    subtitle: "Workplace performance"
-    description: "Leadership coaching, professional stress management and high-performing team development."
-    image: "images/services/psihologie-organizationala.jpg"
+# ============================================================================
+# 3. SERVICES PREVIEW
+# ============================================================================
 
-# 4. About Preview
-values_intro:
-  enable: true
-  subtitle: "About me"
-  title: "Alexandra Barbu"
-  description: |
-    **Integrative psychotherapist** with over 10 years of experience helping people overcome emotional challenges and improve their quality of life.
+services_preview:
+  title: "How I Can Help"
+  subtitle: "Specialized Services"
+  services:
+    - title: "Individual Therapy"
+      description: "Personalized approach for depression, anxiety, trauma and personal growth. Scientifically proven methods adapted to your unique needs."
+      icon: "las la-user"
+      url: "/en/services/individual-therapy/"
+      button_text: "Learn More"
+      button_variant: "primary"
+    - title: "Couple Therapy"
+      description: "Rebuild connection and communication in your relationship. Rediscover intimacy and resolve conflicts constructively."
+      icon: "las la-heart"
+      url: "/en/services/couple-therapy/"
+      button_text: "Learn More"
+      button_variant: "secondary"
+    - title: "Family Therapy"
+      description: "Healing and harmonizing family dynamics. Create a safe and supportive family environment."
+      icon: "las la-users"
+      url: "/en/services/family-therapy/"
+      button_text: "Learn More"
+      button_variant: "primary"
+    - title: "Organizational Psychology"
+      description: "Team optimization and healthy organizational culture. Leadership and workplace performance."
+      icon: "las la-building"
+      url: "/en/services/organizational-psychology/"
+      button_text: "Learn More"
+      button_variant: "secondary"
 
-    **Specializations:**
-    - Cognitive Behavioral Therapy (CBT)
-    - Mindfulness and Compassion
-    - EMDR for trauma
-    - Systemic Therapy
+# ============================================================================
+# 4. ABOUT PREVIEW
+# ============================================================================
 
-    My approach is based on **empathy, respect and collaboration**. I believe that each person has inner resources for healing - my role is to guide you in discovering and activating them.
-  image: "images/about/alexandra-barbu-profile.jpg"
-  button_variant: "secondary"  # Terracotta - personal/warm connection
-  button:
-    enable: true
-    label: "About Me"
-    link: "about"
+about_preview:
+  title: "About Me"
+  subtitle: "Your Therapist"
+  image: "images/about/alexandra-barbu-portrait.jpg"
+  bio: |
+    I'm a clinical psychologist with over 15 years of experience in individual and couple therapy. I believe in the power of healing through compassion, understanding, and evidence-based techniques.
 
-# 5. Approach Preview
-benefits_section:
-  enable: true
-  subtitle: "My approach"
-  title: "Integrative Therapeutic Philosophy"
-  description: "I combine the most effective therapeutic methods for lasting results."
-  button_variant: "secondary"  # Terracotta - warm approach
-  benefits:
-    - title: "Science-Based"
-      icon: "flask"
-      description: "I use scientifically validated methods: Cognitive-Behavioral Therapy (CBT), Dialectical Behavior Therapy (DBT), and Acceptance and Commitment Therapy (ACT)."
-    - title: "Client-Centered"
-      icon: "heart"
-      description: "You are at the center of the therapeutic process. I prioritize your comfort, pace, and choices in every session."
-    - title: "Solution-Oriented"
-      icon: "bullseye"
-      description: "The focus is on developing concrete and sustainable solutions, not just analyzing problems. Measurable results and real progress."
+    My approach is based on **empathy, respect and collaboration**. Every person has inner resources for healing - my role is to guide you in discovering and activating them.
+  credentials:
+    - text: "Licensed Clinical Psychologist"
+      icon: "las la-certificate"
+    - text: "15+ years experience"
+      icon: "las la-clock"
+    - text: "Certifications: CBT, EMDR, Mindfulness"
+      icon: "las la-award"
+    - text: "Member of Romanian College of Psychologists"
+      icon: "las la-graduation-cap"
+  button_text: "Read My Story"
+  button_url: "/en/about/"
+  button_variant: "secondary"
 
-# 6. Testimonials
-video_popup:
-  enable: true
-  subtitle: "Real experiences"
+# ============================================================================
+# 5. APPROACH PREVIEW
+# ============================================================================
+
+approach_preview:
+  title: "My Therapeutic Approach"
+  subtitle: "Core Principles"
+  description: "I combine the most effective therapeutic methods for lasting results and real transformation."
+  principles:
+    - title: "Evidence-Based"
+      description: "I use scientifically validated methods: CBT, DBT, ACT, EMDR. Proven techniques for measurable results."
+      icon: "las la-flask"
+    - title: "Personalized"
+      description: "Every therapy plan is adapted to your unique needs. No two healing journeys are identical."
+      icon: "las la-user-circle"
+    - title: "Compassion"
+      description: "I create a safe, judgment-free space where you can express yourself freely and be vulnerable."
+      icon: "las la-heart"
+    - title: "Measurable Results"
+      description: "We track progress together and adjust the approach for optimal results. Total transparency."
+      icon: "las la-chart-line"
+  button_text: "Discover Complete Approach"
+  button_url: "/en/approach/"
+  button_variant: "primary"
+
+# ============================================================================
+# 6. TESTIMONIALS
+# ============================================================================
+
+testimonials_enhanced:
   title: "What My Clients Say"
+  subtitle: "Real Experiences"
   description: "Authentic feedback from people who have gone through therapy with me."
-  video_url: "https://www.youtube.com/watch?v=VIDEO_ID"
-  thumbnail: "images/testimonials/video-thumbnail.jpg"
   testimonials:
-    - quote: "Therapy with Alexandra helped me understand and manage anxiety. Now I can live without constant fear."
-      author: "Maria T."
-      role: "Individual Therapy Client"
+    - quote: "Alexandra helped me find the strength to overcome depression. I see life differently now and have concrete tools to manage challenges."
+      author: "Maria, 34 years old"
+      role: "Individual Therapy"
       rating: 5
-    - quote: "We saved our marriage. Alexandra taught us to truly communicate, not just talk."
-      author: "Andrei & Elena P."
-      role: "Couples Therapy Clients"
+      verified: true
+      outcome: "Depression symptoms reduction: 80%"
+    - quote: "Our relationship was on the edge. Now we truly communicate, understand and support each other. Thank you!"
+      author: "Andrei and Elena"
+      role: "Couple Therapy"
       rating: 5
-    - quote: "EMDR was transformative. The trauma that blocked me for years no longer has the same power over me."
-      author: "Cristina M."
-      role: "EMDR Client"
+      verified: true
+      outcome: "Relationship satisfaction improvement: 90%"
+    - quote: "The techniques learned in therapy helped me manage daily anxiety. I no longer live with constant fear."
+      author: "Ioana, 28 years old"
+      role: "Individual Therapy - Anxiety"
       rating: 5
+      verified: true
+      outcome: "Panic attacks reduction: 95%"
 
-# 8. FAQ Preview
+# ============================================================================
+# 7. SIMPLE PROCESS
+# ============================================================================
+
+simple_process:
+  title: "3 Steps to Healing"
+  subtitle: "Getting Started"
+  steps:
+    - number: "1"
+      title: "Book Free Consultation"
+      description: "30 minutes to get to know each other and see if I can help. No obligations, completely confidential."
+      icon: "las la-calendar"
+    - number: "2"
+      title: "Assessment and Personalized Plan"
+      description: "We understand your challenges and create an action plan adapted to your goals together."
+      icon: "las la-clipboard-list"
+    - number: "3"
+      title: "Begin Healing Journey"
+      description: "We work together toward your mental health goals. Concrete steps, measurable results."
+      icon: "las la-seedling"
+
+# ============================================================================
+# 8. FAQ PREVIEW
+# ============================================================================
+
 faq_mini:
-  enable: true
   title: "Frequently Asked Questions"
+  subtitle: "Quick Answers"
   faqs:
-    - question: "How long does a therapy session last?"
-      answer: "A standard session lasts 50 minutes. The first session can last up to 90 minutes for a complete initial assessment."
-    - question: "Is online therapy as effective?"
-      answer: "Yes! Studies show that online therapy is as effective as face-to-face for most issues. It offers flexibility and comfort, ideal for people with busy schedules."
-    - question: "How many sessions will I need?"
-      answer: "It depends on the complexity of the issue. Some people see improvements in 6-8 sessions, others benefit from longer-term therapy (3-6 months). We determine the optimal duration together."
-    - question: "Is everything I discuss in therapy confidential?"
-      answer: "Absolutely. Confidentiality is fundamental in therapy. Everything we discuss remains between us, except in situations provided by law (risk of harm)."
+    - question: "How long is a session?"
+      answer: "A session lasts 50-60 minutes. The first session can be longer (90 minutes) for complete assessment."
+    - question: "How much does therapy cost?"
+      answer: "The rate for an individual session is 250 lei. Package discounts available. See complete details on the Contact page."
+    - question: "Is it confidential?"
+      answer: "Yes, completely confidential. We strictly adhere to GDPR confidentiality standards and professional ethics."
+    - question: "How many sessions are needed?"
+      answer: "It varies by needs. Some clients benefit from 6-10 sessions, others from longer-term therapy (3-6 months). We determine together."
+  link_text: "See All Questions"
+  link_url: "/en/contact/#faq"
 
-# 9. CTA Final
-contact_form_enhanced:
-  enable: true
-  button_variant: "primary"  # Emerald - main action/CTA
-  subtitle: "Start today"
-  title: "Take the First Step Toward a Better Life"
-  description: |
-    **The initial consultation is free** - 30 minutes in which we explore together how I can help you.
+# ============================================================================
+# 9. CTA FINAL
+# ============================================================================
 
-    ✓ No obligations
-    ✓ 100% confidential
-    ✓ Online or in-person
-  form_action: "https://formspree.io/f/YOUR_FORM_ID"
-  calendly_url: "https://calendly.com/alexandra-barbu/free-consultation"
-  show_guarantees: true
+cta_standard:
+  title: "Ready to Take the First Step?"
+  subtitle: "Start Today"
+  description: "You don't have to go through this alone. Book a free consultation today and let's begin the journey to healing together."
+  button_text: "Book Free Consultation"
+  button_url: "/en/contact/"
+  button_variant: "primary"
   guarantees:
-    - "First response within 24 hours"
-    - "Flexible scheduling (including weekends)"
-    - "Online or in-person option"
+    - text: "Free 30-minute initial consultation"
+      icon: "las la-check-circle"
+    - text: "Completely confidential"
+      icon: "las la-shield-alt"
+    - text: "Online or in-office"
+      icon: "las la-laptop-house"
 ---

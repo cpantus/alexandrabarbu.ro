@@ -42,6 +42,7 @@ $ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);  // Playful (use sparingly
 // ----------------------------------
 // Pre-built transition combinations for common use cases
 $transition-base: all $duration-normal $ease-in-out;
+$transition-normal: all $duration-normal $ease-in-out;  // Alias for base
 $transition-fast: all $duration-fast $ease-in-out;
 $transition-slow: all $duration-slow $ease-in-out;
 $transition-colors: background-color $duration-normal $ease-in-out,
@@ -106,6 +107,22 @@ $z-modal: 1050;
 $z-popover: 1060;
 $z-tooltip: 1070;
 $z-skip-link: 10000;
+
+// ==================================
+// SEMANTIC ALIASES (Component-Friendly Names)
+// ==================================
+// These aliases map component-style semantic names to existing token names
+// for backward compatibility and improved developer experience.
+
+// ----------------------------------
+// Easing Aliases
+// ----------------------------------
+$easing-default: $ease-in-out;                 // Standard easing
+$easing-in-out: $ease-in-out;                  // Smooth transitions
+$easing-out: $ease-out;                        // Entrance animations
+$easing-in: $ease-in;                          // Exit animations
+$easing-bounce: $ease-bounce;                  // Playful animations
+$easing-ease-out: $ease-out;                   // Alias for ease-out
 
 // ==================================
 // END OF MOTION, BREAKPOINTS & Z-INDEX TOKENS

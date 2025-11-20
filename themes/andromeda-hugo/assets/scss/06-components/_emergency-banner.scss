@@ -1,0 +1,431 @@
+/* ==========================================================================
+   Emergency Banner Molecule - BEM Component
+   ========================================================================== */
+
+/**
+ * Emergency Banner Component - Crisis resources banner
+ * BEM Structure: .c-emergency-banner
+ * Variants: warning (default), error, info, primary
+ * Features: Fixed top positioning, dismissible, slide-down animation, urgent styling
+ */
+
+/* Component Root
+   ========================================================================== */
+
+.c-emergency-banner {
+  /* Position: Fixed top */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-sticky;
+
+  /* Appearance */
+  background-color: $color-warning-100;
+  border-bottom: 2px solid $color-warning-500;
+
+  /* Transition for hiding animation */
+  transition: transform $duration-normal $ease-out,
+              opacity $duration-normal $ease-out;
+}
+
+/* Hiding State (Added by JavaScript during dismissal)
+   ========================================================================== */
+
+.c-emergency-banner.hiding,
+.c-emergency-banner--hiding {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+/* Container
+   ========================================================================== */
+
+.c-emergency-banner__container {
+  /* Layout: Container with max-width */
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: $space-2 $space-3;  /* 16px vertical, 24px horizontal */
+
+  /* Responsive: Smaller padding on mobile */
+  @media (max-width: $breakpoint-md) {
+    padding: $space-2;  /* 16px all around */
+  }
+}
+
+/* Content Wrapper
+   ========================================================================== */
+
+.c-emergency-banner__content {
+  /* Layout: Flexbox row */
+  display: flex;
+  align-items: center;
+  gap: $space-3;      /* 24px */
+
+  /* Responsive: Stack on small mobile */
+  @media (max-width: $breakpoint-sm) {
+    flex-wrap: wrap;
+    gap: $space-2;    /* 16px */
+  }
+}
+
+/* Icon
+   ========================================================================== */
+
+.c-emergency-banner__icon {
+  /* Icon size controlled by icon atom (md = 32px) */
+  flex-shrink: 0;
+
+  /* Responsive: Hide on very small mobile */
+  @media (max-width: 400px) {
+    display: none;
+  }
+}
+
+/* Text Content Area
+   ========================================================================== */
+
+.c-emergency-banner__text {
+  /* Layout */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;      /* 8px */
+
+  /* Typography */
+  font-family: $font-family-sans;
+
+  /* Responsive: Row layout on wide screens */
+  @media (min-width: $breakpoint-lg) {
+    flex-direction: row;
+    align-items: center;
+    gap: $space-2;    /* 16px */
+  }
+}
+
+/* Title
+   ========================================================================== */
+
+.c-emergency-banner__title {
+  /* Typography */
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-snug;
+  color: $color-warning-900;
+
+  /* Spacing */
+  margin: 0;
+}
+
+/* Message
+   ========================================================================== */
+
+.c-emergency-banner__message {
+  /* Typography */
+  font-size: $font-size-sm;
+  line-height: $line-height-snug;
+  color: $color-warning-800;
+
+  /* Spacing */
+  margin: 0;
+}
+
+/* Close Button
+   ========================================================================== */
+
+.c-emergency-banner__close {
+  /* Layout */
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;       /* 4 × 8pt */
+  height: 32px;      /* 4 × 8pt */
+
+  /* Appearance */
+  background: transparent;
+  border: none;
+  border-radius: $border-radius-sm;
+  color: $color-warning-700;
+
+  /* Cursor */
+  cursor: pointer;
+
+  /* Transition */
+  transition: background-color $duration-fast $ease-out,
+              color $duration-fast $ease-out;
+
+  /* Hover State */
+  &:hover {
+    background-color: $color-warning-200;
+    color: $color-warning-900;
+  }
+
+  /* Focus State */
+  &:focus {
+    outline: 2px solid $color-warning-600;
+    outline-offset: 2px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-warning-600;
+    outline-offset: 2px;
+  }
+
+  /* Active State */
+  &:active {
+    background-color: $color-warning-300;
+  }
+}
+
+/* Color Variant Modifiers
+   ========================================================================== */
+
+/* Warning Variant (Amber - default) */
+.c-emergency-banner--warning {
+  background-color: $color-warning-100;
+  border-bottom-color: $color-warning-500;
+
+  .c-emergency-banner__title {
+    color: $color-warning-900;
+  }
+
+  .c-emergency-banner__message {
+    color: $color-warning-800;
+  }
+
+  .c-emergency-banner__close {
+    color: $color-warning-700;
+
+    &:hover {
+      background-color: $color-warning-200;
+      color: $color-warning-900;
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline-color: $color-warning-600;
+    }
+
+    &:active {
+      background-color: $color-warning-300;
+    }
+  }
+}
+
+/* Error Variant (Red - critical) */
+.c-emergency-banner--error {
+  background-color: $color-error-100;
+  border-bottom-color: $color-error-500;
+
+  .c-emergency-banner__title {
+    color: $color-error-900;
+  }
+
+  .c-emergency-banner__message {
+    color: $color-error-800;
+  }
+
+  .c-emergency-banner__close {
+    color: $color-error-700;
+
+    &:hover {
+      background-color: $color-error-200;
+      color: $color-error-900;
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline-color: $color-error-600;
+    }
+
+    &:active {
+      background-color: $color-error-300;
+    }
+  }
+}
+
+/* Info Variant (Blue - informational) */
+.c-emergency-banner--info {
+  background-color: $color-info-100;
+  border-bottom-color: $color-info-500;
+
+  .c-emergency-banner__title {
+    color: $color-info-900;
+  }
+
+  .c-emergency-banner__message {
+    color: $color-info-800;
+  }
+
+  .c-emergency-banner__close {
+    color: $color-info-700;
+
+    &:hover {
+      background-color: $color-info-200;
+      color: $color-info-900;
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline-color: $color-info-600;
+    }
+
+    &:active {
+      background-color: $color-info-300;
+    }
+  }
+}
+
+/* Primary Variant (Emerald - supportive) */
+.c-emergency-banner--primary {
+  background-color: $color-primary-100;
+  border-bottom-color: $color-primary-500;
+
+  .c-emergency-banner__title {
+    color: $color-primary-900;
+  }
+
+  .c-emergency-banner__message {
+    color: $color-primary-800;
+  }
+
+  .c-emergency-banner__close {
+    color: $color-primary-700;
+
+    &:hover {
+      background-color: $color-primary-200;
+      color: $color-primary-900;
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline-color: $color-primary-600;
+    }
+
+    &:active {
+      background-color: $color-primary-300;
+    }
+  }
+}
+
+/* Accessibility Enhancements
+   ========================================================================== */
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .c-emergency-banner {
+    /* Faster transitions */
+    transition: opacity $duration-fast $ease-out;
+
+    /* Disable transform animation */
+    &.hiding,
+    &--hiding {
+      transform: none;
+    }
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .c-emergency-banner {
+    /* Stronger border */
+    border-bottom-width: 3px;
+  }
+
+  .c-emergency-banner__title,
+  .c-emergency-banner__message {
+    font-weight: $font-weight-semibold;
+  }
+
+  .c-emergency-banner__close {
+    border: 2px solid currentColor;
+
+    &:focus,
+    &:focus-visible {
+      outline-width: 3px;
+    }
+  }
+}
+
+/* Print Styles
+   ========================================================================== */
+
+@media print {
+  .c-emergency-banner {
+    /* Show in print (crisis info important) */
+    position: static;
+    border: 2px solid currentColor;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .c-emergency-banner__close {
+    /* Hide close button in print */
+    display: none;
+  }
+}
+
+/* Backward Compatibility (Legacy Classes)
+   ========================================================================== */
+
+/* Map legacy emergency-banner class to BEM component */
+.emergency-banner {
+  @extend .c-emergency-banner;
+}
+
+/* Map legacy emergency-banner-content class */
+.emergency-banner-content {
+  @extend .c-emergency-banner__content;
+}
+
+/* Map legacy emergency-icon class */
+.emergency-icon {
+  @extend .c-emergency-banner__icon;
+}
+
+/* Map legacy emergency-text class */
+.emergency-text {
+  @extend .c-emergency-banner__text;
+}
+
+/* Map legacy emergency-close class */
+.emergency-close {
+  @extend .c-emergency-banner__close;
+}
+
+/**
+ * Component Notes:
+ *
+ * 1. **Position**: Fixed top with full width, z-index above content but below modals
+ * 2. **Layout**: Flexbox row with icon, text (title + message), and close button
+ * 3. **Animation**: Slide-up with opacity fade on dismiss (300ms)
+ * 4. **Dismissal**: sessionStorage-based (shows again in new session)
+ * 5. **Icon**: Icon atom (alert-circle, md size) with variant color
+ * 6. **Text**: Title (semibold, base size) + Message (regular, sm size)
+ * 7. **Close Button**: 32px touch target with hover background
+ * 8. **Color Variants**: 4 variants (warning, error, info, primary) with full color scales
+ * 9. **Responsive**: Stack text on mobile, hide icon on very small screens
+ * 10. **Accessibility**: WCAG AA, keyboard nav (Escape key), reduced motion, high contrast
+ * 11. **Print**: Shows in print (crisis info important), hide close button
+ * 12. **Compatibility**: Legacy class mappings via @extend
+ *
+ * JavaScript Interaction:
+ * - Loaded via assets/js/emergency-banner.js
+ * - Checks sessionStorage for 'emergency-banner-dismissed'
+ * - Hides banner if dismissed in current session
+ * - Adds .hiding/.c-emergency-banner--hiding class on dismiss
+ * - Removes from DOM after animation (300ms)
+ * - Escape key also dismisses (accessibility)
+ *
+ * Crisis Resources:
+ * - Default: Telefonul Sufletului: 0800 801 200 (gratuit, 24/7)
+ * - Customizable via i18n keys (emergency_title, emergency_message)
+ * - Can be enabled/disabled via site.Params.emergency_banner.enable
+ *
+ * Spacing (8pt Grid):
+ * - Container padding: $space-2 (16px) vertical, $space-3 (24px) horizontal
+ * - Content gap: $space-3 (24px) desktop, $space-2 (16px) mobile
+ * - Text gap: $space-1 (8px) vertical stack, $space-2 (16px) horizontal row
+ * - Close button: 32px (4 × 8pt) touch target
+ */

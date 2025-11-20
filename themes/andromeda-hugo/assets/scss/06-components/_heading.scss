@@ -1,0 +1,240 @@
+// ==================================
+// HEADING COMPONENT - BEM Architecture
+// ==================================
+//
+// Purpose: Semantic heading component with unified color variants
+// Features: 8 color variants, weight modifiers, alignment modifiers
+//
+// Last Updated: 2025-11-20 (Phase 2 - Atom Refactoring)
+// Version: 1.0.0 (ITCSS + BEM)
+//
+// BEM Structure:
+// Block: .c-heading
+// Element: .c-heading__subtitle
+// Modifiers: --primary, --secondary, --tertiary, --success, --warning, --error, --info, --neutral
+//           --weight-normal, --weight-semibold, --center, --right
+//
+
+/*------------------------------------------------------------------
+  # Base Heading Block
+-------------------------------------------------------------------*/
+
+/**
+ * Base heading component
+ * Provides Crimson Pro typography for all heading levels
+ */
+.c-heading {
+  font-family: $font-heading;
+  font-weight: $font-weight-heading;  // Default: 500 (medium)
+  color: $color-text-heading;
+  margin-bottom: $space-3;  // 24px
+  line-height: $leading-snug;  // 1.375
+}
+
+// H1 specific styling
+h1.c-heading {
+  font-size: $text-4xl;  // 36px
+  line-height: $leading-tight;  // 1.25
+  margin-bottom: $space-4;  // 32px
+
+  @media (min-width: 768px) {
+    font-size: clamp($text-4xl, 5vw, $text-5xl);  // Responsive 36px - 48px
+  }
+}
+
+// H2 specific styling
+h2.c-heading {
+  font-size: $text-3xl;  // 30px
+  line-height: $leading-tight;  // 1.25
+}
+
+// H3 specific styling
+h3.c-heading {
+  font-size: $text-2xl;  // 24px
+}
+
+// H4 specific styling
+h4.c-heading {
+  font-size: $text-xl;  // 20px
+}
+
+// H5 specific styling
+h5.c-heading {
+  font-size: $text-lg;  // 18px
+}
+
+// H6 specific styling
+h6.c-heading {
+  font-size: $text-base;  // 16px
+  font-weight: $font-weight-heading-bold;  // 600 for smallest heading
+}
+
+/*------------------------------------------------------------------
+  # Heading Elements
+-------------------------------------------------------------------*/
+
+/**
+ * Subtitle element - paired with heading
+ */
+.c-heading__subtitle {
+  font-family: $font-body;
+  font-size: $text-lg;  // 18px
+  font-weight: $font-weight-body;  // 400
+  color: $color-text-secondary;
+  margin-top: $space-2;  // 16px
+  line-height: $leading-normal;  // 1.5
+}
+
+/*------------------------------------------------------------------
+  # Color Variant Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Primary variant - Emerald green (main actions, trust, professional)
+ */
+.c-heading--primary {
+  color: $color-primary;  // Emerald-500
+}
+
+/**
+ * Secondary variant - Terracotta (warm actions, personal connection)
+ */
+.c-heading--secondary {
+  color: $color-secondary;  // Terracotta-500
+}
+
+/**
+ * Tertiary variant - Navy blue (informational, support)
+ */
+.c-heading--tertiary {
+  color: $color-tertiary;  // Navy-500
+}
+
+/**
+ * Success variant - Sage green (positive feedback, achievements)
+ */
+.c-heading--success {
+  color: $color-success;  // Sage-500
+}
+
+/**
+ * Warning variant - Amber (caution, important notices)
+ */
+.c-heading--warning {
+  color: $color-warning;  // Amber-500
+}
+
+/**
+ * Error variant - Red (errors, critical alerts)
+ */
+.c-heading--error {
+  color: $color-error;  // Red-500
+}
+
+/**
+ * Info variant - Teal (informational content)
+ */
+.c-heading--info {
+  color: $color-info;  // Teal-500
+}
+
+/**
+ * Neutral variant - Gray (subtle, backgrounds)
+ */
+.c-heading--neutral {
+  color: $color-neutral;  // Gray-500
+}
+
+/*------------------------------------------------------------------
+  # Weight Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Normal weight - lighter headings (400)
+ */
+.c-heading--weight-normal {
+  font-weight: $font-weight-body;  // 400
+}
+
+/**
+ * Semibold weight - emphasized headings (600)
+ */
+.c-heading--weight-semibold {
+  font-weight: $font-weight-heading-bold;  // 600
+}
+
+/*------------------------------------------------------------------
+  # Alignment Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Center alignment
+ */
+.c-heading--center {
+  text-align: center;
+}
+
+/**
+ * Right alignment
+ */
+.c-heading--right {
+  text-align: right;
+}
+
+/*------------------------------------------------------------------
+  # Responsive Behavior
+-------------------------------------------------------------------*/
+
+/**
+ * Mobile optimizations
+ */
+@media (max-width: 767px) {
+  // Reduce heading sizes on mobile for better readability
+  h1.c-heading {
+    font-size: $text-3xl;  // 30px on mobile
+  }
+
+  h2.c-heading {
+    font-size: $text-2xl;  // 24px on mobile
+  }
+
+  h3.c-heading {
+    font-size: $text-xl;  // 20px on mobile
+  }
+
+  .c-heading {
+    // Reduce margin on mobile
+    margin-bottom: $space-2;  // 16px
+  }
+
+  .c-heading__subtitle {
+    font-size: $text-base;  // 16px on mobile
+    margin-top: $space-1;  // 8px
+  }
+}
+
+/*------------------------------------------------------------------
+  # Accessibility
+-------------------------------------------------------------------*/
+
+/**
+ * Ensure headings maintain hierarchy even with custom styling
+ * Screen readers use semantic HTML hierarchy regardless of visual styling
+ */
+.c-heading {
+  // Focus indicator for keyboard navigation (if heading is interactive/linked)
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  // Respect reduced motion preference
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+// ==================================
+// END OF HEADING COMPONENT
+// ==================================

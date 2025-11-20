@@ -1,0 +1,195 @@
+/**
+ * Enhanced Signup Section
+ * Two-column account creation form with benefits + image
+ * BEM: .c-signup-section
+ * Created: 2025-11-20 (Phase 5)
+ */
+
+.c-signup-section {
+  padding: $space-12 0;
+  background-color: $color-bg-section;
+
+  @media (max-width: $breakpoint-md - 1) {
+    padding: $space-8 0;
+  }
+}
+
+.c-signup-section__container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $space-4;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-8;
+
+  @media (max-width: $breakpoint-lg - 1) {
+    gap: $space-6;
+  }
+
+  @media (max-width: $breakpoint-md - 1) {
+    grid-template-columns: 1fr;
+    padding: 0 $space-3;
+  }
+}
+
+.c-signup-section__content {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+}
+
+.c-signup-section__header {
+  text-align: center;
+
+  @media (min-width: $breakpoint-md) {
+    text-align: left;
+  }
+}
+
+.c-signup-section__title {
+  margin-bottom: $space-3;
+}
+
+.c-signup-section__description {
+  font-family: $font-family-sans;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  color: $color-text-secondary;
+}
+
+.c-signup-section__benefits {
+  background-color: $color-bg-card;
+  border-radius: $border-radius-lg;
+  padding: $space-4;
+}
+
+.c-signup-section__benefits-title {
+  margin-bottom: $space-3;
+}
+
+.c-signup-section__benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.c-signup-section__benefits-item {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-2;
+  margin-bottom: $space-2;
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.c-signup-section__benefits-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.c-signup-section__image-wrapper {
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+}
+
+.c-signup-section__image {
+  width: 100%;
+  height: auto;
+}
+
+.c-signup-section__form {
+  background-color: $color-bg-card;
+  border-radius: $border-radius-lg;
+  padding: $space-6;
+  box-shadow: $shadow-md;
+
+  @media (max-width: $breakpoint-md - 1) {
+    padding: $space-4;
+  }
+}
+
+.c-signup-section__form-title {
+  text-align: center;
+  margin-bottom: $space-6;
+}
+
+.c-signup-section__form-element {
+  // Form styles handled by form-field molecule
+}
+
+.c-signup-section__field {
+  margin-bottom: $space-4;
+
+  &--last {
+    margin-bottom: $space-6;
+  }
+}
+
+.c-signup-section__submit {
+  // Button styles handled by button atom
+}
+
+.c-signup-section__footer {
+  text-align: center;
+  margin-top: $space-4;
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.c-signup-section__footer-link {
+  color: $color-primary-600;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    color: $color-primary-700;
+    text-decoration: underline;
+  }
+}
+
+// Variant modifiers
+.c-signup-section--primary {
+  // Default
+}
+
+.c-signup-section--secondary {
+  background-color: $color-bg-section-secondary;
+}
+
+.c-signup-section--tertiary {
+  background-color: $color-bg-section-tertiary;
+}
+
+.c-signup-section--neutral {
+  background-color: $color-bg-section-neutral;
+}
+
+// Accessibility
+@media (prefers-contrast: high) {
+  .c-signup-section__description,
+  .c-signup-section__footer {
+    color: $color-text-primary;
+  }
+
+  .c-signup-section__footer-link {
+    text-decoration: underline;
+  }
+}
+
+// Print
+@media print {
+  .c-signup-section {
+    padding: $space-6 0;
+  }
+
+  .c-signup-section__form {
+    display: none;
+  }
+}

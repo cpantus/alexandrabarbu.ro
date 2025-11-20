@@ -165,22 +165,81 @@ $black: #000000;
 // Purpose: Enforce semantic meaning, prevent arbitrary color usage
 // Rule: Components MUST use semantic names, NOT palette names
 
-// Brand Colors
+// Brand Colors (Base)
 $color-primary: $emerald-500;
 $color-secondary: $terracotta-500;
+$color-tertiary: $navy-500;
+$color-neutral: $gray-500;
+
+// Primary Color Scale (Emerald)
+$color-primary-50: $emerald-50;
+$color-primary-100: $emerald-100;
+$color-primary-200: $emerald-200;
+$color-primary-300: $emerald-300;
+$color-primary-400: $emerald-400;
+$color-primary-500: $emerald-500;
+$color-primary-600: $emerald-600;
+$color-primary-700: $emerald-700;
+$color-primary-800: $emerald-800;
+$color-primary-900: $emerald-900;
+
+// Secondary Color Scale (Terracotta)
+$color-secondary-50: $terracotta-50;
+$color-secondary-100: $terracotta-100;
+$color-secondary-200: $terracotta-200;
+$color-secondary-300: $terracotta-300;
+$color-secondary-400: $terracotta-400;
+$color-secondary-500: $terracotta-500;
+$color-secondary-600: $terracotta-600;
+$color-secondary-700: $terracotta-700;
+$color-secondary-800: $terracotta-800;
+$color-secondary-900: $terracotta-900;
+
+// Tertiary Color Scale (Navy)
+$color-tertiary-50: $navy-50;
+$color-tertiary-100: $navy-100;
+$color-tertiary-200: $navy-200;
+$color-tertiary-300: $navy-300;
+$color-tertiary-400: $navy-400;
+$color-tertiary-500: $navy-500;
+$color-tertiary-600: $navy-600;
+$color-tertiary-700: $navy-700;
+$color-tertiary-800: $navy-800;
+$color-tertiary-900: $navy-900;
+
+// Neutral Color Scale (Gray)
+$color-neutral-50: $gray-50;
+$color-neutral-100: $gray-100;
+$color-neutral-200: $gray-200;
+$color-neutral-300: $gray-300;
+$color-neutral-400: $gray-400;
+$color-neutral-500: $gray-500;
+$color-neutral-600: $gray-600;
+$color-neutral-700: $gray-700;
+$color-neutral-800: $gray-800;
+$color-neutral-900: $gray-900;
 
 // Text Colors
-$color-text-primary: $gray-700;
-$color-text-secondary: $gray-600;
-$color-text-muted: $gray-500;
-$color-text-heading: $gray-900;
+$color-text: $gray-700;                        // Default text color (alias for primary)
+$color-text-primary: $gray-700;                // Primary text (dark gray)
+$color-text-secondary: $gray-600;              // Secondary text (medium gray)
+$color-text-tertiary: $gray-500;               // Tertiary text (light gray)
+$color-text-muted: $gray-500;                  // Muted text (same as tertiary)
+$color-text-heading: $gray-900;                // Headings (near black)
 
 // Background Colors
+$color-bg: #ffffff;                            // Default background (white)
+$color-bg-light: $gray-50;                     // Light background
+$color-bg-lighter: $gray-100;                  // Even lighter background
 $color-bg-page: $gray-50;
-$color-bg-section: #ffffff;
+$color-bg-section: #ffffff;                    // Default section background (white/primary)
+$color-bg-section-secondary: $gray-50;         // Secondary section background (light)
+$color-bg-section-tertiary: $gray-100;         // Tertiary section background (lighter)
+$color-bg-section-neutral: $gray-200;          // Neutral section background
 $color-bg-card: #ffffff;
 
 // Border Colors
+$color-border: $gray-300;                      // Default border color (alias for medium)
 $color-border-light: $gray-200;
 $color-border-medium: $gray-300;
 $color-border-dark: $gray-400;
@@ -190,6 +249,70 @@ $color-success: $sage-500;
 $color-warning: $amber-500;
 $color-error: $red-500;
 $color-info: $teal-500;
+
+// Warning Color Scale (Amber)
+$color-warning-50: $amber-50;
+$color-warning-100: $amber-100;
+$color-warning-200: $amber-200;
+$color-warning-300: $amber-300;
+$color-warning-400: $amber-400;
+$color-warning-500: $amber-500;
+$color-warning-600: $amber-600;
+$color-warning-700: $amber-700;
+$color-warning-800: $amber-800;
+$color-warning-900: $amber-900;
+
+// Error Color Scale (Red)
+$color-error-50: $red-50;
+$color-error-100: $red-100;
+$color-error-200: $red-200;
+$color-error-300: $red-300;
+$color-error-400: $red-400;
+$color-error-500: $red-500;
+$color-error-600: $red-600;
+$color-error-700: $red-700;
+$color-error-800: $red-800;
+$color-error-900: $red-900;
+
+// Success Color Scale (Sage)
+$color-success-50: $sage-50;
+$color-success-100: $sage-100;
+$color-success-200: $sage-200;
+$color-success-300: $sage-300;
+$color-success-400: $sage-400;
+$color-success-500: $sage-500;
+$color-success-600: $sage-600;
+$color-success-700: $sage-700;
+$color-success-800: $sage-800;
+$color-success-900: $sage-900;
+
+// Info Color Scale (Teal)
+$color-info-50: $teal-50;
+$color-info-100: $teal-100;
+$color-info-200: $teal-200;
+$color-info-300: $teal-300;
+$color-info-400: $teal-400;
+$color-info-500: $teal-500;
+$color-info-600: $teal-600;
+$color-info-700: $teal-700;
+$color-info-800: $teal-800;
+$color-info-900: $teal-900;
+
+// Coral Color Scale (Warmth, Emotional)
+$color-coral-50: $coral-50;
+$color-coral-100: $coral-100;
+$color-coral-200: $coral-200;
+$color-coral-300: $coral-300;
+$color-coral-400: $coral-400;
+$color-coral-500: $coral-500;
+$color-coral-600: $coral-600;
+$color-coral-700: $coral-700;
+$color-coral-800: $coral-800;
+$color-coral-900: $coral-900;
+
+// Absolute Colors (White & Black)
+$color-white: $white;
+$color-black: $black;
 
 // ----------------------------------
 // Legacy Color Aliases (Backward Compatibility)
@@ -207,6 +330,59 @@ $green-600: $emerald-700;
 $green-700: $emerald-800;
 $green-800: $emerald-900;
 $green-900: $emerald-900;
+
+// Color palette aliases with $color- prefix
+$color-emerald-50: $emerald-50;
+$color-emerald-100: $emerald-100;
+$color-emerald-200: $emerald-200;
+$color-emerald-300: $emerald-300;
+$color-emerald-400: $emerald-400;
+$color-emerald-500: $emerald-500;
+$color-emerald-600: $emerald-600;
+$color-emerald-700: $emerald-700;
+$color-emerald-800: $emerald-800;
+$color-emerald-900: $emerald-900;
+
+$color-terracotta-50: $terracotta-50;
+$color-terracotta-100: $terracotta-100;
+$color-terracotta-200: $terracotta-200;
+$color-terracotta-300: $terracotta-300;
+$color-terracotta-400: $terracotta-400;
+$color-terracotta-500: $terracotta-500;
+$color-terracotta-600: $terracotta-600;
+$color-terracotta-700: $terracotta-700;
+$color-terracotta-800: $terracotta-800;
+$color-terracotta-900: $terracotta-900;
+
+$color-gray-50: $gray-50;
+$color-gray-100: $gray-100;
+$color-gray-200: $gray-200;
+$color-gray-300: $gray-300;
+$color-gray-400: $gray-400;
+$color-gray-500: $gray-500;
+$color-gray-600: $gray-600;
+$color-gray-700: $gray-700;
+$color-gray-800: $gray-800;
+$color-gray-900: $gray-900;
+
+// ----------------------------------
+// Dark Mode Color Aliases
+// ----------------------------------
+// Text colors for dark mode (lighter variations for contrast)
+$color-text-primary-dark: $gray-200;
+$color-text-secondary-dark: $gray-300;
+$color-text-muted-dark: $gray-400;
+$color-text-heading-dark: $gray-50;
+
+// Background colors for dark mode
+$color-bg-page-dark: $gray-900;
+$color-bg-section-dark: $gray-800;
+$color-bg-card-dark: $gray-800;
+
+// Border colors for dark mode
+$color-border-light-dark: $gray-700;
+$color-border-medium-dark: $gray-600;
+$color-border-dark-dark: $gray-500;
 
 // ==================================
 // END OF COLOR TOKENS

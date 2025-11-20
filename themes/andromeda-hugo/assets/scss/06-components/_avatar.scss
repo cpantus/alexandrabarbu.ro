@@ -1,0 +1,140 @@
+// ==================================
+// AVATAR COMPONENT - BEM Architecture
+// ==================================
+//
+// Purpose: Circular profile photo/user image
+// Features: 4 sizes, optional colored borders, responsive images
+//
+// Last Updated: 2025-11-20 (Phase 2 - Atom Refactor)
+// Version: 1.0.0 (ITCSS + BEM)
+//
+// BEM Structure:
+// Block: .c-avatar
+// Elements: __image
+// Modifiers: --sm, --md, --lg, --xl, --border-primary, --border-secondary, --border-neutral
+//
+
+/*------------------------------------------------------------------
+  # Base Avatar Block
+-------------------------------------------------------------------*/
+
+/**
+ * Base avatar component
+ * Circular container for profile images
+ */
+.c-avatar {
+  display: inline-block;
+  border-radius: $radius-full;  // Perfect circle
+  overflow: hidden;
+  flex-shrink: 0;  // Prevent shrinking in flex containers
+  position: relative;
+  background-color: $gray-200;  // Fallback if image fails to load
+}
+
+/*------------------------------------------------------------------
+  # Avatar Elements
+-------------------------------------------------------------------*/
+
+/**
+ * Avatar image element
+ * The actual profile photo
+ */
+.c-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  // Crop to fill circular container
+  display: block;
+}
+
+/*------------------------------------------------------------------
+  # Avatar Size Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Small avatar - 32px × 32px
+ * Use for: Inline mentions, comment avatars, small lists
+ */
+.c-avatar--sm {
+  width: 32px;
+  height: 32px;
+}
+
+/**
+ * Medium avatar (default) - 48px × 48px
+ * Use for: Team lists, author bylines, standard profiles
+ */
+.c-avatar--md {
+  width: 48px;
+  height: 48px;
+}
+
+/**
+ * Large avatar - 96px × 96px
+ * Use for: Profile pages, featured therapists, about sections
+ */
+.c-avatar--lg {
+  width: 96px;
+  height: 96px;
+}
+
+/**
+ * Extra large avatar - 128px × 128px
+ * Use for: Hero sections, main profile displays
+ */
+.c-avatar--xl {
+  width: 128px;
+  height: 128px;
+}
+
+/*------------------------------------------------------------------
+  # Avatar Border Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Primary border - emerald (brand color, emphasis)
+ */
+.c-avatar--border-primary {
+  box-shadow: 0 0 0 3px $emerald-500;
+}
+
+/**
+ * Secondary border - terracotta (warm, alternative emphasis)
+ */
+.c-avatar--border-secondary {
+  box-shadow: 0 0 0 3px $terracotta-500;
+}
+
+/**
+ * Neutral border - gray (subtle, neutral emphasis)
+ */
+.c-avatar--border-neutral {
+  box-shadow: 0 0 0 3px $gray-400;
+}
+
+/*------------------------------------------------------------------
+  # Accessibility & Performance
+-------------------------------------------------------------------*/
+
+/**
+ * Ensure avatars are accessible and performant
+ * - Alt text required on image (handled in HTML)
+ * - Lazy loading enabled (handled in HTML)
+ * - Async decoding for better performance (handled in HTML)
+ * - Fallback background color if image fails to load
+ */
+
+// Empty state styling (if image fails to load)
+.c-avatar__image[alt]:empty::before {
+  content: attr(alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-family: $font-body;
+  font-weight: $weight-medium;
+  font-size: $text-sm;
+  color: $gray-600;
+  text-align: center;
+  background-color: $gray-200;
+}

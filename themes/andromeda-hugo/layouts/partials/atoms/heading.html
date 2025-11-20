@@ -1,28 +1,21 @@
 {{/*
-  Heading Atom - Semantic heading component with variants
+  Heading Atom - Semantic heading component with BEM naming
 
   Usage:
     {{ partial "atoms/heading.html" (dict
       "text" "Page Title"
       "level" 2
-      "variant" "section"
+      "variant" "primary"
       "align" "center"
       "class" "mb-4"
       "subtitle" "Optional subtitle text"
       "markdown" true
     )}}
 
-    With v4.0 color variant:
-    {{ partial "atoms/heading.html" (dict
-      "text" "Page Title"
-      "level" 2
-      "colorVariant" "secondary"
-    )}}
-
   Parameters:
     text (required) - Heading text content
     level (optional) - Heading level 1-6 (default: 2)
-    variant (optional) - default|gradient|section|bold (default: default)
+    variant (optional) - Color variant: primary|secondary|tertiary|success|warning|error|info|neutral (default: "")
     align (optional) - left|center|right (default: left)
     class (optional) - Additional CSS classes
     subtitle (optional) - Optional subtitle text below heading
@@ -30,64 +23,57 @@
     markdown (optional) - Apply markdownify filter (default: false)
     id (optional) - HTML id attribute for anchor links
     attributes (optional) - Additional HTML attributes as dict
+    weight (optional) - Font weight: normal|medium|semibold (default: medium for headings)
 
-    colorVariant (optional) - v4.0+ Color variant: primary|secondary|coral|sage|info (default: "")
-
-  Variants:
-    - default: Standard heading with theme styling
-    - gradient: Gradient text effect (gradient-text class)
-    - section: Section title with wrapper (section-title)
-    - bold: Extra bold heading (fw-600 or font-weight-bold)
-
-  Color Variants (v4.0+):
-    - primary: Emerald green (default brand color)
-    - secondary: Terracotta (warm, approachable)
-    - coral: Coral (compassionate, caring)
-    - sage: Sage green (calm, holistic)
-    - info: Blue (informational, clinical)
+  Unified Color Variants (Phase 2):
+    - primary: Emerald green (main actions, trust, professional)
+    - secondary: Terracotta (warm actions, personal connection)
+    - tertiary: Navy blue (informational, support)
+    - success: Sage green (positive feedback, achievements)
+    - warning: Amber (caution, important notices)
+    - error: Red (errors, critical alerts)
+    - info: Teal (informational content)
+    - neutral: Gray (subtle, backgrounds)
 */}}
 
+{{/* Parse parameters */}}
 {{ $text := .text }}
 {{ $level := .level | default 2 }}
-{{ $variant := .variant | default "default" }}
+{{ $variant := .variant | default "" }}
 {{ $align := .align | default "left" }}
 {{ $class := .class | default "" }}
 {{ $subtitle := .subtitle }}
-{{ $subtitleClass := .subtitleClass | default "text-muted" }}
+{{ $subtitleClass := .subtitleClass | default "c-heading__subtitle" }}
 {{ $markdown := .markdown | default false }}
 {{ $id := .id }}
 {{ $attributes := .attributes | default dict }}
-
-{{/* v4.0+ Color variant parameter */}}
-{{ $colorVariant := .colorVariant | default "" }}
+{{ $weight := .weight | default "medium" }}
 
 {{/* Validate heading level */}}
 {{ if or (lt $level 1) (gt $level 6) }}
   {{ $level = 2 }}
 {{ end }}
 
-{{/* Build heading classes based on variant */}}
-{{ $headingClass := "" }}
+{{/* Build BEM classes */}}
+{{ $headingClass := "c-heading" }}
 
-{{ if eq $variant "gradient" }}
-  {{ $headingClass = "gradient-text" }}
-{{ else if eq $variant "section" }}
-  {{ $headingClass = "title" }}
-{{ else if eq $variant "bold" }}
-  {{ $headingClass = "fw-600 font-weight-bold" }}
+{{/* Add color variant modifier */}}
+{{ if $variant }}
+  {{ $headingClass = printf "%s c-heading--%s" $headingClass $variant }}
 {{ end }}
 
-{{/* Add v4.0 color variant class */}}
-{{ if $colorVariant }}
-  {{ $colorClass := printf "heading-%s" $colorVariant }}
-  {{ $headingClass = printf "%s %s" $headingClass $colorClass }}
+{{/* Add weight modifier */}}
+{{ if eq $weight "normal" }}
+  {{ $headingClass = printf "%s c-heading--weight-normal" $headingClass }}
+{{ else if eq $weight "semibold" }}
+  {{ $headingClass = printf "%s c-heading--weight-semibold" $headingClass }}
 {{ end }}
 
-{{/* Add alignment class */}}
+{{/* Add alignment modifier */}}
 {{ if eq $align "center" }}
-  {{ $headingClass = printf "%s text-center" $headingClass }}
+  {{ $headingClass = printf "%s c-heading--center" $headingClass }}
 {{ else if eq $align "right" }}
-  {{ $headingClass = printf "%s text-end" $headingClass }}
+  {{ $headingClass = printf "%s c-heading--right" $headingClass }}
 {{ end }}
 
 {{/* Add custom classes */}}
@@ -95,40 +81,22 @@
   {{ $headingClass = printf "%s %s" $headingClass $class }}
 {{ end }}
 
-{{/* Trim leading space */}}
-{{ $headingClass = trim $headingClass " " }}
-
 {{/* Process text content */}}
 {{ $content := $text }}
 {{ if $markdown }}
   {{ $content = $text | markdownify }}
 {{ end }}
 
-{{/* Render heading based on variant */}}
-{{ if eq $variant "section" }}
-  {{/* Section variant with wrapper */}}
-  <div class="section-title{{ if eq $align "center" }} text-center{{ end }}{{ if $class }} {{ $class }}{{ end }}">
-    {{ if eq $level 1 }}<h1{{ with $id }} id="{{ . }}"{{ end }}{{ with $headingClass }} class="{{ . }}"{{ end }}{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h1>
-    {{ else if eq $level 2 }}<h2{{ with $id }} id="{{ . }}"{{ end }}{{ with $headingClass }} class="{{ . }}"{{ end }}{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h2>
-    {{ else if eq $level 3 }}<h3{{ with $id }} id="{{ . }}"{{ end }}{{ with $headingClass }} class="{{ . }}"{{ end }}{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h3>
-    {{ else if eq $level 4 }}<h4{{ with $id }} id="{{ . }}"{{ end }}{{ with $headingClass }} class="{{ . }}"{{ end }}{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h4>
-    {{ else if eq $level 5 }}<h5{{ with $id }} id="{{ . }}"{{ end }}{{ with $headingClass }} class="{{ . }}"{{ end }}{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h5>
-    {{ else if eq $level 6 }}<h6{{ with $id }} id="{{ . }}"{{ end }}{{ with $headingClass }} class="{{ . }}"{{ end }}{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h6>
-    {{ end }}
-    {{ with $subtitle }}
-      <p class="{{ $subtitleClass }}">{{ . }}</p>
-    {{ end }}
-  </div>
-{{ else }}
-  {{/* Standard heading without wrapper */}}
-  {{ if eq $level 1 }}<h1{{ with $id }} id="{{ . }}"{{ end }}{{ with $headingClass }} class="{{ . }}"{{ end }}{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h1>
-  {{ else if eq $level 2 }}<h2{{ with $id }} id="{{ . }}"{{ end }}{{ with $headingClass }} class="{{ . }}"{{ end }}{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h2>
-  {{ else if eq $level 3 }}<h3{{ with $id }} id="{{ . }}"{{ end }}{{ with $headingClass }} class="{{ . }}"{{ end }}{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h3>
-  {{ else if eq $level 4 }}<h4{{ with $id }} id="{{ . }}"{{ end }}{{ with $headingClass }} class="{{ . }}"{{ end }}{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h4>
-  {{ else if eq $level 5 }}<h5{{ with $id }} id="{{ . }}"{{ end }}{{ with $headingClass }} class="{{ . }}"{{ end }}{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h5>
-  {{ else if eq $level 6 }}<h6{{ with $id }} id="{{ . }}"{{ end }}{{ with $headingClass }} class="{{ . }}"{{ end }}{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h6>
-  {{ end }}
-  {{ with $subtitle }}
-    <p class="{{ $subtitleClass }}">{{ . }}</p>
-  {{ end }}
+{{/* Render heading element */}}
+{{ if eq $level 1 }}<h1{{ with $id }} id="{{ . }}"{{ end }} class="{{ $headingClass }}"{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h1>
+{{ else if eq $level 2 }}<h2{{ with $id }} id="{{ . }}"{{ end }} class="{{ $headingClass }}"{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h2>
+{{ else if eq $level 3 }}<h3{{ with $id }} id="{{ . }}"{{ end }} class="{{ $headingClass }}"{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h3>
+{{ else if eq $level 4 }}<h4{{ with $id }} id="{{ . }}"{{ end }} class="{{ $headingClass }}"{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h4>
+{{ else if eq $level 5 }}<h5{{ with $id }} id="{{ . }}"{{ end }} class="{{ $headingClass }}"{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h5>
+{{ else if eq $level 6 }}<h6{{ with $id }} id="{{ . }}"{{ end }} class="{{ $headingClass }}"{{ range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end }}>{{ $content | safeHTML }}</h6>
+{{ end }}
+
+{{/* Render optional subtitle */}}
+{{ with $subtitle }}
+  <p class="{{ $subtitleClass }}">{{ . }}</p>
 {{ end }}

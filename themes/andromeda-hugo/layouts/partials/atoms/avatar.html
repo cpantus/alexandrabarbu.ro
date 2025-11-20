@@ -1,0 +1,44 @@
+{{/*
+  Avatar Atom - Circular profile photo
+
+  Usage:
+    {{ partial "atoms/avatar.html" (dict
+      "src" "/images/therapist.jpg"
+      "alt" "Dr. Alexandra Barbu"
+      "size" "md"
+    )}}
+
+  Parameters:
+    src (required) - Image source path
+    alt (required) - Image alt text for accessibility
+    size (optional) - Avatar size: sm|md|lg|xl (default: md)
+    border (optional) - Border style: none|primary|secondary|neutral (default: none)
+    class (optional) - Additional CSS classes
+    attributes (optional) - Additional HTML attributes as dict
+
+  Examples:
+    Default avatar: {{ partial "atoms/avatar.html" (dict "src" "/images/person.jpg" "alt" "Person Name") }}
+    Large with border: {{ partial "atoms/avatar.html" (dict "src" "/images/therapist.jpg" "alt" "Therapist" "size" "lg" "border" "primary") }}
+    Small neutral: {{ partial "atoms/avatar.html" (dict "src" "/images/user.jpg" "alt" "User" "size" "sm" "border" "neutral") }}
+*/}}
+
+{{ $src := .src }}
+{{ $alt := .alt }}
+{{ $size := .size | default "md" }}
+{{ $border := .border | default "none" }}
+{{ $class := .class | default "" }}
+{{ $attributes := .attributes | default dict }}
+
+{{/* Build avatar classes */}}
+{{ $avatarClass := "c-avatar" }}
+{{ $avatarClass = printf "%s c-avatar--%s" $avatarClass $size }}
+{{ if ne $border "none" }}
+  {{ $avatarClass = printf "%s c-avatar--border-%s" $avatarClass $border }}
+{{ end }}
+{{ if $class }}
+  {{ $avatarClass = printf "%s %s" $avatarClass $class }}
+{{ end }}
+
+<div class="{{ $avatarClass }}"{{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}>
+  <img src="{{ $src }}" alt="{{ $alt }}" class="c-avatar__image" loading="lazy" decoding="async">
+</div>

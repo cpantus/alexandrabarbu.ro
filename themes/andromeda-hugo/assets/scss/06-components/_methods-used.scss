@@ -1,0 +1,209 @@
+// ==================================
+// Methods Used Section - BEM Component
+// ==================================
+//
+// Purpose: Therapy methods accordion for service pages
+// Features: Expandable method descriptions, icons
+// Interaction: Click to expand/collapse
+//
+// Version: 1.0.0
+// Updated: 2025-11-20
+//
+
+// ============================================================================
+// BLOCK: Methods Used Section
+// ============================================================================
+
+.c-methods-used {
+  padding: var(--spacing-section-y) 0;
+  background: var(--color-surface-secondary);
+}
+
+// ============================================================================
+// ELEMENT: Header
+// ============================================================================
+
+.c-methods-used__header {
+  max-width: 800px;
+  margin: 0 auto var(--spacing-4xl);
+}
+
+.c-methods-used__subtitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-primary);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--spacing-xs);
+}
+
+.c-methods-used__title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+  font-family: var(--font-family-heading);
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+.c-methods-used__description {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: 0;
+}
+
+// ============================================================================
+// ELEMENT: Accordion Container
+// ============================================================================
+
+.c-methods-used__accordion {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+// ============================================================================
+// ELEMENT: Method Item
+// ============================================================================
+
+.c-methods-used__method {
+  background: var(--color-white);
+  border: 1px solid rgba(77, 179, 128, 0.2);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(77, 179, 128, 0.4);
+  }
+}
+
+// ============================================================================
+// ELEMENT: Method Header (Clickable)
+// ============================================================================
+
+.c-methods-used__method-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  user-select: none;
+
+  &:hover {
+    background: rgba(77, 179, 128, 0.05);
+  }
+
+  // Active state (when expanded)
+  &[aria-expanded="true"] {
+    background: rgba(77, 179, 128, 0.1);
+
+    .c-methods-used__toggle-icon i {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.c-methods-used__method-icon {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary-warm);
+  border-radius: var(--border-radius-full);
+  color: var(--color-white);
+  font-size: 1.5rem;
+}
+
+.c-methods-used__method-title {
+  flex: 1;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: 0;
+  font-family: var(--font-family-heading);
+}
+
+.c-methods-used__toggle-icon {
+  flex-shrink: 0;
+  color: var(--color-brand-primary);
+  font-size: 1.5rem;
+  transition: transform var(--transition-normal);
+
+  i {
+    line-height: 1;
+  }
+}
+
+// ============================================================================
+// ELEMENT: Method Content (Expandable)
+// ============================================================================
+
+.c-methods-used__method-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-normal);
+  padding: 0 var(--spacing-xl);
+
+  // When expanded (controlled by JS)
+  .c-methods-used__method-header[aria-expanded="true"] + & {
+    max-height: 2000px; // Large enough to accommodate content
+    padding: 0 var(--spacing-xl) var(--spacing-lg);
+  }
+}
+
+.c-methods-used__subsection {
+  margin-bottom: var(--spacing-lg);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h4 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-brand-primary);
+    margin-bottom: var(--spacing-sm);
+    font-family: var(--font-family-heading);
+  }
+
+  p {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: 0;
+  }
+}
+
+// ============================================================================
+// ACCESSIBILITY
+// ============================================================================
+
+// Focus styles
+.c-methods-used__method-header:focus {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: -2px;
+}
+
+// Keyboard support (requires JS)
+.c-methods-used__method-header[aria-expanded] {
+  // Styles for accessible accordion
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .c-methods-used__method-content,
+  .c-methods-used__toggle-icon {
+    transition: none;
+  }
+}

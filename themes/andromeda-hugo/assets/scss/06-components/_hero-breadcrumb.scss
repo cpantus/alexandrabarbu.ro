@@ -1,341 +1,306 @@
-/*
-========================================================================
-  Hero Breadcrumb Component - BEM Refactoring (v4.0)
+/* ==========================================================================
+   Hero Breadcrumb Section Component
+   ========================================================================== */
 
-  BEM Structure:
-    .c-hero-breadcrumb                 - Hero section container
-    .c-hero-breadcrumb__content        - Content wrapper
-    .c-hero-breadcrumb__background     - Background shape container
-    .c-hero-breadcrumb__title          - Title container
-    .c-hero-breadcrumb__heading        - H1 heading
-    .c-hero-breadcrumb__breadcrumb     - Breadcrumb navigation
-    .c-hero-breadcrumb__breadcrumb-item - Breadcrumb item
-    .c-hero-breadcrumb__shapes         - Hero shapes/illustrations
+/**
+ * Hero breadcrumb section component - Page header with title and breadcrumb nav
+ *
+ * Usage:
+ *   <section class="c-hero-breadcrumb c-hero-breadcrumb--primary">
+ *     <div class="c-hero-breadcrumb__container">
+ *       <div class="c-hero-breadcrumb__grid">
+ *         <div class="c-hero-breadcrumb__content">...</div>
+ *         <div class="c-hero-breadcrumb__media">...</div>
+ *       </div>
+ *     </div>
+ *   </section>
+ *
+ * Variants:
+ *   - .c-hero-breadcrumb--primary (emerald accent)
+ *   - .c-hero-breadcrumb--secondary (terracotta accent)
+ *   - .c-hero-breadcrumb--tertiary (teal accent)
+ *   - .c-hero-breadcrumb--neutral (gray accent)
+ *
+ * Features:
+ *   - Responsive grid layout (stacked mobile, side-by-side desktop)
+ *   - Optional subtitle support
+ *   - Breadcrumb molecule integration
+ *   - Heading atom integration
+ *   - Image or decorative shapes
+ *   - 4 color variants with gradient accents
+ *   - Full accessibility (reduced motion, high contrast, keyboard nav)
+ *   - Design tokens only (8pt spacing, Crimson Pro typography)
+ */
 
-  Modifiers:
-    .c-hero-breadcrumb--enhanced       - v4.0 enhanced with animations
-    .c-hero-breadcrumb--compact        - Reduced padding variant
-    .c-hero-breadcrumb__breadcrumb-item--active - Active breadcrumb item
-
-  Legacy Compatibility:
-    - .page-header                     → .c-hero-breadcrumb
-    - .block                           → .c-hero-breadcrumb__content
-    - .has-circle                      → .c-hero-breadcrumb__background
-    - .section-title                   → .c-hero-breadcrumb__title
-    - .breadcrumb                      → .c-hero-breadcrumb__breadcrumb
-    - .breadcrumb-item                 → .c-hero-breadcrumb__breadcrumb-item
-    - .hero-shapes                     → .c-hero-breadcrumb__shapes
-
-  Created: 2025-11-19 (Session 12 - Phase 3 BEM Refactoring)
-========================================================================
-*/
-
-/*------------------------------------------------------------------
-  # Hero Breadcrumb Container
--------------------------------------------------------------------*/
+/* Base Component
+   ========================================================================== */
 
 .c-hero-breadcrumb {
+  padding: $space-8 0; // 64px top/bottom
+  background: linear-gradient(135deg, $color-bg-light 0%, $color-bg-lighter 100%);
   position: relative;
   overflow: hidden;
 
-  // Gradient background overlay (v4.0)
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: $gradient-warm-subtle;
-    opacity: 0.05;
-    z-index: 0;
-    pointer-events: none;
+  @media (min-width: $breakpoint-md) {
+    padding: $space-12 0; // 96px on tablet+
   }
 
-  // Organic blob shape background (v4.0)
-  &::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -10%;
-    width: 60%;
-    height: 150%;
-    background: radial-gradient(circle, rgba($green-200, 0.08) 0%, transparent 70%);
-    border-radius: $blob-soft;
-    z-index: 0;
-    pointer-events: none;
-
-    @media (prefers-reduced-motion: no-preference) {
-      animation: float 20s ease-in-out infinite;
-    }
-  }
-
-  // Compact variant
-  &--compact {
-    .c-hero-breadcrumb__content {
-      padding: $space-12 0;
-
-      @media (min-width: 992px) {
-        padding: $space-16 0;
-      }
-    }
+  @media (min-width: $breakpoint-lg) {
+    padding: $space-16 0; // 128px on desktop+
   }
 }
 
-/*------------------------------------------------------------------
-  # Content Wrapper
--------------------------------------------------------------------*/
+/* Container
+   ========================================================================== */
+
+.c-hero-breadcrumb__container {
+  // Uses .o-container object from 05-objects/
+  @extend .o-container;
+}
+
+/* Grid Layout
+   ========================================================================== */
+
+.c-hero-breadcrumb__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-6; // 48px
+  align-items: center;
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: 1fr 1fr; // 50/50 split on desktop
+    gap: $space-8; // 64px
+  }
+}
+
+/* Content Column
+   ========================================================================== */
 
 .c-hero-breadcrumb__content {
-  padding: $space-16 0;
-  position: relative;
-  z-index: 3;
+  text-align: center;
 
-  @media (min-width: 992px) {
-    padding: $space-24 0;
+  @media (min-width: $breakpoint-lg) {
+    text-align: left;
   }
 }
 
-/*------------------------------------------------------------------
-  # Background Shape
--------------------------------------------------------------------*/
+/* Subtitle
+   ========================================================================== */
 
-.c-hero-breadcrumb__background {
-  position: absolute;
-  top: 0;
-  left: $space-2;
-  height: 100%;
-  width: calc(100% - $space-6);
-  border-radius: $radius-xl;
-  background-color: rgba($color-primary, 0.05);
-  z-index: -1;
+.c-hero-breadcrumb__subtitle {
+  margin: 0 0 $space-2 0; // 16px bottom
+  font-family: $font-family-sans;
+  font-size: $font-size-sm; // 14px
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color-text-muted;
 }
 
-/*------------------------------------------------------------------
-  # Title Section
--------------------------------------------------------------------*/
+/* Title
+   ========================================================================== */
 
 .c-hero-breadcrumb__title {
-  @media (prefers-reduced-motion: no-preference) {
-    animation: fadeInUp 0.8s ease-out;
-  }
+  // Heading atom provides base styles
+  // Add section-specific overrides here
+  margin-bottom: $space-4; // 32px
 }
 
-.c-hero-breadcrumb__heading {
-  position: relative;
-
-  // Subtle text gradient on hover (v4.0)
-  @media (min-width: 992px) {
-    transition: all 0.3s ease;
-
-    &:hover {
-      background: $gradient-warm-vibrant;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-  }
-}
-
-/*------------------------------------------------------------------
-  # Breadcrumb Navigation
--------------------------------------------------------------------*/
+/* Breadcrumb Wrapper
+   ========================================================================== */
 
 .c-hero-breadcrumb__breadcrumb {
-  background: $gradient-glass-light;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: $radius-lg;
-  padding: $space-2 $space-4;
-  box-shadow: $shadow-glass;
-  display: inline-flex;
-  align-items: center;
-  gap: $space-2;
+  margin-top: $space-4; // 32px
 
-  @media (prefers-reduced-motion: no-preference) {
-    animation: fadeIn 1s ease-out 0.3s backwards;
-  }
-}
-
-.c-hero-breadcrumb__breadcrumb-item {
-  display: flex;
-  align-items: center;
-  gap: $space-2;
-
-  a {
-    color: $color-text-secondary;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
-    font-size: $text-sm;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: $gradient-warm-vibrant;
-      transition: width 0.3s ease;
+  // Override breadcrumb alignment for hero context
+  .c-breadcrumb {
+    @media (max-width: $breakpoint-lg - 1px) {
+      // Center on mobile
+      .c-breadcrumb__list {
+        justify-content: center;
+      }
     }
 
-    &:hover {
-      color: $color-primary;
-
-      &::after {
-        width: 100%;
+    @media (min-width: $breakpoint-lg) {
+      // Left-align on desktop
+      .c-breadcrumb__list {
+        justify-content: flex-start;
       }
     }
   }
+}
 
-  // Active state
-  &--active {
-    color: $color-primary;
-    font-weight: 500;
-    font-size: $text-sm;
+/* Media Column
+   ========================================================================== */
+
+.c-hero-breadcrumb__media {
+  position: relative;
+  min-height: 200px;
+
+  @media (min-width: $breakpoint-md) {
+    min-height: 300px;
   }
 
-  // Separator
-  &:not(:first-child)::before {
-    content: '/';
-    color: $color-text-muted;
-    opacity: 0.5;
-    margin-right: $space-2;
+  @media (min-width: $breakpoint-lg) {
+    min-height: 400px;
   }
 }
 
-/*------------------------------------------------------------------
-  # Hero Shapes
--------------------------------------------------------------------*/
+/* Hero Image
+   ========================================================================== */
+
+.c-hero-breadcrumb__image {
+  position: relative;
+  z-index: 2;
+}
+
+.c-hero-breadcrumb__img {
+  width: 100%;
+  height: auto;
+  border-radius: $border-radius-lg; // 16px
+  box-shadow: $shadow-lg;
+}
+
+/* Decorative Shapes
+   ========================================================================== */
 
 .c-hero-breadcrumb__shapes {
   position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
 
-  @media (prefers-reduced-motion: no-preference) {
-    animation: fadeInRight 0.8s ease-out 0.2s backwards;
+  @media (min-width: $breakpoint-md) {
+    min-height: 300px;
   }
 
-  img {
-    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
-    transition: transform 0.5s ease;
-
-    &:hover {
-      transform: scale(1.02);
-    }
+  @media (min-width: $breakpoint-lg) {
+    min-height: 400px;
   }
 }
 
 .c-hero-breadcrumb__shape {
   position: absolute;
+  width: auto;
+  height: auto;
+  max-width: 60%;
+  opacity: 0.1;
+  pointer-events: none;
 
-  @media (prefers-reduced-motion: no-preference) {
-    animation: float 15s ease-in-out infinite;
-  }
+  @include transition-base;
 
-  // Second shape variant
-  &--secondary {
-    animation-delay: -7.5s;
-    animation-duration: 18s;
-  }
-}
+  // Subtle float animation
+  animation: float 6s ease-in-out infinite;
 
-/*------------------------------------------------------------------
-  # Legacy Compatibility
-  Map old class names to new BEM structure via @extend
--------------------------------------------------------------------*/
-
-.page-header {
-  @extend .c-hero-breadcrumb;
-
-  .block {
-    @extend .c-hero-breadcrumb__content;
-  }
-
-  .has-circle {
-    @extend .c-hero-breadcrumb__background;
-  }
-
-  .section-title {
-    @extend .c-hero-breadcrumb__title;
-
-    h1 {
-      @extend .c-hero-breadcrumb__heading;
-    }
-  }
-
-  .breadcrumb {
-    @extend .c-hero-breadcrumb__breadcrumb;
-  }
-
-  .breadcrumb-item {
-    @extend .c-hero-breadcrumb__breadcrumb-item;
-
-    &.active {
-      @extend .c-hero-breadcrumb__breadcrumb-item--active;
-    }
-  }
-
-  .hero-shapes {
-    @extend .c-hero-breadcrumb__shapes;
-
-    .shape-1 {
-      @extend .c-hero-breadcrumb__shape;
-    }
-
-    .shape-2 {
-      @extend .c-hero-breadcrumb__shape--secondary;
-    }
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
   }
 }
 
-/*------------------------------------------------------------------
-  # Animations
--------------------------------------------------------------------*/
+.c-hero-breadcrumb__shape--1 {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.c-hero-breadcrumb__shape--2 {
+  bottom: 10%;
+  right: 10%;
+  animation-delay: 3s;
+}
+
+/* Variant Modifiers
+   ========================================================================== */
+
+.c-hero-breadcrumb--primary {
+  .c-hero-breadcrumb__subtitle {
+    color: $color-primary-600;
+  }
+
+  .c-hero-breadcrumb__shape {
+    fill: $color-primary-500;
+  }
+}
+
+.c-hero-breadcrumb--secondary {
+  .c-hero-breadcrumb__subtitle {
+    color: $color-secondary-600;
+  }
+
+  .c-hero-breadcrumb__shape {
+    fill: $color-secondary-500;
+  }
+}
+
+.c-hero-breadcrumb--tertiary {
+  .c-hero-breadcrumb__subtitle {
+    color: $color-tertiary-600;
+  }
+
+  .c-hero-breadcrumb__shape {
+    fill: $color-tertiary-500;
+  }
+}
+
+.c-hero-breadcrumb--neutral {
+  .c-hero-breadcrumb__subtitle {
+    color: $color-neutral-600;
+  }
+
+  .c-hero-breadcrumb__shape {
+    fill: $color-neutral-500;
+  }
+}
+
+/* Animations
+   ========================================================================== */
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  25% {
-    transform: translateY(-20px) rotate(2deg);
-  }
-  50% {
-    transform: translateY(-10px) rotate(-1deg);
-  }
-  75% {
-    transform: translateY(-15px) rotate(1deg);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
+  0%,
+  100% {
     transform: translateY(0);
   }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
+  50% {
+    transform: translateY(-20px);
   }
 }
 
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
+/* Accessibility
+   ========================================================================== */
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .c-hero-breadcrumb__shape {
+    opacity: 0.3; // More visible in high contrast
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .c-hero-breadcrumb__shape {
+    animation: none;
   }
+}
+
+/* Print Styles
+   ========================================================================== */
+
+@media print {
+  .c-hero-breadcrumb {
+    padding: $space-4 0; // Reduce padding for print
+    background: none; // Remove gradient
+  }
+
+  .c-hero-breadcrumb__shapes {
+    display: none; // Hide decorative shapes
+  }
+}
+
+/* Legacy Compatibility
+   ========================================================================== */
+
+// Map old .page-header class to new BEM component
+.page-header {
+  @extend .c-hero-breadcrumb;
+  @extend .c-hero-breadcrumb--primary;
 }

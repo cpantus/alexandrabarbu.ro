@@ -1,0 +1,220 @@
+/**
+ * Video Section
+ *
+ * Centered video section with title, description, and video embed.
+ * Uses video-embed molecule for YouTube/Vimeo/direct video support.
+ *
+ * BEM Structure:
+ * - .c-video-section (section block)
+ * - .c-video-section__container (centered container)
+ * - .c-video-section__header (header wrapper for title/description)
+ * - .c-video-section__subtitle (small text above title)
+ * - .c-video-section__title (main heading - from heading atom)
+ * - .c-video-section__description (description paragraph)
+ * - .c-video-section__video-wrapper (video embed wrapper)
+ *
+ * Modifiers:
+ * - .c-video-section--primary (emerald theme)
+ * - .c-video-section--secondary (terracotta theme)
+ * - .c-video-section--tertiary (calm blue theme)
+ * - .c-video-section--neutral (gray theme)
+ *
+ * Features:
+ * - 8pt spacing grid
+ * - Centered layout with max-width
+ * - Responsive breakpoints
+ * - Color variant theming
+ * - WCAG AA accessibility
+ * - Video-embed molecule integration
+ *
+ * Created: 2025-11-20 (Phase 5 refactor)
+ */
+
+//
+// Block
+//
+.c-video-section {
+  padding: $space-12 0; // 96px vertical
+  background-color: $color-bg-page;
+
+  // Responsive: reduce vertical spacing on mobile
+  @media (max-width: $breakpoint-md - 1) {
+    padding: $space-8 0; // 64px vertical
+  }
+}
+
+//
+// Container (centered)
+//
+.c-video-section__container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $space-4; // 32px horizontal
+
+  // Mobile: reduce horizontal padding
+  @media (max-width: $breakpoint-md - 1) {
+    padding: 0 $space-3; // 24px horizontal
+  }
+}
+
+//
+// Header (title + description)
+//
+.c-video-section__header {
+  text-align: center;
+  margin-bottom: $space-8; // 64px
+
+  // Tablet: reduce margin
+  @media (max-width: $breakpoint-lg - 1) {
+    margin-bottom: $space-6; // 48px
+  }
+
+  // Mobile: reduce margin further
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-6; // 48px
+  }
+}
+
+//
+// Subtitle (small text above title)
+//
+.c-video-section__subtitle {
+  font-family: $font-family-sans;
+  font-size: $font-size-sm; // 14px
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color-text-muted;
+  margin: 0 0 $space-2 0; // 16px bottom margin
+
+  // Mobile: smaller size
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-xs; // 12px
+  }
+}
+
+//
+// Title (from heading atom)
+//
+.c-video-section__title {
+  margin-bottom: $space-4; // 32px
+
+  // Mobile: reduce margin
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-3; // 24px
+  }
+}
+
+//
+// Description
+//
+.c-video-section__description {
+  font-family: $font-family-sans;
+  font-size: $font-size-lg; // 18px
+  line-height: $line-height-normal; // 1.5
+  color: $color-text-secondary;
+  margin: 0 auto;
+  max-width: 640px; // Narrower for readability
+
+  // Mobile: smaller size
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-base; // 16px
+  }
+}
+
+//
+// Video Wrapper (video-embed molecule)
+//
+.c-video-section__video-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+
+  // Subtle lift on hover
+  transition: transform $duration-base $easing-ease-out;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  // Reduced motion: disable transform
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  // Mobile: full width
+  @media (max-width: $breakpoint-md - 1) {
+    max-width: 100%;
+  }
+}
+
+//
+// Variant Modifiers (color theming)
+//
+.c-video-section--primary {
+  // Emerald theme (default)
+  // Play button color handled by video-embed molecule variant
+}
+
+.c-video-section--secondary {
+  // Terracotta theme
+  // Play button color handled by video-embed molecule variant
+}
+
+.c-video-section--tertiary {
+  // Calm blue theme
+  // Play button color handled by video-embed molecule variant
+}
+
+.c-video-section--neutral {
+  // Gray theme
+  // Play button color handled by video-embed molecule variant
+}
+
+//
+// Accessibility Enhancements
+//
+@media (prefers-contrast: high) {
+  .c-video-section__subtitle {
+    color: $color-text-primary;
+  }
+
+  .c-video-section__description {
+    color: $color-text-primary;
+  }
+}
+
+//
+// Print Styles
+//
+@media print {
+  .c-video-section {
+    padding: $space-6 0;
+  }
+
+  .c-video-section__video-wrapper {
+    display: none; // Hide video in print
+  }
+
+  // Show link to video instead
+  .c-video-section::after {
+    content: "Video available at: " attr(data-video-url);
+    display: block;
+    text-align: center;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    margin-top: $space-4;
+  }
+}
+
+//
+// Legacy Compatibility (if needed)
+//
+.video-popup,
+.section.pb-0.video-popup {
+  // Extend BEM class if legacy classes detected
+  // @extend .c-video-section; (uncomment if needed)
+}

@@ -1,0 +1,212 @@
+// ==================================
+// LINK COMPONENT - BEM Architecture
+// ==================================
+//
+// Purpose: Styled text links with hover/focus states
+// Features: 4 color variants, external link styling, icon support
+//
+// Last Updated: 2025-11-20 (Phase 2 - Atom Refactor)
+// Version: 1.0.0 (ITCSS + BEM)
+//
+// BEM Structure:
+// Block: .c-link
+// Elements: __text, __icon
+// Modifiers: --primary, --secondary, --tertiary, --neutral, --external
+//
+
+/*------------------------------------------------------------------
+  # Base Link Block
+-------------------------------------------------------------------*/
+
+/**
+ * Base link component
+ * Provides foundation styling for all link variants
+ */
+.c-link {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;  // 4px gap between text and icon
+  font-family: $font-body;
+  font-weight: $weight-medium;  // 500 for link emphasis
+  text-decoration: none;
+  transition: $transition-fast;  // 200ms ease-in-out
+  cursor: pointer;
+  position: relative;
+
+  // Underline animation (slide-in from left)
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    transition: width $duration-fast $ease-out;
+  }
+
+  // Hover state - animate underline
+  &:hover {
+    text-decoration: none;
+
+    &::after {
+      width: 100%;
+    }
+  }
+
+  // Focus state for accessibility
+  &:focus {
+    outline: 2px solid rgba($emerald-500, 0.5);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  // Active state
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Link Variant Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Primary link - emerald (brand color, most common)
+ */
+.c-link--primary {
+  color: $emerald-600;
+
+  &::after {
+    background-color: $emerald-600;
+  }
+
+  &:hover,
+  &:focus {
+    color: $emerald-700;
+  }
+}
+
+/**
+ * Secondary link - terracotta (warm, alternative emphasis)
+ */
+.c-link--secondary {
+  color: $terracotta-600;
+
+  &::after {
+    background-color: $terracotta-600;
+  }
+
+  &:hover,
+  &:focus {
+    color: $terracotta-700;
+  }
+}
+
+/**
+ * Tertiary link - navy (informational, support)
+ */
+.c-link--tertiary {
+  color: $navy-600;
+
+  &::after {
+    background-color: $navy-600;
+  }
+
+  &:hover,
+  &:focus {
+    color: $navy-700;
+  }
+}
+
+/**
+ * Neutral link - gray (subtle, footer links)
+ */
+.c-link--neutral {
+  color: $gray-600;
+
+  &::after {
+    background-color: $gray-600;
+  }
+
+  &:hover,
+  &:focus {
+    color: $gray-700;
+  }
+}
+
+/*------------------------------------------------------------------
+  # External Link Modifier
+-------------------------------------------------------------------*/
+
+/**
+ * External link styling
+ * Adds visual indicator for external links
+ */
+.c-link--external {
+  // Icon already added in HTML template
+  // No additional styling needed beyond base
+}
+
+/*------------------------------------------------------------------
+  # Link Elements
+-------------------------------------------------------------------*/
+
+/**
+ * Link text element
+ * Wraps the text content for semantic structure
+ */
+.c-link__text {
+  // No additional styles needed (inherits from parent)
+  // Added for semantic structure and future flexibility
+}
+
+/**
+ * Link icon element
+ * Inline icon with proper spacing
+ */
+.c-link__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;  // Prevent icon from shrinking
+  transition: transform $duration-fast $ease-out;
+
+  // Icon inherits color from parent .c-link
+}
+
+/**
+ * Left-aligned icon modifier
+ * Default behavior (no additional styles needed)
+ */
+.c-link__icon--left {
+  // Left is default layout (flex gap handles spacing)
+  // Added for semantic structure
+}
+
+/**
+ * Right-aligned icon modifier
+ * Icon animates on hover (moves right slightly)
+ */
+.c-link__icon--right {
+  // Flex gap automatically handles spacing
+
+  // Animate icon on parent hover
+  .c-link:hover & {
+    transform: translateX(2px);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Accessibility
+-------------------------------------------------------------------*/
+
+/**
+ * Ensure links are accessible
+ * - Sufficient color contrast (WCAG AA)
+ * - Clear focus indicators (outline visible)
+ * - External links have rel="noopener noreferrer" (handled in HTML)
+ * - Screen reader friendly (aria-label support)
+ */
+
+// All color combinations meet WCAG AA standards:
+// - 600 text colors on white background = 4.5:1+ contrast
+// - Clear focus outline with 2px offset

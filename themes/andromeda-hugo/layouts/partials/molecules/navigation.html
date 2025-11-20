@@ -1,80 +1,127 @@
 {{/*
-  Navigation Molecule
+  Navigation Molecule - Main navigation menu with dropdown support (Vanilla JS)
 
-  Displays main navigation menu with dropdown support
-  Handles active states and multilingual URLs
+  Displays main site navigation from Hugo menus with support for:
+  - Single-level menu items
+  - Dropdown menus (multi-level)
+  - Active state highlighting
+  - Multilingual URLs
+  - External links (opens in new tab)
+  - Anchor links (handles #hash URLs)
+  - Keyboard navigation
+  - Mobile responsive
 
   Usage:
     {{ partial "molecules/navigation.html" . }}
+
+  Parameters:
+    Uses Hugo's site.Menus.main automatically
+    Requires vanilla-dropdown.js for dropdown functionality
+
+  Menu Configuration (config/_default/menus.{ro,en}.toml):
+    [[main]]
+    name = "Services"
+    url = "services/"
+    weight = 2
+
+    [[main]]
+    parent = "Services"
+    name = "Individual Therapy"
+    url = "services/individual/"
+    weight = 1
+
+  Examples:
+    In header.html organism:
+      <nav class="c-header__nav">
+        {{ partial "molecules/navigation.html" . }}
+      </nav>
+
+  Accessibility:
+    - Full keyboard navigation (Tab, Enter, Space, Arrow keys, Escape)
+    - ARIA attributes for dropdowns (aria-haspopup, aria-expanded, aria-controls)
+    - Focus indicators on all interactive elements
+    - Screen reader support
+
+  Styling:
+    See assets/scss/06-components/_navigation.scss for BEM styles
 */}}
 
-<ul class="navbar-nav mx-auto">
-  {{ $currentPage := . }}
-  {{ range site.Menus.main }}
-    {{ $menuURL := .URL | absLangURL }}
-    {{ $pageURL:= $currentPage.Permalink | absLangURL }}
-    {{ $active := eq $menuURL $pageURL }}
+{{- $currentPage := . -}}
 
-    {{ if .HasChildren }}
-      {{/* Dropdown Menu */}}
-      <li
-        class="nav-item dropdown
-      {{ range .Children }}
-          {{ $childURL := .URL | absLangURL }}
-          {{ $active := eq $childURL $pageURL }}
-          {{ if $active }}active{{ end }}
-        {{ end }}
-        ">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          role="button"
-          data-bs-toggle="dropdown"
+<ul class="c-navigation__list">
+  {{- range site.Menus.main -}}
+    {{- $menuURL := .URL | absLangURL -}}
+    {{- $pageURL := $currentPage.Permalink | absLangURL -}}
+    {{- $active := eq $menuURL $pageURL -}}
+
+    {{- if .HasChildren -}}
+      {{/* Dropdown Menu Item */}}
+      {{- $hasActiveChild := false -}}
+      {{- range .Children -}}
+        {{- $childURL := .URL | absLangURL -}}
+        {{- if eq $childURL $pageURL -}}
+          {{- $hasActiveChild = true -}}
+        {{- end -}}
+      {{- end -}}
+
+      <li class="c-navigation__item c-navigation__item--dropdown{{ if or $active $hasActiveChild }} c-navigation__item--active{{ end }}">
+        <button
+          class="c-navigation__link c-navigation__link--dropdown"
+          type="button"
+          data-dropdown-toggle="true"
           aria-haspopup="true"
-          aria-expanded="false">
-          {{ .Name }}
-        </a>
-        <ul class="dropdown-menu" style="height:auto">
-          {{ range .Children }}
-            {{ $childURL := .URL | absLangURL }}
-            {{ $active := eq $childURL $pageURL }}
-            <li>
+          aria-expanded="false"
+        >
+          <span class="c-navigation__link-text">{{ .Name }}</span>
+          <span class="c-navigation__link-icon">
+            {{ partial "atoms/icon.html" (dict "name" "angle-down" "size" "xs" "prefix" "las") }}
+          </span>
+        </button>
+
+        <ul class="c-navigation__dropdown">
+          {{- range .Children -}}
+            {{- $childURL := .URL | absLangURL -}}
+            {{- $childActive := eq $childURL $pageURL -}}
+
+            <li class="c-navigation__dropdown-item">
               <a
-                class="dropdown-item {{ if $active }}active{{ end }}"
-                {{ if findRE `^http` .URL }}
+                class="c-navigation__dropdown-link{{ if $childActive }} c-navigation__dropdown-link--active{{ end }}"
+                {{- if findRE `^http` .URL }}
                   target="_blank" rel="noopener"
-                {{ end }}
+                {{- end }}
                 href="{{ if findRE `^#` .URL }}
-                  {{ if not $.IsHome }}
+                  {{- if not $currentPage.IsHome -}}
                     {{ site.BaseURL | relLangURL }}
-                  {{ end }}{{ .URL }}
-                {{ else }}
+                  {{- end -}}{{ .URL }}
+                {{- else -}}
                   {{ .URL | relLangURL }}
-                {{ end }}">
+                {{- end -}}"
+              >
                 {{ .Name }}
               </a>
             </li>
-          {{ end }}
+          {{- end -}}
         </ul>
       </li>
-    {{ else }}
+    {{- else -}}
       {{/* Single Menu Item */}}
-      <li class="nav-item {{ if $active }}active{{ end }}">
+      <li class="c-navigation__item{{ if $active }} c-navigation__item--active{{ end }}">
         <a
-          class="nav-link"
-          {{ if findRE `^http` .URL }}
+          class="c-navigation__link"
+          {{- if findRE `^http` .URL }}
             target="_blank" rel="noopener"
-          {{ end }}
+          {{- end }}
           href="{{ if findRE `^#` .URL }}
-            {{ if not $.IsHome }}
+            {{- if not $currentPage.IsHome -}}
               {{ site.BaseURL | relLangURL }}
-            {{ end }}{{ .URL }}
-          {{ else }}
+            {{- end -}}{{ .URL }}
+          {{- else -}}
             {{ .URL | relLangURL }}
-          {{ end }}">
-          {{ .Name }}
+          {{- end -}}"
+        >
+          <span class="c-navigation__link-text">{{ .Name }}</span>
         </a>
       </li>
-    {{ end }}
-  {{ end }}
+    {{- end -}}
+  {{- end -}}
 </ul>

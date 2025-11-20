@@ -1,0 +1,38 @@
+{{/*
+  Spinner Atom - Loading indicator for async operations
+
+  Usage:
+    {{ partial "atoms/spinner.html" (dict
+      "size" "md"
+      "variant" "primary"
+    )}}
+
+  Parameters:
+    size (optional) - Spinner size: sm|md|lg (default: md)
+    variant (optional) - Color variant: primary|secondary|neutral (default: primary)
+    class (optional) - Additional CSS classes
+    ariaLabel (optional) - ARIA label for screen readers (default: "Loading...")
+
+  Examples:
+    Default spinner: {{ partial "atoms/spinner.html" (dict) }}
+    Small primary: {{ partial "atoms/spinner.html" (dict "size" "sm" "variant" "primary") }}
+    Large secondary: {{ partial "atoms/spinner.html" (dict "size" "lg" "variant" "secondary") }}
+*/}}
+
+{{ $size := .size | default "md" }}
+{{ $variant := .variant | default "primary" }}
+{{ $class := .class | default "" }}
+{{ $ariaLabel := .ariaLabel | default "Loading..." }}
+
+{{/* Build spinner classes */}}
+{{ $spinnerClass := "c-spinner" }}
+{{ $spinnerClass = printf "%s c-spinner--%s" $spinnerClass $size }}
+{{ $spinnerClass = printf "%s c-spinner--%s" $spinnerClass $variant }}
+{{ if $class }}
+  {{ $spinnerClass = printf "%s %s" $spinnerClass $class }}
+{{ end }}
+
+<div class="{{ $spinnerClass }}" role="status" aria-label="{{ $ariaLabel }}">
+  <span class="c-spinner__circle"></span>
+  <span class="c-spinner__sr-only">{{ $ariaLabel }}</span>
+</div>
