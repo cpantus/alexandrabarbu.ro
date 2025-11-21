@@ -106,16 +106,19 @@ feature_blocks:
     description: |
       A practical 20-page guide with scientifically validated techniques for reducing anxiety. Includes
       breathing exercises, mindfulness, cognitive restructuring and personalized action plans.
+    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=600&fit=crop"
   - title: "5 Mindfulness Exercises for Beginners"
     subtitle: "Guided Audio"
     description: |
       Simple 5-10 minute exercises you can do anywhere. Perfect for beginners. Includes
       guided audio and step-by-step instructions.
+    image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&h=600&fit=crop"
   - title: "Thoughts and Emotions Journal"
     subtitle: "Downloadable Template"
     description: |
       A downloadable template to monitor your thoughts, emotions and behaviors. Essential tool
       in cognitive-behavioral therapy.
+    image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop"
 
 # Blog Grid Section - Main Resources
 blog_grid:

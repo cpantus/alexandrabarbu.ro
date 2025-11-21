@@ -106,16 +106,19 @@ feature_blocks:
     description: |
       Un ghid practic de 20 de pagini cu tehnici validate științific pentru reducerea anxietății. Include
       exerciții de respirație, mindfulness, restructurare cognitivă și planuri de acțiune personalizate.
+    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=600&fit=crop"
   - title: "5 Exerciții de Mindfulness pentru Început"
     subtitle: "Audio Ghidat"
     description: |
       Exerciții simple de 5-10 minute pe care le poți face oriunde. Perfecte pentru începători. Include
       audio ghidat și instrucțiuni pas cu pas.
+    image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&h=600&fit=crop"
   - title: "Jurnal de Gânduri și Emoții"
     subtitle: "Template Descărcabil"
     description: |
       Un template descărcabil pentru a-ți monitoriza gândurile, emoțiile și comportamentele. Instrument esențial
       în terapia cognitiv-comportamentală.
+    image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop"
 
 # Blog Grid Section - Main Resources
 blog_grid:
