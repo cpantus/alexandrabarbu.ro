@@ -1,22 +1,21 @@
-{{/* Collapse/Accordion Shortcode - Hugo Way */}}
+{{/* Collapse/Accordion Shortcode - Vanilla JS */}}
 {{ $title := (.Get 0) }}
 {{ $id := $title | urlize }}
 {{ $hash := $title | md5 }}
 
 <div class="accordion-item faq-item">
   <h2 class="accordion-header my-0" id="title-{{ $id }}">
-    <button class="accordion-button collapsed" 
-            type="button" 
-            data-bs-toggle="collapse" 
-            data-bs-target="#collapse-{{ $hash }}" 
-            aria-expanded="false" 
+    <button class="accordion-button collapsed"
+            type="button"
+            data-collapse-toggle="collapse-{{ $hash }}"
+            aria-expanded="false"
             aria-controls="collapse-{{ $hash }}">
       {{ $title }}
     </button>
   </h2>
-  <div id="collapse-{{ $hash }}" 
-       class="accordion-collapse collapse" 
-       data-bs-parent="#faqAccordion"
+  <div id="collapse-{{ $hash }}"
+       class="accordion-collapse collapse"
+       data-collapse-parent="#faqAccordion"
        aria-labelledby="title-{{ $id }}">
     <div class="accordion-body">
       {{ .Inner | markdownify }}

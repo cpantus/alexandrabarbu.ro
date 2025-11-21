@@ -73,9 +73,9 @@
   align-items: center;
   justify-content: center;
 
-  // Size (icon wrapper size)
-  width: $space-6; // 48px (6 × 8pt) - comfortable touch target
-  height: $space-6;
+  // Size (icon wrapper size) - 138% larger than before (98% + 20% extra)
+  width: calc($space-6 * 2.38); // 114px (48px × 2.38) - larger touch target
+  height: calc($space-6 * 2.38);
 
   // Spacing
   padding: $space-2; // 16px internal padding
@@ -87,15 +87,37 @@
   transition: all $transition-base $easing-ease-out;
 
   // NO underlines or decorations
-  text-decoration: none;
+  text-decoration: none !important;
+  background-image: none !important; // Remove gradient underlines from navigation system
 
-  // Force remove any underlines/decorations
-  &::after {
-    display: none !important;
+  // Override any global link underline styles
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited {
+    text-decoration: none !important;
+    background-image: none !important;
   }
 
-  // Gradient circle background - MORE VISIBLE with better colors
+  // Gradient circle border (outline only, no fill)
   &::before {
+    content: '';
+    position: absolute;
+    top: -0.5px; // Border width (0.5px - half as thin)
+    left: -0.5px;
+    right: -0.5px;
+    bottom: -0.5px;
+    border-radius: $border-radius-circle;
+    // Gradient background for the border
+    background: linear-gradient(135deg, $emerald-400 0%, $terracotta-400 100%);
+    opacity: 0; // Hidden by default
+    transform: scale(1);
+    transition: all $transition-base $easing-ease-out;
+    z-index: 0;
+  }
+
+  // Create the "hole" in the middle by covering with background
+  &::after {
     content: '';
     position: absolute;
     top: 0;
@@ -103,12 +125,15 @@
     right: 0;
     bottom: 0;
     border-radius: $border-radius-circle;
-    // Use distinct gradient colors from icon gradients for better visibility
-    background: linear-gradient(135deg, rgba($emerald-400, 0.2) 0%, rgba($terracotta-400, 0.2) 100%);
-    opacity: 1; // Always visible
-    transform: scale(1);
-    transition: all $transition-base $easing-ease-out;
-    z-index: -1;
+    background: #fff; // Match your page background
+    z-index: 1;
+  }
+
+  // Icon must be on top - no underlines on icon text
+  i, svg, .c-icon {
+    position: relative;
+    z-index: 2;
+    text-decoration: none !important;
   }
 
   // Typography
@@ -117,12 +142,10 @@
   // Accessibility
   cursor: pointer;
 
-  // States: Hover - intensify gradient
+  // States: Hover - show gradient border
   &:hover {
-    transform: translateY(-2px);
-
     &::before {
-      background: linear-gradient(135deg, rgba($emerald-500, 0.35) 0%, rgba($terracotta-500, 0.35) 100%);
+      opacity: 1; // Show gradient border ring on hover
       transform: scale(1.05);
     }
   }
@@ -145,19 +168,17 @@
 
   // States: Active
   &:active {
-    transform: translateY(0);
-
     &::before {
-      background: linear-gradient(135deg, rgba($emerald-600, 0.4) 0%, rgba($terracotta-600, 0.4) 100%);
+      opacity: 1; // Keep border visible when clicking
       transform: scale(0.95);
     }
   }
 
-  // Responsive: Mobile
+  // Responsive: Mobile - 138% larger
   @media (max-width: $breakpoint-md - 1) {
-    width: $space-5; // 40px on mobile
-    height: $space-5;
-    padding: $space-1-5; // 12px internal padding
+    width: calc($space-5 * 2.38); // 95.2px on mobile (40px × 2.38)
+    height: calc($space-5 * 2.38);
+    padding: $space-2; // 16px internal padding
   }
 }
 
@@ -187,16 +208,12 @@
 // -----------------------------------------------------------------------------
 // Modifier: Color variants (primary, secondary, tertiary, neutral)
 // -----------------------------------------------------------------------------
-// These modifiers apply visible gradient circles (not the old green-heavy ones)
+// These modifiers apply gradient border rings (outline only, no fill)
 
 .c-social--primary {
   .c-social__link {
     &::before {
-      background: linear-gradient(135deg, rgba($emerald-400, 0.2) 0%, rgba($terracotta-400, 0.2) 100%);
-    }
-
-    &:hover::before {
-      background: linear-gradient(135deg, rgba($emerald-500, 0.35) 0%, rgba($terracotta-500, 0.35) 100%);
+      background: linear-gradient(135deg, $emerald-400 0%, $terracotta-400 100%);
     }
   }
 }
@@ -204,11 +221,7 @@
 .c-social--secondary {
   .c-social__link {
     &::before {
-      background: linear-gradient(135deg, rgba($terracotta-400, 0.25) 0%, rgba($terracotta-500, 0.15) 100%);
-    }
-
-    &:hover::before {
-      background: linear-gradient(135deg, rgba($terracotta-500, 0.4) 0%, rgba($terracotta-600, 0.3) 100%);
+      background: linear-gradient(135deg, $terracotta-400 0%, $terracotta-500 100%);
     }
   }
 }
@@ -216,11 +229,7 @@
 .c-social--tertiary {
   .c-social__link {
     &::before {
-      background: linear-gradient(135deg, rgba($color-tertiary, 0.15) 0%, rgba($color-tertiary, 0.25) 100%);
-    }
-
-    &:hover::before {
-      background: linear-gradient(135deg, rgba($color-tertiary, 0.3) 0%, rgba($color-tertiary, 0.4) 100%);
+      background: linear-gradient(135deg, $color-tertiary 0%, lighten($color-tertiary, 10%) 100%);
     }
   }
 }
@@ -228,11 +237,7 @@
 .c-social--neutral {
   .c-social__link {
     &::before {
-      background: linear-gradient(135deg, rgba($color-neutral, 0.1) 0%, rgba($color-neutral, 0.2) 100%);
-    }
-
-    &:hover::before {
-      background: linear-gradient(135deg, rgba($color-neutral, 0.2) 0%, rgba($color-neutral, 0.3) 100%);
+      background: linear-gradient(135deg, $color-neutral 0%, lighten($color-neutral, 15%) 100%);
     }
   }
 }
@@ -244,12 +249,8 @@
   .c-social__link {
     transition: none;
 
-    &:hover {
-      transform: none;
-    }
-
-    &:active {
-      transform: none;
+    &::before {
+      transition: none;
     }
   }
 }
