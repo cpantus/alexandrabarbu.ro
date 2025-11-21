@@ -14,6 +14,22 @@ address = "Bucuresti, Sector 3, L-V: 10:00-20:00"
 phone = [ "+1111111-555-0127", "+999902-569-6969" ]
 email = [ "alexandra.barbu@gmail.com" ]
 
+# Social Media Links
+[[social]]
+name = "facebook"
+url = "https://facebook.com/alexandrabarbu"
+icon = "facebook-f"
+
+[[social]]
+name = "instagram"
+url = "https://instagram.com/alexandrabarbu"
+icon = "instagram"
+
+[[social]]
+name = "linkedin"
+url = "https://linkedin.com/in/alexandrabarbu"
+icon = "linkedin-in"
+
 [cta]
 button_link = "https://calendly.com/cpninesix1/terapie-online"
 button = "Programeaza o evaluare de 15 minute"

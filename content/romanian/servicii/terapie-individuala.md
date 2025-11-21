@@ -21,7 +21,7 @@ hero_breadcrumb:
   title: "Terapie Individuală"
   subtitle: "Abordare Personalizată Pentru Vindecarea și Creșterea Ta"
   description: "Terapie bazată pe dovezi pentru anxietate, depresie, traume și dezvoltare personală. Folosesc TCC, EMDR și Mindfulness pentru rezultate măsurabile."
-  image: "images/services/individual-therapy-hero.jpg"
+  image: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?w=1200&h=600&fit=crop"
 
 breadcrumb:
   - name: "Acasă"

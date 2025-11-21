@@ -1,7 +1,14 @@
 ---
 title: "Articles & Resources"
 draft: false
-layout: "about"
+layout: "flexible"
+sections:
+  - type: "hero-breadcrumb"
+  - type: "blog-grid"
+
+hero_breadcrumb:
+  title: "Articles & Resources"
+  subtitle: "Evidence-based insights and educational resources"
 ---
 
 ## Professional Articles & Mental Health Resources

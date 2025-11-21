@@ -1,6 +1,6 @@
 ---
 title: "signin"
-layout: "signin"
+layout: "flexible"
 draft: false
 
 image: "images/vectors/signup.png"

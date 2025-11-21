@@ -1,7 +1,7 @@
 ---
 title: "Terms & Conditions"
 date: "2023-01-14"
-layout: "terms-and-conditions"
+layout: "flexible"
 draft: false
 
 description: "By Using The Service Or Clicking “I Agree”, The User Is Agreeing To Be Bound By This Agreement. If You Are Agreeing To This Agreement On Behalf Of Or For The Benefit Of A Company, Then The User Represents And Warrants That It Has The Necessary Authority To Agree To This Agreement On The Company’s"

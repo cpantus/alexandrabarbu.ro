@@ -1,6 +1,6 @@
 ---
-title: Bună, sunt Alexandra Barbu"
-layout: about
+title: "Bună, sunt Alexandra Barbu"
+layout: "flexible"
 draft: false
 description: ''
 who_we_are:
