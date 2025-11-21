@@ -102,7 +102,7 @@
     right: $space-3;
     bottom: $space-1;
     height: 2px;
-    background: $gradient-warm;
+    background: $gradient-warm-vibrant;
     opacity: 0;
     transform: scaleX(0);
     transform-origin: center;
@@ -271,7 +271,7 @@
       transform: translateY(-50%);
       width: 4px;
       height: 20px;
-      background: $gradient-warm;
+      background: $gradient-warm-vibrant;
       border-radius: 2px;
     }
 

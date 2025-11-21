@@ -405,14 +405,6 @@ $glass-border: 1px solid rgba(255, 255, 255, 0.2);
   }
 }
 
-/* Dark Mode Variables (Future-Proofing) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg-primary: #{$gray-900};
-    --color-text-primary: #{$gray-50};
-    --shadow-base: 0 4px 6px rgba(0, 0, 0, 0.3);
-  }
-}
 
 /*------------------------------------------------------------------
   # GSAP Enhancement Styles (v4.1)

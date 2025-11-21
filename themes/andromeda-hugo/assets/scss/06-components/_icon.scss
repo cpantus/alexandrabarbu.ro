@@ -326,30 +326,6 @@
  */
 .icon-responsive { @extend .c-icon--responsive; }
 
-/**
- * Legacy context-specific wrapper classes
- * These are used by section components and will be updated in Phase 3
- */
-.problem-icon-wrapper,
-.credential-icon-wrapper,
-.value-icon-wrapper,
-.service-icon-wrapper,
-.feature-icon-wrapper,
-.benefit-icon-wrapper,
-.privacy-shield {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-
-  i, svg {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    line-height: 1 !important;
-  }
-}
 
 // ==================================
 // COMPONENT USAGE

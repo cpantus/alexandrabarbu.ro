@@ -83,10 +83,14 @@ Version: 5.0.1 (New component)
           <div class="c-cta__buttons">
 
             {{/* Primary Button */}}
+            {{- $defaultButtonVariant := "secondary" -}}
+            {{- if eq $variant "secondary" -}}
+              {{- $defaultButtonVariant = "primary" -}}
+            {{- end -}}
             {{ partial "atoms/button.html" (dict
               "text" $section.button_text
               "url" $section.button_url
-              "variant" ($section.button_variant | default (cond (eq $background "solid") "secondary" "primary"))
+              "variant" ($section.button_variant | default $defaultButtonVariant)
               "size" "lg"
             ) }}
 

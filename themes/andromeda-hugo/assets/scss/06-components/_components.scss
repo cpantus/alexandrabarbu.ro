@@ -52,11 +52,6 @@
 @import 'service-card';            // ✅ Phase 3: NEW molecule - service preview card with icon/image, title, excerpt, CTA button
 @import 'value-card';              // ✅ Phase 3: NEW molecule - value/principle card with icon, title, description (About/Approach pages)
 @import 'process-step';            // ✅ Phase 3: NEW molecule - numbered process step with title & description (therapy timelines)
-@import 'resource-card';           // ✅ Phase 3: NEW molecule - blog/article/guide card with image, category, title, excerpt, metadata (Resources section)
-@import 'contact-method';          // ✅ Phase 3: NEW molecule - contact method card with icon, label, value (phone/email/location on Contact page)
-@import 'feature-highlight';       // ✅ Phase 3: NEW molecule - inline feature display with icon, title, description (Service pages)
-@import 'quote-block';             // ✅ Phase 3: NEW molecule - testimonial/quote block with optional attribution & avatar (Testimonials)
-@import 'info-box';                // ✅ Phase 3: NEW molecule - informational callout box with icon, title, content (tips/notes/warnings)
 
 // Section Components (BEM refactored)
 @import 'hero-breadcrumb';         // ✅ Phase 3: BEM refactored with legacy compat

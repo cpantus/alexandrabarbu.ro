@@ -453,26 +453,6 @@
   }
 }
 
-/**
- * Dark mode support (if implemented)
- */
-@media (prefers-color-scheme: dark) {
-  .c-breadcrumb__link {
-    color: $color-text-secondary-dark;
-
-    &:hover {
-      color: $color-primary-400;
-    }
-  }
-
-  .c-breadcrumb__text--current {
-    color: $color-text-primary-dark;
-  }
-
-  .c-breadcrumb__separator {
-    color: $color-text-muted-dark;
-  }
-}
 
 /*------------------------------------*\
   #PRINT

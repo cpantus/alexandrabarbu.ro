@@ -251,7 +251,7 @@
 **Session Summary (2025-11-20 Part 3)**:
 - ✅ breadcrumb.html: Complete BEM refactor with 4 color variants (primary, secondary, tertiary, neutral), icon support (home icon + custom separators), alignment options (left, center, right), auto-generation, and responsive behavior.
 - ✅ _breadcrumb.scss: Created comprehensive BEM styles with design tokens, responsive breakpoints, hover/focus states, accessibility enhancements (high contrast, reduced motion, screen readers), and print styles.
-- Features: Icon atoms integration, 8pt spacing grid, Crimson Pro typography, WCAG AA compliance, dark mode support.
+- Features: Icon atoms integration, 8pt spacing grid, Crimson Pro typography, WCAG AA compliance.
 - Files modified: 2 (1 HTML, 1 SCSS, 1 import file)
 
 **Session Summary (2025-11-20 Part 4)**:
@@ -308,7 +308,7 @@
 - ✅ language-selector.js: Created modular JavaScript module (~200 lines) with public API (switch/getPreferred/setPreferred), custom event dispatching (languageChanged), error handling, graceful degradation, supports multiple selector instances.
 - ✅ _language-selector.scss: Created comprehensive BEM styles (325 lines) with 4 color variant modifiers, 2 display variants (mobile/desktop), custom dropdown arrow, responsive sizing, accessibility enhancements (reduced motion, high contrast, keyboard nav), print styles, backward compatibility via @extend.
 - ✅ logo.html: Complete BEM refactor to `.c-logo` structure with 4 semantic color variants (primary, secondary, tertiary, neutral), 3 size variants (sm:150px, md:200px, lg:300px), optional homepage link wrapper, multilingual link generation, SVG color inheritance via currentColor (replaced hardcoded #4db380), comprehensive documentation (120 lines HTML template).
-- ✅ _logo.scss: Created comprehensive BEM styles (240 lines) with 4 color variant modifiers, 3 size variant modifiers, responsive sizing (smaller on mobile/tablet), link hover effects (opacity + scale), focus indicators (box-shadow + outline), accessibility enhancements (high contrast, reduced motion, keyboard nav), dark mode support, print styles.
+- ✅ _logo.scss: Created comprehensive BEM styles (240 lines) with 4 color variant modifiers, 3 size variant modifiers, responsive sizing (smaller on mobile/tablet), link hover effects (opacity + scale), focus indicators (box-shadow + outline), accessibility enhancements (high contrast, reduced motion, keyboard nav), print styles.
 - Files modified: 6 (2 HTML, 2 SCSS, 1 JS, 1 import file)
 - Total: ~1,000 lines production code (HTML + SCSS + JS + documentation)
 - Key achievements: Eliminated Bootstrap dependencies from 2 more molecules, modular JavaScript with public API, SVG currentColor for flexible theming, full BEM structure with backward compatibility

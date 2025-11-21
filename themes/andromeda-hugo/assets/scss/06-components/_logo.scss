@@ -247,12 +247,3 @@
   }
 }
 
-/* Dark Mode Support (if implemented)
-   ========================================================================== */
-
-@media (prefers-color-scheme: dark) {
-  .c-logo--neutral {
-    /* Lighten neutral color for dark backgrounds */
-    color: $color-neutral-300;
-  }
-}
