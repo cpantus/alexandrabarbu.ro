@@ -43,17 +43,25 @@
   align-items: flex-start;
   position: relative;
   z-index: 1;
+  margin-bottom: $space-10; // 80px spacing between steps (increased)
+
+  // Remove margin from last step
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   // ========================================
-  // Responsive Gaps
+  // Responsive Gaps & Margins
   // ========================================
 
   @media (max-width: 768px) {
     gap: $space-4; // 32px on tablet
+    margin-bottom: $space-8; // 64px on tablet (increased)
   }
 
   @media (max-width: 576px) {
     gap: $space-3; // 24px on mobile
+    margin-bottom: $space-12; // 48px on mobile (increased)
   }
 }
 
@@ -90,8 +98,13 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: transform $duration-base $easing-medium;
+  transition: transform $duration-base $easing-medium, background $duration-base $easing-medium, border-color $duration-base $easing-medium;
   box-shadow: $shadow-sm;
+
+  // Icon color transition
+  i {
+    transition: color $duration-base $easing-medium;
+  }
 
   // ========================================
   // White ring around icon
@@ -143,12 +156,13 @@
 // ============================================================================
 
 .c-timeline-step__number {
-  color: white;
+  // Color set by variant modifiers (not white by default)
   font-family: $font-primary; // Crimson Pro
   font-size: 1.5rem; // 24px
   font-weight: 600;
   line-height: 1;
   z-index: 1;
+  transition: color $duration-base $easing-medium;
 
   @media (max-width: 768px) {
     font-size: 1.125rem; // 18px
@@ -342,28 +356,125 @@
 // Primary (emerald gradient) - Default, trust, professional
 .c-timeline-step--primary {
   .c-timeline-step__icon-wrapper {
-    background: linear-gradient(135deg, $green-300, $green-600);
+    background: white; // Default: white
+    border: 2px solid rgba($green-500, 0.2); // Subtle border hint
+  }
+
+  // Icon color: always colored (stays visible)
+  .c-timeline-step__number,
+  i {
+    color: $green-600;
+  }
+
+  // Hover: show colored gradient, keep icon colored but darker
+  &:hover .c-timeline-step__icon-wrapper {
+    background: linear-gradient(135deg, rgba($green-300, 0.3), rgba($green-600, 0.3));
+    border-color: rgba($green-600, 0.4);
+  }
+
+  &:hover .c-timeline-step__number,
+  &:hover i {
+    color: $green-700; // Darker for better contrast on tinted background
   }
 }
 
 // Secondary (terracotta gradient) - Warm, personal connection
 .c-timeline-step--secondary {
   .c-timeline-step__icon-wrapper {
-    background: linear-gradient(135deg, $terracotta-300, $terracotta-600);
+    background: white; // Default: white
+    border: 2px solid rgba($terracotta-500, 0.2); // Subtle border hint
+  }
+
+  // Icon color: always colored (stays visible)
+  .c-timeline-step__number,
+  i {
+    color: $terracotta-600;
+  }
+
+  // Hover: show colored gradient, keep icon colored but darker
+  &:hover .c-timeline-step__icon-wrapper {
+    background: linear-gradient(135deg, rgba($terracotta-300, 0.3), rgba($terracotta-600, 0.3));
+    border-color: rgba($terracotta-600, 0.4);
+  }
+
+  &:hover .c-timeline-step__number,
+  &:hover i {
+    color: $terracotta-700; // Darker for better contrast on tinted background
   }
 }
 
 // Tertiary (blue gradient) - Informational content
 .c-timeline-step--tertiary {
   .c-timeline-step__icon-wrapper {
-    background: linear-gradient(135deg, $teal-300, $teal-600);
+    background: white; // Default: white
+    border: 2px solid rgba($teal-500, 0.2); // Subtle border hint
+  }
+
+  // Icon color: always colored (stays visible)
+  .c-timeline-step__number,
+  i {
+    color: $teal-600;
+  }
+
+  // Hover: show colored gradient, keep icon colored but darker
+  &:hover .c-timeline-step__icon-wrapper {
+    background: linear-gradient(135deg, rgba($teal-300, 0.3), rgba($teal-600, 0.3));
+    border-color: rgba($teal-600, 0.4);
+  }
+
+  &:hover .c-timeline-step__number,
+  &:hover i {
+    color: $teal-700; // Darker for better contrast on tinted background
+  }
+}
+
+// Coral (coral gradient) - Warm, compassionate
+.c-timeline-step--coral {
+  .c-timeline-step__icon-wrapper {
+    background: white; // Default: white
+    border: 2px solid rgba($coral-500, 0.2); // Subtle border hint
+  }
+
+  // Icon color: always colored (stays visible)
+  .c-timeline-step__number,
+  i {
+    color: $coral-600;
+  }
+
+  // Hover: show colored gradient, keep icon colored but darker
+  &:hover .c-timeline-step__icon-wrapper {
+    background: linear-gradient(135deg, rgba($coral-300, 0.3), rgba($coral-600, 0.3));
+    border-color: rgba($coral-600, 0.4);
+  }
+
+  &:hover .c-timeline-step__number,
+  &:hover i {
+    color: $coral-700; // Darker for better contrast on tinted background
   }
 }
 
 // Neutral (gray gradient) - Subtle, backgrounds
 .c-timeline-step--neutral {
   .c-timeline-step__icon-wrapper {
-    background: linear-gradient(135deg, $gray-300, $gray-600);
+    background: white; // Default: white
+    border: 2px solid rgba($gray-500, 0.2); // Subtle border hint
+  }
+
+  // Icon color: always colored (stays visible)
+  .c-timeline-step__number,
+  i {
+    color: $gray-600;
+  }
+
+  // Hover: show colored gradient, keep icon colored but darker
+  &:hover .c-timeline-step__icon-wrapper {
+    background: linear-gradient(135deg, rgba($gray-300, 0.3), rgba($gray-600, 0.3));
+    border-color: rgba($gray-600, 0.4);
+  }
+
+  &:hover .c-timeline-step__number,
+  &:hover i {
+    color: $gray-700; // Darker for better contrast on tinted background
   }
 }
 

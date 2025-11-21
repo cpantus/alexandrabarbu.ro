@@ -18,6 +18,7 @@ sections:
 hero_breadcrumb:
   title: "Abordarea Mea Terapeutică"
   subtitle: "O abordare integrativă, centrată pe client, bazată pe evidențe științifice"
+  image: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=1200&q=80"
   breadcrumb:
     - name: "Acasă"
       url: "/"
@@ -33,6 +34,7 @@ values_intro:
     Rolul meu este să îți ofer un spațiu sigur, empatic și lipsit de judecată, în care să explorezi provocările tale și să descoperi
     propriile soluții. Folosesc o abordare integrativă, combinând metode validate științific cu sensibilitate culturală și
     adaptabilitate la nevoile tale unice.
+  image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&q=80"
   button_text: "Programează o Întâlnire"
   button_url: "/contact/"
   button_variant: "primary"
@@ -97,17 +99,20 @@ feature_blocks:
     description: |
       În primele ședințe, vom explora împreună provocările tale, istoricul tău, resursele disponibile și
       obiectivele tale. Această evaluare ne ajută să stabilim cea mai potrivită abordare terapeutică pentru tine.
+    image: "https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=800&q=80"
   - title: "Plan Terapeutic Personalizat"
     subtitle: "Abordare Personalizată"
     description: |
       Pe baza evaluării inițiale, vom crea împreună un plan terapeutic adaptat nevoilor tale, combinând metode
       și tehnici care funcționează cel mai bine pentru tine. Acest plan este flexibil și se ajustează pe măsură
       ce progresăm.
+    image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80"
   - title: "Monitorizare și Ajustare Continuă"
     subtitle: "Progres Măsurabil"
     description: |
       Progresul tău este prioritatea mea. Evaluăm regulat eficacitatea abordării noastre și ajustăm strategiile
       după nevoie. Feedback-ul tău este esențial pentru a ne asigura că terapia funcționează pentru tine.
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80"
 
 # Values Compass Section - Working Principles
 values_compass:
@@ -173,6 +178,7 @@ feature_details:
     Nu cred în soluții "la pachet". Fiecare persoană este unică, cu o istorie de viață, un context cultural
     și nevoi specifice. Abordarea mea combină cele mai bune practici din mai multe școli terapeutice, adaptate
     ție și situației tale.
+  image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=800&q=80"
   features:
     - title: "Integrare Metodologică"
       description: |

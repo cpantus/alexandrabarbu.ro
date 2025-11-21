@@ -100,26 +100,37 @@
 
     {{/* Methods Accordion */}}
     {{- if $data.methods -}}
-    <div class="c-methods-used__accordion">
+    <div class="c-methods-used__accordion" id="methodsAccordion">
       {{- range $index, $method := $data.methods -}}
+        {{- $contentId := printf "method-content-%d" $index -}}
         <div class="c-methods-used__method" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
 
           {{/* Method Header (clickable) */}}
-          <div class="c-methods-used__method-header" role="button" tabindex="0" aria-expanded="false">
+          <button
+            type="button"
+            class="c-methods-used__method-header"
+            data-toggle="collapse"
+            data-target="#{{ $contentId }}"
+            data-parent="#methodsAccordion"
+            aria-expanded="{{ if eq $index 0 }}true{{ else }}false{{ end }}"
+            aria-controls="{{ $contentId }}"
+          >
             {{- if $method.icon -}}
-              {{ partial "atoms/icon.html" (dict
-                "icon" $method.icon
-                "class" "c-methods-used__method-icon"
-              ) }}
+              <span class="c-methods-used__method-icon-wrapper">
+                <i class="las la-{{ $method.icon }} c-methods-used__method-icon"></i>
+              </span>
             {{- end -}}
             <h3 class="c-methods-used__method-title">{{ $method.title }}</h3>
             <span class="c-methods-used__toggle-icon">
               <i class="las la-angle-down"></i>
             </span>
-          </div>
+          </button>
 
           {{/* Method Content (expandable) */}}
-          <div class="c-methods-used__method-content">
+          <div
+            id="{{ $contentId }}"
+            class="c-methods-used__method-content collapse{{ if eq $index 0 }} show{{ end }}"
+          >
 
             {{/* Description */}}
             {{- if $method.description -}}

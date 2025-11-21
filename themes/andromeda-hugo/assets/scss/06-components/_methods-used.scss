@@ -73,7 +73,7 @@
 
 .c-methods-used__method {
   background: var(--color-white);
-  border: 1px solid rgba(77, 179, 128, 0.2);
+  border: none;
   border-radius: var(--border-radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
@@ -81,7 +81,6 @@
 
   &:hover {
     box-shadow: var(--shadow-md);
-    border-color: rgba(77, 179, 128, 0.4);
   }
 }
 
@@ -97,6 +96,12 @@
   cursor: pointer;
   transition: background var(--transition-fast);
   user-select: none;
+
+  // Remove default button styles
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
 
   &:hover {
     background: rgba(77, 179, 128, 0.05);
@@ -189,10 +194,14 @@
 // ACCESSIBILITY
 // ============================================================================
 
-// Focus styles
+// Focus styles (only show for keyboard navigation)
 .c-methods-used__method-header:focus {
+  outline: none; // Remove default focus outline
+}
+
+.c-methods-used__method-header:focus-visible {
   outline: 2px solid var(--color-brand-primary);
-  outline-offset: -2px;
+  outline-offset: 2px;
 }
 
 // Keyboard support (requires JS)
