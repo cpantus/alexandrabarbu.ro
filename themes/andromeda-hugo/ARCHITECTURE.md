@@ -486,6 +486,53 @@ $transition-slow: all 0.5s ease-in-out;
 }
 ```
 
+### 6. CSS Specificity Over !important
+
+```scss
+// ✅ Good - BEM class specificity naturally overrides element selectors
+.c-navigation__dropdown-link {
+  text-decoration: none;  // BEM class > element selector (a)
+}
+
+.c-navigation__dropdown-link--active {
+  color: $primary;
+}
+
+// ❌ Bad - !important battles
+.c-navigation__dropdown-link {
+  text-decoration: none !important;  // Fragile
+}
+
+.c-navigation__dropdown-link--active {
+  color: $primary !important;  // Cascade broken
+}
+```
+
+**Rules:**
+- BEM classes (`.c-component__element`) have higher specificity than element selectors (`a`, `p`)
+- NEVER use `!important` to fight global styles - refactor specificity instead
+- Only use `!important` for: accessibility overrides, third-party CSS overrides, utility classes
+- If styles aren't applying: check specificity, don't add `!important`
+
+### 7. Debug Mode for JavaScript
+
+```javascript
+// ✅ Good - Production-ready
+const DEBUG = false;  // Toggle for development
+
+if (DEBUG) console.log('Debugging info');
+if (DEBUG) console.warn('Warning');
+
+// ❌ Bad - Console spam in production
+console.log('Debugging info');  // Always runs
+console.warn('Warning');  // Always runs
+```
+
+**Rules:**
+- Wrap all console statements in `if (DEBUG)` checks
+- Set `DEBUG = false` before committing
+- Exception: Critical errors can use `console.error()` directly
+
 ---
 
 ## Legacy Compatibility

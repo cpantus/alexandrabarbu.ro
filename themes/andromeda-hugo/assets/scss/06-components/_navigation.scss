@@ -248,7 +248,7 @@
   font-size: $font-size-sm;
   font-weight: $font-weight-normal;
   line-height: $line-height-snug;
-  text-decoration: none !important; // Override global link style
+  text-decoration: none;
   border-radius: $radius-sm;
   transition: all $duration-fast $easing-medium;
   position: relative;
@@ -270,25 +270,18 @@
     border-radius: 1px;
   }
 
-  // Hover state - show gradient underline with slide effect (NOT on active)
+  // Hover state - show gradient underline with slide effect
   &:hover,
   &:focus {
     color: $color-primary;
     background: transparent;
     transform: translateX($space-1); // Slide right effect
-    text-decoration: none !important; // Override global link hover style
+    text-decoration: none;
 
     &::after {
       opacity: 1;
       transform: scaleX(1);
     }
-  }
-
-  // But NOT when active (override the hover ::after)
-  &--active:hover::after,
-  &--active:focus::after {
-    opacity: 0 !important;
-    display: none !important;
   }
 
   // Focus state (keyboard navigation) - smooth animation instead of outline
@@ -299,21 +292,17 @@
 
   // Active state (current page within dropdown)
   &--active {
-    color: $color-primary !important;
+    color: $color-primary;
     font-weight: $font-weight-medium;
     background: rgba($color-primary, 0.1);
-    text-decoration: none !important; // Override global link style
+    text-decoration: none;
 
-    // NUCLEAR OPTION: Force remove ALL ::after styling on active items
+    // Active items don't show gradient underline
     &::after {
-      content: none !important;
-      display: none !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      transform: scaleX(0) !important;
-      background: none !important;
+      display: none;
     }
 
+    // Show active indicator bar instead
     &::before {
       content: '';
       position: absolute;
@@ -322,7 +311,6 @@
       transform: translateY(-50%);
       width: 4px;
       height: 20px;
-      // Use primary color instead of green-heavy gradient
       background: $color-primary;
       border-radius: 2px;
     }
@@ -330,16 +318,10 @@
     // Adjust padding for indicator
     padding-left: calc($space-3 + $space-1); // Add space for indicator
 
-    // FORCE: No underline on hover/focus when active
+    // Keep text decoration off on hover/focus
     &:hover,
     &:focus {
-      text-decoration: none !important; // Override global link hover style
-
-      &::after {
-        content: none !important;
-        display: none !important;
-        opacity: 0 !important;
-      }
+      text-decoration: none;
     }
   }
 }

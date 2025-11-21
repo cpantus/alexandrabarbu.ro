@@ -14,16 +14,18 @@
 (function() {
   'use strict';
 
+  // Debug mode (set to false for production)
+  const DEBUG = false;
+
   // Check reduced motion preference
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReducedMotion) {
-    console.log('GSAP enhancements disabled: prefers-reduced-motion is enabled');
     return;
   }
 
   // Wait for GSAP to load
   if (typeof gsap === 'undefined') {
-    console.warn('GSAP not loaded, enhancements disabled');
+    if (DEBUG) console.warn('GSAP not loaded, enhancements disabled');
     return;
   }
 
