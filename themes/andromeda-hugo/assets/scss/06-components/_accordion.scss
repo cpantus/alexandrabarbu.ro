@@ -185,13 +185,9 @@
 -------------------------------------------------------------------*/
 
 .c-accordion__panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height $duration-slow $easing-medium;
-
-  &--open {
-    max-height: 1000px; // Large enough for any content
-  }
+  // Height animation handled by vanilla-collapse.js via .collapse classes
+  // Collapse utility classes defined in 05-objects/_collapse.scss
+  // No max-height or overflow needed here to avoid conflicts
 
   // Accessibility: hidden state
   &[hidden] {
@@ -359,9 +355,7 @@
 .accordion-collapse {
   @extend .c-accordion__panel;
 
-  &.show {
-    @extend .c-accordion__panel--open;
-  }
+  // .show class handled by 05-objects/_collapse.scss
 }
 
 .accordion-body {

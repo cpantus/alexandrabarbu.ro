@@ -135,13 +135,9 @@
 /* ==================== ANSWER PANEL ==================== */
 
 .c-service-faq__answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease-out;
-
-  &--open {
-    max-height: 2000px; // Large enough for content
-  }
+  // Height animation handled by vanilla-collapse.js via .collapse classes
+  // Collapse utility classes defined in 05-objects/_collapse.scss
+  // No max-height or overflow needed here to avoid conflicts
 }
 
 .c-service-faq__answer-content {
@@ -268,10 +264,11 @@
 /* ==================== ACCESSIBILITY ==================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .c-service-faq__question-chevron,
-  .c-service-faq__answer {
+  .c-service-faq__question-chevron {
     transition: none;
   }
+
+  // Collapse animations handled by 05-objects/_collapse.scss
 }
 
 @media print {
@@ -280,8 +277,9 @@
     background-color: $color-white;
   }
 
-  .c-service-faq__item--active .c-service-faq__answer {
-    max-height: none;
+  // Print: show all FAQ answers (collapse classes handle visibility)
+  .c-service-faq__answer.collapse {
+    height: auto !important;
   }
 }
 

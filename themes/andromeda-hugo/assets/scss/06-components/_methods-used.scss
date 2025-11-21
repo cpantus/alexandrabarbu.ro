@@ -155,16 +155,9 @@
 // ============================================================================
 
 .c-methods-used__method-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height var(--transition-normal);
-  padding: 0 var(--spacing-xl);
-
-  // When expanded (controlled by JS)
-  .c-methods-used__method-header[aria-expanded="true"] + & {
-    max-height: 2000px; // Large enough to accommodate content
-    padding: 0 var(--spacing-xl) var(--spacing-lg);
-  }
+  // Height animation handled by vanilla-collapse.js via .collapse classes
+  // No max-height or overflow needed here - defined in 05-objects/_collapse.scss
+  padding: 0 var(--spacing-xl) var(--spacing-lg);
 }
 
 .c-methods-used__subsection {

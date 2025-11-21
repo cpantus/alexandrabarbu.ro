@@ -82,7 +82,9 @@
         <button
           class="c-accordion__button"
           type="button"
-          data-collapse-toggle="{{ $panelId }}"
+          data-toggle="collapse"
+          data-target="#{{ $panelId }}"
+          data-parent="#{{ $id }}"
           aria-expanded="{{ if $isOpen }}true{{ else }}false{{ end }}"
           aria-controls="{{ $panelId }}"
         >
@@ -94,7 +96,7 @@
       </div>
       <div
         id="{{ $panelId }}"
-        class="c-accordion__panel{{ if $isOpen }} c-accordion__panel--open{{ end }}"
+        class="c-accordion__panel collapse{{ if $isOpen }} show{{ end }}"
         aria-labelledby="{{ $headerId }}"
         role="region"
         {{ if not $isOpen }}hidden{{ end }}

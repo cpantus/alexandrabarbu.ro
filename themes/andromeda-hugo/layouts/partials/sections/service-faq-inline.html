@@ -144,7 +144,9 @@
           <button
             class="c-service-faq__question"
             type="button"
-            data-collapse-toggle="{{ $panelID }}"
+            data-toggle="collapse"
+            data-target="#{{ $panelID }}"
+            data-parent="#{{ $sectionID }}-accordion"
             aria-expanded="{{ if $isFirst }}true{{ else }}false{{ end }}"
             aria-controls="{{ $panelID }}"
             id="{{ $itemID }}-button"
@@ -174,7 +176,7 @@
 
           {{- /* Answer Panel */ -}}
           <div
-            class="c-service-faq__answer{{ if $isFirst }} c-service-faq__answer--open{{ end }}"
+            class="c-service-faq__answer collapse{{ if $isFirst }} show{{ end }}"
             id="{{ $panelID }}"
             aria-labelledby="{{ $itemID }}-button"
             role="region"

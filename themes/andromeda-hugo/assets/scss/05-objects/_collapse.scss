@@ -1,0 +1,84 @@
+// ==========================================================================
+// Collapse Utilities - Object Layer
+// ==========================================================================
+//
+// Purpose: Reusable collapse/expand animation utilities for vanilla-collapse.js
+//
+// Classes:
+//   .collapse - Hidden state (height: 0, overflow hidden)
+//   .collapsing - Transitioning state (animating height)
+//   .show - Visible state (height: auto)
+//
+// Usage:
+//   Works with vanilla-collapse.js for smooth accordion/dropdown animations
+//   Apply to any collapsible content container
+//
+// Dependencies:
+//   - 01-settings/_tokens-motion.scss (transition timing)
+//   - vanilla-collapse.js (JavaScript controller)
+//
+// ITCSS Layer: Objects (layout primitives, no cosmetics)
+//
+// Version: 1.0.0
+// Created: 2025-11-21
+// ==========================================================================
+
+// Hidden state (collapsed)
+// IMPORTANT: Only apply to accordion/FAQ collapse elements, not navigation
+.c-accordion__panel.collapse,
+.c-service-faq__answer.collapse,
+.c-methods-used__method-content.collapse,
+.accordion-collapse.collapse {
+  height: 0;
+  overflow: hidden;
+  transition: height $duration-normal $easing-medium;
+
+  // When shown, allow content to be visible
+  &.show {
+    height: auto;
+    overflow: visible;
+  }
+}
+
+// Transitioning state (animating between collapsed/expanded)
+.c-accordion__panel.collapsing,
+.c-service-faq__answer.collapsing,
+.c-methods-used__method-content.collapsing,
+.accordion-collapse.collapsing {
+  height: 0;
+  overflow: hidden;
+  transition: height $duration-normal $easing-medium;
+}
+
+// Reduced motion support (accessibility)
+@media (prefers-reduced-motion: reduce) {
+  .c-accordion__panel.collapse,
+  .c-service-faq__answer.collapse,
+  .c-methods-used__method-content.collapse,
+  .accordion-collapse.collapse,
+  .c-accordion__panel.collapsing,
+  .c-service-faq__answer.collapsing,
+  .c-methods-used__method-content.collapsing,
+  .accordion-collapse.collapsing {
+    transition: none;
+  }
+}
+
+// ==========================================================================
+// USAGE EXAMPLES
+// ==========================================================================
+//
+// Basic collapsible content:
+//   <div class="collapse">Content here</div>
+//
+// Initially expanded:
+//   <div class="collapse show">Content here</div>
+//
+// JavaScript handles state transitions:
+//   1. User clicks trigger
+//   2. JS adds "collapsing" class, sets explicit height
+//   3. After transition, JS adds "show" class, removes "collapsing"
+//   4. To collapse: reverse process
+//
+// See: themes/andromeda-hugo/assets/js/vanilla-collapse.js
+// ==========================================================================
