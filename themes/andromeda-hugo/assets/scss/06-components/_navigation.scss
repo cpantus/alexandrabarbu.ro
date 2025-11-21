@@ -244,9 +244,9 @@
   &::after {
     content: '';
     position: absolute;
-    left: $space-3;
-    right: $space-3;
-    bottom: $space-1;
+    left: $space-4;   // 32px from left (narrower - matches text better)
+    right: $space-4;  // 32px from right
+    bottom: $space-2; // 16px from bottom (higher up)
     height: 2px;
     background: linear-gradient(90deg, $emerald-400 0%, $terracotta-400 50%, $emerald-500 100%);
     opacity: 0;
@@ -256,9 +256,9 @@
     border-radius: 1px;
   }
 
-  // Hover state - show gradient underline with slide effect
-  &:hover,
-  &:focus {
+  // Hover state - show gradient underline with slide effect (NOT on active)
+  &:hover:not(&--active),
+  &:focus:not(&--active) {
     color: $color-primary;
     background: transparent;
     transform: translateX($space-1); // Slide right effect
@@ -280,6 +280,11 @@
     color: $color-primary;
     font-weight: $font-weight-medium;
     background: rgba($color-primary, 0.1);
+
+    // NO gradient underline for active state
+    &::after {
+      display: none !important;
+    }
 
     &::before {
       content: '';
