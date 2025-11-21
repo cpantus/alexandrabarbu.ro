@@ -36,18 +36,22 @@ feature_blocks:
   - title: "Comunicare Disfuncțională"
     subtitle: "Certuri și Retragere"
     description: "Certurile escaladează rapid, vă criticați reciproc, evitați conversațiile dificile, sau unul din voi se retrage în tăcere (stonewalling). Certuri frecvente, critică, defensivitate, neînțelegeri și lipsă de ascultare activă."
+    image: "https://images.unsplash.com/photo-1515169273894-7e876dcf13da?w=800&h=600&fit=crop"
 
   - title: "Infidelitate și Încredere Pierdută"
     subtitle: "Reconstruirea Încrederii"
     description: "Unul sau ambii parteneri au trecut prin infidelitate (emoțională sau fizică). Încrederea este distrusă și nu știți cum să reconstruiți relația. Aventură, suspiciune, dificultăți în a ierta și pierderea intimității."
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop"
 
   - title: "Lipsa Intimității și Conexiunii"
     subtitle: "Distanță Emoțională"
     description: "Vă simțiți ca doi străini sub același acoperiș. Distanță emoțională, lipsă de afecțiune, viață sexuală nesatisfăcătoare sau inexistentă. Nu mai împărtășiți timpul de calitate și sentimentul că nu vă mai înțelegeți."
+    image: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800&h=600&fit=crop"
 
   - title: "Decizii Importante în Relație"
     subtitle: "Navigarea Deciziilor"
     description: "Vă gândiți la căsătorie, divorț, copii, sau relocare și nu sunteți pe aceeași pagină. Terapia vă poate ajuta să navigați aceste decizii împreună: căsătorie, divorț, copii, carieră vs. familie, familii recompuse."
+    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=600&fit=crop"
 
 # Problem Empathy
 problem_empathy:

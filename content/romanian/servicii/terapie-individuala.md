@@ -36,18 +36,22 @@ feature_blocks:
   - title: "Te Confrunți Cu Anxietate"
     subtitle: "Anxietate și Panică"
     description: "Îngrijorare constantă, tensiune, palpitații, atacuri de panică, evitarea situațiilor sociale, gânduri obsesive, frica de a pierde controlul. Anxietate generalizată, atacuri de panică, fobie socială, TOC sau PTSD."
+    image: "https://images.unsplash.com/photo-1494253109108-2e30c049369b?w=800&h=600&fit=crop"
 
   - title: "Suferi de Depresie"
     subtitle: "Depresie și Lipsă de Energie"
     description: "Tristețe persistentă, lipsă de energie și motivație, pierderea plăcerii în activități, izolare socială, gânduri negative recurente, probleme de somn. Depresie majoră, distimie, lipsă de sens, auto-critică severă sau burnout."
+    image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&h=600&fit=crop"
 
   - title: "Ai Trecut Prin Traume"
     subtitle: "Traume Nerezolvate"
     description: "Eventi traumatice (abuz, violență, accident, pierdere) care încă te afectează. Flashback-uri, coșmaruri, evitarea amintirilor, reacții emoționale intense. Abuz, violență domestică, accidente, pierderi sau traume din copilărie."
+    image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&h=600&fit=crop"
 
   - title: "Vrei Dezvoltare Personală"
     subtitle: "Creștere și Autocunoaștere"
     description: "Nu ai neapărat o problemă, dar simți că stagnezi. Vrei să te cunoști mai bine, să-ți clarifici valorile, să îmbunătățești relațiile, să trăiești mai autentic. Autocunoaștere, stimă de sine, inteligență emoțională și găsirea sensului."
+    image: "https://images.unsplash.com/photo-1499728603263-13726abce5fd?w=800&h=600&fit=crop"
 
 # Problem Empathy
 problem_empathy:

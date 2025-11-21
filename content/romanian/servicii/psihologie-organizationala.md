@@ -36,18 +36,22 @@ feature_blocks:
   - title: "Recrutare și Evaluări Psihologice"
     subtitle: "Selecție și Dezvoltare"
     description: "Aveți nevoie să evaluați candidați pentru poziții cheie sau să înțelegeți mai bine profilul psihologic al angajaților actuali pentru dezvoltare sau promovare. Evaluări pre-angajare, testare personalitate, assessment center, evaluare 360 grade."
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=600&fit=crop"
 
   - title: "Prevenția și Gestionarea Burnout-ului"
     subtitle: "Wellbeing Organizațional"
     description: "Angajații sunt epuizați, productivitatea scade, fluctuația crește. Aveți nevoie de programe de prevenție a burnout-ului și gestionare a stresului ocupațional. Screening burnout, workshop-uri, programe wellbeing, coaching individual."
+    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&h=600&fit=crop"
 
   - title: "Dezvoltare Leadership și Management"
     subtitle: "Coaching Executiv"
     description: "Managerii voștri au nevoie de dezvoltare în leadership, comunicare, feedback constructiv, gestionarea conflictelor, luarea deciziilor sub presiune. Training leadership, coaching executiv, inteligență emoțională, gestionarea schimbării."
+    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop"
 
   - title: "Team Building și Cultură Organizațională"
     subtitle: "Coeziune și Cultură Sănătoasă"
     description: "Echipele funcționează în silozuri, comunicarea este disfuncțională, cultura organizațională e toxică. Aveți nevoie să construiți coeziune și cultură sănătoasă. Team building strategic, diagnostic cultură, rezolvarea conflictelor inter-echipe."
+    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=600&fit=crop"
 
 # Problem Empathy
 problem_empathy:

@@ -36,18 +36,22 @@ feature_blocks:
   - title: "Conflicte cu Adolescenții"
     subtitle: "Rebeli și Provocări"
     description: "Rebeli, provocări de autoritate, lipsa de comunicare, izolare în cameră, comportamente riscante (alcool, droguri, promiscuitate). Defiere constantă, comunicare închisă, comportamente autodistructive, probleme la școală."
+    image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=800&h=600&fit=crop"
 
   - title: "Divorț și Familii Recompuse"
     subtitle: "Tranziții Familiale"
     description: "Copii care suferă din cauza divorțului, conflicte între părinții biologici și părinții vitregi, frații vitregi, custodie, adaptare la noua familie. Adaptarea copiilor, conflicte părinți-părinți vitregi, loialități divizate."
+    image: "https://images.unsplash.com/photo-1593398373726-2c96afb09f79?w=800&h=600&fit=crop"
 
   - title: "Îngrijirea Părinților în Vârstă"
     subtitle: "Responsabilități și Burnout"
     description: "Conflicte între frați despre îngrijire, burnout al îngrijitorului principal, sentimente de vinovăție, decizii dificile despre plasarea în cămin. Dezacorduri, epuizare, vinovăție, conflicte financiare."
+    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=600&fit=crop"
 
   - title: "Traume și Pierderi Familiale"
     subtitle: "Vindecare Colectivă"
     description: "Deces în familie, boală gravă, abuz, dependențe, evenimente traumatice care afectează toți membrii familiei și nu știți cum să procesați împreună. Doliu complicat, boală cronică, abuz, dependențe, traume colective."
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=600&fit=crop"
 
 # Problem Empathy
 problem_empathy:
