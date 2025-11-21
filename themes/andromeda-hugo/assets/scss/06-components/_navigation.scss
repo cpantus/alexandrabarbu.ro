@@ -240,12 +240,33 @@
   transition: all $duration-fast $easing-medium;
   position: relative;
 
-  // Hover state
+  // Beautiful gradient underline effect (hidden by default)
+  &::after {
+    content: '';
+    position: absolute;
+    left: $space-3;
+    right: $space-3;
+    bottom: $space-1;
+    height: 2px;
+    background: linear-gradient(90deg, $emerald-400 0%, $terracotta-400 50%, $emerald-500 100%);
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: all $duration-base $easing-medium;
+    border-radius: 1px;
+  }
+
+  // Hover state - show gradient underline with slide effect
   &:hover,
   &:focus {
     color: $color-primary;
     background: transparent;
     transform: translateX($space-1); // Slide right effect
+
+    &::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
   }
 
   // Focus state (keyboard navigation) - smooth animation instead of outline
