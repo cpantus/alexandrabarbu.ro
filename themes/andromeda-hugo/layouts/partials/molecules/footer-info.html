@@ -75,7 +75,7 @@
       class="c-footer-info__logo-link"
       href="{{ site.BaseURL | relLangURL }}"
       aria-label="{{ site.Title }}">
-      {{ partial "molecules/logo.html" . }}
+      {{ partial "molecules/logo.html" (dict "color" $variant "size" "md" "link" false "context" .) }}
     </a>
     {{ with site.Params.footer_info }}
       <p class="c-footer-info__description">

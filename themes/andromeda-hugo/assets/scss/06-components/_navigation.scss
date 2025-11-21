@@ -113,18 +113,26 @@
   &:hover,
   &:focus {
     color: $color-primary;
-    background: rgba($color-primary, 0.05);
 
     &::after {
-      opacity: 0.6;
-      transform: scaleX(0.8);
+      opacity: 1;
+      transform: scaleX(1);
     }
   }
 
-  // Focus state (keyboard navigation)
+  // Focus state (keyboard navigation) - smooth animation instead of outline
   &:focus {
-    outline: 2px solid $color-primary;
-    outline-offset: 2px;
+    outline: none;
+    animation: focusGlow 0.3s ease-in-out;
+  }
+
+  @keyframes focusGlow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba($color-primary, 0);
+    }
+    50% {
+      box-shadow: 0 0 0 4px rgba($color-primary, 0.2);
+    }
   }
 
   // Active (pressed) state
@@ -247,14 +255,14 @@
   &:hover,
   &:focus {
     color: $color-primary;
-    background: rgba($color-primary, 0.08);
+    background: transparent;
     transform: translateX($space-1); // Slide right effect
   }
 
-  // Focus state (keyboard navigation)
+  // Focus state (keyboard navigation) - smooth animation instead of outline
   &:focus {
-    outline: 2px solid $color-primary;
-    outline-offset: -2px;
+    outline: none;
+    animation: focusGlow 0.3s ease-in-out;
   }
 
   // Active state (current page within dropdown)

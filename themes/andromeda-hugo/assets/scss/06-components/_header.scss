@@ -55,8 +55,17 @@
   &:focus,
   &:focus-visible {
     top: $space-2;
-    outline: 3px solid $color-primary-300;
-    outline-offset: 2px;
+    outline: none;
+    animation: skipLinkFocusGlow 0.3s ease-in-out;
+  }
+
+  @keyframes skipLinkFocusGlow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba($color-primary-300, 0);
+    }
+    50% {
+      box-shadow: 0 0 0 4px rgba($color-primary-300, 0.4);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -140,9 +149,17 @@
   }
 
   &:focus-visible {
-    outline: 2px solid $color-primary-600;
-    outline-offset: 4px;
-    border-radius: $border-radius-sm;
+    outline: none;
+    animation: brandFocusGlow 0.3s ease-in-out;
+  }
+
+  @keyframes brandFocusGlow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba($color-primary-600, 0);
+    }
+    50% {
+      box-shadow: 0 0 0 4px rgba($color-primary-600, 0.3);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -187,9 +204,17 @@
   }
 
   &:focus-visible {
-    outline: 2px solid $color-primary-600;
-    outline-offset: 2px;
-    border-radius: $border-radius-md;
+    outline: none;
+    animation: toggleFocusGlow 0.3s ease-in-out;
+  }
+
+  @keyframes toggleFocusGlow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba($color-primary-600, 0);
+    }
+    50% {
+      box-shadow: 0 0 0 4px rgba($color-primary-600, 0.3);
+    }
   }
 
   &[aria-expanded="true"] {

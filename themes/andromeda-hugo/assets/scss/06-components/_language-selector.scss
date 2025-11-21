@@ -91,8 +91,8 @@
 
   /* Layout */
   display: inline-block;
-  padding: $space-2 calc(#{$space-4} + #{$space-1}) $space-2 $space-2; /* Extra padding-right for arrow */
-  min-width: 140px;
+  padding: $space-1 calc(#{$space-3} + #{$space-1}) $space-1 $space-2; /* Extra padding-right for arrow */
+  min-width: auto;
 
   /* Borders */
   border: none;

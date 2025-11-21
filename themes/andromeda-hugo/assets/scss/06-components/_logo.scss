@@ -62,6 +62,11 @@
 
   /* Smooth transitions for color changes */
   transition: color $transition-base, transform $transition-base;
+
+  /* Ensure path inherits color */
+  path {
+    fill: currentColor;
+  }
 }
 
 /* Link Wrapper

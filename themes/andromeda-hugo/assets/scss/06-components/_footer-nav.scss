@@ -145,24 +145,57 @@
 
 .c-footer-nav__link {
   display: inline-block;
-  color: $color-primary-600;
+  color: $color-text-primary;
   text-decoration: none;
-  transition: color $duration-base $easing-out, text-decoration $duration-base $easing-out;
+  position: relative;
+  padding-bottom: $space-1;
+  transition: color $duration-base $easing-out;
+
+  // Gradient underline effect (hidden by default)
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: $gradient-warm-vibrant;
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: all $duration-base $easing-medium;
+  }
 
   &:hover,
   &:focus {
-    color: $color-primary-700;
-    text-decoration: underline;
+    color: $color-primary;
+
+    &::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
   }
 
   &:focus {
-    outline: 2px solid $color-primary-600;
-    outline-offset: 2px;
-    border-radius: $border-radius-sm;
+    outline: none;
+    animation: footerLinkFocusGlow 0.3s ease-in-out;
+  }
+
+  @keyframes footerLinkFocusGlow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba($color-primary, 0);
+    }
+    50% {
+      box-shadow: 0 0 0 4px rgba($color-primary, 0.2);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
     transition: none;
+
+    &::after {
+      transition: none;
+    }
   }
 }
 

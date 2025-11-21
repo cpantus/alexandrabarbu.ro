@@ -82,8 +82,25 @@
 
   // Visual
   border-radius: $border-radius-circle; // Circular
-  background-color: transparent;
+  background: transparent;
+  position: relative;
   transition: all $transition-base $easing-ease-out;
+
+  // Gradient circle background (hidden by default)
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: $border-radius-circle;
+    background: $gradient-warm-vibrant;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all $transition-base $easing-ease-out;
+    z-index: -1;
+  }
 
   // Typography
   text-decoration: none;
@@ -94,21 +111,37 @@
 
   // States: Hover
   &:hover {
-    background-color: rgba($color-primary, 0.1);
     transform: translateY(-2px);
 
-    // Icon hover effect (handled by icon atom)
+    &::before {
+      opacity: 0.15;
+      transform: scale(1);
+    }
   }
 
   // States: Focus
   &:focus {
-    outline: 2px solid $color-primary;
-    outline-offset: 2px;
+    outline: none;
+    animation: socialLinkFocusGlow 0.3s ease-in-out;
+  }
+
+  @keyframes socialLinkFocusGlow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba($color-primary, 0);
+    }
+    50% {
+      box-shadow: 0 0 0 4px rgba($color-primary, 0.3);
+    }
   }
 
   // States: Active
   &:active {
     transform: translateY(0);
+
+    &::before {
+      opacity: 0.25;
+      transform: scale(0.95);
+    }
   }
 
   // Responsive: Mobile
@@ -150,48 +183,32 @@
 
 .c-social--primary {
   .c-social__link {
-    &:hover {
-      background-color: rgba($color-primary, 0.1);
-    }
-
-    &:focus {
-      outline-color: $color-primary;
+    &::before {
+      background: $gradient-warm-vibrant;
     }
   }
 }
 
 .c-social--secondary {
   .c-social__link {
-    &:hover {
-      background-color: rgba($color-secondary, 0.1);
-    }
-
-    &:focus {
-      outline-color: $color-secondary;
+    &::before {
+      background: $gradient-secondary-vibrant;
     }
   }
 }
 
 .c-social--tertiary {
   .c-social__link {
-    &:hover {
-      background-color: rgba($color-tertiary, 0.1);
-    }
-
-    &:focus {
-      outline-color: $color-tertiary;
+    &::before {
+      background: linear-gradient(135deg, lighten($color-tertiary, 8%), darken($color-tertiary, 2%));
     }
   }
 }
 
 .c-social--neutral {
   .c-social__link {
-    &:hover {
-      background-color: rgba($color-neutral-300, 0.1);
-    }
-
-    &:focus {
-      outline-color: $color-neutral-500;
+    &::before {
+      background: linear-gradient(135deg, lighten($color-neutral, 18%), lighten($color-neutral, 8%));
     }
   }
 }

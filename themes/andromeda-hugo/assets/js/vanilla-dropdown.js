@@ -67,11 +67,25 @@
       // Set initial ARIA attributes
       this.updateAria();
 
-      // Bind click event
+      // Bind click event (for mobile and as fallback)
       this.trigger.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
         this.toggle();
+      });
+
+      // Bind hover events for desktop (>= 992px)
+      if (window.innerWidth >= 992) {
+        this.initHoverBehavior();
+      }
+
+      // Re-initialize on resize
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          this.handleResize();
+        }, 150);
       });
 
       // Bind keyboard events for accessibility
@@ -86,6 +100,35 @@
           this.close();
         });
       });
+    }
+
+    /**
+     * Initialize hover behavior for desktop
+     */
+    initHoverBehavior() {
+      // Mouse enter on parent (trigger button or parent container)
+      this.parent.addEventListener('mouseenter', () => {
+        if (window.innerWidth >= 992) {
+          this.open();
+        }
+      });
+
+      // Mouse leave on parent
+      this.parent.addEventListener('mouseleave', () => {
+        if (window.innerWidth >= 992) {
+          this.close();
+        }
+      });
+    }
+
+    /**
+     * Handle window resize
+     */
+    handleResize() {
+      // Close dropdown on resize
+      if (this.isOpen) {
+        this.close();
+      }
     }
 
     /**

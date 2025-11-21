@@ -66,7 +66,7 @@
 
       {{/* Logo Brand Link */}}
       <a class="c-header__brand" href="{{ site.BaseURL | relLangURL }}" aria-label="{{ if eq $currentLang "ro" }}Pagina principală{{ else }}Home page{{ end }}">
-        {{ partial "molecules/logo.html" (dict "variant" "primary" "size" "md" "hasLink" false "context" .) }}
+        {{ partial "molecules/logo.html" (dict "color" "primary" "size" "sm" "link" false "context" .) }}
       </a>
 
       {{/* Navigation Controller (Mobile: Language Selector + Hamburger) */}}
