@@ -91,20 +91,35 @@
   cursor: pointer;
   transition: all $duration-fast $easing-medium;
   position: relative;
-
-  // NO gradient underlines - clean design
   text-decoration: none;
 
-  // Force remove any underlines
-  &::after {
-    display: none !important;
+  // Beautiful gradient underline effect (same as dropdowns and footer)
+  // Only for non-dropdown links (regular nav items like Acasa, Contact)
+  &:not(.c-navigation__link--dropdown)::after {
+    content: '';
+    position: absolute;
+    left: $space-3;   // 24px - align with text
+    width: 50%;       // Half width - elegant and subtle
+    bottom: $space-1; // 8px from bottom
+    height: 2px;
+    background: linear-gradient(90deg, $emerald-400 0%, $terracotta-400 50%, $emerald-500 100%);
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left; // Slide from left
+    transition: all $duration-base $easing-medium;
+    border-radius: 1px;
   }
 
-  // Hover state - simple color change, no underline
+  // Hover state - show gradient underline
   &:hover,
   &:focus {
     color: $color-primary;
     text-decoration: none;
+
+    &:not(.c-navigation__link--dropdown)::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
   }
 
   // Focus state (keyboard navigation) - smooth animation instead of outline
