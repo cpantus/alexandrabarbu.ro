@@ -8,8 +8,8 @@
 
 1. **Run Hugo from project root**: `hugo server` (always from /home/cere/Work/alex/alexandrabarbu.ro/)
 2. **Preserve multilingual**: Maintain RO (root path) + EN (`/en/`) content parity
-3. **Flexible layout only**: Pages = Header + Sections (2-7) + Footer. Use 26 active section types.
-4. **Reuse components**: 9 atoms → 29 molecules → 2 organisms → 26 sections = **66 components**
+3. **Flexible layout only**: Pages = Header + Sections (2-7) + Footer. Use 36 active section types.
+4. **Reuse components**: 9 atoms → 24 molecules → 2 organisms → 36 sections = **71 components**
 5. **Test both languages**: Verify `/{page}` (RO) and `/en/{page}` (EN)
 6. **Enhanced design system**: Use glassmorphism, gradients, and organic shapes (v4.0)
 
@@ -20,14 +20,14 @@
 **Component Hierarchy** (2025 Refactor Complete):
 ```
 Atoms (9)        → button, heading, icon, image, tag, divider, link, spinner, avatar
-Molecules (29)   → card, form-field, accordion, nav, credential-badge, social-links, etc.
+Molecules (24)   → card, form-field, accordion, nav, credential-badge, social-links, etc.
 Organisms (2)    → header, footer
-Sections (26)    → 5 core + 4 interactive + 3 forms + 5 trust + 5 enhanced v4.0 + 4 specialized
+Sections (36)    → hero, cta, pricing, testimonials, faq, contact, stats, etc.
 
 Page = Header + Sections Array + Footer
 ```
 
-**File Structure** (Flattened - No theme subdirectory!):
+**File Structure** (Standard Hugo Theme):
 ```
 alexandrabarbu.ro/              # ← PROJECT ROOT (run Hugo here)
 ├── layouts/                    # Hugo templates (root level)
@@ -36,7 +36,7 @@ alexandrabarbu.ro/              # ← PROJECT ROOT (run Hugo here)
 │       ├── atoms/              # 5 basic components
 │       ├── molecules/          # 21 composite components
 │       ├── organisms/          # 2 complex (header, footer)
-│       └── sections/           # 21 page sections (5 enhanced v4.0, 1 _deprecated dir)
+│       └── sections/           # 36 page sections (5 enhanced v4.0)
 │
 ├── assets/                     # Assets at root level (NOT in themes/)
 │   ├── scss/                   # ITCSS Architecture (v5.0.0) ✅
@@ -82,7 +82,7 @@ alexandrabarbu.ro/              # ← PROJECT ROOT (run Hugo here)
 └── i18n/                       # Translations
 ```
 
-**IMPORTANT**: Structure was flattened in commit 4886ab2. No `themes/andromeda-hugo/` directory exists!
+**NOTE**: Standard Hugo theme structure. Main implementation in `themes/andromeda-hugo/` directory.
 
 **SCSS Architecture**: The theme uses ITCSS (Inverted Triangle CSS) + BEM naming for scalable, maintainable styling. All v4.0 design features are preserved.
 
@@ -90,7 +90,7 @@ alexandrabarbu.ro/              # ← PROJECT ROOT (run Hugo here)
 
 ---
 
-## Available Sections (34)
+## Available Sections (36)
 
 ### Core Foundation (5)
 Essential page components for structure and navigation:
@@ -205,7 +205,7 @@ hugo new content/landing/promo.md --kind landing-page
 hugo server --buildDrafts              # Dev server (MUST run from project root!)
 hugo --gc --minify                     # Production build
 hugo --templateMetrics                 # Performance check
-scripts/test-components.sh             # Verify 49 components (5+21+2+21)
+scripts/test-components.sh             # Verify 71 components (9+24+2+36)
 ```
 
 ---
@@ -554,6 +554,6 @@ values_compass:
 
 ---
 
-**Status**: Production Ready ✅ | 66 components (9 atoms + 29 molecules + 2 organisms + 26 sections) | <3s builds | <520KB pages | WebP images | Multilingual | **v5.1.0: Complete 2025 Refactor** | Full BEM + ITCSS
+**Status**: Production Ready ✅ | 71 components (9 atoms + 24 molecules + 2 organisms + 36 sections) | <3s builds | <520KB pages | WebP images | Multilingual | **v5.1.0: Complete 2025 Refactor** | Full BEM + ITCSS
 
 **Version**: 5.1.0 | **Updated**: 2025-11-20 | **Hugo**: v0.152.2 extended | **Architecture**: ITCSS + BEM | **Fonts**: Crimson Pro (serif) + Work Sans (sans)
