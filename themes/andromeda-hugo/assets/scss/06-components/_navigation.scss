@@ -50,10 +50,8 @@
       color: $color-primary;
       font-weight: $font-weight-medium;
 
-      &::after {
-        opacity: 1;
-        transform: scaleX(1);
-      }
+      // NO ::after styles here - dropdown links should NOT inherit this
+      // Main nav links don't have ::after anyway (we disabled it)
     }
   }
 
@@ -284,13 +282,18 @@
 
   // Active state (current page within dropdown)
   &--active {
-    color: $color-primary;
+    color: $color-primary !important;
     font-weight: $font-weight-medium;
     background: rgba($color-primary, 0.1);
 
-    // NO gradient underline for active state
+    // NUCLEAR OPTION: Force remove ALL ::after styling on active items
     &::after {
+      content: none !important;
       display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transform: scaleX(0) !important;
+      background: none !important;
     }
 
     &::before {
@@ -308,6 +311,16 @@
 
     // Adjust padding for indicator
     padding-left: calc($space-3 + $space-1); // Add space for indicator
+
+    // FORCE: No underline on hover/focus when active
+    &:hover,
+    &:focus {
+      &::after {
+        content: none !important;
+        display: none !important;
+        opacity: 0 !important;
+      }
+    }
   }
 }
 
