@@ -239,18 +239,18 @@
   position: relative;
 
   // Beautiful gradient underline effect (hidden by default)
-  // Adaptive width: uses percentages to scale with each menu item's text length
+  // Aligned with text: matches the text padding exactly
   &::after {
     content: '';
     position: absolute;
-    left: 20%;   // 20% from left - centers and adapts to item width
-    right: 20%;  // 20% from right - makes underline 60% of item width
-    bottom: $space-2; // 16px from bottom (higher up)
+    left: $space-3;   // 24px - matches left text padding
+    right: $space-3;  // 24px - matches right text padding
+    bottom: $space-2; // 16px from bottom
     height: 2px;
     background: linear-gradient(90deg, $emerald-400 0%, $terracotta-400 50%, $emerald-500 100%);
     opacity: 0;
     transform: scaleX(0);
-    transform-origin: center; // Center origin for balanced animation
+    transform-origin: left; // Slide from left
     transition: all $duration-base $easing-medium;
     border-radius: 1px;
   }
