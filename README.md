@@ -17,7 +17,7 @@ hugo --gc --minify                            # Build production
 
 ## Core Concept
 
-Pages = Header + Sections (2-7) + Footer. Choose from 21 active section types (5 enhanced v4.0):
+Pages = Header + Sections (2-7) + Footer. Choose from 26 active section types (5 enhanced v4.0):
 
 ```yaml
 # content/page.md
@@ -31,19 +31,19 @@ sections:
 
 ---
 
-## Available Sections (21 active + 1 deprecated dir)
+## Available Sections (26 active)
 
-**Core**: hero-breadcrumb, values-intro, blog-grid
-**Interactive**: video-popup, faq-mini, faq-content
-**Forms**: contact-form-enhanced, signup-form-enhanced, newsletter-signup
-**Info**: contact-info-cards, contact-options, privacy-guarantee, first-session-timeline
-**Enhanced v4.0** ⭐:
+**Core (5)**: hero-breadcrumb, values-intro, blog-grid, cta-standard, feature-details
+**Interactive (4)**: video-popup, faq-mini-section, faq-content, method-tabs
+**Forms (3)**: contact-form-enhanced, signup-section, newsletter-section
+**Info & Trust (7)**: contact-info-cards, contact-options, privacy-guarantee, confidentiality-notice, onboarding-steps, professional-affiliations, job-listings
+**Enhanced v4.0 (5)** ⭐:
 - `values-compass` (NEW) - Compass-pattern layout with glassmorphism
 - `feature-blocks` - Zigzag layout with parallax scrolling
 - `pricing-tables` - Featured tier elevation with tooltips
 - `stats-numbers` - SVG progress rings with animated counting
 - `credentials-showcase` - Gradient icons with circular grid
-**Legacy**: benefits-grid (use values-compass), problem-empathy, timeline-process, related-services, service-highlights
+**Specialized Therapy (2)**: first-session-timeline, service-faq-inline, testimonials-enhanced
 
 ---
 
@@ -78,12 +78,12 @@ benefits_section:
 ## Architecture
 
 ```
-Atoms (5)        → button, heading, icon, image, input
-Molecules (21)   → card, form-field, accordion, nav, back-to-top, cookie-consent, etc.
+Atoms (9)        → button, heading, icon, image, tag, divider, link, spinner, avatar
+Molecules (29)   → card, form-field, accordion, nav, breadcrumb, social-links, etc.
 Organisms (2)    → header, footer
-Sections (21)    → Page sections (values-compass, pricing, credentials, blog-grid, etc.)
+Sections (26)    → Page sections (5 core + 4 interactive + 3 forms + 5 trust + 5 enhanced v4.0 + 4 specialized)
 
-Total: 49 components | Page = Header + Sections + Footer
+Total: 66 components | Page = Header + Sections + Footer
 ```
 
 ---
@@ -91,22 +91,30 @@ Total: 49 components | Page = Header + Sections + Footer
 ## File Structure
 
 ```
-alexandrabarbu.ro/              # ← Project root (flattened structure!)
-├── layouts/                    # Hugo templates at root level
-│   ├── _default/flexible.html  # Layout engine
-│   └── partials/
-│       ├── atoms/              # 5 components
-│       ├── molecules/          # 21 components
-│       ├── organisms/          # 2 components
-│       └── sections/           # 21 sections + _deprecated/
-├── assets/                     # Assets at root level
-│   ├── scss/                   # ITCSS architecture
-│   └── js/                     # Vanilla JS (no Bootstrap/jQuery)
-├── content/                    # Content at root level
-├── config/                     # Configuration
-└── data/                       # Data files
+alexandrabarbu.ro/              # ← Project root
+├── themes/andromeda-hugo/      # Theme directory (Hugo standard structure)
+│   ├── layouts/                # Hugo templates
+│   │   ├── _default/           # Layout files (flexible.html, list.html, etc.)
+│   │   └── partials/           # Component partials
+│   │       ├── atoms/          # 9 atomic components
+│   │       ├── molecules/      # 29 composite components
+│   │       ├── organisms/      # 2 structural components (header, footer)
+│   │       └── sections/       # 26 page sections
+│   ├── assets/                 # Theme assets
+│   │   ├── scss/               # ITCSS architecture (01-settings through 07-utilities)
+│   │   └── js/                 # Vanilla JS (no Bootstrap/jQuery dependencies)
+│   ├── archetypes/             # Content templates
+│   └── docs/                   # Component documentation
+├── layouts/                    # Project-level layout overrides (sparse)
+│   └── partials/               # Project-specific partials
+├── assets/                     # Project-level assets (sparse)
+├── content/                    # Site content (multilingual: romanian/, english/)
+├── config/                     # Hugo configuration (_default/, menus)
+├── data/                       # Data files (shared_sections.yaml, etc.)
+└── i18n/                       # Translation files (ro.yaml, en.yaml)
 
-NOTE: No themes/andromeda-hugo/ subdirectory - structure flattened in commit 4886ab2
+NOTE: Hugo's lookup order: project root → theme directory. Theme provides defaults,
+project root provides overrides. Main implementation is in themes/andromeda-hugo/.
 ```
 
 ---
@@ -115,7 +123,7 @@ NOTE: No themes/andromeda-hugo/ subdirectory - structure flattened in commit 488
 
 ```bash
 # Run from project root!
-scripts/test-components.sh               # Verify all 49 components (5+21+2+21)
+scripts/test-components.sh               # Verify all 66 components (9+29+2+26)
 scripts/test-performance.sh              # Build time, bundle size
 ```
 
@@ -125,13 +133,13 @@ scripts/test-performance.sh              # Build time, bundle size
 
 **Add Section**: Create in `sections/`, register in `flexible.html`, use in pages
 **Add Molecule**: Create in `molecules/`, use in sections
-**Modify Styles**: Edit `assets/scss/_custom.scss`
+**Modify Styles**: Edit `themes/andromeda-hugo/assets/scss/` (ITCSS architecture)
 
 ---
 
 ## Tech Stack
 
-Hugo v0.148.1+ Extended, ITCSS + BEM, SCSS, Vanilla JS (no Bootstrap/jQuery), Line Awesome icons, Cormorant Garamond + Source Sans 3 fonts
+Hugo v0.152.2+ Extended, ITCSS + BEM, SCSS, Vanilla JS (no Bootstrap/jQuery), Line Awesome icons, Crimson Pro + Work Sans fonts
 
 ---
 
@@ -176,7 +184,7 @@ hugo --gc --minify
 
 ## Key Features
 
-✅ 24 reusable sections (5 enhanced v4.0) | ✅ 4 archetypes | ✅ Atomic design (53 components)
+✅ 26 reusable sections (5 enhanced v4.0) | ✅ 4 archetypes | ✅ Atomic design (66 components)
 ✅ <3s builds | ✅ WebP images | ✅ Responsive | ✅ Multilingual | ✅ Form validation
 ⭐ **NEW v4.0**: Glassmorphism | Warm gradients | Parallax scrolling | SVG animations
 

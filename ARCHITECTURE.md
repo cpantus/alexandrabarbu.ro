@@ -2,17 +2,17 @@
 
 **System**: Hugo + Atomic Design + ITCSS | **Purpose**: Enable Claude Code to understand and extend project
 
-**Version**: 5.0.1 | **Updated**: 2025-11-19 | **Structure**: Flattened (no theme subdirectory)
+**Version**: 5.1.0 | **Updated**: 2025-11-21 | **Structure**: Hugo standard (theme directory)
 
 ---
 
 ## System Overview
 
-Component-based Hugo site with flattened architecture: Pages = Header + Sections (2-7) + Footer
+Component-based Hugo site with standard theme architecture: Pages = Header + Sections (2-7) + Footer
 
-**Hierarchy**: Atoms (5) → Molecules (21) → Organisms (2) → Sections (21) = **49 components**
+**Hierarchy**: Atoms (9) → Molecules (29) → Organisms (2) → Sections (26) = **66 components**
 
-**Critical**: Project structure was flattened in commit 4886ab2. All files are at root level - there is NO `themes/andromeda-hugo/` subdirectory!
+**Note**: Hugo follows standard lookup order: project root overrides → theme defaults. Main implementation in `themes/andromeda-hugo/` directory.
 
 ---
 
@@ -33,22 +33,22 @@ sections:
 
 ## Components
 
-### Atoms (5) - `layouts/partials/atoms/`
-button.html, heading.html, icon.html, image.html, input.html
+### Atoms (9) - `themes/andromeda-hugo/layouts/partials/atoms/`
+button.html, heading.html, icon.html, image.html, tag.html, divider.html, link.html, spinner.html, avatar.html
 
 **Usage**: `{{ partial "atoms/button.html" (dict "text" "Click" "variant" "primary") }}`
 
-### Molecules (17) - `layouts/partials/molecules/`
-card.html, form-field.html, accordion.html, pricing-toggle.html, video-embed.html, social-links.html, breadcrumb.html, nav-item.html, logo.html, language-selector.html, navigation.html, mobile-menu.html, footer-nav.html, footer-info.html, back-to-top.html, cookie-consent.html, emergency-banner.html
+### Molecules (29) - `themes/andromeda-hugo/layouts/partials/molecules/`
+card.html, form-field.html, accordion.html, navigation.html, breadcrumb.html, social-links.html, video-embed.html, timeline-step.html, stat-card.html, blog-card.html, back-to-top.html, cookie-consent.html, emergency-banner.html, footer-info.html, footer-nav.html, language-selector.html, logo.html, mobile-menu.html, nav-item.html, service-card.html, value-card.html, process-step.html, credential-badge.html, contact-method-card.html, feature-highlight.html, info-box.html, quote-block.html, resource-card.html, pricing-toggle.html
 
 **Usage**: `{{ partial "molecules/card.html" (dict "variant" "feature" "title" "Title") }}`
 
-### Organisms (2) - `layouts/partials/organisms/`
+### Organisms (2) - `themes/andromeda-hugo/layouts/partials/organisms/`
 header.html, footer.html (cached by language for 30-50% build time reduction)
 
 **Usage**: `{{ partialCached "organisms/header.html" . .Language }}`
 
-### Sections (21 active + 1 _deprecated dir) - `layouts/partials/sections/`
+### Sections (26 active) - `themes/andromeda-hugo/layouts/partials/sections/`
 1. hero-breadcrumb.html - Page header
 2. values-intro.html - Intro with image
 3. feature-blocks.html - Zigzag layout (enhanced v4.0)
@@ -96,17 +96,17 @@ Page (content/*.md) → flexible.html → Header → Sections → Footer → HTM
 ## Extension Points
 
 ### Add Section
-1. Create `layouts/partials/sections/my-section.html`
-2. Register in `flexible.html` if/else chain
+1. Create `themes/andromeda-hugo/layouts/partials/sections/my-section.html`
+2. Register in `themes/andromeda-hugo/layouts/_default/flexible.html` if/else chain
 3. Use: `sections: - type: "my-section"`
 
 ### Add Molecule
-1. Create `layouts/partials/molecules/my-component.html`
+1. Create `themes/andromeda-hugo/layouts/partials/molecules/my-component.html`
 2. Compose from atoms
 3. Use: `{{ partial "molecules/my-component.html" (dict ...) }}`
 
 ### Add Atom
-1. Create `layouts/partials/atoms/my-atom.html`
+1. Create `themes/andromeda-hugo/layouts/partials/atoms/my-atom.html`
 2. Keep simple (single responsibility)
 3. Use: `{{ partial "atoms/my-atom.html" (dict ...) }}`
 
@@ -122,29 +122,34 @@ Page (content/*.md) → flexible.html → Header → Sections → Footer → HTM
 
 ---
 
-## File Locations (Flattened Structure)
+## File Locations (Standard Hugo Theme Structure)
 
 ```
 alexandrabarbu.ro/                      # ← PROJECT ROOT (run Hugo here!)
-├── layouts/                            # At root level (NOT in themes/)
-│   ├── _default/flexible.html          # MAIN ENGINE
-│   ├── partials/
-│   │   ├── atoms/                      # 5 basic
-│   │   ├── molecules/                  # 21 composite
-│   │   ├── organisms/                  # 2 complex
-│   │   ├── sections/                   # 21 sections + _deprecated/
-│   │   └── essentials/
-│   │       ├── header.html             # Calls organism
-│   │       └── footer.html             # Calls organism
-│   └── shortcodes/                     # Local shortcode implementations
-├── assets/                             # At root level
-│   ├── scss/                           # ITCSS + BEM architecture
-│   └── js/                             # Vanilla JS (no Bootstrap/jQuery)
-├── content/                            # Site content at root
+├── themes/andromeda-hugo/              # Theme directory (main implementation)
+│   ├── layouts/                        # Theme templates
+│   │   ├── _default/flexible.html      # MAIN LAYOUT ENGINE
+│   │   └── partials/
+│   │       ├── atoms/                  # 9 atomic components
+│   │       ├── molecules/              # 29 composite components
+│   │       ├── organisms/              # 2 structural (header, footer)
+│   │       ├── sections/               # 26 page sections
+│   │       └── essentials/             # Core essentials (style, head, etc.)
+│   ├── assets/                         # Theme assets
+│   │   ├── scss/                       # ITCSS (7 layers) + BEM
+│   │   └── js/                         # Vanilla JS (no dependencies)
+│   ├── archetypes/                     # Content templates
+│   └── docs/                           # Component documentation
+├── layouts/                            # Project overrides (sparse - 8 files)
+│   └── partials/                       # Project-specific partials
+├── assets/                             # Project overrides (sparse)
+├── content/                            # Site content (romanian/, english/)
 ├── config/                             # Hugo configuration
-└── data/                               # Data files
+├── data/                               # Data files (shared_sections.yaml)
+└── i18n/                               # Translation files (ro.yaml, en.yaml)
 
-IMPORTANT: No themes/andromeda-hugo/ directory exists. Structure flattened Nov 2025.
+NOTE: Hugo lookup order: project root → theme directory.
+Theme contains 135 SCSS files, 127 layout files. Project overrides are minimal.
 ```
 
 ---
@@ -161,9 +166,10 @@ IMPORTANT: No themes/andromeda-hugo/ directory exists. Structure flattened Nov 2
 ## Testing
 
 ```bash
-cd themes/andromeda-hugo               # Run from theme directory
-../../scripts/test-components.sh       # Verify: 5+17+2+24=48 components
-../../scripts/test-performance.sh      # Measure: <3s build, <500KB pages
+# Run from project root!
+scripts/test-components.sh             # Verify: 9+29+2+26=66 components
+scripts/test-performance.sh            # Measure: <3s build, <500KB pages
+hugo --templateMetrics                 # Performance analysis
 ```
 
 ---
@@ -193,19 +199,19 @@ content/fr/  # French
 
 **Understand**: README.md → ARCHITECTURE.md → themes/andromeda-hugo/docs/components/
 **Add features**: New page (archetypes) | New section (sections/) | New molecule (molecules/)
-**Verify**: `ls layouts/partials/atoms/ | wc -l` (5), molecules (21), organisms (2), sections (21 + _deprecated)
+**Verify**: `ls themes/andromeda-hugo/layouts/partials/atoms/ | wc -l` (9), molecules (29), organisms (2), sections (26)
 
 ---
 
 ## Success Metrics ✅
 
-Build <3s | Pages <500KB | CSS <50KB gzipped | Reusability >80% | Duplication <10% | New page <30s | 49 components total | No Bootstrap/jQuery (vanilla JS)
+Build <3s | Pages <500KB | CSS <50KB gzipped | Reusability >80% | Duplication <10% | New page <30s | 66 components total | No Bootstrap/jQuery (vanilla JS)
 
 ---
 
 ## Critical Files
 
-- `layouts/_default/flexible.html` - Layout engine (lines 22-65: section loop)
+- `themes/andromeda-hugo/layouts/_default/flexible.html` - Layout engine (lines 22-82: section loop)
 - `layouts/partials/organisms/header.html` - Header composition
 - `layouts/partials/organisms/footer.html` - Footer composition
 - `archetypes/*.md` - Page templates
