@@ -21,7 +21,7 @@ hero_breadcrumb:
   title: "Couples Therapy"
   subtitle: "Rebuild Connection, Communication and Intimacy"
   description: "Therapy based on Gottman Method and CBT for conflict resolution, rebuilding trust and strengthening your relationship."
-  image: "images/services/couple-therapy-hero.jpg"
+  image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1200&h=600&fit=crop"
 
 breadcrumb:
   - name: "Home"

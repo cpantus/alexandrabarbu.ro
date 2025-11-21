@@ -21,7 +21,7 @@ hero_breadcrumb:
   title: "Family Therapy"
   subtitle: "Healing and Harmonizing Family Dynamics"
   description: "Systemic therapy for resolving family conflicts, improving communication and building healthier relationships between all family members."
-  image: "images/services/family-therapy-hero.jpg"
+  image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=1200&h=600&fit=crop"
 
 breadcrumb:
   - name: "Home"

@@ -21,7 +21,7 @@ hero_breadcrumb:
   title: "Psihologie Organizațională"
   subtitle: "Optimizare Echipe, Leadership și Cultură Organizațională"
   description: "Consultanță, training-uri și coaching pentru companii care vor să investească în oameni, să prevină burnout-ul și să construiască culturi organizaționale sănătoase."
-  image: "images/services/organizational-psychology-hero.jpg"
+  image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=600&fit=crop"
 
 breadcrumb:
   - name: "Acasă"

@@ -21,7 +21,7 @@ hero_breadcrumb:
   title: "Organizational Psychology"
   subtitle: "Team Optimization, Leadership and Organizational Culture"
   description: "Consulting, training and coaching for companies that want to invest in people, prevent burnout and build healthy organizational cultures."
-  image: "images/services/organizational-psychology-hero.jpg"
+  image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=600&fit=crop"
 
 breadcrumb:
   - name: "Home"

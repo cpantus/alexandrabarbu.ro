@@ -21,7 +21,7 @@ hero_breadcrumb:
   title: "Terapie de Cuplu"
   subtitle: "Reconstruiește Conexiunea, Comunicarea și Intimitatea"
   description: "Terapie bazată pe Metoda Gottman și TCC pentru rezolvarea conflictelor, reconstruirea încrederii și întărirea relației voastre."
-  image: "images/services/couple-therapy-hero.jpg"
+  image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1200&h=600&fit=crop"
 
 breadcrumb:
   - name: "Acasă"

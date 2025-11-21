@@ -21,7 +21,7 @@ hero_breadcrumb:
   title: "Terapie de Familie"
   subtitle: "Vindecare și Armonizare a Dinamicii Familiale"
   description: "Terapie sistemică pentru rezolvarea conflictelor familiale, îmbunătățirea comunicării și construirea relațiilor mai sănătoase între toți membrii familiei."
-  image: "images/services/family-therapy-hero.jpg"
+  image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=1200&h=600&fit=crop"
 
 breadcrumb:
   - name: "Acasă"
