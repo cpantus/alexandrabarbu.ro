@@ -233,7 +233,7 @@
   font-size: $font-size-sm;
   font-weight: $font-weight-normal;
   line-height: $line-height-snug;
-  text-decoration: none;
+  text-decoration: none !important; // Override global link style
   border-radius: $radius-sm;
   transition: all $duration-fast $easing-medium;
   position: relative;
@@ -260,6 +260,7 @@
     color: $color-primary;
     background: transparent;
     transform: translateX($space-1); // Slide right effect
+    text-decoration: none !important; // Override global link hover style
 
     &::after {
       opacity: 1;
@@ -285,6 +286,7 @@
     color: $color-primary !important;
     font-weight: $font-weight-medium;
     background: rgba($color-primary, 0.1);
+    text-decoration: none !important; // Override global link style
 
     // NUCLEAR OPTION: Force remove ALL ::after styling on active items
     &::after {
@@ -315,6 +317,8 @@
     // FORCE: No underline on hover/focus when active
     &:hover,
     &:focus {
+      text-decoration: none !important; // Override global link hover style
+
       &::after {
         content: none !important;
         display: none !important;
