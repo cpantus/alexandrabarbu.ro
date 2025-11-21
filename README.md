@@ -1,6 +1,6 @@
 # Alexandra Barbu - Psychology Practice Website
 
-**v5.0.1 Flattened Architecture** | **Hugo + ITCSS + Enhanced Design** | **Production Ready**
+**v5.1.0 Standard Hugo Theme** | **Hugo + ITCSS + BEM + Enhanced Design** | **Production Ready**
 
 ---
 
