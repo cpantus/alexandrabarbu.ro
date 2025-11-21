@@ -7,8 +7,8 @@
 ## Quick Start
 
 ```bash
-# IMPORTANT: Project structure is flattened - run Hugo from project root!
-cd /home/cere/Work/alex/alexandrabarbu.ro    # Project root (NOT theme directory)
+# IMPORTANT: Run Hugo from project root (standard Hugo theme structure)
+cd /home/cere/Work/alex/alexandrabarbu.ro    # Project root
 hugo server --buildDrafts                     # Dev server
 hugo --gc --minify                            # Build production
 ```
@@ -17,7 +17,7 @@ hugo --gc --minify                            # Build production
 
 ## Core Concept
 
-Pages = Header + Sections (2-7) + Footer. Choose from 26 active section types (5 enhanced v4.0):
+Pages = Header + Sections (2-7) + Footer. Choose from 36 active section types (5 enhanced v4.0):
 
 ```yaml
 # content/page.md
@@ -31,7 +31,7 @@ sections:
 
 ---
 
-## Available Sections (26 active)
+## Available Sections (36 active)
 
 **Core (5)**: hero-breadcrumb, values-intro, blog-grid, cta-standard, feature-details
 **Interactive (4)**: video-popup, faq-mini-section, faq-content, method-tabs
@@ -79,11 +79,11 @@ benefits_section:
 
 ```
 Atoms (9)        → button, heading, icon, image, tag, divider, link, spinner, avatar
-Molecules (29)   → card, form-field, accordion, nav, breadcrumb, social-links, etc.
+Molecules (24)   → card, form-field, accordion, nav, breadcrumb, social-links, video-embed, etc.
 Organisms (2)    → header, footer
-Sections (26)    → Page sections (5 core + 4 interactive + 3 forms + 5 trust + 5 enhanced v4.0 + 4 specialized)
+Sections (36)    → Page sections (hero, cta, pricing, testimonials, faq, contact, etc.)
 
-Total: 66 components | Page = Header + Sections + Footer
+Total: 71 components | Page = Header + Sections + Footer
 ```
 
 ---
@@ -123,7 +123,7 @@ project root provides overrides. Main implementation is in themes/andromeda-hugo
 
 ```bash
 # Run from project root!
-scripts/test-components.sh               # Verify all 66 components (9+29+2+26)
+scripts/test-components.sh               # Verify all 71 components (9+24+2+36)
 scripts/test-performance.sh              # Build time, bundle size
 ```
 
@@ -184,7 +184,7 @@ hugo --gc --minify
 
 ## Key Features
 
-✅ 26 reusable sections (5 enhanced v4.0) | ✅ 4 archetypes | ✅ Atomic design (66 components)
+✅ 36 reusable sections (5 enhanced v4.0) | ✅ 4 archetypes | ✅ Atomic design (71 components)
 ✅ <3s builds | ✅ WebP images | ✅ Responsive | ✅ Multilingual | ✅ Form validation
 ⭐ **NEW v4.0**: Glassmorphism | Warm gradients | Parallax scrolling | SVG animations
 
@@ -238,6 +238,6 @@ scripts/test-components.sh                      # Test
 hugo --gc --minify                              # Build
 ```
 
-**Status**: Production Ready ✅ | 49 components (5+21+2+21) | ITCSS + BEM + v4.0 Design | <520KB pages | Flattened architecture
+**Status**: Production Ready ✅ | 71 components (9+24+2+36) | ITCSS + BEM + v4.0 Design | <520KB pages | Hugo standard theme
 
 **Next**: Read `CLAUDE.md` (instructions) | `ARCHITECTURE.md` (Hugo components) | `CLAUDE-ITCSS-ADDENDUM.md` (ITCSS architecture)

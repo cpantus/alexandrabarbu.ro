@@ -10,7 +10,7 @@
 
 Component-based Hugo site with standard theme architecture: Pages = Header + Sections (2-7) + Footer
 
-**Hierarchy**: Atoms (9) → Molecules (29) → Organisms (2) → Sections (26) = **66 components**
+**Hierarchy**: Atoms (9) → Molecules (24) → Organisms (2) → Sections (36) = **71 components**
 
 **Note**: Hugo follows standard lookup order: project root overrides → theme defaults. Main implementation in `themes/andromeda-hugo/` directory.
 
@@ -38,8 +38,8 @@ button.html, heading.html, icon.html, image.html, tag.html, divider.html, link.h
 
 **Usage**: `{{ partial "atoms/button.html" (dict "text" "Click" "variant" "primary") }}`
 
-### Molecules (29) - `themes/andromeda-hugo/layouts/partials/molecules/`
-card.html, form-field.html, accordion.html, navigation.html, breadcrumb.html, social-links.html, video-embed.html, timeline-step.html, stat-card.html, blog-card.html, back-to-top.html, cookie-consent.html, emergency-banner.html, footer-info.html, footer-nav.html, language-selector.html, logo.html, mobile-menu.html, nav-item.html, service-card.html, value-card.html, process-step.html, credential-badge.html, contact-method-card.html, feature-highlight.html, info-box.html, quote-block.html, resource-card.html, pricing-toggle.html
+### Molecules (24) - `themes/andromeda-hugo/layouts/partials/molecules/`
+accordion.html, back-to-top.html, blog-card.html, breadcrumb.html, card.html, cookie-consent.html, credential-badge.html, emergency-banner.html, footer-info.html, footer-nav.html, form-field.html, language-selector.html, logo.html, mobile-menu.html, navigation.html, nav-item.html, pricing-toggle.html, process-step.html, service-preview-card.html, social-links.html, stat-card.html, timeline-step.html, value-card.html, video-embed.html
 
 **Usage**: `{{ partial "molecules/card.html" (dict "variant" "feature" "title" "Title") }}`
 
@@ -48,29 +48,8 @@ header.html, footer.html (cached by language for 30-50% build time reduction)
 
 **Usage**: `{{ partialCached "organisms/header.html" . .Language }}`
 
-### Sections (26 active) - `themes/andromeda-hugo/layouts/partials/sections/`
-1. hero-breadcrumb.html - Page header
-2. values-intro.html - Intro with image
-3. feature-blocks.html - Zigzag layout (enhanced v4.0)
-4. pricing-tables.html - Pricing + toggle (enhanced v4.0)
-5. video-popup.html - Video section
-6. contact-form-enhanced.html - Contact form
-7. contact-info-cards.html - Contact cards
-8. contact-options.html - Alternative contact
-9. faq-mini.html - FAQ accordion
-10. faq-content.html - FAQ content
-11. signup-form-enhanced.html - Signup form
-12. privacy-guarantee.html - Privacy section
-13. blog-grid.html - Blog post grid
-14. newsletter-signup.html - Newsletter subscription
-15. problem-empathy.html - Problem statement
-16. stats-numbers.html - Statistics (enhanced v4.0)
-17. values-compass.html - Compass layout (NEW v4.0)
-18. credentials-showcase.html - Credentials (enhanced v4.0)
-19. first-session-timeline.html - Session walkthrough
-20. service-faq-inline.html - Service FAQ
-21. testimonials-enhanced.html - Client testimonials
-22. _deprecated/ - Deprecated sections directory
+### Sections (36 active) - `themes/andromeda-hugo/layouts/partials/sections/`
+about-preview.html, approach-preview.html, benefits-results.html, blog-grid.html, confidentiality-notice.html, contact-form-enhanced.html, contact-info-cards.html, contact-options.html, credentials-showcase.html, cta-standard.html, faq-content.html, faq-mini.html, feature-blocks.html, feature-details.html, first-session-timeline.html, hero-breadcrumb.html, methods-used.html, method-tabs.html, my-story.html, newsletter-signup.html, onboarding-steps.html, pricing-packages.html, pricing-tables.html, privacy-guarantee.html, problem-empathy.html, service-faq-inline.html, services-preview.html, signup-form-enhanced.html, simple-process.html, stats-numbers.html, testimonials-enhanced.html, therapeutic-process.html, training-certifications.html, values-compass.html, values-intro.html, video-popup.html
 
 **Data from front matter**:
 ```yaml
@@ -167,7 +146,7 @@ Theme contains 135 SCSS files, 127 layout files. Project overrides are minimal.
 
 ```bash
 # Run from project root!
-scripts/test-components.sh             # Verify: 9+29+2+26=66 components
+scripts/test-components.sh             # Verify: 9+24+2+36=71 components
 scripts/test-performance.sh            # Measure: <3s build, <500KB pages
 hugo --templateMetrics                 # Performance analysis
 ```
@@ -199,13 +178,13 @@ content/fr/  # French
 
 **Understand**: README.md → ARCHITECTURE.md → themes/andromeda-hugo/docs/components/
 **Add features**: New page (archetypes) | New section (sections/) | New molecule (molecules/)
-**Verify**: `ls themes/andromeda-hugo/layouts/partials/atoms/ | wc -l` (9), molecules (29), organisms (2), sections (26)
+**Verify**: `ls themes/andromeda-hugo/layouts/partials/atoms/ | wc -l` (9), molecules (24), organisms (2), sections (36)
 
 ---
 
 ## Success Metrics ✅
 
-Build <3s | Pages <500KB | CSS <50KB gzipped | Reusability >80% | Duplication <10% | New page <30s | 66 components total | No Bootstrap/jQuery (vanilla JS)
+Build <3s | Pages <500KB | CSS <50KB gzipped | Reusability >80% | Duplication <10% | New page <30s | 71 components total | No Bootstrap/jQuery (vanilla JS)
 
 ---
 
