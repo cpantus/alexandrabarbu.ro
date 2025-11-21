@@ -14,16 +14,18 @@
 (function() {
   'use strict';
 
+  // Debug mode (set to false for production)
+  const DEBUG = false;
+
   // Check reduced motion preference
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReducedMotion) {
-    console.log('GSAP enhancements disabled: prefers-reduced-motion is enabled');
     return;
   }
 
   // Wait for GSAP to load
   if (typeof gsap === 'undefined') {
-    console.warn('GSAP not loaded, enhancements disabled');
+    if (DEBUG) console.warn('GSAP not loaded, enhancements disabled');
     return;
   }
 
@@ -35,7 +37,7 @@
   }
 
   function init() {
-    console.log('Initializing GSAP enhancements...');
+    if (DEBUG) console.log('Initializing GSAP enhancements...');
 
     // Register ScrollTrigger if available
     if (typeof ScrollTrigger !== 'undefined') {
@@ -48,7 +50,7 @@
     initImageReveal();
     initAlpineComponents();
 
-    console.log('GSAP enhancements initialized');
+    if (DEBUG) console.log('GSAP enhancements initialized');
   }
 
   /**
@@ -62,7 +64,7 @@
     }
 
     const buttons = document.querySelectorAll('[data-animate="magnetic-button"]');
-    console.log(`Found ${buttons.length} magnetic buttons`);
+    if (DEBUG) console.log(`Found ${buttons.length} magnetic buttons`);
 
     buttons.forEach(button => {
       const strength = parseFloat(button.dataset.strength || '0.3');
@@ -97,7 +99,7 @@
    */
   function initRippleEffects() {
     const elements = document.querySelectorAll('[data-animate="ripple"]');
-    console.log(`Found ${elements.length} ripple elements`);
+    if (DEBUG) console.log(`Found ${elements.length} ripple elements`);
 
     elements.forEach(element => {
       element.addEventListener('click', createRipple);
@@ -138,12 +140,12 @@
   function initTextReveal() {
     // Only process if ScrollTrigger is available
     if (typeof ScrollTrigger === 'undefined') {
-      console.warn('ScrollTrigger not loaded, text reveal disabled');
+      if (DEBUG) console.warn('ScrollTrigger not loaded, text reveal disabled');
       return;
     }
 
     const elements = document.querySelectorAll('[data-animate="text-reveal"]');
-    console.log(`Found ${elements.length} text reveal elements`);
+    if (DEBUG) console.log(`Found ${elements.length} text reveal elements`);
 
     elements.forEach(element => {
       const text = element.textContent.trim();
@@ -177,12 +179,12 @@
   function initImageReveal() {
     // Only process if ScrollTrigger is available
     if (typeof ScrollTrigger === 'undefined') {
-      console.warn('ScrollTrigger not loaded, image reveal disabled');
+      if (DEBUG) console.warn('ScrollTrigger not loaded, image reveal disabled');
       return;
     }
 
     const images = document.querySelectorAll('[data-animate="image-reveal"]');
-    console.log(`Found ${images.length} image reveal elements`);
+    if (DEBUG) console.log(`Found ${images.length} image reveal elements`);
 
     images.forEach(img => {
       gsap.from(img, {
@@ -208,7 +210,7 @@
 
     if (typeof Alpine !== 'undefined') {
       document.addEventListener('alpine:init', () => {
-        console.log('Alpine.js initialized with GSAP enhancements');
+        if (DEBUG) console.log('Alpine.js initialized with GSAP enhancements');
 
         // Can add custom Alpine magic properties or directives here
         // Example: Alpine.magic('gsap', () => gsap)
