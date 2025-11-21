@@ -257,8 +257,8 @@
   }
 
   // Hover state - show gradient underline with slide effect (NOT on active)
-  &:hover:not(&--active),
-  &:focus:not(&--active) {
+  &:hover,
+  &:focus {
     color: $color-primary;
     background: transparent;
     transform: translateX($space-1); // Slide right effect
@@ -267,6 +267,13 @@
       opacity: 1;
       transform: scaleX(1);
     }
+  }
+
+  // But NOT when active (override the hover ::after)
+  &--active:hover::after,
+  &--active:focus::after {
+    opacity: 0 !important;
+    display: none !important;
   }
 
   // Focus state (keyboard navigation) - smooth animation instead of outline
