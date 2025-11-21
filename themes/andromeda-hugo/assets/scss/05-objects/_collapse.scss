@@ -5,9 +5,8 @@
 // Purpose: Reusable collapse/expand animation utilities for vanilla-collapse.js
 //
 // Classes:
-//   .collapse - Hidden state (height: 0, overflow hidden)
-//   .collapsing - Transitioning state (animating height)
-//   .show - Visible state (height: auto)
+//   .collapse - Hidden state (max-height: 0, overflow hidden)
+//   .collapse.show - Visible state (max-height: large value)
 //
 // Usage:
 //   Works with vanilla-collapse.js for smooth accordion/dropdown animations
@@ -19,35 +18,27 @@
 //
 // ITCSS Layer: Objects (layout primitives, no cosmetics)
 //
-// Version: 1.0.0
+// Version: 2.0.0
 // Created: 2025-11-21
 // ==========================================================================
 
-// Hidden state (collapsed)
-// IMPORTANT: Only apply to accordion/FAQ collapse elements, not navigation
+// Collapse elements - accordion/FAQ only, not navigation
 .c-accordion__panel.collapse,
 .c-service-faq__answer.collapse,
 .c-methods-used__method-content.collapse,
 .accordion-collapse.collapse {
-  height: 0;
+  max-height: 0;
   overflow: hidden;
-  transition: height $duration-normal $easing-medium;
+  transition: max-height 0.35s ease-in-out, opacity 0.35s ease-in-out;
+  opacity: 0;
 
-  // When shown, allow content to be visible
+  // When shown, content is visible
   &.show {
-    height: auto;
-    overflow: visible;
+    max-height: 500px; // Smaller value for smoother animation
+    opacity: 1;
+    overflow: hidden; // Keep hidden during animation to prevent overlap
+    transition: max-height 0.35s ease-in-out, opacity 0.35s ease-in-out;
   }
-}
-
-// Transitioning state (animating between collapsed/expanded)
-.c-accordion__panel.collapsing,
-.c-service-faq__answer.collapsing,
-.c-methods-used__method-content.collapsing,
-.accordion-collapse.collapsing {
-  height: 0;
-  overflow: hidden;
-  transition: height $duration-normal $easing-medium;
 }
 
 // Reduced motion support (accessibility)
@@ -55,11 +46,7 @@
   .c-accordion__panel.collapse,
   .c-service-faq__answer.collapse,
   .c-methods-used__method-content.collapse,
-  .accordion-collapse.collapse,
-  .c-accordion__panel.collapsing,
-  .c-service-faq__answer.collapsing,
-  .c-methods-used__method-content.collapsing,
-  .accordion-collapse.collapsing {
+  .accordion-collapse.collapse {
     transition: none;
   }
 }

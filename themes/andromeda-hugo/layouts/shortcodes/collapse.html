@@ -9,6 +9,7 @@
             type="button"
             data-toggle="collapse"
             data-target="#collapse-{{ $hash }}"
+            data-parent="#faqAccordion"
             aria-expanded="false"
             aria-controls="collapse-{{ $hash }}">
       {{ $title }}
@@ -16,8 +17,8 @@
   </h2>
   <div id="collapse-{{ $hash }}"
        class="accordion-collapse collapse"
-       data-collapse-parent="#faqAccordion"
-       aria-labelledby="title-{{ $id }}">
+       aria-labelledby="title-{{ $id }}"
+       role="region">
     <div class="accordion-body">
       {{ .Inner | markdownify }}
     </div>

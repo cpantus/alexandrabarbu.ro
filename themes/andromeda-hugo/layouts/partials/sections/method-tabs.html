@@ -150,8 +150,7 @@ Version: 5.0.1 (BEM refactor + vanilla JS)
                   class="c-method-tabs__panel {{ if eq $index 0 }}c-method-tabs__panel--active{{ end }}"
                   id="{{ $panelId }}"
                   role="tabpanel"
-                  aria-labelledby="{{ $tabId }}"
-                  {{- if ne $index 0 }} hidden{{ end }}>
+                  aria-labelledby="{{ $tabId }}">
 
                   <div class="c-method-tabs__content">
 
