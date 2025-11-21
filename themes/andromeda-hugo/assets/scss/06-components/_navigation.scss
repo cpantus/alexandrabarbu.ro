@@ -239,12 +239,12 @@
   position: relative;
 
   // Beautiful gradient underline effect (hidden by default)
-  // Shorter width to avoid overflow - approximately matches average text length
+  // Half width for elegant, subtle accent
   &::after {
     content: '';
     position: absolute;
     left: $space-3;   // 24px - start where text starts
-    width: 70%;       // 70% of container width - shorter to prevent overflow
+    width: 50%;       // Half width - elegant and subtle
     bottom: $space-2; // 16px from bottom
     height: 2px;
     background: linear-gradient(90deg, $emerald-400 0%, $terracotta-400 50%, $emerald-500 100%);
