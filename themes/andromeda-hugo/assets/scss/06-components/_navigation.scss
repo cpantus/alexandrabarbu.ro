@@ -94,30 +94,19 @@
   transition: all $duration-fast $easing-medium;
   position: relative;
 
-  // Underline effect (hidden by default)
+  // NO gradient underlines - clean design
+  text-decoration: none;
+
+  // Force remove any underlines
   &::after {
-    content: '';
-    position: absolute;
-    left: $space-3;
-    right: $space-3;
-    bottom: $space-1;
-    height: 2px;
-    background: $gradient-warm-vibrant;
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: all $duration-base $easing-medium;
+    display: none !important;
   }
 
-  // Hover state
+  // Hover state - simple color change, no underline
   &:hover,
   &:focus {
     color: $color-primary;
-
-    &::after {
-      opacity: 1;
-      transform: scaleX(1);
-    }
+    text-decoration: none;
   }
 
   // Focus state (keyboard navigation) - smooth animation instead of outline
@@ -279,7 +268,8 @@
       transform: translateY(-50%);
       width: 4px;
       height: 20px;
-      background: $gradient-warm-vibrant;
+      // Use primary color instead of green-heavy gradient
+      background: $color-primary;
       border-radius: 2px;
     }
 

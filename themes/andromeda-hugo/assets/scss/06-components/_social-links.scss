@@ -86,7 +86,15 @@
   position: relative;
   transition: all $transition-base $easing-ease-out;
 
-  // Gradient circle background (hidden by default)
+  // NO underlines or decorations
+  text-decoration: none;
+
+  // Force remove any underlines/decorations
+  &::after {
+    display: none !important;
+  }
+
+  // Gradient circle background - MORE VISIBLE with better colors
   &::before {
     content: '';
     position: absolute;
@@ -95,33 +103,34 @@
     right: 0;
     bottom: 0;
     border-radius: $border-radius-circle;
-    background: $gradient-warm-vibrant;
-    opacity: 0;
-    transform: scale(0.8);
+    // Use distinct gradient colors from icon gradients for better visibility
+    background: linear-gradient(135deg, rgba($emerald-400, 0.2) 0%, rgba($terracotta-400, 0.2) 100%);
+    opacity: 1; // Always visible
+    transform: scale(1);
     transition: all $transition-base $easing-ease-out;
     z-index: -1;
   }
 
   // Typography
-  text-decoration: none;
   color: inherit; // Icon color controlled by icon atom
 
   // Accessibility
   cursor: pointer;
 
-  // States: Hover
+  // States: Hover - intensify gradient
   &:hover {
     transform: translateY(-2px);
 
     &::before {
-      opacity: 0.15;
-      transform: scale(1);
+      background: linear-gradient(135deg, rgba($emerald-500, 0.35) 0%, rgba($terracotta-500, 0.35) 100%);
+      transform: scale(1.05);
     }
   }
 
   // States: Focus
   &:focus {
     outline: none;
+    text-decoration: none;
     animation: socialLinkFocusGlow 0.3s ease-in-out;
   }
 
@@ -139,7 +148,7 @@
     transform: translateY(0);
 
     &::before {
-      opacity: 0.25;
+      background: linear-gradient(135deg, rgba($emerald-600, 0.4) 0%, rgba($terracotta-600, 0.4) 100%);
       transform: scale(0.95);
     }
   }
@@ -178,13 +187,16 @@
 // -----------------------------------------------------------------------------
 // Modifier: Color variants (primary, secondary, tertiary, neutral)
 // -----------------------------------------------------------------------------
-// NOTE: Icon colors are controlled by icon atom via variant prop.
-// These modifiers apply hover background colors.
+// These modifiers apply visible gradient circles (not the old green-heavy ones)
 
 .c-social--primary {
   .c-social__link {
     &::before {
-      background: $gradient-warm-vibrant;
+      background: linear-gradient(135deg, rgba($emerald-400, 0.2) 0%, rgba($terracotta-400, 0.2) 100%);
+    }
+
+    &:hover::before {
+      background: linear-gradient(135deg, rgba($emerald-500, 0.35) 0%, rgba($terracotta-500, 0.35) 100%);
     }
   }
 }
@@ -192,7 +204,11 @@
 .c-social--secondary {
   .c-social__link {
     &::before {
-      background: $gradient-secondary-vibrant;
+      background: linear-gradient(135deg, rgba($terracotta-400, 0.25) 0%, rgba($terracotta-500, 0.15) 100%);
+    }
+
+    &:hover::before {
+      background: linear-gradient(135deg, rgba($terracotta-500, 0.4) 0%, rgba($terracotta-600, 0.3) 100%);
     }
   }
 }
@@ -200,7 +216,11 @@
 .c-social--tertiary {
   .c-social__link {
     &::before {
-      background: linear-gradient(135deg, lighten($color-tertiary, 8%), darken($color-tertiary, 2%));
+      background: linear-gradient(135deg, rgba($color-tertiary, 0.15) 0%, rgba($color-tertiary, 0.25) 100%);
+    }
+
+    &:hover::before {
+      background: linear-gradient(135deg, rgba($color-tertiary, 0.3) 0%, rgba($color-tertiary, 0.4) 100%);
     }
   }
 }
@@ -208,7 +228,11 @@
 .c-social--neutral {
   .c-social__link {
     &::before {
-      background: linear-gradient(135deg, lighten($color-neutral, 18%), lighten($color-neutral, 8%));
+      background: linear-gradient(135deg, rgba($color-neutral, 0.1) 0%, rgba($color-neutral, 0.2) 100%);
+    }
+
+    &:hover::before {
+      background: linear-gradient(135deg, rgba($color-neutral, 0.2) 0%, rgba($color-neutral, 0.3) 100%);
     }
   }
 }

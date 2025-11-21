@@ -116,11 +116,21 @@
                   </li>
                 {{ end }}
               {{ end }}
+              {{/* Add Email to Contact Column */}}
+              {{ with .email }}
+                {{ range first 1 . }}
+                  {{ if . }}
+                    <li class="c-footer-nav__item">
+                      <a href="mailto:{{ . }}" class="c-footer-nav__link">{{ . }}</a>
+                    </li>
+                  {{ end }}
+                {{ end }}
+              {{ end }}
             </ul>
           </div>
         {{ end }}
 
-        {{/* Column 3: Social Links & Email */}}
+        {{/* Column 3: Social Links Only */}}
         <div class="c-footer-nav__section c-footer-nav__section--social">
           {{ partial "atoms/heading.html" (dict
             "text" (i18n "socials" | default "Social Media")
@@ -128,17 +138,6 @@
             "variant" "primary"
             "class" "c-footer-nav__title"
           ) }}
-
-          {{/* Email Link */}}
-          {{ with site.Params.contact_info.email }}
-            {{ range first 1 . }}
-              {{ if . }}
-                <div class="c-footer-nav__email">
-                  <a href="mailto:{{ . }}" class="c-footer-nav__link">{{ . }}</a>
-                </div>
-              {{ end }}
-            {{ end }}
-          {{ end }}
 
           {{/* Social Media Links */}}
           {{ with site.Params.social }}

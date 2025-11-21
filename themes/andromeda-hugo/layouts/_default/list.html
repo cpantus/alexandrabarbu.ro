@@ -1,0 +1,61 @@
+{{ define "main" }}
+<section class="section">
+  <div class="o-container">
+    {{/* Page Header */}}
+    <header class="section__header">
+      <h1 class="section__title">{{ .Title }}</h1>
+      {{- if .Params.description -}}
+        <p class="section__description">{{ .Params.description }}</p>
+      {{- end -}}
+    </header>
+    {{/* Content List */}}
+    {{- if .Pages -}}
+      <div class="c-blog-grid">
+        {{- range .Pages -}}
+          <article class="c-blog-card">
+            {{/* Image */}}
+            {{- with .Params.image -}}
+              <div class="c-blog-card__image">
+                <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy">
+              </div>
+            {{- end -}}
+            {{/* Content */}}
+            <div class="c-blog-card__content">
+              {{/* Title */}}
+              <h2 class="c-blog-card__title">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              </h2>
+              {{/* Meta */}}
+              {{- if or .Date .Params.author -}}
+                <div class="c-blog-card__meta">
+                  {{- if .Date -}}
+                    <time datetime="{{ .Date.Format "2006-01-02" }}">
+                      {{ .Date.Format "January 2, 2006" }}
+                    </time>
+                  {{- end -}}
+                  {{- if and .Date .Params.author -}} · {{- end -}}
+                  {{- if .Params.author -}}
+                    <span>{{ .Params.author }}</span>
+                  {{- end -}}
+                </div>
+              {{- end -}}
+              {{/* Summary */}}
+              {{- if .Summary -}}
+                <p class="c-blog-card__excerpt">{{ .Summary }}</p>
+              {{- end -}}
+              {{/* Read More */}}
+              <a href="{{ .RelPermalink }}" class="c-blog-card__link">
+                {{ i18n "readMore" | default "Read More" }} →
+              </a>
+            </div>
+          </article>
+        {{- end -}}
+      </div>
+    {{- else -}}
+      <p class="section__no-content">
+        {{ i18n "noContent" | default "No content available." }}
+      </p>
+    {{- end -}}
+  </div>
+</section>
+{{ end }}

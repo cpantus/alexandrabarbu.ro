@@ -102,6 +102,13 @@
   font-size: $font-size-lg;
   font-weight: 600;
   color: $color-text-heading;
+
+  // Remove any underlines/decorations in footer context
+  text-decoration: none;
+
+  &::after {
+    display: none !important; // Force remove any gradient underlines
+  }
 }
 
 // ============================================================================
@@ -148,32 +155,14 @@
   color: $color-text-primary;
   text-decoration: none;
   position: relative;
-  padding-bottom: $space-1;
+  padding-bottom: 0; // Remove padding since no underline
   transition: color $duration-base $easing-out;
 
-  // Gradient underline effect (hidden by default)
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background: $gradient-warm-vibrant;
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: all $duration-base $easing-medium;
-  }
-
+  // NO gradient underlines in footer - clean design
   &:hover,
   &:focus {
     color: $color-primary;
-
-    &::after {
-      opacity: 1;
-      transform: scaleX(1);
-    }
+    text-decoration: none;
   }
 
   &:focus {
@@ -192,10 +181,6 @@
 
   @media (prefers-reduced-motion: reduce) {
     transition: none;
-
-    &::after {
-      transition: none;
-    }
   }
 }
 
