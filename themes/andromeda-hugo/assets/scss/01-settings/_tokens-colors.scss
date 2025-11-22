@@ -227,6 +227,23 @@ $color-text-tertiary: $gray-500;               // Tertiary text (light gray)
 $color-text-muted: $gray-500;                  // Muted text (same as tertiary)
 $color-text-heading: $gray-900;                // Headings (near black)
 
+// ----------------------------------
+// Legacy Color Aliases (MUST be before usage)
+// ----------------------------------
+// Source: _design-system.scss lines 64-73
+// DEPRECATED: Old $green-* variables → Use $emerald-* from design tokens
+// These aliases ensure gradients and legacy code continue to work
+$green-50: $emerald-50;
+$green-100: $emerald-100;
+$green-200: $emerald-200;
+$green-300: $emerald-300;
+$green-400: $emerald-500;  // Old brand color → New emerald-500
+$green-500: $emerald-600;
+$green-600: $emerald-700;
+$green-700: $emerald-800;
+$green-800: $emerald-900;
+$green-900: $emerald-900;
+
 // Background Colors - v5.1: NO PURE WHITE
 $color-bg: $green-50;                          // Default background (warm emerald, was white)
 $color-bg-light: $green-50;                    // Light background (warm emerald)
@@ -313,23 +330,6 @@ $color-coral-900: $coral-900;
 // Absolute Colors (White & Black)
 $color-white: $white;
 $color-black: $black;
-
-// ----------------------------------
-// Legacy Color Aliases (Backward Compatibility)
-// ----------------------------------
-// Source: _design-system.scss lines 64-73
-// DEPRECATED: Old $green-* variables → Use $emerald-* from design tokens
-// These aliases ensure gradients and legacy code continue to work
-$green-50: $emerald-50;
-$green-100: $emerald-100;
-$green-200: $emerald-200;
-$green-300: $emerald-300;
-$green-400: $emerald-500;  // Old brand color → New emerald-500
-$green-500: $emerald-600;
-$green-600: $emerald-700;
-$green-700: $emerald-800;
-$green-800: $emerald-900;
-$green-900: $emerald-900;
 
 // Color palette aliases with $color- prefix
 $color-emerald-50: $emerald-50;
