@@ -1,6 +1,6 @@
 {{/*
 ==============================================================================
-CONTACT FORM ENHANCED SECTION - BEM Refactored
+CONTACT FORM ENHANCED SECTION - BEM Refactored + Security Enhanced
 ==============================================================================
 Two-column layout with image + trust badges on left, contact form on right.
 
@@ -14,6 +14,12 @@ FEATURES:
 - Responsive layout (stacks on mobile)
 - No Bootstrap dependencies
 - No AOS attributes (section-level animations)
+- reCAPTCHA v3 spam protection (invisible, score-based)
+- Honeypot field (bot trap)
+- Time-based validation (3-second minimum)
+- Google Apps Script email backend
+- Client-side form validation
+- Success/error messaging
 
 USAGE:
 sections:
@@ -42,10 +48,12 @@ DEPENDENCIES:
 - molecules/form-field.html
 - atoms/button.html
 - i18n translations: send_a_message, full_name, email, your_message, send_message
+- assets/js/contact-form-handler.js (form submission + security)
+- reCAPTCHA v3 API (https://www.google.com/recaptcha/api.js)
 - _contact-form-enhanced.scss
 
-VERSION: 2.0.0 (BEM Refactor)
-LAST UPDATED: 2025-11-20
+VERSION: 3.0.0 (BEM + Security Migration)
+LAST UPDATED: 2025-11-22
 ==============================================================================
 */}}
 
@@ -107,8 +115,8 @@ LAST UPDATED: 2025-11-20
           {{ end }}
         </div>
 
-        <form class="c-contact-form-section__form" action="{{ . }}" method="POST">
-          <p id="form-status" class="c-contact-form-section__status"></p>
+        <form id="contact-form" class="c-contact-form-section__form" action="{{ . }}" method="POST" data-action="{{ . }}">
+          <div id="form-status" class="c-contact-form-section__status"></div>
 
           {{ partial "molecules/form-field.html" (dict
             "type" "text"
@@ -141,6 +149,15 @@ LAST UPDATED: 2025-11-20
             "class" "c-contact-form-section__field"
           ) }}
 
+          {{/* Honeypot field (hidden from humans, bot trap) */}}
+          <input type="text"
+                 name="website"
+                 class="honeypot-field"
+                 tabindex="-1"
+                 autocomplete="off"
+                 aria-hidden="true"
+                 style="position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none;">
+
           {{ partial "atoms/button.html" (dict
             "text" (T "send_message" | default "Trimite mesaj")
             "type" "submit"
@@ -154,4 +171,13 @@ LAST UPDATED: 2025-11-20
 
     </div>
   </div>
+
+  {{/* Load reCAPTCHA v3 script */}}
+  <script src="https://www.google.com/recaptcha/api.js?render=6Ld0dcwrAAAAAOWMqwdKUMalBY_J-d1WTswuoRG8" async defer></script>
+
+  {{/* Load contact form handler JavaScript */}}
+  {{ $contactFormJS := resources.Get "js/contact-form-handler.js" }}
+  {{ if $contactFormJS }}
+    <script src="{{ $contactFormJS.RelPermalink }}" defer></script>
+  {{ end }}
 </section>
