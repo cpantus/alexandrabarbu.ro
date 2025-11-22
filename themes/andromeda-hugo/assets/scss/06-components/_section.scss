@@ -1,0 +1,104 @@
+// ==================================
+// SECTION COMPONENT - Generic Section Styling
+// ==================================
+//
+// Purpose: Base styles for all <section> elements
+// Features: Alternating backgrounds, rhythm, visual depth (v5.1)
+//
+// Last Updated: 2025-11-22
+// Version: 1.0.0 (Visual Transformation v5.1)
+//
+// BEM Structure:
+// Block: section (HTML element - no class needed)
+// Modifiers: .section--light, .section--primary, .section--secondary
+//
+
+/*------------------------------------------------------------------
+  # Base Section Element
+-------------------------------------------------------------------*/
+
+/**
+ * All section elements get consistent padding and spacing
+ */
+section {
+  padding: $space-12 0; // 96px top/bottom - generous breathing room
+  position: relative;
+
+  @media (max-width: $breakpoint-md - 1px) {
+    padding: $space-8 0; // 64px on mobile
+  }
+}
+
+/*------------------------------------------------------------------
+  # Alternating Background Pattern (v5.1) - NO PURE WHITE
+-------------------------------------------------------------------*/
+
+/**
+ * Visual rhythm through alternating section backgrounds
+ * Pattern: emerald-50 → green-100 → terracotta-50 → terracotta-100 (repeats)
+ * NO pure white - every section gets warm color
+ */
+
+// Pattern 1 (1st, 5th, 9th...) - Light emerald
+section:nth-of-type(4n+1) {
+  background: $green-50 !important;
+}
+
+// Pattern 2 (2nd, 6th, 10th...) - Medium emerald
+section:nth-of-type(4n+2) {
+  background: $green-100 !important;
+}
+
+// Pattern 3 (3rd, 7th, 11th...) - Light terracotta
+section:nth-of-type(4n+3) {
+  background: $terracotta-50 !important;
+}
+
+// Pattern 4 (4th, 8th, 12th...) - Medium terracotta
+section:nth-of-type(4n) {
+  background: $terracotta-100 !important;
+}
+
+/*------------------------------------------------------------------
+  # Section Modifier Classes (Optional Overrides)
+-------------------------------------------------------------------*/
+
+/**
+ * Explicit background modifiers (override nth-child)
+ * Use these when you need manual control
+ * v5.1: NO WHITE - all get warm colors
+ */
+
+.section--light {
+  background: $green-50 !important; // v5.1: Was white, now light emerald
+}
+
+.section--primary {
+  background: $green-100 !important; // v5.1: More saturated emerald
+}
+
+.section--secondary {
+  background: $terracotta-100 !important; // v5.1: More saturated terracotta
+}
+
+.section--gradient {
+  background: $gradient-warm-subtle !important;
+}
+
+/*------------------------------------------------------------------
+  # Hero Section Override
+-------------------------------------------------------------------*/
+
+/**
+ * Hero sections (already have gradients) should not get alternating backgrounds
+ */
+.c-hero-breadcrumb,
+section[class*="hero"] {
+  // Hero background already set in hero-breadcrumb.scss
+  // Don't override with alternating pattern
+  background: $gradient-sunrise !important;
+}
+
+// ==================================
+// END OF SECTION COMPONENT
+// ==================================

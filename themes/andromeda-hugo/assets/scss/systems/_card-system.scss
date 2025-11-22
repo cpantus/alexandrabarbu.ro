@@ -42,7 +42,7 @@
   // Hover effect: gradient glow appears + lift
   &:hover {
     transform: translateY(-2px) scale(1.02);
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(215, 244, 230, 0.95);
 
     // Variant-specific gradient glow (soft, elegant)
     @if $variant == 'primary' {
@@ -88,13 +88,13 @@
 
   // Semi-transparent background with tint
   @if $variant == 'primary' {
-    background: rgba(#ffffff, $opacity);
+    background: rgba(#D7F4E6, $opacity);
     border: 1px solid rgba($emerald-500, 0.2);
   } @else if $variant == 'secondary' {
-    background: rgba(#ffffff, $opacity);
+    background: rgba(#D7F4E6, $opacity);
     border: 1px solid rgba($terracotta-500, 0.2);
   } @else if $variant == 'neutral' {
-    background: rgba(#ffffff, $opacity);
+    background: rgba(#D7F4E6, $opacity);
     border: 1px solid rgba($gray-300, 0.3);
   }
 
@@ -117,7 +117,7 @@
  */
 @mixin card-gradient-border($gradient: 'primary') {
   position: relative;
-  background: #ffffff;
+  background: #D7F4E6;
   border-radius: $card-border-radius;
   padding: $card-padding;
   transition: $card-transition;
@@ -226,7 +226,7 @@
   border-radius: $card-border-radius;
   padding: $card-padding;
   transition: $card-transition;
-  border: 1px solid rgba(#ffffff, 0.3);
+  border: 1px solid rgba(#D7F4E6, 0.3);
 
   @if $variant == 'primary-subtle' {
     background: linear-gradient(135deg, $emerald-50 0%, #ffffff 100%);

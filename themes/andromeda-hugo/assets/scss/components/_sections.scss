@@ -259,7 +259,7 @@
       border: 2px solid transparent;
       
       &:focus {
-        background: white;
+        background: #D7F4E6;
         border-color: $color-secondary;
         outline: 2px solid $terracotta-500; outline-offset: 2px;
       }
@@ -289,7 +289,7 @@
     border-radius: $radius-sm;
     
     &:hover {
-      background-color: white !important;
+      background-color: #D7F4E6 !important;
       box-shadow: $shadow-md;
       transform: translateX(8px);
       border-left-width: 6px !important;
@@ -393,7 +393,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: white;
+  background: #D7F4E6;
   border-top: 3px solid $emerald-500;  // Brand color
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);  // Upward shadow
   padding: $space-5;  // 24px

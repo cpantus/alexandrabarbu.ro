@@ -3,7 +3,7 @@
 .c-testimonials {
   padding-block: $space-12;
   &--bg-light { background-color: $color-neutral-50; }
-  &--bg-white { background-color: $color-white; }
+  &--bg-white { background-color: $green-50; }
 }
 
 .c-testimonials__header {
@@ -41,7 +41,7 @@
 }
 
 .c-testimonials__item {
-  background-color: $color-white;
+  background-color: $green-50;
   border-radius: 16px;
   padding: $space-5;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);

@@ -147,7 +147,7 @@
   transition: background $duration-fast $easing-subtle;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(215, 244, 230, 0.7);
   }
 
   @media (max-width: $breakpoint-md) {

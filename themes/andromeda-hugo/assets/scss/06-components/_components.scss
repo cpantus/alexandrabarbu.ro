@@ -53,6 +53,9 @@
 @import 'value-card';              // ✅ Phase 3: NEW molecule - value/principle card with icon, title, description (About/Approach pages)
 @import 'process-step';            // ✅ Phase 3: NEW molecule - numbered process step with title & description (therapy timelines)
 
+// Generic Section Styling (v5.1 - Visual Transformation)
+@import 'section';                 // ✅ v5.1: Generic section backgrounds with alternating colors
+
 // Section Components (BEM refactored)
 @import 'hero-breadcrumb';         // ✅ Phase 3: BEM refactored with legacy compat
 @import 'testimonials';            // ✅ Phase 3: BEM refactored with legacy compat

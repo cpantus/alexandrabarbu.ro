@@ -27,11 +27,13 @@ h1, h2, h3, h4, h5, h6 {
 // ----------------------------------
 h1 {
   font-size: $text-4xl;  // 36px
+  font-weight: $font-weight-heading-bold;  // v5.1: 600 for authority (was 500)
   line-height: $leading-tight;
 }
 
 h2 {
   font-size: $text-3xl;  // 30px
+  font-weight: $font-weight-heading-bold;  // v5.1: 600 for authority (was 500)
   line-height: $leading-tight;
 }
 

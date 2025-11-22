@@ -23,6 +23,7 @@
  */
 .c-card {
   @include card-v4('primary', false);
+  border-top: 4px solid $color-primary-500; // v5.1: Brand color accent (emerald)
 
   // Variant modifiers (8 unified variants)
   &--primary {
@@ -31,6 +32,7 @@
 
   &--secondary {
     @include card-v4('secondary', false);
+    border-top-color: $color-secondary-500; // v5.1: Terracotta accent
   }
 
   &--tertiary {

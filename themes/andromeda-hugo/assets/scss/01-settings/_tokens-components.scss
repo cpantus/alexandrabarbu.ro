@@ -24,9 +24,9 @@ $card-padding: $card-padding-sm;  // Alias for default (16px molecule tier)
 // Card border radius
 $card-border-radius: 12px;  // Standard card corner rounding
 
-// Card shadows (aliases to shadow tokens)
-$card-shadow: $shadow-sm;          // Rest state: subtle shadow
-$card-shadow-hover: $shadow-md;    // Hover state: elevated shadow
+// Card shadows (aliases to shadow tokens) - v5.1: Upgraded for depth
+$card-shadow: $shadow-md;          // Rest state: elevated shadow (was shadow-sm)
+$card-shadow-hover: $shadow-lg;    // Hover state: pronounced shadow (was shadow-md)
 
 // ----------------------------------
 // Button Tokens

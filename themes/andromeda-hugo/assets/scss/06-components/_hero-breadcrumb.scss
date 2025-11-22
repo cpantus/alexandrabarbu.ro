@@ -37,7 +37,7 @@
 
 .c-hero-breadcrumb {
   padding: $space-8 0; // 64px top/bottom
-  background: linear-gradient(135deg, $color-bg-light 0%, $color-bg-lighter 100%);
+  background: $gradient-sunrise; // v5.1: Brand colors (emerald↔terracotta, was flat gray)
   position: relative;
   overflow: hidden;
 

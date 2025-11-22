@@ -48,6 +48,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  // Background - Warm gradient foundation (v5.1)
+  background: $gradient-warm-subtle;
+  background-attachment: fixed;
+
   // Reset default margins
   margin: 0;
   padding: 0;

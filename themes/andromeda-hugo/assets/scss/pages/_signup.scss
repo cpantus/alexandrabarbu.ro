@@ -67,7 +67,7 @@
 
 /* Enhanced Signup Form */
 .signup-form-enhanced {
-  background: white;
+  background: #D7F4E6;
   border-radius: $radius-xl;
   padding: 2.5rem;
   box-shadow: $shadow-lg;
@@ -238,7 +238,7 @@
       width: 0;
       height: 0;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(215, 244, 230, 0.3);
       transform: translate(-50%, -50%);
       transition: width 0.6s, height 0.6s;
     }

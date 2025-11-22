@@ -46,8 +46,8 @@ $gradient-icon-sage: linear-gradient(135deg, $sage-300 0%, $sage-600 100%);  // 
 
 /* Glassmorphism Backgrounds */
 $gradient-glass-light: linear-gradient(135deg,
-  rgba(255, 255, 255, 0.8) 0%,
-  rgba(255, 255, 255, 0.6) 100%
+  rgba(215, 244, 230, 0.8) 0%,
+  rgba(215, 244, 230, 0.6) 100%
 );
 
 $gradient-glass-warm: linear-gradient(135deg,
@@ -239,7 +239,7 @@ $values-featured-scale: 1.15;
 /* Glassmorphism Tokens */
 $glass-blur: 12px;
 $glass-opacity: 0.75;
-$glass-border: 1px solid rgba(255, 255, 255, 0.2);
+$glass-border: 1px solid rgba(215, 244, 230, 0.2);
 
 /*------------------------------------------------------------------
   # Utility Mixins - Creative Enhancements
@@ -249,7 +249,7 @@ $glass-border: 1px solid rgba(255, 255, 255, 0.2);
 @mixin glassmorphism($blur: $glass-blur, $opacity: $glass-opacity) {
   backdrop-filter: blur($blur);
   -webkit-backdrop-filter: blur($blur);
-  background: rgba(255, 255, 255, $opacity);
+  background: rgba(215, 244, 230, $opacity);
   border: none !important;  // v4.0 architecture: gradient glows replace decorative borders
   box-shadow: $shadow-glass;
 }
@@ -440,7 +440,7 @@ $glass-border: 1px solid rgba(255, 255, 255, 0.2);
 .ripple-effect {
   position: absolute;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(215, 244, 230, 0.6);
   pointer-events: none;
   transform-origin: center;
   will-change: transform, opacity;
@@ -479,7 +479,7 @@ $glass-border: 1px solid rgba(255, 255, 255, 0.2);
     left: 3px;
     width: 20px;
     height: 20px;
-    background: white;
+    background: #D7F4E6;
     border-radius: 50%;
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
