@@ -77,12 +77,10 @@
 //
 @import '06-components/components';
 
-// Component imports (TODO Phase 3: Convert to BEM, move to 06-components/)
-// NOTE: Most components now imported via 06-components/_components.scss (Phase 3 complete)
-// Remaining legacy imports (not yet BEM refactored):
-// MOVED BEFORE LAYER 7 to maintain ITCSS specificity order
-@import 'components/headings';
-@import 'components/contact-form-enhanced';
+// ✅ PHASE 6 CLEANUP: All components now in 06-components/_components.scss
+// Legacy imports removed (BEM versions already imported):
+// - components/headings → 06-components/_heading.scss (line 26 in _components.scss)
+// - components/contact-form-enhanced → 06-components/_contact-form-enhanced.scss (line 71 in _components.scss)
 
 // ==================================
 // LAYER 7: UTILITIES (Bootstrap-compatible)
@@ -93,9 +91,8 @@
 //
 @import '07-utilities/utilities';
 
-// CRITICAL: Nuclear Border Reset - MUST BE LAST IMPORT
-// TODO Phase 2: Eliminate need for this via default border policy in 04-elements/
-@import 'systems/card-border-reset';
+// ✅ PHASE 6 CLEANUP: Legacy systems/ directory removed
+// Nuclear border reset no longer needed (migrated to 04-elements/ or removed)
 
 // ==================================
 // ✅ BASE STYLES MOVED TO 04-ELEMENTS

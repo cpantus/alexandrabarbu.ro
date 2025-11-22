@@ -33,17 +33,8 @@
       <link rel="stylesheet" href="{{ $signupCSS.RelPermalink }}" integrity="{{ $signupCSS.Data.Integrity }}">
     {{- end -}}
 
-    {{/* Sections CSS - load if page uses timeline, blog, newsletter, or service sections */}}
-    {{- $needsSections := false -}}
-    {{- range $sections -}}
-      {{- if in (slice "timeline-process" "blog-grid" "newsletter-signup" "service-highlights" "problem-empathy" "stats-numbers" "related-services") .type -}}
-        {{- $needsSections = true -}}
-      {{- end -}}
-    {{- end -}}
-    {{- if $needsSections -}}
-      {{- $sectionsCSS := resources.Get "scss/components/_sections.scss" | toCSS | minify | fingerprint -}}
-      <link rel="stylesheet" href="{{ $sectionsCSS.RelPermalink }}" integrity="{{ $sectionsCSS.Data.Integrity }}">
-    {{- end -}}
+    {{/* PHASE 6 CLEANUP: Sections CSS removed (all styles now in main BEM system via 06-components/) */}}
+    {{/*  Legacy conditional CSS loading removed - timeline, blog, newsletter, service section styles now in main CSS */}}
   </head>
 
   <body{{ if site.Params.design.headings_brand_color }} class="headings-brand-color"{{ end }}>
