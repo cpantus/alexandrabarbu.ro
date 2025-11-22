@@ -321,8 +321,8 @@ credentials_showcase:
 - Text: `#374151` (warm gray)
 
 **Typography**:
-- Headings: Cormorant Garamond (300-700) - Elegant serif
-- Body: Source Sans 3 (300-700) - Modern sans-serif
+- Headings: Crimson Pro (400-600) - Elegant serif
+- Body: Work Sans (400-600) - Modern sans-serif
 - Base: 16px
 - Font loading: Google Fonts @import in `_tokens-typography.scss`
 

@@ -219,7 +219,7 @@ problem_empathy:
    <h3 class="heading-primary problem-title">Anxietate și Stres Constant</h3>
    ```
 5. **Applies SCSS styling** from `_headings.scss`:
-   - Cormorant Garamond font (serif)
+   - Crimson Pro font (serif)
    - Emerald color (#4DB380)
    - Proper font weight and sizing
    - Responsive scaling
@@ -449,7 +449,7 @@ heading.html → <h3 class="heading-primary">Anxietate și Stres Constant</h3>
 
 // _headings.scss (92 lines)
 .heading-primary {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Crimson Pro', Georgia, serif;
   color: #4DB380;
   font-weight: 600;
 }

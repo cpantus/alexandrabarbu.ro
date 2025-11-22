@@ -58,7 +58,7 @@ Basic UI elements that cannot be broken down further. These are the building blo
 **v4.0 Features:**
 - Automatic color rotation based on section position
 - 5 gradient color variants
-- Typography optimization (Cormorant Garamond)
+- Typography optimization (Crimson Pro)
 - Responsive font sizing
 
 **SCSS:** `assets/scss/components/_headings.scss` (92 lines)
@@ -920,8 +920,8 @@ All 34 sections now implement the v4.0 design language with:
 - **Auto-color integration** (matches section color theme)
 
 ### Typography
-- **Cormorant Garamond** (headings) - Literary, thoughtful serif
-- **Source Sans 3** (body) - Clean, readable sans-serif
+- **Crimson Pro** (headings) - Literary, thoughtful serif
+- **Work Sans** (body) - Clean, readable sans-serif
 - **Typography score:** 44/50 (1.7x improvement)
 - **5 heading color variants** (primary, secondary, coral, sage, info)
 

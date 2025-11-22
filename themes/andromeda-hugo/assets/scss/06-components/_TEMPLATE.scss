@@ -58,10 +58,10 @@
 }
 
 .c-example__title {
-  // Use typography tokens
-  font-family: $font-primary;
+  // Use typography tokens (ALWAYS use $font-heading/$font-body, NOT legacy aliases)
+  font-family: $font-heading;  // Crimson Pro (serif)
   font-size: $font-size-2xl;
-  font-weight: $weight-bold;
+  font-weight: $font-weight-heading-bold;  // 600 (soft hierarchy, not 700 bold)
   color: $gray-900;
   margin-bottom: $spacing-sm;
 
@@ -71,7 +71,7 @@
 }
 
 .c-example__subtitle {
-  font-family: $font-secondary;
+  font-family: $font-body;  // Work Sans (sans-serif)
   font-size: $font-size-lg;
   color: $gray-600;
 }

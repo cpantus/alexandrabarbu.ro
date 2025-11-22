@@ -1,9 +1,18 @@
 ---
 name: "design-excellence"
-description: "Provides design principles and anti-patterns for creating distinctive, professional interfaces that avoid "AI slop" aesthetics. Focus on typography, color systems, motion, and cohesive themes. Auto-activates when user mentions: design, UX, UI, frontend, visual design, typography, color, theme, animation, interface"
+description: "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, or applications. Generates creative, polished code that avoids generic AI aesthetics."
 ---
 
 # Design Excellence
+Provides design principles and anti-patterns for creating distinctive, professional interfaces that avoid "AI slop" aesthetics. Focus on typography, color systems, motion, and cohesive themes. Auto-activate when user mentions: design, UX, UI, frontend, visual design, typography, color, theme, animation, interface
+
+## Design Thinking
+Before coding, understand the context and commit to a BOLD aesthetic direction:
+
+Purpose: What problem does this interface solve? Who uses it?
+Tone: Pick an extreme: brutally minimal, maximalist chaos, retro-futuristic, organic/natural, luxury/refined, playful/toy-like, editorial/magazine, brutalist/raw, art deco/geometric, soft/pastel, industrial/utilitarian, etc. There are so many flavors to choose from. Use these for inspiration but design one that is true to the aesthetic direction.
+Constraints: Technical requirements (framework, performance, accessibility).
+Differentiation: What makes this UNFORGETTABLE? What's the one thing someone will remember?
 
 ## MANDATORY PRE-WORK CHECKLIST
 
@@ -17,9 +26,6 @@ description: "Provides design principles and anti-patterns for creating distinct
 **[ ] 2. Acknowledge Output Format**
    ```
    Design Excellence Applied:
-   - Typography: [Font pairing + rationale]
-   - Color System: [Approach + key values]
-   - Motion Strategy: [Philosophy + key parameters]
    ```
    - CONSEQUENCE: Missing acknowledgment = architecture violation
 
@@ -30,13 +36,13 @@ description: "Provides design principles and anti-patterns for creating distinct
    - Font Selection: NO Inter/Roboto/Arial/Helvetica alone
    - CONSEQUENCE: Generic sizing + flat backgrounds = "AI slop"
 
-**[ ] 4. Multi-Skill Compositions (v5.5.0)**
+**[ ] 4. Multi-Skill Compositions**
    - IF design-excellence + data-visualization-designer + diagram-drawing: USE all three (3.2x quality)
    - CONSEQUENCE: Single-skill usage = suboptimal quality
 
 ---
 
-## Task Decomposition Override (v5.4.0)
+## Task Decomposition Override
 
 ### ❌ PROHIBITED (Generic Material Design clone):
 1. Inter/Roboto for all text
@@ -75,12 +81,6 @@ Design Excellence Applied:
 
 ---
 
-## Language Standards
-
-**REQUIRED:** "YOU MUST", "DO NOT", "ALWAYS", "NEVER", "MANDATORY", "PROHIBITED"
-**PROHIBITED:** "should", "consider", "might", "could", "recommended"
-
----
 
 ## Design Principles
 

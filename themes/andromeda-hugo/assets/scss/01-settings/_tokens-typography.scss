@@ -27,9 +27,9 @@ $font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif; // Body 
 $font-sans: $font-body;                                              // Sans-serif font (alias for body)
 $font-serif: $font-heading;                                          // Serif font (alias for heading)
 
-// Legacy aliases (for BEM component compatibility)
-$font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;  // Headlines - Modern, friendly, rounded
-$font-secondary: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;  // Body - Clear, professional, readable
+// Legacy aliases (for BEM component compatibility) - REDIRECTED to correct fonts
+$font-primary: $font-heading;     // Crimson Pro (serif) - legacy alias redirects to correct heading font
+$font-secondary: $font-body;      // Work Sans (sans) - legacy alias redirects to correct body font
 
 // ----------------------------------
 // Font Weights (RESTRICTED)
