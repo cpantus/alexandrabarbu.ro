@@ -26,26 +26,6 @@ account_benefits:
   - "Chat securizat cu terapeutul"
   - "Programare online simplă"
 
-# Benefits section (reusing from career page structure)
-benefits_section:
-  enable: true
-  subtitle: "De ce să îți creezi cont?"
-  title: "Beneficiile Platformei Noastre"
-  description: "Instrumentele digitale care îți susțin procesul de vindecare"
-  benefits:
-    - title: "Acces 24/7"
-      icon: "clock la-3x"
-    - title: "100% Confidențial"
-      icon: "lock la-3x"
-    - title: "Resurse Personalizate"
-      icon: "user-circle la-3x"
-    - title: "Progres Monitorizat"
-      icon: "chart-line la-3x"
-    - title: "Comunicare Securizată"
-      icon: "shield-alt la-3x"
-    - title: "Suport Continuu"
-      icon: "headset la-3x"
-
 # Privacy guarantee
 privacy_guarantee:
   title: "Siguranța Ta Este Prioritatea Noastră"

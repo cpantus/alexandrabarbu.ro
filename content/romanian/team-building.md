@@ -27,30 +27,6 @@ values_intro:
   image: "images/team-building.jpg"
   image_position: "right"
 
-# Benefits Section
-benefits_section:
-  enable: true
-  subtitle: "Beneficii"
-  title: "De Ce Team Building?"
-  benefits:
-    - title: "Comunicare Îmbunătățită"
-      icon: "comments la-3x"
-      description: "Dezvoltăm canale de comunicare deschise și eficiente între membrii echipei."
-    - title: "Creșterea Productivității"
-      icon: "chart-line la-3x"
-      description: "Echipele coezive sunt mai productive și obțin rezultate superioare."
-    - title: "Rezolvarea Conflictelor"
-      icon: "handshake la-3x"
-      description: "Oferim instrumente pentru gestionarea constructivă a dezacordurilor."
-    - title: "Motivație și Engagement"
-      icon: "rocket la-3x"
-      description: "Stimulăm implicarea și angajamentul membrilor echipei."
-    - title: "Încredere și Coeziune"
-      icon: "users la-3x"
-      description: "Consolidăm relațiile și încrederea între colegii de echipă."
-    - title: "Leadership Dezvoltat"
-      icon: "crown la-3x"
-      description: "Identificăm și dezvoltăm abilitățile de leadership din cadrul echipei."
 
 # Contact Form Section
 contact_image: "images/contact.png"

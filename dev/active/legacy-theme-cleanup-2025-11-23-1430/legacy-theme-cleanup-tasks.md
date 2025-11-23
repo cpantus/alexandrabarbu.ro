@@ -1,7 +1,7 @@
 # Legacy Theme Cleanup - Tasks
 
-**Last Updated:** 2025-11-23 16:30
-**Progress:** 33/36 tasks complete (92%)
+**Last Updated:** 2025-11-23 16:45
+**Progress:** 40/42 tasks complete (95%)
 
 ## High-Level Phases
 
@@ -58,14 +58,14 @@
 - [x] Task 1.4.10: Build verification - ensure no errors
 - [x] Task 1.4.11: Visual QA - check all service pages
 
-#### Phase 1.5: benefits_section → values-compass (4 files)
-- [ ] Task 1.5.1: Read one benefits_section file - understand data structure
-- [ ] Task 1.5.2: Migrate `/content/romanian/signup.md`
-- [ ] Task 1.5.3: Migrate `/content/romanian/team-building.md`
-- [ ] Task 1.5.4: Migrate `/content/romanian/corporate-team-building.md`
-- [ ] Task 1.5.5: Migrate `/content/english/corporate-team-building.md`
-- [ ] Task 1.5.6: Build verification - ensure no errors
-- [ ] Task 1.5.7: Visual QA - check values-compass rendering
+#### Phase 1.5: Remove orphaned benefits_section (4 files) ✅ COMPLETE
+- [x] Task 1.5.1: Verify benefits_section is orphaned (not in sections array, no template)
+- [x] Task 1.5.2: Remove from `/content/romanian/signup.md`
+- [x] Task 1.5.3: Remove from `/content/romanian/team-building.md`
+- [x] Task 1.5.4: Remove from `/content/romanian/corporate-team-building.md`
+- [x] Task 1.5.5: Remove from `/content/english/corporate-team-building.md`
+- [x] Task 1.5.6: Build verification - ensure no errors
+- [x] Task 1.5.7: Verify cleanup complete
 
 #### Phase 1.6: Remove orphaned office_gallery data (4 files)
 - [ ] Task 1.6.1: Remove office_gallery from `/content/romanian/terapie-individuala.md`
@@ -106,6 +106,7 @@
 ✅ 2025-11-23 16:00 - Phase 1.2 COMPLETE: first-session-timeline → onboarding-steps (4 files)
 ✅ 2025-11-23 16:15 - Phase 1.3 COMPLETE: Contact sections (faq-content→faq-mini, confidentiality-notice→privacy-guarantee, 2 files)
 ✅ 2025-11-23 16:30 - Phase 1.4 COMPLETE: service-faq-inline → faq-mini (8 service files - RO+EN parity maintained)
+✅ 2025-11-23 16:45 - Phase 1.5 COMPLETE: Removed orphaned benefits_section data (4 files - never rendered, no template exists)
 
 ## Notes
 

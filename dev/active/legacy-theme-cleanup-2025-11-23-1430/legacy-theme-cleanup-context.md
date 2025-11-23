@@ -1,12 +1,12 @@
 # Legacy Theme Cleanup - Context
 
-**Last Updated:** 2025-11-23 16:35
+**Last Updated:** 2025-11-23 16:50
 
 ## Quick Reference
 
-**Status:** In Progress - Phase 1.4 Complete, Phase 1.5 Next
-**Current Focus:** Phase 1.4 complete (service FAQ migrations)
-**Next Step:** Phase 1.5 - benefits_section → values-compass (4 files)
+**Status:** In Progress - Phase 1.5 Complete, Phase 1.6 Final
+**Current Focus:** Phase 1.5 complete (orphaned data removal)
+**Next Step:** Phase 1.6 - Remove orphaned office_gallery (4 files) - FINAL Phase 1 task
 
 ## Key Files Modified
 
@@ -63,6 +63,20 @@
 - content/english/services/couples-therapy.md
 - content/english/services/family-therapy.md
 - content/english/services/organizational-psychology.md
+
+**Phase 1.5: Remove orphaned benefits_section COMPLETE ✅**
+- 4 files cleaned (1 RO signup, 2 RO team-building, 1 EN corporate)
+- Cleanup script created: scripts/remove-orphaned-benefits.py
+- Verification: benefits_section had NO template, NOT registered in flexible.html
+- Decision: REMOVE orphaned data (never rendered, no migration path needed)
+- Build: 590ms, zero errors
+- Note: Data was defined but never added to sections arrays
+
+**Files Modified:**
+- content/romanian/signup.md
+- content/romanian/team-building.md
+- content/romanian/corporate-team-building.md
+- content/english/corporate-team-building.md
 
 ## Key Decisions Made
 

@@ -28,30 +28,6 @@ values_intro:
   image: "images/team-building.jpg"
   image_position: "right"
 
-# Benefits Section
-benefits_section:
-  enable: true
-  subtitle: "Beneficii Corporate"
-  title: "De Ce să Investiți în Team Building Corporate?"
-  benefits:
-    - title: "ROI Măsurabil"
-      icon: "chart-line la-3x"
-      description: "Programe structurate care generează rezultate concrete: creșterea productivității cu până la 30%, reducerea fluctuației de personal și îmbunătățirea comunicării inter-departamentale."
-    - title: "Leadership & Management"
-      icon: "crown la-3x"
-      description: "Dezvoltăm competențele de leadership și management ale echipelor executive și middle management prin programe intensive și coaching personalizat."
-    - title: "Cultură Organizațională"
-      icon: "users la-3x"
-      description: "Consolidăm valorile companiei și construim o cultură organizațională puternică care susține obiectivele de business pe termen lung."
-    - title: "Colaborare Inter-Departamentală"
-      icon: "network-wired la-3x"
-      description: "Eliminăm silosurile organizaționale și îmbunătățim colaborarea între departamente, facilitând inovația și eficiența operațională."
-    - title: "Reziliență & Adaptabilitate"
-      icon: "shield-alt la-3x"
-      description: "Pregătim echipele pentru gestionarea schimbării, dezvoltând reziliența emoțională și capacitatea de adaptare în medii dinamice."
-    - title: "Retenție & Engagement"
-      icon: "heart la-3x"
-      description: "Programele noastre cresc semnificativ angajamentul angajaților și reduc costurile asociate cu fluctuația de personal."
 
 # Pricing Section
 pricing_section:

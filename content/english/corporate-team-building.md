@@ -28,30 +28,6 @@ values_intro:
   image: "images/team-building.jpg"
   image_position: "right"
 
-# Benefits Section
-benefits_section:
-  enable: true
-  subtitle: "Corporate Benefits"
-  title: "Why Invest in Corporate Team Building?"
-  benefits:
-    - title: "Measurable ROI"
-      icon: "chart-line la-3x"
-      description: "Structured programs that generate concrete results: productivity increase up to 30%, reduced employee turnover, and improved inter-departmental communication."
-    - title: "Leadership & Management"
-      icon: "crown la-3x"
-      description: "We develop leadership and management competencies for executive and middle management teams through intensive programs and personalized coaching."
-    - title: "Organizational Culture"
-      icon: "users la-3x"
-      description: "We strengthen company values and build a robust organizational culture that supports long-term business objectives."
-    - title: "Cross-Departmental Collaboration"
-      icon: "network-wired la-3x"
-      description: "We eliminate organizational silos and improve collaboration between departments, facilitating innovation and operational efficiency."
-    - title: "Resilience & Adaptability"
-      icon: "shield-alt la-3x"
-      description: "We prepare teams for change management, developing emotional resilience and adaptability in dynamic environments."
-    - title: "Retention & Engagement"
-      icon: "heart la-3x"
-      description: "Our programs significantly increase employee engagement and reduce costs associated with staff turnover."
 
 # Pricing Section
 pricing_section:
