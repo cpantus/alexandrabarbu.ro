@@ -4,9 +4,9 @@
 
 ## Quick Reference
 
-**Status:** Phase 2 In Progress - Atoms Complete (3/8 tasks) ✅
-**Current Focus:** Phase 2 atoms complete, starting molecules
-**Next Step:** Continue Phase 2 - Update card, accordion, navigation molecules
+**Status:** Phase 2 In Progress - 50% Complete (4/8 tasks) ✅
+**Current Focus:** Atoms done, card molecule done
+**Next Step:** Accordion, navigation molecules + JS, then testing
 
 ## Key Files Reference
 
@@ -232,11 +232,12 @@ Before context gets compacted, ensure:
   - Radius: $radius-3xl (48px)
   - Shadows: forest green-tinted
   - Build: 549ms ✅ | Zero visual changes ✅
-- ✅ Phase 2 Atoms (3/8 tasks complete)
+- ✅ Phase 2 Components (4/8 tasks, 50% complete)
   - Button atom: Pill shape ($radius-full), forest/sage/gold colors, -1px hover lift, 44px touch targets
   - Heading atom: Playfair Display active, .c-heading__accent for italic sage text, $leading-display (1.1) for hero
   - Icon-blob atom (NEW): 5 color variants (blue/sage/gold/coral/purple), 3 sizes (60/80/100px), 10% opacity backgrounds
-  - Files: _button.scss, _heading.scss, icon-blob.html, _icon-blob.scss
+  - Card molecule: .c-card--redesign modifier, 32px radius, cream borders, gold hover, 40px padding, Playfair titles
+  - Files: _button.scss, _heading.scss, icon-blob.html, _icon-blob.scss, _card.scss
   - Build: Success ✅
 
 ## Critical Notes

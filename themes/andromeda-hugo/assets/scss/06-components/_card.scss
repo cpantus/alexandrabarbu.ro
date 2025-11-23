@@ -247,6 +247,65 @@
   }
 }
 
+/*------------------------------------------------------------------
+  # REDESIGN 2025 Card Variant
+-------------------------------------------------------------------*/
+
+/**
+ * Redesign 2025 card variant
+ * REDESIGN: Heavy rounded cards with cream borders and gold accent hover
+ *
+ * Design spec (eval1.md):
+ * - Border-radius: 32px ($radius-2xl)
+ * - Border: 1px solid cream (#E9EFEC / $cream-200)
+ * - Background: White (#FFFFFF)
+ * - Hover: Border changes to gold accent/30, shadow-2xl, lift -2px
+ * - Icon blob integration (icon-blob atom scales on card hover)
+ *
+ * Usage: Add .c-card--redesign modifier to any card
+ */
+.c-card--redesign {
+  border-radius: $radius-2xl;  // 32px heavy rounding
+  border: 1px solid $color-border-redesign-light;  // Cream border (#E9EFEC)
+  background: white;
+  padding: $space-10;  // 40px (matches design spec)
+  transition: all $duration-base $ease-in-out;
+  box-shadow: $shadow-lg;  // Resting state shadow
+
+  // Remove top accent border from v4.0 design
+  border-top-width: 1px;
+  border-top-color: $color-border-redesign-light;
+
+  // Hover state
+  &:hover {
+    border-color: rgba($gold-500, 0.3);  // Gold accent at 30% opacity
+    box-shadow: $shadow-2xl;  // Deeper shadow
+    transform: translateY(-2px);  // Slight lift
+  }
+
+  // Card title in redesign uses Playfair Display (serif)
+  .c-card__title {
+    font-family: $font-heading;  // Playfair Display
+    font-size: $text-2xl;  // 24px
+    font-weight: $font-weight-heading-bold;  // 600
+    color: $forest-700;  // Dark green
+    margin-bottom: $space-4;  // 16px
+  }
+
+  // Card body text styling
+  .c-card__body {
+    font-family: $font-body;  // DM Sans
+    font-size: $text-base;  // 16px
+    line-height: 1.6;
+    color: $text-muted-green;  // Muted green-grey (#587065)
+  }
+
+  // Icon blob positioning and spacing
+  .c-icon-blob {
+    margin-bottom: $space-6;  // 24px gap between icon and title
+  }
+}
+
 /**
  * Card number badge element (Task 3.4)
  * Circular badge displayed in top-right corner
