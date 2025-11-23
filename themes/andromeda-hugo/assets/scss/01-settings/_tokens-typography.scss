@@ -13,23 +13,29 @@
 // ----------------------------------
 // Google Fonts Import
 // ----------------------------------
-// Load Crimson Pro (headings) + Work Sans (body) - Variable fonts
+// REDESIGN 2025: Playfair Display (headings) + DM Sans (body)
+// NEW: Elegant serif with more character + clean modern sans
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;700&display=swap');
+
+// LEGACY: Crimson Pro (headings) + Work Sans (body) - Variable fonts
 // Psychology practice branding: Elegant, professional, warm, trustworthy
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap');
+// NOTE: Commented out during redesign, can be removed after migration complete
+// @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap');
 
 // ----------------------------------
 // Font Families
 // ----------------------------------
-$font-heading: 'Crimson Pro', Georgia, 'Times New Roman', serif;    // Headings ONLY - Elegant, calligraphic
-$font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif; // Body text ONLY - Friendly, legible
+// REDESIGN 2025: New font families
+$font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;  // Headings - Elegant, sophisticated serif
+$font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; // Body - Modern, clean sans
+
+// LEGACY: Old font families (commented out during redesign)
+// $font-heading: 'Crimson Pro', Georgia, 'Times New Roman', serif;    // Headings ONLY - Elegant, calligraphic
+// $font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif; // Body text ONLY - Friendly, legible
 
 // Semantic aliases (for component compatibility)
 $font-sans: $font-body;                                              // Sans-serif font (alias for body)
 $font-serif: $font-heading;                                          // Serif font (alias for heading)
-
-// Legacy aliases (for BEM component compatibility) - REDIRECTED to correct fonts
-$font-heading: $font-heading;     // Crimson Pro (serif) - legacy alias redirects to correct heading font
-$font-body: $font-body;      // Work Sans (sans) - legacy alias redirects to correct body font
 
 // ----------------------------------
 // Font Weights (RESTRICTED)
@@ -76,6 +82,7 @@ $font-xl: $text-xl;                        // 20px
 // ----------------------------------
 // Line Heights
 // ----------------------------------
+$leading-display: 1.1;                     // REDESIGN 2025: Hero/display text (extra tight for drama)
 $leading-tight: 1.25;                      // Display, H1, H2 (tight for impact)
 $leading-snug: 1.375;                      // H3, H4, H5 (snug for clarity)
 $leading-normal: 1.5;                      // Body text (optimal readability)

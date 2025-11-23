@@ -32,6 +32,7 @@ $space-12: 48px;     // Large content gaps
 $space-16: 64px;     // Section padding (mobile)
 $space-20: 80px;     // Large section gaps
 $space-24: 96px;     // Section padding (desktop)
+$space-32: 128px;    // REDESIGN 2025: Extra generous section padding (py-32)
 
 // ----------------------------------
 // Component Tier Spacing (ENFORCE)
@@ -44,7 +45,7 @@ $space-24: 96px;     // Section padding (desktop)
 // ----------------------------------
 // Container Widths
 // ----------------------------------
-$container-max-width: 1200px;  // Standard max width
+$container-max-width: 1280px;  // REDESIGN 2025: Updated from 1200px (matches max-w-7xl)
 $container-narrow: 768px;      // Narrow content (text-heavy pages)
 $container-wide: 1400px;       // Wide layouts
 
@@ -60,18 +61,20 @@ $breakpoint-xl: 1200px;
 // Semantic Spacing Mappings
 // ----------------------------------
 // Section padding (vertical)
-$section-padding-y: $space-24;         // 96px (desktop)
-$section-padding-y-mobile: $space-16;  // 64px (mobile)
-$section-padding-x: 0;                 // Horizontal (handled by container)
+$section-padding-y: $space-24;            // 96px (desktop)
+$section-padding-y-mobile: $space-16;     // 64px (mobile)
+$section-padding-y-xlarge: $space-32;     // REDESIGN 2025: 128px (extra generous sections)
+$section-padding-x: 0;                    // Horizontal (handled by container)
 
 // Card padding
-$card-padding: $space-4;               // 16px (standard card padding)
-$card-padding-large: $space-6;         // 24px (large cards)
+$card-padding: $space-10;                 // REDESIGN 2025: 40px (updated from 16px for heavier cards)
+$card-padding-sm: $space-8;               // REDESIGN 2025: 32px (small card padding)
+$card-padding-large: $space-6;            // 24px (legacy large cards)
 
 // Grid gaps
-$grid-gap: $space-6;                   // 24px (standard grid gap)
-$grid-gap-small: $space-4;             // 16px (compact grid)
-$grid-gap-large: $space-8;             // 32px (spacious grid)
+$grid-gap: $space-8;                      // REDESIGN 2025: 32px (updated from 24px)
+$grid-gap-small: $space-4;                // 16px (compact grid)
+$grid-gap-large: $space-10;               // 40px (spacious grid)
 
 // ==================================
 // END OF SPACING TOKENS

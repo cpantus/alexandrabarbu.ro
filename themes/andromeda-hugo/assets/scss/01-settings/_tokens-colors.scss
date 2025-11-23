@@ -169,6 +169,78 @@ $white: #ffffff;
 $black: #000000;
 
 // ==================================
+// REDESIGN 2025 COLOR SYSTEM
+// ==================================
+// Based on design-system.md + screenshot analysis
+// Deep forest green + sage + gold/sand + cream palette
+// NOTE: These scales are added for the 2025 redesign. Existing emerald/terracotta
+// scales are preserved for backward compatibility during migration.
+
+// ----------------------------------
+// FOREST GREEN SCALE (New Primary)
+// ----------------------------------
+// Replaces/augments emerald scale
+$forest-50: #E8F1EE;   // Lightest tint
+$forest-100: #C5DBD3;  // Very light
+$forest-200: #9EC3B6;  // Light
+$forest-300: #77AB99;  // Medium-light
+$forest-400: #5A9883;  // Medium
+$forest-500: #234E3E;  // PRIMARY (from design-system.md) - main brand color
+$forest-600: #1F4537;  // Medium-dark
+$forest-700: #2F5548;  // Dark (used in testimonials/footer/contact panel)
+$forest-800: #153026;  // Very dark
+$forest-900: #0D1F19;  // Darkest
+
+// ----------------------------------
+// SAGE GREEN SCALE (New Secondary)
+// ----------------------------------
+// Warm, muted green for secondary elements
+$sage-50: #EEF4F2;
+$sage-100: #D5E5E0;
+$sage-200: #B8D4CC;
+$sage-300: #9BC3B8;
+$sage-400: #83AEA4;
+$sage-500: #6B9080;  // SECONDARY (from design-system.md)
+$sage-600: #5A7A6D;
+$sage-700: #4A6359;
+$sage-800: #3A4D46;
+$sage-900: #2A3733;
+
+// ----------------------------------
+// GOLD/SAND SCALE (New Accent)
+// ----------------------------------
+// Warm metallic accent for highlights
+$gold-50: #F9F5F0;
+$gold-100: #F0E8DC;
+$gold-200: #E6D9C6;
+$gold-300: #DBCAB0;
+$gold-400: #D0BB9A;
+$gold-500: #C5A880;  // ACCENT (from design-system.md) - compass N, dividers
+$gold-600: #B0936B;  // Darker gold (secondary button hover)
+$gold-700: #9A7E56;
+$gold-800: #856A41;
+$gold-900: #6F552C;
+
+// ----------------------------------
+// CREAM SCALE (New Backgrounds/Neutrals)
+// ----------------------------------
+// Cool green-tinted cream neutrals
+$cream-50: #FCFDFB;   // PUREST (nearly white)
+$cream-100: #F4F7F5;  // MAIN APP BG (from design-system.md)
+$cream-200: #E9EFEC;  // BORDERS/DIVIDERS
+$cream-300: #DCE5E0;  // Subtle backgrounds
+$cream-400: #CFD9D4;  // Medium backgrounds
+$cream-500: #C2CEC8;  // Deeper backgrounds
+
+// ----------------------------------
+// TEXT COLORS (Green-Tinted for Redesign)
+// ----------------------------------
+// From design-system.md
+$text-primary-green: #1A332A;  // Main text (dark green-black, nearly charcoal)
+$text-muted-green: #587065;    // Muted text (green-grey for paragraphs)
+$text-light-cream: #F4F7F5;    // Light text (for dark backgrounds)
+
+// ==================================
 // SEMANTIC COLOR MAPPINGS
 // ==================================
 // Purpose: Enforce semantic meaning, prevent arbitrary color usage
@@ -369,6 +441,83 @@ $color-gray-700: $gray-700;
 $color-gray-800: $gray-800;
 $color-gray-900: $gray-900;
 
+// ==================================
+// REDESIGN 2025 SEMANTIC MAPPINGS
+// ==================================
+// New semantic variables for redesign components
+// Use these in components instead of palette names directly
+
+// Backgrounds (Redesign)
+$color-bg-redesign-primary: $cream-100;        // Main app background
+$color-bg-redesign-secondary: $cream-50;       // Card backgrounds (white)
+$color-bg-redesign-dark: $forest-700;          // Dark sections (footer, testimonials)
+$color-bg-redesign-panel: $sage-500;           // Accent panels (CTA right side)
+
+// Text (Redesign)
+$color-text-redesign-primary: $text-primary-green;  // Main headings, body
+$color-text-redesign-secondary: $text-muted-green;  // Secondary text
+$color-text-redesign-on-dark: $text-light-cream;    // Text on dark backgrounds
+
+// Borders (Redesign)
+$color-border-redesign-light: $cream-200;      // Subtle borders
+$color-border-redesign-medium: $cream-300;     // Medium borders
+$color-border-redesign-accent: $gold-500;      // Accent borders (left border on quote)
+
+// Brand Colors (Redesign)
+$color-brand-redesign-primary: $forest-500;    // Main brand color
+$color-brand-redesign-secondary: $sage-500;    // Secondary brand color
+$color-brand-redesign-accent: $gold-500;       // Accent highlights
+
+// Interactive States (Redesign)
+$color-hover-redesign-primary: $sage-500;      // Primary button hover
+$color-hover-redesign-secondary: $gold-600;    // Secondary button hover
+$color-focus-redesign-ring: $sage-500;         // Focus indicator
+
+// Forest Color Scale Aliases (for component use)
+$color-forest-50: $forest-50;
+$color-forest-100: $forest-100;
+$color-forest-200: $forest-200;
+$color-forest-300: $forest-300;
+$color-forest-400: $forest-400;
+$color-forest-500: $forest-500;
+$color-forest-600: $forest-600;
+$color-forest-700: $forest-700;
+$color-forest-800: $forest-800;
+$color-forest-900: $forest-900;
+
+// Sage Color Scale Aliases (for component use)
+// NOTE: This overrides existing $sage-* variables which were aliased to green
+// The new sage scale is the warm, muted green from design-system.md
+$color-sage-50: $sage-50;
+$color-sage-100: $sage-100;
+$color-sage-200: $sage-200;
+$color-sage-300: $sage-300;
+$color-sage-400: $sage-400;
+$color-sage-500: $sage-500;
+$color-sage-600: $sage-600;
+$color-sage-700: $sage-700;
+$color-sage-800: $sage-800;
+$color-sage-900: $sage-900;
+
+// Gold Color Scale Aliases (for component use)
+$color-gold-50: $gold-50;
+$color-gold-100: $gold-100;
+$color-gold-200: $gold-200;
+$color-gold-300: $gold-300;
+$color-gold-400: $gold-400;
+$color-gold-500: $gold-500;
+$color-gold-600: $gold-600;
+$color-gold-700: $gold-700;
+$color-gold-800: $gold-800;
+$color-gold-900: $gold-900;
+
+// Cream Color Scale Aliases (for component use)
+$color-cream-50: $cream-50;
+$color-cream-100: $cream-100;
+$color-cream-200: $cream-200;
+$color-cream-300: $cream-300;
+$color-cream-400: $cream-400;
+$color-cream-500: $cream-500;
 
 // ==================================
 // END OF COLOR TOKENS
