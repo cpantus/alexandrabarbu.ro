@@ -1,0 +1,85 @@
+{{/*
+  Compass Animation Atom - Decorative SVG compass for hero section
+
+  Usage:
+    {{ partial "atoms/compass-animation.html" }}
+
+  Features:
+    - 3 rotating rings (CSS animations)
+    - Central needle oscillating
+    - Responsive sizing
+    - Forest green/sage/gold colors
+    - Performance optimized (CSS transforms)
+
+  Created: 2025-11-23 (Theme Redesign 2025)
+*/}}
+
+<div class="c-compass-animation" aria-hidden="true">
+  <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="c-compass-animation__svg">
+    <defs>
+      {{/* Gradient for rings */}}
+      <linearGradient id="compassGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#234E3E;stop-opacity:0.3" />
+        <stop offset="50%" style="stop-color:#6B9080;stop-opacity:0.2" />
+        <stop offset="100%" style="stop-color:#C5A880;stop-opacity:0.3" />
+      </linearGradient>
+    </defs>
+
+    {{/* Outer ring (slow rotation) */}}
+    <circle
+      cx="200"
+      cy="200"
+      r="180"
+      fill="none"
+      stroke="url(#compassGradient)"
+      stroke-width="1.5"
+      stroke-dasharray="10 5"
+      class="c-compass-animation__ring c-compass-animation__ring--outer"
+    />
+
+    {{/* Middle ring (medium rotation) */}}
+    <circle
+      cx="200"
+      cy="200"
+      r="130"
+      fill="none"
+      stroke="url(#compassGradient)"
+      stroke-width="1.5"
+      stroke-dasharray="8 4"
+      class="c-compass-animation__ring c-compass-animation__ring--middle"
+    />
+
+    {{/* Inner ring (fast rotation) */}}
+    <circle
+      cx="200"
+      cy="200"
+      r="80"
+      fill="none"
+      stroke="url(#compassGradient)"
+      stroke-width="2"
+      stroke-dasharray="6 3"
+      class="c-compass-animation__ring c-compass-animation__ring--inner"
+    />
+
+    {{/* Cardinal directions */}}
+    <text x="200" y="35" text-anchor="middle" class="c-compass-animation__direction">N</text>
+    <text x="365" y="205" text-anchor="middle" class="c-compass-animation__direction">E</text>
+    <text x="200" y="375" text-anchor="middle" class="c-compass-animation__direction">S</text>
+    <text x="35" y="205" text-anchor="middle" class="c-compass-animation__direction">W</text>
+
+    {{/* Central compass needle (oscillating) */}}
+    <g class="c-compass-animation__needle">
+      {{/* Needle shaft */}}
+      <path
+        d="M 200 200 L 200 80"
+        stroke="#234E3E"
+        stroke-width="3"
+        stroke-linecap="round"
+      />
+      {{/* Needle tip (north) */}}
+      <circle cx="200" cy="75" r="6" fill="#C5A880" />
+      {{/* Needle base (south) */}}
+      <circle cx="200" cy="200" r="8" fill="#234E3E" />
+    </g>
+  </svg>
+</div>

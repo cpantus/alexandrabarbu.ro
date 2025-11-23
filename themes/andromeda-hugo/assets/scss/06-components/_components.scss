@@ -26,6 +26,7 @@
 @import 'heading';                 // ✅ Phase 2: BEM refactored with 8 unified variants
 @import 'icon';                    // ✅ Phase 3: BEM refactored with legacy compat
 @import 'icon-blob';               // ✅ REDESIGN 2025 Phase 2: Icon with organic blob background (5 variants, 3 sizes)
+@import 'compass-animation';       // ✅ REDESIGN 2025 Phase 3: Animated compass for hero (3 rotating rings + oscillating needle)
 @import 'badge';                   // ✅ Phase 3: Extracted from credentials.scss + BEM
 @import 'tag';                     // ✅ Phase 2: New atom component with 8 unified variants
 @import 'divider';                 // ✅ Phase 2: New atom - horizontal/vertical separators

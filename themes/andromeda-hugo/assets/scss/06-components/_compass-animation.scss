@@ -1,0 +1,134 @@
+// ==================================
+// COMPASS ANIMATION ATOM - Redesign 2025
+// ==================================
+//
+// Purpose: Decorative SVG compass for hero section
+// Features: 3 rotating rings, oscillating needle, responsive
+//
+// Created: 2025-11-23 (Theme Redesign 2025)
+// Version: 1.0.0
+//
+// BEM Structure:
+// Block: .c-compass-animation
+// Elements: __svg, __ring, __needle, __direction
+// Modifiers: --outer, --middle, --inner
+//
+
+/*------------------------------------------------------------------
+  # Base Component
+-------------------------------------------------------------------*/
+
+.c-compass-animation {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+
+  @media (max-width: $breakpoint-md) {
+    max-width: 350px;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    max-width: 280px;
+  }
+}
+
+.c-compass-animation__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/*------------------------------------------------------------------
+  # Rings (Rotating)
+-------------------------------------------------------------------*/
+
+.c-compass-animation__ring {
+  transform-origin: center;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  // Outer ring - slow clockwise
+  &--outer {
+    animation-name: rotateClockwise;
+    animation-duration: 40s;
+  }
+
+  // Middle ring - medium counter-clockwise
+  &--middle {
+    animation-name: rotateCounterClockwise;
+    animation-duration: 25s;
+  }
+
+  // Inner ring - fast clockwise
+  &--inner {
+    animation-name: rotateClockwise;
+    animation-duration: 15s;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Needle (Oscillating)
+-------------------------------------------------------------------*/
+
+.c-compass-animation__needle {
+  transform-origin: 200px 200px; // Center of SVG
+  animation: needleOscillate 3s ease-in-out infinite;
+}
+
+/*------------------------------------------------------------------
+  # Directions (Cardinal points)
+-------------------------------------------------------------------*/
+
+.c-compass-animation__direction {
+  font-family: $font-heading; // Playfair Display
+  font-size: 20px;
+  font-weight: $weight-semibold;
+  fill: $forest-500;
+  opacity: 0.6;
+  letter-spacing: 0.05em;
+}
+
+/*------------------------------------------------------------------
+  # Animations
+-------------------------------------------------------------------*/
+
+@keyframes rotateClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateCounterClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes needleOscillate {
+  0%,
+  100% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Accessibility
+-------------------------------------------------------------------*/
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .c-compass-animation__ring,
+  .c-compass-animation__needle {
+    animation: none;
+  }
+}
