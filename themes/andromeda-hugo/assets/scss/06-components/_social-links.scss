@@ -73,12 +73,12 @@
   align-items: center;
   justify-content: center;
 
-  // Size (icon wrapper size) - 138% larger than before (98% + 20% extra)
-  width: calc($space-6 * 2.38); // 114px (48px × 2.38) - larger touch target
-  height: calc($space-6 * 2.38);
+  // Size (icon wrapper size) - 50% larger (257% total: 2.38 × 1.5 = 3.57)
+  width: calc($space-6 * 3.57); // 171px (48px × 3.57) - 50% larger touch target
+  height: calc($space-6 * 3.57);
 
   // Spacing
-  padding: $space-2; // 16px internal padding
+  padding: $space-3; // 24px internal padding (scaled up)
 
   // Visual
   border-radius: $border-radius-circle; // Circular
@@ -99,34 +99,13 @@
     background-image: none !important;
   }
 
-  // Gradient circle border (outline only, no fill)
-  &::before {
-    content: '';
-    position: absolute;
-    top: -0.5px; // Border width (0.5px - half as thin)
-    left: -0.5px;
-    right: -0.5px;
-    bottom: -0.5px;
-    border-radius: $border-radius-circle;
-    // Gradient background for the border
-    background: linear-gradient(135deg, $forest-400 0%, $sage-400 100%);
-    opacity: 0; // Hidden by default
-    transform: scale(1);
-    transition: all $transition-base $easing-ease-out;
-    z-index: 0;
-  }
+  // White circle border (footer context) - half thickness (1px instead of 2px)
+  border: 1px solid #ffffff; // White outline - thinner border
 
-  // Create the "hole" in the middle by covering with background
+  // Remove ::before and ::after pseudo-elements for footer context
+  &::before,
   &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: $border-radius-circle;
-    background: #fff; // Match your page background
-    z-index: 1;
+    display: none; // Remove gradient background layers
   }
 
   // Icon must be on top - no underlines on icon text
@@ -134,19 +113,23 @@
     position: relative;
     z-index: 2;
     text-decoration: none !important;
+    color: #ffffff; // White icons in footer
+    font-size: 1.5em; // 50% larger icons (1em × 1.5)
+    transition: color $transition-base $easing-ease-out;
   }
 
   // Typography
-  color: inherit; // Icon color controlled by icon atom
+  color: #ffffff; // White icons in footer
 
   // Accessibility
   cursor: pointer;
 
-  // States: Hover - show gradient border
+  // States: Hover - gold icons AND golden circle
   &:hover {
-    &::before {
-      opacity: 1; // Show gradient border ring on hover
-      transform: scale(1.05);
+    border-color: $gold-500 !important; // Golden circle on hover
+
+    i, svg, .c-icon {
+      color: $gold-500; // Gold icons on hover
     }
   }
 
@@ -168,17 +151,14 @@
 
   // States: Active
   &:active {
-    &::before {
-      opacity: 1; // Keep border visible when clicking
-      transform: scale(0.95);
-    }
+    transform: scale(0.95);
   }
 
-  // Responsive: Mobile - 138% larger
+  // Responsive: Mobile - 50% larger (257% total: 2.38 × 1.5 = 3.57)
   @media (max-width: $breakpoint-md - 1) {
-    width: calc($space-5 * 2.38); // 95.2px on mobile (40px × 2.38)
-    height: calc($space-5 * 2.38);
-    padding: $space-2; // 16px internal padding
+    width: calc($space-5 * 3.57); // 142.8px on mobile (40px × 3.57) - 50% larger
+    height: calc($space-5 * 3.57);
+    padding: $space-3; // 24px internal padding (scaled up)
   }
 }
 

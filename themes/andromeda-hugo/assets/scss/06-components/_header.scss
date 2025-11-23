@@ -388,6 +388,37 @@
   @extend .c-header__skip-link;
 }
 
+// Header Logo Customization (Redesign 2025)
+// =============================================================================
+// Override logo colors specifically in the header context
+// - Text elements: Dark teal/gray (#374A51)
+// - Icon element: Emerald (brand primary color)
+// - Footer logo remains unchanged (uses default colors)
+// =============================================================================
+
+.c-header {
+  .c-logo--primary {
+    // Override the fill="currentColor" attribute on SVG groups
+    .c-logo__text-gasim,
+    .c-logo__text-alexandra,
+    .c-logo__text-barbu {
+      fill: #374A51 !important; // Darker teal/gray for text
+
+      path {
+        fill: #374A51 !important;
+      }
+    }
+
+    .c-logo__icon {
+      fill: $color-primary !important; // Keep leaf icon emerald
+
+      path {
+        fill: $color-primary !important;
+      }
+    }
+  }
+}
+
 // =============================================================================
 // END HEADER ORGANISM
 // =============================================================================
