@@ -394,17 +394,17 @@ services_preview_related:
     - title: "Terapie Individuală"
       description: "Unii angajați au nevoie de terapie individuală pentru anxietate, depresie, burnout sever. Oferim sesiuni confidențiale."
       link: "/servicii/terapie-individuala/"
-      button_text: "Află Mai Multe"
+      button_text: "Explorează Terapia Individuală"
 
     - title: "Terapie de Cuplu"
       description: "Stresul de la muncă afectează viața personală. Oferim terapie de cuplu pentru angajați (decontabilă de companie sau personal)."
       link: "/servicii/terapie-de-cuplu/"
-      button_text: "Află Mai Multe"
+      button_text: "Descoperă Terapia de Cuplu"
 
     - title: "Terapie de Familie"
       description: "Echilibrul viață-muncă afectează familia. Terapie de familie pentru angajați care au copii sau conflicte familiale."
       link: "/servicii/terapie-de-familie/"
-      button_text: "Află Mai Multe"
+      button_text: "Vezi Terapia de Familie"
 ---
 
 ## De Ce Să Alegeți Serviciile Mele de Psihologie Organizațională?

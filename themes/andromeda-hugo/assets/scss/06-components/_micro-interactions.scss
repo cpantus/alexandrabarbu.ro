@@ -1,0 +1,510 @@
+// ==================================
+// MICRO-INTERACTIONS ENHANCEMENT
+// ==================================
+//
+// Purpose: Add polish and engagement through subtle animations
+// Phase 6 of Design Enhancements (2025-11-23)
+// Design Review Priority #5
+//
+// Features:
+// - Enhanced button hover effects
+// - Default card hover lift
+// - Link underline animations
+// - Smooth transitions throughout
+//
+// Performance: GPU-accelerated transforms, 60fps animations
+// Accessibility: Respects prefers-reduced-motion
+//
+// Last Updated: 2025-11-23
+// Version: 1.0.0
+//
+
+/*------------------------------------------------------------------
+  # Base Transition Settings
+-------------------------------------------------------------------*/
+
+/**
+ * Standard easing curve for micro-interactions
+ * Cubic-bezier creates natural, pleasant motion
+ */
+$ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$duration-fast: 0.2s;
+$duration-normal: 0.3s;
+$duration-slow: 0.4s;
+
+/*------------------------------------------------------------------
+  # Enhanced Card Hover Effects
+-------------------------------------------------------------------*/
+
+/**
+ * Default hover interaction for all cards
+ * Adds subtle lift and shadow enhancement
+ */
+.c-card {
+  transition: transform $duration-normal $ease-smooth,
+              box-shadow $duration-normal $ease-smooth;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba($gray-900, 0.12),
+                0 4px 8px rgba($gray-900, 0.08);
+  }
+
+  &:active {
+    transform: translateY(-2px);
+  }
+}
+
+/**
+ * Service cards with clickable links get enhanced interactions
+ */
+.c-card a:not(.c-button) {
+  &:hover {
+    .c-card {
+      transform: translateY(-4px);
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Enhanced Button Hover Effects
+-------------------------------------------------------------------*/
+
+/**
+ * Improve existing button hover with more pronounced shadow
+ */
+.c-button--primary {
+  &:hover {
+    box-shadow: 0 6px 16px rgba($emerald-500, 0.35),
+                0 2px 8px rgba($emerald-500, 0.25);
+  }
+}
+
+.c-button--secondary {
+  &:hover {
+    box-shadow: 0 6px 16px rgba($terracotta-500, 0.35),
+                0 2px 8px rgba($terracotta-500, 0.25);
+  }
+}
+
+/**
+ * Subtle ripple effect on button click
+ * Creates visual feedback for user interaction
+ */
+.c-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(white, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width $duration-fast $ease-smooth,
+              height $duration-fast $ease-smooth,
+              opacity $duration-fast $ease-smooth;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.c-button:active::after {
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  transition-duration: 0s;
+}
+
+/*------------------------------------------------------------------
+  # Link Underline Animations
+-------------------------------------------------------------------*/
+
+/**
+ * Animated underline for text links
+ * Grows from left to right on hover
+ */
+a:not(.c-button):not(.c-card) {
+  position: relative;
+  text-decoration: none;
+  transition: color $duration-fast $ease-smooth;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width $duration-normal $ease-smooth;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+
+  // Exception: Navigation links use different pattern
+  &.c-nav__link::after {
+    bottom: 0;
+    height: 3px;
+    background: $color-primary;
+  }
+}
+
+/**
+ * Breadcrumb link animation
+ * Subtle color shift on hover
+ */
+.breadcrumb__link {
+  transition: color $duration-fast $ease-smooth;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Icon Hover Effects
+-------------------------------------------------------------------*/
+
+/**
+ * Icon containers pulse slightly on hover
+ * Adds life to static icons
+ */
+.c-icon-circle,
+.c-card__icon {
+  transition: transform $duration-fast $ease-smooth;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+/**
+ * Gradient icon circles brighten on hover
+ */
+.c-icon-circle--gradient {
+  transition: filter $duration-normal $ease-smooth,
+              transform $duration-fast $ease-smooth;
+
+  &:hover {
+    filter: brightness(1.1) saturate(1.1);
+    transform: scale(1.08);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Form Input Interactions
+-------------------------------------------------------------------*/
+
+/**
+ * Input fields grow focus ring smoothly
+ */
+input:not([type="checkbox"]):not([type="radio"]),
+textarea,
+select {
+  transition: border-color $duration-fast $ease-smooth,
+              box-shadow $duration-fast $ease-smooth;
+
+  &:focus {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($emerald-500, 0.1);
+  }
+}
+
+/**
+ * Checkbox and radio smooth check animation
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  transition: background-color $duration-fast $ease-smooth,
+              border-color $duration-fast $ease-smooth;
+
+  &:checked {
+    animation: check-bounce $duration-normal $ease-bounce;
+  }
+}
+
+@keyframes check-bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Navigation Hover Effects
+-------------------------------------------------------------------*/
+
+/**
+ * Main navigation links with smooth underline
+ */
+.c-nav__link {
+  position: relative;
+  transition: color $duration-fast $ease-smooth;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: $color-primary;
+    transition: width $duration-normal $ease-smooth;
+  }
+
+  &:hover,
+  &.active {
+    color: $color-primary;
+
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+/**
+ * Dropdown menu smooth reveal
+ */
+.c-nav__dropdown {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity $duration-normal $ease-smooth,
+              transform $duration-normal $ease-smooth,
+              visibility 0s $duration-normal;
+
+  .c-nav__item:hover & {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Testimonial Card Enhancements
+-------------------------------------------------------------------*/
+
+/**
+ * Testimonial cards with subtle scale on hover
+ */
+.c-testimonials__card {
+  transition: transform $duration-normal $ease-smooth,
+              box-shadow $duration-normal $ease-smooth;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba($gray-900, 0.15);
+  }
+}
+
+/**
+ * Quote mark fade-in on hover
+ */
+.c-testimonials__quote::before {
+  transition: opacity $duration-normal $ease-smooth;
+}
+
+.c-testimonials__card:hover .c-testimonials__quote::before {
+  opacity: 0.12; // Slightly more visible on hover
+}
+
+/*------------------------------------------------------------------
+  # CTA Section Animations
+-------------------------------------------------------------------*/
+
+/**
+ * CTA section buttons with staggered entrance
+ */
+.c-cta__buttons {
+  .c-button:nth-child(1) {
+    animation: fade-in-up 0.6s $ease-smooth 0.1s both;
+  }
+
+  .c-button:nth-child(2) {
+    animation: fade-in-up 0.6s $ease-smooth 0.2s both;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Scroll Animations (Subtle)
+-------------------------------------------------------------------*/
+
+/**
+ * Elements fade in as they enter viewport
+ * Requires intersection observer (optional enhancement)
+ */
+[data-animate="fade-in"] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s $ease-smooth,
+              transform 0.6s $ease-smooth;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-animate="fade-in-left"] {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s $ease-smooth,
+              transform 0.6s $ease-smooth;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+[data-animate="fade-in-right"] {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.6s $ease-smooth,
+              transform 0.6s $ease-smooth;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Badge Hover Effects
+-------------------------------------------------------------------*/
+
+/**
+ * Credential badges pulse on hover
+ */
+.c-badge {
+  transition: transform $duration-fast $ease-smooth,
+              box-shadow $duration-fast $ease-smooth;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba($gray-900, 0.15);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Number Counter Animation Enhancement
+-------------------------------------------------------------------*/
+
+/**
+ * Stats numbers with attention-grabbing pulse
+ */
+.c-stats__number {
+  transition: color $duration-fast $ease-smooth;
+
+  &:hover {
+    color: $color-primary;
+    animation: pulse-glow 1s $ease-smooth infinite;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Image Hover Effects
+-------------------------------------------------------------------*/
+
+/**
+ * Images with subtle zoom on hover (cards, gallery)
+ */
+.c-card__image,
+.c-image--hover-zoom {
+  overflow: hidden;
+
+  img {
+    transition: transform 0.5s $ease-smooth;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Accessibility: Reduced Motion
+-------------------------------------------------------------------*/
+
+/**
+ * Respect user's motion preferences
+ * Disable animations for users who prefer reduced motion
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  // Keep focus indicators for accessibility
+  .c-button:focus,
+  .c-button:focus-visible,
+  input:focus,
+  textarea:focus,
+  select:focus {
+    animation: none;
+    transition: box-shadow 0.1s ease;
+  }
+}
+
+/*------------------------------------------------------------------
+  # Print Styles: Remove Interactions
+-------------------------------------------------------------------*/
+
+/**
+ * Remove hover effects and animations in print
+ */
+@media print {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .c-button::after {
+    display: none;
+  }
+
+  a::after {
+    display: none;
+  }
+}
+
+// ==================================
+// END OF MICRO-INTERACTIONS
+// ==================================

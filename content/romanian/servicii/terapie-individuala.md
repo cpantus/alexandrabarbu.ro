@@ -420,19 +420,19 @@ services_preview_related:
       description: "Dacă relația ta contribuie la anxietate sau depresie, terapia de cuplu poate ajuta să rezolvați problemele împreună."
       icon: "heart"
       link: "/servicii/terapie-de-cuplu/"
-      button_text: "Află Mai Multe"
+      button_text: "Descoperă Terapia de Cuplu"
 
     - title: "Terapie de Familie"
       description: "Probleme familiale nerezolvate pot afecta sănătatea ta mintală. Lucrăm împreună cu familia pentru vindecare."
       icon: "users"
       link: "/servicii/terapie-de-familie/"
-      button_text: "Află Mai Multe"
+      button_text: "Vezi Terapia de Familie"
 
     - title: "Psihologie Organizațională"
       description: "Stresul de la muncă te copleșește? Oferă coaching individual pentru burnout și dezvoltare profesională."
       icon: "briefcase"
       link: "/servicii/psihologie-organizationala/"
-      button_text: "Află Mai Multe"
+      button_text: "Servicii pentru Companii"
 ---
 
 ## De Ce Să Alegi Terapia Individuală Cu Mine?

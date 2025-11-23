@@ -406,17 +406,17 @@ services_preview_related:
     - title: "Terapie Individuală"
       description: "Uneori membrii familiei au nevoie de terapie individuală paralelă (depresie, anxietate, traume personale)."
       link: "/servicii/terapie-individuala/"
-      button_text: "Află Mai Multe"
+      button_text: "Explorează Terapia Individuală"
 
     - title: "Terapie de Cuplu"
       description: "Dacă problemele familiale vin din conflictele de cuplu ale părinților, terapia de cuplu poate fi necesară."
       link: "/servicii/terapie-de-cuplu/"
-      button_text: "Află Mai Multe"
+      button_text: "Descoperă Terapia de Cuplu"
 
     - title: "Psihologie Organizațională"
       description: "Stresul de la muncă al părinților afectează familia? Coaching pentru echilibru viață-muncă."
       link: "/servicii/psihologie-organizationala/"
-      button_text: "Află Mai Multe"
+      button_text: "Servicii pentru Companii"
 ---
 
 ## De Ce Să Alegeți Terapia de Familie Cu Mine?

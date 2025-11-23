@@ -406,17 +406,17 @@ services_preview_related:
     - title: "Terapie Individuală"
       description: "Uneori problemele de cuplu vin din probleme individuale (depresie, traume). Terapie individuală poate completa terapia de cuplu."
       link: "/servicii/terapie-individuala/"
-      button_text: "Află Mai Multe"
+      button_text: "Explorează Terapia Individuală"
 
     - title: "Terapie de Familie"
       description: "Dacă copiii sau familia extinsă contribuie la problemele voastre, terapia de familie poate ajuta."
       link: "/servicii/terapie-de-familie/"
-      button_text: "Află Mai Multe"
+      button_text: "Vezi Terapia de Familie"
 
     - title: "Psihologie Organizațională"
       description: "Stresul de la muncă afectează relația? Coaching pentru echilibru viață-muncă."
       link: "/servicii/psihologie-organizationala/"
-      button_text: "Află Mai Multe"
+      button_text: "Servicii pentru Companii"
 ---
 
 ## De Ce Să Alegeți Terapia de Cuplu Cu Mine?

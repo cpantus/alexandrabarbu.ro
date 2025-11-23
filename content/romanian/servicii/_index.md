@@ -40,8 +40,8 @@ services_preview:
         - "Traume și PTSD"
         - "Stimă de sine și creștere personală"
       link: "/servicii/terapie-individuala/"
-      button_text: "Află Mai Multe"
-      button_variant: "primary"
+      button_text: "Explorează Terapia Individuală"
+      button_variant: "secondary"
 
     - title: "Terapie de Cuplu"
       description: "Reconstruiește conexiunea, comunicarea și intimitatea în relație. Abordare Gottman și TCC."
@@ -52,8 +52,8 @@ services_preview:
         - "Intimitate și conexiune emoțională"
         - "Decizii despre relație"
       link: "/servicii/terapie-de-cuplu/"
-      button_text: "Află Mai Multe"
-      button_variant: "secondary"
+      button_text: "Descoperă Terapia de Cuplu"
+      button_variant: "primary"
 
     - title: "Terapie de Familie"
       description: "Vindecă și armonizează dinamica familială. Lucrăm împreună pentru relații mai sănătoase."
@@ -64,8 +64,8 @@ services_preview:
         - "Divorț și familii recompuse"
         - "Îngrijirea părinților în vârstă"
       link: "/servicii/terapie-de-familie/"
-      button_text: "Află Mai Multe"
-      button_variant: "primary"
+      button_text: "Vezi Terapia de Familie"
+      button_variant: "secondary"
 
     - title: "Psihologie Organizațională"
       description: "Optimizează echipe și cultură organizațională. Coaching, evaluare, dezvoltare leadership."
@@ -76,8 +76,8 @@ services_preview:
         - "Team building și cultură"
         - "Evaluare psihologică angajați"
       link: "/servicii/psihologie-organizationala/"
-      button_text: "Află Mai Multe"
-      button_variant: "secondary"
+      button_text: "Servicii pentru Companii"
+      button_variant: "outline-primary"
 
 # Feature Blocks - How to Choose
 feature_blocks:

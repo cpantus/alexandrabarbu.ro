@@ -33,6 +33,7 @@
 @import 'avatar';                  // ✅ Phase 2: New atom - circular profile photos
 @import 'form';                    // ✅ Phase 3: Extracted from custom.scss + contact-form + BEM
 @import 'accordion';               // ✅ Phase 3: New molecule - collapsible accordion with BEM + vanilla JS
+@import 'micro-interactions';      // ✅ Phase 6 (2025-11-23): Micro-interactions enhancement - hover effects, transitions, animations
 @import 'navigation';              // ✅ Phase 3: BEM refactored - main nav with dropdown support + vanilla JS
 @import 'breadcrumb';              // ✅ Phase 3: BEM refactored - navigation breadcrumb with variants + icons
 @import 'social-links';            // ✅ Phase 3: BEM refactored - social media links with 4 variants + 2 layouts
