@@ -1,11 +1,11 @@
 # Legacy Theme Cleanup - Tasks
 
-**Last Updated:** 2025-11-23 16:45
-**Progress:** 40/42 tasks complete (95%)
+**Last Updated:** 2025-11-23 17:00
+**Progress:** 45/45 tasks complete (100%) - PHASE 1 COMPLETE ✅
 
 ## High-Level Phases
 
-- [ ] Phase 1: Active Content Migration (33/24 tasks - 100% IN PROGRESS - Last phase pending)
+- [x] Phase 1: Active Content Migration (45/45 tasks - 100% COMPLETE ✅)
 - [ ] Phase 2: Theme Template Cleanup (0/8 tasks)
 - [ ] Phase 3: Documentation & Scripts Cleanup (0/4 tasks)
 
@@ -67,12 +67,12 @@
 - [x] Task 1.5.6: Build verification - ensure no errors
 - [x] Task 1.5.7: Verify cleanup complete
 
-#### Phase 1.6: Remove orphaned office_gallery data (4 files)
-- [ ] Task 1.6.1: Remove office_gallery from `/content/romanian/terapie-individuala.md`
-- [ ] Task 1.6.2: Remove office_gallery from `/content/romanian/terapie-de-cuplu.md`
-- [ ] Task 1.6.3: Remove office_gallery from `/content/romanian/terapie-de-familie.md`
-- [ ] Task 1.6.4: Remove office_gallery from `/content/romanian/dezvoltare-personala.md`
-- [ ] Task 1.6.5: Build verification - ensure no errors
+#### Phase 1.6: Remove orphaned office_gallery data (4 files) ✅ COMPLETE
+- [x] Task 1.6.1: Remove office_gallery from `/content/romanian/terapie-individuala.md`
+- [x] Task 1.6.2: Remove office_gallery from `/content/romanian/terapie-de-cuplu.md`
+- [x] Task 1.6.3: Remove office_gallery from `/content/romanian/terapie-de-familie.md`
+- [x] Task 1.6.4: Remove office_gallery from `/content/romanian/dezvoltare-personala.md`
+- [x] Task 1.6.5: Build verification - ensure no errors
 
 ### Phase 2: Theme Template Cleanup (MEDIUM PRIORITY)
 
@@ -107,6 +107,8 @@
 ✅ 2025-11-23 16:15 - Phase 1.3 COMPLETE: Contact sections (faq-content→faq-mini, confidentiality-notice→privacy-guarantee, 2 files)
 ✅ 2025-11-23 16:30 - Phase 1.4 COMPLETE: service-faq-inline → faq-mini (8 service files - RO+EN parity maintained)
 ✅ 2025-11-23 16:45 - Phase 1.5 COMPLETE: Removed orphaned benefits_section data (4 files - never rendered, no template exists)
+✅ 2025-11-23 17:00 - Phase 1.6 COMPLETE: Removed orphaned office_gallery data (4 files - never rendered, no template exists)
+🎉 2025-11-23 17:00 - PHASE 1 COMPLETE: All active content migrated/cleaned (18 files total across 6 sub-phases)
 
 ## Notes
 

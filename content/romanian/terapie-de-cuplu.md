@@ -91,11 +91,6 @@ benefit:
     - title: "PERFORMANCE COACHING"
       icon: "medkit la-3x"
 
-# office_gallery
-office_gallery:
-  enable: false
-  subtitle: "Our Offices"
-  title: "Tour our offices"
 
   images:
     - image: "images/office-tour/01.jpg"

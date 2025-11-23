@@ -1,12 +1,12 @@
 # Legacy Theme Cleanup - Context
 
-**Last Updated:** 2025-11-23 16:50
+**Last Updated:** 2025-11-23 17:00
 
 ## Quick Reference
 
-**Status:** In Progress - Phase 1.5 Complete, Phase 1.6 Final
-**Current Focus:** Phase 1.5 complete (orphaned data removal)
-**Next Step:** Phase 1.6 - Remove orphaned office_gallery (4 files) - FINAL Phase 1 task
+**Status:** PHASE 1 COMPLETE ✅
+**Current Focus:** All active content migration complete
+**Next Step:** Phase 2 - Theme template cleanup (remove deprecated section templates)
 
 ## Key Files Modified
 
@@ -77,6 +77,40 @@
 - content/romanian/team-building.md
 - content/romanian/corporate-team-building.md
 - content/english/corporate-team-building.md
+
+**Phase 1.6: Remove orphaned office_gallery COMPLETE ✅**
+- 4 files cleaned (Romanian therapy service pages)
+- Cleanup script created: scripts/remove-orphaned-office-gallery.py
+- Verification: office_gallery had NO template, NOT registered in flexible.html
+- Decision: REMOVE orphaned data (never rendered, no migration path needed)
+- Build: 568ms, zero errors
+- Note: Data was defined with enable:false, never added to sections arrays
+
+**Files Modified:**
+- content/romanian/terapie-individuala.md
+- content/romanian/terapie-de-cuplu.md
+- content/romanian/terapie-de-familie.md
+- content/romanian/dezvoltare-personala.md
+
+## Phase 1 Summary
+
+**Total Files Modified:** 18 files across 6 sub-phases
+**Total Commits:** 6 commits (one per sub-phase)
+**Build Time:** Maintained <600ms throughout
+**Language Parity:** 100% maintained (RO + EN in sync)
+
+**Migration Breakdown:**
+1. Phase 1.1: 6 files (feature-details → feature-blocks)
+2. Phase 1.2: 4 files (first-session-timeline → onboarding-steps)
+3. Phase 1.3: 2 files (contact sections → modern equivalents)
+4. Phase 1.4: 8 files (service-faq-inline → faq-mini)
+5. Phase 1.5: 4 files (orphaned benefits_section removed)
+6. Phase 1.6: 4 files (orphaned office_gallery removed)
+
+**Scripts Created:**
+- scripts/migrate-service-faq.py
+- scripts/remove-orphaned-benefits.py
+- scripts/remove-orphaned-office-gallery.py
 
 ## Key Decisions Made
 
