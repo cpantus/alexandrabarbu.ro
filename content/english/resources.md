@@ -11,7 +11,6 @@ sections:
   - type: "feature-blocks"
   - type: "blog-grid"
   - type: "newsletter-signup"
-  - type: "feature-details"
   - type: "first-session-timeline"
   - type: "cta-standard"
 
@@ -99,7 +98,7 @@ method_tabs:
         - "Self-compassion"
         - "Resilience and adaptability"
 
-# Feature Blocks Section - Featured Resources
+# Feature Blocks Section - Featured Resources & Downloadable Materials
 feature_blocks:
   - title: "Complete Guide: Managing Anxiety"
     subtitle: "Free PDF Guide"
@@ -119,6 +118,30 @@ feature_blocks:
       A downloadable template to monitor your thoughts, emotions and behaviors. Essential tool
       in cognitive-behavioral therapy.
     image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop"
+  - title: "Complete Anxiety Management Guide"
+    subtitle: "Downloadable Materials"
+    description: |
+      20 pages with CBT techniques, mindfulness, breathing exercises and action plans. PDF format,
+      free download.
+    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80"
+  - title: "Thoughts and Emotions Journal Template"
+    subtitle: "Practical Tool"
+    description: |
+      Essential tool for self-observation and cognitive restructuring. Includes complete
+      usage instructions. Downloadable and printable format.
+    image: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&q=80"
+  - title: "Mindfulness and Relaxation Audio Exercises"
+    subtitle: "Guided Audio"
+    description: |
+      5 guided audio exercises (5-15 minutes each): body scan, conscious breathing, focused meditation,
+      progressive muscle relaxation, calming visualization.
+    image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&q=80"
+  - title: "Weekly Wellbeing Planner"
+    subtitle: "Weekly Template"
+    description: |
+      Template for planning pleasant activities, monitoring mood, setting goals
+      and tracking progress. Perfect for behavioral activation.
+    image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80"
 
 # Blog Grid Section - Main Resources
 blog_grid:
@@ -149,35 +172,6 @@ newsletter_signup:
   button_text: "Subscribe Free"
   button_variant: "primary"
   privacy_text: "We will never send you spam. You can unsubscribe anytime."
-
-# Feature Details Section - Downloadable Resources
-feature_details:
-  kicker: "Downloadable Materials"
-  title: "Free **Guides and Templates**"
-  description: |
-    Practical resources you can download, print and use at your own pace. All materials are created
-    by me, based on scientifically validated methods and adapted to the Romanian context.
-  features:
-    - title: "Complete Anxiety Management Guide"
-      description: |
-        20 pages with CBT techniques, mindfulness, breathing exercises and action plans. PDF format,
-        free download.
-      icon: "file-pdf"
-    - title: "Thoughts and Emotions Journal Template"
-      description: |
-        Essential tool for self-observation and cognitive restructuring. Includes complete
-        usage instructions. Downloadable and printable format.
-      icon: "journal-whills"
-    - title: "Mindfulness and Relaxation Audio Exercises"
-      description: |
-        5 guided audio exercises (5-15 minutes each): body scan, conscious breathing, focused meditation,
-        progressive muscle relaxation, calming visualization.
-      icon: "headphones-alt"
-    - title: "Weekly Wellbeing Planner"
-      description: |
-        Template for planning pleasant activities, monitoring mood, setting goals
-        and tracking progress. Perfect for behavioral activation.
-      icon: "calendar-check"
 
 # First Session Timeline Section - Workshops and Events
 first_session_timeline:

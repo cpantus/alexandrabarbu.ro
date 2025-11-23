@@ -11,7 +11,6 @@ sections:
   - type: "feature-blocks"
   - type: "blog-grid"
   - type: "newsletter-signup"
-  - type: "feature-details"
   - type: "first-session-timeline"
   - type: "cta-standard"
 
@@ -99,7 +98,7 @@ method_tabs:
         - "Auto-compasiune"
         - "Reziliență și adaptabilitate"
 
-# Feature Blocks Section - Featured Resources
+# Feature Blocks Section - Featured Resources & Downloadable Materials
 feature_blocks:
   - title: "Ghid Complet: Gestionarea Anxietății"
     subtitle: "Ghid PDF Gratuit"
@@ -119,6 +118,30 @@ feature_blocks:
       Un template descărcabil pentru a-ți monitoriza gândurile, emoțiile și comportamentele. Instrument esențial
       în terapia cognitiv-comportamentală.
     image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop"
+  - title: "Ghidul Complet de Gestionare a Anxietății"
+    subtitle: "Materiale Descărcabile"
+    description: |
+      20 de pagini cu tehnici CBT, mindfulness, exerciții de respirație și planuri de acțiune. Format PDF,
+      descărcabil gratuit.
+    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80"
+  - title: "Template Jurnal de Gânduri și Emoții"
+    subtitle: "Instrument Practic"
+    description: |
+      Instrument esențial pentru auto-observare și restructurare cognitivă. Include instrucțiuni complete
+      de utilizare. Format descărcabil și imprimabil.
+    image: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&q=80"
+  - title: "Exerciții Audio de Mindfulness și Relaxare"
+    subtitle: "Audio Ghidat"
+    description: |
+      5 exerciții audio ghidate (5-15 minute fiecare): body scan, respirație conștientă, meditație focalizată,
+      relaxare musculară progresivă, vizualizare calmantă.
+    image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&q=80"
+  - title: "Planificator Săptămânal de Bunăstare"
+    subtitle: "Template Săptămânal"
+    description: |
+      Template pentru planificarea activităților plăcute, monitorizarea dispoziției, stabilirea obiectivelor
+      și urmărirea progresului. Perfect pentru activare comportamentală.
+    image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80"
 
 # Blog Grid Section - Main Resources
 blog_grid:
@@ -149,35 +172,6 @@ newsletter_signup:
   button_text: "Abonează-te Gratuit"
   button_variant: "primary"
   privacy_text: "Nu îți vom trimite spam niciodată. Poți să te dezabonezi oricând."
-
-# Feature Details Section - Downloadable Resources
-feature_details:
-  kicker: "Materiale Descărcabile"
-  title: "Ghiduri și **Template-uri Gratuite**"
-  description: |
-    Resurse practice pe care le poți descărca, tipări și folosi în ritmul tău. Toate materialele sunt create
-    de mine, bazate pe metode validate științific și adaptate contextului românesc.
-  features:
-    - title: "Ghidul Complet de Gestionare a Anxietății"
-      description: |
-        20 de pagini cu tehnici CBT, mindfulness, exerciții de respirație și planuri de acțiune. Format PDF,
-        descărcabil gratuit.
-      icon: "file-pdf"
-    - title: "Template Jurnal de Gânduri și Emoții"
-      description: |
-        Instrument esențial pentru auto-observare și restructurare cognitivă. Include instrucțiuni complete
-        de utilizare. Format descărcabil și imprimabil.
-      icon: "journal-whills"
-    - title: "Exerciții Audio de Mindfulness și Relaxare"
-      description: |
-        5 exerciții audio ghidate (5-15 minute fiecare): body scan, respirație conștientă, meditație focalizată,
-        relaxare musculară progresivă, vizualizare calmantă.
-      icon: "headphones-alt"
-    - title: "Planificator Săptămânal de Bunăstare"
-      description: |
-        Template pentru planificarea activităților plăcute, monitorizarea dispoziției, stabilirea obiectivelor
-        și urmărirea progresului. Perfect pentru activare comportamentală.
-      icon: "calendar-check"
 
 # First Session Timeline Section - Workshops and Events
 first_session_timeline:
