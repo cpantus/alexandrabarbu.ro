@@ -9,7 +9,7 @@ sections:
   - type: "contact-info-cards"
   - type: "contact-options"
   - type: "contact-form-enhanced"
-  - type: "feature-details"
+  - type: "feature-blocks"
   - type: "pricing-tables"
   - type: "faq-content"
   - type: "confidentiality-notice"
@@ -150,35 +150,20 @@ contact_form_enhanced:
     url: "https://calendly.com/alexandrabarbu/consultation"
     button_text: "Or Schedule Directly Online"
 
-# Feature Details Section - Free Consultation
-feature_details:
-  kicker: "No Obligations"
-  title: "The First Consultation **Is Free**"
-  description: |
-    I understand that seeking help can be a difficult step. That's why I offer you the first meeting free (20-30 minutes)
-    to get to know each other, discuss your challenges and see if my approach suits you.
-    No pressure, no obligations.
-  features:
-    - title: "Free Initial Assessment"
-      description: |
-        20-30 minutes where we discuss your situation, your expectations from therapy and how I can help you.
-        I also explain the therapeutic process and answer any questions you have.
-      icon: "user-check"
-    - title: "Comfort and Confidentiality"
-      description: |
-        You will feel heard, understood and respected. Confidentiality is guaranteed through the code of ethics
-        and GDPR legislation. Nothing we discuss leaves the office without your consent.
-      icon: "lock"
-    - title: "Informed Decision"
-      description: |
-        After the initial meeting, you'll have all the information needed to decide if you want to continue.
-        There's no pressure or obligations. Therapy works best when it's your free choice.
-      icon: "hand-holding-heart"
-    - title: "Quick Response"
-      description: |
-        I respond to all messages within 24 hours (usually same business day). Scheduling is done quickly,
-        often in the same week, depending on availability.
-      icon: "clock"
+# Feature Blocks Section - Free Consultation
+feature_blocks:
+  - subtitle: "No Obligations"
+    title: "The First Consultation **Is Free**"
+    description: |
+      I understand that seeking help can be a difficult step. That's why I offer you the first meeting free (20-30 minutes)
+      to get to know each other, discuss your challenges and see if my approach suits you.
+      No pressure, no obligations.
+    features:
+      - "Free initial assessment (20-30 minutes)"
+      - "Comfort and confidentiality guaranteed"
+      - "Informed decision, no pressure"
+      - "Quick response within 24 hours"
+    image: "images/consultation-room.jpg"
 
 # Pricing Tables Section
 pricing_tables:

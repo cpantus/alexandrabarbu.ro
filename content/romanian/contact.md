@@ -9,7 +9,7 @@ sections:
   - type: "contact-info-cards"
   - type: "contact-options"
   - type: "contact-form-enhanced"
-  - type: "feature-details"
+  - type: "feature-blocks"
   - type: "pricing-tables"
   - type: "faq-content"
   - type: "confidentiality-notice"
@@ -150,35 +150,20 @@ contact_form_enhanced:
     url: "https://calendly.com/alexandrabarbu/consultatie"
     button_text: "Sau Programează Direct Online"
 
-# Feature Details Section - Free Consultation
-feature_details:
-  kicker: "Fără Obligații"
-  title: "Prima Consultație **Este Gratuită**"
-  description: |
-    Înțeleg că a căuta ajutor poate fi un pas dificil. De aceea, îți ofer prima întâlnire gratuit (20-30 minute)
-    pentru a ne cunoaște, a discuta despre provocările tale și a vedea dacă abordarea mea ți se potrivește.
-    Fără presiune, fără obligații.
-  features:
-    - title: "Evaluare Inițială Gratuită"
-      description: |
-        20-30 de minute în care discutăm despre situația ta, așteptările tale de la terapie și cum te pot ajuta.
-        Îți explic și procesul terapeutic și răspund la orice întrebări ai.
-      icon: "user-check"
-    - title: "Confort și Confidențialitate"
-      description: |
-        Te vei simți ascultat, înțeles și respectat. Confidențialitatea este garantată prin codul deontologic
-        și legislația GDPR. Nimic din ce discutăm nu părăsește cabinetul fără acordul tău.
-      icon: "lock"
-    - title: "Decizie Informată"
-      description: |
-        După întâlnirea inițială, vei avea toate informațiile necesare pentru a decide dacă vrei să continui.
-        Nu există presiune sau obligații. Terapia funcționează cel mai bine când este alegerea ta liberă.
-      icon: "hand-holding-heart"
-    - title: "Răspuns Rapid"
-      description: |
-        Răspund la toate mesajele în maxim 24 de ore (de obicei în aceeași zi lucrătoare). Programarea se face rapid,
-        adesea chiar în aceeași săptămână, în funcție de disponibilitate.
-      icon: "clock"
+# Feature Blocks Section - Free Consultation
+feature_blocks:
+  - subtitle: "Fără Obligații"
+    title: "Prima Consultație **Este Gratuită**"
+    description: |
+      Înțeleg că a căuta ajutor poate fi un pas dificil. De aceea, îți ofer prima întâlnire gratuit (20-30 minute)
+      pentru a ne cunoaște, a discuta despre provocările tale și a vedea dacă abordarea mea ți se potrivește.
+      Fără presiune, fără obligații.
+    features:
+      - "Evaluare inițială gratuită (20-30 minute)"
+      - "Confort și confidențialitate garantată"
+      - "Decizie informată, fără presiune"
+      - "Răspuns rapid în maxim 24 de ore"
+    image: "images/consultation-room.jpg"
 
 # Pricing Tables Section
 pricing_tables:

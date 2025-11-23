@@ -11,7 +11,6 @@ sections:
   - type: "feature-blocks"
   - type: "values-compass"
   - type: "first-session-timeline"
-  - type: "feature-details"
   - type: "cta-standard"
 
 # Hero Breadcrumb Section
@@ -92,7 +91,7 @@ method_tabs:
         - "Acceptarea experiențelor dificile fără evitare"
         - "Clarificarea valorilor și acțiune îndreptată spre valori"
 
-# Feature Blocks Section - Method Integration
+# Feature Blocks Section - Method Integration & What Makes My Approach Different
 feature_blocks:
   - title: "Evaluare Inițială Cuprinzătoare"
     subtitle: "Primul Pas"
@@ -113,6 +112,30 @@ feature_blocks:
       Progresul tău este prioritatea mea. Evaluăm regulat eficacitatea abordării noastre și ajustăm strategiile
       după nevoie. Feedback-ul tău este esențial pentru a ne asigura că terapia funcționează pentru tine.
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80"
+  - title: "Integrare Metodologică"
+    subtitle: "Ce Mă Diferențiază"
+    description: |
+      Combin CBT, EFT, SFT, mindfulness și alte metode validate, în funcție de nevoile tale. Nu sunt limitată
+      de o singură școală de gândire - folosesc ceea ce funcționează cel mai bine pentru tine.
+    image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=800&q=80"
+  - title: "Focus pe Relația Terapeutică"
+    subtitle: "Baza Succesului"
+    description: |
+      Cercetările arată că calitatea relației terapeutice este cel mai puternic predictor al succesului în
+      terapie. Investesc timp și energie în construirea unei relații bazate pe încredere, empatie și respect mutual.
+    image: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=800&q=80"
+  - title: "Abordare Trauma-Informată"
+    subtitle: "Siguranță și Grijă"
+    description: |
+      Înțeleg impactul traumei asupra vieții tale și folosesc metode delicate, sigure și validate pentru
+      a te ajuta să procesezi experiențe dificile, fără retraumatizare.
+    image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&q=80"
+  - title: "Educație Psihologică Continuă"
+    subtitle: "Cunoaștere de Sine"
+    description: |
+      Te ajut să înțelegi ce se întâmplă cu tine - de ce reacționezi într-un anumit fel, de unde vin emoțiile
+      tale, cum funcționează mintea și corpul. Cunoașterea de sine este o bază puternică pentru schimbare.
+    image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=800&q=80"
 
 # Values Compass Section - Working Principles
 values_compass:
@@ -169,37 +192,6 @@ first_session_timeline:
         Discutăm despre frecvența ședințelor, metodele pe care le vom folosi și primii pași concreți.
         Îți ofer și câteva resurse sau exerciții simple, dacă este cazul.
       icon: "map-marked-alt"
-
-# Feature Details Section - What Makes My Approach Different
-feature_details:
-  kicker: "Ce Mă Diferențiază"
-  title: "O Abordare **Holistic-Integrativă și Personalizată**"
-  description: |
-    Nu cred în soluții "la pachet". Fiecare persoană este unică, cu o istorie de viață, un context cultural
-    și nevoi specifice. Abordarea mea combină cele mai bune practici din mai multe școli terapeutice, adaptate
-    ție și situației tale.
-  image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=800&q=80"
-  features:
-    - title: "Integrare Metodologică"
-      description: |
-        Combin CBT, EFT, SFT, mindfulness și alte metode validate, în funcție de nevoile tale. Nu sunt limitată
-        de o singură școală de gândire - folosesc ceea ce funcționează cel mai bine pentru tine.
-      icon: "puzzle-piece"
-    - title: "Focus pe Relația Terapeutică"
-      description: |
-        Cercetările arată că calitatea relației terapeutice este cel mai puternic predictor al succesului în
-        terapie. Investesc timp și energie în construirea unei relații bazate pe încredere, empatie și respect mutual.
-      icon: "user-friends"
-    - title: "Abordare Trauma-Informată"
-      description: |
-        Înțeleg impactul traumei asupra vieții tale și folosesc metode delicate, sigure și validate pentru
-        a te ajuta să procesezi experiențe dificile, fără retraumatizare.
-      icon: "shield-alt"
-    - title: "Educație Psihologică Continuă"
-      description: |
-        Te ajut să înțelegi ce se întâmplă cu tine - de ce reacționezi într-un anumit fel, de unde vin emoțiile
-        tale, cum funcționează mintea și corpul. Cunoașterea de sine este o bază puternică pentru schimbare.
-      icon: "book-open"
 
 # CTA Standard Section
 cta_standard:

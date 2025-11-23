@@ -11,7 +11,6 @@ sections:
   - type: "feature-blocks"
   - type: "values-compass"
   - type: "first-session-timeline"
-  - type: "feature-details"
   - type: "cta-standard"
 
 # Hero Breadcrumb Section
@@ -90,24 +89,51 @@ method_tabs:
         - "Accepting difficult experiences without avoidance"
         - "Clarifying values and value-driven action"
 
-# Feature Blocks Section - Method Integration
+# Feature Blocks Section - Method Integration & What Makes My Approach Different
 feature_blocks:
   - title: "Comprehensive Initial Assessment"
     subtitle: "The First Step"
     description: |
       In the first sessions, we'll explore together your challenges, your history, available resources and
       your goals. This assessment helps us establish the most suitable therapeutic approach for you.
+    image: "https://images.unsplash.com/photo-1516302752625-fcc3c50ae61f?w=800&q=80"
   - title: "Personalized Therapeutic Plan"
     subtitle: "Personalized Approach"
     description: |
       Based on the initial assessment, we'll create together a therapeutic plan adapted to your needs, combining methods
       and techniques that work best for you. This plan is flexible and adjusts as
       we progress.
+    image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80"
   - title: "Continuous Monitoring and Adjustment"
     subtitle: "Measurable Progress"
     description: |
       Your progress is my priority. We regularly evaluate the effectiveness of our approach and adjust strategies
       as needed. Your feedback is essential to ensure therapy works for you.
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80"
+  - title: "Methodological Integration"
+    subtitle: "What Makes Me Different"
+    description: |
+      I combine CBT, EFT, SFT, mindfulness and other validated methods, according to your needs. I'm not limited
+      by a single school of thought - I use what works best for you.
+    image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=800&q=80"
+  - title: "Focus on Therapeutic Relationship"
+    subtitle: "Foundation of Success"
+    description: |
+      Research shows that therapeutic relationship quality is the strongest predictor of success in
+      therapy. I invest time and energy in building a relationship based on trust, empathy and mutual respect.
+    image: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=800&q=80"
+  - title: "Trauma-Informed Approach"
+    subtitle: "Safety and Care"
+    description: |
+      I understand trauma's impact on your life and use gentle, safe and validated methods to
+      help you process difficult experiences, without retraumatization.
+    image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&q=80"
+  - title: "Continuous Psychological Education"
+    subtitle: "Self-Knowledge"
+    description: |
+      I help you understand what's happening with you - why you react a certain way, where your emotions
+      come from, how mind and body work. Self-knowledge is a powerful foundation for change.
+    image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=800&q=80"
 
 # Values Compass Section - Working Principles
 values_compass:
@@ -164,36 +190,6 @@ first_session_timeline:
         We discuss session frequency, methods we'll use and first concrete steps.
         I also offer some resources or simple exercises, if applicable.
       icon: "map-marked-alt"
-
-# Feature Details Section - What Makes My Approach Different
-feature_details:
-  kicker: "What Makes Me Different"
-  title: "A **Holistic-Integrative and Personalized** Approach"
-  description: |
-    I don't believe in "packaged" solutions. Each person is unique, with a life history, cultural context
-    and specific needs. My approach combines best practices from multiple therapeutic schools, adapted
-    to you and your situation.
-  features:
-    - title: "Methodological Integration"
-      description: |
-        I combine CBT, EFT, SFT, mindfulness and other validated methods, according to your needs. I'm not limited
-        by a single school of thought - I use what works best for you.
-      icon: "puzzle-piece"
-    - title: "Focus on Therapeutic Relationship"
-      description: |
-        Research shows that therapeutic relationship quality is the strongest predictor of success in
-        therapy. I invest time and energy in building a relationship based on trust, empathy and mutual respect.
-      icon: "user-friends"
-    - title: "Trauma-Informed Approach"
-      description: |
-        I understand trauma's impact on your life and use gentle, safe and validated methods to
-        help you process difficult experiences, without retraumatization.
-      icon: "shield-alt"
-    - title: "Continuous Psychological Education"
-      description: |
-        I help you understand what's happening with you - why you react a certain way, where your emotions
-        come from, how mind and body work. Self-knowledge is a powerful foundation for change.
-      icon: "book-open"
 
 # CTA Standard Section
 cta_standard:
