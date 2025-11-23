@@ -91,12 +91,12 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: linear-gradient(to right, rgba($green-50, 0.95), rgba($terracotta-50, 0.95)); // v5.1: Warm branded gradient
+  background: linear-gradient(to right, rgba($emerald-50, 0.95), rgba($terracotta-50, 0.95)); // v5.1: Warm branded gradient
   border-bottom: 3px solid $color-primary-500; // v5.1: Branded accent (was 1px gray)
   transition: all $duration-normal $easing-default;
 
   &--sticky {
-    background: linear-gradient(to right, rgba($green-50, 0.98), rgba($terracotta-50, 0.98)); // v5.1: Slightly more opaque on scroll
+    background: linear-gradient(to right, rgba($emerald-50, 0.98), rgba($terracotta-50, 0.98)); // v5.1: Slightly more opaque on scroll
     backdrop-filter: blur(12px);
     box-shadow: $shadow-md;
     // v5.1: Keep branded border on scroll (don't change color)

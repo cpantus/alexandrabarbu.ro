@@ -137,7 +137,7 @@
 
 // Neutral variant (gray) - Subtle, professional
 .c-first-session-timeline--neutral {
-  background-color: $green-50; // Clean white background
+  background-color: $emerald-50; // Clean white background
 
   .c-first-session-timeline__subtitle {
     color: $color-neutral-700; // Dark gray
@@ -227,7 +227,7 @@
 @media print {
   .c-first-session-timeline {
     padding-block: $space-4; // Reduced spacing for print
-    background-color: $green-50; // White background for print
+    background-color: $emerald-50; // White background for print
     page-break-inside: avoid; // Keep section together if possible
   }
 

@@ -36,9 +36,18 @@
 @import 'mixins-transitions';     // Standard transition mixins for animations
 
 // ----------------------------------
-// TODO Phase 2 Remaining:
-// - Extract additional mixins from _design-system.scss
-// - Extract hover/animation mixins from _design-enhancements.scss
+// Mixins - Animations (Phase 8)
+// ----------------------------------
+@import 'mixins-animations';      // Animation mixins (staggered-entrance, progressive-disclosure, etc.)
+
+// ----------------------------------
+// ✅ PHASE 8 COMPLETE: All mixins extracted
+// ----------------------------------
+// - ✅ Glassmorphism mixins → _mixins-glassmorphism.scss
+// - ✅ Card mixins → _mixins-card.scss
+// - ✅ Icon mixins → _mixins-icon.scss
+// - ✅ Transition mixins → _mixins-transitions.scss
+// - ✅ Animation mixins → _mixins-animations.scss
 // ----------------------------------
 
 // ==================================

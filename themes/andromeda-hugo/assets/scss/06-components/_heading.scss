@@ -212,7 +212,7 @@ h6.c-heading {
  * Use with variant prop to determine gradient colors
  */
 .c-heading--gradient {
-  background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
+  background: linear-gradient(135deg, $color-primary 0%, $emerald-700 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

@@ -5,7 +5,6 @@
 /* This file is compiled standalone, so it needs its own imports */
 @import '../01-settings/settings';
 @import '../02-tools/tools';
-@import '../design-system-legacy';
 
 /* Onboarding Steps Visual */
 .onboarding-steps {
@@ -331,13 +330,13 @@
   border-top: 1px solid rgba(77, 179, 128, 0.2);
   
   /* Typography for markdown content */
-  font-family: $font-secondary !important; /* Open Sans for body text */
+  font-family: $font-body !important; /* Open Sans for body text */
   line-height: 1.7;
   color: $gray-600;
   
   /* Markdown headings within features */
   h1, h2, h3, h4, h5, h6 {
-    font-family: $font-primary !important; /* Poppins for headlines */
+    font-family: $font-heading !important; /* Crimson Pro for headlines */
     color: $emerald-500;
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;

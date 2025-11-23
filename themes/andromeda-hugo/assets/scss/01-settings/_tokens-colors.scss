@@ -227,33 +227,19 @@ $color-text-tertiary: $gray-500;               // Tertiary text (light gray)
 $color-text-muted: $gray-500;                  // Muted text (same as tertiary)
 $color-text-heading: $gray-900;                // Headings (near black)
 
-// ----------------------------------
-// Legacy Color Aliases (MUST be before usage)
-// ----------------------------------
-// Source: _design-system.scss lines 64-73
-// DEPRECATED: Old $green-* variables → Use $emerald-* from design tokens
-// These aliases ensure gradients and legacy code continue to work
-$green-50: $emerald-50;
-$green-100: $emerald-100;
-$green-200: $emerald-200;
-$green-300: $emerald-300;
-$green-400: $emerald-500;  // Old brand color → New emerald-500
-$green-500: $emerald-600;
-$green-600: $emerald-700;
-$green-700: $emerald-800;
-$green-800: $emerald-900;
-$green-900: $emerald-900;
+// ✅ PHASE 8: Legacy $emerald-* aliases removed
+// All components now use $emerald-* tokens directly
 
 // Background Colors - v5.1: NO PURE WHITE
-$color-bg: $green-50;                          // Default background (warm emerald, was white)
-$color-bg-light: $green-50;                    // Light background (warm emerald)
-$color-bg-lighter: $green-100;                 // Even lighter background (medium emerald)
-$color-bg-page: $green-50;                     // Page background (warm emerald)
-$color-bg-section: $green-50;                  // Default section background (warm emerald, was white)
+$color-bg: $emerald-50;                          // Default background (warm emerald, was white)
+$color-bg-light: $emerald-50;                    // Light background (warm emerald)
+$color-bg-lighter: $emerald-100;                 // Even lighter background (medium emerald)
+$color-bg-page: $emerald-50;                     // Page background (warm emerald)
+$color-bg-section: $emerald-50;                  // Default section background (warm emerald, was white)
 $color-bg-section-secondary: $terracotta-50;   // Secondary section background (warm terracotta)
-$color-bg-section-tertiary: $green-100;        // Tertiary section background (medium emerald)
+$color-bg-section-tertiary: $emerald-100;        // Tertiary section background (medium emerald)
 $color-bg-section-neutral: $terracotta-100;    // Neutral section background (medium terracotta)
-$color-bg-card: $green-50;                     // Card background (warm emerald, was white)
+$color-bg-card: $emerald-50;                     // Card background (warm emerald, was white)
 
 // Border Colors
 $color-border: $gray-300;                      // Default border color (alias for medium)
@@ -336,7 +322,7 @@ $color-black: $black;
 // ----------------------------------
 // Usage: Testimonial backgrounds, modal overlays, section darkening
 $overlay-dark: rgba($gray-900, 0.85);      // Dark overlay for light text
-$overlay-light: rgba($green-50, 0.95);     // Light overlay for dark backgrounds
+$overlay-light: rgba($emerald-50, 0.95);     // Light overlay for dark backgrounds
 
 // Color palette aliases with $color- prefix
 $color-emerald-50: $emerald-50;

@@ -28,8 +28,8 @@ $font-sans: $font-body;                                              // Sans-ser
 $font-serif: $font-heading;                                          // Serif font (alias for heading)
 
 // Legacy aliases (for BEM component compatibility) - REDIRECTED to correct fonts
-$font-primary: $font-heading;     // Crimson Pro (serif) - legacy alias redirects to correct heading font
-$font-secondary: $font-body;      // Work Sans (sans) - legacy alias redirects to correct body font
+$font-heading: $font-heading;     // Crimson Pro (serif) - legacy alias redirects to correct heading font
+$font-body: $font-body;      // Work Sans (sans) - legacy alias redirects to correct body font
 
 // ----------------------------------
 // Font Weights (RESTRICTED)

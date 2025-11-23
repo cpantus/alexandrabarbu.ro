@@ -282,7 +282,7 @@
     inset: 0;
     background: linear-gradient(
       135deg,
-      rgba($green-400, 0.1) 0%,
+      rgba($emerald-400, 0.1) 0%,
       rgba($terracotta-400, 0.1) 100%
     );
     opacity: 0;
@@ -425,7 +425,7 @@
 @media (prefers-contrast: high) {
   .c-feature-blocks__image-wrapper {
     border: 2px solid currentColor;
-    background: $color-bg-primary !important;
+    background: $color-bg !important;
   }
 
   .c-feature-blocks__title {

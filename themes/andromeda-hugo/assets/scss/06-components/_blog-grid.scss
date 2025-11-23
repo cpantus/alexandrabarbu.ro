@@ -54,7 +54,7 @@
   margin: 0 auto $space-12;
 
   h2 {
-    font-family: $font-primary;
+    font-family: $font-heading;
     font-size: 2.25rem;
     font-weight: 700;
     color: $gray-900;
@@ -62,7 +62,7 @@
   }
 
   p {
-    font-family: $font-secondary;
+    font-family: $font-body;
     font-size: 1.0625rem;
     color: $gray-600;
   }
@@ -116,7 +116,7 @@
 
 .c-blog-grid__filter {
   padding: $space-2 $space-4;
-  font-family: $font-secondary;
+  font-family: $font-body;
   font-size: $text-base;
   font-weight: $weight-medium;
   color: $gray-700;
@@ -338,7 +338,7 @@
 // Title
 // -----------------------------------------------------------------------------
 .c-blog-grid__title {
-  font-family: $font-primary;
+  font-family: $font-heading;
   font-size: 1.5rem;
   font-weight: 700;
   color: $gray-900;
@@ -368,7 +368,7 @@
 // Excerpt
 // -----------------------------------------------------------------------------
 .c-blog-grid__excerpt {
-  font-family: $font-secondary;
+  font-family: $font-body;
   font-size: 0.9375rem;
   line-height: 1.6;
   color: $gray-600;
@@ -388,7 +388,7 @@
   align-items: center;
   gap: $space-4;
   flex-wrap: wrap;
-  font-family: $font-secondary;
+  font-family: $font-body;
   font-size: $text-sm;
   color: $gray-500;
   margin-bottom: $space-4;
@@ -416,7 +416,7 @@
   display: inline-flex;
   align-items: center;
   gap: $space-2;
-  font-family: $font-secondary;
+  font-family: $font-body;
   font-size: 0.9375rem;
   font-weight: $weight-semibold;
   color: $color-primary;
@@ -429,7 +429,7 @@
   }
 
   &:hover {
-    color: $color-primary-dark;
+    color: $emerald-700;
 
     i {
       transform: translateX(4px);
@@ -468,7 +468,7 @@
     min-width: 40px;
     height: 40px;
     padding: 0 $space-3;
-    font-family: $font-secondary;
+    font-family: $font-body;
     font-size: 0.9375rem;
     font-weight: $weight-medium;
     color: $gray-700;

@@ -84,7 +84,7 @@
 }
 
 .c-problem-empathy__subtitle {
-  font-family: $font-secondary;
+  font-family: $font-body;
   font-size: 0.875rem;
   font-weight: 600;
   color: $color-secondary;
@@ -94,7 +94,7 @@
 }
 
 .c-problem-empathy__title {
-  font-family: $font-primary;
+  font-family: $font-heading;
   font-size: 2.25rem;
   font-weight: 700;
   color: $gray-900;
@@ -111,7 +111,7 @@
 }
 
 .c-problem-empathy__description {
-  font-family: $font-secondary;
+  font-family: $font-body;
   font-size: 1.0625rem;
   line-height: 1.6;
   color: $gray-600;
@@ -288,7 +288,7 @@
 // Card Title
 // ----------------------------------------------------------------------------
 .c-problem-empathy__card-title {
-  font-family: $font-primary;
+  font-family: $font-heading;
   font-size: 1.25rem; // 20px
   font-weight: 600;
   color: $color-primary;
@@ -314,7 +314,7 @@
 // Card Description
 // ----------------------------------------------------------------------------
 .c-problem-empathy__card-description {
-  font-family: $font-secondary;
+  font-family: $font-body;
   font-size: 0.9375rem; // 15px
   line-height: 1.6;
   color: $gray-600;

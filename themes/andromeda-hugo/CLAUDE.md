@@ -171,7 +171,7 @@ related_services:
 ## Design System
 
 **Colors**: Primary #4DB380 (emerald), Secondary #CC6B49 (terracotta), Text #374151
-**Typography**: Cormorant Garamond + Source Sans 3 | Base 16px
+**Typography**: Crimson Pro (serif) + Work Sans (sans) | Base 16px
 **Breakpoints**: sm:576px | md:768px | lg:992px | xl:1200px
 
 ---

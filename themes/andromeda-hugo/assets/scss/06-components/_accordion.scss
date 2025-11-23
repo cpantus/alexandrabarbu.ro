@@ -126,7 +126,7 @@
 }
 
 .c-accordion__button-text {
-  font-family: $font-primary; // Crimson Pro
+  font-family: $font-heading; // Crimson Pro
   font-size: $text-lg; // 1.125rem / 18px
   font-weight: $weight-semibold; // 600
   color: $gray-900;
@@ -206,7 +206,7 @@
 
   // Typography for content
   p {
-    font-family: $font-secondary; // Work Sans
+    font-family: $font-body; // Work Sans
     font-size: $text-base; // 1rem
     line-height: $leading-relaxed; // 1.625
     color: $gray-700;
@@ -223,7 +223,7 @@
     padding-left: $space-6; // 48px indent
 
     li {
-      font-family: $font-secondary; // Work Sans
+      font-family: $font-body; // Work Sans
       font-size: $text-sm; // 0.9375rem
       line-height: $leading-normal; // 1.5
       color: $gray-700;

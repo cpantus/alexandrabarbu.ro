@@ -157,7 +157,7 @@
 
 .c-timeline-step__number {
   // Color set by variant modifiers (not white by default)
-  font-family: $font-primary; // Crimson Pro
+  font-family: $font-heading; // Crimson Pro
   font-size: 1.5rem; // 24px
   font-weight: 600;
   line-height: 1;
@@ -195,7 +195,7 @@
 }
 
 .c-timeline-step__duration-text {
-  font-family: $font-secondary; // Work Sans
+  font-family: $font-body; // Work Sans
 }
 
 // ============================================================================
@@ -292,7 +292,7 @@
 // ============================================================================
 
 .c-timeline-step__description {
-  font-family: $font-secondary; // Work Sans
+  font-family: $font-body; // Work Sans
   font-size: 0.9375rem; // 15px
   line-height: 1.6;
   color: $gray-600;
@@ -339,7 +339,7 @@
 }
 
 .c-timeline-step__highlight-text {
-  font-family: $font-secondary; // Work Sans
+  font-family: $font-body; // Work Sans
   font-size: 0.9375rem; // 15px
   line-height: 1.5;
   color: $gray-700;
@@ -357,24 +357,24 @@
 .c-timeline-step--primary {
   .c-timeline-step__icon-wrapper {
     background: white; // Default: white
-    border: 2px solid rgba($green-500, 0.2); // Subtle border hint
+    border: 2px solid rgba($emerald-500, 0.2); // Subtle border hint
   }
 
   // Icon color: always colored (stays visible)
   .c-timeline-step__number,
   i {
-    color: $green-600;
+    color: $emerald-600;
   }
 
   // Hover: show colored gradient, keep icon colored but darker
   &:hover .c-timeline-step__icon-wrapper {
-    background: linear-gradient(135deg, rgba($green-300, 0.3), rgba($green-600, 0.3));
-    border-color: rgba($green-600, 0.4);
+    background: linear-gradient(135deg, rgba($emerald-300, 0.3), rgba($emerald-600, 0.3));
+    border-color: rgba($emerald-600, 0.4);
   }
 
   &:hover .c-timeline-step__number,
   &:hover i {
-    color: $green-700; // Darker for better contrast on tinted background
+    color: $emerald-700; // Darker for better contrast on tinted background
   }
 }
 

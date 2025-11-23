@@ -62,7 +62,7 @@
 /* ==================== FAQ ITEM ==================== */
 
 .c-service-faq__item {
-  background-color: $green-50;
+  background-color: $emerald-50;
   border-radius: 12px;
   margin-block-end: $space-3; // 24px
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -227,7 +227,7 @@
 }
 
 .c-service-faq--neutral {
-  background-color: $green-50;
+  background-color: $emerald-50;
 
   .c-service-faq__subtitle {
     color: $color-neutral-700;
@@ -274,7 +274,7 @@
 @media print {
   .c-service-faq {
     padding-block: $space-4;
-    background-color: $green-50;
+    background-color: $emerald-50;
   }
 
   // Print: show all FAQ answers (collapse classes handle visibility)

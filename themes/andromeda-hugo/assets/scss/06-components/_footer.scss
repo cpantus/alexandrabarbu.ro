@@ -75,7 +75,7 @@
 // Main Footer
 // =============================================================================
 .c-footer {
-  background: linear-gradient(135deg, $terracotta-50 0%, $green-50 100%); // v5.1: Warm branded gradient (reverse of body)
+  background: linear-gradient(135deg, $terracotta-50 0%, $emerald-50 100%); // v5.1: Warm branded gradient (reverse of body)
   border-top: 3px solid $color-secondary-500; // v5.1: Branded terracotta accent
   padding-top: $space-12;
 
@@ -141,7 +141,7 @@
 // Copyright Bar
 // =============================================================================
 .c-footer__copyright {
-  background: $green-100; // v5.1: Warm emerald tint (was white)
+  background: $emerald-100; // v5.1: Warm emerald tint (was white)
   border-top: 3px solid $color-primary-600; // v5.1: Thicker branded border
   padding: $space-5 0;
 

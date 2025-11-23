@@ -69,7 +69,7 @@
 }
 
 .c-testimonials__subtitle {
-  font-family: $font-secondary;
+  font-family: $font-body;
   font-size: 0.875rem;
   font-weight: 600;
   color: $color-secondary;
@@ -79,7 +79,7 @@
 }
 
 .c-testimonials__title {
-  font-family: $font-primary;
+  font-family: $font-heading;
   font-size: 2.25rem;
   font-weight: 700;
   color: $gray-900;
@@ -96,7 +96,7 @@
 }
 
 .c-testimonials__description {
-  font-family: $font-secondary;
+  font-family: $font-body;
   font-size: 1.0625rem;
   line-height: 1.6;
   color: $gray-600;
@@ -244,7 +244,7 @@
 -------------------------------------------------------------------*/
 
 .c-testimonials__quote {
-  font-family: $font-secondary;
+  font-family: $font-body;
   font-size: 1.0625rem;
   line-height: 1.7;
   color: $gray-700;
@@ -358,7 +358,7 @@
 }
 
 .c-testimonials__author-name {
-  font-family: $font-primary;
+  font-family: $font-heading;
   font-size: 1rem;
   font-weight: 600;
   color: $gray-900;
@@ -370,7 +370,7 @@
 }
 
 .c-testimonials__author-role {
-  font-family: $font-secondary;
+  font-family: $font-body;
   font-size: 0.875rem;
   color: $gray-600;
   margin: 0;

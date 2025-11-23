@@ -41,12 +41,12 @@ section {
 
 // Pattern 1 (1st, 5th, 9th...) - Light emerald
 section:nth-of-type(4n+1) {
-  background: $green-50 !important;
+  background: $emerald-50 !important;
 }
 
 // Pattern 2 (2nd, 6th, 10th...) - Medium emerald
 section:nth-of-type(4n+2) {
-  background: $green-100 !important;
+  background: $emerald-100 !important;
 }
 
 // Pattern 3 (3rd, 7th, 11th...) - Light terracotta
@@ -70,11 +70,11 @@ section:nth-of-type(4n) {
  */
 
 .section--light {
-  background: $green-50 !important; // v5.1: Was white, now light emerald
+  background: $emerald-50 !important; // v5.1: Was white, now light emerald
 }
 
 .section--primary {
-  background: $green-100 !important; // v5.1: More saturated emerald
+  background: $emerald-100 !important; // v5.1: More saturated emerald
 }
 
 .section--secondary {

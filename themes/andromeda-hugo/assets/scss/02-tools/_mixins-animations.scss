@@ -1,0 +1,124 @@
+// ==================================
+// ANIMATION & INTERACTION MIXINS
+// ==================================
+// Layer: 02-tools (NO CSS output)
+// Purpose: Animation and interaction mixins extracted from _design-enhancements.scss
+// Version: 1.0.0 (Phase 8 - Legacy cleanup)
+//
+
+// ----------------------------------
+// Staggered Entrance Animation
+// ----------------------------------
+// Applies staggered animation delays to child elements
+//
+// Parameters:
+// @param $animation - Animation name (default: fade-in-up)
+// @param $delay-base - Base delay between items (default: 150ms)
+//
+// Usage:
+// .c-card__grid {
+//   @include staggered-entrance(fade-in-up, 150ms);
+// }
+//
+@mixin staggered-entrance($animation: fade-in-up, $delay-base: 150ms) {
+  opacity: 0;
+  animation: $animation $duration-slow $ease-out forwards;
+
+  @for $i from 1 through 6 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * $delay-base};
+    }
+  }
+}
+
+// ----------------------------------
+// Progressive Disclosure
+// ----------------------------------
+// Reveals hidden content on hover/focus
+//
+// Usage:
+// .c-card {
+//   @include progressive-disclosure();
+// }
+//
+@mixin progressive-disclosure() {
+  .card-description {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height $duration-normal $ease-out,
+                opacity $duration-normal $ease-out,
+                margin-top $duration-normal $ease-out;
+  }
+
+  &:hover .card-description,
+  &:focus-within .card-description,
+  &.is-expanded .card-description {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: $space-3;
+  }
+}
+
+// ----------------------------------
+// Focus Ring Enhanced
+// ----------------------------------
+// Enhanced focus ring with optional glow
+//
+// Parameters:
+// @param $color - Ring color (default: $emerald-400)
+// @param $glow - Add glow effect (default: true)
+//
+// Usage:
+// .c-button {
+//   &:focus {
+//     @include focus-ring-enhanced($emerald-400, true);
+//   }
+// }
+//
+@mixin focus-ring-enhanced($color: $emerald-400, $glow: true) {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba($color, 0.4);
+
+  @if $glow {
+    box-shadow: 0 0 0 3px rgba($color, 0.4),
+                0 0 20px rgba($color, 0.2);
+  }
+
+  transition: box-shadow $duration-fast $ease-out;
+}
+
+// ----------------------------------
+// Card Featured Variant
+// ----------------------------------
+// Styles for featured/highlighted cards
+//
+// Usage:
+// .c-card--featured {
+//   @include card-featured();
+// }
+//
+@mixin card-featured() {
+  transform: scale(1.15);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15),
+              0 12px 25px -8px rgba($emerald-400, 0.2),
+              0 6px 12px -4px rgba($terracotta-400, 0.15);
+  z-index: 10;
+  border: 2px solid rgba($emerald-400, 0.3);
+
+  .icon-wrapper {
+    width: 84px;   // Extra large for featured cards
+    height: 84px;
+  }
+
+  h3, h4 {
+    font-size: $text-xl;
+    font-weight: $weight-bold;
+  }
+}
+
+// ==================================
+// END OF ANIMATION MIXINS
+// ==================================
+// NO CSS should be output from this file
+//

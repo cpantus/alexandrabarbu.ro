@@ -17,8 +17,8 @@
 //
 
 // Organisms (Structural components)
-@import 'header';                  // ✅ Phase 1: Bootstrap compatibility layer (Typography Fix)
-@import 'footer';                  // ✅ Phase 1: Bootstrap compatibility layer (Typography Fix)
+@import 'header';                  // ✅ Phase 1: Site header with navigation
+@import 'footer';                  // ✅ Phase 1: Site footer with links & info
 
 // Core Components (BEM refactored)
 @import 'card';                    // ✅ Phase 3: BEM refactored with legacy compat

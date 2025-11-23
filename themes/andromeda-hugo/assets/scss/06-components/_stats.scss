@@ -212,7 +212,7 @@
   font-weight: $weight-bold;
   line-height: 1;
   color: $color-primary;
-  font-family: $font-display;
+  font-family: $font-heading;
   margin-bottom: $space-2;
 
   // Responsive font sizing
@@ -382,7 +382,7 @@
 @media (prefers-contrast: high) {
   .c-stats__item {
     border: 2px solid currentColor;
-    background: $color-bg-primary !important;
+    background: $color-bg !important;
   }
 
   .c-stats__ring-progress,
