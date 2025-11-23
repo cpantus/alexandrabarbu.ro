@@ -262,6 +262,37 @@
   # Color Variants (Block Modifiers)
 -------------------------------------------------------------------*/
 
+// Redesign variant (forest green - 2025 redesign)
+.c-accordion--redesign {
+  .c-accordion__item {
+    border-radius: $radius-lg; // 16px (redesign spec)
+  }
+
+  .c-accordion__item::before {
+    background: linear-gradient(180deg, $forest-400 0%, $forest-600 100%);
+  }
+
+  .c-accordion__item--active .c-accordion__button-text {
+    color: $forest-600;
+  }
+
+  .c-accordion__button-icon {
+    background: linear-gradient(135deg, $forest-100 0%, $sage-100 100%);
+
+    i {
+      color: $forest-600;
+    }
+  }
+
+  .c-accordion__item--active .c-accordion__button-icon {
+    background: linear-gradient(135deg, $forest-500 0%, $sage-500 100%);
+
+    i {
+      color: white;
+    }
+  }
+}
+
 // Primary variant (emerald)
 .c-accordion--primary {
   .c-accordion__item::before {

@@ -357,6 +357,38 @@
 }
 
 /*------------------------------------------------------------------
+  # Scroll State (Redesign 2025)
+-------------------------------------------------------------------*/
+
+// Parent container for navigation (header/navbar)
+// Add .c-navbar--scrolled class via JavaScript when scroll > 100px
+.c-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-fixed;
+  background: transparent;
+  transition: all $duration-base $easing-medium;
+  padding: $space-4 0; // 32px vertical padding
+
+  // Scrolled state - glassmorphism effect (redesign 2025)
+  &--scrolled {
+    background: $gradient-glass-light;
+    @include glassmorphism($radius-none, 0.95);
+    box-shadow: 0 4px 12px rgba($forest-900, 0.08);
+    padding: $space-3 0; // 24px (reduced when scrolled)
+  }
+
+  @media (max-width: $breakpoint-md - 1) {
+    position: static; // No fixed positioning on mobile
+    background: white;
+    box-shadow: 0 2px 8px rgba($gray-900, 0.05);
+    padding: $space-3 0;
+  }
+}
+
+/*------------------------------------------------------------------
   # Accessibility Enhancements
 -------------------------------------------------------------------*/
 
@@ -365,7 +397,8 @@
   .c-navigation__link,
   .c-navigation__dropdown,
   .c-navigation__dropdown-link,
-  .c-navigation__link-icon {
+  .c-navigation__link-icon,
+  .c-navbar {
     transition: none;
   }
 }
