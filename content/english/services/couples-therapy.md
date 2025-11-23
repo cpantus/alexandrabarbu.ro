@@ -11,7 +11,7 @@ sections:
   - type: "methods-used"
   - type: "benefits-results"
   - type: "pricing-packages"
-  - type: "service-faq-inline"
+  - type: "faq-mini"
   - type: "testimonials-enhanced"
   - type: "cta-standard"
   - type: "services-preview"
@@ -63,27 +63,21 @@ problem_empathy:
   challenges:
     - title: "Repetitive and Unresolved Conflicts"
       description: "The same arguments repeat endlessly. Toxic cycle: criticism → defensiveness → counterattack → withdrawal. Nothing gets resolved."
-      icon: "repeat"
 
     - title: "Lack of Effective Communication"
       description: "You don't truly listen to each other. Conversations become defensive monologues. Nobody feels heard or understood."
-      icon: "comments-slash"
 
     - title: "Infidelity and Betrayal"
       description: "Trust is destroyed. Constant suspicion, jealousy, resentments. You don't know if you can or want to continue."
-      icon: "user-secret"
 
     - title: "Low Physical and Emotional Intimacy"
       description: "You feel like two roommates, not partners. Lack of affection, sex, connection. Emotional isolation."
-      icon: "heart-broken"
 
     - title: "Unsynchronized Major Decisions"
       description: "One wants children, the other doesn't. One wants to move, the other refuses. Different visions of the future create enormous tension."
-      icon: "road-fork"
 
     - title: "External Problems Affecting the Relationship"
       description: "Financial stress, intrusive in-laws, problems with children, addictions, chronic illnesses. External pressure destroys the relationship."
-      icon: "exclamation-triangle"
 
   empathy_text: "These challenges can be resolved with professional help. **Couples therapy gives you the tools, perspectives and support to rebuild a healthy relationship.**"
 
@@ -99,7 +93,6 @@ therapeutic_process:
       subtitle: "Sessions 1-2"
       description: "Joint session (both partners) + individual sessions (optional). We understand relationship history, current problems, each person's perspectives, common and individual goals."
       duration: "75 minutes/session"
-      icon: "clipboard-list"
       activities:
         - "Relationship history (how you met, major stages)"
         - "Identifying main problems from each perspective"
@@ -110,7 +103,6 @@ therapeutic_process:
       subtitle: "Session 2-3"
       description: "We identify common goals that both of you accept: improving communication, rebuilding trust, increasing intimacy, resolving a specific conflict."
       duration: "75 minutes"
-      icon: "bullseye"
       activities:
         - "3-5 SMART common goals"
         - "Understanding perspective differences"
@@ -121,7 +113,6 @@ therapeutic_process:
       subtitle: "Weeks 3-8"
       description: "Learn to communicate without criticism, defensiveness or withdrawal. Gottman techniques: active listening, emotional validation, 'soft startup', rupture repair."
       duration: "8-12 sessions (2-3 months)"
-      icon: "comments"
       activities:
         - "Active listening and emotional validation"
         - "'Soft startup' for conflicts (not criticism)"
@@ -133,7 +124,6 @@ therapeutic_process:
       subtitle: "Weeks 9-16"
       description: "We work on main problems: infidelity, intimacy, major decisions, recurring conflicts. CBT techniques for changing problematic behaviors."
       duration: "8-12 sessions (2-3 months)"
-      icon: "tools"
       activities:
         - "Processing infidelity (if applicable): pain, forgiveness, rebuilding"
         - "Improving physical and emotional intimacy"
@@ -145,7 +135,6 @@ therapeutic_process:
       subtitle: "Month 5-6"
       description: "Less frequent sessions (biweekly). Consolidate progress, prepare for the future, develop plans for managing future crises."
       duration: "2-3 months"
-      icon: "shield-check"
       activities:
         - "Recap: what you learned together"
         - "Plan for managing future conflicts"
@@ -156,7 +145,6 @@ therapeutic_process:
       subtitle: "After 6-9 months"
       description: "When goals are achieved, we complete therapy. Optional: quarterly maintenance sessions to prevent relapse and consolidate the relationship."
       duration: "Variable"
-      icon: "flag-checkered"
       activities:
         - "Final evaluation: how far you've come"
         - "Follow-up planning (optional: 1 session/3-6 months)"
@@ -172,7 +160,6 @@ methods_used:
   methods:
     - title: "Gottman Method (Gottman Method Couples Therapy)"
       short_name: "Gottman"
-      icon: "heart-pulse"
       description: "The most studied and effective method for couples therapy. Based on 40+ years of research. Focused on improving communication, managing conflicts and building friendship in the relationship."
       how_it_works: "We identify the 'Four Horsemen' that destroy relationships: Criticism, Defensiveness, Contempt, Stonewalling. We learn the antidotes: 'Soft startup', accepting partner's influence, rupture repair, compromise. We build 'Love Maps' (deep knowledge of partner) and connection rituals."
       best_for:
@@ -185,7 +172,6 @@ methods_used:
 
     - title: "CBT for Couples (Cognitive Behavioral Couples Therapy)"
       short_name: "CBCT"
-      icon: "brain"
       description: "Helps couples identify and modify negative thoughts and behaviors that sabotage the relationship. Focus on changing toxic patterns."
       how_it_works: "We identify negative automatic thoughts about partner ('They never listen to me', 'They always criticize me'). We challenge these cognitive distortions. We learn new positive behaviors (affirmations, affection, quality time). We practice structured problem-solving."
       best_for:
@@ -198,7 +184,6 @@ methods_used:
 
     - title: "Emotionally Focused Therapy (EFT)"
       short_name: "EFT"
-      icon: "heart-circle"
       description: "Approach based on attachment theory. Helps couples understand deep emotional needs and create secure bonds."
       how_it_works: "We identify negative interaction cycles ('You withdraw → I become anxious → You withdraw more'). We explore vulnerable emotions beneath surface anger (fear, shame, pain). We re-create connection through sharing authentic vulnerability. We build secure attachment."
       best_for:
@@ -211,7 +196,6 @@ methods_used:
 
     - title: "Infidelity Therapy and Trust Rebuilding"
       short_name: "Infidelity"
-      icon: "shield-heart"
       description: "Specialized protocol for processing infidelity, managing pain and rebuilding trust. Based on work by Esther Perel and Shirley Glass."
       how_it_works: "Phase 1: Processing trauma (betrayed partner expresses pain). Phase 2: Understanding context (why it happened). Phase 3: Rebuilding trust (transparency, accountability, time). Phase 4: Building a new relationship (not returning to 'what was before')."
       best_for:
@@ -231,32 +215,26 @@ benefits_results:
   items:
     - title: "Improved Communication"
       description: "Learn to truly listen, validate each other's emotions, discuss difficult issues without escalation. Clearer, more empathetic communication."
-      icon: "comments"
       timeline: "After 6-8 sessions"
 
     - title: "Reduced Conflicts"
       description: "Arguments become less frequent and less intense. When they occur, you know how to manage them constructively. Less defensiveness and criticism."
-      icon: "handshake"
       timeline: "After 10-12 sessions"
 
     - title: "Rebuilding Trust"
       description: "If you've experienced infidelity, learn to forgive (if you choose), rebuild transparency and create a new, stronger relationship."
-      icon: "shield-check"
       timeline: "After 20-30 sessions (infidelity)"
 
     - title: "Increased Intimacy"
       description: "Return of emotional and physical connection. Affection, sex, quality time together. You feel close again."
-      icon: "heart"
       timeline: "After 12-16 sessions"
 
     - title: "Problem-Solving Together"
       description: "Approach problems as a team, not as adversaries. Find compromises and solutions that work for both."
-      icon: "puzzle-piece"
       timeline: "After 10-15 sessions"
 
     - title: "Clarity and Decisions"
       description: "If you're thinking about divorce or marriage, gain clarity. Make informed decisions about the relationship's future, not from fear or anger."
-      icon: "lightbulb"
       timeline: "After 8-12 sessions"
 
 # Pricing Packages
@@ -342,40 +320,31 @@ pricing_packages:
     - text: "**Both partners must be present** at all sessions (except optional individual sessions)."
     - text: "**Insurance:** Some private health insurances may partially cover. Check with your insurer."
 
-# Service FAQ
-service_faq:
-  enable: true
-  title: "Frequently Asked Questions About Couples Therapy"
-  subtitle: "Everything you need to know"
+# FAQ Mini
+faq_mini_title: "Frequently Asked Questions About Couples Therapy"
+faq_mini_subtitle: "Everything you need to know"
 
-  questions:
+faq_items:
     - question: "How long does couples therapy take?"
       answer: "It depends on problem severity. For moderate conflicts and communication improvement, 12-20 sessions (3-5 months) are usually sufficient. For infidelity or deeper problems, it may take 6-12 months (20-30 sessions). In the first session we establish a realistic estimate."
-      icon: "clock"
 
     - question: "What if only one of us wants therapy?"
       answer: "It's ideal for both to come, but we understand sometimes one partner is reluctant. You can start alone with individual therapy focused on the relationship, or come to a first session alone and see how we can attract your partner. Many couples start this way and the reluctant partner joins after seeing the benefits."
-      icon: "user-plus"
 
     - question: "Will therapy save our relationship or help us separate?"
       answer: "The goal of couples therapy is not necessarily to keep you together, but to help you make the best decision for both. Some couples save their relationship, others realize divorce is healthier. Both outcomes are valid if they're conscious and mature, not from anger or fear."
-      icon: "road-fork"
 
     - question: "What if the therapist takes one partner's side?"
       answer: "A good couples therapist is NEUTRAL and doesn't take sides. My role is to understand each perspective, validate both sides and help you find solutions together. If you ever feel I'm taking someone's side, please speak up - it's important to discuss."
-      icon: "balance-scale"
 
     - question: "Can we do couples therapy online?"
       answer: "**Yes!** Online couples therapy (Zoom) is as effective as face-to-face, according to studies. Many prefer online for comfort (do therapy from home, no transport stress). Important: both should be in the same room, not each in a different place."
-      icon: "video"
 
     - question: "What if one of us is still having an affair?"
       answer: "For infidelity therapy to work, the affair MUST stop completely. If the unfaithful partner is not ready to end the affair, we cannot work on rebuilding trust. Total transparency is essential."
-      icon: "hand-stop"
 
     - question: "How often should we come?"
       answer: "Initially we recommend weekly sessions for momentum. As you progress, we space to biweekly, then monthly. For acute crises (recently discovered infidelity), sometimes we recommend 2 sessions/week the first 2-3 weeks."
-      icon: "calendar"
 
 # Testimonials
 testimonials:
@@ -423,13 +392,9 @@ cta_standard:
 
   benefits:
     - text: "Free 30-minute consultation for both"
-      icon: "check-circle"
     - text: "Completely confidential (code of ethics + GDPR)"
-      icon: "check-circle"
     - text: "Bucharest office or online (Zoom)"
-      icon: "check-circle"
     - text: "No judgment - safe space for both"
-      icon: "check-circle"
 
 # Services Preview - Related
 services_preview_related:
@@ -440,19 +405,16 @@ services_preview_related:
   services:
     - title: "Individual Therapy"
       description: "Sometimes couple problems come from individual issues (depression, trauma). Individual therapy can complement couples therapy."
-      icon: "user"
       link: "/en/services/individual-therapy/"
       button_text: "Learn More"
 
     - title: "Family Therapy"
       description: "If children or extended family contribute to your problems, family therapy can help."
-      icon: "users"
       link: "/en/services/family-therapy/"
       button_text: "Learn More"
 
     - title: "Organizational Psychology"
       description: "Work stress affecting your relationship? Coaching for work-life balance."
-      icon: "briefcase"
       link: "/en/services/organizational-psychology/"
       button_text: "Learn More"
 ---

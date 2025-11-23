@@ -1,12 +1,12 @@
 # Legacy Theme Cleanup - Context
 
-**Last Updated:** 2025-11-23 15:45
+**Last Updated:** 2025-11-23 16:35
 
 ## Quick Reference
 
-**Status:** In Progress - Phase 1.1 Complete, Phase 1.2 Next
-**Current Focus:** Phase 1.1 complete (feature-details migration)
-**Next Step:** Phase 1.2 - first-session-timeline → onboarding-steps (4 files)
+**Status:** In Progress - Phase 1.4 Complete, Phase 1.5 Next
+**Current Focus:** Phase 1.4 complete (service FAQ migrations)
+**Next Step:** Phase 1.5 - benefits_section → values-compass (4 files)
 
 ## Key Files Modified
 
@@ -23,6 +23,46 @@
 - content/english/approach.md
 - content/romanian/resurse.md
 - content/english/resources.md
+
+**Phase 1.2: first-session-timeline → onboarding-steps COMPLETE ✅**
+- 4 files migrated (abordare/approach, resurse/resources - RO+EN)
+- Build: 558ms, zero deprecated warnings
+- Language parity maintained
+
+**Files Modified:**
+- content/romanian/abordare.md
+- content/romanian/resurse.md
+- content/english/approach.md
+- content/english/resources.md
+
+**Phase 1.3: Contact page sections COMPLETE ✅**
+- 2 files migrated (contact - RO+EN)
+- Sections migrated: faq-content → faq-mini, confidentiality-notice → privacy-guarantee
+- Decision: contact-info-cards & contact-options KEPT (not deprecated, working fine)
+- Build: 578ms, zero deprecated warnings
+- Language parity maintained
+
+**Files Modified:**
+- content/romanian/contact.md
+- content/english/contact.md
+
+**Phase 1.4: service-faq-inline → faq-mini COMPLETE ✅**
+- 8 files migrated (4 service pages RO + 4 EN)
+- Migration script created: scripts/migrate-service-faq.py
+- Data transformation: service_faq → faq_items, removed icon fields
+- Build: 540ms, zero errors
+- Language parity maintained
+- Note: Showcase files intentionally left unchanged (demo reference)
+
+**Files Modified:**
+- content/romanian/servicii/terapie-individuala.md
+- content/romanian/servicii/terapie-de-cuplu.md
+- content/romanian/servicii/terapie-de-familie.md
+- content/romanian/servicii/psihologie-organizationala.md
+- content/english/services/individual-therapy.md
+- content/english/services/couples-therapy.md
+- content/english/services/family-therapy.md
+- content/english/services/organizational-psychology.md
 
 ## Key Decisions Made
 

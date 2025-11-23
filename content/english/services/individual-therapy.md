@@ -11,7 +11,7 @@ sections:
   - type: "methods-used"
   - type: "benefits-results"
   - type: "pricing-packages"
-  - type: "service-faq-inline"
+  - type: "faq-mini"
   - type: "testimonials-enhanced"
   - type: "cta-standard"
   - type: "services-preview"
@@ -63,27 +63,21 @@ problem_empathy:
   challenges:
     - title: "Overwhelming Anxiety"
       description: "You feel constantly worried, tense. You may have panic attacks or avoid situations out of fear. Anxiety limits your life."
-      icon: "exclamation-triangle"
 
     - title: "Depression and Lack of Meaning"
       description: "Persistent sadness, lack of energy, nothing matters anymore. Social isolation, work difficulties, dark thoughts."
-      icon: "cloud-rain"
 
     - title: "Unresolved Trauma"
       description: "Past events still haunt you. Flashbacks, nightmares, avoidance, intense emotional reactions when reminded of trauma."
-      icon: "heart-crack"
 
     - title: "Low Self-Esteem"
       description: "Severe self-criticism, feelings of inadequacy, constant comparison with others. Difficulties setting boundaries."
-      icon: "user-slash"
 
     - title: "Emotional Regulation Difficulties"
       description: "Rapid mood changes, intense emotional reactions hard to control. Sometimes self-harm or suicidal thoughts."
-      icon: "wave-square"
 
     - title: "Developmental Block"
       description: "You feel stuck, don't know which direction to take. Difficulties making decisions, lack of clarity about goals."
-      icon: "road"
 
   empathy_text: "These challenges deserve professional attention. **Individual therapy offers you the support, tools, and perspectives necessary for healing and growth.**"
 
@@ -99,7 +93,6 @@ therapeutic_process:
       subtitle: "Sessions 1-2"
       description: "We discuss why you're seeking therapy, your history (family, relationships, trauma), current symptoms, and goals. You complete validated questionnaires for progress measurement."
       duration: "50-75 minutes/session"
-      icon: "clipboard-list"
       activities:
         - "Structured clinical interview"
         - "Validated questionnaires (GAD-7, PHQ-9, PCL-5)"
@@ -110,7 +103,6 @@ therapeutic_process:
       subtitle: "Session 2"
       description: "We establish clear, measurable, realistic goals (SMART). Choose appropriate approaches (CBT, EMDR, Mindfulness). Estimate duration and frequency."
       duration: "50 minutes"
-      icon: "map"
       activities:
         - "3-5 SMART objectives"
         - "Personalized therapeutic plan"
@@ -121,7 +113,6 @@ therapeutic_process:
       subtitle: "Weeks 3-16"
       description: "Regular sessions where we actively work with specific techniques. I teach you practical strategies for home. Real transformation happens here."
       duration: "12-20 sessions (3-5 months)"
-      icon: "tools"
       activities:
         - "CBT techniques (cognitive restructuring, exposure)"
         - "EMDR processing (for trauma)"
@@ -133,7 +124,6 @@ therapeutic_process:
       subtitle: "Month 4-6"
       description: "As you reach goals, sessions become less frequent. Focus: consolidating techniques and preventing relapse. You become your own therapist."
       duration: "2-4 months"
-      icon: "shield-check"
       activities:
         - "Identifying warning signs"
         - "Independent application of techniques"
@@ -144,7 +134,6 @@ therapeutic_process:
       subtitle: "After 6-12 months"
       description: "When you've reached goals, we complete therapy. Establish follow-up plan (occasional sessions if needed). Door remains open."
       duration: "Variable"
-      icon: "flag-checkered"
       activities:
         - "Recap: what you learned"
         - "Follow-up planning (optional: 1 session/3-6 months)"
@@ -160,7 +149,6 @@ methods_used:
   methods:
     - title: "CBT - Cognitive Behavioral Therapy"
       short_name: "CBT"
-      icon: "brain"
       description: "The most effective approach for anxiety and depression. I teach you to identify and modify automatic negative thoughts that affect your emotions and behaviors."
       how_it_works: "We understand the connection thoughts → emotions → behaviors. Identify cognitive distortions (catastrophizing, all-or-nothing thinking). Challenge and replace negative thoughts with more realistic ones. Practice new behaviors to reinforce change."
       best_for:
@@ -173,7 +161,6 @@ methods_used:
 
     - title: "EMDR - Eye Movement Desensitization and Reprocessing"
       short_name: "EMDR"
-      icon: "eye"
       description: "If you've experienced traumatic events (abuse, accident, loss, violence), EMDR helps process painful memories without re-living them in detail."
       how_it_works: "We identify traumatic memories and associated negative beliefs. Through bilateral stimulation (eye movements or tapping), the brain reprocesses the memory. Emotional impact decreases dramatically. We install positive beliefs instead."
       best_for:
@@ -186,7 +173,6 @@ methods_used:
 
     - title: "Mindfulness and Acceptance-Based Therapy"
       short_name: "Mindfulness"
-      icon: "lotus"
       description: "I teach you to observe thoughts and emotions without being overwhelmed by them. Mindfulness reduces emotional reactivity and increases self-compassion."
       how_it_works: "Practice conscious attention to the present moment. Observe thoughts as mental events, not absolute realities. Develop self-compassion and radical acceptance. Reduce suffering through acceptance, not struggle."
       best_for:
@@ -199,7 +185,6 @@ methods_used:
 
     - title: "Integrative Therapy for Personal Development"
       short_name: "Integrative"
-      icon: "compass"
       description: "For personal development, we combine elements from all approaches for self-knowledge, value clarification, and authentic living."
       how_it_works: "We explore who you are beyond roles and social expectations. Identify repetitive patterns in your life. Clarify what truly matters to you. Develop emotional intelligence and healthier relationships."
       best_for:
@@ -219,32 +204,26 @@ benefits_results:
   items:
     - title: "Symptom Reduction"
       description: "Significant decrease (30-80%) in anxiety, depression, panic attacks, flashbacks. Results measured objectively through questionnaires."
-      icon: "chart-line-down"
       timeline: "After 8-12 sessions"
 
     - title: "Practical Lifelong Techniques"
       description: "Learn concrete tools (diaphragmatic breathing, cognitive restructuring, mindfulness, gradual exposure) you can use anytime."
-      icon: "toolbox"
       timeline: "After 4-6 sessions"
 
     - title: "Deep Self-Knowledge"
       description: "Understand why you think, feel, and act the way you do. Discover unconscious patterns sabotaging you. Clarity about your real values."
-      icon: "lightbulb"
       timeline: "After 10-15 sessions"
 
     - title: "Increased Self-Esteem"
       description: "Develop a healthier relationship with yourself. Reduce severe self-criticism. Increase self-compassion and self-acceptance."
-      icon: "heart"
       timeline: "After 12-20 sessions"
 
     - title: "Healthier Relationships"
       description: "When you heal yourself, relationships improve. Communicate more clearly, set healthy boundaries, choose partners better."
-      icon: "users"
       timeline: "After 15-20 sessions"
 
     - title: "Meaning and Direction in Life"
       description: "Clarity about values, goals, and life meaning. Know what you want and how to get there. Live more authentically and fulfilled."
-      icon: "compass"
       timeline: "After 20+ sessions"
 
 # Pricing Packages
@@ -329,40 +308,31 @@ pricing_packages:
     - text: "**Reduced rate:** Offer reduced rates (180 RON/session) for students and difficult financial situations. Contact me for details."
     - text: "**Reimbursement:** Some private health insurance partially reimburses therapy. Check with your insurer."
 
-# Service FAQ
-service_faq:
-  enable: true
-  title: "Frequently Asked Questions About Individual Therapy"
-  subtitle: "Everything you need to know"
+# FAQ Mini
+faq_mini_title: "Frequently Asked Questions About Individual Therapy"
+faq_mini_subtitle: "Everything you need to know"
 
-  questions:
+faq_items:
     - question: "How long does individual therapy last?"
       answer: "It depends on problem complexity. For mild-moderate anxiety or depression, 12-20 sessions (3-5 months) are usually sufficient. For complex trauma or personality disorders, it may last 6-24 months. In the first session, we establish a realistic estimate based on your situation."
-      icon: "clock"
 
     - question: "How often do I need to come to therapy?"
       answer: "Initially, we recommend weekly sessions to build momentum and see rapid results. As you progress, we space out sessions (biweekly, monthly). Frequency adapts to your needs and availability."
-      icon: "calendar"
 
     - question: "What if I don't connect with the therapist?"
       answer: "The therapeutic relationship is essential for success. If after 2-3 sessions you feel it's not a good fit (different style, lack of connection), we discuss openly. If necessary, I can refer you to a more suitable colleague. Don't take it personally - each therapist has a different style, and it's important to find the right match."
-      icon: "handshake"
 
     - question: "Can I do therapy online or only in-person?"
       answer: "**Both!** Online therapy (Zoom, Google Meet, Skype) is as effective as in-person, according to recent studies. Many clients prefer online for flexibility (no transportation time, can do therapy from any location). You choose what suits you better."
-      icon: "video"
 
     - question: "How do I know if therapy is working?"
       answer: "We use scientifically validated questionnaires (GAD-7 for anxiety, PHQ-9 for depression, PCL-5 for trauma) that you complete every 4-6 sessions. We compare scores to see objective progress. Plus, you'll feel the difference in daily life: sleep better, feel calmer, function better at work/relationships."
-      icon: "chart-line"
 
     - question: "Is it safe to share very personal information?"
       answer: "**Absolutely.** Confidentiality is sacred in psychotherapy and protected by law. Everything we discuss remains between us, according to the psychologists' code of ethics and GDPR. The only legal exceptions (extremely rare): imminent risk of suicide/homicide or child abuse. Otherwise, NOTHING we discuss leaves the office."
-      icon: "shield-check"
 
     - question: "How does therapy differ from talking to a friend?"
       answer: "Friends offer support but don't have professional training to identify deep patterns, offer validated techniques, measure objective progress. Therapy is structured, evidence-based, confidential, and focused on real change. Plus, the therapist isn't emotionally involved in your life, so can offer objective perspectives."
-      icon: "question-circle"
 
 # Testimonials
 testimonials:
@@ -410,13 +380,9 @@ cta_standard:
 
   benefits:
     - text: "Free 30-minute initial consultation"
-      icon: "check-circle"
     - text: "Completely confidential (code of ethics + GDPR)"
-      icon: "check-circle"
     - text: "Bucharest office or online (Zoom)"
-      icon: "check-circle"
     - text: "No obligations - just an honest conversation"
-      icon: "check-circle"
 
 # Services Preview - Related Services
 services_preview_related:
@@ -427,19 +393,16 @@ services_preview_related:
   services:
     - title: "Couples Therapy"
       description: "If your relationship contributes to anxiety or depression, couples therapy can help solve problems together."
-      icon: "heart"
       link: "/en/services/couples-therapy/"
       button_text: "Learn More"
 
     - title: "Family Therapy"
       description: "Unresolved family issues can affect your mental health. We work together with family for healing."
-      icon: "users"
       link: "/en/services/family-therapy/"
       button_text: "Learn More"
 
     - title: "Organizational Psychology"
       description: "Work stress overwhelming you? I offer individual coaching for burnout and professional development."
-      icon: "briefcase"
       link: "/en/services/organizational-psychology/"
       button_text: "Learn More"
 ---

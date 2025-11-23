@@ -11,7 +11,7 @@ sections:
   - type: "methods-used"
   - type: "benefits-results"
   - type: "pricing-packages"
-  - type: "service-faq-inline"
+  - type: "faq-mini"
   - type: "testimonials-enhanced"
   - type: "cta-standard"
   - type: "services-preview"
@@ -63,27 +63,21 @@ problem_empathy:
   challenges:
     - title: "Comunicare Disfuncțională Familială"
       description: "Nimeni nu se ascultă cu adevărat. Certuri constante, tăceri tensionate, sau evitarea completă a conversațiilor dificile."
-      icon: "comments-slash"
 
     - title: "Conflicte Între Generații"
       description: "Părinți vs. adolescenți, bunici vs. părinți despre educație, valori diferite, limite neclare, lipsa respectului reciproc."
-      icon: "users-cog"
 
     - title: "Comportamente Problematice ale Copiilor"
       description: "Agresivitate, retragere socială, probleme la școală, anxietate, depresie, automutilare, tentative de suicid."
-      icon: "exclamation-triangle"
 
     - title: "Familii Recompuse Haotice"
       description: "Copii care resping părintele vitreg, conflicte între părinți biologici, loialități divizate, reguli diferite în cele două case."
-      icon: "home"
 
     - title: "Limite și Roluri Neclare"
       description: "Copii care devin părinți (parentificare), bunici care subminează autoritatea părinților, limite prea stricte sau prea laxe."
-      icon: "sitemap"
 
     - title: "Secrete și Tabuuri Familiale"
       description: "Lucruri despre care familia nu vorbește niciodată: abuz în trecut, boli mentale, dependențe, probleme financiare, sexualitate."
-      icon: "user-secret"
 
   empathy_text: "Aceste probleme nu se rezolvă singure. **Terapia de familie oferă un spațiu sigur unde toți membrii pot fi auziți și vindecarea poate începe la nivel sistemic.**"
 
@@ -99,7 +93,6 @@ therapeutic_process:
       subtitle: "Sesiunile 1-2"
       description: "Ședință cu întreaga familie prezentă (sau cât mai mulți membri posibil). Înțelegem istoria familiei, genograma (arbore genealogic cu relații), problemele actuale din perspectiva fiecăruia."
       duration: "90 minute/sesiune"
-      icon: "clipboard-list"
       activities:
         - "Genogramă familială (3 generații)"
         - "Identificarea problemelor din perspectiva fiecărui membru"
@@ -110,7 +103,6 @@ therapeutic_process:
       subtitle: "Sesiunile 2-4"
       description: "Identificăm ciclurile repetitive toxice: cum escaladează conflictele, cine se aliniază cu cine, roluri rigide (victimă/salvator/persecutor), limite neclare."
       duration: "90 minute"
-      icon: "sync"
       activities:
         - "Maparea ciclurilor de conflict"
         - "Identificarea rolurilor familiale (copilul problemă, părintele strict, etc.)"
@@ -121,7 +113,6 @@ therapeutic_process:
       subtitle: "Săptămânile 5-10"
       description: "Învățăm să comunicăm constructiv: ascultare activă, validare emoțională, exprimarea nevoilor fără acuzații, rezolvarea conflictelor structurat."
       duration: "8-10 sesiuni (2-3 luni)"
-      icon: "comments"
       activities:
         - "Exerciții de ascultare activă în familie"
         - "\"I-statements\" vs. \"You-statements\""
@@ -133,7 +124,6 @@ therapeutic_process:
       subtitle: "Săptămânile 11-16"
       description: "Redefinim limite sănătoase între subsisteme (părinți, copii, bunici). Clarificăm roluri: părinții sunt părinți, copiii sunt copii (nu confidenți sau mediatori)."
       duration: "6-8 sesiuni (1.5-2 luni)"
-      icon: "sitemap"
       activities:
         - "Stabilirea limitelor clare între subsisteme"
         - "Întărirea subsistemului parental (părinții ca echipă)"
@@ -145,7 +135,6 @@ therapeutic_process:
       subtitle: "Săptămânile 17-24 (dacă e cazul)"
       description: "Dacă există traume nerezolvate sau secrete (abuz, dependențe, pierderi), le procesăm în mod adecvat vârstei și siguranței emoționale a fiecăruia."
       duration: "Variabil, 6-12 sesiuni"
-      icon: "heart-crack"
       activities:
         - "Procesarea traumelor în mod sigur și adecvat vârstei"
         - "Dezvăluirea secretelor în context terapeutic protejat"
@@ -156,7 +145,6 @@ therapeutic_process:
       subtitle: "Luna 6-9"
       description: "Sesiuni mai rare (bilunar, lunar). Consolidăm noile pattern-uri, pregătim familia pentru etapele viitoare de dezvoltare, creăm planuri pentru crize."
       duration: "2-3 luni"
-      icon: "shield-check"
       activities:
         - "Recapitulare: ce a învățat familia"
         - "Pregătire pentru tranziții viitoare (copii care pleacă, etc.)"
@@ -173,7 +161,6 @@ methods_used:
   methods:
     - title: "Terapie de Familie Structurală (Structural Family Therapy)"
       short_name: "Structurală"
-      icon: "sitemap"
       description: "Dezvoltată de Salvador Minuchin. Focusată pe restructurarea limitelor, ierarhiilor și alianțelor din familie pentru a crea o structură mai sănătoasă."
       how_it_works: "Identificăm structura actuală: cine este aliat cu cine, unde sunt limitele (prea difuze sau prea rigide), cine are puterea. Restructurăm prin tehnici active: întărirea subsistemului parental, clarificarea limitelor, redistribuirea puterii. Practic, schimbăm \"arhitectura\" familiei."
       best_for:
@@ -186,7 +173,6 @@ methods_used:
 
     - title: "Terapie de Familie Strategică (Strategic Family Therapy)"
       short_name: "Strategică"
-      icon: "chess"
       description: "Dezvoltată de Jay Haley. Focusată pe rezolvarea problemelor specifice prin intervenții strategice directe și schimbarea pattern-urilor repetitive."
       how_it_works: "Identificăm ciclurile problematice (ce declanșează conflictul, cum escaladează, cum se termină). Intervenim strategic pentru a întrerupe ciclul. Uneori folosim \"paradoxuri terapeutice\" (prescrierea simptomului). Focusul e pe schimbarea comportamentului, nu neapărat înțelegerea."
       best_for:
@@ -199,7 +185,6 @@ methods_used:
 
     - title: "Terapie de Familie Multigenerațională (Bowen)"
       short_name: "Bowen"
-      icon: "project-diagram"
       description: "Dezvoltată de Murray Bowen. Focusată pe înțelegerea pattern-urilor transgeneraționale, diferențierea sinelui și reducerea anxietății emoționale în sistem."
       how_it_works: "Explorăm genograma familială (3-4 generații) pentru a identifica pattern-uri repetitive (divorțuri, dependențe, boli mentale, conflicte). Înțelegem \"cutoff-ul emoțional\" și triangulările. Lucrăm la diferențierea (a fi tu însuți fără a fi controlat de familia de origine). Reducem fuziunea emoțională și reactivitatea."
       best_for:
@@ -211,7 +196,6 @@ methods_used:
 
     - title: "Terapie Narativă pentru Familii"
       short_name: "Narativă"
-      icon: "book-open"
       description: "Dezvoltată de Michael White și David Epston. Ajută familiile să re-scrie \"narațiunile problematice\" și să construiască identități mai sănătoase."
       how_it_works: "Externalizăm problema (\"Furia\" vs. \"Copilul furios\"). Explorăm povestea familiei și cum problema a devenit dominantă. Identificăm \"evenimente unice\" când familia a reușit să reziste problemei. Re-scriem narațiunea familială către una mai puternică și mai sănătoasă."
       best_for:
@@ -231,32 +215,26 @@ benefits_results:
   items:
     - title: "Comunicare Familială Îmbunătățită"
       description: "Toți membrii învață să se asculte cu adevărat, să valideze emoțiile celorlalți, să exprime nevoile constructiv. Mai puțină țipare, mai multă înțelegere."
-      icon: "comments"
       timeline: "După 8-10 sesiuni"
 
     - title: "Reducerea Conflictelor și Tensiunii"
       description: "Certurile devin mai rare și mai puțin intense. Familia învață să rezolve problemele înainte să escaladeze. Atmosfera de acasă devine mai liniștită."
-      icon: "handshake"
       timeline: "După 10-12 sesiuni"
 
     - title: "Limite Sănătoase și Roluri Claire"
       description: "Părinții sunt părinți (nu prieteni sau rivali). Copiii sunt copii (nu confidenți sau mediatori). Fiecare știe ce rol are și respectă limitele."
-      icon: "sitemap"
       timeline: "După 12-16 sesiuni"
 
     - title: "Comportamentele Problematice Scad"
       description: "Dacă ați venit pentru comportamentul unui copil/adolescent, veți vedea îmbunătățiri semnificative când întreaga familie se schimbă."
-      icon: "chart-line-down"
       timeline: "După 10-15 sesiuni"
 
     - title: "Conexiune și Intimitate Crescută"
       description: "Familia se simte mai apropiată. Ritualuri de conexiune (mese împreună, activități), mai mult timp de calitate, sentimentul de apartenență."
-      icon: "heart"
       timeline: "După 12-18 sesiuni"
 
     - title: "Reziliență în Fața Provocărilor"
       description: "Când apar probleme viitoare (iar vor apărea), familia știe cum să le abordeze împreună. Aveți instrumentele pentru a naviga orice."
-      icon: "shield-check"
       timeline: "După 16-20 sesiuni"
 
 # Pricing Packages
@@ -342,40 +320,31 @@ pricing_packages:
     - text: "**Cine trebuie să fie prezent:** Ideal toți membrii care locuiesc împreună. Copii mici (sub 5 ani) pot lipsi la unele sesiuni."
     - text: "**Confidențialitate:** Ce se discută în terapie rămâne în familie. Nu împărtășim informații cu persoane din afara familiei (cu excepții legale rare)."
 
-# Service FAQ
-service_faq:
-  enable: true
-  title: "Întrebări Frecvente Despre Terapia de Familie"
-  subtitle: "Tot ce trebuie să știți"
+# FAQ Mini
+faq_mini_title: "Întrebări Frecvente Despre Terapia de Familie"
+faq_mini_subtitle: "Tot ce trebuie să știți"
 
-  questions:
+faq_items:
     - question: "Trebuie să fie prezenți TOȚI membrii familiei?"
       answer: "Ideal da, dar nu întotdeauna necesar. De obicei lucrăm cu membrii care locuiesc împreună (părinți + copii). Copii foarte mici (sub 5 ani) pot lipsi la unele sesiuni. Uneori începem fără un membru reticent și încercăm să-l atragem ulterior. Important: ambii părinți ar trebui să fie prezenți dacă e posibil."
-      icon: "users"
 
     - question: "Ce dacă un copil refuză să vină?"
       answer: "E normal ca adolescenții să fie reticenți. Explicați că terapia nu este despre găsirea vinovatului, ci despre îmbunătățirea familiei pentru TOȚI. Dacă persistă refuzul, începem fără el și vedem cum evoluează. Uneori vine după ce vede schimbări pozitive. În cazuri extreme, putem face sesiuni individuale cu el paralel."
-      icon: "user-times"
 
     - question: "Cât durează terapia de familie?"
       answer: "Depinde de complexitate. Pentru probleme moderate (comunicare, conflicte), 12-20 sesiuni (3-5 luni) sunt de obicei suficiente. Pentru probleme grave (traume, familii recompuse complexe, abuz), poate dura 6-12 luni (20-30 sesiuni). Evaluăm progresul la fiecare 4-6 sesiuni."
-      icon: "clock"
 
     - question: "Ce se întâmplă dacă unul din părinți sabotează terapia?"
       answer: "Dacă un părinte sabotează activ progresul (nu respectă acorduri, subminează celălalt părinte), va trebui să discutăm direct acest comportament în sesiune. Uneori descoperim că \"sabotajul\" vine din frică sau neînțelegere. Dacă persistă, putem sugera terapie de cuplu pentru părinți înainte de a continua terapia de familie."
-      icon: "hand-stop"
 
     - question: "Putem face terapie de familie online?"
       answer: "**Da!** Terapia de familie online (Zoom) poate funcționa bine, mai ales cu adolescenți care sunt confortabili cu tehnologia. Important: toată familia în aceeași cameră (nu fiecare în altă parte a casei). Avem nevoie de un ecran mare și conexiune stabilă. Unele tehnici (observarea interacțiunilor fizice) sunt mai dificile online, dar majoritatea metodelor funcționează."
-      icon: "video"
 
     - question: "Ce dacă problemele vin de la UN singur membru (ex. copil problemă)?"
       answer: "Într-o familie, \"copilul problemă\" este adesea simptomul unor probleme sistemice mai mari. Comportamentul lui poate fi o reacție la conflicte parentale, limite neclare, sau stres familial. În terapia de familie, nu \"reparăm\" copilul - transformăm întregul sistem pentru ca el să nu mai aibă nevoie să fie \"problema\". Și da, veți vedea schimbări dramatice când sistemul se schimbă."
-      icon: "lightbulb"
 
     - question: "Este confidențial? Ce dacă copiii spun lucruri despre părinți?"
       answer: "Confidențialitatea în terapia de familie este complexă. Regula generală: ce se discută în familie rămâne în familie (nu împărtășim cu persoane din afară). Între membri, încurajăm onestitatea, dar într-un mod sigur și constructiv. Dacă un copil dezvăluie abuz sau pericol, avem obligația legală să intervenim. Altfel, lucrăm pentru siguranță emoțională pentru toți."
-      icon: "shield-check"
 
 # Testimonials
 testimonials:
@@ -423,13 +392,9 @@ cta_standard:
 
   benefits:
     - text: "Consultație gratuită 30 minute pentru toată familia"
-      icon: "check-circle"
     - text: "Complet confidențial (cod deontologic + GDPR)"
-      icon: "check-circle"
     - text: "Cabinet București sau online (Zoom)"
-      icon: "check-circle"
     - text: "Fără judecată - spațiu sigur pentru toți"
-      icon: "check-circle"
 
 # Services Preview - Related
 services_preview_related:
@@ -440,19 +405,16 @@ services_preview_related:
   services:
     - title: "Terapie Individuală"
       description: "Uneori membrii familiei au nevoie de terapie individuală paralelă (depresie, anxietate, traume personale)."
-      icon: "user"
       link: "/servicii/terapie-individuala/"
       button_text: "Află Mai Multe"
 
     - title: "Terapie de Cuplu"
       description: "Dacă problemele familiale vin din conflictele de cuplu ale părinților, terapia de cuplu poate fi necesară."
-      icon: "heart"
       link: "/servicii/terapie-de-cuplu/"
       button_text: "Află Mai Multe"
 
     - title: "Psihologie Organizațională"
       description: "Stresul de la muncă al părinților afectează familia? Coaching pentru echilibru viață-muncă."
-      icon: "briefcase"
       link: "/servicii/psihologie-organizationala/"
       button_text: "Află Mai Multe"
 ---

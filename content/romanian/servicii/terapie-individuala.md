@@ -11,7 +11,7 @@ sections:
   - type: "methods-used"
   - type: "benefits-results"
   - type: "pricing-packages"
-  - type: "service-faq-inline"
+  - type: "faq-mini"
   - type: "testimonials-enhanced"
   - type: "cta-standard"
   - type: "services-preview"
@@ -329,40 +329,31 @@ pricing_packages:
     - text: "**Tarif social:** Oferă tarife reduse (180 RON/sesiune) pentru studenți și situații financiare dificile. Contactează-mă pentru detalii."
     - text: "**Decontare:** Unele asigurări private de sănătate decontează parțial terapia. Verific cu asiguratorul tău."
 
-# Service FAQ
-service_faq:
-  enable: true
-  title: "Întrebări Frecvente Despre Terapia Individuală"
-  subtitle: "Tot ce trebuie să știi"
+# FAQ Mini
+faq_mini_title: "Întrebări Frecvente Despre Terapia Individuală"
+faq_mini_subtitle: "Tot ce trebuie să știi"
 
-  questions:
-    - question: "Cât timp durează terapia individuală?"
-      answer: "Depinde de complexitatea problemei. Pentru anxietate sau depresie ușoară-moderată, 12-20 sesiuni (3-5 luni) sunt de obicei suficiente. Pentru traume complexe sau tulburări de personalitate, poate dura 6-24 luni. În prima sesiune stabilim o estimare realistă bazată pe situația ta."
-      icon: "clock"
+faq_items:
+  - question: "Cât timp durează terapia individuală?"
+    answer: "Depinde de complexitatea problemei. Pentru anxietate sau depresie ușoară-moderată, 12-20 sesiuni (3-5 luni) sunt de obicei suficiente. Pentru traume complexe sau tulburări de personalitate, poate dura 6-24 luni. În prima sesiune stabilim o estimare realistă bazată pe situația ta."
 
-    - question: "Cât de des trebuie să vin la terapie?"
-      answer: "Inițial recomandam sesiuni săptămânale pentru a construi momentum și a vedea rezultate rapide. Pe măsură ce progresezi, distanțăm sesiunile (bilunar, lunar). Frecvența se adaptează nevoilor și disponibilității tale."
-      icon: "calendar"
+  - question: "Cât de des trebuie să vin la terapie?"
+    answer: "Inițial recomandam sesiuni săptămânale pentru a construi momentum și a vedea rezultate rapide. Pe măsură ce progresezi, distanțăm sesiunile (bilunar, lunar). Frecvența se adaptează nevoilor și disponibilității tale."
 
-    - question: "Ce se întâmplă dacă nu mă înțeleg cu terapeutal?"
-      answer: "Relația terapeutică este esențială pentru succes. Dacă după 2-3 sesiuni simți că nu este o potrivire bună (stil diferit, lipsă de conexiune), discutăm deschis. Dacă e cazul, te pot referi la un coleg mai potrivit. Nu lua personal - fiecare terapeut are un stil diferit, și e important să găsești potrivirea."
-      icon: "handshake"
+  - question: "Ce se întâmplă dacă nu mă înțeleg cu terapeutal?"
+    answer: "Relația terapeutică este esențială pentru succes. Dacă după 2-3 sesiuni simți că nu este o potrivire bună (stil diferit, lipsă de conexiune), discutăm deschis. Dacă e cazul, te pot referi la un coleg mai potrivit. Nu lua personal - fiecare terapeut are un stil diferit, și e important să găsești potrivirea."
 
-    - question: "Pot face terapie online sau doar față în față?"
-      answer: "**Ambele!** Terapia online (Zoom, Google Meet, Skype) este la fel de eficientă ca cea față în față, conform studiilor recente. Mulți clienți preferă online pentru flexibilitate (nu pierd timp cu transportul, pot face terapie din orice locație). Alegi ce ți se potrivește mai bine."
-      icon: "video"
+  - question: "Pot face terapie online sau doar față în față?"
+    answer: "**Ambele!** Terapia online (Zoom, Google Meet, Skype) este la fel de eficientă ca cea față în față, conform studiilor recente. Mulți clienți preferă online pentru flexibilitate (nu pierd timp cu transportul, pot face terapie din orice locație). Alegi ce ți se potrivește mai bine."
 
-    - question: "Cum știu dacă terapia funcționează?"
-      answer: "Folosim chestionare validate științific (GAD-7 pentru anxietate, PHQ-9 pentru depresie, PCL-5 pentru traume) pe care le completezi la fiecare 4-6 sesiuni. Comparăm scorurile pentru a vedea progresul obiectiv. Plus, vei simți diferența în viața de zi cu zi: dormi mai bine, te simți mai calm, funcționezi mai bine la muncă/relații."
-      icon: "chart-line"
+  - question: "Cum știu dacă terapia funcționează?"
+    answer: "Folosim chestionare validate științific (GAD-7 pentru anxietate, PHQ-9 pentru depresie, PCL-5 pentru traume) pe care le completezi la fiecare 4-6 sesiuni. Comparăm scorurile pentru a vedea progresul obiectiv. Plus, vei simți diferența în viața de zi cu zi: dormi mai bine, te simți mai calm, funcționezi mai bine la muncă/relații."
 
-    - question: "Este sigur să împărtășesc informații foarte personale?"
-      answer: "**Absolut.** Confidențialitatea este sacră în psihoterapie și protejată de lege. Tot ce discutăm rămâne între noi, conform codului deontologic al psihologilor și GDPR. Singurele excepții legale (extrem de rare): risc iminent de suicid/omucidere sau abuz de copii. În rest, NIMIC din ce discutăm nu iese din cabinet."
-      icon: "shield-check"
+  - question: "Este sigur să împărtășesc informații foarte personale?"
+    answer: "**Absolut.** Confidențialitatea este sacră în psihoterapie și protejată de lege. Tot ce discutăm rămâne între noi, conform codului deontologic al psihologilor și GDPR. Singurele excepții legale (extrem de rare): risc iminent de suicid/omucidere sau abuz de copii. În rest, NIMIC din ce discutăm nu iese din cabinet."
 
-    - question: "Ce diferă terapia de a vorbi cu un prieten?"
-      answer: "Prietenii oferă suport, dar nu au pregătirea profesională pentru a identifica tiparele profunde, a oferi tehnici validate, a măsura progresul obiectiv. Terapia este structurată, bazată pe dovezi, confidențială și focusată pe schimbare reală. Plus, terapeutal nu este implicat emoțional în viața ta, deci poate oferi perspective obiective."
-      icon: "question-circle"
+  - question: "Ce diferă terapia de a vorbi cu un prieten?"
+    answer: "Prietenii oferă suport, dar nu au pregătirea profesională pentru a identifica tiparele profunde, a oferi tehnici validate, a măsura progresul obiectiv. Terapia este structurată, bazată pe dovezi, confidențială și focusată pe schimbare reală. Plus, terapeutal nu este implicat emoțional în viața ta, deci poate oferi perspective obiective."
 
 # Testimonials
 testimonials:

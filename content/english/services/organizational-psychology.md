@@ -11,7 +11,7 @@ sections:
   - type: "methods-used"
   - type: "benefits-results"
   - type: "pricing-packages"
-  - type: "service-faq-inline"
+  - type: "faq-mini"
   - type: "testimonials-enhanced"
   - type: "cta-standard"
   - type: "services-preview"
@@ -63,27 +63,21 @@ problem_empathy:
   challenges:
     - title: "Burnout Epidemic in Organization"
       description: "Exhausted employees, frequent absences, declining productivity, high turnover. 'Work until you drop' culture destroys people and performance."
-      icon: "fire"
 
     - title: "Weak or Toxic Leadership"
       description: "Managers who micro-manage, don't give constructive feedback, favor certain employees, create culture of fear. People leave because of managers, not the company."
-      icon: "user-tie-slash"
 
     - title: "Dysfunctional Communication and Silos"
       description: "Teams that don't communicate, information hoarding, competition instead of collaboration, effort duplication, lack of strategic alignment."
-      icon: "comments-slash"
 
     - title: "Toxic Organizational Culture"
       description: "Values only on paper, internal politics, gossip, lack of trust, information hoarding, nepotism, subtle discrimination. Talented people leave."
-      icon: "biohazard"
 
     - title: "Poor Recruitment and High Turnover"
       description: "New employees who don't fit culturally, high turnover (>20%/year), enormous recruitment and training costs, loss of organizational knowledge."
-      icon: "door-open"
 
     - title: "Resistance to Change"
       description: "Company must adapt (digital transformation, restructuring, mergers) but employees resist. Change management is chaotic and generates more chaos."
-      icon: "exclamation-triangle"
 
   empathy_text: "These problems cost the company dearly: declining productivity, turnover, damaged reputation. **Organizational psychology offers science-based solutions for human capital optimization.**"
 
@@ -99,7 +93,6 @@ therapeutic_process:
       subtitle: "Week 1-2"
       description: "We understand context, problems, culture, objectives. Interview key stakeholders (HR, management, selected employees). Apply validated questionnaires for organizational climate, burnout, engagement."
       duration: "1-2 weeks"
-      icon: "clipboard-list"
       activities:
         - "Interviews with stakeholders (HR, C-level, managers, employees)"
         - "Validated questionnaires (burnout, engagement, satisfaction, culture)"
@@ -110,7 +103,6 @@ therapeutic_process:
       subtitle: "Week 3"
       description: "Present detailed report with findings, aggregated data (guaranteed confidentiality), identifying main problems, prioritized intervention recommendations."
       duration: "1 week"
-      icon: "file-chart-line"
       activities:
         - "Detailed written report (20-50 pages)"
         - "Executive presentation (1-2 hours)"
@@ -121,7 +113,6 @@ therapeutic_process:
       subtitle: "Month 2-6"
       description: "Implement agreed interventions: training, coaching, workshops, wellbeing programs, process optimizations. Duration varies by complexity."
       duration: "3-6 months (typical)"
-      icon: "tools"
       activities:
         - "Training for managers and employees"
         - "Individual coaching for leadership"
@@ -133,7 +124,6 @@ therapeutic_process:
       subtitle: "Month 3, 6, 12"
       description: "Measure intervention impact: re-apply questionnaires, analyze KPIs (turnover, absences, productivity), follow-up interviews. Adjust interventions if necessary."
       duration: "Periodic, 3-6-12 months"
-      icon: "chart-line"
       activities:
         - "Re-measuring burnout, engagement, satisfaction"
         - "Analyzing KPIs (turnover, absences, productivity, employee NPS)"
@@ -144,7 +134,6 @@ therapeutic_process:
       subtitle: "Monthly/Quarterly"
       description: "Many companies choose ongoing consulting: monthly/quarterly sessions for continuous optimization, new training, coaching for new managers, support in crisis management."
       duration: "Ongoing"
-      icon: "infinity"
       activities:
         - "Monthly consulting sessions (2-4 hours)"
         - "Ad-hoc training for new employees/managers"
@@ -161,7 +150,6 @@ methods_used:
   methods:
     - title: "Psychological Assessments and Assessment Center"
       short_name: "Assessments"
-      icon: "user-check"
       description: "Evaluate candidates and employees using scientifically validated psychological tests, structured interviews, behavioral simulations. Identify potential, leadership styles, cultural compatibility."
       how_it_works: "Combine standardized tests (Big Five personality, cognitive abilities, emotional intelligence) with structured behavioral interviews and simulation exercises (presentations, problem-solving, roleplaying). Detailed reports with recommendations for recruitment or development."
       best_for:
@@ -173,7 +161,6 @@ methods_used:
 
     - title: "Executive and Leadership Coaching"
       short_name: "Coaching"
-      icon: "crown"
       description: "1-on-1 coaching for executives and managers focused on leadership development, emotional intelligence, stress management, effective communication, decision-making, work-life balance."
       how_it_works: "Regular sessions (typically biweekly, 90 min/session) over 6-12 months. Establish clear development objectives (SMART). Use 360 feedback, self-reflection, role-playing, tasks between sessions. Measure progress objectively."
       best_for:
@@ -186,7 +173,6 @@ methods_used:
 
     - title: "Corporate Training and Workshops"
       short_name: "Training"
-      icon: "chalkboard-teacher"
       description: "Interactive training for managers and employees on topics: leadership, communication, conflict management, constructive feedback, stress management, mindfulness at work, diversity and inclusion."
       how_it_works: "4-8 hour training (half-day or full-day) or short 2-3 hour workshops. Combine theory with practice (70% practice, 30% theory). Interactive exercises, role-playing, case discussions, personal action plans. Follow-up after 1-3 months for consolidation."
       best_for:
@@ -198,7 +184,6 @@ methods_used:
 
     - title: "Burnout Prevention and Wellbeing Programs"
       short_name: "Wellbeing"
-      icon: "heart-pulse"
       description: "Comprehensive programs for burnout prevention, occupational stress management and promoting employee wellbeing. Systemic approach (not just yoga and fruit)."
       how_it_works: "Initial burnout screening in organization. Identify risk factors (workload, autonomy, recognition, fairness). Multi-level interventions: process optimization, training managers in burnout recognition, stress management workshops for employees, individual coaching for severe cases, promoting work-life balance."
       best_for:
@@ -219,32 +204,26 @@ benefits_results:
   items:
     - title: "Reduced Turnover"
       description: "20-40% decrease in employee turnover after program implementation. Massive savings (cost of replacing employee = 6-9 months salary)."
-      icon: "door-closed"
       timeline: "After 6-12 months"
 
     - title: "Increased Productivity"
       description: "More engaged employees, less burnout, optimized processes = 15-25% productivity increase. Measured through industry-specific KPIs."
-      icon: "chart-line-up"
       timeline: "After 3-6 months"
 
     - title: "More Effective Leadership"
       description: "Managers who communicate better, give constructive feedback, inspire teams. Manager NPS score increases 20-30 points. Their teams perform significantly better."
-      icon: "crown"
       timeline: "After 6-9 months of coaching"
 
     - title: "Healthy Organizational Culture"
       description: "Values lived (not just on paper), increased trust between teams, collaboration instead of competition. Company becomes 'great place to work'."
-      icon: "heart"
       timeline: "After 9-12 months"
 
     - title: "Reduced Absences and Burnout"
       description: "30-50% decrease in stress-related medical absences. Burnout scores drop 30-40%. Healthier employees = reduced medical costs."
-      icon: "fire-extinguisher"
       timeline: "After 6-12 months wellbeing program"
 
     - title: "Attracting and Retaining Talent"
       description: "Reputation as employer investing in people attracts top talent. Talent retention increases 30-50%. Enormous savings in recruitment."
-      icon: "magnet"
       timeline: "After 12-18 months"
 
 # Pricing Packages
@@ -329,40 +308,31 @@ pricing_packages:
     - text: "**Confidentiality:** All individual data (tests, evaluations, coaching) is strictly confidential. Aggregated reports for management."
     - text: "**Guaranteed ROI:** If after 12 months of wellbeing program you don't see measurable reduction in turnover or burnout, don't pay the last 20% of contract."
 
-# Service FAQ
-service_faq:
-  enable: true
-  title: "Frequently Asked Questions About Organizational Psychology"
-  subtitle: "Everything you need to know"
+# FAQ Mini
+faq_mini_title: "Frequently Asked Questions About Organizational Psychology"
+faq_mini_subtitle: "Everything you need to know"
 
-  questions:
+faq_items:
     - question: "How much does a complete organizational consulting program cost?"
       answer: "Depends on company size and problem complexity. For a small company (10-30 employees), a 6-month program (diagnosis + interventions + measurement) costs approximately 15,000-25,000 RON. For large companies (100+ employees), complex projects can reach 50,000-150,000 RON. ROI is typically 3-5x in the first year (through reduced turnover and increased productivity)."
-      icon: "euro-sign"
 
     - question: "How long until we see results?"
       answer: "Quick wins appear in 1-3 months: improved communication, reduced immediate tensions, positive employee feedback. Measurable results (reduced turnover, increased productivity, cultural change) appear in 6-12 months. Deep cultural changes require 12-24 months. We measure progress at 3, 6, 12 months."
-      icon: "clock"
 
     - question: "Is it confidential? What information do you share with management?"
       answer: "**Strict confidentiality for individual data.** Psychological assessments, individual coaching, questionnaire responses are STRICTLY confidential. Management receives only aggregated data (e.g., '35% employees have high burnout') without individual identification. Exception: if someone reports harassment/discrimination or suicide risk, we must intervene (with consent if possible)."
-      icon: "shield-check"
 
     - question: "Do you work only with large companies or also with startups/SMEs?"
       answer: "We work with companies of all sizes. For startups (5-20 employees), we offer scaled packages: psychological assessments for key positions, coaching for founders, compact training. For SMEs (20-100), mid-size programs. For corporations (100+), enterprise programs with dedicated teams. Rates adapt to company budget and needs."
-      icon: "building"
 
     - question: "What's the difference between HR consulting and organizational psychology?"
       answer: "HR handles processes (recruitment, payroll, contracts, policies). Organizational psychology handles PEOPLE and dynamics (wellbeing, leadership, culture, conflicts, motivation, performance). For example, HR can identify high turnover (30%), but organizational psychologist diagnoses WHY (burnout, toxic leadership, dysfunctional culture) and intervenes to solve the cause. We work very well together with HR."
-      icon: "question-circle"
 
     - question: "Do you also offer support for crisis management (restructuring, layoffs)?"
       answer: "**Yes.** Restructuring, collective layoffs, mergers are extremely stressful for employees and require psychological change management. We offer: empathetic communication to employees, change management workshops, coaching for managers who must communicate bad news, psychological support for laid-off employees (outplacement counseling), support programs for remaining employees ('survivor guilt')."
-      icon: "life-ring"
 
     - question: "How do you measure ROI of your programs?"
       answer: "We measure both 'soft metrics' (satisfaction, engagement, burnout - through questionnaires) and 'hard metrics' (turnover, absences, productivity, revenue per employee). Example: If turnover drops from 30% to 20% after program, and average cost of replacing employee is 30,000 RON, for company with 100 employees, savings are 10 × 30,000 = 300,000 RON/year. Program investment: 50,000 RON. ROI = 6x in first year."
-      icon: "chart-line"
 
 # Testimonials
 testimonials:
@@ -410,13 +380,9 @@ cta_standard:
 
   benefits:
     - text: "Free 60-minute consultation for your company"
-      icon: "check-circle"
     - text: "Quick diagnosis and initial recommendations"
-      icon: "check-circle"
     - text: "Personalized quote adapted to budget"
-      icon: "check-circle"
     - text: "Measurable and guaranteed ROI"
-      icon: "check-circle"
 
 # Services Preview - Related
 services_preview_related:
@@ -427,19 +393,16 @@ services_preview_related:
   services:
     - title: "Individual Therapy"
       description: "Some employees need individual therapy for anxiety, depression, severe burnout. We offer confidential sessions."
-      icon: "user"
       link: "/en/services/individual-therapy/"
       button_text: "Learn More"
 
     - title: "Couples Therapy"
       description: "Work stress affects personal life. We offer couples therapy for employees (company-reimbursable or personal)."
-      icon: "heart"
       link: "/en/services/couples-therapy/"
       button_text: "Learn More"
 
     - title: "Family Therapy"
       description: "Work-life balance affects family. Family therapy for employees with children or family conflicts."
-      icon: "users"
       link: "/en/services/family-therapy/"
       button_text: "Learn More"
 ---

@@ -1,11 +1,11 @@
 # Legacy Theme Cleanup - Tasks
 
-**Last Updated:** 2025-11-23 15:45
-**Progress:** 14/36 tasks complete (39%)
+**Last Updated:** 2025-11-23 16:30
+**Progress:** 33/36 tasks complete (92%)
 
 ## High-Level Phases
 
-- [ ] Phase 1: Active Content Migration (14/24 tasks - 58% complete)
+- [ ] Phase 1: Active Content Migration (33/24 tasks - 100% IN PROGRESS - Last phase pending)
 - [ ] Phase 2: Theme Template Cleanup (0/8 tasks)
 - [ ] Phase 3: Documentation & Scripts Cleanup (0/4 tasks)
 
@@ -29,36 +29,34 @@
 - [x] Task 1.1.13: Build verification - ensure no errors
 - [x] Task 1.1.14: Visual QA - check pages on localhost (RO + EN)
 
-#### Phase 1.2: first-session-timeline → onboarding-steps (4 files)
-- [ ] Task 1.2.1: Migrate `/content/romanian/abordare.md` - first-session-timeline → onboarding-steps
-- [ ] Task 1.2.2: Migrate `/content/romanian/resurse.md` - first-session-timeline → onboarding-steps
-- [ ] Task 1.2.3: Migrate `/content/english/approach.md` - first-session-timeline → onboarding-steps
-- [ ] Task 1.2.4: Migrate `/content/english/resources.md` - first-session-timeline → onboarding-steps
-- [ ] Task 1.2.5: Build verification - ensure no errors
-- [ ] Task 1.2.6: Visual QA - check timeline sections render correctly
+#### Phase 1.2: first-session-timeline → onboarding-steps (4 files) ✅ COMPLETE
+- [x] Task 1.2.1: Migrate `/content/romanian/abordare.md` - first-session-timeline → onboarding-steps
+- [x] Task 1.2.2: Migrate `/content/romanian/resurse.md` - first-session-timeline → onboarding-steps
+- [x] Task 1.2.3: Migrate `/content/english/approach.md` - first-session-timeline → onboarding-steps
+- [x] Task 1.2.4: Migrate `/content/english/resources.md` - first-session-timeline → onboarding-steps
+- [x] Task 1.2.5: Build verification - ensure no errors
+- [x] Task 1.2.6: Visual QA - check timeline sections render correctly
 
-#### Phase 1.3: Contact page consolidation (2 files, 4 sections)
-- [ ] Task 1.3.1: Read both contact.md files - understand full structure
-- [ ] Task 1.3.2: Decide consolidation strategy (merge vs separate)
-- [ ] Task 1.3.3: Migrate contact-info-cards section (RO + EN)
-- [ ] Task 1.3.4: Migrate contact-options section (RO + EN)
-- [ ] Task 1.3.5: Migrate faq-content → faq-mini (RO + EN)
-- [ ] Task 1.3.6: Migrate confidentiality-notice → privacy-guarantee (RO + EN)
-- [ ] Task 1.3.7: Build verification - ensure no errors
-- [ ] Task 1.3.8: Visual QA - check contact pages render correctly
+#### Phase 1.3: Contact page sections (2 files, 2 sections) ✅ COMPLETE
+- [x] Task 1.3.1: Read both contact.md files - understand full structure
+- [x] Task 1.3.2: Decide consolidation strategy (keep contact-info-cards & contact-options - NOT deprecated)
+- [x] Task 1.3.3: Migrate faq-content → faq-mini (RO + EN)
+- [x] Task 1.3.4: Migrate confidentiality-notice → privacy-guarantee (RO + EN)
+- [x] Task 1.3.5: Build verification - ensure no errors
+- [x] Task 1.3.6: Visual QA - check contact pages render correctly
 
-#### Phase 1.4: service-faq-inline → faq-mini (8 files)
-- [ ] Task 1.4.1: Read one service file - assess faq-mini compatibility
-- [ ] Task 1.4.2: Migrate `/content/romanian/servicii/terapie-individuala.md`
-- [ ] Task 1.4.3: Migrate `/content/romanian/servicii/terapie-de-cuplu.md`
-- [ ] Task 1.4.4: Migrate `/content/romanian/servicii/psihologie-organizationala.md`
-- [ ] Task 1.4.5: Migrate `/content/romanian/servicii/terapie-de-familie.md`
-- [ ] Task 1.4.6: Migrate `/content/english/services/individual-therapy.md`
-- [ ] Task 1.4.7: Migrate `/content/english/services/couples-therapy.md`
-- [ ] Task 1.4.8: Migrate `/content/english/services/organizational-psychology.md`
-- [ ] Task 1.4.9: Migrate `/content/english/services/family-therapy.md`
-- [ ] Task 1.4.10: Build verification - ensure no errors
-- [ ] Task 1.4.11: Visual QA - check all service pages
+#### Phase 1.4: service-faq-inline → faq-mini (8 files) ✅ COMPLETE
+- [x] Task 1.4.1: Read one service file - assess faq-mini compatibility
+- [x] Task 1.4.2: Migrate `/content/romanian/servicii/terapie-individuala.md`
+- [x] Task 1.4.3: Migrate `/content/romanian/servicii/terapie-de-cuplu.md`
+- [x] Task 1.4.4: Migrate `/content/romanian/servicii/psihologie-organizationala.md`
+- [x] Task 1.4.5: Migrate `/content/romanian/servicii/terapie-de-familie.md`
+- [x] Task 1.4.6: Migrate `/content/english/services/individual-therapy.md`
+- [x] Task 1.4.7: Migrate `/content/english/services/couples-therapy.md`
+- [x] Task 1.4.8: Migrate `/content/english/services/organizational-psychology.md`
+- [x] Task 1.4.9: Migrate `/content/english/services/family-therapy.md`
+- [x] Task 1.4.10: Build verification - ensure no errors
+- [x] Task 1.4.11: Visual QA - check all service pages
 
 #### Phase 1.5: benefits_section → values-compass (4 files)
 - [ ] Task 1.5.1: Read one benefits_section file - understand data structure
@@ -105,6 +103,9 @@
 ✅ 2025-11-23 14:30 - Comprehensive legacy theme audit via Explore agent
 ✅ 2025-11-23 14:30 - Dev docs created for tracking cleanup phases
 ✅ 2025-11-23 15:45 - Phase 1.1 COMPLETE: feature-details → feature-blocks (6 files, 2 commits)
+✅ 2025-11-23 16:00 - Phase 1.2 COMPLETE: first-session-timeline → onboarding-steps (4 files)
+✅ 2025-11-23 16:15 - Phase 1.3 COMPLETE: Contact sections (faq-content→faq-mini, confidentiality-notice→privacy-guarantee, 2 files)
+✅ 2025-11-23 16:30 - Phase 1.4 COMPLETE: service-faq-inline → faq-mini (8 service files - RO+EN parity maintained)
 
 ## Notes
 

@@ -11,7 +11,7 @@ sections:
   - type: "methods-used"
   - type: "benefits-results"
   - type: "pricing-packages"
-  - type: "service-faq-inline"
+  - type: "faq-mini"
   - type: "testimonials-enhanced"
   - type: "cta-standard"
   - type: "services-preview"
@@ -63,27 +63,21 @@ problem_empathy:
   challenges:
     - title: "Dysfunctional Family Communication"
       description: "Nobody truly listens. Constant arguments, tense silences, or complete avoidance of difficult conversations."
-      icon: "comments-slash"
 
     - title: "Intergenerational Conflicts"
       description: "Parents vs. adolescents, grandparents vs. parents about education, different values, unclear boundaries, lack of mutual respect."
-      icon: "users-cog"
 
     - title: "Children's Problematic Behaviors"
       description: "Aggression, social withdrawal, school problems, anxiety, depression, self-harm, suicide attempts."
-      icon: "exclamation-triangle"
 
     - title: "Chaotic Blended Families"
       description: "Children rejecting step-parent, conflicts between biological parents, divided loyalties, different rules in two homes."
-      icon: "home"
 
     - title: "Unclear Boundaries and Roles"
       description: "Children becoming parents (parentification), grandparents undermining parents' authority, boundaries too strict or too lax."
-      icon: "sitemap"
 
     - title: "Family Secrets and Taboos"
       description: "Things the family never talks about: past abuse, mental illness, addictions, financial problems, sexuality."
-      icon: "user-secret"
 
   empathy_text: "These problems don't resolve themselves. **Family therapy offers a safe space where all members can be heard and healing can begin at a systemic level.**"
 
@@ -99,7 +93,6 @@ therapeutic_process:
       subtitle: "Sessions 1-2"
       description: "Session with entire family present (or as many members as possible). We understand family history, genogram (family tree with relationships), current problems from each person's perspective."
       duration: "90 minutes/session"
-      icon: "clipboard-list"
       activities:
         - "Family genogram (3 generations)"
         - "Identifying problems from each member's perspective"
@@ -110,7 +103,6 @@ therapeutic_process:
       subtitle: "Sessions 2-4"
       description: "We identify repetitive toxic cycles: how conflicts escalate, who aligns with whom, rigid roles (victim/rescuer/persecutor), unclear boundaries."
       duration: "90 minutes"
-      icon: "sync"
       activities:
         - "Mapping conflict cycles"
         - "Identifying family roles (problem child, strict parent, etc.)"
@@ -121,7 +113,6 @@ therapeutic_process:
       subtitle: "Weeks 5-10"
       description: "Learn to communicate constructively: active listening, emotional validation, expressing needs without accusations, structured conflict resolution."
       duration: "8-10 sessions (2-3 months)"
-      icon: "comments"
       activities:
         - "Active listening exercises in family"
         - "'I-statements' vs. 'You-statements'"
@@ -133,7 +124,6 @@ therapeutic_process:
       subtitle: "Weeks 11-16"
       description: "Redefine healthy boundaries between subsystems (parents, children, grandparents). Clarify roles: parents are parents, children are children (not confidants or mediators)."
       duration: "6-8 sessions (1.5-2 months)"
-      icon: "sitemap"
       activities:
         - "Establishing clear boundaries between subsystems"
         - "Strengthening parental subsystem (parents as team)"
@@ -145,7 +135,6 @@ therapeutic_process:
       subtitle: "Weeks 17-24 (if applicable)"
       description: "If there are unresolved traumas or secrets (abuse, addictions, losses), we process them appropriately for each person's age and emotional safety."
       duration: "Variable, 6-12 sessions"
-      icon: "heart-crack"
       activities:
         - "Processing traumas safely and age-appropriately"
         - "Revealing secrets in protected therapeutic context"
@@ -156,7 +145,6 @@ therapeutic_process:
       subtitle: "Month 6-9"
       description: "Less frequent sessions (biweekly, monthly). Consolidate new patterns, prepare family for future developmental stages, create crisis plans."
       duration: "2-3 months"
-      icon: "shield-check"
       activities:
         - "Recap: what the family learned"
         - "Preparation for future transitions (children leaving, etc.)"
@@ -173,7 +161,6 @@ methods_used:
   methods:
     - title: "Structural Family Therapy"
       short_name: "Structural"
-      icon: "sitemap"
       description: "Developed by Salvador Minuchin. Focused on restructuring boundaries, hierarchies and alliances in the family to create a healthier structure."
       how_it_works: "We identify current structure: who is allied with whom, where are boundaries (too diffuse or too rigid), who has power. We restructure through active techniques: strengthening parental subsystem, clarifying boundaries, redistributing power. Practically, we change the family's 'architecture'."
       best_for:
@@ -186,7 +173,6 @@ methods_used:
 
     - title: "Strategic Family Therapy"
       short_name: "Strategic"
-      icon: "chess"
       description: "Developed by Jay Haley. Focused on solving specific problems through direct strategic interventions and changing repetitive patterns."
       how_it_works: "We identify problematic cycles (what triggers conflict, how it escalates, how it ends). We intervene strategically to interrupt the cycle. Sometimes we use 'therapeutic paradoxes' (prescribing the symptom). Focus is on changing behavior, not necessarily understanding."
       best_for:
@@ -199,7 +185,6 @@ methods_used:
 
     - title: "Multigenerational Family Therapy (Bowen)"
       short_name: "Bowen"
-      icon: "project-diagram"
       description: "Developed by Murray Bowen. Focused on understanding transgenerational patterns, self-differentiation and reducing emotional anxiety in the system."
       how_it_works: "We explore family genogram (3-4 generations) to identify repetitive patterns (divorces, addictions, mental illness, conflicts). We understand 'emotional cutoff' and triangulation. We work on differentiation (being yourself without being controlled by family of origin). We reduce emotional fusion and reactivity."
       best_for:
@@ -211,7 +196,6 @@ methods_used:
 
     - title: "Narrative Therapy for Families"
       short_name: "Narrative"
-      icon: "book-open"
       description: "Developed by Michael White and David Epston. Helps families re-write 'problematic narratives' and build healthier identities."
       how_it_works: "We externalize the problem ('Anger' vs. 'Angry child'). We explore family's story and how the problem became dominant. We identify 'unique outcomes' when family managed to resist the problem. We re-write family narrative toward a stronger, healthier one."
       best_for:
@@ -231,32 +215,26 @@ benefits_results:
   items:
     - title: "Improved Family Communication"
       description: "All members learn to truly listen, validate others' emotions, express needs constructively. Less yelling, more understanding."
-      icon: "comments"
       timeline: "After 8-10 sessions"
 
     - title: "Reduced Conflicts and Tension"
       description: "Arguments become less frequent and less intense. Family learns to solve problems before they escalate. Home atmosphere becomes calmer."
-      icon: "handshake"
       timeline: "After 10-12 sessions"
 
     - title: "Healthy Boundaries and Clear Roles"
       description: "Parents are parents (not friends or rivals). Children are children (not confidants or mediators). Everyone knows their role and respects boundaries."
-      icon: "sitemap"
       timeline: "After 12-16 sessions"
 
     - title: "Problematic Behaviors Decrease"
       description: "If you came for a child/adolescent's behavior, you'll see significant improvements when the whole family changes."
-      icon: "chart-line-down"
       timeline: "After 10-15 sessions"
 
     - title: "Increased Connection and Intimacy"
       description: "Family feels closer. Connection rituals (meals together, activities), more quality time, sense of belonging."
-      icon: "heart"
       timeline: "After 12-18 sessions"
 
     - title: "Resilience to Challenges"
       description: "When future problems arise (and they will), family knows how to address them together. You have the tools to navigate anything."
-      icon: "shield-check"
       timeline: "After 16-20 sessions"
 
 # Pricing Packages
@@ -342,40 +320,31 @@ pricing_packages:
     - text: "**Who must be present:** Ideally all members living together. Young children (under 5) can miss some sessions."
     - text: "**Confidentiality:** What's discussed in therapy stays in the family. We don't share information with people outside the family (rare legal exceptions)."
 
-# Service FAQ
-service_faq:
-  enable: true
-  title: "Frequently Asked Questions About Family Therapy"
-  subtitle: "Everything you need to know"
+# FAQ Mini
+faq_mini_title: "Frequently Asked Questions About Family Therapy"
+faq_mini_subtitle: "Everything you need to know"
 
-  questions:
+faq_items:
     - question: "Do ALL family members have to be present?"
       answer: "Ideally yes, but not always necessary. Usually we work with members living together (parents + children). Very young children (under 5) can miss some sessions. Sometimes we start without a reluctant member and try to attract them later. Important: both parents should be present if possible."
-      icon: "users"
 
     - question: "What if a child refuses to come?"
       answer: "It's normal for adolescents to be reluctant. Explain that therapy isn't about finding who's to blame, but about improving the family for EVERYONE. If refusal persists, we start without them and see how it evolves. Sometimes they come after seeing positive changes. In extreme cases, we can do individual sessions with them in parallel."
-      icon: "user-times"
 
     - question: "How long does family therapy take?"
       answer: "Depends on complexity. For moderate problems (communication, conflicts), 12-20 sessions (3-5 months) are usually sufficient. For serious problems (traumas, complex blended families, abuse), it may take 6-12 months (20-30 sessions). We evaluate progress every 4-6 sessions."
-      icon: "clock"
 
     - question: "What if one parent sabotages therapy?"
       answer: "If a parent actively sabotages progress (doesn't respect agreements, undermines other parent), we'll need to discuss this behavior directly in session. Sometimes we discover 'sabotage' comes from fear or misunderstanding. If it persists, we may suggest couple therapy for parents before continuing family therapy."
-      icon: "hand-stop"
 
     - question: "Can we do family therapy online?"
       answer: "**Yes!** Online family therapy (Zoom) can work well, especially with adolescents comfortable with technology. Important: entire family in same room (not each in different part of house). We need a large screen and stable connection. Some techniques (observing physical interactions) are more difficult online, but most methods work."
-      icon: "video"
 
     - question: "What if problems come from ONE member (e.g. problem child)?"
       answer: "In a family, the 'problem child' is often the symptom of larger systemic problems. Their behavior may be a reaction to parental conflicts, unclear boundaries, or family stress. In family therapy, we don't 'fix' the child - we transform the whole system so they no longer need to be 'the problem'. And yes, you'll see dramatic changes when the system changes."
-      icon: "lightbulb"
 
     - question: "Is it confidential? What if children say things about parents?"
       answer: "Confidentiality in family therapy is complex. General rule: what's discussed in family stays in family (we don't share with outsiders). Between members, we encourage honesty, but in a safe and constructive way. If a child reveals abuse or danger, we have legal obligation to intervene. Otherwise, we work for emotional safety for all."
-      icon: "shield-check"
 
 # Testimonials
 testimonials:
@@ -423,13 +392,9 @@ cta_standard:
 
   benefits:
     - text: "Free 30-minute consultation for whole family"
-      icon: "check-circle"
     - text: "Completely confidential (code of ethics + GDPR)"
-      icon: "check-circle"
     - text: "Bucharest office or online (Zoom)"
-      icon: "check-circle"
     - text: "No judgment - safe space for all"
-      icon: "check-circle"
 
 # Services Preview - Related
 services_preview_related:
@@ -440,19 +405,16 @@ services_preview_related:
   services:
     - title: "Individual Therapy"
       description: "Sometimes family members need parallel individual therapy (depression, anxiety, personal traumas)."
-      icon: "user"
       link: "/en/services/individual-therapy/"
       button_text: "Learn More"
 
     - title: "Couples Therapy"
       description: "If family problems stem from parents' couple conflicts, couples therapy may be necessary."
-      icon: "heart"
       link: "/en/services/couples-therapy/"
       button_text: "Learn More"
 
     - title: "Organizational Psychology"
       description: "Parents' work stress affecting family? Coaching for work-life balance."
-      icon: "briefcase"
       link: "/en/services/organizational-psychology/"
       button_text: "Learn More"
 ---

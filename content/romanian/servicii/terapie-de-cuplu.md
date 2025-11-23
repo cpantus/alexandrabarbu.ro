@@ -11,7 +11,7 @@ sections:
   - type: "methods-used"
   - type: "benefits-results"
   - type: "pricing-packages"
-  - type: "service-faq-inline"
+  - type: "faq-mini"
   - type: "testimonials-enhanced"
   - type: "cta-standard"
   - type: "services-preview"
@@ -63,27 +63,21 @@ problem_empathy:
   challenges:
     - title: "Conflicte Repetitive și Nerezolvate"
       description: "Aceleași certuri se repetă la infinit. Ciclu toxic: criticare → defensivitate → contraatac → retragere. Nimic nu se rezolvă."
-      icon: "repeat"
 
     - title: "Lipsa Comunicării Eficiente"
       description: "Nu vă ascultați cu adevărat. Conversațiile devin monologuri defensive. Nimeni nu se simte auzit sau înțeles."
-      icon: "comments-slash"
 
     - title: "Infidelitate și Trădare"
       description: "Încrederea este distrusă. Suspiciune constantă, gelozie, resentimente. Nu știți dacă puteți sau vreți să continuați."
-      icon: "user-secret"
 
     - title: "Intimitate Fizică și Emoțională Scăzută"
       description: "Vă simțiți ca doi colegi de apartament, nu parteneri. Lipsa afecțiunii, a sexului, a conexiunii. Izolare emoțională."
-      icon: "heart-broken"
 
     - title: "Decizii Majore Nesincronizate"
       description: "Unul vrea copii, celălalt nu. Unul vrea să se mute, celălalt refuză. Viziuni diferite despre viitor creează tensiune enormă."
-      icon: "road-fork"
 
     - title: "Probleme Externe care Afectează Relația"
       description: "Stress financiar, socri intruzivi, probleme cu copiii, dependențe, boli cronice. Presiunea externă distruge relația."
-      icon: "exclamation-triangle"
 
   empathy_text: "Aceste provocări pot fi rezolvate cu ajutor profesional. **Terapia de cuplu vă oferă instrumentele, perspectivele și suportul pentru a reconstrui o relație sănătoasă.**"
 
@@ -99,7 +93,6 @@ therapeutic_process:
       subtitle: "Sesiunile 1-2"
       description: "Ședință comună (ambii parteneri) + ședințe individuale (opțional). Înțelegem istoria relației, problemele actuale, părerile fiecăruia, obiectivele comune și individuale."
       duration: "75 minute/sesiune"
-      icon: "clipboard-list"
       activities:
         - "Istoria relației (cum v-ați cunoscut, etape majore)"
         - "Identificarea problemelor principale din perspectiva fiecăruia"
@@ -110,7 +103,6 @@ therapeutic_process:
       subtitle: "Sesiunea 2-3"
       description: "Identificăm obiective comune pe care amândoi le acceptați: îmbunătățirea comunicării, reconstruirea încrederii, creșterea intimității, rezolvarea unui conflict specific."
       duration: "75 minute"
-      icon: "bullseye"
       activities:
         - "3-5 obiective comune SMART"
         - "Înțelegerea diferențelor de perspectivă"
@@ -121,7 +113,6 @@ therapeutic_process:
       subtitle: "Săptămânile 3-8"
       description: "Învățați să comunicați fără criticare, defensivitate sau retragere. Tehnici Gottman: ascultare activă, validare emoțională, \"soft startup\", repararea rupturilor."
       duration: "8-12 sesiuni (2-3 luni)"
-      icon: "comments"
       activities:
         - "Ascultare activă și validare emoțională"
         - "\"Soft startup\" pentru conflicte (nu criticare)"
@@ -133,7 +124,6 @@ therapeutic_process:
       subtitle: "Săptămânile 9-16"
       description: "Lucrăm la problemele principale: infidelitate, intimitate, decizii majore, conflicte recurente. Tehnici TCC pentru schimbarea comportamentelor problematice."
       duration: "8-12 sesiuni (2-3 luni)"
-      icon: "tools"
       activities:
         - "Procesarea infidelității (dacă e cazul): durere, iertare, reconstruire"
         - "Îmbunătățirea intimității fizice și emoționale"
@@ -145,7 +135,6 @@ therapeutic_process:
       subtitle: "Luna 5-6"
       description: "Sesiuni mai rare (bilunar). Consolidăm progresul, pregătim pentru viitor, dezvoltăm planuri pentru gestionarea crizelor viitoare."
       duration: "2-3 luni"
-      icon: "shield-check"
       activities:
         - "Recapitulare: ce ați învățat împreună"
         - "Plan pentru gestionarea conflictelor viitoare"
@@ -156,7 +145,6 @@ therapeutic_process:
       subtitle: "După 6-9 luni"
       description: "Când obiectivele sunt atinse, finalizăm terapia. Opțional: sesiuni de mentenanță trimestrial pentru a preveni recăderile și a consolida relația."
       duration: "Variabil"
-      icon: "flag-checkered"
       activities:
         - "Evaluare finală: cât de departe ați ajuns"
         - "Planificare follow-up (opțional: 1 sesiune/3-6 luni)"
@@ -172,7 +160,6 @@ methods_used:
   methods:
     - title: "Metoda Gottman (Gottman Method Couples Therapy)"
       short_name: "Gottman"
-      icon: "heart-pulse"
       description: "Cea mai studiată și eficientă metodă pentru terapia de cuplu. Bazată pe 40+ ani de cercetare. Focusată pe îmbunătățirea comunicării, gestionarea conflictelor și construirea prieteniei în relație."
       how_it_works: "Identificăm \"Cavalerii Apocalipsei\" care distrug relațiile: Critică, Defensivitate, Disprețul, Stonewalling. Învățăm antidoturile: \"Soft startup\", acceptarea influenței partenerului, repararea rupturilor, compromisul. Construim \"Love Map\" (cunoașterea profundă a partenerului) și ritualuri de conexiune."
       best_for:
@@ -185,7 +172,6 @@ methods_used:
 
     - title: "TCC pentru Cupluri (Cognitive Behavioral Couples Therapy)"
       short_name: "CBCT"
-      icon: "brain"
       description: "Ajută cuplurile să identifice și să modifice gândurile și comportamentele negative care sabotează relația. Focalizare pe schimbarea pattern-urilor toxice."
       how_it_works: "Identificăm gândurile automate negative despre partener (\"Niciodată nu mă ascultă\", \"Mereu mă critică\"). Provocăm aceste distorsiuni cognitive. Învățăm comportamente noi pozitive (afirmații, afecțiune, timp de calitate). Exersăm rezolvarea problemelor structurată."
       best_for:
@@ -198,7 +184,6 @@ methods_used:
 
     - title: "Terapia Focalizată pe Emoții (Emotionally Focused Therapy - EFT)"
       short_name: "EFT"
-      icon: "heart-circle"
       description: "Abordare bazată pe teoria atașamentului. Ajută cuplurile să înțeleagă nevoile emoționale profunde și să creeze legături sigure."
       how_it_works: "Identificăm ciclurile negative de interacțiune (\"Tu te retragi → Eu devin anxios → Tu te retragi mai mult\"). Explorăm emoțiile vulnerabile sub furia de suprafață (frică, rușine, durere). Re-creăm conexiunea prin împărtășirea vulnerabilității autentice. Construim un atașament sigur."
       best_for:
@@ -211,7 +196,6 @@ methods_used:
 
     - title: "Terapie pentru Infidelitate și Reconstruirea Încrederii"
       short_name: "Infidelitate"
-      icon: "shield-heart"
       description: "Protocol specializat pentru procesarea infidelității, gestionarea durerii și reconstruirea încrederii. Bazat pe munca lui Esther Perel și Shirley Glass."
       how_it_works: "Faza 1: Procesarea traumei (partenerul trădat exprimă durerea). Faza 2: Înțelegerea contextului (de ce s-a întâmplat). Faza 3: Reconstruirea încrederii (transparență, responsabilitate, timp). Faza 4: Construirea unei relații noi (nu revenirea la \"ce era înainte\")."
       best_for:
@@ -231,32 +215,26 @@ benefits_results:
   items:
     - title: "Comunicare Îmbunătățită"
       description: "Învățați să vă ascultați cu adevărat, să validați emoțiile celuilalt, să discutați probleme dificile fără escaladare. Comunicare mai clară, mai empatică."
-      icon: "comments"
       timeline: "După 6-8 sesiuni"
 
     - title: "Reducerea Conflictelor"
       description: "Certurile devin mai rare și mai puțin intense. Când apar, știți cum să le gestionați constructiv. Mai puțină defensivitate și critică."
-      icon: "handshake"
       timeline: "După 10-12 sesiuni"
 
     - title: "Reconstruirea Încrederii"
       description: "Dacă ați trecut prin infidelitate, învățați să iertați (dacă alegeți), să reconstruiți transparența și să creați o relație nouă, mai puternică."
-      icon: "shield-check"
       timeline: "După 20-30 sesiuni (infidelitate)"
 
     - title: "Creșterea Intimității"
       description: "Revenirea conexiunii emoționale și fizice. Afecțiune, sex, timp de calitate împreună. Vă simțiți din nou apropiați."
-      icon: "heart"
       timeline: "După 12-16 sesiuni"
 
     - title: "Rezolvarea Problemelor Împreună"
       description: "Abordați problemele ca echipă, nu ca adversari. Găsiți compromisuri și soluții care funcționează pentru amândoi."
-      icon: "puzzle-piece"
       timeline: "După 10-15 sesiuni"
 
     - title: "Claritate și Decizii"
       description: "Dacă vă gândiți la divorț sau căsătorie, obțineți claritate. Luați decizii informate despre viitorul relației, nu din frică sau furie."
-      icon: "lightbulb"
       timeline: "După 8-12 sesiuni"
 
 # Pricing Packages
@@ -342,40 +320,31 @@ pricing_packages:
     - text: "**Ambii parteneri trebuie să fie prezenți** la toate sesiunile (cu excepția ședințelor individuale opționale)."
     - text: "**Decontare:** Unele asigurări private de sănătate pot decontapte parțial. Verificați cu asiguratorul vostru."
 
-# Service FAQ
-service_faq:
-  enable: true
-  title: "Întrebări Frecvente Despre Terapia de Cuplu"
-  subtitle: "Tot ce trebuie să știți"
+# FAQ Mini
+faq_mini_title: "Întrebări Frecvente Despre Terapia de Cuplu"
+faq_mini_subtitle: "Tot ce trebuie să știți"
 
-  questions:
+faq_items:
     - question: "Cât durează terapia de cuplu?"
       answer: "Depinde de gravitatea problemelor. Pentru conflicte moderate și îmbunătățirea comunicării, 12-20 sesiuni (3-5 luni) sunt de obicei suficiente. Pentru infidelitate sau probleme mai profunde, poate dura 6-12 luni (20-30 sesiuni). În prima sesiune stabilim o estimare realistă."
-      icon: "clock"
 
     - question: "Ce dacă doar unul din noi vrea terapie?"
       answer: "E ideal să vină amândoi, dar înțelegem că uneori un partener este reticent. Poti începe singur cu terapie individuală focalizată pe relație, sau vii la o primă sesiune singur și vedem cum îl atragem pe partener. Multe cupluri încep așa și partenerul reticent se alătură după ce vede beneficiile."
-      icon: "user-plus"
 
     - question: "Terapia ne va salva relația sau ne va ajuta să ne despărțim?"
       answer: "Scopul terapiei de cuplu nu este neapărat să vă țină împreună, ci să vă ajute să luați cea mai bună decizie pentru amândoi. Unele cupluri își salvează relația, altele realizează că divorțul este mai sănătos. Ambele rezultate sunt valide dacă sunt conștiente și mature, nu din furie sau frică."
-      icon: "road-fork"
 
     - question: "Ce dacă terapeutal ia partea unui partener?"
       answer: "Un terapeut bun de cuplu este NEUTRU și nu ia părți. Rolul meu este să înțeleg perspectiva fiecăruia, să validez ambele părți și să vă ajut să găsiți soluții împreună. Dacă simțiți vreodată că iau partea cuiva, vă rog să spuneți - este important să discutăm."
-      icon: "balance-scale"
 
     - question: "Putem face terapie de cuplu online?"
       answer: "**Da!** Terapia de cuplu online (Zoom) este la fel de eficientă ca cea față în față, conform studiilor. Mulți preferă online pentru confort (faceți terapia de acasă, fără stres cu transportul). Important: ambii să fiți în aceeași cameră, nu fiecare în alt loc."
-      icon: "video"
 
     - question: "Ce dacă unul din noi are o aventură în continuare?"
       answer: "Pentru ca terapia de infidelitate să funcționeze, aventura TREBUIE să se oprească complet. Dacă partenerul infidel nu este pregătit să încheie aventura, nu putem lucra la reconstruirea încrederii. Transparență totală este esențială."
-      icon: "hand-stop"
 
     - question: "Cât de des trebuie să venim?"
       answer: "Inițial recomandam sesiuni săptămânale pentru momentum. Pe măsură ce progresați, distanțăm la bilunar, apoi lunar. Pentru crize acute (infidelitate recent descoperită), uneori recomandam 2 sesiuni/săptămână primele 2-3 săptămâni."
-      icon: "calendar"
 
 # Testimonials
 testimonials:
@@ -423,13 +392,9 @@ cta_standard:
 
   benefits:
     - text: "Consultație gratuită 30 minute pentru ambii"
-      icon: "check-circle"
     - text: "Complet confidențial (cod deontologic + GDPR)"
-      icon: "check-circle"
     - text: "Cabinet București sau online (Zoom)"
-      icon: "check-circle"
     - text: "Fără judecată - spațiu sigur pentru amândoi"
-      icon: "check-circle"
 
 # Services Preview - Related
 services_preview_related:
@@ -440,19 +405,16 @@ services_preview_related:
   services:
     - title: "Terapie Individuală"
       description: "Uneori problemele de cuplu vin din probleme individuale (depresie, traume). Terapie individuală poate completa terapia de cuplu."
-      icon: "user"
       link: "/servicii/terapie-individuala/"
       button_text: "Află Mai Multe"
 
     - title: "Terapie de Familie"
       description: "Dacă copiii sau familia extinsă contribuie la problemele voastre, terapia de familie poate ajuta."
-      icon: "users"
       link: "/servicii/terapie-de-familie/"
       button_text: "Află Mai Multe"
 
     - title: "Psihologie Organizațională"
       description: "Stresul de la muncă afectează relația? Coaching pentru echilibru viață-muncă."
-      icon: "briefcase"
       link: "/servicii/psihologie-organizationala/"
       button_text: "Află Mai Multe"
 ---

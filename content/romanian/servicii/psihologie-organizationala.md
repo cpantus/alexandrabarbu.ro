@@ -11,7 +11,7 @@ sections:
   - type: "methods-used"
   - type: "benefits-results"
   - type: "pricing-packages"
-  - type: "service-faq-inline"
+  - type: "faq-mini"
   - type: "testimonials-enhanced"
   - type: "cta-standard"
   - type: "services-preview"
@@ -63,27 +63,21 @@ problem_empathy:
   challenges:
     - title: "Burnout Epidemic în Organizație"
       description: "Angajați epuizați, absențe frecvente, scăderea productivității, fluctuație mare. Cultura \"lucrează până cazi\" distruge oamenii și performanța."
-      icon: "fire"
 
     - title: "Leadership Slab sau Toxic"
       description: "Manageri care micro-gestionează, nu dau feedback constructiv, favorizează anumiți angajați, creează cultură a fricii. Oamenii pleacă din cauza managerilor, nu a companiei."
-      icon: "user-tie-slash"
 
     - title: "Comunicare Disfuncțională și Silozuri"
       description: "Echipe care nu comunică între ele, informații reținute, competiție în loc de colaborare, duplicarea eforturilor, lipsă de aliniament strategic."
-      icon: "comments-slash"
 
     - title: "Cultură Organizațională Toxică"
       description: "Valores doar pe hârtie, politici interne, bârfă, lipsă de încredere, reținerea informațiilor, nepotism, discriminare subtilă. Oamenii talentați pleacă."
-      icon: "biohazard"
 
     - title: "Recrutare Proastă și Turnover Mare"
       description: "Angajați noi rapid care nu se potrivesc cultural, turnover ridicat (>20%/an), costuri enorme de recrutare și training, pierderea cunoștințelor organizaționale."
-      icon: "door-open"
 
     - title: "Rezistență la Schimbare"
       description: "Compania trebuie să se adapteze (digital transformation, restructurare, fuziuni) dar angajații rezistă. Managementul schimbării este haotic și generează mai mult haos."
-      icon: "exclamation-triangle"
 
   empathy_text: "Aceste probleme costă compania scump: scăderea productivității, turnover, reputație afectată. **Psihologia organizațională oferă soluții bazate pe științ ă pentru optimizarea capitalului uman.**"
 
@@ -99,7 +93,6 @@ therapeutic_process:
       subtitle: "Săptămâna 1-2"
       description: "Înțelegem contextul, problemele, cultura, obiectivele. Intervievăm stakeholderi cheie (HR, management, angajați selectați). Aplicăm chestionare validate pentru climat organizational, burnout, engagement."
       duration: "1-2 săptămâni"
-      icon: "clipboard-list"
       activities:
         - "Interviuri cu stakeholderi (HR, C-level, manageri, angajați)"
         - "Chestionare validate (burnout, engagement, satisfacție, cultură)"
@@ -110,7 +103,6 @@ therapeutic_process:
       subtitle: "Săptămâna 3"
       description: "Prezentăm raport detaliat cu constatări, date agregate (confidențialitate garantată), identificarea problemelor principale, recomandări de intervenție prioritizate."
       duration: "1 săptămână"
-      icon: "file-chart-line"
       activities:
         - "Raport scris detaliat (20-50 pagini)"
         - "Prezentare executivă (1-2 ore)"
@@ -121,7 +113,6 @@ therapeutic_process:
       subtitle: "Luna 2-6"
       description: "Implementăm intervenții agree: training-uri, coaching, workshop-uri, programe de wellbeing, optimizări de proces. Durata variază în funcție de complexitate."
       duration: "3-6 luni (tipic)"
-      icon: "tools"
       activities:
         - "Training-uri pentru manageri și angajați"
         - "Coaching individual pentru leadership"
@@ -133,7 +124,6 @@ therapeutic_process:
       subtitle: "Luna 3, 6, 12"
       description: "Măsurăm impactul interveniilor: re-aplicăm chestionare, analizăm KPI-uri (turnover, absențe, productivitate), interviuri de follow-up. Ajustăm intervenții dacă e necesar."
       duration: "Periodic, 3-6-12 luni"
-      icon: "chart-line"
       activities:
         - "Re-măsurare burnout, engagement, satisfacție"
         - "Analiza KPI-uri (turnover, absențe, productivitate, NPS angajați)"
@@ -144,7 +134,6 @@ therapeutic_process:
       subtitle: "Lunar/Trimestrial"
       description: "Multe companii aleg consultanță continuă: sesiuni lunare/trimestriale pentru optimizare continuă, training-uri noi, coaching pentru noi manageri, suport în gestionarea crizelor."
       duration: "Ongoing"
-      icon: "infinity"
       activities:
         - "Sesiuni lunare de consultanță (2-4 ore)"
         - "Training-uri ad-hoc pentru noi angajați/manageri"
@@ -161,7 +150,6 @@ methods_used:
   methods:
     - title: "Evaluări Psihologice și Assessment Center"
       short_name: "Evaluări"
-      icon: "user-check"
       description: "Evaluăm candidați și angajați folosind teste psihologice validate științific, interviuri structurate, simulări comportamentale. Identificăm potențial, stiluri de leadership, compatibilitate culturală."
       how_it_works: "Combinăm teste standardizate (personalitate Big Five, abilități cognitive, inteligență emoțională) cu interviuri comportamentale structurate și exerciții de simulare (prezentări, rezolvare probleme, roleplaying). Rapoarte detaliate cu recomandări pentru recrutare sau dezvoltare."
       best_for:
@@ -173,7 +161,6 @@ methods_used:
 
     - title: "Coaching Executiv și de Leadership"
       short_name: "Coaching"
-      icon: "crown"
       description: "Coaching 1-la-1 pentru executivi și manageri focusat pe dezvoltare leadership, inteligență emoțională, gestionarea stresului, comunicare eficientă, luarea deciziilor, echilibru viață-muncă."
       how_it_works: "Sesiuni regulate (bilunar tipic, 90 min/sesiune) pe parcursul a 6-12 luni. Stabilim obiective clare de dezvoltare (SMART). Folosim feedback 360, auto-reflecție, role-playing, task-uri între sesiuni. Măsurăm progresul obiectiv."
       best_for:
@@ -186,7 +173,6 @@ methods_used:
 
     - title: "Training-uri și Workshop-uri Corporate"
       short_name: "Training"
-      icon: "chalkboard-teacher"
       description: "Training-uri interactive pentru manageri și angajați pe teme: leadership, comunicare, gestionare conflict, feedback constructiv, gestionare stress, mindfulness la locul de muncă, diversitate și incluziune."
       how_it_works: "Training-uri de 4-8 ore (jumătate zi sau zi întreagă) sau workshop-uri scurte de 2-3 ore. Combinăm teorie cu practică (70% practică, 30% teorie). Exerciții interactive, role-playing, discuții de caz, planuri de acțiune personale. Follow-up după 1-3 luni pentru consolidare."
       best_for:
@@ -198,7 +184,6 @@ methods_used:
 
     - title: "Programe de Prevenție Burnout și Wellbeing"
       short_name: "Wellbeing"
-      icon: "heart-pulse"
       description: "Programe comprehensive pentru prevenirea burnout-ului, gestionarea stresului ocupațional și promovarea wellbeing-ului angajaților. Abordare sistemică (nu doar yoga și fructe)."
       how_it_works: "Screening inițial burnout în organizație. Identificare factori de risc (sarcină de muncă, autonomie, recunoaștere, echitate). Intervenții multi-nivel: optimizare procese, training manageri în recunoaștere burnout, workshop-uri gestionare stress pentru angajați, coaching individual pentru cazuri severe, promovarea echilibrului viață-muncă."
       best_for:
@@ -219,32 +204,26 @@ benefits_results:
   items:
     - title: "Reducerea Turnover-ului"
       description: "Scădere 20-40% în fluctuația angajaților după implementarea programelor. Economii masive (costul de înlocuire a unui angajat = 6-9 luni salariu)."
-      icon: "door-closed"
       timeline: "După 6-12 luni"
 
     - title: "Creșterea Productivității"
       description: "Angajați mai engaged, mai puțin burnout, procese optimizate = creștere productivitate cu 15-25%. Măsurat prin KPI-uri specifice industriei."
-      icon: "chart-line-up"
       timeline: "După 3-6 luni"
 
     - title: "Leadership Mai Eficient"
       description: "Manageri care comunică mai bine, dau feedback constructiv, inspiră echipele. Scor NPS manager crește cu 20-30 puncte. Echipele lor performează semnificativ mai bine."
-      icon: "crown"
       timeline: "După 6-9 luni de coaching"
 
     - title: "Cultură Organizațională Sănătoasă"
       description: "Valori trăite (nu doar pe hârtie), încredere crescută între echipe, colaborare în loc de competiție. Compania devine \"great place to work\"."
-      icon: "heart"
       timeline: "După 9-12 luni"
 
     - title: "Reducerea Absențelor și Burnout-ului"
       description: "Scădere 30-50% în absențe medicale legate de stress. Scoruri de burnout scad cu 30-40%. Angajați mai sănătoși = costuri medicale reduse."
-      icon: "fire-extinguisher"
       timeline: "După 6-12 luni program wellbeing"
 
     - title: "Atragerea și Reținerea Talentelor"
       description: "Reputația de employer care investește în oameni atrage talente top. Retenția talentelor crește cu 30-50%. Economii enorme în recrutare."
-      icon: "magnet"
       timeline: "După 12-18 luni"
 
 # Pricing Packages
@@ -329,40 +308,31 @@ pricing_packages:
     - text: "**Confidențialitate:** Toate datele individuale (teste, evaluări, coaching) sunt strict confidențiale. Rapoarte agregate pentru management."
     - text: "**ROI garantat:** Dacă după 12 luni de program wellbeing nu vedeți reducere măsurabilă în turnover sau burnout, nu plătiți ultimele 20% din contract."
 
-# Service FAQ
-service_faq:
-  enable: true
-  title: "Întrebări Frecvente Despre Psihologie Organizațională"
-  subtitle: "Tot ce trebuie să știți"
+# FAQ Mini
+faq_mini_title: "Întrebări Frecvente Despre Psihologie Organizațională"
+faq_mini_subtitle: "Tot ce trebuie să știți"
 
-  questions:
+faq_items:
     - question: "Cât costă un program complet de consultanță organizațională?"
       answer: "Depinde de mărimea companiei și complexitatea problemelor. Pentru o companie mică (10-30 angajați), un program de 6 luni (diagnostic + intervenții + măsurare) costă orientativ 15.000-25.000 RON. Pentru companii mari (100+ angajați), proiecte complexe pot ajunge la 50.000-150.000 RON. ROI-ul este de obicei 3-5x în primul an (prin reducerea turnover-ului și creșterea productivității)."
-      icon: "euro-sign"
 
     - question: "Cât timp durează să vedem rezultate?"
       answer: "Rezultate rapide (quick wins) apar în 1-3 luni: îmbunătățirea comunicării, reducerea tensiunilor imediate, feedback pozitiv de la angajați. Rezultate măsurabile (reducerea turnover-ului, creșterea productivității, schimbare culturală) apar în 6-12 luni. Schimbări culturale profunde necesită 12-24 luni. Măsurăm progresul la 3, 6, 12 luni."
-      icon: "clock"
 
     - question: "Este confidențial? Ce informații împărtășiți cu management-ul?"
       answer: "**Confidențialitate strictă pentru date individuale.** Evaluările psihologice, coaching-ul individual, răspunsurile la chestionare sunt STRICT confidențiale. Managementul primește doar date agregate (ex: \"35% angajați au burnout ridicat\") fără identificare individuală. Excepție: dacă cineva raportează hărțuire/discriminare sau risc de suicid, trebuie să intervenim (cu consimțământ dacă e posibil)."
-      icon: "shield-check"
 
     - question: "Lucrați doar cu companii mari sau și cu startup-uri/IMM-uri?"
       answer: "Lucrăm cu companii de toate mărimile. Pentru startup-uri (5-20 angajați), oferim pachete scalate: evaluări psihologice pentru pozițiile cheie, coaching pentru founderi, training-uri compact. Pentru IMM-uri (20-100), programe mid-size. Pentru corporații (100+), programe enterprise cu echipe dedicate. Tarifele se adaptează la bugetul și nevoile companiei."
-      icon: "building"
 
     - question: "Care este diferența dintre consultanță HR și psihologie organizațională?"
       answer: "HR se ocupă de procese (recrutare, payroll, contracte, politici). Psihologia organizațională se ocupă de OAMENI și dinamici (wellbeing, leadership, cultură, conflicte, motivație, performanță). De exemplu, HR poate identifica turnover ridicat (30%), dar psihologul organizational diagnostichează DE CE (burnout, leadership toxic, cultură disfuncțională) și intervine pentru a rezolva cauza. Lucrăm foarte bine împreună cu HR."
-      icon: "question-circle"
 
     - question: "Oferiți și suport pentru gestionarea crizelor (restructurări, concedieri)?"
       answer: "**Da.** Restructurările, concedierile colective, fuziunile sunt extrem de stresante pentru angajați și necesită management psihologic al schimbării. Oferim: comunicare empatică către angajați, workshop-uri de gestionare a schimbării, coaching pentru manageri care trebuie să comunice vești proaste, suport psihologic pentru angajați concediați (outplacement counseling), programesupport pentru angajații care rămân (\"survivor guilt\")."
-      icon: "life-ring"
 
     - question: "Cum măsurați ROI-ul programelor voastre?"
       answer: "Măsurăm atât \"soft metrics\" (satisfacție, engagement, burnout - prin chestionare) cât și \"hard metrics\" (turnover, absențe, productivitate, revenue per employee). Exemplu: Dacă turnover-ul scade de la 30% la 20% după program, și costul mediu de înlocuire a unui angajat este 30.000 RON, pentru o companie cu 100 angajați, economiile sunt 10 × 30.000 = 300.000 RON/an. Investiția în program: 50.000 RON. ROI = 6x în primul an."
-      icon: "chart-line"
 
 # Testimonials
 testimonials:
@@ -410,13 +380,9 @@ cta_standard:
 
   benefits:
     - text: "Consultație gratuită 60 minute pentru compania ta"
-      icon: "check-circle"
     - text: "Diagnostic rapid și recomandări inițiale"
-      icon: "check-circle"
     - text: "Ofertă personalizată adaptată bugetului"
-      icon: "check-circle"
     - text: "ROI măsurabil și garantat"
-      icon: "check-circle"
 
 # Services Preview - Related
 services_preview_related:
@@ -427,19 +393,16 @@ services_preview_related:
   services:
     - title: "Terapie Individuală"
       description: "Unii angajați au nevoie de terapie individuală pentru anxietate, depresie, burnout sever. Oferim sesiuni confidențiale."
-      icon: "user"
       link: "/servicii/terapie-individuala/"
       button_text: "Află Mai Multe"
 
     - title: "Terapie de Cuplu"
       description: "Stresul de la muncă afectează viața personală. Oferim terapie de cuplu pentru angajați (decontabilă de companie sau personal)."
-      icon: "heart"
       link: "/servicii/terapie-de-cuplu/"
       button_text: "Află Mai Multe"
 
     - title: "Terapie de Familie"
       description: "Echilibrul viață-muncă afectează familia. Terapie de familie pentru angajați care au copii sau conflicte familiale."
-      icon: "users"
       link: "/servicii/terapie-de-familie/"
       button_text: "Află Mai Multe"
 ---
