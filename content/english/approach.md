@@ -10,7 +10,7 @@ sections:
   - type: "method-tabs"
   - type: "feature-blocks"
   - type: "values-compass"
-  - type: "first-session-timeline"
+  - type: "onboarding-steps"
   - type: "cta-standard"
 
 # Hero Breadcrumb Section
@@ -161,10 +161,10 @@ values_compass:
         I respect and embrace cultural diversity, personal values and belief systems of each
         person. My approach is flexible and adapted to your unique cultural and personal context.
 
-# First Session Timeline Section - General Process
-first_session_timeline:
+# Onboarding Steps Section - General Process
+onboarding_steps:
   title: "How Does **The First Session** Go?"
-  description: "The therapeutic process begins with an initial meeting for getting acquainted and assessment"
+  intro: "The therapeutic process begins with an initial meeting for getting acquainted and assessment"
   steps:
     - title: "Getting Acquainted and Building Relationship"
       duration: "10-15 minutes"

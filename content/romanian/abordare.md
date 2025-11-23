@@ -10,7 +10,7 @@ sections:
   - type: "method-tabs"
   - type: "feature-blocks"
   - type: "values-compass"
-  - type: "first-session-timeline"
+  - type: "onboarding-steps"
   - type: "cta-standard"
 
 # Hero Breadcrumb Section
@@ -163,10 +163,10 @@ values_compass:
         Respect și îmbrățișez diversitatea culturală, valorile personale și sistemele de credințe ale fiecărei
         persoane. Abordarea mea este flexibilă și adaptată contextului tău cultural și personal unic.
 
-# First Session Timeline Section - General Process
-first_session_timeline:
+# Onboarding Steps Section - General Process
+onboarding_steps:
   title: "Cum Decurge **Prima Ședință**?"
-  description: "Procesul terapeutic începe cu o întâlnire inițială de cunoaștere și evaluare"
+  intro: "Procesul terapeutic începe cu o întâlnire inițială de cunoaștere și evaluare"
   steps:
     - title: "Cunoaștere și Construirea Relației"
       duration: "10-15 minute"

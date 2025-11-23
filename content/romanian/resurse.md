@@ -11,7 +11,7 @@ sections:
   - type: "feature-blocks"
   - type: "blog-grid"
   - type: "newsletter-signup"
-  - type: "first-session-timeline"
+  - type: "onboarding-steps"
   - type: "cta-standard"
 
 # Hero Breadcrumb Section
@@ -173,10 +173,10 @@ newsletter_signup:
   button_variant: "primary"
   privacy_text: "Nu îți vom trimite spam niciodată. Poți să te dezabonezi oricând."
 
-# First Session Timeline Section - Workshops and Events
-first_session_timeline:
+# Onboarding Steps Section - Workshops and Events
+onboarding_steps:
   title: "Workshop-uri și **Evenimente Live**"
-  description: "Participă la sesiuni interactive online pentru a învăța și practica împreună"
+  intro: "Participă la sesiuni interactive online pentru a învăța și practica împreună"
   steps:
     - title: "Workshop Mindfulness pentru Început (Online)"
       duration: "2 ore"

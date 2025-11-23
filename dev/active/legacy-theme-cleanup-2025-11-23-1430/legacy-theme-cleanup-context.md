@@ -1,12 +1,12 @@
 # Legacy Theme Cleanup - Context
 
-**Last Updated:** 2025-11-23 17:00
+**Last Updated:** 2025-11-23 19:00
 
 ## Quick Reference
 
-**Status:** PHASE 1 COMPLETE ✅
-**Current Focus:** All active content migration complete
-**Next Step:** Phase 2 - Theme template cleanup (remove deprecated section templates)
+**Status:** ALL PHASES COMPLETE ✅
+**Current Focus:** Legacy cleanup fully complete
+**Next Step:** Archive dev docs, ready for production
 
 ## Key Files Modified
 
@@ -91,6 +91,37 @@
 - content/romanian/terapie-de-cuplu.md
 - content/romanian/terapie-de-familie.md
 - content/romanian/dezvoltare-personala.md
+
+**Phase 2: Theme Template Cleanup COMPLETE ✅**
+- 5 deprecated section templates removed
+- Verification: Zero backup directories found (already clean)
+- Build: 556ms, zero deprecated warnings in active content
+- Showcase files intentionally kept (contain deprecated sections for demo reference)
+
+**Templates Removed:**
+- themes/andromeda-hugo/layouts/partials/sections/feature-details.html
+- themes/andromeda-hugo/layouts/partials/sections/first-session-timeline.html
+- themes/andromeda-hugo/layouts/partials/sections/faq-content.html
+- themes/andromeda-hugo/layouts/partials/sections/confidentiality-notice.html
+- themes/andromeda-hugo/layouts/partials/sections/service-faq-inline.html
+
+**Templates Kept (NOT deprecated):**
+- contact-info-cards.html (active, working correctly)
+- contact-options.html (active, working correctly)
+
+**Phase 3: Documentation & Scripts Cleanup COMPLETE ✅**
+- Obsolete script archived: scripts/remove-deprecated-sections.py → scripts/archive/
+- Dev docs archived: dev/active/contact-form-legacy-migration/ → dev/archive/
+- CLAUDE.md updated: Section count 36 → 31 (removed 5 deprecated sections)
+- Final build verification: 39 RO + 33 EN pages, zero active warnings
+- Working scripts kept: migrate-service-faq.py, remove-orphaned-benefits.py, remove-orphaned-office-gallery.py
+
+**Documentation Updates:**
+- Updated Available Sections count: 36 → 31
+- Core Foundation: 5 → 4 (removed feature-details)
+- Interactive: 4 → 3 (removed faq-content)
+- Info & Trust: 7 → 6 (removed confidentiality-notice)
+- Specialized Therapy: 5 → 2 (removed first-session-timeline, service-faq-inline, office-gallery)
 
 ## Phase 1 Summary
 

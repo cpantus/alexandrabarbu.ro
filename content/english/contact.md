@@ -11,8 +11,8 @@ sections:
   - type: "contact-form-enhanced"
   - type: "feature-blocks"
   - type: "pricing-tables"
-  - type: "faq-content"
-  - type: "confidentiality-notice"
+  - type: "faq-mini"
+  - type: "privacy-guarantee"
   - type: "cta-standard"
 
 # Hero Breadcrumb Section
@@ -235,85 +235,39 @@ pricing_tables:
       featured: false
   note: "Rates include VAT. You can pay cash, card or bank transfer. We issue fiscal invoices."
 
-# FAQ Content Section
-faq_content:
-  title: "Frequently **Asked Questions**"
-  description: "Answers to the most common questions about scheduling and the therapeutic process"
-  categories:
-    - name: "Scheduling and Access"
-      slug: "scheduling"
-      questions:
-        - question: "How long until I receive a response?"
-          answer: |
-            I respond to all messages within 24 business hours (usually same day). If you send
-            a message Friday evening or weekend, I will respond Monday morning.
-        - question: "Can I schedule an online session?"
-          answer: |
-            Yes, absolutely! I offer sessions both face-to-face at the office and online through secure
-            encrypted platforms (Zoom, Google Meet). Online therapy effectiveness is scientifically demonstrated and is
-            as effective as face-to-face therapy.
-        - question: "How quickly can I get an appointment?"
-          answer: |
-            Usually I can offer an appointment in the same week or next, depending on my
-            and your availability. For emergencies, I try to find a slot as soon as possible.
-    - name: "Rates and Payments"
-      slug: "rates"
-      questions:
-        - question: "How much does a therapy session cost?"
-          answer: |
-            The rate for an individual session (50 minutes) is 250 RON. For couples/family therapy
-            (75 minutes) it is 350 RON. I also offer discount packages: 5 sessions for 1,150 RON (save 100 RON).
-        - question: "How can I pay for sessions?"
-          answer: |
-            You can pay cash, by card at the office or by bank transfer. Payment is usually made at the end
-            of each session. For packages, payment can be made in advance. We issue fiscal invoices.
-        - question: "Can I cancel or reschedule a session?"
-          answer: |
-            Yes, with at least 24 hours before the session. Cancellations made less than 24h before are charged
-            in full, except for proven medical emergencies.
-    - name: "Confidentiality and Safety"
-      slug: "confidentiality"
-      questions:
-        - question: "Is the information I share safe?"
-          answer: |
-            Absolutely. Confidentiality is fundamental in psychotherapy and is protected by:
-            1) Psychologists' code of ethics (professional secrecy)
-            2) GDPR legislation for data protection
-            3) Nothing we discuss leaves the office without your explicit written consent
-            Legal exceptions (risk of harm, abuse) are explained in the first contract.
-        - question: "Is my personal data safe?"
-          answer: |
-            Yes. Your personal data is stored securely, encrypted and is accessible only to me.
-            I will never share it with third parties without your explicit consent, except for legal obligations.
-    - name: "Therapeutic Process"
-      slug: "process"
-      questions:
-        - question: "How do I prepare for the first session?"
-          answer: |
-            No special preparation needed. Come as you are, with your questions and concerns.
-            In the first session we'll discuss why you're seeking therapy, your expectations and
-            establish goals together. I recommend being open and honest.
-        - question: "How long does the therapeutic process take?"
-          answer: |
-            Duration varies depending on the problems you're facing and your goals. Some people
-            notice improvements in 5-8 sessions (short therapy), others benefit from 12-20 sessions
-            (medium therapy), and in complex cases (trauma, deep problems) it may take 6-12 months or more.
-            We evaluate progress regularly together.
+# FAQ Mini Section
+faq_items:
+  - question: "How long until I receive a response?"
+    answer: |
+      I respond to all messages within 24 business hours (usually same day). If you send a message Friday evening or weekend, I will respond Monday morning.
+  - question: "Can I schedule an online session?"
+    answer: |
+      Yes, absolutely! I offer sessions both face-to-face at the office and online through secure encrypted platforms (Zoom, Google Meet). Online therapy effectiveness is scientifically demonstrated.
+  - question: "How much does a therapy session cost?"
+    answer: |
+      The rate for an individual session (50 minutes) is 250 RON. For couples/family therapy (75 minutes) it is 350 RON. Discount packages available: 5 sessions for 1,150 RON.
+  - question: "Is the information I share safe?"
+    answer: |
+      Absolutely. Confidentiality is protected by psychologists' code of ethics and GDPR legislation. Nothing we discuss leaves the office without your explicit written consent.
+  - question: "How do I prepare for the first session?"
+    answer: |
+      No special preparation needed. Come as you are, with your questions and concerns. In the first session we'll discuss why you're seeking therapy and establish goals together.
 
-# Confidentiality Notice Section
-confidentiality_notice:
+faq_mini_title: "Frequently **Asked Questions**"
+faq_mini_subtitle: "Quick answers to common questions"
+faq_mini_footer: "Have more questions?"
+faq_mini_link_text: "See all questions"
+faq_mini_link_url: "/faq"
+
+# Privacy Guarantee Section - Emergency Notice
+privacy_guarantee:
   title: "Emergencies and **Crisis Situations**"
   description: |
-    **Important:** My office does NOT offer 24/7 psychiatric emergency services or crisis intervention.
-
-    **If you are in an emergency situation** (suicidal thoughts, acute crisis, risk of harm), please contact:
-
-    - **Suicide Prevention Hotline:** 0800 801 200 (free, 24/7, confidential)
-    - **Emergency Services:** 112
-    - **"Alexandru Obregia" Psychiatric Hospital:** 021 334 5894 (Emergency)
-
-    For non-emergency situations, I will contact you within 24 business hours.
-  variant: "warning"
+    Important: My office does NOT offer 24/7 psychiatric emergency services. If you are in a crisis situation (suicidal thoughts, risk of harm), please contact emergency services:
+  features:
+    - "Suicide Prevention Hotline: 0800 801 200 (free, 24/7)"
+    - "Emergency Services: 112"
+    - "Alexandru Obregia Psychiatric Hospital: 021 334 5894"
 
 # CTA Standard Section
 cta_standard:

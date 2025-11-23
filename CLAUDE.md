@@ -90,21 +90,19 @@ alexandrabarbu.ro/              # ← PROJECT ROOT (run Hugo here)
 
 ---
 
-## Available Sections (36)
+## Available Sections (31)
 
-### Core Foundation (5)
+### Core Foundation (4)
 Essential page components for structure and navigation:
 - `hero-breadcrumb` - Page header with title, subtitle, breadcrumb navigation
 - `values-intro` - Value proposition introduction with CTAs
-- `feature-details` - Detailed feature showcase
 - `blog-grid` - Blog post grid with pagination
 - `cta-standard` - Standard call-to-action section
 
-### Interactive (4)
+### Interactive (3)
 Engagement components with user interaction:
 - `video-popup` - Video modal with play button overlay
 - `faq-mini` - Compact FAQ accordion (3-5 questions)
-- `faq-content` - Full FAQ section with categorization
 - `method-tabs` - Tabbed content switcher for methodology
 
 ### Forms (3)
@@ -113,13 +111,12 @@ User input and data collection:
 - `signup-form-enhanced` - Newsletter/service signup form
 - `newsletter-signup` - Simple email subscription
 
-### Info & Trust (7)
+### Info & Trust (6)
 Trust-building and informational components:
 - `contact-info-cards` - Contact methods (phone, email, location)
 - `contact-options` - Alternative contact channels
 - `onboarding-steps` - Process timeline for new clients
 - `privacy-guarantee` - Privacy and confidentiality assurance
-- `confidentiality-notice` - Legal confidentiality notice
 - `job-listings` - Career opportunities section
 - `professional-affiliations` - Credentials and memberships
 
@@ -131,13 +128,10 @@ Premium components with glassmorphism, gradients, and animations:
 - `stats-numbers` - SVG progress rings with animated counting
 - `credentials-showcase` - Gradient icon circles with credential badges
 
-### Specialized Therapy (5)
+### Specialized Therapy (2)
 Psychology practice-specific sections:
-- `first-session-timeline` - What to expect in first session
 - `therapist-match` - Therapist compatibility assessment
-- `service-faq-inline` - Service-specific inline FAQ
 - `testimonials-enhanced` - Client testimonials with photos
-- `office-gallery` - Office photos with lightbox
 
 ### General Purpose (5)
 Reusable content sections (consider upgrading to v4.0 equivalents):

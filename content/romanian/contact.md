@@ -11,8 +11,8 @@ sections:
   - type: "contact-form-enhanced"
   - type: "feature-blocks"
   - type: "pricing-tables"
-  - type: "faq-content"
-  - type: "confidentiality-notice"
+  - type: "faq-mini"
+  - type: "privacy-guarantee"
   - type: "cta-standard"
 
 # Hero Breadcrumb Section
@@ -235,85 +235,39 @@ pricing_tables:
       featured: false
   note: "Tarifele includ TVA. Poți achita cash, card sau transfer bancar. Emitem facturi fiscale."
 
-# FAQ Content Section
-faq_content:
-  title: "Întrebări **Frecvente**"
-  description: "Răspunsuri la cele mai comune întrebări despre programare și procesul terapeutic"
-  categories:
-    - name: "Programare și Acces"
-      slug: "programare"
-      questions:
-        - question: "Cât durează până primesc un răspuns?"
-          answer: |
-            Răspund la toate mesajele în maxim 24 de ore lucrătoare (de obicei în aceeași zi). Dacă trimiți
-            un mesaj vineri seara sau în weekend, voi răspunde luni dimineața.
-        - question: "Pot programa o sesiune online?"
-          answer: |
-            Da, absolut! Ofer sesiuni atât față în față la cabinet, cât și online prin platforme securizate
-            cu criptare (Zoom, Google Meet). Eficacitatea terapiei online este demonstrată științific și este
-            la fel de eficientă ca terapia față în față.
-        - question: "Cât de repede pot obține o programare?"
-          answer: |
-            De obicei pot oferi o programare în aceeași săptămână sau următoarea, în funcție de disponibilitatea
-            mea și a ta. Pentru urgențe, încerc să găsesc un slot cât mai repede posibil.
-    - name: "Tarife și Plăți"
-      slug: "tarife"
-      questions:
-        - question: "Cât costă o sesiune de terapie?"
-          answer: |
-            Tariful pentru o sesiune individuală (50 minute) este 250 RON. Pentru terapie de cuplu/familie
-            (75 minute) este 350 RON. Ofer și pachete cu discount: 5 ședințe la 1,150 RON (economisești 100 RON).
-        - question: "Cum pot plăti pentru ședințe?"
-          answer: |
-            Poți plăti cash, cu cardul la cabinet sau prin transfer bancar. Plata se face de obicei la sfârșitul
-            fiecărei ședințe. Pentru pachete, plata se poate face în avans. Emitem facturi fiscale.
-        - question: "Pot anula sau reprograma o sesiune?"
-          answer: |
-            Da, cu minim 24 de ore înainte de sesiune. Anulările făcute cu mai puțin de 24h înainte se taxează
-            integral, exceptând urgențele medicale dovedite.
-    - name: "Confidențialitate și Siguranță"
-      slug: "confidentialitate"
-      questions:
-        - question: "Este sigură informația pe care o împărtășesc?"
-          answer: |
-            Absolut. Confidențialitatea este fundamentală în psihoterapie și este protejată prin:
-            1) Codul deontologic al psihologilor (secret profesional)
-            2) Legislația GDPR pentru protecția datelor
-            3) Nimic din ce discutăm nu părăsește cabinetul fără consimțământul tău explicit scris
-            Excepțiile legale (risc de vătămare, abuz) sunt explicate în primul contract.
-        - question: "Sunt datele mele personale în siguranță?"
-          answer: |
-            Da. Datele tale personale sunt stocate securizat, criptat și sunt accesibile doar de mine.
-            Nu le voi împărtăși niciodată cu terți fără acordul tău explicit, cu excepția obligațiilor legale.
-    - name: "Procesul Terapeutic"
-      slug: "proces"
-      questions:
-        - question: "Cum mă pregătesc pentru prima sesiune?"
-          answer: |
-            Nu este nevoie de pregătire specială. Vino așa cum ești, cu întrebările și grijile tale.
-            În prima sesiune vom discuta despre motivul pentru care cauți terapie, așteptările tale și
-            vom stabili împreună obiectivele. Îți recomand să fii deschis și sincer.
-        - question: "Cât durează procesul terapeutic?"
-          answer: |
-            Durata variază în funcție de problemele cu care te confrunți și de obiectivele tale. Unele persoane
-            observă îmbunătățiri în 5-8 ședințe (terapie scurtă), altele beneficiază de 12-20 de ședințe
-            (terapie medie), iar în cazuri complexe (traume, probleme profunde) poate dura 6-12 luni sau mai mult.
-            Evaluăm progresul regulat împreună.
+# FAQ Mini Section
+faq_items:
+  - question: "Cât durează până primesc un răspuns?"
+    answer: |
+      Răspund la toate mesajele în maxim 24 de ore lucrătoare (de obicei în aceeași zi). Dacă trimiți un mesaj vineri seara sau în weekend, voi răspunde luni dimineața.
+  - question: "Pot programa o sesiune online?"
+    answer: |
+      Da, absolut! Ofer sesiuni atât față în față la cabinet, cât și online prin platforme securizate cu criptare (Zoom, Google Meet). Eficacitatea terapiei online este demonstrată științific.
+  - question: "Cât costă o sesiune de terapie?"
+    answer: |
+      Tariful pentru o sesiune individuală (50 minute) este 250 RON. Pentru terapie de cuplu/familie (75 minute) este 350 RON. Pachete cu discount disponibile: 5 ședințe la 1,150 RON.
+  - question: "Este sigură informația pe care o împărtășesc?"
+    answer: |
+      Absolut. Confidențialitatea este protejată prin codul deontologic al psihologilor și legislația GDPR. Nimic din ce discutăm nu părăsește cabinetul fără consimțământul tău explicit scris.
+  - question: "Cum mă pregătesc pentru prima sesiune?"
+    answer: |
+      Nu este nevoie de pregătire specială. Vino așa cum ești, cu întrebările și grijile tale. În prima sesiune vom discuta despre motivul pentru care cauți terapie și vom stabili împreună obiectivele.
 
-# Confidentiality Notice Section
-confidentiality_notice:
+faq_mini_title: "Întrebări **Frecvente**"
+faq_mini_subtitle: "Răspunsuri rapide la cele mai comune întrebări"
+faq_mini_footer: "Mai ai întrebări?"
+faq_mini_link_text: "Vezi toate întrebările"
+faq_mini_link_url: "/faq"
+
+# Privacy Guarantee Section - Emergency Notice
+privacy_guarantee:
   title: "Urgențe și **Situații de Criză**"
   description: |
-    **Important:** Cabinetul meu NU oferă servicii de urgență psihiatrică sau intervenție în criză 24/7.
-
-    **Dacă te afli într-o situație de urgență** (gânduri suicidare, criză acută, risc de vătămare), te rog să contactezi:
-
-    - **Telefonul Sufletului:** 0800 801 200 (gratuit, 24/7, confidențial)
-    - **Serviciul de Urgență:** 112
-    - **Spitalul de Psihiatrie "Alexandru Obregia":** 021 334 5894 (Urgențe)
-
-    Pentru situații non-urgente, te voi contacta în maxim 24 de ore lucrătoare.
-  variant: "warning"
+    Important: Cabinetul meu NU oferă servicii de urgență psihiatrică 24/7. Dacă te afli într-o situație de criză (gânduri suicidare, risc de vătămare), te rog să contactezi serviciile de urgență:
+  features:
+    - "Telefonul Sufletului: 0800 801 200 (gratuit, 24/7)"
+    - "Serviciul de Urgență: 112"
+    - "Spitalul de Psihiatrie Alexandru Obregia: 021 334 5894"
 
 # CTA Standard Section
 cta_standard:

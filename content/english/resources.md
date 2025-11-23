@@ -11,7 +11,7 @@ sections:
   - type: "feature-blocks"
   - type: "blog-grid"
   - type: "newsletter-signup"
-  - type: "first-session-timeline"
+  - type: "onboarding-steps"
   - type: "cta-standard"
 
 # Hero Breadcrumb Section
@@ -173,10 +173,10 @@ newsletter_signup:
   button_variant: "primary"
   privacy_text: "We will never send you spam. You can unsubscribe anytime."
 
-# First Session Timeline Section - Workshops and Events
-first_session_timeline:
+# Onboarding Steps Section - Workshops and Events
+onboarding_steps:
   title: "Live **Workshops and Events**"
-  description: "Participate in interactive online sessions to learn and practice together"
+  intro: "Participate in interactive online sessions to learn and practice together"
   steps:
     - title: "Mindfulness Workshop for Beginners (Online)"
       duration: "2 hours"
