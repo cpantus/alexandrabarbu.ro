@@ -4,9 +4,9 @@
 
 ## Quick Reference
 
-**Status:** Phase 2 In Progress - 50% Complete (4/8 tasks) ✅
-**Current Focus:** Atoms done, card molecule done
-**Next Step:** Accordion, navigation molecules + JS, then testing
+**Status:** Phase 3 In Progress - Section 1 (33% complete)
+**Current Focus:** Hero section - compass atom done, HTML + SCSS pending
+**Next Step:** Update hero-breadcrumb.html with two-column layout + compass
 
 ## Key Files Reference
 
@@ -226,19 +226,13 @@ Before context gets compacted, ensure:
 - ✅ Dev docs created (this file + plan + tasks)
 - ✅ Git branch `redesign-2025` created
 - ✅ Phase 1: Token Migration (commit cda95a3)
-  - 4 new color scales (forest, sage, gold, cream) - 72 variables
-  - Fonts: Playfair Display + DM Sans
-  - Spacing: $space-32, container 1280px, card padding 40px
-  - Radius: $radius-3xl (48px)
-  - Shadows: forest green-tinted
-  - Build: 549ms ✅ | Zero visual changes ✅
-- ✅ Phase 2 Components (4/8 tasks, 50% complete)
-  - Button atom: Pill shape ($radius-full), forest/sage/gold colors, -1px hover lift, 44px touch targets
-  - Heading atom: Playfair Display active, .c-heading__accent for italic sage text, $leading-display (1.1) for hero
-  - Icon-blob atom (NEW): 5 color variants (blue/sage/gold/coral/purple), 3 sizes (60/80/100px), 10% opacity backgrounds
-  - Card molecule: .c-card--redesign modifier, 32px radius, cream borders, gold hover, 40px padding, Playfair titles
-  - Files: _button.scss, _heading.scss, icon-blob.html, _icon-blob.scss, _card.scss
-  - Build: Success ✅
+- ✅ Phase 2: Core Components COMPLETE (commits 39ee190, c98cac3, 7bcf742) ✅
+  - Atoms: Button, Heading, Icon-blob (NEW)
+  - Molecules: Card, Accordion, Navigation + scroll state JS
+- ✅ Phase 3: Section 1 - Hero (1/3 tasks, commit aa3d40d)
+  - Compass-animation atom (NEW): 3 rotating rings (40s/25s/15s), oscillating needle (3s), SVG-based, responsive
+  - Files: compass-animation.html, _compass-animation.scss, _components.scss
+  - Pending: hero-breadcrumb.html update, hero SCSS update
 
 ## Critical Notes
 
