@@ -23,7 +23,9 @@
 /**
  * Base icon blob component
  * Circular background with centered icon
- * REDESIGN 2025: Organic blob shape for service cards
+ * REDESIGN 2025: Organic blob shape with hover state
+ * Default: Light green background with green icons
+ * Hover: Dark green background with gold icons
  */
 .c-icon-blob {
   width: 80px;          // Default md size (matches design spec)
@@ -33,7 +35,8 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: transform $duration-base $ease-in-out;
+  transition: transform $duration-base $ease-in-out,
+              background-color 400ms $ease-in-out;
   flex-shrink: 0;       // Prevent shrinking in flex layouts
 
   // Subtle hover scale on card hover (parent context)
@@ -49,79 +52,160 @@
 /**
  * Icon inside blob
  * Inherits color from variant modifier
+ * Transitions to gold on hover
  */
 .c-icon-blob__icon {
   font-size: 32px;      // Icon size (40% of blob diameter)
   line-height: 1;
   z-index: 1;           // Above background
+  transition: color 400ms $ease-in-out;
 }
 
 /*------------------------------------------------------------------
-  # Color Variant Modifiers
+  # Color Variant Modifiers (REDESIGN 2025)
 -------------------------------------------------------------------*/
 
 /**
+ * All variants use:
+ * Default: Light green background with green icons
+ * Hover: Dark forest green background with gold icons
+ *
+ * REDESIGN 2025: Unified color scheme with interactive hover state
+ */
+
+/**
  * Blue variant - Cognitive/analytical services
- * Background: Blue-grey at 10% opacity
- * Icon: Blue-grey at 100% opacity
  */
 .c-icon-blob--blue {
-  background-color: rgba(100, 116, 139, 0.1);  // Slate-500 at 10%
+  background-color: $forest-100;  // Light green background
 
   .c-icon-blob__icon {
-    color: rgb(100, 116, 139);  // Slate-500
+    color: $forest-500;  // Green icon
+  }
+
+  // Hover state
+  .c-card:hover &,
+  .c-method-card:hover & {
+    background-color: $forest-700;  // Dark forest green
+
+    .c-icon-blob__icon {
+      color: $gold-500;  // Gold icon
+    }
   }
 }
 
 /**
  * Sage variant - Mindfulness/calm services
- * Background: Sage green at 10% opacity
- * Icon: Sage green at 100% opacity
  */
 .c-icon-blob--sage {
-  background-color: rgba($sage-500, 0.1);
+  background-color: $forest-100;  // Light green background
 
   .c-icon-blob__icon {
-    color: $sage-500;  // #6B9080
+    color: $forest-500;  // Green icon
+  }
+
+  // Hover state
+  .c-card:hover &,
+  .c-method-card:hover & {
+    background-color: $forest-700;  // Dark forest green
+
+    .c-icon-blob__icon {
+      color: $gold-500;  // Gold icon
+    }
   }
 }
 
 /**
  * Gold variant - Premium/valued services
- * Background: Gold at 10% opacity
- * Icon: Gold at 100% opacity
  */
 .c-icon-blob--gold {
-  background-color: rgba($gold-500, 0.1);
+  background-color: $forest-100;  // Light green background
 
   .c-icon-blob__icon {
-    color: $gold-500;  // #C5A880
+    color: $forest-500;  // Green icon
+  }
+
+  // Hover state
+  .c-card:hover &,
+  .c-method-card:hover & {
+    background-color: $forest-700;  // Dark forest green
+
+    .c-icon-blob__icon {
+      color: $gold-500;  // Gold icon
+    }
   }
 }
 
 /**
  * Coral variant - Warm/compassionate services
- * Background: Coral at 10% opacity
- * Icon: Coral at 100% opacity
  */
 .c-icon-blob--coral {
-  background-color: rgba(236, 112, 99, 0.1);  // Coral-500 at 10%
+  background-color: $forest-100;  // Light green background
 
   .c-icon-blob__icon {
-    color: rgb(236, 112, 99);  // Coral-500
+    color: $forest-500;  // Green icon
+  }
+
+  // Hover state
+  .c-card:hover &,
+  .c-method-card:hover & {
+    background-color: $forest-700;  // Dark forest green
+
+    .c-icon-blob__icon {
+      color: $gold-500;  // Gold icon
+    }
   }
 }
 
 /**
  * Purple variant - Schema/deep work services
- * Background: Purple at 10% opacity
- * Icon: Purple at 100% opacity
  */
 .c-icon-blob--purple {
-  background-color: rgba(168, 85, 247, 0.1);  // Purple-500 at 10%
+  background-color: $forest-100;  // Light green background
 
   .c-icon-blob__icon {
-    color: rgb(168, 85, 247);  // Purple-500
+    color: $forest-500;  // Green icon
+  }
+
+  // Hover state
+  .c-card:hover &,
+  .c-method-card:hover & {
+    background-color: $forest-700;  // Dark forest green
+
+    .c-icon-blob__icon {
+      color: $gold-500;  // Gold icon
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Context-Specific Overrides
+-------------------------------------------------------------------*/
+
+/**
+ * Services Preview Section - No hover effect
+ * Keep dark green background with gold icons permanently
+ */
+.c-services-preview {
+  .c-icon-blob--blue,
+  .c-icon-blob--sage,
+  .c-icon-blob--gold,
+  .c-icon-blob--coral,
+  .c-icon-blob--purple {
+    background-color: $forest-700;  // Dark forest green (permanent)
+
+    .c-icon-blob__icon {
+      color: $gold-500;  // Gold icon (permanent)
+    }
+
+    // Override hover state for this section
+    .c-card:hover & {
+      background-color: $forest-700;  // Stay dark green
+
+      .c-icon-blob__icon {
+        color: $gold-500;  // Stay gold
+      }
+    }
   }
 }
 
@@ -149,7 +233,7 @@
   height: 100px;
 
   .c-icon-blob__icon {
-    font-size: 40px;  // 40% of diameter
+    font-size: 70px;  // Enlarged icon size
   }
 }
 
@@ -184,7 +268,7 @@
     height: 88px;
 
     .c-icon-blob__icon {
-      font-size: 35px;
+      font-size: 61px;  // 70px scaled proportionally for mobile
     }
   }
 }

@@ -55,7 +55,10 @@ $transition-opacity: opacity $duration-normal $ease-in-out;
 // Component-Specific Transitions
 // ----------------------------------
 // Specialized transition combinations for specific components
-$card-transition: $transition-base;   // 400ms ease-in-out (Level 2 motion)
+$card-transition: transform 400ms $ease-in-out,
+                  box-shadow 1200ms $ease-in-out,
+                  background 400ms $ease-in-out,
+                  border-color 400ms $ease-in-out;   // Slower shadow (1200ms)
 $button-transition: transform $duration-base $easing-strong,
                     box-shadow $duration-base $easing-strong;
 $input-transition: border-color $duration-fast $ease-out,

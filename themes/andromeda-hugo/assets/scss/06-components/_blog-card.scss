@@ -35,6 +35,23 @@
   }
 }
 
+// Redesign 2025 variant
+.c-blog-card--redesign {
+  background-color: $cream-50; // Redesign: cream background
+  border: 1px solid rgba($forest-500, 0.1); // Redesign: subtle forest border
+  border-radius: $radius-2xl; // Redesign: 32px radius (heavy rounding)
+
+  &:hover {
+    border-color: rgba($gold-500, 0.3); // Redesign: gold accent on hover
+    box-shadow: $shadow-lg; // Redesign: deeper shadow
+  }
+
+  .c-blog-card__image-wrapper {
+    border-top-left-radius: $radius-2xl; // Match card radius
+    border-top-right-radius: $radius-2xl;
+  }
+}
+
 /* Image Wrapper
    ========================================================================== */
 

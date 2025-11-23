@@ -1,252 +1,140 @@
 {{/*
-  Testimonials Enhanced Section - Client testimonials with ratings, verification, and outcomes
+  Testimonials Enhanced Section - Dark Background Redesign 2025
 
   Usage:
     sections:
       - type: "testimonials-enhanced"
 
-    testimonials_enhanced:
-      enable: true
+    testimonials_section:
       title: "What Clients Say"
-      subtitle: "TESTIMONIALS"
-      description: "Hear from people who've found healing and growth through therapy."
-      variant: "primary"
-      background: "light"
+      icon_color: "gold"
       testimonials:
-        - quote: "Therapy helped me understand myself better."
-          name: "A.M."
-          age_range: "25-35"
-          therapy_type: "Individual therapy"
-          duration: "6 months"
-          rating: 5
-          verified: true
-          outcome: "Reduced anxiety, improved relationships"
-      privacy_note: "All testimonials are from real clients. Names are anonymized for privacy."
-      cta_button:
-        text: "Start Your Journey"
-        url: "/contact"
-        icon: "arrow-right"
+        - quote: "Therapy helped me understand my patterns and build healthier relationships."
+          name: "M.A."
+          role: "Individual Therapy Client"
+        - quote: "I learned tools to manage anxiety and found peace I didn't think was possible."
+          name: "R.C."
+          role: "CBT Program Participant"
+        - quote: "The compassionate approach helped me heal from past trauma at my own pace."
+          name: "S.L."
+          role: "Trauma-Focused Therapy Client"
 
   Parameters:
-    enable (optional) - Enable/disable section (default: true)
-    title (optional) - Section title
-    subtitle (optional) - Section subtitle/eyebrow
-    description (optional) - Section description
-    variant (optional) - Color variant: primary|secondary|tertiary|neutral (default: "primary")
-    background (optional) - Background color: light|white|primary-50 (default: "light")
+    title (required) - Section title (cream color, serif, centered)
+    icon_color (optional) - Icon color: "gold"|"sage" (default: "gold")
     testimonials (required) - Array of testimonial objects:
-      - quote (required) - Testimonial text
-      - name (optional) - Client name/initials
-      - age_range (optional) - Age range (e.g., "25-35")
-      - therapy_type (optional) - Type of therapy
-      - duration (optional) - Duration of therapy
-      - rating (optional) - Star rating (1-5)
-      - verified (optional) - Verified client badge
-      - outcome (optional) - Therapy outcome/result
-    privacy_note (optional) - Privacy disclaimer text
-    cta_button (optional) - Call to action button
+      - quote (required) - Testimonial text (cream, serif italic, ~18-20px)
+      - name (required) - Client initials (cream, sans-serif, weight 600, uppercase)
+      - role (optional) - Client role/context (cream 70% opacity, ~14px)
+
+  Design Specs (Redesign 2025):
+    - Background: Dark forest green (#2F5548)
+    - Text: Cream/off-white (#F4F7F5)
+    - Layout: 3-column grid (desktop), responsive stack
+    - Avatar: 48px circles with initials
+    - Quote: Serif italic, 18-20px, line-height 1.7
+    - Gold decorative dividers above/below heading
 
   BEM Structure:
-    .c-testimonials              Block
-    .c-testimonials--primary     Modifier: color variant
-    .c-testimonials__header      Element: section header
-    .c-testimonials__grid        Element: testimonials grid
-    .c-testimonials__item        Element: single testimonial card
-    .c-testimonials__rating      Element: star rating
-    .c-testimonials__quote       Element: quote text
-    .c-testimonials__author      Element: author details
-    .c-testimonials__privacy     Element: privacy note
-    .c-testimonials__cta         Element: CTA wrapper
+    .c-testimonials-dark              Block
+    .c-testimonials-dark__icon        Element: section icon
+    .c-testimonials-dark__divider     Element: decorative divider
+    .c-testimonials-dark__header      Element: section header
+    .c-testimonials-dark__grid        Element: testimonials grid
+    .c-testimonials-dark__item        Element: single testimonial
+    .c-testimonials-dark__avatar      Element: avatar circle
+    .c-testimonials-dark__quote       Element: quote text
+    .c-testimonials-dark__author      Element: author info
 
-  Version: 2.0.0 (BEM refactor)
-  Last Updated: 2025-11-20
+  Version: 3.0.0 (Redesign 2025)
+  Last Updated: 2025-11-23
 */}}
 
 {{- /* ========================================
      PARAMETER EXTRACTION & VALIDATION
      ======================================== */ -}}
-{{- $section := .Params.testimonials_enhanced -}}
+{{- $section := .Params.testimonials_section -}}
 {{- if not $section -}}
   {{- return -}}
 {{- end -}}
 
-{{- $enable := $section.enable | default true -}}
-{{- if not $enable -}}
-  {{- return -}}
-{{- end -}}
-
 {{- $title := $section.title | default "" -}}
-{{- $subtitle := $section.subtitle | default "" -}}
-{{- $description := $section.description | default "" -}}
-{{- $variant := $section.variant | default "primary" -}}
-{{- $background := $section.background | default "light" -}}
+{{- $iconColor := $section.icon_color | default "gold" -}}
 {{- $testimonials := $section.testimonials | default slice -}}
-{{- $privacyNote := $section.privacy_note | default "" -}}
-{{- $ctaButton := $section.cta_button -}}
 
-{{- /* Validate variant */ -}}
-{{- $validVariants := slice "primary" "secondary" "tertiary" "neutral" -}}
-{{- if not (in $validVariants $variant) -}}
-  {{- warnf "testimonials-enhanced: invalid variant '%s'. Using 'primary'. Valid: %s" $variant (delimit $validVariants ", ") -}}
-  {{- $variant = "primary" -}}
+{{- if not $testimonials -}}
+  {{- return -}}
 {{- end -}}
 
 {{- /* ========================================
      SECTION ID & BEM CLASSES
      ======================================== */ -}}
-{{- $blockClass := "c-testimonials" -}}
-{{- $modifiers := slice (printf "c-testimonials--%s" $variant) -}}
-{{- if $background -}}
-  {{- $modifiers = $modifiers | append (printf "c-testimonials--bg-%s" $background) -}}
-{{- end -}}
-{{- $allClasses := delimit (append (slice $blockClass) $modifiers) " " -}}
+{{- $blockClass := "c-testimonials-dark" -}}
 
 {{- /* ========================================
      SECTION MARKUP
      ======================================== */ -}}
-<section class="{{ $allClasses }}">
+<section class="{{ $blockClass }}">
   <div class="o-container">
 
     {{- /* ========================================
-         DECORATIVE QUOTE MARK (large background element)
+         SECTION HEADER with Icon and Decorative Dividers
          ======================================== */ -}}
-    <div class="c-testimonials__decorative-quote" aria-hidden="true">
-      <i class="las la-quote-left"></i>
-    </div>
+    {{- if $title -}}
+    <div class="c-testimonials-dark__header">
+      {{- /* Gold/Sand Icon (quote marks) */ -}}
+      <div class="c-testimonials-dark__icon c-testimonials-dark__icon--{{ $iconColor }}">
+        <i class="las la-quote-left"></i>
+      </div>
 
-    {{- /* ========================================
-         SECTION HEADER
-         ======================================== */ -}}
-    {{- if or $title $subtitle $description -}}
-    <div class="c-testimonials__header">
-      {{- if $subtitle -}}
-        <p class="c-testimonials__subtitle">{{ $subtitle | markdownify }}</p>
-      {{- end -}}
+      {{- /* Top Decorative Divider */ -}}
+      <div class="c-testimonials-dark__divider"></div>
 
-      {{- if $title -}}
-        {{ partial "atoms/heading.html" (dict
-          "text" $title
-          "level" 2
-          "variant" $variant
-          "class" "c-testimonials__title"
-        ) }}
-      {{- end -}}
+      {{- /* Section Title */ -}}
+      {{ partial "atoms/heading.html" (dict
+        "text" $title
+        "level" 2
+        "class" "c-testimonials-dark__title"
+      ) }}
 
-      {{- if $description -}}
-        <p class="c-testimonials__description">{{ $description | markdownify }}</p>
-      {{- end -}}
+      {{- /* Bottom Decorative Divider */ -}}
+      <div class="c-testimonials-dark__divider"></div>
     </div>
     {{- end -}}
 
     {{- /* ========================================
-         TESTIMONIALS GRID
+         TESTIMONIALS GRID (3 columns)
          ======================================== */ -}}
-    {{- if $testimonials -}}
-    <div class="c-testimonials__grid">
-      {{- range $index, $testimonial := $testimonials -}}
-        {{- /* Color rotation for visual variety */ -}}
-        {{- $colorVariants := slice "primary" "secondary" "coral" -}}
-        {{- $colorIndex := mod $index (len $colorVariants) -}}
-        {{- $itemVariant := index $colorVariants $colorIndex -}}
-
-        <div class="c-testimonials__item c-testimonials__item--{{ $itemVariant }}" data-aos="fade-up" data-aos-delay="{{ mul $index 150 }}">
-          {{- /* Floating Quote Mark */ -}}
-          <div class="c-testimonials__floating-quote" aria-hidden="true">
-            <i class="las la-quote-left"></i>
-          </div>
-
-          {{- /* Avatar Placeholder with Initials */ -}}
+    <div class="c-testimonials-dark__grid">
+      {{- range $testimonial := $testimonials -}}
+        <div class="c-testimonials-dark__item">
+          {{- /* Avatar Circle with Initials */ -}}
           {{- if $testimonial.name -}}
             {{- $initials := substr $testimonial.name 0 2 -}}
-            <div class="c-testimonials__avatar c-testimonials__avatar--{{ $itemVariant }}">
-              <span class="c-testimonials__initials">{{ $initials }}</span>
-            </div>
-          {{- end -}}
-
-          {{- /* Star Rating */ -}}
-          {{- if $testimonial.rating -}}
-            <div class="c-testimonials__rating">
-              {{- range seq $testimonial.rating -}}
-                <i class="las la-star c-testimonials__star c-testimonials__star--filled"></i>
-              {{- end -}}
-              {{- if lt $testimonial.rating 5 -}}
-                {{- range seq (sub 5 $testimonial.rating) -}}
-                  <i class="las la-star c-testimonials__star c-testimonials__star--empty"></i>
-                {{- end -}}
-              {{- end -}}
+            <div class="c-testimonials-dark__avatar">
+              <span>{{ $initials }}</span>
             </div>
           {{- end -}}
 
           {{- /* Quote Text */ -}}
           {{- if $testimonial.quote -}}
-            <blockquote class="c-testimonials__quote">
-              <p>"{{ $testimonial.quote }}"</p>
+            <blockquote class="c-testimonials-dark__quote">
+              "{{ $testimonial.quote }}"
             </blockquote>
           {{- end -}}
 
           {{- /* Author Info */ -}}
-          <div class="c-testimonials__author">
-            <div class="c-testimonials__author-details">
-              {{- if $testimonial.name -}}
-                <p class="c-testimonials__author-name">{{ $testimonial.name }}</p>
-              {{- end -}}
-
-              <div class="c-testimonials__author-meta">
-                {{- if $testimonial.age_range -}}
-                  <span class="c-testimonials__meta-item">{{ $testimonial.age_range }}</span>
-                {{- end -}}
-                {{- if $testimonial.therapy_type -}}
-                  <span class="c-testimonials__meta-item">{{ $testimonial.therapy_type }}</span>
-                {{- end -}}
-                {{- if $testimonial.duration -}}
-                  <span class="c-testimonials__meta-item">{{ $testimonial.duration }}</span>
-                {{- end -}}
-              </div>
-            </div>
-
-            {{- /* Verification Badge */ -}}
-            {{- if $testimonial.verified -}}
-              <div class="c-testimonials__verified" title="Verified client">
-                <i class="las la-shield-check"></i>
-              </div>
+          <div class="c-testimonials-dark__author">
+            {{- if $testimonial.name -}}
+              <p class="c-testimonials-dark__name">{{ $testimonial.name }}</p>
+            {{- end -}}
+            {{- if $testimonial.role -}}
+              <p class="c-testimonials-dark__role">{{ $testimonial.role }}</p>
             {{- end -}}
           </div>
-
-          {{- /* Outcome */ -}}
-          {{- if $testimonial.outcome -}}
-            <div class="c-testimonials__outcome">
-              {{ partial "atoms/icon.html" (dict "name" "check-circle" "size" "sm" "variant" $itemVariant "class" "c-testimonials__outcome-icon") }}
-              <span class="c-testimonials__outcome-text">{{ $testimonial.outcome }}</span>
-            </div>
-          {{- end -}}
         </div>
       {{- end -}}
     </div>
-    {{- end -}}
-
-    {{- /* ========================================
-         PRIVACY NOTE (Card format with better styling)
-         ======================================== */ -}}
-    {{- if $privacyNote -}}
-    <div class="c-testimonials__privacy">
-      <i class="las la-lock c-testimonials__privacy-icon"></i>
-      <span class="c-testimonials__privacy-text">{{ $privacyNote | markdownify }}</span>
-    </div>
-    {{- end -}}
-
-    {{- /* ========================================
-         CALL TO ACTION
-         ======================================== */ -}}
-    {{- if $ctaButton -}}
-    <div class="c-testimonials__cta">
-      {{ partial "atoms/button.html" (dict
-        "text" $ctaButton.text
-        "url" $ctaButton.url
-        "variant" (default $variant $ctaButton.variant)
-        "icon" $ctaButton.icon
-      ) }}
-    </div>
-    {{- end -}}
 
   </div>
 </section>

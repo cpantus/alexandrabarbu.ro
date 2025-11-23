@@ -226,21 +226,21 @@ h6.c-heading {
  * Use with variant prop to determine gradient colors
  */
 .c-heading--gradient {
-  background: linear-gradient(135deg, $color-primary 0%, $emerald-700 100%);
+  background: linear-gradient(135deg, $forest-500 0%, $forest-700 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 
   // Gradient variants based on color modifiers
   &.c-heading--primary {
-    background: linear-gradient(135deg, $emerald-400 0%, $emerald-600 100%);
+    background: linear-gradient(135deg, $forest-400 0%, $forest-600 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   &.c-heading--secondary {
-    background: linear-gradient(135deg, $terracotta-400 0%, $terracotta-600 100%);
+    background: linear-gradient(135deg, $sage-400 0%, $sage-600 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

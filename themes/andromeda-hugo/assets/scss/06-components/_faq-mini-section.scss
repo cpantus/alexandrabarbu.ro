@@ -60,6 +60,13 @@
   }
 }
 
+// Redesign variant (900px max-width, updated spacing)
+.c-faq-mini-section--redesign {
+  .c-faq-mini-section__container {
+    max-width: 900px; // Redesign spec: 900px
+  }
+}
+
 //
 // Header (title + subtitle)
 //
@@ -70,6 +77,19 @@
   // Mobile: reduce margin
   @media (max-width: $breakpoint-md - 1) {
     margin-bottom: $space-4; // 32px
+  }
+}
+
+// Redesign variant header
+.c-faq-mini-section--redesign .c-faq-mini-section__header {
+  margin-bottom: $space-8; // 64px (redesign spec: more generous spacing)
+
+  @media (max-width: $breakpoint-md - 1) {
+    margin-bottom: $space-6; // 48px on tablet
+  }
+
+  @media (max-width: $breakpoint-sm - 1) {
+    margin-bottom: $space-5; // 40px on mobile
   }
 }
 
@@ -228,6 +248,33 @@
 
     &:focus {
       outline-color: $color-neutral-600;
+    }
+  }
+}
+
+//
+// Redesign variant styling (forest green theme)
+//
+.c-faq-mini-section--redesign {
+  background-color: $cream-50; // Redesign: cream background
+
+  .c-faq-mini-section__subtitle {
+    color: $text-muted-green; // Redesign: green-grey muted text
+  }
+
+  .c-faq-mini-section__footer-text {
+    color: $text-muted-green;
+  }
+
+  .c-faq-mini-section__footer-link {
+    color: $forest-600; // Redesign: forest green links
+
+    &:hover {
+      color: $sage-600; // Redesign: sage green hover
+    }
+
+    &:focus {
+      outline-color: $forest-500;
     }
   }
 }

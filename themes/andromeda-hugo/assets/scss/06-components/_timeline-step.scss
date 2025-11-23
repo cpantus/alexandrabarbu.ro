@@ -368,7 +368,7 @@
 
   // Hover: show colored gradient, keep icon colored but darker
   &:hover .c-timeline-step__icon-wrapper {
-    background: linear-gradient(135deg, rgba($emerald-300, 0.3), rgba($emerald-600, 0.3));
+    background: linear-gradient(135deg, rgba($forest-300, 0.3), rgba($forest-600, 0.3));
     border-color: rgba($emerald-600, 0.4);
   }
 
@@ -393,7 +393,7 @@
 
   // Hover: show colored gradient, keep icon colored but darker
   &:hover .c-timeline-step__icon-wrapper {
-    background: linear-gradient(135deg, rgba($terracotta-300, 0.3), rgba($terracotta-600, 0.3));
+    background: linear-gradient(135deg, rgba($sage-300, 0.3), rgba($sage-600, 0.3));
     border-color: rgba($terracotta-600, 0.4);
   }
 

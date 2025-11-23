@@ -64,7 +64,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba($emerald-900, 0.3), rgba($terracotta-900, 0.3));
+  background: linear-gradient(135deg, rgba($forest-900, 0.3), rgba($forest-800, 0.3));
   z-index: 1;
   opacity: 0.6;
   transition: opacity $duration-base $easing-subtle;
@@ -81,7 +81,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba($emerald-900, 0.3), rgba($terracotta-900, 0.3));
+  background: linear-gradient(135deg, rgba($forest-900, 0.3), rgba($forest-800, 0.3));
   z-index: 1;
   opacity: 0.6;
   transition: opacity $duration-base $easing-subtle;

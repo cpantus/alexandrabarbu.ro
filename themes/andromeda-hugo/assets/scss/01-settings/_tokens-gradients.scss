@@ -10,13 +10,14 @@
 //
 
 // ----------------------------------
-// Warm Gradient Palette (Emerald → Terracotta)
+// Warm Gradient Palette (REDESIGN 2025: Cream neutral)
 // ----------------------------------
-// Usage: Background overlays, section backgrounds, warm branding
-$gradient-warm-subtle: linear-gradient(135deg, $emerald-50 0%, $terracotta-50 100%);
-$gradient-warm-light: linear-gradient(135deg, $emerald-100 0%, $terracotta-100 100%);
-$gradient-warm-medium: linear-gradient(135deg, $emerald-200 0%, $terracotta-200 100%);
-$gradient-warm-vibrant: linear-gradient(135deg, $emerald-500 0%, $terracotta-500 60%, $emerald-600 100%);
+// Usage: Background overlays, section backgrounds
+// REDESIGN 2025: Changed to cream gradients for neutral canvas
+$gradient-warm-subtle: linear-gradient(135deg, $cream-50 0%, $cream-100 100%); // Was emerald→terracotta
+$gradient-warm-light: linear-gradient(135deg, $cream-100 0%, $cream-200 100%); // Was emerald→terracotta
+$gradient-warm-medium: linear-gradient(135deg, $cream-100 0%, $cream-300 100%); // Was emerald→terracotta
+$gradient-warm-vibrant: linear-gradient(135deg, $forest-500 0%, $sage-500 60%, $forest-600 100%); // For accents only
 
 // ----------------------------------
 // Radial Gradients (Organic Spotlight)

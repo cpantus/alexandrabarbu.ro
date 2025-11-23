@@ -269,7 +269,9 @@
   border: 1px solid $color-border-redesign-light;  // Cream border (#E9EFEC)
   background: white;
   padding: $space-10;  // 40px (matches design spec)
-  transition: all $duration-base $ease-in-out;
+  transition: transform 400ms $ease-in-out,
+              box-shadow 1200ms $ease-in-out,
+              border-color 400ms $ease-in-out;  // Slower shadow (1200ms)
   box-shadow: $shadow-lg;  // Resting state shadow
 
   // Remove top accent border from v4.0 design

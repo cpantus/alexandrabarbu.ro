@@ -194,12 +194,13 @@
 }
 
 /**
- * Outline secondary button - elegant sage green border
- * REDESIGN 2025: Sage green outline with filled hover
+ * Outline secondary button - forest green border (accessibility fix)
+ * REDESIGN 2025: Forest green outline with sage hover for better contrast
+ * NOTE: Changed from sage to forest green for WCAG AA compliance (sage 3.29:1 vs forest 8.73:1)
  */
 .c-button--outline-secondary {
-  color: $sage-500;
-  border: 2px solid $sage-500;
+  color: $forest-500;  // Forest green for better contrast (8.73:1)
+  border: 2px solid $forest-500;
   background-color: transparent;
   box-shadow: none;
 
@@ -208,14 +209,14 @@
   &:focus {
     color: white;
     border-color: $sage-500;
-    background: $sage-500;
+    background: $sage-500;  // Sage green hover (OK for filled state)
     box-shadow: 0 10px 30px -5px rgba($sage-500, 0.2);
   }
 
   &:disabled,
   &[disabled] {
-    color: $sage-500;
-    border-color: $sage-500;
+    color: $forest-500;
+    border-color: $forest-500;
     background-color: transparent;
     box-shadow: none;
   }

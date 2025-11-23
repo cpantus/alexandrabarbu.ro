@@ -330,13 +330,13 @@
   border-top: 1px solid rgba(77, 179, 128, 0.2);
   
   /* Typography for markdown content */
-  font-family: $font-body !important; /* Open Sans for body text */
+  font-family: $font-body !important; /* DM Sans for body text - Redesign 2025 */
   line-height: 1.7;
   color: $gray-600;
-  
+
   /* Markdown headings within features */
   h1, h2, h3, h4, h5, h6 {
-    font-family: $font-heading !important; /* Crimson Pro for headlines */
+    font-family: $font-heading !important; /* Playfair Display for headlines - Redesign 2025 */
     color: $emerald-500;
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;

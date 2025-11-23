@@ -35,28 +35,30 @@ section {
 
 /**
  * Visual rhythm through alternating section backgrounds
- * Pattern: emerald-50 → green-100 → terracotta-50 → terracotta-100 (repeats)
- * NO pure white - every section gets warm color
+ * REDESIGN 2025: Pattern uses cream scale for clean, neutral canvas
+ * Pattern: cream-50 (white) → cream-100 (light) → cream-50 → cream-100 (subtle variation)
+ * Maintains visual rhythm without strong color variation
  */
 
-// Pattern 1 (1st, 5th, 9th...) - Light emerald
-section:nth-of-type(4n+1) {
-  background: $emerald-50 !important;
+// Pattern 1 (1st, 5th, 9th...) - White cream
+// Exclude dark sections (testimonials, footer) from alternating pattern
+section:nth-of-type(4n+1):not(.c-testimonials-dark):not(.c-footer) {
+  background: $cream-50 !important; // REDESIGN 2025: Was $emerald-50
 }
 
-// Pattern 2 (2nd, 6th, 10th...) - Medium emerald
-section:nth-of-type(4n+2) {
-  background: $emerald-100 !important;
+// Pattern 2 (2nd, 6th, 10th...) - Light cream
+section:nth-of-type(4n+2):not(.c-testimonials-dark):not(.c-footer) {
+  background: $cream-100 !important; // REDESIGN 2025: Was $emerald-100
 }
 
-// Pattern 3 (3rd, 7th, 11th...) - Light terracotta
-section:nth-of-type(4n+3) {
-  background: $terracotta-50 !important;
+// Pattern 3 (3rd, 7th, 11th...) - White cream
+section:nth-of-type(4n+3):not(.c-testimonials-dark):not(.c-footer) {
+  background: $cream-50 !important; // REDESIGN 2025: Was $terracotta-50
 }
 
-// Pattern 4 (4th, 8th, 12th...) - Medium terracotta
-section:nth-of-type(4n) {
-  background: $terracotta-100 !important;
+// Pattern 4 (4th, 8th, 12th...) - Light cream
+section:nth-of-type(4n):not(.c-testimonials-dark):not(.c-footer) {
+  background: $cream-100 !important; // REDESIGN 2025: Was $terracotta-100
 }
 
 /*------------------------------------------------------------------
@@ -66,19 +68,19 @@ section:nth-of-type(4n) {
 /**
  * Explicit background modifiers (override nth-child)
  * Use these when you need manual control
- * v5.1: NO WHITE - all get warm colors
+ * REDESIGN 2025: Cream neutral backgrounds for clean canvas
  */
 
 .section--light {
-  background: $emerald-50 !important; // v5.1: Was white, now light emerald
+  background: $cream-50 !important; // REDESIGN 2025: White cream (was $emerald-50)
 }
 
 .section--primary {
-  background: $emerald-100 !important; // v5.1: More saturated emerald
+  background: $cream-100 !important; // REDESIGN 2025: Light cream (was $emerald-100)
 }
 
 .section--secondary {
-  background: $terracotta-100 !important; // v5.1: More saturated terracotta
+  background: $cream-200 !important; // REDESIGN 2025: Medium cream (was $terracotta-100)
 }
 
 .section--gradient {
@@ -90,13 +92,14 @@ section:nth-of-type(4n) {
 -------------------------------------------------------------------*/
 
 /**
- * Hero sections (already have gradients) should not get alternating backgrounds
+ * Hero sections - REDESIGN 2025: Clean cream background only, no gradients
+ * Override alternating pattern to ensure consistent hero styling
  */
 .c-hero-breadcrumb,
 section[class*="hero"] {
-  // Hero background already set in hero-breadcrumb.scss
-  // Don't override with alternating pattern
-  background: $gradient-sunrise !important;
+  // Redesign 2025: Clean cream background per eval1.md specifications
+  // NO gradients - clean canvas for content
+  background: $cream-100 !important; // #F4F7F5 cream background
 }
 
 // ==================================

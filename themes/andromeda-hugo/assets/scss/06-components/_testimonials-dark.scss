@@ -1,0 +1,247 @@
+// ==================================
+// Testimonials Dark Section - BEM Component (Redesign 2025)
+// ==================================
+//
+// Purpose: Client testimonials with dark forest green background
+// Features: Gold icon, decorative dividers, 3-column grid, avatar circles, cream text
+// Design: eval1.md Section 5 specifications
+//
+// Version: 1.0.0 - Redesign 2025
+// Updated: 2025-11-23
+//
+
+// ============================================================================
+// BLOCK: Testimonials Dark Section
+// ============================================================================
+
+.c-testimonials-dark {
+  padding: $section-padding-y 0;
+  background-color: #2F5548; // Dark forest green (darker than primary #234E3E)
+  color: $cream-100; // Cream text (#F4F7F5)
+}
+
+// ============================================================================
+// ELEMENT: Header (Centered with Icon and Dividers)
+// ============================================================================
+
+.c-testimonials-dark__header {
+  max-width: 800px;
+  margin: 0 auto $space-16; // 64px bottom margin
+  text-align: center;
+}
+
+// ============================================================================
+// ELEMENT: Section Icon (Quote Mark)
+// ============================================================================
+
+.c-testimonials-dark__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto $space-6; // 24px bottom margin
+  font-size: 28px;
+
+  // Icon color variants
+  &--gold {
+    color: $gold-500; // Gold/sand (#C5A880)
+  }
+
+  &--sage {
+    color: $sage-500; // Sage green
+  }
+}
+
+// ============================================================================
+// ELEMENT: Decorative Divider (Thin Gold Lines)
+// ============================================================================
+
+.c-testimonials-dark__divider {
+  width: 80px;
+  height: 2px;
+  margin: $space-4 auto; // 16px top/bottom, centered
+  background-color: $gold-500; // Gold (#C5A880)
+  opacity: 0.7;
+}
+
+// ============================================================================
+// ELEMENT: Section Title
+// ============================================================================
+
+.c-testimonials-dark__title {
+  font-family: $font-heading; // Playfair Display (serif)
+  font-size: $font-size-4xl; // 42px
+  font-weight: $weight-semibold; // 600
+  color: $cream-100; // Cream (#F4F7F5)
+  margin-bottom: 0;
+
+  @media (max-width: 767px) {
+    font-size: $font-size-3xl; // 36px mobile
+  }
+}
+
+// ============================================================================
+// ELEMENT: Testimonials Grid (3 Columns)
+// ============================================================================
+
+.c-testimonials-dark__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $grid-gap; // 32px
+
+  // Tablet: 2 columns
+  @media (max-width: 991px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  // Mobile: 1 column
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+    gap: $space-10; // 40px vertical gap
+  }
+}
+
+// ============================================================================
+// ELEMENT: Testimonial Item
+// ============================================================================
+
+.c-testimonials-dark__item {
+  text-align: center;
+  padding: 0 $space-4; // 16px horizontal padding for breathing room
+
+  @media (max-width: 767px) {
+    padding: 0;
+  }
+}
+
+// ============================================================================
+// ELEMENT: Avatar Circle (48px with Initials)
+// ============================================================================
+
+.c-testimonials-dark__avatar {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto $space-6; // 24px bottom margin, centered
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba($cream-100, 0.15); // Subtle cream tint
+  border: 2px solid rgba($cream-100, 0.3); // Cream border
+  border-radius: $radius-full; // Perfect circle
+
+  span {
+    font-family: $font-body; // DM Sans
+    font-size: 16px;
+    font-weight: $weight-semibold; // 600
+    color: $cream-100; // Cream text
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+// ============================================================================
+// ELEMENT: Quote Text
+// ============================================================================
+
+.c-testimonials-dark__quote {
+  font-family: $font-heading; // Playfair Display (serif)
+  font-size: 18px; // 18-20px range per spec
+  font-style: italic;
+  font-weight: $weight-normal; // 400
+  line-height: 1.7; // Good readability
+  color: $cream-100; // Cream (#F4F7F5)
+  margin: 0 0 $space-8; // 32px bottom margin
+
+  // Remove default blockquote styling
+  padding: 0;
+  border: none;
+
+  @media (min-width: 992px) {
+    font-size: 20px; // Slightly larger on desktop
+  }
+}
+
+// ============================================================================
+// ELEMENT: Author Info
+// ============================================================================
+
+.c-testimonials-dark__author {
+  margin-top: $space-6; // 24px top margin
+}
+
+.c-testimonials-dark__name {
+  font-family: $font-body; // DM Sans (sans-serif)
+  font-size: $font-size-base; // 16px
+  font-weight: $weight-semibold; // 600
+  color: $cream-100; // Cream
+  text-transform: uppercase;
+  letter-spacing: 0.1em; // Tracking-wide
+  margin-bottom: $space-2; // 8px
+}
+
+.c-testimonials-dark__role {
+  font-family: $font-body; // DM Sans
+  font-size: 14px; // ~14px per spec
+  font-weight: $weight-normal; // 400
+  color: rgba($cream-100, 0.7); // 70% opacity cream
+  margin: 0;
+}
+
+// ============================================================================
+// RESPONSIVE ADJUSTMENTS
+// ============================================================================
+
+@media (max-width: 991px) {
+  .c-testimonials-dark {
+    padding: $section-padding-y-mobile 0; // 64px vertical (mobile padding)
+  }
+}
+
+@media (max-width: 767px) {
+  .c-testimonials-dark {
+    padding: $space-16 0; // 64px vertical
+  }
+
+  .c-testimonials-dark__quote {
+    font-size: 17px; // Slightly smaller on mobile
+  }
+}
+
+// ============================================================================
+// ACCESSIBILITY
+// ============================================================================
+
+// Ensure sufficient contrast (WCAG AA: 4.5:1 for text)
+// Dark forest green #2F5548 + Cream #F4F7F5 = ~11:1 contrast ratio ✅
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .c-testimonials-dark__item {
+    transition: none;
+  }
+}
+
+// Print styles
+@media print {
+  .c-testimonials-dark {
+    background-color: transparent;
+    color: #000;
+    padding: $space-8 0;
+  }
+
+  .c-testimonials-dark__icon,
+  .c-testimonials-dark__divider {
+    display: none;
+  }
+
+  .c-testimonials-dark__title,
+  .c-testimonials-dark__quote,
+  .c-testimonials-dark__name {
+    color: #000;
+  }
+
+  .c-testimonials-dark__role {
+    color: #555;
+  }
+}

@@ -45,6 +45,34 @@
   }
 }
 
+// Redesign 2025 variant
+.c-blog-grid--redesign {
+  background-color: $cream-50; // Redesign: cream section background
+
+  .c-blog-grid__header h2 {
+    color: $text-primary-green; // Redesign: dark green headings
+  }
+
+  .c-blog-grid__subtitle {
+    color: $forest-600; // Redesign: forest green subtitle
+  }
+
+  .c-blog-grid__filter {
+    border-color: rgba($forest-500, 0.2);
+    color: $forest-700;
+
+    &:hover {
+      border-color: $forest-600;
+      color: $forest-600;
+    }
+  }
+
+  .c-blog-grid__filter--active {
+    background: linear-gradient(135deg, $forest-500 0%, $sage-500 100%); // Redesign: forest-sage gradient
+    border-color: $forest-600;
+  }
+}
+
 // -----------------------------------------------------------------------------
 // Section Header (optional)
 // -----------------------------------------------------------------------------

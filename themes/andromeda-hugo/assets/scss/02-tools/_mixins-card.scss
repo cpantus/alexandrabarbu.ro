@@ -22,7 +22,9 @@
   border: none !important;  // Remove glassmorphism border - gradient glow only
   border-radius: $card-border-radius; // 12px (design token rule)
   padding: $card-padding; // 16px (molecule tier)
-  transition: all $duration-base $easing-medium; // 400ms ease-in-out (Level 2 motion)
+  transition: transform 400ms $easing-medium,
+              box-shadow 1200ms $easing-medium,
+              background 400ms $easing-medium; // Slower shadow transition (1200ms)
 
   // Base shadow
   @if $elevated {

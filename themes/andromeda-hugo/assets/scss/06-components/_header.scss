@@ -17,7 +17,7 @@
 // - Smooth transitions for sticky state
 // - Mobile hamburger animation (menu ↔ X)
 // - 8pt spacing grid throughout
-// - Crimson Pro + Work Sans typography
+// - Playfair Display + DM Sans typography (Redesign 2025)
 //
 // Accessibility:
 // - Skip-to-content link for keyboard navigation
@@ -91,15 +91,15 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: linear-gradient(to right, rgba($emerald-50, 0.95), rgba($terracotta-50, 0.95)); // v5.1: Warm branded gradient
-  border-bottom: 3px solid $color-primary-500; // v5.1: Branded accent (was 1px gray)
+  background: rgba($cream-50, 0.95); // Redesign 2025: Clean white/cream background
+  border-bottom: 1px solid $cream-200; // Redesign 2025: Subtle cream border
   transition: all $duration-normal $easing-default;
 
   &--sticky {
-    background: linear-gradient(to right, rgba($emerald-50, 0.98), rgba($terracotta-50, 0.98)); // v5.1: Slightly more opaque on scroll
+    background: rgba($cream-50, 0.98); // Redesign 2025: Slightly more opaque on scroll
     backdrop-filter: blur(12px);
     box-shadow: $shadow-md;
-    // v5.1: Keep branded border on scroll (don't change color)
+    border-bottom: 1px solid $cream-300; // Redesign 2025: Slightly darker border on scroll
   }
 
   @media (prefers-reduced-motion: reduce) {

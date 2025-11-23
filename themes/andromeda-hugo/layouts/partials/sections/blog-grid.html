@@ -115,7 +115,7 @@ UPDATED: 2025-11-20
 
 {{- with $section -}}
   {{- if .enable -}}
-    <section class="c-blog-grid">
+    <section class="c-blog-grid c-blog-grid--redesign">
       <div class="o-container">
         {{/* Section Header */}}
         {{- if or .title .subtitle .description -}}
@@ -168,6 +168,7 @@ UPDATED: 2025-11-20
                 "author" $item.author
                 "readTime" $item.readTime
                 "index" $index
+                "variant" "redesign"
               ) }}
             </div>
           {{- end -}}

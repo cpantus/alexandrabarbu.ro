@@ -1,0 +1,192 @@
+{{/*
+  ============================================================================
+  CTA Split Panel Section - BEM Architecture (Redesign 2025)
+  ============================================================================
+  Split panel layout with white left panel (checklist) and sage right panel (CTA)
+
+  Features:
+  - 60/40 split layout (white left, sage green right)
+  - Section badge pill on left
+  - Title with italic accent on left
+  - Checklist with custom check icons
+  - Quote box with left border accent
+  - Glassmorphism icon circle on right
+  - CTA button + disclaimer on right
+  - Responsive: stacks on mobile
+
+  Data Structure:
+  ---------------
+  cta_evaluation:
+    badge: "AUTO-REFLECȚIE"              # Section badge (optional)
+    title: "Este terapia"                # Main title
+    title_accent: "soluția potrivită"   # Italic accent phrase (sage green)
+    checklist:                            # Array of checklist items
+      - "Te simți copleșit de emoții..."
+      - "Relațiile tale suferă..."
+    quote:                                # Quote box (optional)
+      text: "Primul pas este cel mai greu..."
+      author: "Alexandra Barbu"           # Optional
+    right_icon: "clock"                   # Icon name (without 'las la-' prefix)
+    right_title: "Evaluare Gratuită"     # Right panel title
+    right_description: "30 de minute..."  # Right panel description
+    button_text: "Începe Evaluarea"       # CTA button text
+    button_url: "/contact/"               # CTA button URL
+    disclaimer: "Complet confidențial..." # Small text below button
+
+  Parameters:
+  -----------
+  None - Data-driven from front matter
+
+  Usage:
+  ------
+  ```yaml
+  sections:
+    - type: "cta-split"
+
+  cta_evaluation:
+    badge: "AUTO-REFLECȚIE"
+    title: "Este terapia"
+    title_accent: "soluția potrivită pentru tine?"
+    checklist:
+      - "Te simți copleșit de emoții negative"
+      - "Relațiile tale suferă"
+    quote:
+      text: "Primul pas este cel mai greu, dar cel mai important."
+    right_icon: "clock"
+    right_title: "Evaluare Gratuită 30 Min"
+    right_description: "Descoperă dacă terapia este potrivită..."
+    button_text: "Începe Evaluarea"
+    button_url: "/contact/"
+  ```
+
+  BEM Structure:
+  --------------
+  .c-cta-split                - Section wrapper
+  .c-cta-split__grid          - Split panel container
+  .c-cta-split__left          - Left panel (white)
+  .c-cta-split__badge         - Badge pill
+  .c-cta-split__title         - Main heading
+  .c-cta-split__title-accent  - Italic accent
+  .c-cta-split__checklist     - Checklist container
+  .c-cta-split__check-item    - Checklist item
+  .c-cta-split__check-icon    - Check icon
+  .c-cta-split__check-text    - Check text
+  .c-cta-split__quote         - Quote box
+  .c-cta-split__quote-text    - Quote text
+  .c-cta-split__quote-author  - Quote author
+  .c-cta-split__right         - Right panel (sage green)
+  .c-cta-split__icon-circle   - Glassmorphism icon circle
+  .c-cta-split__right-title   - Right panel title
+  .c-cta-split__right-desc    - Right panel description
+  .c-cta-split__button        - CTA button
+  .c-cta-split__disclaimer    - Disclaimer text
+
+  Dependencies:
+  -------------
+  - _cta-split.scss (BEM styles)
+
+  Version: 1.0.0
+  Updated: 2025-11-23
+  ============================================================================
+*/}}
+
+{{- $data := .Params.cta_evaluation -}}
+{{- if not $data -}}
+  {{- $data = site.Data.shared_sections.cta_evaluation -}}
+{{- end -}}
+
+{{- if $data -}}
+<section class="c-cta-split section">
+  <div class="o-container">
+
+    {{/* Split Panel Grid */}}
+    <div class="c-cta-split__grid">
+
+      {{/* Left Panel: White Background */}}
+      <div class="c-cta-split__left">
+
+        {{/* Section Badge Pill */}}
+        {{- if $data.badge -}}
+          <span class="c-cta-split__badge">{{ $data.badge }}</span>
+        {{- end -}}
+
+        {{/* Section Title with Accent */}}
+        {{- if $data.title -}}
+          <h2 class="c-cta-split__title">
+            {{ $data.title }}
+            {{- if $data.title_accent -}}
+              <span class="c-cta-split__title-accent"> {{ $data.title_accent }}</span>
+            {{- end -}}
+          </h2>
+        {{- end -}}
+
+        {{/* Checklist Items */}}
+        {{- if $data.checklist -}}
+        <ul class="c-cta-split__checklist">
+          {{- range $data.checklist -}}
+            <li class="c-cta-split__check-item">
+              <span class="c-cta-split__check-icon">
+                <i class="las la-check-circle"></i>
+              </span>
+              <span class="c-cta-split__check-text">{{ . }}</span>
+            </li>
+          {{- end -}}
+        </ul>
+        {{- end -}}
+
+        {{/* Quote Box */}}
+        {{- if $data.quote -}}
+        <div class="c-cta-split__quote">
+          <p class="c-cta-split__quote-text">
+            "{{ $data.quote.text }}"
+          </p>
+          {{- if $data.quote.author -}}
+            <cite class="c-cta-split__quote-author">— {{ $data.quote.author }}</cite>
+          {{- end -}}
+        </div>
+        {{- end -}}
+
+      </div>
+
+      {{/* Right Panel: Sage Green Background */}}
+      <div class="c-cta-split__right">
+
+        {{/* Glassmorphism Icon Circle */}}
+        {{- if $data.right_icon -}}
+        <div class="c-cta-split__icon-circle">
+          <i class="las la-{{ $data.right_icon }}"></i>
+        </div>
+        {{- end -}}
+
+        {{/* Right Panel Title */}}
+        {{- if $data.right_title -}}
+          <h3 class="c-cta-split__right-title">{{ $data.right_title }}</h3>
+        {{- end -}}
+
+        {{/* Right Panel Description */}}
+        {{- if $data.right_description -}}
+          <p class="c-cta-split__right-desc">{{ $data.right_description | markdownify }}</p>
+        {{- end -}}
+
+        {{/* CTA Button */}}
+        {{- if and $data.button_text $data.button_url -}}
+          {{ partial "atoms/button.html" (dict
+            "text" $data.button_text
+            "url" $data.button_url
+            "variant" "light"
+            "icon" "las la-arrow-right"
+          ) }}
+        {{- end -}}
+
+        {{/* Disclaimer */}}
+        {{- if $data.disclaimer -}}
+          <p class="c-cta-split__disclaimer">{{ $data.disclaimer }}</p>
+        {{- end -}}
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+{{- end -}}

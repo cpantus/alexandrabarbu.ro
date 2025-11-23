@@ -1,0 +1,285 @@
+// ============================================================================
+// Methodology Zigzag Section Component - BEM Architecture (Redesign 2025)
+// ============================================================================
+// Two-column zigzag layout with text + image + 2×2 method cards grid
+//
+// Features:
+// - Two-column layout (text 45%, visual 50%)
+// - Section badge pill with uppercase text
+// - Title with italic accent in sage green
+// - Heavy rounded image (3rem/48px)
+// - 2×2 grid of horizontal method cards
+// - Icon blobs with color coding
+// - Responsive stacking on mobile
+//
+// Version: 1.0.0
+// Updated: 2025-11-23
+// ============================================================================
+
+@use '../01-settings/tokens-colors' as *;
+@use '../01-settings/tokens-typography' as *;
+@use '../01-settings/tokens-spacing' as *;
+@use '../01-settings/tokens-components' as *;
+@use '../01-settings/tokens-shadows' as *;
+
+// ============================================================================
+// Section Wrapper
+// ============================================================================
+
+.c-methodology-zigzag {
+  padding: $section-padding-y 0;
+  background-color: $cream-100; // Cream background per design specs
+
+  // Desktop spacing: 96px vertical
+  @media (min-width: $breakpoint-lg) {
+    padding: 6rem 0; // 96px
+  }
+}
+
+// ============================================================================
+// Two-Column Grid
+// ============================================================================
+
+.c-methodology-zigzag__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-12; // 48px mobile gap
+  align-items: start;
+
+  // Tablet: maintain stack but increase gap
+  @media (min-width: $breakpoint-md) {
+    gap: $space-16; // 64px
+  }
+
+  // Desktop: two-column layout (45% text, 50% visual, 5% gap)
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: 45fr 50fr;
+    gap: 5%; // Column gap
+  }
+}
+
+// ============================================================================
+// Left Column: Text Content
+// ============================================================================
+
+.c-methodology-zigzag__content {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6; // 24px between elements
+}
+
+// Section Badge Pill (Redesign 2025: AUTO-REFLECȚIE style)
+.c-methodology-zigzag__badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: $space-3 $space-6; // 12px 24px - larger padding
+  background-color: #F5F5F0; // Light grey/off-white background
+  color: #5A6670; // Medium grey text
+  font-family: $font-body;
+  font-size: $font-size-xs; // 12px
+  font-weight: $font-weight-medium; // 500
+  text-transform: uppercase;
+  letter-spacing: 0.15em; // Wider spacing
+  border-radius: $radius-full; // Pill shape
+}
+
+// Section Title
+.c-methodology-zigzag__title {
+  font-family: $font-heading;
+  font-size: $font-size-4xl; // 42px desktop
+  font-weight: $font-weight-semibold;
+  line-height: $leading-tight;
+  color: $text-primary-green; // Dark green #1A332A
+
+  @media (max-width: $breakpoint-md - 1) {
+    font-size: $font-size-3xl; // 36px mobile
+  }
+}
+
+// Title Accent (italic sage green)
+.c-methodology-zigzag__title-accent {
+  font-style: italic;
+  color: $sage-500; // Sage green for accent word
+}
+
+// Description Text
+.c-methodology-zigzag__description {
+  font-family: $font-body;
+  font-size: $font-size-base; // 16px
+  line-height: 1.7;
+  color: $text-muted-green; // Muted green-grey #587065
+  margin: 0;
+}
+
+// ============================================================================
+// Right Column: Visual Content
+// ============================================================================
+
+.c-methodology-zigzag__visual {
+  display: flex;
+  flex-direction: column;
+  gap: $space-12; // 48px between image and cards
+}
+
+// Heavy Rounded Image
+.c-methodology-zigzag__image {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: $radius-3xl; // 48px heavy rounding
+  display: block;
+
+  @media (max-width: $breakpoint-md - 1) {
+    max-height: 300px;
+    border-radius: $radius-2xl; // 32px on mobile
+  }
+}
+
+// ============================================================================
+// Method Cards 2×2 Grid
+// ============================================================================
+
+.c-methodology-zigzag__methods {
+  display: grid;
+  grid-template-columns: 1fr; // Mobile: 1 column
+  gap: $space-6; // 24px gap
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr); // Tablet/Desktop: 2×2 grid
+  }
+}
+
+// ============================================================================
+// Method Card (Horizontal Layout)
+// ============================================================================
+
+.c-method-card {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-4; // 16px between icon and text
+  padding: $space-8; // 32px padding
+  background-color: $cream-50; // White background on cream
+  border-radius: $radius-lg; // 12px rounded corners
+  transition: all 0.3s ease;
+
+  // Hover state: subtle background color change
+  &:hover {
+    background-color: rgba($sage-500, 0.05); // Very subtle sage tint
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+}
+
+// Icon Blob Container
+.c-method-card__icon {
+  flex-shrink: 0;
+  width: 64px; // md size icon blob
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: $breakpoint-sm - 1) {
+    width: 48px; // sm size on small mobile
+    height: 48px;
+  }
+}
+
+// Text Content Container
+.c-method-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2; // 8px between title and description
+  flex: 1;
+}
+
+// Method Title
+.c-method-card__title {
+  font-family: $font-body;
+  font-size: $font-size-lg; // 18px
+  font-weight: $font-weight-semibold;
+  line-height: $leading-tight;
+  color: $text-primary-green; // Dark green
+  margin: 0;
+}
+
+// Method Description
+.c-method-card__description {
+  font-family: $font-body;
+  font-size: $font-size-sm; // 15px
+  line-height: 1.6;
+  color: $text-muted-green; // Muted green-grey
+  margin: 0;
+}
+
+// ============================================================================
+// Responsive Adjustments
+// ============================================================================
+
+@media (max-width: $breakpoint-md - 1) {
+  .c-methodology-zigzag__grid {
+    // Stack everything vertically on mobile
+    grid-template-columns: 1fr;
+  }
+
+  .c-methodology-zigzag__methods {
+    // Keep 2-column on larger mobile if space allows
+    @media (min-width: $breakpoint-sm) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $space-4; // Tighter gap on mobile
+    }
+  }
+
+  .c-method-card {
+    padding: $space-6; // Reduce padding on mobile (24px)
+  }
+}
+
+// ============================================================================
+// Print Styles
+// ============================================================================
+
+@media print {
+  .c-methodology-zigzag {
+    padding: 2rem 0;
+  }
+
+  .c-methodology-zigzag__grid {
+    display: block;
+  }
+
+  .c-methodology-zigzag__visual {
+    margin-top: 1rem;
+  }
+
+  .c-method-card {
+    page-break-inside: avoid;
+  }
+}
+
+// ============================================================================
+// Accessibility Enhancements
+// ============================================================================
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .c-method-card {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .c-methodology-zigzag__badge {
+    border: 1px solid currentColor;
+  }
+
+  .c-method-card {
+    border: 1px solid $cream-300;
+  }
+}

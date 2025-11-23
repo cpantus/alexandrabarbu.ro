@@ -15,7 +15,7 @@
 // - Optional CTA section before footer
 // - Responsive grid layout (3 columns → 2 columns → 1 column)
 // - 8pt spacing grid throughout
-// - Crimson Pro + Work Sans typography
+// - Playfair Display + DM Sans typography (Redesign 2025)
 //
 // Version: 5.0.1 (Phase 4 - Organism Refactor)
 // Last Updated: 2025-11-20
@@ -25,8 +25,8 @@
 // =============================================================================
 .c-footer__cta {
   padding: $space-16 0;
-  background-color: rgba($color-primary-50, 0.5);
-  border-top: 1px solid $color-border-light;
+  background-color: $cream-100; // Redesign 2025: Clean cream background
+  border-top: 1px solid $cream-200; // Redesign 2025: Subtle cream border
 
   @media (max-width: $breakpoint-md - 1) {
     padding: $space-12 0;
@@ -75,8 +75,9 @@
 // Main Footer
 // =============================================================================
 .c-footer {
-  background: linear-gradient(135deg, $terracotta-50 0%, $emerald-50 100%); // v5.1: Warm branded gradient (reverse of body)
-  border-top: 3px solid $color-secondary-500; // v5.1: Branded terracotta accent
+  background: #2F5548; // Redesign 2025: Dark forest green
+  color: $cream-100; // Redesign 2025: Cream text
+  border-top: none; // Redesign 2025: Remove border
   padding-top: $space-12;
 
   &--with-cta {
@@ -141,8 +142,8 @@
 // Copyright Bar
 // =============================================================================
 .c-footer__copyright {
-  background: $emerald-100; // v5.1: Warm emerald tint (was white)
-  border-top: 3px solid $color-primary-600; // v5.1: Thicker branded border
+  background: $forest-900; // Redesign 2025: Darker forest green
+  border-top: 1px solid rgba($cream-100, 0.1); // Redesign 2025: Subtle cream divider
   padding: $space-5 0;
 
   @media (max-width: $breakpoint-md - 1) {
@@ -169,12 +170,12 @@
   font-family: $font-family-sans;
   font-size: $font-size-sm;
   line-height: $line-height-normal;
-  color: $color-text-muted;
+  color: rgba($cream-100, 0.7); // Redesign 2025: Muted cream text
   text-align: center;
   margin: 0;
 
   a {
-    color: $color-text-secondary;
+    color: $cream-100; // Redesign 2025: Cream links
     text-decoration: none;
     transition: color $duration-fast $easing-default;
 

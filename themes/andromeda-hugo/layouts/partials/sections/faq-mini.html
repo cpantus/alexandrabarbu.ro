@@ -72,12 +72,12 @@
   {{- $faqLink := $.Params.faq_mini_link_text | default (i18n "contact_us" | default "Contact us directly") -}}
   {{- $faqLinkUrl := $.Params.faq_mini_link_url | default "#contact-form" -}}
 
-  <section class="c-faq-mini-section c-faq-mini-section--{{ $variant }}">
+  <section class="c-faq-mini-section c-faq-mini-section--{{ $variant }} c-faq-mini-section--redesign">
     <div class="c-faq-mini-section__container">
       <div class="c-faq-mini-section__header">
         {{- if $faqTitle -}}
           {{ partial "atoms/heading.html" (dict
-            "level" "h3"
+            "level" "h2"
             "text" $faqTitle
             "variant" $headingVariant
             "class" "c-faq-mini-section__title"
@@ -94,7 +94,7 @@
           "items" .
           "id" "faqAccordion"
           "defaultOpen" 0
-          "variant" $variant
+          "variant" "redesign"
           "class" "c-faq-mini-section__accordion"
         ) }}
       </div>

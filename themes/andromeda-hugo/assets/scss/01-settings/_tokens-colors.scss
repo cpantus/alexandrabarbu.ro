@@ -246,47 +246,47 @@ $text-light-cream: #F4F7F5;    // Light text (for dark backgrounds)
 // Purpose: Enforce semantic meaning, prevent arbitrary color usage
 // Rule: Components MUST use semantic names, NOT palette names
 
-// Brand Colors (Base)
-$color-primary: $emerald-500;
-$color-secondary: $terracotta-500;
-$color-tertiary: $navy-500;
-$color-neutral: $gray-500;
+// Brand Colors (Base) - REDESIGN 2025: Forest Green + Sage + Gold
+$color-primary: $forest-500;      // Forest green (was emerald)
+$color-secondary: $sage-500;      // Sage green (was terracotta)
+$color-tertiary: $gold-500;       // Gold/sand accent (was navy)
+$color-neutral: $gray-500;        // Unchanged
 
-// Primary Color Scale (Emerald)
-$color-primary-50: $emerald-50;
-$color-primary-100: $emerald-100;
-$color-primary-200: $emerald-200;
-$color-primary-300: $emerald-300;
-$color-primary-400: $emerald-400;
-$color-primary-500: $emerald-500;
-$color-primary-600: $emerald-600;
-$color-primary-700: $emerald-700;
-$color-primary-800: $emerald-800;
-$color-primary-900: $emerald-900;
+// Primary Color Scale (Forest Green - was Emerald)
+$color-primary-50: $forest-50;
+$color-primary-100: $forest-100;
+$color-primary-200: $forest-200;
+$color-primary-300: $forest-300;
+$color-primary-400: $forest-400;
+$color-primary-500: $forest-500;
+$color-primary-600: $forest-600;
+$color-primary-700: $forest-700;
+$color-primary-800: $forest-800;
+$color-primary-900: $forest-900;
 
-// Secondary Color Scale (Terracotta)
-$color-secondary-50: $terracotta-50;
-$color-secondary-100: $terracotta-100;
-$color-secondary-200: $terracotta-200;
-$color-secondary-300: $terracotta-300;
-$color-secondary-400: $terracotta-400;
-$color-secondary-500: $terracotta-500;
-$color-secondary-600: $terracotta-600;
-$color-secondary-700: $terracotta-700;
-$color-secondary-800: $terracotta-800;
-$color-secondary-900: $terracotta-900;
+// Secondary Color Scale (Sage - was Terracotta)
+$color-secondary-50: $sage-50;
+$color-secondary-100: $sage-100;
+$color-secondary-200: $sage-200;
+$color-secondary-300: $sage-300;
+$color-secondary-400: $sage-400;
+$color-secondary-500: $sage-500;
+$color-secondary-600: $sage-600;
+$color-secondary-700: $sage-700;
+$color-secondary-800: $sage-800;
+$color-secondary-900: $sage-900;
 
-// Tertiary Color Scale (Navy)
-$color-tertiary-50: $navy-50;
-$color-tertiary-100: $navy-100;
-$color-tertiary-200: $navy-200;
-$color-tertiary-300: $navy-300;
-$color-tertiary-400: $navy-400;
-$color-tertiary-500: $navy-500;
-$color-tertiary-600: $navy-600;
-$color-tertiary-700: $navy-700;
-$color-tertiary-800: $navy-800;
-$color-tertiary-900: $navy-900;
+// Tertiary Color Scale (Gold - was Navy)
+$color-tertiary-50: $gold-50;
+$color-tertiary-100: $gold-100;
+$color-tertiary-200: $gold-200;
+$color-tertiary-300: $gold-300;
+$color-tertiary-400: $gold-400;
+$color-tertiary-500: $gold-500;
+$color-tertiary-600: $gold-600;
+$color-tertiary-700: $gold-700;
+$color-tertiary-800: $gold-800;
+$color-tertiary-900: $gold-900;
 
 // Neutral Color Scale (Gray)
 $color-neutral-50: $gray-50;
@@ -311,24 +311,24 @@ $color-text-heading: $gray-900;                // Headings (near black)
 // ✅ PHASE 8: Legacy $emerald-* aliases removed
 // All components now use $emerald-* tokens directly
 
-// Background Colors - v5.1.1: MINT GREEN HEALING AESTHETIC
-// Psychology/healing design: Warm mint (#E8F5F0) creates calm, safe, healing environment
-// Replaced pure white with warm mint throughout for consistent therapeutic aesthetic
-$color-bg: $mint-bg;                             // Default background (warm mint - healing)
-$color-bg-light: $mint-bg;                       // Light background (warm mint - calm)
-$color-bg-lighter: $mint-bg-light;               // Lighter background (cooler mint variation)
-$color-bg-page: $mint-bg;                        // Page background (warm mint - safe space)
-$color-bg-section: $mint-bg;                     // Default section background (warm mint)
-$color-bg-section-secondary: $terracotta-50;     // Secondary section background (warm terracotta - balance)
-$color-bg-section-tertiary: $mint-bg-medium;     // Tertiary section background (medium mint - soft)
-$color-bg-section-neutral: $terracotta-100;      // Neutral section background (medium terracotta - grounding)
-$color-bg-card: $mint-bg;                        // Card background (warm mint - safety)
+// Background Colors - REDESIGN 2025: CREAM AESTHETIC
+// New design: Cream (#F4F7F5) provides clean, neutral canvas for forest green content
+// Replaced mint green with cream throughout for fresh, modern aesthetic
+$color-bg: $cream-100;                           // Default background (cream - clean)
+$color-bg-light: $cream-50;                      // Light background (white - pure)
+$color-bg-lighter: $cream-50;                    // Lighter background (white)
+$color-bg-page: $cream-100;                      // Page background (cream - neutral canvas)
+$color-bg-section: $cream-100;                   // Default section background (cream)
+$color-bg-section-secondary: $sage-50;           // Secondary section background (light sage - subtle)
+$color-bg-section-tertiary: $cream-200;          // Tertiary section background (medium cream)
+$color-bg-section-neutral: $cream-100;           // Neutral section background (cream)
+$color-bg-card: $cream-50;                       // Card background (white - clean)
 
-// Border Colors
-$color-border: $gray-300;                      // Default border color (alias for medium)
-$color-border-light: $gray-200;
-$color-border-medium: $gray-300;
-$color-border-dark: $gray-400;
+// Border Colors - REDESIGN 2025: Cream borders for subtle definition
+$color-border: $cream-200;                     // Default border color (cream - subtle)
+$color-border-light: $cream-200;               // Light border (cream)
+$color-border-medium: $cream-300;              // Medium border (darker cream)
+$color-border-dark: $cream-400;                // Dark border (darkest cream)
 
 // State Colors
 $color-success: $sage-500;

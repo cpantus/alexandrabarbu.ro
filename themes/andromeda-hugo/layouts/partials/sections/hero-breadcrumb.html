@@ -1,5 +1,5 @@
 {{/*
-  Hero Breadcrumb Section - Page header with title and breadcrumb navigation
+  Hero Breadcrumb Section - Page header with title, breadcrumb, and compass animation
 
   Usage:
     Add to page front matter:
@@ -10,14 +10,16 @@
 
   Optional parameters in front matter:
     hero_breadcrumb:
+      title: "Main title text" (overrides .Title)
+      title_accent: "Italic accent text (e.g., Nordul Interior)"
+      subtitle: "Body text below title"
       kicker: "Optional kicker text (above title)"
-      subtitle: "Optional subtitle text"
-      subtitle_size: "default|large" (default: default 14px, large: 18px)
       variant: "primary|secondary|tertiary|neutral" (default: primary)
       breadcrumb_variant: "primary|secondary|tertiary|neutral" (default: neutral)
-      show_breadcrumb: true|false (default: true)
-      hero_image: "images/hero.jpg" (optional custom image)
-      quote_text: "Optional quote text"
+      show_breadcrumb: true|false (default: false)
+      show_compass: true|false (default: true)
+      hero_image: "images/hero.jpg" (optional custom image instead of compass)
+      quote_text: "Optional quote text (with hero_image)"
       quote_author: "Optional quote author"
       cta_buttons:
         - text: "Primary CTA"
@@ -31,38 +33,50 @@
 
   Features:
     - BEM structure (.c-hero-breadcrumb)
-    - Uses heading atom for h1
-    - Uses breadcrumb molecule for navigation
-    - Uses image atom for hero image
+    - Two-column layout (text left, compass/image right)
+    - Compass animation atom (default right column content)
+    - Optional custom title with italic accent
+    - Uses breadcrumb molecule for navigation (optional)
+    - Uses image atom for custom hero image (alternative to compass)
     - Responsive layout (stacked mobile, side-by-side desktop)
     - Optional kicker, subtitle, quote box, CTA buttons
-    - Organic blob shape for images
     - Color variant support
-    - Auto-generated breadcrumb from current page
 
-  Example:
+  Example (Homepage with compass):
     hero_breadcrumb:
-      kicker: "Expertiză Psihologică"
-      subtitle: "Our Services"
-      subtitle_size: "large"
-      variant: "primary"
-      hero_image: "images/services-hero.jpg"
-      quote_text: "Nu există o rețetă universală..."
-      quote_author: "Dr. Alexandra Barbu"
+      title: "Găsim"
+      title_accent: "Nordul Interior"
+      subtitle: "Călătoria spre vindecare începe cu un singur pas..."
+      show_breadcrumb: false
+      show_compass: true
       cta_buttons:
         - text: "Programează Consultație"
           url: "/contact"
           variant: "primary"
-          icon: "las la-calendar"
+        - text: "Află Mai Multe"
+          url: "/services"
+          variant: "outline-primary"
+
+  Example (Service page with image):
+    hero_breadcrumb:
+      show_breadcrumb: true
+      show_compass: false
+      hero_image: "images/services-hero.jpg"
+      cta_buttons:
+        - text: "Contact"
+          url: "/contact"
+          variant: "primary"
 */}}
 
 {{- $section := .Params.hero_breadcrumb -}}
 {{- $variant := "primary" -}}
 {{- $breadcrumbVariant := "neutral" -}}
-{{- $showBreadcrumb := true -}}
+{{- $showBreadcrumb := false -}}
+{{- $showCompass := true -}}
+{{- $title := .Title -}}
+{{- $titleAccent := "" -}}
 {{- $kicker := "" -}}
 {{- $subtitle := "" -}}
-{{- $subtitleSize := "default" -}}
 {{- $heroImage := .Params.hero_image -}}
 {{- $quoteText := "" -}}
 {{- $quoteAuthor := "" -}}
@@ -73,9 +87,11 @@
   {{- $variant = $section.variant | default $variant -}}
   {{- $breadcrumbVariant = $section.breadcrumb_variant | default $breadcrumbVariant -}}
   {{- $showBreadcrumb = $section.show_breadcrumb | default $showBreadcrumb -}}
+  {{- $showCompass = $section.show_compass | default $showCompass -}}
+  {{- $title = $section.title | default $title -}}
+  {{- $titleAccent = $section.title_accent | default $titleAccent -}}
   {{- $kicker = $section.kicker | default $kicker -}}
   {{- $subtitle = $section.subtitle | default $subtitle -}}
-  {{- $subtitleSize = $section.subtitle_size | default $subtitleSize -}}
   {{- $heroImage = $section.hero_image | default $heroImage -}}
   {{- $quoteText = $section.quote_text | default $quoteText -}}
   {{- $quoteAuthor = $section.quote_author | default $quoteAuthor -}}
@@ -92,17 +108,17 @@
           <p class="c-hero-breadcrumb__kicker">{{ $kicker | markdownify }}</p>
         {{- end -}}
 
-        {{/* Page title using heading atom */}}
-        {{ partial "atoms/heading.html" (dict
-          "text" .Title
-          "level" "h1"
-          "class" "c-hero-breadcrumb__title"
-          "variant" $variant
-        ) }}
+        {{/* Page title - custom title structure with optional accent */}}
+        <h1 class="c-hero-breadcrumb__title c-heading c-heading--h1 c-heading--{{ $variant }}">
+          <span class="c-hero-breadcrumb__title-main">{{ $title }}</span>
+          {{- if $titleAccent -}}
+            {" "}<span class="c-hero-breadcrumb__title-accent c-heading__accent">{{ $titleAccent }}</span>
+          {{- end -}}
+        </h1>
 
         {{/* Optional subtitle */}}
         {{- if $subtitle -}}
-          <p class="c-hero-breadcrumb__subtitle c-hero-breadcrumb__subtitle--{{ $subtitleSize }}">{{ $subtitle | markdownify }}</p>
+          <p class="c-hero-breadcrumb__subtitle">{{ $subtitle | markdownify }}</p>
         {{- end -}}
 
         {{/* Breadcrumb navigation using molecule */}}
@@ -160,8 +176,13 @@
               </div>
             {{- end -}}
           </div>
+        {{- else if $showCompass -}}
+          {{/* Compass animation atom (default for homepage hero) */}}
+          <div class="c-hero-breadcrumb__compass-wrapper">
+            {{ partial "atoms/compass-animation.html" }}
+          </div>
         {{- else -}}
-          {{/* Decorative SVG shapes */}}
+          {{/* Decorative SVG shapes (fallback) */}}
           <div class="c-hero-breadcrumb__shapes" aria-hidden="true">
             <img src="{{ "images/shapes/shape-1.svg" | relURL }}" alt="" class="c-hero-breadcrumb__shape c-hero-breadcrumb__shape--1">
             <img src="{{ "images/shapes/shape-2.svg" | relURL }}" alt="" class="c-hero-breadcrumb__shape c-hero-breadcrumb__shape--2">

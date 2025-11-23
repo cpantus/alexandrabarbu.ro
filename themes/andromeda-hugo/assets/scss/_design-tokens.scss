@@ -240,10 +240,11 @@ $color-border-focus: $emerald-500;   // Focus state borders (ALWAYS emerald)
 // ==================================
 
 // ----------------------------------
-// Font Families
+// Font Families (LEGACY - Use 01-settings/_tokens-typography.scss for Redesign 2025)
 // ----------------------------------
-$font-heading: 'Crimson Pro', Georgia, 'Times New Roman', serif;    // Headings ONLY
-$font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif; // Body text ONLY
+// NOTE: This file is deprecated. Use the new token system in 01-settings/_tokens-typography.scss
+$font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;    // Headings - Redesign 2025
+$font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; // Body - Redesign 2025
 
 // ----------------------------------
 // Font Weights (RESTRICTED)

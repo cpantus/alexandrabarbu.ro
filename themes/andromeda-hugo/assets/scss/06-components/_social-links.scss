@@ -109,7 +109,7 @@
     bottom: -0.5px;
     border-radius: $border-radius-circle;
     // Gradient background for the border
-    background: linear-gradient(135deg, $emerald-400 0%, $terracotta-400 100%);
+    background: linear-gradient(135deg, $forest-400 0%, $sage-400 100%);
     opacity: 0; // Hidden by default
     transform: scale(1);
     transition: all $transition-base $easing-ease-out;
@@ -213,7 +213,7 @@
 .c-social--primary {
   .c-social__link {
     &::before {
-      background: linear-gradient(135deg, $emerald-400 0%, $terracotta-400 100%);
+      background: linear-gradient(135deg, $forest-400 0%, $sage-400 100%);
     }
   }
 }
@@ -221,7 +221,7 @@
 .c-social--secondary {
   .c-social__link {
     &::before {
-      background: linear-gradient(135deg, $terracotta-400 0%, $terracotta-500 100%);
+      background: linear-gradient(135deg, $sage-400 0%, $gold-500 100%);
     }
   }
 }

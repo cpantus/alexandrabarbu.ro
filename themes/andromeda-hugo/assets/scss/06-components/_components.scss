@@ -61,7 +61,8 @@
 
 // Section Components (BEM refactored)
 @import 'hero-breadcrumb';         // ✅ Phase 3: BEM refactored with legacy compat
-@import 'testimonials';            // ✅ Phase 3: BEM refactored with legacy compat
+@import 'testimonials';
+@import 'testimonials-dark';            // ✅ Phase 3: BEM refactored with legacy compat
 @import 'faq';                     // ✅ Phase 3: BEM refactored with legacy compat
 @import 'video-popup';             // ✅ Phase 3: BEM refactored with legacy compat
 @import 'blog-grid';               // ✅ Phase 3: BEM refactored with legacy compat
@@ -91,6 +92,8 @@
 
 // Site Structure Implementation 2025-01 (New Sections)
 @import 'services-preview';        // ✅ NEW - 4-service card grid for homepage/services main page
+@import 'methodology-zigzag';      // ✅ REDESIGN 2025 Phase 3 Section 3 - Two-column zigzag with text + image + 2×2 method cards
+@import 'cta-split';               // ✅ REDESIGN 2025 Phase 3 Section 4 - Split panel CTA with glassmorphism (60/40 white/sage)
 @import 'about-preview';           // 🔄 NEW - therapist introduction section with photo & credentials
 @import 'approach-preview';        // 🔄 NEW - 4 therapeutic principles preview
 @import 'simple-process';          // 🔄 NEW - 3-step visual timeline (how therapy works)

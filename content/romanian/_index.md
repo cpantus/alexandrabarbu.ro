@@ -7,6 +7,8 @@ sections:
   - type: "hero-breadcrumb"
   - type: "problem-empathy"
   - type: "services-preview"
+  - type: "methodology-zigzag"
+  - type: "cta-split"
   - type: "about-preview"
   - type: "approach-preview"
   - type: "testimonials-enhanced"
@@ -15,19 +17,24 @@ sections:
   - type: "cta-standard"
 
 # ============================================================================
-# 1. HERO SECTION
+# 1. HERO SECTION (Redesign 2025)
 # ============================================================================
 
 hero_breadcrumb:
-  title: "Terapie Psihologică Profesională în București"
-  subtitle: "Ajutor specializat pentru depresie, anxietate și relații"
-  description: "Abordare integrativă bazată pe dovezi științifice. Consultație gratuită de 30 minute pentru a ne cunoaște."
-  image: "images/hero/alexandra-barbu-cabinet.jpg"
-  button_text: "Programează Consultație Gratuită"
-  button_url: "/contact/"
-  button_variant: "primary"
-  secondary_button_text: "Vezi Servicii"
-  secondary_button_url: "/servicii/"
+  title: "Găsim"
+  title_accent: "Nordul Interior"
+  subtitle: "Călătoria spre vindecare începe cu un singur pas. Explorează drumul către echilibru interior și transformare autentică prin terapie integrativă."
+  show_breadcrumb: false
+  show_compass: true
+  cta_buttons:
+    - text: "Programează Consultație"
+      url: "/contact/"
+      variant: "primary"
+      icon: "las la-calendar"
+    - text: "Descoperă Servicii"
+      url: "/servicii/"
+      variant: "outline-primary"
+      icon: "las la-arrow-right"
 
 # ============================================================================
 # 2. PROBLEMA/EMPATIE SECTION
@@ -53,40 +60,87 @@ problem_empathy:
   empathy_text: "Înțeleg prin ce treci. Aceste provocări sunt reale și merită atenție profesională. **Terapia poate fi punctul de cotitură** către o viață mai echilibrată și mai împlinită."
 
 # ============================================================================
-# 3. SERVICII PREVIEW
+# 3. SERVICII PREVIEW (Redesign 2025)
 # ============================================================================
 
 services_preview:
-  title: "Cum Te Pot Ajuta"
-  subtitle: "Servicii Specializate"
+  top_link:
+    text: "Află mai multe despre terapie"
+    url: "/abordare/"
+  badge: "Servicii Oferite"
+  title: "Începe Călătoria Ta"
+  intro: "Când știi unde ești, poți merge oriunde. Descoperim resursele interioare și construim o viață echilibrată! Procesul începe cu o evaluare atentă și continuă cu stabilirea unor obiective clare."
   services:
-    - title: "Terapie Individuală"
-      description: "Abordare personalizată pentru depresie, anxietate, traume și creștere personală. Metode dovedite științific adaptate nevoilor tale unice."
-      icon: "user"
+    - title: "Psihoterapie Individuală"
+      description: "Un spațiu sigur pentru a explora gândurile și emoțiile, pentru a depăși anxietatea, depresia sau stresul cotidian și pentru a redescoperi echilibrul."
+      icon: "brain"
+      icon_color: "blue"
       url: "/servicii/terapie-individuala/"
-      button_text: "Explorează Terapia Individuală"
-      button_variant: "secondary"
-    - title: "Terapie de Cuplu"
-      description: "Reconstruiește conexiunea și comunicarea în relație. Redescoperă intimitatea și rezolvă conflictele constructiv."
-      icon: "heart"
-      url: "/servicii/terapie-cuplu/"
-      button_text: "Descoperă Terapia de Cuplu"
-      button_variant: "primary"
-    - title: "Terapie de Familie"
-      description: "Vindecare și armonizare a dinamicii familiale. Creează un mediu familial sigur și susținător."
-      icon: "users"
-      url: "/servicii/terapie-familie/"
-      button_text: "Vezi Terapia de Familie"
-      button_variant: "secondary"
-    - title: "Psihologie Organizațională"
-      description: "Optimizare echipe și cultură organizațională sănătoasă. Leadership și performanță la locul de muncă."
-      icon: "building"
-      url: "/servicii/psihologie-organizationala/"
-      button_text: "Servicii pentru Companii"
-      button_variant: "outline-primary"
+    - title: "Dezvolvare Personală"
+      description: "Identificăm resursele proprii și lucrăm împreună pentru a atinge potențialul maxim, îmbunătățind relația cu sine și cu cei din jur."
+      icon: "leaf"
+      icon_color: "sage"
+      url: "/servicii/dezvolvare-personala/"
+    - title: "Corporate Wellbeing"
+      description: "Programe dedicate companiilor pentru a susține sănătatea mintală a angajaților, crescând productivitatea și armonia în echipă."
+      icon: "briefcase"
+      icon_color: "gold"
+      url: "/servicii/wellbeing-organizational/"
 
 # ============================================================================
-# 4. DESPRE PREVIEW
+# 4. METODOLOGIE ZIGZAG (Redesign 2025)
+# ============================================================================
+
+methodology_section:
+  badge: "METODOLOGIE"
+  title: "O Abordare"
+  title_accent: "Integrativă"
+  description: "Combin cele mai eficiente metode terapeutice validate științific pentru rezultate durabile și transformare autentică. Fiecare tehnică este adaptată nevoilor tale unice."
+  image: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=2000&auto=format&fit=crop"
+  image_alt: "Abordare terapeutică integrativă - combinarea metodelor pentru rezultate optime"
+  methods:
+    - title: "Cognitiv-Comportamentală"
+      description: "TCC pentru schimbarea gândurilor și comportamentelor negative. Instrumente practice pentru gestionarea anxietății și depresiei."
+      icon: "brain"
+      icon_color: "blue"
+    - title: "Mindfulness & Acceptare"
+      description: "Tehnici de conștientizare și acceptare pentru reducerea stresului. Prezență în momentul actual și compasiune față de sine."
+      icon: "leaf"
+      icon_color: "sage"
+    - title: "Schema Therapy"
+      description: "Identificarea și modificarea pattern-urilor profunde din copilărie. Vindecare la nivel de nevoi emoționale fundamentale."
+      icon: "brain"
+      icon_color: "purple"
+    - title: "Umanist-Experiențială"
+      description: "Explorarea experiențelor emoționale profunde într-un spațiu sigur. Dezvoltare personală și auto-actualizare."
+      icon: "heart"
+      icon_color: "coral"
+
+# ============================================================================
+# 5. CTA EVALUARE (Redesign 2025)
+# ============================================================================
+
+cta_evaluation:
+  badge: "AUTO-REFLECȚIE"
+  title: "Este terapia"
+  title_accent: "soluția potrivită pentru tine?"
+  checklist:
+    - "Te simți copleșit de emoții negative și nu știi cum să le gestionezi"
+    - "Relațiile tale suferă și vrei să le îmbunătățești"
+    - "Dorești să înțelegi mai bine gândurile și comportamentele tale"
+    - "Cauți un spațiu sigur pentru dezvoltare personală"
+  quote:
+    text: "Primul pas este cel mai greu, dar cel mai important. Evaluarea gratuită te ajută să descoperi dacă terapia este potrivită pentru tine."
+    author: "Alexandra Barbu"
+  right_icon: "clock"
+  right_title: "Evaluare Gratuită 30 Min"
+  right_description: "Descoperă dacă terapia este potrivită pentru tine printr-o consultație gratuită de 30 de minute. Fără obligații, complet confidențial."
+  button_text: "Începe Evaluarea"
+  button_url: "/contact/"
+  disclaimer: "Complet confidențial • Fără obligații • Online sau la cabinet"
+
+# ============================================================================
+# 6. DESPRE PREVIEW
 # ============================================================================
 
 about_preview:
@@ -136,46 +190,22 @@ approach_preview:
   button_variant: "primary"
 
 # ============================================================================
-# 6. TESTIMONIALE
+# 6. TESTIMONIALE (Redesign 2025 - Dark Background)
 # ============================================================================
 
-testimonials_enhanced:
+testimonials_section:
   title: "Ce Spun Clienții Mei"
-  subtitle: "MĂRTURII"
-  description: "Experiențe reale de la persoane care au găsit vindecare și creștere prin terapie."
-  variant: "primary"
-  background: "light"
+  icon_color: "gold"
   testimonials:
-    - quote: "Alexandra m-a ajutat să găsesc puterea de a depăși depresia. Acum văd viața diferit și am instrumente concrete pentru a gestiona provocările."
+    - quote: "Terapia m-a ajutat să înțeleg tiparele mele și să construiesc relații mai sănătoase. Am descoperit instrumente care funcționează pentru mine."
       name: "M.A."
-      age_range: "30-40 ani"
-      therapy_type: "Terapie Individuală"
-      duration: "8 luni"
-      rating: 5
-      verified: true
-      outcome: "Reducere simptome depresie: 80%"
-    - quote: "Relația noastră era pe marginea prăpastiei. Acum comunicăm cu adevărat, ne înțelegem și ne susținem reciproc. Mulțumim!"
-      name: "A.E."
-      age_range: "35-45 ani"
-      therapy_type: "Terapie de Cuplu"
-      duration: "6 luni"
-      rating: 5
-      verified: true
-      outcome: "Îmbunătățire satisfacție relație: 90%"
-    - quote: "Tehnicile învățate în terapie m-au ajutat să gestionez anxietatea zilnică. Nu mai trăiesc cu frica constantă."
-      name: "I.P."
-      age_range: "25-35 ani"
-      therapy_type: "Terapie pentru Anxietate"
-      duration: "5 luni"
-      rating: 5
-      verified: true
-      outcome: "Reducere atacuri de panică: 95%"
-  privacy_note: "Toate mărturiile sunt de la clienți reali. Numele sunt anonimizate pentru confidențialitate."
-  cta_button:
-    text: "Programează Consultație Gratuită"
-    url: "/contact/"
-    variant: "primary"
-    icon: "arrow-right"
+      role: "Client Terapie Individuală"
+    - quote: "Am învățat tehnici pentru gestionarea anxietății și am găsit pacea pe care nu credeam că e posibilă. Procesul a fost transformator."
+      name: "R.C."
+      role: "Participant Program TCC"
+    - quote: "Abordarea compasională m-a ajutat să vindec traumele din trecut în ritmul meu. Mă simt mai puternică și mai conectată cu mine."
+      name: "S.L."
+      role: "Client Terapie Focusată pe Traumă"
 
 # ============================================================================
 # 7. PROCES SIMPLU

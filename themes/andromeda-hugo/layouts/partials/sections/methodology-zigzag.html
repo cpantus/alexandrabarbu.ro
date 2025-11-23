@@ -1,0 +1,168 @@
+{{/*
+  ============================================================================
+  Methodology Zigzag Section - BEM Architecture (Redesign 2025)
+  ============================================================================
+  Two-column zigzag layout with text content + image/method cards
+
+  Features:
+  - Text content left (~45%), visual content right (~50%)
+  - Section badge pill (uppercase)
+  - Title with italic accent word
+  - Image with heavy rounding (3rem/48px)
+  - 2×2 grid of horizontal method cards below image
+  - Icon blobs with color coding
+  - Responsive: stacks to single column on mobile
+
+  Data Structure:
+  ---------------
+  methodology_section:
+    badge: "METODOLOGIE"                  # Section badge (optional, uppercase)
+    title: "O Abordare"                   # Main title
+    title_accent: "Integrativă"          # Italic accent word (optional, sage green)
+    description: "Body paragraph..."      # Description text
+    image: "images/methodology.jpg"       # Image path
+    image_alt: "Alt text"                 # Image alt text
+    methods:                               # Array of 4 methods (2×2 grid)
+      - title: "Cognitiv-Comportamentală"
+        description: "TCC pentru schimbări durabile..."
+        icon: "brain"                      # Icon name (without 'las la-' prefix)
+        icon_color: "blue"                 # blue, sage, purple, coral
+
+  Parameters:
+  -----------
+  None - Data-driven from front matter
+
+  Usage:
+  ------
+  ```yaml
+  sections:
+    - type: "methodology-zigzag"
+
+  methodology_section:
+    badge: "METODOLOGIE"
+    title: "O Abordare"
+    title_accent: "Integrativă"
+    description: "Combin cele mai eficiente metode..."
+    image: "images/methodology/approach.jpg"
+    methods:
+      - title: "Cognitiv-Comportamentală"
+        description: "TCC pentru gânduri și comportamente"
+        icon: "brain"
+        icon_color: "blue"
+  ```
+
+  BEM Structure:
+  --------------
+  .c-methodology-zigzag               - Section wrapper
+  .c-methodology-zigzag__grid         - Two-column grid container
+  .c-methodology-zigzag__content      - Left column (text content)
+  .c-methodology-zigzag__badge        - Section badge pill
+  .c-methodology-zigzag__title        - Main heading
+  .c-methodology-zigzag__title-accent - Italic accent word
+  .c-methodology-zigzag__description  - Body paragraph
+  .c-methodology-zigzag__visual       - Right column (image + cards)
+  .c-methodology-zigzag__image        - Rounded image
+  .c-methodology-zigzag__methods      - 2×2 grid of method cards
+  .c-method-card                      - Horizontal method card
+  .c-method-card__icon                - Icon blob container
+  .c-method-card__content             - Text content
+  .c-method-card__title               - Method title
+  .c-method-card__description         - Method description
+
+  Dependencies:
+  -------------
+  - atoms/icon-blob.html (for method icons)
+  - _methodology-zigzag.scss (BEM styles)
+  - _method-card.scss (horizontal card styles)
+
+  Version: 1.0.0
+  Updated: 2025-11-23
+  ============================================================================
+*/}}
+
+{{- $data := .Params.methodology_section -}}
+{{- if not $data -}}
+  {{- $data = site.Data.shared_sections.methodology_section -}}
+{{- end -}}
+
+{{- if $data -}}
+<section class="c-methodology-zigzag section">
+  <div class="o-container">
+
+    {{/* Two-Column Zigzag Grid */}}
+    <div class="c-methodology-zigzag__grid">
+
+      {{/* Left Column: Text Content */}}
+      <div class="c-methodology-zigzag__content">
+        {{/* Section Badge Pill */}}
+        {{- if $data.badge -}}
+          <span class="c-methodology-zigzag__badge">{{ $data.badge }}</span>
+        {{- end -}}
+
+        {{/* Section Title with Accent */}}
+        {{- if $data.title -}}
+          <h2 class="c-methodology-zigzag__title">
+            {{ $data.title }}
+            {{- if $data.title_accent -}}
+              <span class="c-methodology-zigzag__title-accent">{{ $data.title_accent }}</span>
+            {{- end -}}
+          </h2>
+        {{- end -}}
+
+        {{/* Description */}}
+        {{- if $data.description -}}
+          <p class="c-methodology-zigzag__description">{{ $data.description | markdownify }}</p>
+        {{- end -}}
+
+        {{/* Image with Heavy Rounding (moved under text) */}}
+        {{- if $data.image -}}
+          <img
+            src="{{ $data.image | relURL }}"
+            alt="{{ default $data.title $data.image_alt }}"
+            class="c-methodology-zigzag__image"
+            loading="lazy"
+          >
+        {{- end -}}
+      </div>
+
+      {{/* Right Column: Method Cards */}}
+      <div class="c-methodology-zigzag__visual">
+        {{/* Method Cards 2×2 Grid */}}
+        {{- if $data.methods -}}
+        <div class="c-methodology-zigzag__methods">
+          {{- range $index, $method := $data.methods -}}
+            <div class="c-method-card" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+
+              {{/* Icon Blob */}}
+              {{- if $method.icon -}}
+                <div class="c-method-card__icon">
+                  {{ partial "atoms/icon-blob.html" (dict
+                    "icon" (printf "las la-%s" $method.icon)
+                    "variant" (default "blue" $method.icon_color)
+                    "size" "md"
+                  ) }}
+                </div>
+              {{- end -}}
+
+              {{/* Text Content */}}
+              <div class="c-method-card__content">
+                {{- if $method.title -}}
+                  <h4 class="c-method-card__title">{{ $method.title }}</h4>
+                {{- end -}}
+
+                {{- if $method.description -}}
+                  <p class="c-method-card__description">{{ $method.description }}</p>
+                {{- end -}}
+              </div>
+
+            </div>
+          {{- end -}}
+        </div>
+        {{- end -}}
+      </div>
+
+    </div>
+
+  </div>
+</section>
+{{- end -}}

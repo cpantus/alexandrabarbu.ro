@@ -7,6 +7,8 @@ sections:
   - type: "hero-breadcrumb"
   - type: "problem-empathy"
   - type: "services-preview"
+  - type: "methodology-zigzag"
+  - type: "cta-split"
   - type: "about-preview"
   - type: "approach-preview"
   - type: "testimonials-enhanced"
@@ -15,19 +17,24 @@ sections:
   - type: "cta-standard"
 
 # ============================================================================
-# 1. HERO SECTION
+# 1. HERO SECTION (Redesign 2025)
 # ============================================================================
 
 hero_breadcrumb:
-  title: "Professional Psychological Therapy in Bucharest"
-  subtitle: "Specialized help for depression, anxiety and relationships"
-  description: "Evidence-based integrative approach. Free 30-minute consultation to get to know each other."
-  image: "images/hero/alexandra-barbu-cabinet.jpg"
-  button_text: "Book Free Consultation"
-  button_url: "/en/contact/"
-  button_variant: "primary"
-  secondary_button_text: "Learn More"
-  secondary_button_url: "#problem"
+  title: "Finding Your"
+  title_accent: "Inner North"
+  subtitle: "The journey to healing begins with a single step. Explore the path to inner balance and authentic transformation through integrative therapy."
+  show_breadcrumb: false
+  show_compass: true
+  cta_buttons:
+    - text: "Book Consultation"
+      url: "/en/contact/"
+      variant: "primary"
+      icon: "las la-calendar"
+    - text: "Discover Services"
+      url: "/en/services/"
+      variant: "outline-primary"
+      icon: "las la-arrow-right"
 
 # ============================================================================
 # 2. PROBLEM/EMPATHY SECTION
@@ -53,40 +60,84 @@ problem_empathy:
   empathy_text: "I understand what you're going through. These challenges are real and deserve professional attention. **Therapy can be the turning point** toward a more balanced and fulfilling life."
 
 # ============================================================================
-# 3. SERVICES PREVIEW
+# 3. SERVICES PREVIEW (Redesign 2025)
 # ============================================================================
 
 services_preview:
-  title: "How I Can Help"
-  subtitle: "Specialized Services"
+  badge: "Services Offered"
+  title: "Begin Your Journey"
+  intro: "We offer personalized psychotherapy services for adults, couples, and families. Each healing journey is unique and tailored to your specific needs."
   services:
     - title: "Individual Therapy"
       description: "Personalized approach for depression, anxiety, trauma and personal growth. Scientifically proven methods adapted to your unique needs."
       icon: "user"
+      icon_color: "blue"
       url: "/en/services/individual-therapy/"
-      button_text: "Learn More"
-      button_variant: "primary"
     - title: "Couple Therapy"
       description: "Rebuild connection and communication in your relationship. Rediscover intimacy and resolve conflicts constructively."
       icon: "heart"
+      icon_color: "coral"
       url: "/en/services/couple-therapy/"
-      button_text: "Learn More"
-      button_variant: "secondary"
     - title: "Family Therapy"
       description: "Healing and harmonizing family dynamics. Create a safe and supportive family environment."
       icon: "users"
+      icon_color: "sage"
       url: "/en/services/family-therapy/"
-      button_text: "Learn More"
-      button_variant: "primary"
-    - title: "Organizational Psychology"
-      description: "Team optimization and healthy organizational culture. Leadership and workplace performance."
-      icon: "building"
-      url: "/en/services/organizational-psychology/"
-      button_text: "Learn More"
-      button_variant: "secondary"
 
 # ============================================================================
-# 4. ABOUT PREVIEW
+# 4. METHODOLOGY ZIGZAG (Redesign 2025)
+# ============================================================================
+
+methodology_section:
+  badge: "METHODOLOGY"
+  title: "An Integrative"
+  title_accent: "Approach"
+  description: "I combine the most effective scientifically validated therapeutic methods for lasting results and authentic transformation. Each technique is adapted to your unique needs."
+  image: "images/methodology/integrative-approach.jpg"
+  image_alt: "Integrative therapeutic approach - combining methods for optimal results"
+  methods:
+    - title: "Cognitive-Behavioral"
+      description: "CBT for changing negative thoughts and behaviors. Practical tools for managing anxiety and depression."
+      icon: "brain"
+      icon_color: "blue"
+    - title: "Mindfulness & Acceptance"
+      description: "Awareness and acceptance techniques for stress reduction. Presence in the moment and self-compassion."
+      icon: "spa"
+      icon_color: "sage"
+    - title: "Schema Therapy"
+      description: "Identifying and modifying deep patterns from childhood. Healing at the level of fundamental emotional needs."
+      icon: "puzzle-piece"
+      icon_color: "purple"
+    - title: "Humanistic-Experiential"
+      description: "Exploring deep emotional experiences in a safe space. Personal development and self-actualization."
+      icon: "heart"
+      icon_color: "coral"
+
+# ============================================================================
+# 5. CTA EVALUATION (Redesign 2025)
+# ============================================================================
+
+cta_evaluation:
+  badge: "SELF-REFLECTION"
+  title: "Is therapy the"
+  title_accent: "right solution for you?"
+  checklist:
+    - "You feel overwhelmed by negative emotions and don't know how to manage them"
+    - "Your relationships are suffering and you want to improve them"
+    - "You want to better understand your thoughts and behaviors"
+    - "You're looking for a safe space for personal development"
+  quote:
+    text: "The first step is the hardest, but the most important. The free evaluation helps you discover if therapy is right for you."
+    author: "Alexandra Barbu"
+  right_icon: "clock"
+  right_title: "Free 30-Min Evaluation"
+  right_description: "Discover if therapy is right for you through a free 30-minute consultation. No obligations, completely confidential."
+  button_text: "Start Evaluation"
+  button_url: "/en/contact/"
+  disclaimer: "Completely confidential • No obligations • Online or in-person"
+
+# ============================================================================
+# 6. ABOUT PREVIEW
 # ============================================================================
 
 about_preview:
@@ -136,46 +187,22 @@ approach_preview:
   button_variant: "primary"
 
 # ============================================================================
-# 6. TESTIMONIALS
+# 6. TESTIMONIALS (Redesign 2025 - Dark Background)
 # ============================================================================
 
-testimonials_enhanced:
+testimonials_section:
   title: "What My Clients Say"
-  subtitle: "TESTIMONIALS"
-  description: "Real experiences from people who found healing and growth through therapy."
-  variant: "primary"
-  background: "light"
+  icon_color: "gold"
   testimonials:
-    - quote: "Alexandra helped me find the strength to overcome depression. I see life differently now and have concrete tools to manage challenges."
+    - quote: "Therapy helped me understand my patterns and build healthier relationships. I discovered tools that work for me."
       name: "M.A."
-      age_range: "30-40 years"
-      therapy_type: "Individual Therapy"
-      duration: "8 months"
-      rating: 5
-      verified: true
-      outcome: "Depression symptoms reduction: 80%"
-    - quote: "Our relationship was on the edge. Now we truly communicate, understand and support each other. Thank you!"
-      name: "A.E."
-      age_range: "35-45 years"
-      therapy_type: "Couple Therapy"
-      duration: "6 months"
-      rating: 5
-      verified: true
-      outcome: "Relationship satisfaction improvement: 90%"
-    - quote: "The techniques learned in therapy helped me manage daily anxiety. I no longer live with constant fear."
-      name: "I.P."
-      age_range: "25-35 years"
-      therapy_type: "Anxiety Therapy"
-      duration: "5 months"
-      rating: 5
-      verified: true
-      outcome: "Panic attacks reduction: 95%"
-  privacy_note: "All testimonials are from real clients. Names are anonymized for privacy."
-  cta_button:
-    text: "Schedule Free Consultation"
-    url: "/contact/"
-    variant: "primary"
-    icon: "arrow-right"
+      role: "Individual Therapy Client"
+    - quote: "I learned techniques to manage anxiety and found peace I didn't think was possible. The process was transformative."
+      name: "R.C."
+      role: "CBT Program Participant"
+    - quote: "The compassionate approach helped me heal from past trauma at my own pace. I feel stronger and more connected to myself."
+      name: "S.L."
+      role: "Trauma-Focused Therapy Client"
 
 # ============================================================================
 # 7. SIMPLE PROCESS

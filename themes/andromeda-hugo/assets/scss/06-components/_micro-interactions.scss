@@ -124,7 +124,7 @@ $duration-slow: 0.4s;
  * Animated underline for text links
  * Grows from left to right on hover
  */
-a:not(.c-button):not(.c-card) {
+a:not(.c-button):not(.c-card):not(.c-services-preview__bottom-link-text):not(.c-services-preview__card-title) {
   position: relative;
   text-decoration: none;
   transition: color $duration-fast $ease-smooth;

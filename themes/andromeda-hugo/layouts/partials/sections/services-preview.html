@@ -1,27 +1,31 @@
 {{/*
   ============================================================================
-  Services Preview Section - BEM Architecture
+  Services Preview Section - BEM Architecture (Redesign 2025)
   ============================================================================
-  Displays 4 main therapy services in a responsive card grid
+  Displays main therapy services in a responsive card grid with icon blobs
 
   Features:
-  - 4-service card grid (1 col mobile, 2 col tablet, 4 col desktop)
-  - Service icons, titles, descriptions
+  - 3-column grid (1 col mobile, 2 col tablet, 3 col desktop)
+  - Icon blob backgrounds (organic shapes)
+  - Service titles, descriptions
   - CTAs to individual service pages
-  - Glassmorphism card style (v4.0)
-  - Staggered entrance animations
+  - Heavy card rounding (32px / 2rem)
+  - Section badge pill
+  - Centered intro text
 
   Data Structure:
   ---------------
   services_preview:
-    title: "How I Can Help"                    # Section heading
-    subtitle: "Specialized Therapy Services"    # Optional eyebrow
-    services:                                   # Array of 4 services
+    badge: "Servicii Oferite"                  # Section badge (optional)
+    title: "Începe Călătoria Ta"              # Section heading
+    intro: "Centered intro text..."           # Optional intro paragraph
+    services:                                   # Array of services (typically 3)
       - title: "Individual Therapy"
         description: "Personalized approach for depression, anxiety..."
-        icon: "las la-user"                    # Line Awesome icon class
+        icon: "user"                           # Icon name (without 'las la-' prefix)
+        icon_color: "blue"                     # Icon blob color: blue, sage, gold, coral, purple
         url: "/servicii/terapie-individuala/"
-        button_variant: "primary"              # Optional: primary/secondary
+        button_text: "Explorează"              # Optional button text
 
   Parameters:
   -----------
@@ -78,22 +82,38 @@
 
 {{- if $data -}}
 <section class="c-services-preview section">
+
+  {{/* Section Badge Pill - positioned absolutely at section border */}}
+  {{- if $data.badge -}}
+    <span class="c-services-preview__badge">{{ $data.badge }}</span>
+  {{- end -}}
+
   <div class="o-container">
 
-    {{/* Section Header */}}
-    {{- if or $data.title $data.subtitle -}}
-    <div class="c-services-preview__header text-center mb-5">
-      {{- if $data.subtitle -}}
-        <p class="c-services-preview__subtitle text-uppercase mb-2">{{ $data.subtitle }}</p>
-      {{- end -}}
+    {{/* Section Header (Redesign 2025) */}}
+    {{- if or $data.title $data.intro -}}
+    <div class="c-services-preview__header text-center">
+      {{/* Section Title */}}
       {{- if $data.title -}}
         {{ partial "atoms/heading.html" (dict
           "text" $data.title
           "level" 2
           "class" "c-services-preview__title"
         ) }}
-        {{/* Decorative gradient line */}}
-        <div class="c-services-preview__gradient-line" aria-hidden="true"></div>
+      {{- end -}}
+
+      {{/* Intro Text */}}
+      {{- if $data.intro -}}
+        <p class="c-services-preview__intro">{{ $data.intro | markdownify }}</p>
+      {{- end -}}
+
+      {{/* Bottom Link - "AFLĂ MAI MULTE DESPRE TERAPIE" (moved below intro) */}}
+      {{- if $data.top_link -}}
+      <div class="c-services-preview__bottom-link">
+        <a href="{{ $data.top_link.url | relLangURL }}" class="c-services-preview__bottom-link-text">
+          {{ $data.top_link.text | upper }}
+        </a>
+      </div>
       {{- end -}}
     </div>
     {{- end -}}
@@ -102,23 +122,15 @@
     {{- if $data.services -}}
     <div class="c-services-preview__grid">
       {{- range $index, $service := $data.services -}}
-        {{/* Calculate accent variant rotation: primary → secondary → coral → sage */}}
-        {{- $accentVariants := slice "primary" "secondary" "coral" "sage" -}}
-        {{- $accentVariant := index $accentVariants (mod $index 4) -}}
-        {{/* Format number badge: 01, 02, 03, 04 */}}
-        {{- $numberBadge := printf "%02d" (add $index 1) -}}
+        <div class="c-services-preview__card" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
 
-        <div class="c-services-preview__card c-services-preview__card--{{ $accentVariant }}" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
-
-          {{/* Number Badge */}}
-          <span class="c-services-preview__number-badge">{{ $numberBadge }}</span>
-
-          {{/* Service Icon */}}
+          {{/* Service Icon with Blob Background (Redesign 2025) */}}
           {{- if $service.icon -}}
-            {{ partial "atoms/icon.html" (dict
-              "icon" $service.icon
-              "class" "c-services-preview__icon"
-              "size" "3x"
+            {{ partial "atoms/icon-blob.html" (dict
+              "icon" (printf "las la-%s" $service.icon)
+              "variant" (default "blue" $service.icon_color)
+              "size" "lg"
+              "class" "c-services-preview__icon-blob"
             ) }}
           {{- end -}}
 
@@ -132,15 +144,13 @@
             <p class="c-services-preview__description">{{ $service.description }}</p>
           {{- end -}}
 
-          {{/* CTA Button */}}
+          {{/* Card Footer CTA Link */}}
           {{- if $service.url -}}
-            {{ partial "atoms/button.html" (dict
-              "text" (default (i18n "learn_more") $service.button_text)
-              "url" ($service.url | relLangURL)
-              "variant" (default "outline-primary" $service.button_variant)
-              "class" "c-services-preview__cta"
-              "icon" "las la-arrow-right"
-            ) }}
+            <div class="c-services-preview__card-footer">
+              <a href="{{ $service.url | relLangURL }}" class="c-services-preview__cta-link">
+                {{ default "DETALII" $service.button_text }} →
+              </a>
+            </div>
           {{- end -}}
 
         </div>

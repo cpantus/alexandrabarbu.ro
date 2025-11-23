@@ -65,6 +65,14 @@
   }
 }
 
+// Redesign 2025 variant (40/60 split)
+.c-contact-form-section--redesign {
+  .c-contact-form-section__grid {
+    grid-template-columns: 2fr 3fr; // 40/60 split (redesign spec)
+    gap: 0; // No gap - panels touch
+  }
+}
+
 /* LEFT PANEL: Gradient Background + Blobs
    =========================================================================== */
 
@@ -80,6 +88,19 @@
     order: 2; // Form first on mobile
     min-height: auto;
     padding: $space-6;
+  }
+}
+
+// Redesign 2025 panel (dark forest green)
+.c-contact-form-section--redesign {
+  .c-contact-form-section__panel {
+    background: linear-gradient(135deg, $forest-700 0%, $forest-900 100%); // Dark forest green
+    border-radius: $radius-3xl 0 0 $radius-3xl; // 48px left corners only
+    padding: $space-8; // 64px
+
+    @media (max-width: $breakpoint-md - 1) {
+      border-radius: $radius-2xl; // 32px all corners on mobile
+    }
   }
 }
 
@@ -182,6 +203,19 @@
   i {
     font-size: 20px;
     color: var(--color-white);
+  }
+}
+
+// Redesign 2025 contact icons (gold outline circles)
+.c-contact-form-section--redesign {
+  .c-contact-form-section__contact-icon {
+    background: transparent; // Remove fill
+    border: 2px solid $gold-500; // Gold outline (#C5A880)
+
+    i {
+      color: $cream-100; // Cream icon color
+      font-size: 22px;
+    }
   }
 }
 
@@ -290,6 +324,20 @@
 
   @media (max-width: $breakpoint-md - 1) {
     order: 1; // Form first on mobile
+  }
+}
+
+// Redesign 2025 form wrapper (white panel)
+.c-contact-form-section--redesign {
+  .c-contact-form-section__form-wrapper {
+    background: $cream-50; // White background
+    padding: $space-8; // 64px
+    border-radius: 0 $radius-3xl $radius-3xl 0; // 48px right corners only
+
+    @media (max-width: $breakpoint-md - 1) {
+      border-radius: $radius-2xl; // 32px all corners on mobile
+      padding: $space-6; // 48px on mobile
+    }
   }
 }
 
