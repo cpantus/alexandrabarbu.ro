@@ -25,6 +25,7 @@
 @import 'button';                  // ✅ Phase 3: Extracted from custom.scss + BEM
 @import 'heading';                 // ✅ Phase 2: BEM refactored with 8 unified variants
 @import 'icon';                    // ✅ Phase 3: BEM refactored with legacy compat
+@import 'icon-blob';               // ✅ REDESIGN 2025 Phase 2: Icon with organic blob background (5 variants, 3 sizes)
 @import 'badge';                   // ✅ Phase 3: Extracted from credentials.scss + BEM
 @import 'tag';                     // ✅ Phase 2: New atom component with 8 unified variants
 @import 'divider';                 // ✅ Phase 2: New atom - horizontal/vertical separators

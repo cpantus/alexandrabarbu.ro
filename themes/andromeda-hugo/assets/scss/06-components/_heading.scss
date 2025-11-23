@@ -3,16 +3,18 @@
 // ==================================
 //
 // Purpose: Semantic heading component with unified color variants
-// Features: 8 color variants, weight modifiers, alignment modifiers
+// Features: 8 color variants, weight modifiers, alignment modifiers, italic accent support
 //
-// Last Updated: 2025-11-20 (Phase 2 - Atom Refactoring)
-// Version: 1.0.0 (ITCSS + BEM)
+// Last Updated: 2025-11-23 (REDESIGN 2025 - Phase 2)
+// Version: 2.0.0 (ITCSS + BEM + Playfair Display)
 //
 // BEM Structure:
 // Block: .c-heading
-// Element: .c-heading__subtitle
+// Elements: .c-heading__subtitle, .c-heading__accent
 // Modifiers: --primary, --secondary, --tertiary, --success, --warning, --error, --info, --neutral
-//           --weight-normal, --weight-semibold, --center, --right
+//           --weight-normal, --weight-semibold, --center, --right, --display, --gradient
+//
+// Typography: Playfair Display (serif) with italic variants for accents
 //
 
 /*------------------------------------------------------------------
@@ -86,6 +88,17 @@ h6.c-heading {
   color: $color-text-secondary;
   margin-top: $space-2;  // 16px
   line-height: $leading-normal;  // 1.5
+}
+
+/**
+ * Accent element - italic highlighted text within heading
+ * REDESIGN 2025: For sage green italic accent text (e.g., "Nordul Interior")
+ * Usage: <h1>Găsim <span class="c-heading__accent">Nordul Interior</span></h1>
+ */
+.c-heading__accent {
+  font-style: italic;  // Italic variant of Playfair Display
+  color: $sage-500;    // Sage green (#6B9080)
+  font-weight: inherit;  // Inherit weight from parent heading
 }
 
 /*------------------------------------------------------------------
@@ -190,11 +203,12 @@ h6.c-heading {
 
 /**
  * Display variant - very large headings for hero sections
- * Uses text-5xl (48px) or text-6xl (60px) depending on level
+ * REDESIGN 2025: Using Playfair Display with $leading-display (1.1) for drama
+ * Uses text-5xl (48px) or text-6xl (60px) up to 72px at xl screens
  */
 .c-heading--display {
   font-size: $text-5xl;  // 48px
-  line-height: 1.1;
+  line-height: $leading-display;  // 1.1 for extra tight, dramatic effect
   font-weight: $font-weight-heading-bold;  // 600 for more impact
   letter-spacing: -0.03em;  // Tighter kerning for large text
 
@@ -203,7 +217,7 @@ h6.c-heading {
   }
 
   @media (min-width: 1200px) {
-    font-size: clamp($text-6xl, 5vw, 72px);  // Up to 72px on xl screens
+    font-size: clamp($text-6xl, 5vw, 72px);  // Up to 72px on xl screens (redesign spec)
   }
 }
 

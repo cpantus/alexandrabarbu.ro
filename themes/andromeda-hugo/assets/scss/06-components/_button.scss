@@ -20,11 +20,12 @@
 /**
  * Base button component
  * Provides foundation styling for all button variants
+ * REDESIGN 2025: Pill-shaped buttons with forest/sage/gold colors
  */
 .c-button {
   font-family: $font-body;
   font-weight: $button-font-weight;
-  border-radius: $button-border-radius;
+  border-radius: $radius-full;  // REDESIGN: Pill shape (was $button-border-radius)
   padding: $button-padding-y $button-padding-x;
   transition: $button-transition;
   border: 0;
@@ -35,10 +36,13 @@
   text-decoration: none;
   cursor: pointer;
   line-height: 1.5;
+  min-height: 44px;  // REDESIGN: Ensure touch target compliance
+  min-width: 44px;
 
   // Hover lift effect (subtle elevation with scale)
+  // REDESIGN: Reduced translateY to -1px (was -2px)
   &:hover {
-    transform: translateY(-2px) scale(1.02);
+    transform: translateY(-1px) scale(1.02);
     text-decoration: none;
   }
 
@@ -48,22 +52,23 @@
   }
 
   // Focus state for accessibility - enhanced focus ring with persistent glow
+  // REDESIGN: Using sage-500 for focus ring (was emerald-500)
   &:focus,
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px rgba($emerald-500, 0.15);
+    box-shadow: 0 0 0 3px rgba($sage-500, 0.15);
     animation: focus-ring 0.3s ease-in-out;
   }
 
   @keyframes focus-ring {
     0% {
-      box-shadow: 0 0 0 0 rgba($emerald-500, 0);
+      box-shadow: 0 0 0 0 rgba($sage-500, 0);
     }
     50% {
-      box-shadow: 0 0 0 6px rgba($emerald-500, 0.25);
+      box-shadow: 0 0 0 6px rgba($sage-500, 0.25);
     }
     100% {
-      box-shadow: 0 0 0 3px rgba($emerald-500, 0.15);
+      box-shadow: 0 0 0 3px rgba($sage-500, 0.15);
     }
   }
 
@@ -113,57 +118,60 @@
 -------------------------------------------------------------------*/
 
 /**
- * Primary button - gradient with depth (emerald)
+ * Primary button - forest green (redesign main CTA color)
+ * REDESIGN 2025: Dark green background, sage green hover
  */
 .c-button--primary {
-  background: $gradient-primary;
+  background: $forest-500;  // Dark green (#234E3E)
   color: white;
-  box-shadow: $shadow-primary;
+  box-shadow: $shadow-primary-redesign;
 
   &:hover,
   &:active,
   &:focus {
-    background: $gradient-primary-vibrant;
-    box-shadow: $shadow-primary-lg;
+    background: $sage-500;  // Sage green hover (#6B9080)
+    box-shadow: $shadow-primary-lg-redesign;
     color: white;
   }
 
   &:disabled,
   &[disabled] {
-    background: $gradient-primary;
-    box-shadow: $shadow-primary;
+    background: $forest-500;
+    box-shadow: $shadow-primary-redesign;
   }
 }
 
 /**
- * Secondary button - warm terracotta gradient
+ * Secondary button - gold/sand accent (redesign warm CTA)
+ * REDESIGN 2025: Gold background with darker gold hover
  */
 .c-button--secondary {
-  background: $gradient-secondary;
-  color: white;
-  box-shadow: $shadow-secondary;
+  background: $gold-500;  // Gold/sand (#C5A880)
+  color: $forest-700;  // Dark green text for contrast
+  box-shadow: 0 10px 30px -5px rgba($gold-500, 0.2);
 
   &:hover,
   &:active,
   &:focus {
-    background: $gradient-secondary-vibrant;
-    box-shadow: $shadow-secondary-lg;
-    color: white;
+    background: darken($gold-500, 8%);  // Darker gold (#B0936B approximate)
+    box-shadow: 0 20px 40px -8px rgba($gold-500, 0.3);
+    color: $forest-700;
   }
 
   &:disabled,
   &[disabled] {
-    background: $gradient-secondary;
-    box-shadow: $shadow-secondary;
+    background: $gold-500;
+    box-shadow: 0 10px 30px -5px rgba($gold-500, 0.2);
   }
 }
 
 /**
- * Outline primary button - elegant emerald border
+ * Outline primary button - elegant forest green border
+ * REDESIGN 2025: Forest green outline with filled hover
  */
 .c-button--outline-primary {
-  color: $color-primary;
-  border: 2px solid $color-primary;
+  color: $forest-500;
+  border: 2px solid $forest-500;
   background-color: transparent;
   box-shadow: none;
 
@@ -171,26 +179,27 @@
   &:active,
   &:focus {
     color: white;
-    border-color: $color-primary;
-    background: $gradient-primary;
-    box-shadow: $shadow-primary;
+    border-color: $forest-500;
+    background: $forest-500;
+    box-shadow: $shadow-primary-redesign;
   }
 
   &:disabled,
   &[disabled] {
-    color: $color-primary;
-    border-color: $color-primary;
+    color: $forest-500;
+    border-color: $forest-500;
     background-color: transparent;
     box-shadow: none;
   }
 }
 
 /**
- * Outline secondary button - elegant terracotta border
+ * Outline secondary button - elegant sage green border
+ * REDESIGN 2025: Sage green outline with filled hover
  */
 .c-button--outline-secondary {
-  color: $color-secondary;
-  border: 2px solid $color-secondary;
+  color: $sage-500;
+  border: 2px solid $sage-500;
   background-color: transparent;
   box-shadow: none;
 
@@ -198,15 +207,15 @@
   &:active,
   &:focus {
     color: white;
-    border-color: $color-secondary;
-    background: $gradient-secondary;
-    box-shadow: $shadow-secondary;
+    border-color: $sage-500;
+    background: $sage-500;
+    box-shadow: 0 10px 30px -5px rgba($sage-500, 0.2);
   }
 
   &:disabled,
   &[disabled] {
-    color: $color-secondary;
-    border-color: $color-secondary;
+    color: $sage-500;
+    border-color: $sage-500;
     background-color: transparent;
     box-shadow: none;
   }

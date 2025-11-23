@@ -1,0 +1,239 @@
+// ==================================
+// ICON BLOB COMPONENT - BEM Architecture
+// ==================================
+//
+// Purpose: Icon with organic blob background for service cards
+// Features: 5 color variants, 3 size variants, circular organic shape
+//
+// Created: 2025-11-23 (REDESIGN 2025 - Phase 2)
+// Version: 1.0.0 (ITCSS + BEM)
+//
+// BEM Structure:
+// Block: .c-icon-blob
+// Element: .c-icon-blob__icon
+// Modifiers: --blue, --sage, --gold, --coral, --purple, --sm, --lg
+//
+// Design Spec: ~80px diameter circles with 10% opacity color tints
+//
+
+/*------------------------------------------------------------------
+  # Base Icon Blob Block
+-------------------------------------------------------------------*/
+
+/**
+ * Base icon blob component
+ * Circular background with centered icon
+ * REDESIGN 2025: Organic blob shape for service cards
+ */
+.c-icon-blob {
+  width: 80px;          // Default md size (matches design spec)
+  height: 80px;
+  border-radius: 50%;   // Perfect circle
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform $duration-base $ease-in-out;
+  flex-shrink: 0;       // Prevent shrinking in flex layouts
+
+  // Subtle hover scale on card hover (parent context)
+  .c-card:hover & {
+    transform: scale(1.05);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Icon Element
+-------------------------------------------------------------------*/
+
+/**
+ * Icon inside blob
+ * Inherits color from variant modifier
+ */
+.c-icon-blob__icon {
+  font-size: 32px;      // Icon size (40% of blob diameter)
+  line-height: 1;
+  z-index: 1;           // Above background
+}
+
+/*------------------------------------------------------------------
+  # Color Variant Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Blue variant - Cognitive/analytical services
+ * Background: Blue-grey at 10% opacity
+ * Icon: Blue-grey at 100% opacity
+ */
+.c-icon-blob--blue {
+  background-color: rgba(100, 116, 139, 0.1);  // Slate-500 at 10%
+
+  .c-icon-blob__icon {
+    color: rgb(100, 116, 139);  // Slate-500
+  }
+}
+
+/**
+ * Sage variant - Mindfulness/calm services
+ * Background: Sage green at 10% opacity
+ * Icon: Sage green at 100% opacity
+ */
+.c-icon-blob--sage {
+  background-color: rgba($sage-500, 0.1);
+
+  .c-icon-blob__icon {
+    color: $sage-500;  // #6B9080
+  }
+}
+
+/**
+ * Gold variant - Premium/valued services
+ * Background: Gold at 10% opacity
+ * Icon: Gold at 100% opacity
+ */
+.c-icon-blob--gold {
+  background-color: rgba($gold-500, 0.1);
+
+  .c-icon-blob__icon {
+    color: $gold-500;  // #C5A880
+  }
+}
+
+/**
+ * Coral variant - Warm/compassionate services
+ * Background: Coral at 10% opacity
+ * Icon: Coral at 100% opacity
+ */
+.c-icon-blob--coral {
+  background-color: rgba(236, 112, 99, 0.1);  // Coral-500 at 10%
+
+  .c-icon-blob__icon {
+    color: rgb(236, 112, 99);  // Coral-500
+  }
+}
+
+/**
+ * Purple variant - Schema/deep work services
+ * Background: Purple at 10% opacity
+ * Icon: Purple at 100% opacity
+ */
+.c-icon-blob--purple {
+  background-color: rgba(168, 85, 247, 0.1);  // Purple-500 at 10%
+
+  .c-icon-blob__icon {
+    color: rgb(168, 85, 247);  // Purple-500
+  }
+}
+
+/*------------------------------------------------------------------
+  # Size Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Small blob - 60px diameter
+ */
+.c-icon-blob--sm {
+  width: 60px;
+  height: 60px;
+
+  .c-icon-blob__icon {
+    font-size: 24px;  // 40% of diameter
+  }
+}
+
+/**
+ * Large blob - 100px diameter
+ */
+.c-icon-blob--lg {
+  width: 100px;
+  height: 100px;
+
+  .c-icon-blob__icon {
+    font-size: 40px;  // 40% of diameter
+  }
+}
+
+/*------------------------------------------------------------------
+  # Responsive Behavior
+-------------------------------------------------------------------*/
+
+/**
+ * Mobile optimizations - slightly smaller blobs
+ */
+@media (max-width: 767px) {
+  .c-icon-blob {
+    width: 70px;
+    height: 70px;
+
+    .c-icon-blob__icon {
+      font-size: 28px;
+    }
+  }
+
+  .c-icon-blob--sm {
+    width: 56px;
+    height: 56px;
+
+    .c-icon-blob__icon {
+      font-size: 22px;
+    }
+  }
+
+  .c-icon-blob--lg {
+    width: 88px;
+    height: 88px;
+
+    .c-icon-blob__icon {
+      font-size: 35px;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Accessibility
+-------------------------------------------------------------------*/
+
+/**
+ * Respect reduced motion preference
+ */
+@media (prefers-reduced-motion: reduce) {
+  .c-icon-blob {
+    transition: none;
+  }
+
+  .c-card:hover .c-icon-blob {
+    transform: none;
+  }
+}
+
+// ==================================
+// USAGE GUIDE
+// ==================================
+//
+// Basic icon blob:
+//   <div class="c-icon-blob c-icon-blob--blue">
+//     <i class="las la-brain c-icon-blob__icon"></i>
+//   </div>
+//
+// Size variants:
+//   <div class="c-icon-blob c-icon-blob--sage c-icon-blob--sm">
+//     <i class="las la-spa c-icon-blob__icon"></i>
+//   </div>
+//
+// In Hugo templates (via atoms/icon-blob.html):
+//   {{ partial "atoms/icon-blob.html" (dict
+//     "icon" "las la-brain"
+//     "variant" "blue"
+//     "size" "md"
+//   ) }}
+//
+// Color variants available:
+//   - blue: Cognitive/analytical (slate-500)
+//   - sage: Mindfulness/calm ($sage-500 #6B9080)
+//   - gold: Premium/valued ($gold-500 #C5A880)
+//   - coral: Warm/compassionate (coral-500)
+//   - purple: Schema/deep work (purple-500)
+//
+// ==================================
+// END OF ICON BLOB COMPONENT
+// ==================================

@@ -1,0 +1,43 @@
+{{/*
+  Icon Blob Atom - Icon with organic blob background
+
+  Usage:
+    {{ partial "atoms/icon-blob.html" (dict
+      "icon" "las la-brain"
+      "variant" "blue"
+      "size" "md"
+      "class" "mb-4"
+    )}}
+
+  Parameters:
+    icon (required) - Line Awesome icon class (e.g., "las la-brain")
+    variant (optional) - Color variant: blue|sage|gold|coral|purple (default: blue)
+    size (optional) - sm|md|lg (default: md)
+    class (optional) - Additional CSS classes
+
+  REDESIGN 2025: Organic blob backgrounds with color variants for service cards
+  - sm: 60px diameter
+  - md: 80px diameter (default, matches design spec)
+  - lg: 100px diameter
+*/}}
+
+{{ $icon := .icon }}
+{{ $variant := .variant | default "blue" }}
+{{ $size := .size | default "md" }}
+{{ $class := .class | default "" }}
+
+{{/* Build BEM classes */}}
+{{ $blobClass := printf "c-icon-blob c-icon-blob--%s" $variant }}
+{{ if eq $size "sm" }}
+  {{ $blobClass = printf "%s c-icon-blob--sm" $blobClass }}
+{{ else if eq $size "lg" }}
+  {{ $blobClass = printf "%s c-icon-blob--lg" $blobClass }}
+{{ end }}
+{{ if $class }}
+  {{ $blobClass = printf "%s %s" $blobClass $class }}
+{{ end }}
+
+{{/* Render icon blob */}}
+<div class="{{ $blobClass }}">
+  <i class="{{ $icon }} c-icon-blob__icon"></i>
+</div>
