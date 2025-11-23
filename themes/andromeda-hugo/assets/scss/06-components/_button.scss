@@ -36,42 +36,75 @@
   cursor: pointer;
   line-height: 1.5;
 
-  // Hover lift effect (subtle elevation)
+  // Hover lift effect (subtle elevation with scale)
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.02);
     text-decoration: none;
   }
 
   // Active press effect
   &:active {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 
-  // Focus state for accessibility - smooth animation instead of outline
-  &:focus {
+  // Focus state for accessibility - enhanced focus ring with persistent glow
+  &:focus,
+  &:focus-visible {
     outline: none;
-    animation: buttonFocusGlow 0.3s ease-in-out;
+    box-shadow: 0 0 0 3px rgba($emerald-500, 0.15);
+    animation: focus-ring 0.3s ease-in-out;
   }
 
-  @keyframes buttonFocusGlow {
-    0%, 100% {
+  @keyframes focus-ring {
+    0% {
       box-shadow: 0 0 0 0 rgba($emerald-500, 0);
     }
     50% {
-      box-shadow: 0 0 0 4px rgba($emerald-500, 0.3);
+      box-shadow: 0 0 0 6px rgba($emerald-500, 0.25);
+    }
+    100% {
+      box-shadow: 0 0 0 3px rgba($emerald-500, 0.15);
     }
   }
 
-  // Disabled state
+  // Disabled state - reduced saturation and opacity
   &:disabled,
-  &[disabled] {
-    opacity: 0.6;
+  &[disabled],
+  &[aria-disabled="true"] {
+    opacity: 0.5;
     cursor: not-allowed;
     transform: none;
+    filter: saturate(0.5);
 
     &:hover {
       transform: none;
     }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Loading State Modifier
+-------------------------------------------------------------------*/
+
+/**
+ * Button loading state - shows spinner and prevents interaction
+ */
+.c-button--loading {
+  position: relative;
+  cursor: wait;
+  opacity: 0.8;
+
+  &:hover {
+    transform: none;
+  }
+
+  .c-button__spinner {
+    display: inline-block;
+    animation: none; // Prevent button animation from affecting spinner
+  }
+
+  .c-button__text {
+    opacity: 0.7;
   }
 }
 
@@ -338,24 +371,47 @@
 }
 
 /*------------------------------------------------------------------
-  # Accessibility: Touch Targets (WCAG 2.1 AA)
+  # Accessibility: Touch Targets (WCAG 2.1 AAA)
 -------------------------------------------------------------------*/
 
 /**
- * Minimum 44px touch targets on mobile
+ * Minimum 48px touch targets on mobile (enhanced from 44px)
  */
 @media (max-width: 768px) {
   .c-button {
-    min-height: 44px;
-    min-width: 44px;
-    padding: 0.75rem 1.5rem;
+    min-height: 48px;
+    min-width: 48px;
+    padding: 0.875rem 1.5rem;
   }
 
   // Adjust small button for touch target compliance
   .c-button--sm {
-    min-height: 44px;
-    min-width: 44px;
-    padding: 0.5rem 1rem; // Still smaller, but meets target
+    min-height: 48px;
+    min-width: 48px;
+    padding: 0.625rem 1.125rem; // Still smaller, but meets enhanced target
+  }
+}
+
+/*------------------------------------------------------------------
+  # Icon Animations
+-------------------------------------------------------------------*/
+
+/**
+ * Slide-right icon animation on hover
+ */
+.c-button:hover {
+  [data-icon-animate="slide-right"] {
+    animation: icon-slide-right $duration-base $ease-in-out;
+  }
+}
+
+@keyframes icon-slide-right {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
   }
 }
 

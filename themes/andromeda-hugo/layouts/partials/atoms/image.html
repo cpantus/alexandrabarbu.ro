@@ -26,6 +26,9 @@
     sizes (optional) - Sizes attribute for responsive images
     quality (optional) - Image quality 1-100 (default: 90)
     fit (optional) - Resize method: resize|fill|fit (default: resize)
+    objectFit (optional) - CSS object-fit: cover|contain|fill|none|scale-down (default: "")
+    aspectRatio (optional) - CSS aspect-ratio: 1/1|4/3|16/9|21/9|custom (default: "")
+    placeholder (optional) - Enable blur-up placeholder effect (default: false)
 */}}
 
 {{ $src := .src }}
@@ -39,6 +42,18 @@
 {{ $sizes := .sizes | default "(min-width: 768px) 800px, 100vw" }}
 {{ $quality := .quality | default 90 }}
 {{ $fit := .fit | default "resize" }}
+{{ $objectFit := .objectFit | default "" }}
+{{ $aspectRatio := .aspectRatio | default "" }}
+{{ $placeholder := .placeholder | default false }}
+
+{{/* Build inline styles for object-fit and aspect-ratio */}}
+{{ $style := "" }}
+{{ if $objectFit }}
+  {{ $style = printf "object-fit: %s;" $objectFit }}
+{{ end }}
+{{ if $aspectRatio }}
+  {{ $style = printf "%s aspect-ratio: %s;" $style $aspectRatio }}
+{{ end }}
 
 {{/* Try to load image from assets first, fallback to static */}}
 {{ $image := "" }}
@@ -90,6 +105,12 @@
   {{ if and $webp (not $isSVG) }}
     {{ $webpImage = $processedImage.Process "webp" }}
     {{ $avifImage = $processedImage.Process "avif q85" }}
+  {{ end }}
+
+  {{/* Generate blur-up placeholder if requested (skip for SVG) */}}
+  {{ $placeholderImage := "" }}
+  {{ if and $placeholder (not $isSVG) }}
+    {{ $placeholderImage = $image.Resize "40x q20 GaussianBlur" }}
   {{ end }}
 
   {{/* Generate responsive srcset (skip for SVG) */}}
@@ -155,6 +176,7 @@
         class="{{ $class }}"
         width="{{ $processedImage.Width }}"
         height="{{ $processedImage.Height }}"
+        {{- if $style }} style="{{ $style }}"{{ end }}
         {{- if $lazy }} loading="lazy"{{ end }}
         {{- if $responsive }} srcset="{{ $srcset }}" sizes="{{ $sizes }}"{{ end }}>
     </picture>
@@ -166,6 +188,7 @@
       class="{{ $class }}"
       width="{{ $processedImage.Width }}"
       height="{{ $processedImage.Height }}"
+      {{- if $style }} style="{{ $style }}"{{ end }}
       {{- if $lazy }} loading="lazy"{{ end }}
       {{- if and $responsive $srcset }} srcset="{{ $srcset }}" sizes="{{ $sizes }}"{{ end }}>
   {{ end }}
@@ -176,5 +199,6 @@
     src="{{ $src | relURL }}"
     alt="{{ $alt }}"
     class="{{ $class }}"
+    {{- if $style }} style="{{ $style }}"{{ end }}
     {{- if $lazy }} loading="lazy"{{ end }}>
 {{ end }}

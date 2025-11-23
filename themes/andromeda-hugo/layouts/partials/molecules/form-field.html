@@ -295,10 +295,20 @@
     <small class="c-form__help-text">{{ . }}</small>
   {{- end -}}
 
+  {{/* Validation Icons (inside input for valid/invalid states) */}}
+  {{- if eq $validationState "valid" -}}
+    <span class="c-form__validation-icon c-form__validation-icon--success" aria-hidden="true">
+      <i class="las la-check-circle"></i>
+    </span>
+  {{- else if eq $validationState "invalid" -}}
+    <span class="c-form__validation-icon c-form__validation-icon--error" aria-hidden="true">
+      <i class="las la-exclamation-circle"></i>
+    </span>
+  {{- end -}}
+
   {{/* Error message */}}
   {{- if $errorText -}}
-    <div class="c-form__feedback c-form__feedback--invalid{{ if $showError }} c-form__feedback--visible{{ end }}" id="{{ $errorId }}" role="alert">
-      {{ partial "atoms/icon.html" (dict "icon" "exclamation-circle" "size" "xs" "class" "c-form__feedback-icon") }}
+    <div class="c-form__feedback c-form__feedback--invalid{{ if $showError }} c-form__feedback--visible{{ end }}" id="{{ $errorId }}" role="alert" aria-live="polite">
       <span class="c-form__feedback-text">{{ $errorText }}</span>
     </div>
   {{- end -}}

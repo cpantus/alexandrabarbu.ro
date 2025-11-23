@@ -108,12 +108,16 @@
   &--valid {
     .c-form__input,
     .c-form__textarea {
-      border-color: $color-success;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2310b981'%3E%3Cpath fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clip-rule='evenodd'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right $space-3 center;
-      background-size: 1.25rem;
-      padding-right: $space-10;
+      border-color: rgba($color-success, 0.3); // Subtle green border
+
+      &:focus {
+        border-color: $color-success;
+        box-shadow: 0 0 0 3px rgba($color-success, 0.1);
+      }
+    }
+
+    .c-form__label {
+      color: $color-success; // Green label on success
     }
   }
 
@@ -122,15 +126,21 @@
     .c-form__input,
     .c-form__textarea {
       border-color: $color-error;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23ef4444'%3E%3Cpath fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z' clip-rule='evenodd'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right $space-3 center;
-      background-size: 1.25rem;
-      padding-right: $space-10;
+      animation: shake 0.4s ease-in-out; // Shake on error
+
+      &:focus {
+        border-color: $color-error;
+        box-shadow: 0 0 0 3px rgba($color-error, 0.15);
+      }
+    }
+
+    .c-form__label {
+      color: $color-error; // Red label on error
     }
 
     .c-form__feedback {
       display: block;
+      animation: slideInFade 0.3s ease-out; // Slide in error message
     }
   }
 }
@@ -156,7 +166,7 @@
 .c-form__textarea,
 .c-form__select {
   width: 100%;
-  padding: $space-3 $space-4;
+  padding: 14px 18px; // Enhanced padding from 12px 16px
   border: 2px solid rgba($color-primary, 0.15);
   border-radius: $radius-lg;
   background: rgba(255, 255, 255, 0.9);
@@ -167,9 +177,10 @@
 
   &:focus {
     outline: none;
-    border-color: $color-primary;
+    border-image: $gradient-warm-vibrant 1; // Gradient border on focus
+    border-image-slice: 1;
     background: #fff;
-    box-shadow: 0 0 0 4px rgba($color-primary, 0.1);
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.1); // Focus ring
     transform: translateY(-2px);
   }
 
@@ -793,6 +804,34 @@ select.form-control {
 }
 
 /*------------------------------------------------------------------
+  # Validation Icons (for valid/invalid states)
+-------------------------------------------------------------------*/
+
+.c-form__validation-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 1.25rem;
+  line-height: 1;
+  z-index: 2;
+
+  &--success {
+    color: $color-success;
+  }
+
+  &--error {
+    color: $color-error;
+  }
+
+  // Adjust position for floating labels
+  .c-form__group--floating & {
+    top: calc(50% + 8px); // Adjust for floating label offset
+  }
+}
+
+/*------------------------------------------------------------------
   # Animations
 -------------------------------------------------------------------*/
 
@@ -813,5 +852,28 @@ select.form-control {
   }
   50% {
     transform: scale(1.05);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-4px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes slideInFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

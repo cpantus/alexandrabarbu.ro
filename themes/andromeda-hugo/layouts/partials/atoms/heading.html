@@ -16,6 +16,8 @@
     text (required) - Heading text content
     level (optional) - Heading level 1-6 (default: 2)
     variant (optional) - Color variant: primary|secondary|tertiary|success|warning|error|info|neutral (default: "")
+    display (optional) - Display variant (very large text-5xl/6xl) - boolean (default: false)
+    gradient (optional) - Apply gradient text effect - boolean (default: false)
     align (optional) - left|center|right (default: left)
     class (optional) - Additional CSS classes
     subtitle (optional) - Optional subtitle text below heading
@@ -40,6 +42,8 @@
 {{ $text := .text }}
 {{ $level := .level | default 2 }}
 {{ $variant := .variant | default "" }}
+{{ $display := .display | default false }}
+{{ $gradient := .gradient | default false }}
 {{ $align := .align | default "left" }}
 {{ $class := .class | default "" }}
 {{ $subtitle := .subtitle }}
@@ -56,6 +60,16 @@
 
 {{/* Build BEM classes */}}
 {{ $headingClass := "c-heading" }}
+
+{{/* Add display variant modifier */}}
+{{ if $display }}
+  {{ $headingClass = printf "%s c-heading--display" $headingClass }}
+{{ end }}
+
+{{/* Add gradient text modifier */}}
+{{ if $gradient }}
+  {{ $headingClass = printf "%s c-heading--gradient" $headingClass }}
+{{ end }}
 
 {{/* Add color variant modifier */}}
 {{ if $variant }}

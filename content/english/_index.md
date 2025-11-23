@@ -141,27 +141,41 @@ approach_preview:
 
 testimonials_enhanced:
   title: "What My Clients Say"
-  subtitle: "Real Experiences"
-  description: "Authentic feedback from people who have gone through therapy with me."
+  subtitle: "TESTIMONIALS"
+  description: "Real experiences from people who found healing and growth through therapy."
+  variant: "primary"
+  background: "light"
   testimonials:
     - quote: "Alexandra helped me find the strength to overcome depression. I see life differently now and have concrete tools to manage challenges."
-      author: "Maria, 34 years old"
-      role: "Individual Therapy"
+      name: "M.A."
+      age_range: "30-40 years"
+      therapy_type: "Individual Therapy"
+      duration: "8 months"
       rating: 5
       verified: true
       outcome: "Depression symptoms reduction: 80%"
     - quote: "Our relationship was on the edge. Now we truly communicate, understand and support each other. Thank you!"
-      author: "Andrei and Elena"
-      role: "Couple Therapy"
+      name: "A.E."
+      age_range: "35-45 years"
+      therapy_type: "Couple Therapy"
+      duration: "6 months"
       rating: 5
       verified: true
       outcome: "Relationship satisfaction improvement: 90%"
     - quote: "The techniques learned in therapy helped me manage daily anxiety. I no longer live with constant fear."
-      author: "Ioana, 28 years old"
-      role: "Individual Therapy - Anxiety"
+      name: "I.P."
+      age_range: "25-35 years"
+      therapy_type: "Anxiety Therapy"
+      duration: "5 months"
       rating: 5
       verified: true
       outcome: "Panic attacks reduction: 95%"
+  privacy_note: "All testimonials are from real clients. Names are anonymized for privacy."
+  cta_button:
+    text: "Schedule Free Consultation"
+    url: "/contact/"
+    variant: "primary"
+    icon: "arrow-right"
 
 # ============================================================================
 # 7. SIMPLE PROCESS

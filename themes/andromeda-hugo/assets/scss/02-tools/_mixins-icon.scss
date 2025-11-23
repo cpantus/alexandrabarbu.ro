@@ -12,17 +12,17 @@
 /**
  * Base Icon Circle
  * Creates circular gradient background container
- * @param {string} $size - Circle size (sm: 32px, md: 48px, lg: 64px, xl: 84px)
+ * @param {string} $size - Circle size (sm: 48px, md: 64px, lg: 84px, xl: 104px)
  * @param {string} $variant - Color variant (primary, secondary, coral, etc.)
- * NOTE: Aligned with _design-tokens.scss $icon-circle-* tokens
+ * NOTE: Updated size scale for better visual hierarchy (v2.1)
  */
 @mixin icon-circle($size: 'md', $variant: 'primary') {
-  // Size map (aligned with design-tokens.scss)
+  // Size map (updated for enhanced design system)
   $sizes: (
-    'sm': 32px,  // Matches $icon-circle-sm
-    'md': 48px,  // Matches $icon-circle-md
-    'lg': 64px,  // Matches $icon-circle-lg
-    'xl': 84px,  // Matches $icon-circle-xl
+    'sm': 48px,  // Small icons (buttons, inline elements)
+    'md': 64px,  // Medium icons (cards, features)
+    'lg': 84px,  // Large icons (hero sections, emphasis)
+    'xl': 104px, // Extra large icons (hero, major features)
   );
 
   $circle-size: map-get($sizes, $size);
@@ -36,22 +36,22 @@
   border-radius: $radius-full;
   flex-shrink: 0;
 
-  // Gradient background based on variant
+  // Radial gradient background for depth (lighter center, darker edges)
   @if $variant == 'primary' {
-    background: linear-gradient(135deg, $emerald-400 0%, $emerald-500 100%);
+    background: radial-gradient(circle at 30% 30%, $emerald-400 0%, $emerald-600 100%);
   } @else if $variant == 'secondary' {
-    background: linear-gradient(135deg, $terracotta-400 0%, $terracotta-500 100%);
+    background: radial-gradient(circle at 30% 30%, $terracotta-400 0%, $terracotta-600 100%);
   } @else if $variant == 'coral' {
-    background: linear-gradient(135deg, $coral-400 0%, $coral-500 100%);
+    background: radial-gradient(circle at 30% 30%, $coral-400 0%, $coral-600 100%);
   } @else if $variant == 'premium' {
-    background: linear-gradient(135deg, $plum-400 0%, $plum-500 100%);
+    background: radial-gradient(circle at 30% 30%, $plum-400 0%, $plum-600 100%);
   } @else if $variant == 'sage' {
-    background: linear-gradient(135deg, $sage-400 0%, $sage-500 100%);
+    background: radial-gradient(circle at 30% 30%, $sage-400 0%, $sage-600 100%);
   } @else if $variant == 'info' {
-    background: linear-gradient(135deg, $teal-400 0%, $teal-500 100%);
+    background: radial-gradient(circle at 30% 30%, $teal-400 0%, $teal-600 100%);
   } @else {
     // Fallback to primary
-    background: linear-gradient(135deg, $emerald-400 0%, $emerald-500 100%);
+    background: radial-gradient(circle at 30% 30%, $emerald-400 0%, $emerald-600 100%);
   }
 
   // Icon inside circle
@@ -68,9 +68,9 @@
   transition: transform $duration-fast $ease-out,
               box-shadow $duration-fast $ease-out;
 
-  // Hover effect: slight lift + stronger shadow
+  // Hover effect: lift + scale + stronger shadow (enhanced from v2.0)
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.12);
     box-shadow: $shadow-md;
   }
 }

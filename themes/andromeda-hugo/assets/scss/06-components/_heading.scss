@@ -34,7 +34,9 @@
 // H1 specific styling
 h1.c-heading {
   font-size: $text-4xl;  // 36px
-  line-height: $leading-tight;  // 1.25
+  line-height: 1.2;  // Improved from 1.25
+  letter-spacing: -0.02em;  // Better kerning for Crimson Pro
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);  // Subtle depth
   margin-bottom: $space-4;  // 32px
 
   @media (min-width: 768px) {
@@ -46,6 +48,7 @@ h1.c-heading {
 h2.c-heading {
   font-size: $text-3xl;  // 30px
   line-height: $leading-tight;  // 1.25
+  letter-spacing: -0.02em;  // Better kerning for Crimson Pro
 }
 
 // H3 specific styling
@@ -179,6 +182,76 @@ h6.c-heading {
  */
 .c-heading--right {
   text-align: right;
+}
+
+/*------------------------------------------------------------------
+  # Display & Gradient Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Display variant - very large headings for hero sections
+ * Uses text-5xl (48px) or text-6xl (60px) depending on level
+ */
+.c-heading--display {
+  font-size: $text-5xl;  // 48px
+  line-height: 1.1;
+  font-weight: $font-weight-heading-bold;  // 600 for more impact
+  letter-spacing: -0.03em;  // Tighter kerning for large text
+
+  @media (min-width: 768px) {
+    font-size: $text-6xl;  // 60px on larger screens
+  }
+
+  @media (min-width: 1200px) {
+    font-size: clamp($text-6xl, 5vw, 72px);  // Up to 72px on xl screens
+  }
+}
+
+/**
+ * Gradient text effect - applies background-clip: text for gradient text
+ * Use with variant prop to determine gradient colors
+ */
+.c-heading--gradient {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  // Gradient variants based on color modifiers
+  &.c-heading--primary {
+    background: linear-gradient(135deg, $emerald-400 0%, $emerald-600 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  &.c-heading--secondary {
+    background: linear-gradient(135deg, $terracotta-400 0%, $terracotta-600 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  &.c-heading--tertiary {
+    background: linear-gradient(135deg, $navy-400 0%, $navy-600 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  &.c-heading--success {
+    background: linear-gradient(135deg, $sage-400 0%, $sage-600 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  // Fallback for browsers that don't support background-clip: text
+  @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+    color: $color-primary;
+    background: none;
+    -webkit-text-fill-color: inherit;
+  }
 }
 
 /*------------------------------------------------------------------

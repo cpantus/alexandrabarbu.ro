@@ -6,8 +6,8 @@
 // Features: Responsive grid, glassmorphism cards, staggered animations
 // Breakpoints: 1 col mobile, 2 col tablet, 4 col desktop
 //
-// Version: 1.0.0
-// Updated: 2025-11-20
+// Version: 2.0.0 - Design Enhancement Update
+// Updated: 2025-11-22
 //
 
 // ============================================================================
@@ -16,7 +16,24 @@
 
 .c-services-preview {
   padding: var(--spacing-section-y) 0;
-  background: var(--color-surface-primary);
+  background: $green-50; // Changed from var(--color-surface-primary)
+  position: relative;
+
+  // Subtle radial gradient overlay
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      ellipse at top,
+      rgba($color-primary-500, 0.08) 0%,
+      transparent 50%
+    );
+    pointer-events: none;
+  }
 }
 
 // ============================================================================
@@ -26,12 +43,14 @@
 .c-services-preview__header {
   max-width: 800px;
   margin: 0 auto var(--spacing-5xl);
+  position: relative;
+  z-index: 1; // Above gradient overlay
 }
 
 .c-services-preview__subtitle {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-brand-primary);
+  color: var(--color-text-secondary);
   letter-spacing: 0.1em;
   margin-bottom: var(--spacing-xs);
 }
@@ -40,11 +59,24 @@
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
-  margin-bottom: 0;
+  margin-bottom: var(--spacing-md);
 
   @media (min-width: 768px) {
     font-size: var(--font-size-4xl);
   }
+}
+
+// Decorative gradient line below title
+.c-services-preview__gradient-line {
+  width: 60px;
+  height: 4px;
+  margin: var(--spacing-md) auto 0;
+  background: linear-gradient(
+    90deg,
+    $color-primary-500 0%,
+    $color-secondary-500 100%
+  );
+  border-radius: 2px;
 }
 
 // ============================================================================
@@ -54,11 +86,14 @@
 .c-services-preview__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-2xl);
+  gap: 32px; // Reduced from var(--spacing-2xl) (40px)
+  position: relative;
+  z-index: 1; // Above gradient overlay
 
   // Tablet: 2 columns
-  @media (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 991px) {
     grid-template-columns: repeat(2, 1fr);
+    gap: 28px; // Better spacing on tablet
   }
 
   // Desktop: 4 columns
@@ -85,12 +120,17 @@
   text-align: center;
   transition: all var(--transition-normal);
   box-shadow: var(--shadow-sm);
+  position: relative; // For number badge positioning
+
+  // Accent border on top (3px)
+  border-top: 3px solid transparent;
 
   // Hover effect
   &:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
     border-color: rgba(77, 179, 128, 0.3);
+    border-top-width: 4px; // Intensify on hover
   }
 
   // Mobile: full width cards with more padding
@@ -99,19 +139,63 @@
   }
 }
 
+// Accent border variants (rotation: primary → secondary → coral → sage)
+.c-services-preview__card--primary {
+  border-top-color: $color-primary-500; // Emerald
+}
+
+.c-services-preview__card--secondary {
+  border-top-color: $color-secondary-500; // Terracotta
+}
+
+.c-services-preview__card--coral {
+  border-top-color: $color-coral-500;
+}
+
+.c-services-preview__card--sage {
+  border-top-color: $sage-500;
+}
+
+// ============================================================================
+// ELEMENT: Number Badge
+// ============================================================================
+
+.c-services-preview__number-badge {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-text-muted);
+  color: white;
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family-sans);
+  border-radius: var(--border-radius-full);
+  opacity: 0.6;
+
+  @media (max-width: 767px) {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+}
+
 // ============================================================================
 // ELEMENT: Service Icon
 // ============================================================================
 
 .c-services-preview__icon {
-  // Gradient icon circle background
+  // Icon circle background with radial gradients
   width: 80px;
   height: 80px;
   margin: 0 auto var(--spacing-lg);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gradient-primary-warm);
   border-radius: var(--border-radius-full);
   color: var(--color-white);
   font-size: 2.5rem;
@@ -126,6 +210,39 @@
   .c-services-preview__card:hover & {
     transform: scale(1.1);
     box-shadow: var(--shadow-lg);
+  }
+
+  // Radial gradient rotation matching accent colors
+  .c-services-preview__card--primary & {
+    background: radial-gradient(
+      circle at 30% 30%,
+      lighten($color-primary-500, 10%) 0%,
+      $color-primary-500 100%
+    );
+  }
+
+  .c-services-preview__card--secondary & {
+    background: radial-gradient(
+      circle at 30% 30%,
+      lighten($color-secondary-500, 10%) 0%,
+      $color-secondary-500 100%
+    );
+  }
+
+  .c-services-preview__card--coral & {
+    background: radial-gradient(
+      circle at 30% 30%,
+      lighten($color-coral-500, 10%) 0%,
+      $color-coral-500 100%
+    );
+  }
+
+  .c-services-preview__card--sage & {
+    background: radial-gradient(
+      circle at 30% 30%,
+      lighten($sage-500, 10%) 0%,
+      $sage-500 100%
+    );
   }
 }
 
@@ -165,6 +282,16 @@
   // Button styling comes from atoms/button
   // This is just for positioning
   margin-top: auto;
+}
+
+// ============================================================================
+// ELEMENT: Section-Level CTA
+// ============================================================================
+
+.c-services-preview__section-cta {
+  margin-top: var(--spacing-4xl);
+  position: relative;
+  z-index: 1; // Above gradient overlay
 }
 
 // ============================================================================

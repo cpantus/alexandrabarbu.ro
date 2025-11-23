@@ -135,6 +135,27 @@
 }
 
 /**
+ * Pulse Subtle Animation (.c-icon--pulse-subtle)
+ * Very gentle scale animation for subtle emphasis
+ */
+@keyframes icon-pulse-subtle {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.c-icon--pulse-subtle {
+  animation: icon-pulse-subtle 3s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/**
  * Rotate on Hover (.c-icon--rotate)
  * Icon rotates 15deg on hover
  */
@@ -176,10 +197,10 @@
 
 /**
  * Responsive Icon (.c-icon--responsive)
- * Auto-scales based on viewport:
- * Mobile: sm (32px)
- * Tablet: md (48px)
- * Desktop: lg (64px)
+ * Auto-scales based on viewport (Enhanced v2.1):
+ * Mobile: sm (48px)
+ * Tablet: md (64px)
+ * Desktop: lg (84px)
  */
 .c-icon--responsive {
   // Mobile: sm (32px)
@@ -349,11 +370,11 @@
 //   <i class="las la-heart"></i>
 // </div>
 //
-// Available Modifiers:
-// Size:      --sm (32px), --md (48px), --lg (64px), --xl (84px)
+// Available Modifiers (Enhanced v2.1):
+// Size:      --sm (48px), --md (64px), --lg (84px), --xl (104px)
 // Color:     --primary, --secondary, --coral, --premium, --sage, --info
 // Style:     --glass (glassmorphism), --flat (no background)
-// Animation: --pulse, --rotate, --float
+// Animation: --pulse, --pulse-subtle, --rotate, --float
 // Context:   --hero, --card-header, --list, --responsive
 //
 // Performance: ~380 lines, specificity < 0,2,0, no !important (except legacy centering)

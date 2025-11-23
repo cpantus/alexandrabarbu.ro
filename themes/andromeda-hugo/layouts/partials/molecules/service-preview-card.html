@@ -17,8 +17,11 @@
     - excerpt (string, optional): Short service description
     - url (string, required): Link to full service page
     - button_text (string, optional): CTA button text (defaults to i18n "learn_more")
+    - button_variant (string, optional): Button style variant (default: "outline-primary")
     - variant (string, optional): Color variant (primary|secondary|tertiary|neutral|success|warning|error|info, default: primary)
     - image (string, optional): Service image (alternative to icon)
+    - number_badge (string, optional): Number badge text (e.g., "01", "02") displayed in top-right corner
+    - accent_color (string, optional): Top border accent color (uses variant if not specified)
 
   Usage:
     {{ partial "molecules/service-preview-card.html" (dict
@@ -51,8 +54,11 @@
 {{- $excerpt := .excerpt | default "" -}}
 {{- $url := .url -}}
 {{- $button_text := .button_text | default (i18n "learn_more") -}}
+{{- $button_variant := .button_variant | default "outline-primary" -}}
 {{- $variant := .variant | default "primary" -}}
 {{- $image := .image | default "" -}}
+{{- $number_badge := .number_badge | default "" -}}
+{{- $accent_color := .accent_color | default $variant -}}
 
 {{- /* Validation */ -}}
 {{- if not $title -}}
@@ -73,6 +79,11 @@
 {{- $modifier_class := printf "c-service-card--%s" $variant -}}
 
 <article class="c-service-card {{ $modifier_class }}">
+  {{- /* Number Badge (if provided) */ -}}
+  {{- if $number_badge -}}
+    <span class="c-service-card__badge">{{ $number_badge }}</span>
+  {{- end -}}
+
   {{- /* Icon or Image */ -}}
   {{- if $image -}}
     <div class="c-service-card__image">
@@ -117,7 +128,7 @@
     {{ partial "atoms/button.html" (dict
       "text" $button_text
       "url" $url
-      "variant" $variant
+      "variant" $button_variant
       "icon" "arrow-right"
       "icon_position" "right"
       "class" "c-service-card__link"

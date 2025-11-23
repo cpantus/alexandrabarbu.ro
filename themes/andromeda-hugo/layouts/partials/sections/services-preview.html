@@ -92,6 +92,8 @@
           "level" 2
           "class" "c-services-preview__title"
         ) }}
+        {{/* Decorative gradient line */}}
+        <div class="c-services-preview__gradient-line" aria-hidden="true"></div>
       {{- end -}}
     </div>
     {{- end -}}
@@ -100,7 +102,16 @@
     {{- if $data.services -}}
     <div class="c-services-preview__grid">
       {{- range $index, $service := $data.services -}}
-        <div class="c-services-preview__card" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+        {{/* Calculate accent variant rotation: primary → secondary → coral → sage */}}
+        {{- $accentVariants := slice "primary" "secondary" "coral" "sage" -}}
+        {{- $accentVariant := index $accentVariants (mod $index 4) -}}
+        {{/* Format number badge: 01, 02, 03, 04 */}}
+        {{- $numberBadge := printf "%02d" (add $index 1) -}}
+
+        <div class="c-services-preview__card c-services-preview__card--{{ $accentVariant }}" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+
+          {{/* Number Badge */}}
+          <span class="c-services-preview__number-badge">{{ $numberBadge }}</span>
 
           {{/* Service Icon */}}
           {{- if $service.icon -}}
@@ -126,7 +137,7 @@
             {{ partial "atoms/button.html" (dict
               "text" (default (i18n "learn_more") $service.button_text)
               "url" ($service.url | relLangURL)
-              "variant" (default "primary" $service.button_variant)
+              "variant" (default "outline-primary" $service.button_variant)
               "class" "c-services-preview__cta"
               "icon" "las la-arrow-right"
             ) }}
@@ -134,6 +145,19 @@
 
         </div>
       {{- end -}}
+    </div>
+    {{- end -}}
+
+    {{/* Section-Level CTA */}}
+    {{- if $data.section_cta -}}
+    <div class="c-services-preview__section-cta text-center mt-5">
+      {{ partial "atoms/button.html" (dict
+        "text" $data.section_cta.text
+        "url" ($data.section_cta.url | relLangURL)
+        "variant" (default "outline-secondary" $data.section_cta.variant)
+        "size" "lg"
+        "icon" $data.section_cta.icon
+      ) }}
     </div>
     {{- end -}}
 

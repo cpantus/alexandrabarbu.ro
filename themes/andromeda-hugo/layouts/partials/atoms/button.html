@@ -27,6 +27,7 @@
     attributes (optional) - Additional HTML attributes as dict
     animate (optional) - Animation type (e.g., "magnetic-button", "ripple")
     animateOptions (optional) - Animation options as dict (e.g., (dict "strength" "0.3"))
+    loading (optional) - true|false (default: false) - Shows spinner and disables button
 */}}
 
 {{ $text := .text }}
@@ -41,6 +42,7 @@
 {{ $attributes := .attributes | default dict }}
 {{ $animate := .animate }}
 {{ $animateOptions := .animateOptions | default dict }}
+{{ $loading := .loading | default false }}
 
 {{/* Build button classes (BEM naming) */}}
 {{ $btnClass := printf "c-button c-button--%s" $variant }}
@@ -52,37 +54,47 @@
 {{ if $fullWidth }}
   {{ $btnClass = printf "%s w-100" $btnClass }}
 {{ end }}
+{{ if $loading }}
+  {{ $btnClass = printf "%s c-button--loading" $btnClass }}
+{{ end }}
 {{ if $class }}
   {{ $btnClass = printf "%s %s" $btnClass $class }}
 {{ end }}
 
 {{/* Render button content with optional icon */}}
 {{ define "button-content" }}
-  {{ if and .icon (eq .iconPosition "left") }}
-    <i class="{{ .icon }} me-2"></i>
+  {{ if .loading }}
+    <span class="c-button__spinner">
+      <i class="las la-circle-notch la-spin me-2"></i>
+    </span>
   {{ end }}
-  {{ .text }}
-  {{ if and .icon (eq .iconPosition "right") }}
-    <i class="{{ .icon }} ms-2"></i>
+  {{ if and .icon (eq .iconPosition "left") (not .loading) }}
+    <i class="{{ .icon }} me-2" data-icon-animate="slide-right"></i>
+  {{ end }}
+  <span class="c-button__text">{{ .text }}</span>
+  {{ if and .icon (eq .iconPosition "right") (not .loading) }}
+    <i class="{{ .icon }} ms-2" data-icon-animate="slide-right"></i>
   {{ end }}
 {{ end }}
 
 {{/* Render as link or button */}}
 {{ if eq $type "link" }}
   <a href="{{ $href | relURL }}" class="{{ $btnClass }}"
+    {{- if $loading }} aria-disabled="true" tabindex="-1"{{ end -}}
     {{- if $animate }} data-animate="{{ $animate }}"{{ end -}}
     {{- range $key, $value := $animateOptions }} data-{{ $key }}="{{ $value }}"{{ end -}}
     {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}>
-    {{- template "button-content" (dict "icon" $icon "iconPosition" $iconPosition "text" $text) -}}
+    {{- template "button-content" (dict "icon" $icon "iconPosition" $iconPosition "text" $text "loading" $loading) -}}
   </a>
 {{ else }}
   <button
     {{- if eq $type "submit" }} type="submit"
     {{- else }} type="button"{{ end }}
     class="{{ $btnClass }}"
+    {{- if $loading }} disabled aria-busy="true"{{ end -}}
     {{- if $animate }} data-animate="{{ $animate }}"{{ end -}}
     {{- range $key, $value := $animateOptions }} data-{{ $key }}="{{ $value }}"{{ end -}}
     {{- range $key, $value := $attributes }} {{ $key }}="{{ $value }}"{{ end -}}>
-    {{- template "button-content" (dict "icon" $icon "iconPosition" $iconPosition "text" $text) -}}
+    {{- template "button-content" (dict "icon" $icon "iconPosition" $iconPosition "text" $text "loading" $loading) -}}
   </button>
 {{ end }}

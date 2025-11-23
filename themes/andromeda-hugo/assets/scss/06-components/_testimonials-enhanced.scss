@@ -1,174 +1,443 @@
-/* Testimonials Enhanced Section - BEM: .c-testimonials - v2.0.0 */
+// ==================================
+// Testimonials Enhanced Section - BEM Component
+// ==================================
+//
+// Purpose: Client testimonials with ratings, avatar placeholders, and enhanced styling
+// Features: White cards, left borders, floating quotes, avatar initials, staggered animations
+// Breakpoints: Stack mobile, multi-column desktop
+//
+// Version: 3.0.0 - Design Enhancement Update
+// Updated: 2025-11-23
+//
+
+// ============================================================================
+// BLOCK: Testimonials Section
+// ============================================================================
 
 .c-testimonials {
-  padding-block: $space-12;
-  &--bg-light { background-color: $color-neutral-50; }
-  &--bg-white { background-color: $green-50; }
+  position: relative;
+  padding: var(--spacing-section-y) 0;
+  background-color: $green-50; // Light background
+  overflow: hidden; // Contain decorative quote
+
+  // Background variants
+  &--bg-light { background-color: $green-50; }
+  &--bg-white { background-color: var(--color-white); }
 }
 
+// ============================================================================
+// ELEMENT: Decorative Quote Mark (large background element)
+// ============================================================================
+
+.c-testimonials__decorative-quote {
+  position: absolute;
+  top: 60px;
+  left: 40px;
+  font-size: 120px;
+  color: $color-primary-200;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
+
+  @media (min-width: 768px) {
+    top: 80px;
+    left: 60px;
+    font-size: 160px;
+  }
+
+  @media (min-width: 992px) {
+    top: 100px;
+    left: 80px;
+    font-size: 200px;
+  }
+}
+
+// ============================================================================
+// ELEMENT: Header
+// ============================================================================
+
 .c-testimonials__header {
+  position: relative;
+  z-index: 1; // Above decorative quote
   max-width: 800px;
-  margin-inline: auto;
-  margin-block-end: $space-8;
+  margin: 0 auto var(--spacing-5xl);
   text-align: center;
 }
 
 .c-testimonials__subtitle {
-  font-family: $font-sans;
-  font-size: $font-sm;
-  font-weight: 600;
+  font-family: var(--font-family-sans);
+  font-size: 16px; // Enhanced from 14px
+  font-weight: var(--font-weight-semibold);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: $color-primary-600;
-  margin-block-end: $space-2;
+  color: $gray-600; // Changed from primary-600
+  margin-bottom: var(--spacing-xs);
 }
 
-.c-testimonials__title { margin-block-end: $space-3; }
+.c-testimonials__title {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-md);
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-4xl); // Increased from 3xl
+  }
+}
 
 .c-testimonials__description {
-  font-family: $font-sans;
-  font-size: $font-lg;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-lg);
   line-height: 1.625;
-  color: $color-text-secondary;
+  color: var(--color-text-secondary);
   margin: 0;
 }
 
+// ============================================================================
+// ELEMENT: Testimonials Grid
+// ============================================================================
+
 .c-testimonials__grid {
+  position: relative;
+  z-index: 1; // Above decorative quote
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: $space-4;
-  margin-block-end: $space-6;
+  gap: 24px; // Increased from 16px
+  margin-bottom: var(--spacing-4xl);
 }
+
+// ============================================================================
+// ELEMENT: Testimonial Card
+// ============================================================================
 
 .c-testimonials__item {
-  background-color: $green-50;
-  border-radius: 16px;
-  padding: $space-5;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+  position: relative; // For floating quote and avatar positioning
+  background-color: var(--color-white); // Changed from $green-50
+  border: 1px solid $gray-200;
+  border-left: 3px solid transparent; // Will be set by variant modifiers
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-2xl);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
 
+  // Hover effect
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--shadow-lg);
+    border-left-width: 4px; // Intensify on hover
   }
 
-  &--primary { border-left: 4px solid $color-primary-500; }
-  &--secondary { border-left: 4px solid $color-secondary-500; }
-  &--coral { border-left: 4px solid $color-coral-500; }
+  // Mobile: reduce padding
+  @media (max-width: 767px) {
+    padding: var(--spacing-xl);
+  }
+
+  // Left border color rotation (primary → secondary → coral)
+  &--primary { border-left-color: $color-primary-500; }
+  &--secondary { border-left-color: $color-secondary-500; }
+  &--coral { border-left-color: $color-coral-500; }
 }
+
+// ============================================================================
+// ELEMENT: Floating Quote Mark (top-right corner)
+// ============================================================================
+
+.c-testimonials__floating-quote {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  font-size: 48px;
+  color: $color-primary-200;
+  opacity: 0.15;
+  line-height: 1;
+  pointer-events: none;
+}
+
+// ============================================================================
+// ELEMENT: Avatar Placeholder
+// ============================================================================
+
+.c-testimonials__avatar {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-full);
+  box-shadow: var(--shadow-md);
+
+  // Gradient backgrounds (rotation: primary → secondary → coral)
+  &--primary {
+    background: radial-gradient(
+      circle at 30% 30%,
+      lighten($color-primary-500, 10%) 0%,
+      $color-primary-500 100%
+    );
+  }
+
+  &--secondary {
+    background: radial-gradient(
+      circle at 30% 30%,
+      lighten($color-secondary-500, 10%) 0%,
+      $color-secondary-500 100%
+    );
+  }
+
+  &--coral {
+    background: radial-gradient(
+      circle at 30% 30%,
+      lighten($color-coral-500, 10%) 0%,
+      $color-coral-500 100%
+    );
+  }
+}
+
+.c-testimonials__initials {
+  font-family: var(--font-family-sans);
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+
+// ============================================================================
+// ELEMENT: Star Rating
+// ============================================================================
 
 .c-testimonials__rating {
   display: flex;
-  gap: $space-1;
-  margin-block-end: $space-3;
+  gap: 4px;
+  margin-bottom: var(--spacing-md);
+  justify-content: center;
 }
 
 .c-testimonials__star {
-  &--filled { color: #FFA500; }
-  &--empty { color: $color-neutral-300; opacity: 0.25; }
+  font-size: 20px; // Increased from 16px
+  transition: transform 0.2s ease-out;
+
+  &--filled {
+    color: #FFA500;
+    // Subtle glow effect
+    filter: drop-shadow(0 0 2px rgba(255, 165, 0, 0.4));
+  }
+
+  &--empty {
+    color: $gray-300;
+    opacity: 0.3;
+  }
+
+  // Hover effect (optional, for interactive stars)
+  &--filled:hover {
+    transform: scale(1.1);
+  }
 }
 
+// ============================================================================
+// ELEMENT: Quote Text
+// ============================================================================
+
 .c-testimonials__quote {
-  font-family: $font-serif;
-  font-size: $font-lg;
+  font-family: var(--font-family-heading);
+  font-size: 18px; // Increased from 16px
   font-style: italic;
-  line-height: 1.625;
-  color: $color-text-primary;
-  margin-block-end: $space-4;
+  line-height: 1.7; // Improved from 1.625
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-lg);
+
+  // Remove default blockquote styling
+  padding: 0;
+  border: none;
 
   p {
     margin: 0;
   }
 }
 
+// ============================================================================
+// ELEMENT: Author Info
+// ============================================================================
+
 .c-testimonials__author {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: $space-2;
-  padding-block-start: $space-3;
-  border-top: 1px solid $color-neutral-200;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid $gray-200;
+}
+
+.c-testimonials__author-details {
+  flex: 1;
 }
 
 .c-testimonials__author-name {
-  font-family: $font-sans;
-  font-size: $font-base;
-  font-weight: 600;
-  color: $color-text-primary;
-  margin-block-end: $space-1;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
 }
 
 .c-testimonials__author-meta {
   display: flex;
   flex-direction: column;
-  gap: $space-1 / 2;
+  gap: 2px;
 }
 
 .c-testimonials__meta-item {
-  font-family: $font-sans;
-  font-size: $font-sm;
-  color: $color-text-tertiary;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
 }
 
 .c-testimonials__verified {
   flex-shrink: 0;
+  color: $color-primary-500;
+  font-size: 20px;
 }
+
+// ============================================================================
+// ELEMENT: Outcome
+// ============================================================================
 
 .c-testimonials__outcome {
   display: flex;
   align-items: flex-start;
-  gap: $space-2;
-  padding: $space-3;
-  margin-block-start: $space-3;
-  background-color: $color-neutral-50;
-  border-radius: 8px;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-md);
+  background-color: $green-50;
+  border-radius: var(--border-radius-md);
+}
+
+.c-testimonials__outcome-icon {
+  flex-shrink: 0;
+  font-size: 16px;
 }
 
 .c-testimonials__outcome-text {
-  font-family: $font-sans;
-  font-size: $font-sm;
-  color: $color-text-secondary;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
 }
 
+// ============================================================================
+// ELEMENT: Privacy Note (Card format)
+// ============================================================================
+
 .c-testimonials__privacy {
+  position: relative;
+  z-index: 1; // Above decorative quote
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: $space-2;
+  gap: var(--spacing-sm);
   max-width: 800px;
-  margin-inline: auto;
-  margin-block-end: $space-4;
-  font-family: $font-sans;
-  font-size: $font-sm;
-  color: $color-text-tertiary;
+  margin: 0 auto var(--spacing-3xl);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: $green-100; // Card background
+  border: 1px solid $green-200;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-xs);
 }
 
+.c-testimonials__privacy-icon {
+  flex-shrink: 0;
+  font-size: 18px;
+  color: $color-primary-500; // Emerald icon
+}
+
+.c-testimonials__privacy-text {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  color: $gray-700;
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+}
+
+// ============================================================================
+// ELEMENT: CTA Button
+// ============================================================================
+
 .c-testimonials__cta {
+  position: relative;
+  z-index: 1; // Above decorative quote
   display: flex;
   justify-content: center;
 }
 
-/* Responsive */
-@media (max-width: $breakpoint-lg - 1) {
-  .c-testimonials { padding-block: $space-10; }
-  .c-testimonials__grid { gap: $space-3; }
+// ============================================================================
+// RESPONSIVE ADJUSTMENTS
+// ============================================================================
+
+@media (max-width: 991px) {
+  .c-testimonials {
+    padding: var(--spacing-5xl) 0;
+  }
+
+  .c-testimonials__grid {
+    gap: var(--spacing-xl);
+  }
 }
 
-@media (max-width: $breakpoint-md - 1) {
-  .c-testimonials { padding-block: $space-8; }
-  .c-testimonials__grid { grid-template-columns: 1fr; }
-  .c-testimonials__item { padding: $space-4; }
+@media (max-width: 767px) {
+  .c-testimonials {
+    padding: var(--spacing-4xl) 0;
+  }
+
+  .c-testimonials__grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .c-testimonials__decorative-quote {
+    font-size: 100px;
+    top: 40px;
+    left: 20px;
+  }
 }
 
-/* Accessibility */
+// ============================================================================
+// ACCESSIBILITY
+// ============================================================================
+
+// Reduced motion support
 @media (prefers-reduced-motion: reduce) {
-  .c-testimonials__item { transition: none; &:hover { transform: none; } }
+  .c-testimonials__item {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .c-testimonials__star--filled:hover {
+    transform: none;
+  }
 }
 
+// Print styles
 @media print {
-  .c-testimonials { padding-block: $space-4; }
-  .c-testimonials__cta { display: none; }
+  .c-testimonials {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .c-testimonials__cta {
+    display: none;
+  }
+
+  .c-testimonials__decorative-quote {
+    display: none;
+  }
 }
 
-/* Legacy */
-.testimonials-enhanced { @extend .c-testimonials; }
+// ============================================================================
+// LEGACY SUPPORT
+// ============================================================================
+
+.testimonials-enhanced {
+  @extend .c-testimonials;
+}

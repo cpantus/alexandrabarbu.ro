@@ -57,7 +57,7 @@
 
   // Typography
   font-family: $font-family-sans;
-  font-size: $font-size-sm; // 14px
+  font-size: 13px; // Reduced from 14px for lighter visual weight
   line-height: $line-height-normal;
   font-weight: 400;
 }
@@ -109,7 +109,7 @@
   gap: $space-half; // 4px
 
   // Typography
-  color: $color-text-secondary;
+  color: $gray-500; // Lightened from $color-text-secondary ($gray-600) for reduced visual weight
   text-decoration: none;
   font-weight: 400;
 
@@ -174,8 +174,9 @@
   display: inline-flex;
   align-items: center;
 
-  // Color
+  // Color & opacity
   color: $color-text-muted;
+  opacity: 0.5; // Reduced opacity for lighter visual weight
 
   // Spacing
   margin: 0 $space-half; // 0 4px
@@ -199,7 +200,7 @@
  */
 .c-breadcrumb__home-icon {
   // Color
-  color: $color-text-secondary;
+  color: $gray-500; // Lightened to match breadcrumb link color
 
   // Transitions
   transition: color $transition-base;

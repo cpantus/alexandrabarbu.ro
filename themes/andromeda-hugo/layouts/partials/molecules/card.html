@@ -15,6 +15,9 @@
     title (required) - Card title/heading
     description (optional) - Card description/content
     class (optional) - Additional CSS classes
+    accentTop (optional) - boolean, adds 3px colored top border (default: false)
+    numberBadge (optional) - string, displays number in top-right corner (e.g., "01")
+    hoverIntensity (optional) - subtle|medium|prominent, controls hover lift effect (default: none)
     aos (optional) - AOS animation name (e.g., "fade-up")
     aosDelay (optional) - AOS delay in ms (e.g., 100)
     animate (optional) - GSAP animation type (e.g., "ripple")
@@ -51,6 +54,9 @@
 {{ $title := .title }}
 {{ $description := .description }}
 {{ $class := .class | default "" }}
+{{ $accentTop := .accentTop | default false }}
+{{ $numberBadge := .numberBadge | default "" }}
+{{ $hoverIntensity := .hoverIntensity | default "" }}
 {{ $aos := .aos }}
 {{ $aosDelay := .aosDelay }}
 {{ $animate := .animate }}
@@ -85,8 +91,24 @@
 
 {{/* Build wrapper classes */}}
 {{ $wrapperClass := "" }}
+
+{{/* Add accent-top modifier if requested */}}
+{{ if $accentTop }}
+  {{ $wrapperClass = printf "%s c-card--top-accent" $wrapperClass }}
+{{ end }}
+
+{{/* Add hover-intensity modifier */}}
+{{ if eq $hoverIntensity "subtle" }}
+  {{ $wrapperClass = printf "%s c-card--hover-lift c-card--lift-small" $wrapperClass }}
+{{ else if eq $hoverIntensity "medium" }}
+  {{ $wrapperClass = printf "%s c-card--hover-lift" $wrapperClass }}
+{{ else if eq $hoverIntensity "prominent" }}
+  {{ $wrapperClass = printf "%s c-card--hover-lift c-card--lift-large" $wrapperClass }}
+{{ end }}
+
+{{/* Add custom classes */}}
 {{ if $class }}
-  {{ $wrapperClass = $class }}
+  {{ $wrapperClass = printf "%s %s" $wrapperClass $class }}
 {{ end }}
 
 {{/* Build AOS attributes */}}
@@ -111,6 +133,9 @@
 {{ if eq $variant "feature" }}
   {{/* Feature Card - Icon + Title + Description + Optional Button */}}
   <div class="career-benefits-item text-center {{ $wrapperClass }}" {{ $aosAttrs | safeHTMLAttr }} {{ $animateAttrs | safeHTMLAttr }}>
+    {{ if $numberBadge }}
+      <span class="c-card__badge">{{ $numberBadge }}</span>
+    {{ end }}
     {{ if $icon }}
       {{ partial "atoms/icon.html" (dict
         "name" $icon
@@ -145,6 +170,9 @@
 {{ else if eq $variant "pricing" }}
   {{/* Pricing Card - Title + Price + Features + Button */}}
   <div class="card pricing-card border-0 {{ if $featured }}pricing-card-featured{{ end }} {{ $wrapperClass }}" {{ $aosAttrs | safeHTMLAttr }} {{ $animateAttrs | safeHTMLAttr }}>
+    {{ if $numberBadge }}
+      <span class="c-card__badge">{{ $numberBadge }}</span>
+    {{ end }}
     <div class="card-body">
       {{ if $title }}
         {{ partial "atoms/heading.html" (dict
@@ -204,6 +232,9 @@
 {{ else if eq $variant "testimonial" }}
   {{/* Testimonial Card - Quote + Author + Avatar + Rating */}}
   <div class="card testimonial-card border-0 {{ $wrapperClass }}" {{ $aosAttrs | safeHTMLAttr }} {{ $animateAttrs | safeHTMLAttr }}>
+    {{ if $numberBadge }}
+      <span class="c-card__badge">{{ $numberBadge }}</span>
+    {{ end }}
     <div class="card-body">
       {{ if $rating }}
         <div class="rating mb-3">

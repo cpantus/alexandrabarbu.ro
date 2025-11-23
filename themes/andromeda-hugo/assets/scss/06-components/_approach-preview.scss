@@ -2,12 +2,12 @@
 // Approach Preview Section - BEM Component
 // ==================================
 //
-// Purpose: 4 therapeutic principles in 2x2 grid
-// Features: Icon cards, gradient backgrounds, responsive grid
+// Purpose: Therapeutic approach with feature card and 4 methodology principles
+// Features: Feature card with quote, 2x2 methodology grid, number badges, accent borders
 // Breakpoints: Stack mobile, 2x2 grid desktop
 //
-// Version: 1.0.0
-// Updated: 2025-11-20
+// Version: 2.0.0 - Design Enhancement Update
+// Updated: 2025-11-23
 //
 
 // ============================================================================
@@ -25,15 +25,22 @@
 
 .c-approach-preview__header {
   max-width: 800px;
-  margin: 0 auto var(--spacing-5xl);
+  margin: 0 auto var(--spacing-4xl);
 }
 
-.c-approach-preview__subtitle {
-  font-size: var(--font-size-sm);
+// Methodology Tag (pill shape, emerald background, white text)
+.c-approach-preview__tag {
+  display: inline-block;
+  padding: 8px 20px;
+  background: $color-primary-500;
+  color: var(--color-white);
+  font-size: 12px;
   font-weight: var(--font-weight-semibold);
-  color: var(--color-brand-primary);
+  font-family: var(--font-family-sans);
   letter-spacing: 0.1em;
-  margin-bottom: var(--spacing-xs);
+  text-transform: uppercase;
+  border-radius: var(--border-radius-full);
+  margin-bottom: var(--spacing-md);
 }
 
 .c-approach-preview__title {
@@ -53,10 +60,150 @@
   color: var(--color-text-secondary);
   line-height: var(--line-height-relaxed);
   margin-bottom: 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 // ============================================================================
-// ELEMENT: Principles Grid
+// ELEMENT: Feature Card (replaces image)
+// ============================================================================
+
+.c-approach-preview__feature-card {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    $color-primary-400 0%,
+    $teal-500 100%
+  );
+  border-radius: var(--border-radius-xl);
+  padding: var(--spacing-4xl) var(--spacing-2xl);
+  text-align: center;
+  margin-bottom: var(--spacing-5xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+
+  @media (min-width: 768px) {
+    padding: var(--spacing-5xl) var(--spacing-4xl);
+  }
+
+  // Organic blob background
+  &::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 45% 55% 60% 40% / 55% 45% 55% 45%;
+    animation: blob-morph 20s ease-in-out infinite;
+    pointer-events: none;
+
+    @media (min-width: 768px) {
+      width: 400px;
+      height: 400px;
+    }
+  }
+}
+
+.c-approach-preview__blob {
+  position: absolute;
+  bottom: -15%;
+  left: -5%;
+  width: 250px;
+  height: 250px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 60% 40% 45% 55% / 45% 60% 40% 55%;
+  animation: blob-morph 18s ease-in-out infinite reverse;
+  pointer-events: none;
+
+  @media (min-width: 768px) {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+// Blob animation (organic shape morphing)
+@keyframes blob-morph {
+  0%, 100% {
+    border-radius: 45% 55% 60% 40% / 55% 45% 55% 45%;
+  }
+  25% {
+    border-radius: 55% 45% 50% 50% / 45% 55% 45% 55%;
+  }
+  50% {
+    border-radius: 50% 50% 45% 55% / 60% 40% 60% 40%;
+  }
+  75% {
+    border-radius: 45% 55% 55% 45% / 50% 50% 50% 50%;
+  }
+}
+
+// Feature Icon (104px circle, white, subtle glow)
+.c-approach-preview__feature-icon {
+  position: relative;
+  z-index: 1;
+  width: 104px;
+  height: 104px;
+  margin: 0 auto var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--border-radius-full);
+  color: var(--color-white);
+  font-size: 3.5rem;
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.2),
+    0 8px 16px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+
+  i {
+    line-height: 1;
+  }
+}
+
+// Quote Typography (Crimson Pro italic, 20px, white, centered)
+.c-approach-preview__quote {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-family-heading);
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-white);
+  margin: 0 auto var(--spacing-lg);
+  max-width: 700px;
+
+  // Remove default blockquote styling
+  padding: 0;
+  border: none;
+
+  p {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 22px;
+  }
+}
+
+// Author Attribution (Work Sans, 14px, emerald-100)
+.c-approach-preview__author {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-family-sans);
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  color: $color-primary-100;
+  margin: 0;
+}
+
+// ============================================================================
+// ELEMENT: Principles Grid (2x2)
 // ============================================================================
 
 .c-approach-preview__grid {
@@ -65,24 +212,26 @@
   gap: var(--spacing-2xl);
   margin-bottom: var(--spacing-3xl);
 
-  // Tablet: 2 columns
+  // Tablet & Desktop: 2 columns
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+  }
+
+  @media (min-width: 992px) {
+    gap: var(--spacing-2xl);
   }
 }
 
 // ============================================================================
-// ELEMENT: Principle Card
+// ELEMENT: Principle Card (solid white with accent borders)
 // ============================================================================
 
 .c-approach-preview__principle {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(255, 255, 255, 0.7) 100%
-  );
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(77, 179, 128, 0.15);
+  position: relative; // For number badge positioning
+  background: var(--color-white);
+  border: 1px solid $gray-200;
+  border-left: 3px solid transparent; // Will be set by variant modifiers
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-2xl);
   text-align: center;
@@ -93,7 +242,7 @@
   &:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
-    border-color: rgba(77, 179, 128, 0.3);
+    border-left-width: 4px; // Intensify accent on hover
   }
 
   // Mobile: full padding
@@ -102,18 +251,48 @@
   }
 }
 
+// Accent border variants (left border, 3px)
+.c-approach-preview__principle--primary {
+  border-left-color: $color-primary-500; // Emerald
+}
+
+.c-approach-preview__principle--secondary {
+  border-left-color: $color-secondary-500; // Terracotta
+}
+
+.c-approach-preview__principle--coral {
+  border-left-color: $color-coral-500;
+}
+
+.c-approach-preview__principle--sage {
+  border-left-color: $sage-500;
+}
+
 // ============================================================================
-// ELEMENT: Principle Icon
+// ELEMENT: Methodology Number (01-04, top-left, gray-400)
+// ============================================================================
+
+.c-approach-preview__number {
+  position: absolute;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family-sans);
+  color: $gray-400;
+}
+
+// ============================================================================
+// ELEMENT: Principle Icon (64px standardized, gradient rotation)
 // ============================================================================
 
 .c-approach-preview__icon {
-  width: 70px;
-  height: 70px;
+  width: 64px; // Standardized to md size
+  height: 64px;
   margin: 0 auto var(--spacing-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gradient-primary-warm);
   border-radius: var(--border-radius-full);
   color: var(--color-white);
   font-size: 2rem;
@@ -126,8 +305,41 @@
 
   // Hover effect (inherit from card)
   .c-approach-preview__principle:hover & {
-    transform: scale(1.08);
+    transform: rotate(-5deg) scale(1.08);
     box-shadow: var(--shadow-lg);
+  }
+
+  // Icon gradient rotation (radial gradients matching accent colors)
+  .c-approach-preview__principle--primary & {
+    background: radial-gradient(
+      circle at 30% 30%,
+      lighten($color-primary-500, 10%) 0%,
+      $color-primary-500 100%
+    );
+  }
+
+  .c-approach-preview__principle--secondary & {
+    background: radial-gradient(
+      circle at 30% 30%,
+      lighten($color-secondary-500, 10%) 0%,
+      $color-secondary-500 100%
+    );
+  }
+
+  .c-approach-preview__principle--coral & {
+    background: radial-gradient(
+      circle at 30% 30%,
+      lighten($color-coral-500, 10%) 0%,
+      $color-coral-500 100%
+    );
+  }
+
+  .c-approach-preview__principle--sage & {
+    background: radial-gradient(
+      circle at 30% 30%,
+      lighten($sage-500, 10%) 0%,
+      $sage-500 100%
+    );
   }
 }
 
@@ -172,6 +384,11 @@
 
 // Reduced motion support
 @media (prefers-reduced-motion: reduce) {
+  .c-approach-preview__feature-card::before,
+  .c-approach-preview__blob {
+    animation: none;
+  }
+
   .c-approach-preview__principle {
     transition: none;
 

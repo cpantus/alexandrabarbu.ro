@@ -331,6 +331,13 @@ $color-coral-900: $coral-900;
 $color-white: $white;
 $color-black: $black;
 
+// ----------------------------------
+// Overlay Colors (Glassmorphism & Sections)
+// ----------------------------------
+// Usage: Testimonial backgrounds, modal overlays, section darkening
+$overlay-dark: rgba($gray-900, 0.85);      // Dark overlay for light text
+$overlay-light: rgba($green-50, 0.95);     // Light overlay for dark backgrounds
+
 // Color palette aliases with $color- prefix
 $color-emerald-50: $emerald-50;
 $color-emerald-100: $emerald-100;

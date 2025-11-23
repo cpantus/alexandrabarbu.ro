@@ -2,20 +2,27 @@
   ============================================================================
   Approach Preview Section - BEM Architecture
   ============================================================================
-  Displays 4 core therapeutic principles in a 2x2 grid
+  Displays therapeutic approach with feature card and 4 methodology principles
 
   Features:
+  - Methodology tag (pill-shaped badge)
+  - Large feature card with quote and icon
   - 4-principle grid (2x2 desktop, stacked mobile)
-  - Icons, titles, descriptions
-  - Optional CTA to full approach page
-  - Gradient backgrounds and icons
+  - Number badges (01-04)
+  - Solid white cards with accent borders
+  - Icon gradient rotation
 
   Data Structure:
   ---------------
   approach_preview:
+    tag: "METODOLOGIE"                          # Methodology badge
     title: "My Therapeutic Approach"           # Section heading
     subtitle: "Guiding Principles"             # Optional eyebrow
     description: "Brief intro text..."         # Optional description
+    feature_card:                              # Large quote card
+      quote: "Nu există o rețetă universală..." # Quote text
+      author: "Dr. Alexandra Barbu"             # Author attribution
+      icon: "las la-brain"                      # Large icon
     principles:                                 # Array of 4 principles
       - title: "Evidence-Based"
         description: "I use scientifically validated methods..."
@@ -38,30 +45,37 @@
     - type: "approach-preview"
 
   approach_preview:
+    tag: "METODOLOGIE"
     title: "Abordarea Mea Terapeutică"
+    description: "Abordare integrativă care combină..."
+    feature_card:
+      quote: "Nu există o rețetă universală în terapie..."
+      author: "Dr. Alexandra Barbu"
+      icon: "las la-brain"
     principles:
       - title: "Bazat pe Dovezi"
         description: "Folosesc metode validate științific..."
         icon: "las la-flask"
-      - title: "Personalizat"
-        description: "Fiecare plan este adaptat..."
-        icon: "las la-user-circle"
   ```
 
   BEM Structure:
   --------------
   .c-approach-preview                    - Section wrapper
   .c-approach-preview__header            - Header container
-  .c-approach-preview__subtitle          - Eyebrow text
+  .c-approach-preview__tag               - Methodology pill badge
   .c-approach-preview__title             - Main heading
-  .c-approach-preview__description       - Optional intro text
-  .c-approach-preview__grid              - Principles grid
+  .c-approach-preview__description       - Intro text
+  .c-approach-preview__feature-card      - Large quote card
+  .c-approach-preview__feature-icon      - Feature card icon (104px)
+  .c-approach-preview__quote             - Quote text
+  .c-approach-preview__author            - Author attribution
+  .c-approach-preview__grid              - Principles grid (2x2)
   .c-approach-preview__principle         - Individual principle card
-  .c-approach-preview__icon              - Principle icon
+  .c-approach-preview__number            - Methodology number (01-04)
+  .c-approach-preview__icon              - Principle icon (64px)
   .c-approach-preview__principle-title   - Principle heading
   .c-approach-preview__principle-text    - Principle description
   .c-approach-preview__cta-wrapper       - CTA container
-  .c-approach-preview__cta               - CTA button
 
   Dependencies:
   -------------
@@ -70,8 +84,8 @@
   - atoms/icon.html (principle icons)
   - _approach-preview.scss (BEM styles)
 
-  Version: 1.0.0
-  Updated: 2025-11-20
+  Version: 2.0.0 - Design Enhancement Update
+  Updated: 2025-11-23
   ============================================================================
 */}}
 
@@ -85,10 +99,10 @@
   <div class="o-container">
 
     {{/* Section Header */}}
-    {{- if or $data.title $data.subtitle $data.description -}}
+    {{- if or $data.tag $data.title $data.description -}}
     <div class="c-approach-preview__header text-center">
-      {{- if $data.subtitle -}}
-        <p class="c-approach-preview__subtitle text-uppercase">{{ $data.subtitle }}</p>
+      {{- if $data.tag -}}
+        <span class="c-approach-preview__tag">{{ $data.tag }}</span>
       {{- end -}}
       {{- if $data.title -}}
         {{ partial "atoms/heading.html" (dict
@@ -103,18 +117,54 @@
     </div>
     {{- end -}}
 
+    {{/* Feature Card (replaces image) */}}
+    {{- if $data.feature_card -}}
+    <div class="c-approach-preview__feature-card" data-aos="fade-up">
+      {{/* Organic blob background */}}
+      <div class="c-approach-preview__blob" aria-hidden="true"></div>
+
+      {{/* Feature Icon */}}
+      {{- if $data.feature_card.icon -}}
+        <div class="c-approach-preview__feature-icon">
+          <i class="{{ $data.feature_card.icon }}"></i>
+        </div>
+      {{- end -}}
+
+      {{/* Quote */}}
+      {{- if $data.feature_card.quote -}}
+        <blockquote class="c-approach-preview__quote">
+          {{ $data.feature_card.quote | markdownify }}
+        </blockquote>
+      {{- end -}}
+
+      {{/* Author */}}
+      {{- if $data.feature_card.author -}}
+        <p class="c-approach-preview__author">{{ $data.feature_card.author }}</p>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
     {{/* Principles Grid */}}
     {{- if $data.principles -}}
     <div class="c-approach-preview__grid">
       {{- range $index, $principle := $data.principles -}}
-        <div class="c-approach-preview__principle" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+        {{/* Calculate accent variant rotation: primary → secondary → coral → sage */}}
+        {{- $accentVariants := slice "primary" "secondary" "coral" "sage" -}}
+        {{- $accentVariant := index $accentVariants (mod $index 4) -}}
+        {{/* Format number badge: 01, 02, 03, 04 */}}
+        {{- $numberBadge := printf "%02d" (add $index 1) -}}
+
+        <div class="c-approach-preview__principle c-approach-preview__principle--{{ $accentVariant }}" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+
+          {{/* Methodology Number */}}
+          <span class="c-approach-preview__number">{{ $numberBadge }}</span>
 
           {{/* Principle Icon */}}
           {{- if $principle.icon -}}
             {{ partial "atoms/icon.html" (dict
               "icon" $principle.icon
               "class" "c-approach-preview__icon"
-              "size" "3x"
+              "size" "md"
             ) }}
           {{- end -}}
 
@@ -141,7 +191,7 @@
         "url" ($data.button_url | relLangURL)
         "variant" (default "primary" $data.button_variant)
         "class" "c-approach-preview__cta"
-        "icon" "arrow-right"
+        "icon" "las la-arrow-right"
       ) }}
     </div>
     {{- end -}}

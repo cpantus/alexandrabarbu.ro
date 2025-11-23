@@ -68,7 +68,7 @@
   align-items: center;
 
   @media (min-width: $breakpoint-lg) {
-    grid-template-columns: 1fr 1fr; // 50/50 split on desktop
+    grid-template-columns: 5fr 4fr; // 60/40 split favoring content
     gap: $space-8; // 64px
   }
 }
@@ -78,23 +78,26 @@
 
 .c-hero-breadcrumb__content {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   @media (min-width: $breakpoint-lg) {
     text-align: left;
   }
 }
 
-/* Subtitle
+/* Kicker Text
    ========================================================================== */
 
-.c-hero-breadcrumb__subtitle {
+.c-hero-breadcrumb__kicker {
   margin: 0 0 $space-2 0; // 16px bottom
   font-family: $font-family-sans;
-  font-size: $font-size-sm; // 14px
-  font-weight: $font-weight-medium;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: $color-text-muted;
+  letter-spacing: 0.15em;
+  color: $color-secondary-600; // Terracotta
 }
 
 /* Title
@@ -103,7 +106,31 @@
 .c-hero-breadcrumb__title {
   // Heading atom provides base styles
   // Add section-specific overrides here
-  margin-bottom: $space-4; // 32px
+  margin-bottom: $space-3; // 24px
+  font-size: 2.5rem; // text-5xl equivalent
+  line-height: 1.1;
+  letter-spacing: -0.02em; // Better kerning for Crimson Pro
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 3rem; // text-6xl equivalent
+  }
+}
+
+/* Subtitle
+   ========================================================================== */
+
+.c-hero-breadcrumb__subtitle {
+  margin: 0 0 $space-4 0; // 32px bottom
+  font-family: $font-family-sans;
+  font-size: $font-size-sm; // 14px default
+  font-weight: $font-weight-normal;
+  line-height: 1.6;
+  color: $color-text-secondary;
+}
+
+.c-hero-breadcrumb__subtitle--large {
+  font-size: 18px;
+  font-weight: $font-weight-medium;
 }
 
 /* Breadcrumb Wrapper
@@ -130,6 +157,42 @@
   }
 }
 
+/* CTA Button Group
+   ========================================================================== */
+
+.c-hero-breadcrumb__cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; // Increased from typical 16px
+  margin-top: $space-6; // 48px
+  justify-content: center;
+
+  @media (min-width: $breakpoint-lg) {
+    justify-content: flex-start;
+  }
+}
+
+.c-hero-breadcrumb__cta-button {
+  // Fade-in-up animation with stagger
+  animation: fadeInUp 0.6s ease-out backwards;
+
+  &:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
 /* Media Column
    ========================================================================== */
 
@@ -146,19 +209,108 @@
   }
 }
 
+/* Image Wrapper (contains blob, image, quote)
+   ========================================================================== */
+
+.c-hero-breadcrumb__image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Organic Blob Shape
+   ========================================================================== */
+
+.c-hero-breadcrumb__blob {
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 110%;
+  background: linear-gradient(135deg, rgba($color-primary-100, 0.3) 0%, rgba($color-secondary-100, 0.2) 100%);
+  clip-path: path('M 0 50 Q 0 0 50 0 T 100 50 T 50 100 T 0 50');
+  z-index: 0;
+  pointer-events: none;
+  animation: blob-morph 8s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
 /* Hero Image
    ========================================================================== */
 
 .c-hero-breadcrumb__image {
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 .c-hero-breadcrumb__img {
   width: 100%;
   height: auto;
+  border-radius: 32px; // Organic soft border
+  border: 4px solid $color-primary-100; // $green-100
+  box-shadow: $shadow-2xl;
+  clip-path: ellipse(48% 48% at 50% 50%); // Subtle organic shape
+
+  @media (min-width: $breakpoint-md) {
+    clip-path: path('M 10 50 Q 10 10 50 10 T 90 50 T 50 90 T 10 50'); // More pronounced blob on larger screens
+  }
+}
+
+/* Quote Box (overlapping image)
+   ========================================================================== */
+
+.c-hero-breadcrumb__quote-box {
+  position: absolute;
+  bottom: -10%; // Overlaps image by 20%
+  left: 10%;
+  right: 10%;
+  z-index: 2;
+  padding: $space-4; // 32px
+  background: rgba($color-primary-900, 0.85); // Emerald dark with glassmorphism
+  backdrop-filter: blur(12px);
   border-radius: $border-radius-lg; // 16px
   box-shadow: $shadow-lg;
+
+  @media (min-width: $breakpoint-md) {
+    padding: $space-5; // 40px
+    left: 5%;
+    right: 5%;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    bottom: -15%; // More overlap on desktop
+    left: -10%; // Extend beyond image
+    right: auto;
+    max-width: 80%;
+  }
+}
+
+.c-hero-breadcrumb__quote-icon {
+  font-size: 24px;
+  color: $color-primary-400; // Emerald light
+  margin-bottom: $space-2; // 16px
+  display: block;
+}
+
+.c-hero-breadcrumb__quote-text {
+  margin: 0;
+  font-family: $font-family-serif; // Crimson Pro
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.6;
+  color: white;
+}
+
+.c-hero-breadcrumb__quote-author {
+  margin: $space-2 0 0 0; // 16px top
+  font-family: $font-family-sans;
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  color: $color-primary-100; // Emerald very light
+  opacity: 0.9;
 }
 
 /* Decorative Shapes
@@ -262,6 +414,33 @@
   }
   50% {
     transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blob-morph {
+  0%,
+  100% {
+    clip-path: path('M 0 50 Q 0 0 50 0 T 100 50 T 50 100 T 0 50');
+  }
+  25% {
+    clip-path: path('M 0 50 Q 0 10 50 5 T 95 50 T 50 95 T 0 50');
+  }
+  50% {
+    clip-path: path('M 5 50 Q 5 5 50 0 T 100 50 T 45 100 T 5 50');
+  }
+  75% {
+    clip-path: path('M 0 50 Q 5 5 50 5 T 95 50 T 50 90 T 0 50');
   }
 }
 

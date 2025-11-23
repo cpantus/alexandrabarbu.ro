@@ -22,6 +22,7 @@
  * Base card component (default: primary variant)
  */
 .c-card {
+  position: relative; // For badge positioning
   @include card-v4('primary', false);
   border-top: 4px solid $color-primary-500; // v5.1: Brand color accent (emerald)
 
@@ -243,6 +244,43 @@
   &:hover {
     color: $emerald-700;
     text-decoration: underline;
+  }
+}
+
+/**
+ * Card number badge element (Task 3.4)
+ * Circular badge displayed in top-right corner
+ */
+.c-card__badge {
+  // Position in top-right corner
+  position: absolute;
+  top: $space-4;  // 32px from top
+  right: $space-4; // 32px from right
+  z-index: 10;
+
+  // Layout
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+
+  // Visual
+  background: $gray-300;
+  color: $gray-700;
+  font-family: $font-body;
+  font-size: $font-size-lg; // 18px
+  font-weight: $font-weight-semibold; // 600
+  border-radius: $border-radius-full; // Circular
+  box-shadow: $shadow-sm;
+
+  // Responsive
+  @media (max-width: $breakpoint-sm) {
+    width: 40px;
+    height: 40px;
+    top: $space-3;
+    right: $space-3;
+    font-size: $font-size-base; // 16px
   }
 }
 

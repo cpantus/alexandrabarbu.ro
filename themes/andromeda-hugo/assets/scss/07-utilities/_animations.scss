@@ -1,0 +1,223 @@
+// =============================================================================
+// ANIMATIONS UTILITY (ITCSS Layer 7)
+// =============================================================================
+//
+// Purpose: Centralized @keyframes animations for reusable motion effects
+//
+// Usage: Apply via `animation` property in components
+//
+// Categories:
+// - Entrance animations (fade-in variants, scale-in)
+// - Interactive animations (pulse, float, hover effects)
+// - State animations (shake, focus-ring)
+// - Background animations (gradient-shift, blob-morph)
+//
+// Accessibility: All animations respect prefers-reduced-motion
+// Performance: GPU-accelerated (transform/opacity only where possible)
+//
+// Version: 1.0.0 (Phase 6 - Cross-Cutting Improvements)
+// Last Updated: 2025-11-23
+// =============================================================================
+
+// =============================================================================
+// ENTRANCE ANIMATIONS
+// =============================================================================
+
+/* Fade In Up - Slide up while fading in */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In Down - Slide down while fading in */
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In Left - Slide from left while fading in */
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade In Right - Slide from right while fading in */
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale In - Grow while fading in */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Slide In Fade - Slide down slightly while fading (for messages) */
+@keyframes slideInFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// =============================================================================
+// INTERACTIVE ANIMATIONS
+// =============================================================================
+
+/* Pulse Gentle - Subtle breathing effect for icons/buttons */
+@keyframes pulse-gentle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+/* Float - Subtle levitation effect */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Rotate Gentle - Smooth continuous rotation */
+@keyframes rotate-gentle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// =============================================================================
+// STATE ANIMATIONS
+// =============================================================================
+
+/* Shake - Error indication (horizontal shake) */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-4px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(4px);
+  }
+}
+
+/* Focus Ring - Glow effect for focus states */
+@keyframes focus-ring {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba($color-primary-600, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba($color-primary-600, 0.3);
+  }
+}
+
+// =============================================================================
+// BACKGROUND ANIMATIONS
+// =============================================================================
+
+/* Gradient Shift - Animated gradient background */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Blob Morph - Organic shape morphing effect */
+@keyframes blob-morph {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; // $blob-soft
+  }
+  33% {
+    border-radius: 45% 55% 62% 38% / 53% 51% 49% 47%; // $blob-organic
+  }
+  66% {
+    border-radius: 40% 60% 65% 35% / 65% 40% 60% 35%; // $blob-smooth
+  }
+}
+
+// =============================================================================
+// ACCESSIBILITY: REDUCED MOTION SUPPORT
+// =============================================================================
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    // Disable all custom animations
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+
+    // Keep scroll behavior smooth even with reduced motion
+    scroll-behavior: auto !important;
+  }
+}
+
+// =============================================================================
+// USAGE NOTES
+// =============================================================================
+//
+// Component-Specific Animations (NOT included here):
+// - skipLinkFocusGlow, brandFocusGlow, toggleFocusGlow (_header.scss)
+// - pulse-ring (_signup.scss)
+// - pulse-number (_stats.scss)
+// - checkmark (_signup.scss)
+//
+// These remain in their respective component files as they are tightly coupled
+// to specific component logic and styling.
+//
+// General-Purpose Animations (included here):
+// All animations that can be reused across multiple components are centralized
+// in this file for maintainability and consistency.
+//
+// =============================================================================

@@ -108,6 +108,13 @@
   <div class="o-container">
 
     {{- /* ========================================
+         DECORATIVE QUOTE MARK (large background element)
+         ======================================== */ -}}
+    <div class="c-testimonials__decorative-quote" aria-hidden="true">
+      <i class="las la-quote-left"></i>
+    </div>
+
+    {{- /* ========================================
          SECTION HEADER
          ======================================== */ -}}
     {{- if or $title $subtitle $description -}}
@@ -142,16 +149,29 @@
         {{- $colorIndex := mod $index (len $colorVariants) -}}
         {{- $itemVariant := index $colorVariants $colorIndex -}}
 
-        <div class="c-testimonials__item c-testimonials__item--{{ $itemVariant }}">
+        <div class="c-testimonials__item c-testimonials__item--{{ $itemVariant }}" data-aos="fade-up" data-aos-delay="{{ mul $index 150 }}">
+          {{- /* Floating Quote Mark */ -}}
+          <div class="c-testimonials__floating-quote" aria-hidden="true">
+            <i class="las la-quote-left"></i>
+          </div>
+
+          {{- /* Avatar Placeholder with Initials */ -}}
+          {{- if $testimonial.name -}}
+            {{- $initials := substr $testimonial.name 0 2 -}}
+            <div class="c-testimonials__avatar c-testimonials__avatar--{{ $itemVariant }}">
+              <span class="c-testimonials__initials">{{ $initials }}</span>
+            </div>
+          {{- end -}}
+
           {{- /* Star Rating */ -}}
           {{- if $testimonial.rating -}}
             <div class="c-testimonials__rating">
               {{- range seq $testimonial.rating -}}
-                {{ partial "atoms/icon.html" (dict "name" "star" "size" "sm" "class" "c-testimonials__star c-testimonials__star--filled") }}
+                <i class="las la-star c-testimonials__star c-testimonials__star--filled"></i>
               {{- end -}}
               {{- if lt $testimonial.rating 5 -}}
                 {{- range seq (sub 5 $testimonial.rating) -}}
-                  {{ partial "atoms/icon.html" (dict "name" "star" "size" "sm" "class" "c-testimonials__star c-testimonials__star--empty") }}
+                  <i class="las la-star c-testimonials__star c-testimonials__star--empty"></i>
                 {{- end -}}
               {{- end -}}
             </div>
@@ -187,7 +207,7 @@
             {{- /* Verification Badge */ -}}
             {{- if $testimonial.verified -}}
               <div class="c-testimonials__verified" title="Verified client">
-                {{ partial "atoms/icon.html" (dict "name" "shield-check" "size" "md" "variant" "success") }}
+                <i class="las la-shield-check"></i>
               </div>
             {{- end -}}
           </div>
@@ -205,11 +225,11 @@
     {{- end -}}
 
     {{- /* ========================================
-         PRIVACY NOTE
+         PRIVACY NOTE (Card format with better styling)
          ======================================== */ -}}
     {{- if $privacyNote -}}
     <div class="c-testimonials__privacy">
-      {{ partial "atoms/icon.html" (dict "name" "lock" "size" "sm" "class" "c-testimonials__privacy-icon") }}
+      <i class="las la-lock c-testimonials__privacy-icon"></i>
       <span class="c-testimonials__privacy-text">{{ $privacyNote | markdownify }}</span>
     </div>
     {{- end -}}

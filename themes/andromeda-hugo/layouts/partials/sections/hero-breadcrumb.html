@@ -10,11 +10,24 @@
 
   Optional parameters in front matter:
     hero_breadcrumb:
+      kicker: "Optional kicker text (above title)"
       subtitle: "Optional subtitle text"
+      subtitle_size: "default|large" (default: default 14px, large: 18px)
       variant: "primary|secondary|tertiary|neutral" (default: primary)
       breadcrumb_variant: "primary|secondary|tertiary|neutral" (default: neutral)
       show_breadcrumb: true|false (default: true)
       hero_image: "images/hero.jpg" (optional custom image)
+      quote_text: "Optional quote text"
+      quote_author: "Optional quote author"
+      cta_buttons:
+        - text: "Primary CTA"
+          url: "/contact"
+          variant: "primary"
+          icon: "las la-calendar"
+        - text: "Secondary CTA"
+          url: "/services"
+          variant: "outline-primary"
+          icon: "las la-arrow-right"
 
   Features:
     - BEM structure (.c-hero-breadcrumb)
@@ -22,31 +35,51 @@
     - Uses breadcrumb molecule for navigation
     - Uses image atom for hero image
     - Responsive layout (stacked mobile, side-by-side desktop)
-    - Optional subtitle support
+    - Optional kicker, subtitle, quote box, CTA buttons
+    - Organic blob shape for images
     - Color variant support
     - Auto-generated breadcrumb from current page
 
   Example:
     hero_breadcrumb:
+      kicker: "Expertiză Psihologică"
       subtitle: "Our Services"
+      subtitle_size: "large"
       variant: "primary"
       hero_image: "images/services-hero.jpg"
+      quote_text: "Nu există o rețetă universală..."
+      quote_author: "Dr. Alexandra Barbu"
+      cta_buttons:
+        - text: "Programează Consultație"
+          url: "/contact"
+          variant: "primary"
+          icon: "las la-calendar"
 */}}
 
 {{- $section := .Params.hero_breadcrumb -}}
 {{- $variant := "primary" -}}
 {{- $breadcrumbVariant := "neutral" -}}
 {{- $showBreadcrumb := true -}}
+{{- $kicker := "" -}}
 {{- $subtitle := "" -}}
+{{- $subtitleSize := "default" -}}
 {{- $heroImage := .Params.hero_image -}}
+{{- $quoteText := "" -}}
+{{- $quoteAuthor := "" -}}
+{{- $ctaButtons := slice -}}
 
 {{/* Override with section params if provided */}}
 {{- if $section -}}
   {{- $variant = $section.variant | default $variant -}}
   {{- $breadcrumbVariant = $section.breadcrumb_variant | default $breadcrumbVariant -}}
   {{- $showBreadcrumb = $section.show_breadcrumb | default $showBreadcrumb -}}
+  {{- $kicker = $section.kicker | default $kicker -}}
   {{- $subtitle = $section.subtitle | default $subtitle -}}
+  {{- $subtitleSize = $section.subtitle_size | default $subtitleSize -}}
   {{- $heroImage = $section.hero_image | default $heroImage -}}
+  {{- $quoteText = $section.quote_text | default $quoteText -}}
+  {{- $quoteAuthor = $section.quote_author | default $quoteAuthor -}}
+  {{- $ctaButtons = $section.cta_buttons | default $ctaButtons -}}
 {{- end -}}
 
 <section class="c-hero-breadcrumb c-hero-breadcrumb--{{ $variant }}">
@@ -54,9 +87,9 @@
     <div class="c-hero-breadcrumb__grid">
       {{/* Content column */}}
       <div class="c-hero-breadcrumb__content">
-        {{/* Optional subtitle */}}
-        {{- if $subtitle -}}
-          <p class="c-hero-breadcrumb__subtitle">{{ $subtitle | markdownify }}</p>
+        {{/* Optional kicker text (above title) */}}
+        {{- if $kicker -}}
+          <p class="c-hero-breadcrumb__kicker">{{ $kicker | markdownify }}</p>
         {{- end -}}
 
         {{/* Page title using heading atom */}}
@@ -67,6 +100,11 @@
           "variant" $variant
         ) }}
 
+        {{/* Optional subtitle */}}
+        {{- if $subtitle -}}
+          <p class="c-hero-breadcrumb__subtitle c-hero-breadcrumb__subtitle--{{ $subtitleSize }}">{{ $subtitle | markdownify }}</p>
+        {{- end -}}
+
         {{/* Breadcrumb navigation using molecule */}}
         {{- if $showBreadcrumb -}}
           <div class="c-hero-breadcrumb__breadcrumb">
@@ -76,18 +114,51 @@
             ) }}
           </div>
         {{- end -}}
+
+        {{/* CTA Buttons */}}
+        {{- if $ctaButtons -}}
+          <div class="c-hero-breadcrumb__cta-group">
+            {{- range $ctaButtons -}}
+              {{ partial "atoms/button.html" (dict
+                "text" .text
+                "url" .url
+                "variant" (.variant | default "primary")
+                "icon" .icon
+                "size" "lg"
+                "class" "c-hero-breadcrumb__cta-button"
+              ) }}
+            {{- end -}}
+          </div>
+        {{- end -}}
       </div>
 
       {{/* Media column */}}
       <div class="c-hero-breadcrumb__media">
         {{- if $heroImage -}}
-          {{/* Custom hero image using image atom */}}
-          <div class="c-hero-breadcrumb__image">
-            {{ partial "atoms/image.html" (dict
-              "src" $heroImage
-              "alt" .Title
-              "class" "c-hero-breadcrumb__img"
-            ) }}
+          {{/* Custom hero image using image atom with blob shape */}}
+          <div class="c-hero-breadcrumb__image-wrapper">
+            {{/* Organic blob shape background */}}
+            <div class="c-hero-breadcrumb__blob" aria-hidden="true"></div>
+
+            {{/* Image container */}}
+            <div class="c-hero-breadcrumb__image">
+              {{ partial "atoms/image.html" (dict
+                "src" $heroImage
+                "alt" .Title
+                "class" "c-hero-breadcrumb__img"
+              ) }}
+            </div>
+
+            {{/* Quote box overlapping image */}}
+            {{- if $quoteText -}}
+              <div class="c-hero-breadcrumb__quote-box">
+                <i class="las la-quote-left c-hero-breadcrumb__quote-icon" aria-hidden="true"></i>
+                <p class="c-hero-breadcrumb__quote-text">{{ $quoteText | markdownify }}</p>
+                {{- if $quoteAuthor -}}
+                  <p class="c-hero-breadcrumb__quote-author">{{ $quoteAuthor }}</p>
+                {{- end -}}
+              </div>
+            {{- end -}}
           </div>
         {{- else -}}
           {{/* Decorative SVG shapes */}}

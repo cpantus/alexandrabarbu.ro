@@ -27,6 +27,7 @@
 
 .c-service-card {
   // Layout
+  position: relative; // For number badge positioning
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,22 +37,31 @@
   padding: $space-6; // 48px
   gap: $space-4; // 32px
 
-  // Visual
-  background: $color-bg-card;
-  border: 1px solid $color-border-light;
+  // Visual - Enhanced glassmorphism (Task 3.2)
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,  // Increased opacity: 0.85 → 0.95
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  backdrop-filter: blur(6px);  // Reduced blur: 10px → 6px
+  border: 1px solid rgba($color-primary-500, 0.2);  // Improved contrast: 0.1 → 0.2
+  border-top: 3px solid transparent;  // Accent border (will be colored by variants)
   border-radius: $border-radius-lg; // 16px
+  box-shadow: $shadow-sm;
 
   // Transitions
   transition:
     transform $duration-base $ease-out,
     box-shadow $duration-base $ease-out,
-    border-color $duration-base $ease-out;
+    border-color $duration-base $ease-out,
+    border-top-width $duration-fast $ease-out;
 
-  // Hover State
+  // Hover State - Enhanced (Task 3.2)
   &:hover {
     transform: translateY(-4px);
     box-shadow: $shadow-lg;
-    border-color: $color-border-medium;
+    border-color: rgba($color-primary-500, 0.3);
+    border-top-width: 4px;  // Intensify accent border: 3px → 4px
   }
 
   // Focus-within (when button inside is focused)
@@ -86,9 +96,9 @@
   // Animation
   transition: transform $duration-base $ease-out;
 
-  // Hover effect (scale icon)
+  // Enhanced hover effect (Task 3.2: rotate + scale)
   .c-service-card:hover & {
-    transform: scale(1.05);
+    transform: rotate(5deg) scale(1.15);
   }
 }
 
@@ -192,13 +202,52 @@
 }
 
 // -----------------------------------------------------------------------------
+// Element: Number Badge (Task 3.2)
+// -----------------------------------------------------------------------------
+
+.c-service-card__badge {
+  // Position in top-right corner
+  position: absolute;
+  top: $space-4;  // 32px from top
+  right: $space-4; // 32px from right
+
+  // Layout
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+
+  // Visual
+  background: $gray-300;
+  color: $gray-700;
+  font-family: $font-family-body;
+  font-size: $font-size-lg; // 18px
+  font-weight: $font-weight-semibold; // 600
+  border-radius: $border-radius-full; // Circular
+  box-shadow: $shadow-sm;
+
+  // Responsive
+  @media (max-width: $breakpoint-sm) {
+    width: 40px;
+    height: 40px;
+    top: $space-3;
+    right: $space-3;
+    font-size: $font-size-base; // 16px
+  }
+}
+
+// -----------------------------------------------------------------------------
 // Modifiers: Color Variants
 // -----------------------------------------------------------------------------
 
 // Primary Variant (Emerald)
 .c-service-card--primary {
+  border-top-color: $color-primary-500;  // Accent border color
+
   &:hover {
-    border-color: $color-primary-300;
+    border-color: rgba($color-primary-500, 0.3);
+    border-top-color: $color-primary-600;  // Darker on hover
   }
 
   &:focus-within {
@@ -208,8 +257,11 @@
 
 // Secondary Variant (Terracotta)
 .c-service-card--secondary {
+  border-top-color: $color-secondary-500;
+
   &:hover {
-    border-color: $color-secondary-300;
+    border-color: rgba($color-secondary-500, 0.3);
+    border-top-color: $color-secondary-600;
   }
 
   &:focus-within {
@@ -219,8 +271,11 @@
 
 // Tertiary Variant
 .c-service-card--tertiary {
+  border-top-color: $color-tertiary-500;
+
   &:hover {
-    border-color: $color-tertiary-300;
+    border-color: rgba($color-tertiary-500, 0.3);
+    border-top-color: $color-tertiary-600;
   }
 
   &:focus-within {
@@ -230,8 +285,11 @@
 
 // Neutral Variant
 .c-service-card--neutral {
+  border-top-color: $color-neutral-500;
+
   &:hover {
-    border-color: $color-neutral-400;
+    border-color: rgba($color-neutral-500, 0.3);
+    border-top-color: $color-neutral-600;
   }
 
   &:focus-within {
@@ -241,8 +299,11 @@
 
 // Success Variant
 .c-service-card--success {
+  border-top-color: $color-success-500;
+
   &:hover {
-    border-color: $color-success-300;
+    border-color: rgba($color-success-500, 0.3);
+    border-top-color: $color-success-600;
   }
 
   &:focus-within {
@@ -252,8 +313,11 @@
 
 // Warning Variant
 .c-service-card--warning {
+  border-top-color: $color-warning-500;
+
   &:hover {
-    border-color: $color-warning-300;
+    border-color: rgba($color-warning-500, 0.3);
+    border-top-color: $color-warning-600;
   }
 
   &:focus-within {
@@ -263,8 +327,11 @@
 
 // Error Variant
 .c-service-card--error {
+  border-top-color: $color-error-500;
+
   &:hover {
-    border-color: $color-error-300;
+    border-color: rgba($color-error-500, 0.3);
+    border-top-color: $color-error-600;
   }
 
   &:focus-within {
@@ -274,8 +341,11 @@
 
 // Info Variant
 .c-service-card--info {
+  border-top-color: $color-info-500;
+
   &:hover {
-    border-color: $color-info-300;
+    border-color: rgba($color-info-500, 0.3);
+    border-top-color: $color-info-600;
   }
 
   &:focus-within {

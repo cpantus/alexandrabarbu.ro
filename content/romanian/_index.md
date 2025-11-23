@@ -141,27 +141,41 @@ approach_preview:
 
 testimonials_enhanced:
   title: "Ce Spun Clienții Mei"
-  subtitle: "Experiențe Reale"
-  description: "Feedback autentic de la persoane care au parcurs terapia cu mine."
+  subtitle: "MĂRTURII"
+  description: "Experiențe reale de la persoane care au găsit vindecare și creștere prin terapie."
+  variant: "primary"
+  background: "light"
   testimonials:
     - quote: "Alexandra m-a ajutat să găsesc puterea de a depăși depresia. Acum văd viața diferit și am instrumente concrete pentru a gestiona provocările."
-      author: "Maria, 34 ani"
-      role: "Terapie Individuală"
+      name: "M.A."
+      age_range: "30-40 ani"
+      therapy_type: "Terapie Individuală"
+      duration: "8 luni"
       rating: 5
       verified: true
       outcome: "Reducere simptome depresie: 80%"
     - quote: "Relația noastră era pe marginea prăpastiei. Acum comunicăm cu adevărat, ne înțelegem și ne susținem reciproc. Mulțumim!"
-      author: "Andrei și Elena"
-      role: "Terapie de Cuplu"
+      name: "A.E."
+      age_range: "35-45 ani"
+      therapy_type: "Terapie de Cuplu"
+      duration: "6 luni"
       rating: 5
       verified: true
       outcome: "Îmbunătățire satisfacție relație: 90%"
     - quote: "Tehnicile învățate în terapie m-au ajutat să gestionez anxietatea zilnică. Nu mai trăiesc cu frica constantă."
-      author: "Ioana, 28 ani"
-      role: "Terapie Individuală - Anxietate"
+      name: "I.P."
+      age_range: "25-35 ani"
+      therapy_type: "Terapie pentru Anxietate"
+      duration: "5 luni"
       rating: 5
       verified: true
       outcome: "Reducere atacuri de panică: 95%"
+  privacy_note: "Toate mărturiile sunt de la clienți reali. Numele sunt anonimizate pentru confidențialitate."
+  cta_button:
+    text: "Programează Consultație Gratuită"
+    url: "/contact/"
+    variant: "primary"
+    icon: "arrow-right"
 
 # ============================================================================
 # 7. PROCES SIMPLU

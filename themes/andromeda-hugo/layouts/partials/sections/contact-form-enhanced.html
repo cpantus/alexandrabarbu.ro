@@ -1,100 +1,137 @@
 {{/*
 ==============================================================================
-CONTACT FORM ENHANCED SECTION - BEM Refactored + Security Enhanced
+CONTACT FORM ENHANCED SECTION - BEM Refactored + Design v4.0 Enhanced
 ==============================================================================
-Two-column layout with image + trust badges on left, contact form on right.
+Two-column layout with gradient contact panel on left, contact form on right.
 
 FEATURES:
 - Full BEM structure (.c-contact-form-section)
-- Molecule composition (image, tag, heading, form-field, button atoms)
-- Trust badge display below image
-- First consultation info box
+- Gradient background panel (emerald-700 → emerald-900)
+- Glassmorphism contact info cards (phone, email, location)
+- Organic blob background shapes
+- Enhanced form with floating labels
+- Loading and success states
+- Trust badges as circular icons
 - i18n support
 - 4 color variants (primary, secondary, tertiary, neutral)
-- Responsive layout (stacks on mobile)
-- No Bootstrap dependencies
-- No AOS attributes (section-level animations)
-- reCAPTCHA v3 spam protection (invisible, score-based)
-- Honeypot field (bot trap)
-- Time-based validation (3-second minimum)
-- Google Apps Script email backend
-- Client-side form validation
-- Success/error messaging
+- Responsive layout (stacks on mobile, form first)
+- reCAPTCHA v3 spam protection
+- Honeypot field + time-based validation
 
 USAGE:
 sections:
   - type: "contact-form-enhanced"
 
 contact_form_enhanced:
-  variant: "primary"                    # Optional: primary|secondary|tertiary|neutral (default: primary)
-  contact_image: "images/contact.jpg"   # Required: Contact image
-  trust_badges:                         # Optional: Trust signals
-    - "Confidențialitate garantată"
-    - "Răspuns în 24h"
-    - "Programare flexibilă"
-  first_consultation:                   # Optional: First session info
-    title: "Prima consultație"
-    duration: "Gratuită • 15 minute"
-    description: "Evaluare inițială și planificare"
+  variant: "primary"                    # Optional: primary|secondary|tertiary|neutral
+  contact_info:                         # Required: Contact information cards
+    - type: "phone"
+      icon: "phone"
+      title: "Telefon"
+      value: "+40 123 456 789"
+      metadata: "Luni-Vineri, 9:00-18:00"
+    - type: "email"
+      icon: "envelope"
+      title: "Email"
+      value: "contact@example.ro"
+      metadata: "Răspuns în 24h"
+    - type: "location"
+      icon: "map-marker"
+      title: "Adresă"
+      value: "București, Sector 1"
+      metadata: "Programare online disponibilă"
+  trust_badges:                         # Optional: Circular trust badges
+    - icon: "shield-check"
+      text: "Confidențialitate"
+    - icon: "clock"
+      text: "Răspuns rapid"
+    - icon: "calendar-check"
+      text: "Flexibilitate"
+    - icon: "heart"
+      text: "Empatie"
+  form_description: "Completează formularul..."
+  privacy_note: "Confidențialitate 100% garantată"
 
 SITE PARAMS REQUIRED:
 params:
   contact_form_action: "https://formspree.io/f/your-form-id"
 
 DEPENDENCIES:
-- atoms/image.html
-- atoms/tag.html
+- atoms/icon.html
 - atoms/heading.html
 - molecules/form-field.html
 - atoms/button.html
-- i18n translations: send_a_message, full_name, email, your_message, send_message
-- assets/js/contact-form-handler.js (form submission + security)
-- reCAPTCHA v3 API (https://www.google.com/recaptcha/api.js)
+- i18n translations
+- assets/js/contact-form-handler.js
+- reCAPTCHA v3 API
 - _contact-form-enhanced.scss
 
-VERSION: 3.0.0 (BEM + Security Migration)
-LAST UPDATED: 2025-11-22
+VERSION: 4.0.0 (Design Enhancement Update)
+LAST UPDATED: 2025-11-23
 ==============================================================================
 */}}
 
 {{- $variant := .Params.contact_form_enhanced.variant | default "primary" -}}
-{{- $contactImage := .Params.contact_form_enhanced.contact_image -}}
+{{- $contactInfo := .Params.contact_form_enhanced.contact_info -}}
 {{- $trustBadges := .Params.contact_form_enhanced.trust_badges -}}
-{{- $firstConsultation := .Params.contact_form_enhanced.first_consultation -}}
+{{- $formDescription := .Params.contact_form_enhanced.form_description -}}
+{{- $privacyNote := .Params.contact_form_enhanced.privacy_note -}}
 
 <section class="c-contact-form-section c-contact-form-section--{{ $variant }}">
   <div class="o-container">
     <div class="c-contact-form-section__grid">
 
-      {{/* LEFT COLUMN: Image + Trust Badges */}}
-      <div class="c-contact-form-section__media">
-        <div class="c-contact-form-section__image-wrapper">
-          {{ with $contactImage }}
-            {{ partial "atoms/image.html" (dict
-              "src" .
-              "alt" "Contact"
-              "size" "575x"
-              "class" "c-contact-form-section__image"
-            ) }}
+      {{/* LEFT PANEL: Gradient Background + Contact Info Cards */}}
+      <div class="c-contact-form-section__panel">
+        {{/* Organic blob shapes (decorative background) */}}
+        <div class="c-contact-form-section__blob c-contact-form-section__blob--1" aria-hidden="true"></div>
+        <div class="c-contact-form-section__blob c-contact-form-section__blob--2" aria-hidden="true"></div>
+
+        <div class="c-contact-form-section__panel-content">
+          {{/* Contact Info Cards */}}
+          {{ with $contactInfo }}
+          <div class="c-contact-form-section__contact-cards">
+            {{ range . }}
+            <div class="c-contact-form-section__contact-card">
+              {{/* Icon circle */}}
+              <div class="c-contact-form-section__contact-icon">
+                {{ partial "atoms/icon.html" (dict
+                  "name" .icon
+                  "size" "sm"
+                  "variant" "gradient"
+                ) }}
+              </div>
+
+              {{/* Card content */}}
+              <div class="c-contact-form-section__contact-content">
+                <p class="c-contact-form-section__contact-title">{{ .title }}</p>
+                <p class="c-contact-form-section__contact-value">{{ .value }}</p>
+                {{ with .metadata }}
+                  <p class="c-contact-form-section__contact-meta">{{ . }}</p>
+                {{ end }}
+              </div>
+            </div>
+            {{ end }}
+          </div>
           {{ end }}
 
-          {{/* Trust badges below image */}}
+          {{/* Trust Badges - Circular Icons */}}
           {{ with $trustBadges }}
-          <div class="c-contact-form-section__trust-badges">
+          <div class="c-contact-form-section__trust-grid">
             {{ range . }}
-              {{ partial "atoms/tag.html" (dict
-                "text" .
-                "variant" $variant
-                "icon" "check-circle"
-                "class" "c-contact-form-section__trust-badge"
-              ) }}
+            <div class="c-contact-form-section__trust-item">
+              <div class="c-contact-form-section__trust-icon">
+                <i class="las la-{{ .icon }}"></i>
+              </div>
+              <p class="c-contact-form-section__trust-text">{{ .text }}</p>
+            </div>
             {{ end }}
           </div>
           {{ end }}
         </div>
       </div>
 
-      {{/* RIGHT COLUMN: Contact Form */}}
+      {{/* RIGHT PANEL: Contact Form */}}
       {{ with site.Params.contact_form_action }}
       <div class="c-contact-form-section__form-wrapper">
         <div class="c-contact-form-section__header">
@@ -106,18 +143,25 @@ LAST UPDATED: 2025-11-22
             "class" "c-contact-form-section__title"
           ) }}
 
-          {{/* First consultation info box */}}
-          {{ with $firstConsultation }}
-          <div class="c-contact-form-section__consultation-info">
-            <strong class="c-contact-form-section__consultation-title">{{ .title }}:</strong> {{ .duration }}<br>
-            <small class="c-contact-form-section__consultation-description">{{ .description }}</small>
+          {{/* Form description */}}
+          {{ with $formDescription }}
+          <p class="c-contact-form-section__description">{{ . }}</p>
+          {{ end }}
+
+          {{/* Privacy note - prominent badge */}}
+          {{ with $privacyNote }}
+          <div class="c-contact-form-section__privacy-note">
+            <i class="las la-lock c-contact-form-section__privacy-icon"></i>
+            <span class="c-contact-form-section__privacy-text">{{ . }}</span>
           </div>
           {{ end }}
         </div>
 
         <form id="contact-form" class="c-contact-form-section__form" action="{{ . }}" method="POST" data-action="{{ . }}">
+          {{/* Status messages container */}}
           <div id="form-status" class="c-contact-form-section__status"></div>
 
+          {{/* Form fields - using enhanced molecule with floating labels */}}
           {{ partial "molecules/form-field.html" (dict
             "type" "text"
             "name" "name"
@@ -149,7 +193,7 @@ LAST UPDATED: 2025-11-22
             "class" "c-contact-form-section__field"
           ) }}
 
-          {{/* Honeypot field (hidden from humans, bot trap) */}}
+          {{/* Honeypot field (hidden bot trap) */}}
           <input type="text"
                  name="website"
                  class="honeypot-field"
@@ -158,13 +202,30 @@ LAST UPDATED: 2025-11-22
                  aria-hidden="true"
                  style="position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none;">
 
+          {{/* Submit button - full width with icon */}}
           {{ partial "atoms/button.html" (dict
             "text" (T "send_message" | default "Trimite mesaj")
             "type" "submit"
             "variant" $variant
+            "size" "lg"
             "fullWidth" true
+            "icon" "paper-plane"
             "class" "c-contact-form-section__submit"
           ) }}
+
+          {{/* Loading state template (hidden, shown by JS) */}}
+          <div class="c-contact-form-section__loading" style="display: none;">
+            <div class="c-contact-form-section__spinner"></div>
+            <p class="c-contact-form-section__loading-text">Se trimite...</p>
+          </div>
+
+          {{/* Success state template (hidden, shown by JS) */}}
+          <div class="c-contact-form-section__success" style="display: none;">
+            <div class="c-contact-form-section__success-icon">
+              <i class="las la-check-circle"></i>
+            </div>
+            <p class="c-contact-form-section__success-text">Mesaj trimis cu succes!</p>
+          </div>
         </form>
       </div>
       {{ end }}
