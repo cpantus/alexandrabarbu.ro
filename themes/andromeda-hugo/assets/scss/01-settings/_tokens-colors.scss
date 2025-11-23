@@ -16,7 +16,7 @@
 // ----------------------------------
 // PRIMARY PALETTE: Emerald (Growth, Healing, Trust)
 // ----------------------------------
-$emerald-50: #f0fdf6;
+$emerald-50: #E8F5F0;  // Warm mint green - healing background (updated from cold #f0fdf6)
 $emerald-100: #dcfce7;
 $emerald-200: #bbf7d0;
 $emerald-300: #86efac;
@@ -40,6 +40,15 @@ $terracotta-600: #b8583a;
 $terracotta-700: #9a4830;
 $terracotta-800: #7d3a26;
 $terracotta-900: #5e2c1d;
+
+// ----------------------------------
+// BACKGROUND PALETTE: Mint (Healing, Calm, Safe Space)
+// ----------------------------------
+// Purpose: Dedicated background colors for psychological healing aesthetic
+// Usage: Section backgrounds, card backgrounds, page backgrounds
+$mint-bg: #E8F5F0;                    // Primary healing background (warm mint)
+$mint-bg-light: #f0fdf6;              // Lighter mint variation (cooler tone)
+$mint-bg-medium: #dcfce7;             // Medium mint (soft emerald tint)
 
 // ----------------------------------
 // SUPPORTING PALETTE: Teal (Info, Calm, Clarity)
@@ -230,16 +239,18 @@ $color-text-heading: $gray-900;                // Headings (near black)
 // ✅ PHASE 8: Legacy $emerald-* aliases removed
 // All components now use $emerald-* tokens directly
 
-// Background Colors - v5.1: NO PURE WHITE
-$color-bg: $emerald-50;                          // Default background (warm emerald, was white)
-$color-bg-light: $emerald-50;                    // Light background (warm emerald)
-$color-bg-lighter: $emerald-100;                 // Even lighter background (medium emerald)
-$color-bg-page: $emerald-50;                     // Page background (warm emerald)
-$color-bg-section: $emerald-50;                  // Default section background (warm emerald, was white)
-$color-bg-section-secondary: $terracotta-50;   // Secondary section background (warm terracotta)
-$color-bg-section-tertiary: $emerald-100;        // Tertiary section background (medium emerald)
-$color-bg-section-neutral: $terracotta-100;    // Neutral section background (medium terracotta)
-$color-bg-card: $emerald-50;                     // Card background (warm emerald, was white)
+// Background Colors - v5.1.1: MINT GREEN HEALING AESTHETIC
+// Psychology/healing design: Warm mint (#E8F5F0) creates calm, safe, healing environment
+// Replaced pure white with warm mint throughout for consistent therapeutic aesthetic
+$color-bg: $mint-bg;                             // Default background (warm mint - healing)
+$color-bg-light: $mint-bg;                       // Light background (warm mint - calm)
+$color-bg-lighter: $mint-bg-light;               // Lighter background (cooler mint variation)
+$color-bg-page: $mint-bg;                        // Page background (warm mint - safe space)
+$color-bg-section: $mint-bg;                     // Default section background (warm mint)
+$color-bg-section-secondary: $terracotta-50;     // Secondary section background (warm terracotta - balance)
+$color-bg-section-tertiary: $mint-bg-medium;     // Tertiary section background (medium mint - soft)
+$color-bg-section-neutral: $terracotta-100;      // Neutral section background (medium terracotta - grounding)
+$color-bg-card: $mint-bg;                        // Card background (warm mint - safety)
 
 // Border Colors
 $color-border: $gray-300;                      // Default border color (alias for medium)

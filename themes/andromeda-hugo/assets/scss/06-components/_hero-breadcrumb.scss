@@ -36,17 +36,37 @@
    ========================================================================== */
 
 .c-hero-breadcrumb {
-  padding: $space-8 0; // 64px top/bottom
+  padding: $section-padding-y-mobile 0; // 64px (token-driven)
   background: $gradient-sunrise; // v5.1: Brand colors (emerald↔terracotta, was flat gray)
   position: relative;
   overflow: hidden;
 
-  @media (min-width: $breakpoint-md) {
-    padding: $space-12 0; // 96px on tablet+
+  @media (min-width: $breakpoint-lg) {
+    padding: $section-padding-y 0; // 96px desktop (token-driven)
   }
 
-  @media (min-width: $breakpoint-lg) {
-    padding: $space-16 0; // 128px on desktop+
+  // Phase 1: Organic background pattern for visual interest
+  // Subtle radial gradients create depth without distraction
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(
+        ellipse at 70% 30%,
+        rgba($color-primary, 0.08) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 30% 70%,
+        rgba($color-secondary, 0.06) 0%,
+        transparent 50%
+      );
+    pointer-events: none;
+    z-index: 0;
   }
 }
 
@@ -62,6 +82,8 @@
    ========================================================================== */
 
 .c-hero-breadcrumb__grid {
+  position: relative; // Phase 1: Create stacking context
+  z-index: 1; // Phase 1: Ensure content stays above background pattern
   display: grid;
   grid-template-columns: 1fr;
   gap: $space-6; // 48px
@@ -93,7 +115,7 @@
 .c-hero-breadcrumb__kicker {
   margin: 0 0 $space-2 0; // 16px bottom
   font-family: $font-family-sans;
-  font-size: 12px;
+  font-size: $text-xs; // 12px (token-driven)
   font-weight: $font-weight-semibold;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -107,12 +129,13 @@
   // Heading atom provides base styles
   // Add section-specific overrides here
   margin-bottom: $space-3; // 24px
-  font-size: 2.5rem; // text-5xl equivalent
-  line-height: 1.1;
+  font-size: $text-4xl; // 36px (token-driven, increased from 30px)
+  line-height: $leading-tight; // 1.25 (token-driven, consistent)
   letter-spacing: -0.02em; // Better kerning for Crimson Pro
+  font-weight: $font-weight-heading-bold; // 600 (emphasized for hero impact)
 
   @media (min-width: $breakpoint-md) {
-    font-size: 3rem; // text-6xl equivalent
+    font-size: $text-5xl; // 48px (token-driven, desktop scaling)
   }
 }
 
@@ -122,14 +145,14 @@
 .c-hero-breadcrumb__subtitle {
   margin: 0 0 $space-4 0; // 32px bottom
   font-family: $font-family-sans;
-  font-size: $font-size-sm; // 14px default
+  font-size: $text-sm; // 14px default (token-driven)
   font-weight: $font-weight-normal;
-  line-height: 1.6;
+  line-height: $leading-normal; // 1.5 (token-driven, consistent)
   color: $color-text-secondary;
 }
 
 .c-hero-breadcrumb__subtitle--large {
-  font-size: 18px;
+  font-size: $text-lg; // 18px (token-driven)
   font-weight: $font-weight-medium;
 }
 
@@ -164,11 +187,12 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px; // Increased from typical 16px
-  margin-top: $space-6; // 48px
+  margin-top: $space-8; // Phase 4: 32px - prominent CTA spacing (was $space-6)
   justify-content: center;
 
   @media (min-width: $breakpoint-lg) {
     justify-content: flex-start;
+    margin-top: $space-10; // Phase 4: 40px - more space on desktop
   }
 }
 

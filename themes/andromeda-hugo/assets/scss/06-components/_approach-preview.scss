@@ -15,8 +15,12 @@
 // ============================================================================
 
 .c-approach-preview {
-  padding: var(--spacing-section-y) 0;
-  background: var(--color-surface-primary);
+  padding: $section-padding-y-mobile 0; // 64px mobile (token-driven)
+  background: $color-bg-section; // Mint background (token-driven)
+
+  @media (min-width: $breakpoint-lg) {
+    padding: $section-padding-y 0; // 96px desktop (token-driven)
+  }
 }
 
 // ============================================================================
@@ -25,40 +29,41 @@
 
 .c-approach-preview__header {
   max-width: 800px;
-  margin: 0 auto var(--spacing-4xl);
+  margin: 0 auto $space-12; // 48px (token-driven)
 }
 
 // Methodology Tag (pill shape, emerald background, white text)
 .c-approach-preview__tag {
   display: inline-block;
-  padding: 8px 20px;
+  padding: $space-2 $space-5; // 8px 20px (token-driven)
   background: $color-primary-500;
-  color: var(--color-white);
-  font-size: 12px;
-  font-weight: var(--font-weight-semibold);
-  font-family: var(--font-family-sans);
+  color: $color-white;
+  font-size: $text-xs; // 12px (token-driven)
+  font-weight: $font-weight-semibold;
+  font-family: $font-family-sans;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  border-radius: var(--border-radius-full);
-  margin-bottom: var(--spacing-md);
+  border-radius: $border-radius-full; // 9999px (token-driven)
+  margin-bottom: $space-4; // 16px (token-driven)
 }
 
 .c-approach-preview__title {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-md);
-  font-family: var(--font-family-heading);
+  font-size: $text-3xl; // 30px (token-driven, consistent H2)
+  font-weight: $font-weight-heading-bold; // 600 (token-driven)
+  color: $color-text-primary;
+  margin-bottom: $space-4; // 16px (token-driven)
+  font-family: $font-family-heading;
+  line-height: $leading-tight; // 1.25 (token-driven, consistent H2)
 
-  @media (min-width: 768px) {
-    font-size: var(--font-size-4xl);
+  @media (min-width: $breakpoint-md) {
+    font-size: $text-4xl; // 36px responsive scaling (token-driven)
   }
 }
 
 .c-approach-preview__description {
-  font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
-  line-height: var(--line-height-relaxed);
+  font-size: $text-lg; // 18px (token-driven)
+  color: $color-text-secondary;
+  line-height: $leading-relaxed; // 1.625 (token-driven)
   margin-bottom: 0;
   max-width: 700px;
   margin-left: auto;
@@ -76,15 +81,15 @@
     $color-primary-400 0%,
     $teal-500 100%
   );
-  border-radius: var(--border-radius-xl);
-  padding: var(--spacing-4xl) var(--spacing-2xl);
+  border-radius: $border-radius-xl; // 24px (token-driven, consistent large cards)
+  padding: $space-12 $space-6; // 48px 24px mobile (token-driven)
   text-align: center;
-  margin-bottom: var(--spacing-5xl);
+  margin-bottom: $space-16; // 64px (token-driven)
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  box-shadow: $shadow-lg;
 
-  @media (min-width: 768px) {
-    padding: var(--spacing-5xl) var(--spacing-4xl);
+  @media (min-width: $breakpoint-md) {
+    padding: $space-16 $space-12; // 64px 48px desktop (token-driven)
   }
 
   // Organic blob background
@@ -209,17 +214,17 @@
 .c-approach-preview__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-2xl);
-  margin-bottom: var(--spacing-3xl);
+  gap: $grid-gap; // 24px (token-driven, consistent grid)
+  margin-bottom: $space-12; // 48px (token-driven)
 
   // Tablet & Desktop: 2 columns
-  @media (min-width: 768px) {
+  @media (min-width: $breakpoint-md) {
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-xl);
+    gap: $grid-gap; // 24px consistent (token-driven)
   }
 
-  @media (min-width: 992px) {
-    gap: var(--spacing-2xl);
+  @media (min-width: $breakpoint-lg) {
+    gap: $grid-gap-large; // 32px spacious desktop (token-driven)
   }
 }
 
@@ -229,43 +234,43 @@
 
 .c-approach-preview__principle {
   position: relative; // For number badge positioning
-  background: var(--color-white);
+  background: $color-white;
   border: 1px solid $gray-200;
-  border-left: 3px solid transparent; // Will be set by variant modifiers
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-2xl);
+  border-top: 4px solid transparent; // Will be set by variant modifiers (unified with service cards)
+  border-radius: $border-radius-md; // 12px (token-driven, consistent cards)
+  padding: $card-padding-large; // 24px (token-driven, consistent card padding)
   text-align: center;
-  transition: all var(--transition-normal);
-  box-shadow: var(--shadow-sm);
+  transition: all $duration-base $ease-out; // 200ms (token-driven)
+  box-shadow: $shadow-sm; // At rest (token-driven)
 
-  // Hover effect
+  // Hover effect (Level 2 molecule motion: -2px lift + shadow upgrade)
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-    border-left-width: 4px; // Intensify accent on hover
+    transform: translateY(-2px); // Consistent with values-compass
+    box-shadow: $shadow-md; // +1 level (token-driven)
+    border-top-width: 4px; // Intensify accent on hover
   }
 
-  // Mobile: full padding
-  @media (max-width: 767px) {
-    padding: var(--spacing-xl);
+  // Mobile: standard padding
+  @media (max-width: $breakpoint-sm) {
+    padding: $card-padding; // 16px mobile (token-driven)
   }
 }
 
-// Accent border variants (left border, 3px)
+// Accent border variants (top border, 4px - unified with service cards)
 .c-approach-preview__principle--primary {
-  border-left-color: $color-primary-500; // Emerald
+  border-top-color: $color-primary-500; // Emerald
 }
 
 .c-approach-preview__principle--secondary {
-  border-left-color: $color-secondary-500; // Terracotta
+  border-top-color: $color-secondary-500; // Terracotta
 }
 
 .c-approach-preview__principle--coral {
-  border-left-color: $color-coral-500;
+  border-top-color: $color-coral-500;
 }
 
 .c-approach-preview__principle--sage {
-  border-left-color: $sage-500;
+  border-top-color: $sage-500;
 }
 
 // ============================================================================
@@ -274,11 +279,11 @@
 
 .c-approach-preview__number {
   position: absolute;
-  top: var(--spacing-md);
-  left: var(--spacing-md);
-  font-size: 14px;
-  font-weight: var(--font-weight-semibold);
-  font-family: var(--font-family-sans);
+  top: $space-4; // 16px (token-driven)
+  right: $space-4; // 16px right-aligned (unified with service cards)
+  font-size: $text-sm; // 14px (token-driven)
+  font-weight: $font-weight-semibold;
+  font-family: $font-family-sans;
   color: $gray-400;
 }
 
@@ -287,16 +292,17 @@
 // ============================================================================
 
 .c-approach-preview__icon {
-  width: 64px; // Standardized to md size
-  height: 64px;
-  margin: 0 auto var(--spacing-md);
+  width: $icon-circle-lg; // 64px (token-driven, consistent icon size)
+  height: $icon-circle-lg;
+  margin: 0 auto $space-4; // 16px (token-driven)
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--border-radius-full);
-  color: var(--color-white);
-  font-size: 2rem;
-  box-shadow: var(--shadow-md);
+  border-radius: $border-radius-full; // 9999px (token-driven)
+  color: $color-white;
+  font-size: $icon-2x; // 32px (token-driven)
+  box-shadow: $shadow-md; // At rest (token-driven)
+  transition: all $duration-base $ease-out; // 200ms (token-driven)
 
   // Icon inside
   i {
@@ -305,8 +311,8 @@
 
   // Hover effect (inherit from card)
   .c-approach-preview__principle:hover & {
-    transform: rotate(-5deg) scale(1.08);
-    box-shadow: var(--shadow-lg);
+    transform: scale(1.05); // Subtle scale (simplified, consistent)
+    box-shadow: $shadow-lg; // +1 level (token-driven)
   }
 
   // Icon gradient rotation (radial gradients matching accent colors)
@@ -348,11 +354,12 @@
 // ============================================================================
 
 .c-approach-preview__principle-title {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-sm);
-  font-family: var(--font-family-heading);
+  font-size: $text-xl; // 20px (token-driven, consistent H3)
+  font-weight: $font-weight-heading-bold; // 600 (token-driven)
+  color: $color-text-primary;
+  margin-bottom: $space-2; // 8px (token-driven)
+  font-family: $font-family-heading;
+  line-height: $leading-snug; // 1.375 (token-driven, consistent H3)
 }
 
 // ============================================================================
@@ -360,9 +367,9 @@
 // ============================================================================
 
 .c-approach-preview__principle-text {
-  font-size: var(--font-size-base);
-  color: var(--color-text-secondary);
-  line-height: var(--line-height-relaxed);
+  font-size: $text-base; // 16px (token-driven)
+  color: $color-text-secondary;
+  line-height: $leading-normal; // 1.5 (token-driven)
   margin-bottom: 0;
 }
 
@@ -371,7 +378,7 @@
 // ============================================================================
 
 .c-approach-preview__cta-wrapper {
-  margin-top: var(--spacing-2xl);
+  margin-top: $space-8; // 32px (token-driven)
 }
 
 .c-approach-preview__cta {

@@ -45,9 +45,13 @@
 // ----------------------------------------------------------------------------
 .c-values-compass {
   position: relative;
-  padding: $space-16 0;
+  padding: $section-padding-y-mobile 0; // 64px mobile (token-driven, consistent)
   overflow: hidden;
   background: $gradient-warm-subtle;
+
+  @media (min-width: $breakpoint-lg) {
+    padding: $section-padding-y 0; // 96px desktop (token-driven, consistent)
+  }
 
   // Organic background blobs (dual decorative pseudo-elements)
   &::before,
@@ -396,10 +400,11 @@
 // Card Title
 // ----------------------------------------------------------------------------
 .c-values-compass__card-title {
-  font-size: $text-xl;
+  font-size: $text-xl; // 20px (token-driven, consistent H3)
   font-weight: $font-weight-heading-bold; // 600 per design rules
   color: $color-text-primary;
-  margin-bottom: $space-2;
+  margin-bottom: $space-2; // 8px (token-driven)
+  line-height: $leading-snug; // 1.375 (token-driven, consistent H3)
   transition: color $duration-base $easing-medium; // Level 2 motion
 
   // Color change on parent hover
@@ -411,9 +416,9 @@
 // Card Description (Progressive Disclosure)
 // ----------------------------------------------------------------------------
 .c-values-compass__card-description {
-  font-size: $text-base;
+  font-size: $text-base; // 16px (token-driven)
   color: $color-text-secondary;
-  line-height: $leading-relaxed;
+  line-height: $leading-normal; // 1.5 (token-driven, consistent paragraphs)
   margin-top: 0;
 
   // Shown/hidden via progressive-disclosure mixin

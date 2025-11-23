@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Section Object - Layout Primitive
+   ========================================================================== */
+
+/**
+ * Section object - Reusable section layout patterns
+ *
+ * Purpose: Structural section patterns without cosmetic styling
+ * Layer: 05-objects (layout primitives only)
+ * Prefix: .o-section
+ *
+ * Usage:
+ *   <section class="o-section o-section--pattern">
+ *     <!-- Content -->
+ *   </section>
+ *
+ * Variants:
+ *   - .o-section--pattern (subtle organic background)
+ *
+ * Version: 1.0.0
+ * Created: 2025-11-23 (Phase 5 - Design Review Enhancements)
+ */
+
+/* Base Section
+   ========================================================================== */
+
+.o-section {
+  position: relative;
+  width: 100%;
+}
+
+/* Phase 5: Subtle Background Pattern Variant
+   ========================================================================== */
+
+.o-section--pattern {
+  position: relative;
+  overflow: hidden;
+
+  // Organic background pattern using multiple radial gradients
+  // Very low opacity (3-5%) to add visual interest without distraction
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background-image:
+      radial-gradient(
+        circle at 20% 30%,
+        rgba($color-primary, 0.03) 0%,
+        transparent 25%
+      ),
+      radial-gradient(
+        circle at 80% 70%,
+        rgba($color-secondary, 0.03) 0%,
+        transparent 25%
+      ),
+      radial-gradient(
+        circle at 50% 50%,
+        rgba($color-primary, 0.02) 0%,
+        transparent 30%
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  // Ensure all child elements stay above the pattern
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* Accessibility
+   ========================================================================== */
+
+// Print styles - remove decorative patterns
+@media print {
+  .o-section--pattern {
+    &::before {
+      display: none;
+    }
+  }
+}
+
+/* ==========================================================================
+   END OF SECTION OBJECT
+   ========================================================================== */
