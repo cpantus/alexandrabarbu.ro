@@ -6,15 +6,8 @@ layout: "flexible"
 sections:
   - type: "hero-breadcrumb"
   - type: "feature-blocks"
-  - type: "problem-empathy"
-  - type: "therapeutic-process"
-  - type: "methods-used"
   - type: "benefits-results"
-  - type: "pricing-packages"
   - type: "faq-mini"
-  - type: "testimonials-enhanced"
-  - type: "cta-standard"
-  - type: "services-preview"
 
 # Hero Breadcrumb
 hero_breadcrumb:
@@ -217,30 +210,16 @@ benefits_results:
   description: "Terapia nu este doar despre rezolvarea problemelor. Este despre creștere, autocunoaștere și trăirea unei vieți mai autentice."
 
   items:
-    - title: "Reducerea Simptomelor"
-      description: "Scădere semnificativă (30-80%) în anxietate, depresie, atacuri de panică, flashback-uri. Rezultate măsurate obiectiv prin chestionare."
-      icon: "chart-line-down"
-      timeline: "După 8-12 sesiuni"
-
     - title: "Tehnici Práctice pe Viață"
       description: "Înveți instrumente concrete (respirație diafragmatică, restructurare cognitivă, mindfulness, expunere graduală) pe care le poți folosi oricând."
       icon: "toolbox"
       timeline: "După 4-6 sesiuni"
 
-    - title: "Autocunoaștere Profundă"
-      description: "Înțelegi de ce gândești, simți și acționezi cum o faci. Descoperi tipare inconștiente care te sabotează. Claritate asupra valorilor tale reale."
-      icon: "lightbulb"
+    - title: "Reducerea Simptomelor"
+      description: "Scădere semnificativă (30-80%) în anxietate, depresie, atacuri de panică, flashback-uri. Rezultate măsurate obiectiv prin chestionare."
+      icon: "arrow-down"
       timeline: "După 10-15 sesiuni"
 
-    - title: "Creșterea Stimei de Sine"
-      description: "Dezvolți o relație mai sănătoasă cu tine însuți. Reduci auto-critica severă. Crești auto-compasiunea și acceptarea de sine."
-      icon: "heart"
-      timeline: "După 12-20 sesiuni"
-
-    - title: "Relații Mai Sănătoase"
-      description: "Când te vindeci pe tine, relațiile se îmbunătățesc. Comunici mai clar, stabilești limite sănătoase, alegi parteneri mai bine."
-      icon: "users"
-      timeline: "După 15-20 sesiuni"
 
     - title: "Sens și Direcție în Viață"
       description: "Claritate asupra valorilor, obiectivelor și sensului vieții. Știi ce vrei și cum să ajungi acolo. Trăiești mai autentic și împlinit."
@@ -409,61 +388,6 @@ cta_standard:
     - text: "Fără obligații - doar o conversație onestă"
       icon: "check-circle"
 
-# Services Preview - Related Services
-services_preview_related:
-  enable: true
-  title: "Alte Servicii Care Te-Ar Putea Interesa"
-  subtitle: "Dacă problemele implică și alte persoane..."
-
-  services:
-    - title: "Terapie de Cuplu"
-      description: "Dacă relația ta contribuie la anxietate sau depresie, terapia de cuplu poate ajuta să rezolvați problemele împreună."
-      icon: "heart"
-      link: "/servicii/terapie-de-cuplu/"
-      button_text: "Descoperă Terapia de Cuplu"
-
-    - title: "Terapie de Familie"
-      description: "Probleme familiale nerezolvate pot afecta sănătatea ta mintală. Lucrăm împreună cu familia pentru vindecare."
-      icon: "users"
-      link: "/servicii/terapie-de-familie/"
-      button_text: "Vezi Terapia de Familie"
-
-    - title: "Psihologie Organizațională"
-      description: "Stresul de la muncă te copleșește? Oferă coaching individual pentru burnout și dezvoltare profesională."
-      icon: "briefcase"
-      link: "/servicii/psihologie-organizationala/"
-      button_text: "Servicii pentru Companii"
 ---
-
-## De Ce Să Alegi Terapia Individuală Cu Mine?
-
-### Experiență Vastă în Probleme Complexe
-15+ ani de lucru cu anxietate (generalizată, panică, fobie socială), depresie (ușoară, moderată, severă), traume (abuz, pierderi, PTSD), dezvoltare personală și tulburări de personalitate. Am văzut și rezolvat sute de situații complexe.
-
-### Abordare Bazată pe Dovezi, Nu Improvizație
-Folosesc doar metode susținute de cercetare științifică riguroasă:
-- **TCC**: 70-80% îmbunătățire în anxietate/depresie (meta-analize)
-- **EMDR**: Recomandat de OMS pentru PTSD
-- **Mindfulness**: 30-40% reducere simptome (RCT)
-
-Nu improvizez - urmez protocoale validate internațional.
-
-### Personalizare Reală, Nu "Cookie-Cutter"
-Nu există o abordare unică pentru toți. Fiecare plan terapeutic este construit pentru tine, bazat pe:
-- Nevoile tale specifice (anxietate? depresie? traumă?)
-- Resursele tale (ce te-a ajutat până acum?)
-- Stilul tău de învățare (practic? reflectiv?)
-- Obiectivele tale unice (ce vrei să atingi?)
-
-### Progres Măsurat Obiectiv, Nu La Ghici
-Nu lucrăm la nesfârșit fără să știm dacă merge. Folosim:
-- **Chestionare validate**: GAD-7, PHQ-9, PCL-5 (completate la 4-6 sesiuni)
-- **Obiective SMART**: Specifice, Măsurabile, Atingibile
-- **Auto-monitorizare**: Jurnale de gânduri, tracker-e de dispoziție
-
-Știi exact unde ești și cât ai progresat.
-
-### Spațiu Complet Sigur și Lipsit de Judecată
-Cabinet fizic privat (București, zona Unirii) sau online securizat (Zoom cu criptare end-to-end). Poți fi vulnerabil fără teamă. Nu vei fi judecat, criticat sau forțat să faci ceva cu care nu ești confortabil.
 
 **Gata să începi?** [Programează consultație gratuită](/contact/) sau citește mai multe despre [cum funcționează terapia](/abordare/).

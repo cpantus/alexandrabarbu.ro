@@ -3,11 +3,11 @@
 // ==================================
 //
 // Purpose: Therapy benefits grid with outcomes
-// Features: Icon cards, timeline badges, responsive grid
+// Features: Icon cards, timeline badges, responsive grid, centered layouts, animations
 // Breakpoints: 1 col mobile, 2 col tablet, 3 col desktop
 //
-// Version: 1.0.0
-// Updated: 2025-11-20
+// Version: 1.1.0
+// Updated: 2025-11-24
 //
 
 // ============================================================================
@@ -16,7 +16,7 @@
 
 .c-benefits-results {
   padding: var(--spacing-section-y) 0;
-  background: var(--color-surface-primary);
+  background: $color-bg-redesign-dark; // Forest-700 dark green background
 }
 
 // ============================================================================
@@ -26,12 +26,13 @@
 .c-benefits-results__header {
   max-width: 800px;
   margin: 0 auto var(--spacing-5xl);
+  text-align: center;
 }
 
 .c-benefits-results__subtitle {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-brand-secondary);
+  color: $color-gold-500; // Gold on dark background
   letter-spacing: 0.1em;
   margin-bottom: var(--spacing-xs);
 }
@@ -39,9 +40,25 @@
 .c-benefits-results__title {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
+  color: $color-text-redesign-on-dark; // Light cream text on dark background
   margin-bottom: var(--spacing-md);
   font-family: var(--font-family-heading);
+  position: relative;
+  display: inline-block;
+  padding-bottom: var(--spacing-sm);
+
+  // Gold decorative underline (static - no hover effect)
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: $color-gold-500;
+    border-radius: var(--border-radius-full);
+  }
 
   @media (min-width: 768px) {
     font-size: var(--font-size-4xl);
@@ -50,9 +67,10 @@
 
 .c-benefits-results__description {
   font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
+  color: $color-text-redesign-on-dark; // Light cream text on dark background
   line-height: var(--line-height-relaxed);
   margin-bottom: 0;
+  opacity: 0.9; // Slightly dimmed for hierarchy
 }
 
 // ============================================================================
@@ -82,24 +100,30 @@
 .c-benefits-results__item {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 255, 255, 0.85) 100%
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
   );
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(77, 179, 128, 0.15);
+  border: 1px solid rgba(197, 168, 128, 0.2); // Gold border with transparency
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-xl);
   display: flex;
   flex-direction: column;
+  align-items: center; // Center all children horizontally
   gap: var(--spacing-md);
-  transition: all var(--transition-normal);
-  box-shadow: var(--shadow-sm);
+  text-align: center; // Center text content
 
-  // Hover effect
+  // GPU-accelerated smooth animations (matching credentials-education pattern)
+  transition: $transition-base;
+  will-change: transform; // Hint browser for GPU acceleration
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  // Smooth hover effect - translateY only for optimal performance
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-    border-color: rgba(77, 179, 128, 0.3);
+    transform: translateY(-8px); // Increased from -4px to match credentials-education
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2); // Enhanced shadow matching credentials
+    border-color: rgba(197, 168, 128, 0.4); // Stronger gold on hover
+    background: rgba(255, 255, 255, 0.15); // Simplified single rgba for smoother transition
   }
 }
 
@@ -108,21 +132,24 @@
 // ============================================================================
 
 .c-benefits-results__icon {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gradient-primary-warm);
+  background: $color-forest-700; // Dark green circular background (#2F5548)
   border-radius: var(--border-radius-full);
-  color: var(--color-white);
+  color: $color-gold-500; // Gold icon color
   font-size: 2rem;
-  box-shadow: var(--shadow-md);
   flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
-  // Hover effect (inherit from card)
+  // Single smooth transition matching credentials-education pattern
+  transition: $transition-base;
+
+  // GPU-accelerated hover effect - transform only (scale + rotate)
   .c-benefits-results__item:hover & {
-    transform: scale(1.08);
+    transform: scale(1.1) rotate(5deg); // Reduced rotation from 8deg to 5deg for smoother feel
   }
 }
 
@@ -132,12 +159,16 @@
 
 .c-benefits-results__content {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Center content within the content area
+  width: 100%; // Ensure full width for centering
 }
 
 .c-benefits-results__timeline {
   display: inline-block;
-  background: var(--color-brand-secondary);
-  color: var(--color-white);
+  background: rgba(107, 144, 128, 0.3); // Sage-500 with transparency for subtle background
+  color: $color-gold-500; // Gold text color
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
   text-transform: uppercase;
@@ -145,40 +176,77 @@
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius-full);
   margin-bottom: var(--spacing-sm);
+  border: 1px solid rgba(197, 168, 128, 0.3); // Gold border for definition
+  text-align: center; // Center text within pill
 }
 
 .c-benefits-results__item-title {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
+  color: $color-text-redesign-on-dark; // Light cream text on dark background
   margin-bottom: var(--spacing-xs);
   font-family: var(--font-family-heading);
+  text-align: center; // Center card title
+  width: 100%; // Ensure full width for centering
+  position: relative;
+  display: inline-block; // Make underline match text width
+  padding-bottom: var(--spacing-sm); // Space for underline
+
+  // Gold animated underline
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px; // Initial width
+    height: 3px;
+    background: $color-gold-500;
+    border-radius: var(--border-radius-full);
+    transition: width $transition-normal, background $transition-normal;
+  }
+
+  // Expand underline on CARD hover (not just title hover)
+  .c-benefits-results__item:hover & {
+    &::after {
+      width: 60px; // Expand on hover
+      background: $color-gold-400; // Lighter gold
+    }
+  }
 }
 
 .c-benefits-results__item-text {
   font-size: var(--font-size-base);
-  color: var(--color-text-secondary);
+  color: $color-text-redesign-on-dark; // Light cream text on dark background
   line-height: var(--line-height-relaxed);
   margin-bottom: 0;
+  opacity: 0.85; // Slightly dimmed for hierarchy
+  text-align: center; // Center description text
 }
 
 // ============================================================================
 // ACCESSIBILITY
 // ============================================================================
 
-// Reduced motion support
+// Reduced motion support - disable all animations for users who prefer reduced motion
 @media (prefers-reduced-motion: reduce) {
   .c-benefits-results__item {
     transition: none;
 
     &:hover {
-      transform: none;
+      transform: none; // Disable card lift animation
     }
   }
 
   .c-benefits-results__icon {
+    transition: none;
+
     .c-benefits-results__item:hover & {
-      transform: none;
+      transform: none; // Disable icon scale + rotate animation
     }
+  }
+
+  .c-benefits-results__item-title::after {
+    transition: none; // Disable card title underline expansion animation
   }
 }

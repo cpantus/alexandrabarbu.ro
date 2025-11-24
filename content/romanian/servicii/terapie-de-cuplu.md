@@ -6,15 +6,9 @@ layout: "flexible"
 sections:
   - type: "hero-breadcrumb"
   - type: "feature-blocks"
-  - type: "problem-empathy"
-  - type: "therapeutic-process"
-  - type: "methods-used"
   - type: "benefits-results"
-  - type: "pricing-packages"
   - type: "faq-mini"
   - type: "testimonials-enhanced"
-  - type: "cta-standard"
-  - type: "services-preview"
 
 # Hero Breadcrumb
 hero_breadcrumb:
@@ -215,110 +209,19 @@ benefits_results:
   items:
     - title: "Comunicare Îmbunătățită"
       description: "Învățați să vă ascultați cu adevărat, să validați emoțiile celuilalt, să discutați probleme dificile fără escaladare. Comunicare mai clară, mai empatică."
+      icon: "comment-dots"
       timeline: "După 6-8 sesiuni"
-
-    - title: "Reducerea Conflictelor"
-      description: "Certurile devin mai rare și mai puțin intense. Când apar, știți cum să le gestionați constructiv. Mai puțină defensivitate și critică."
-      timeline: "După 10-12 sesiuni"
 
     - title: "Reconstruirea Încrederii"
       description: "Dacă ați trecut prin infidelitate, învățați să iertați (dacă alegeți), să reconstruiți transparența și să creați o relație nouă, mai puternică."
+      icon: "handshake"
       timeline: "După 20-30 sesiuni (infidelitate)"
 
     - title: "Creșterea Intimității"
       description: "Revenirea conexiunii emoționale și fizice. Afecțiune, sex, timp de calitate împreună. Vă simțiți din nou apropiați."
+      icon: "heartbeat"
       timeline: "După 12-16 sesiuni"
 
-    - title: "Rezolvarea Problemelor Împreună"
-      description: "Abordați problemele ca echipă, nu ca adversari. Găsiți compromisuri și soluții care funcționează pentru amândoi."
-      timeline: "După 10-15 sesiuni"
-
-    - title: "Claritate și Decizii"
-      description: "Dacă vă gândiți la divorț sau căsătorie, obțineți claritate. Luați decizii informate despre viitorul relației, nu din frică sau furie."
-      timeline: "După 8-12 sesiuni"
-
-# Pricing Packages
-pricing_packages:
-  enable: true
-  title: "Tarife și Pachete pentru Terapie de Cuplu"
-  subtitle: "Investiție în relația voastră"
-  description: "Terapia de cuplu costă mai mult decât terapia individuală (sesiuni mai lungi, complexitate crescută), dar beneficiile sunt enorme."
-
-  packages:
-    - name: "Sesiune Unică"
-      price: "350"
-      currency: "RON"
-      period: "sesiune"
-      description: "Pentru evaluare sau sesiuni ocazionale."
-      features:
-        - "75 minute sesiune (nu 50 ca la individual)"
-        - "Ambii parteneri prezenți"
-        - "Acces la chestionare de evaluare relațională"
-        - "Suport între sesiuni prin email"
-        - "Flexibilitate totală"
-      button_text: "Programează Sesiune"
-      button_url: "/contact/"
-      button_variant: "outline-primary"
-      featured: false
-
-    - name: "Pachet Starter"
-      price: "1260"
-      currency: "RON"
-      period: "4 sesiuni"
-      description: "Ideal pentru evaluare și îmbunătățiri inițiale."
-      discount: "Economisești 140 RON (10%)"
-      features:
-        - "4 sesiuni x 75 minute"
-        - "Evaluare completă + 3 sesiuni active"
-        - "Chestionare Gottman și CSI"
-        - "Plan terapeutic personalizat pentru cuplu"
-        - "Materiale și teme pentru acasă"
-      button_text: "Alege Pachet"
-      button_url: "/contact/"
-      button_variant: "primary"
-      featured: false
-
-    - name: "Pachet Standard"
-      price: "2380"
-      currency: "RON"
-      period: "8 sesiuni"
-      description: "Cel mai popular. Terapie completă pe termen scurt."
-      discount: "Economisești 420 RON (15%)"
-      features:
-        - "8 sesiuni x 75 minute"
-        - "Terapie completă pentru conflicte moderate"
-        - "Îmbunătățirea comunicării și intimității"
-        - "Monitorizare progres la 4 sesiuni"
-        - "Acces prioritar pentru programare"
-        - "Toate materialele + ghid pentru cupluri"
-      button_text: "Alege Pachet"
-      button_url: "/contact/"
-      button_variant: "primary"
-      featured: true
-
-    - name: "Pachet Intensiv"
-      price: "4760"
-      currency: "RON"
-      period: "16 sesiuni"
-      description: "Pentru probleme serioase (infidelitate, decizii majore)."
-      discount: "Economisești 840 RON (15%)"
-      features:
-        - "16 sesiuni x 75 minute"
-        - "Ideal pentru infidelitate, reconstruire încredere"
-        - "Abordare profundă și susținută"
-        - "Monitorizare progres la 4, 8, 12 sesiuni"
-        - "Acces prioritar + disponibilitate urgențe"
-        - "Toate materialele + 1 sesiune follow-up gratuită (după 3 luni)"
-      button_text: "Alege Pachet"
-      button_url: "/contact/"
-      button_variant: "outline-primary"
-      featured: false
-
-  notes:
-    - text: "**Plată:** Cash, card sau transfer bancar. Pachete se plătesc integral înainte de prima sesiune."
-    - text: "**Anulare:** Anunță cu 24h înainte pentru reprogramare gratuită. Altfel, sesiunea se consideră consumată."
-    - text: "**Ambii parteneri trebuie să fie prezenți** la toate sesiunile (cu excepția ședințelor individuale opționale)."
-    - text: "**Decontare:** Unele asigurări private de sănătate pot decontapte parțial. Verificați cu asiguratorul vostru."
 
 # FAQ Mini
 faq_mini_title: "Întrebări Frecvente Despre Terapia de Cuplu"
@@ -419,26 +322,3 @@ services_preview_related:
       button_text: "Servicii pentru Companii"
 ---
 
-## De Ce Să Alegeți Terapia de Cuplu Cu Mine?
-
-### Experiență Vastă în Terapia de Cuplu
-15+ ani de lucru cu cupluri în toate stadiile: nou formați care vor să prevină problemele, cupluri în criză acută, cupluri care se gândesc la divorț, cupluri care reconstruiesc după infidelitate. Am văzut și ajutat sute de cupluri.
-
-### Metode Validate Științific
-Folosesc doar metode cu rate de succes dovedite:
-- **Metoda Gottman**: 70%+ îmbunătățire (Gottman Institute research)
-- **TCC pentru Cupluri**: 60-70% îmbunătățire satisfacție relațională
-- **EFT (Emotionally Focused Therapy)**: 70-75% îmbunătățire
-
-Nu improvizez - urmez protocoale validate internațional.
-
-### Neutralitate Absolută
-Nu iau partea niciunui partener. Rolul meu este să înțeleg ambele perspective, să validez ambele emoții și să vă ajut să găsiți soluții împreună. Fiecare voce contează egal.
-
-### Abordare Personalizată
-Fiecare cuplu este unic. Ceea ce funcționează pentru un cuplu poate să nu funcționeze pentru altul. Adapt metodele la stilul vostru de comunicare, valorile voastre, problemele voastre specifice.
-
-### Spațiu Sigur Pentru Amândoi
-Cabinet privat (București, zona Unirii) sau online securizat (Zoom). Ambii parteneri trebuie să se simtă în siguranță să fie vulnerabili. Creăm reguli clare de respect reciproc din prima sesiune.
-
-**Gata să începeți?** [Programează consultație gratuită](/contact/) sau citește despre [abordarea mea terapeutică](/abordare/).
