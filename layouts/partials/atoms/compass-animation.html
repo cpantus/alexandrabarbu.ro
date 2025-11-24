@@ -5,81 +5,143 @@
     {{ partial "atoms/compass-animation.html" }}
 
   Features:
-    - 3 rotating rings (CSS animations)
-    - Central needle oscillating
+    - Minimal concentric circles with subtle strokes
+    - Right-angled triangle needle with golden tip
+    - Cardinal/intercardinal dots and tick marks
+    - Clean, minimal aesthetic matching reference design
     - Responsive sizing
-    - Forest green/sage/gold colors
     - Performance optimized (CSS transforms)
 
   Created: 2025-11-23 (Theme Redesign 2025)
+  Updated: 2025-11-24 (Complete redesign to match reference image)
 */}}
 
 <div class="c-compass-animation" aria-hidden="true">
   <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="c-compass-animation__svg">
     <defs>
-      {{/* Gradient for rings */}}
-      <linearGradient id="compassGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:#234E3E;stop-opacity:0.3" />
-        <stop offset="50%" style="stop-color:#6B9080;stop-opacity:0.2" />
-        <stop offset="100%" style="stop-color:#C5A880;stop-opacity:0.3" />
+      {{/* Very subtle gradient for circles */}}
+      <linearGradient id="compassCircleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#9CA3AF;stop-opacity:0.3" />
+        <stop offset="100%" style="stop-color:#6B7280;stop-opacity:0.3" />
       </linearGradient>
+
+      {{/* Gradient for the needle - forest green to golden tip */}}
+      <linearGradient id="needleGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+        <stop offset="0%" style="stop-color:#234E3E;stop-opacity:1" />
+        <stop offset="75%" style="stop-color:#234E3E;stop-opacity:1" />
+        <stop offset="90%" style="stop-color:#C5A880;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:1" />
+      </linearGradient>
+
+      {{/* Very subtle shadow for needle */}}
+      <filter id="needleShadow">
+        <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.1"/>
+      </filter>
     </defs>
 
-    {{/* Outer ring (slow rotation) */}}
-    <circle
-      cx="200"
-      cy="200"
-      r="180"
-      fill="none"
-      stroke="url(#compassGradient)"
-      stroke-width="1.5"
-      stroke-dasharray="10 5"
-      class="c-compass-animation__ring c-compass-animation__ring--outer"
-    />
-
-    {{/* Middle ring (medium rotation) */}}
-    <circle
-      cx="200"
-      cy="200"
-      r="130"
-      fill="none"
-      stroke="url(#compassGradient)"
-      stroke-width="1.5"
-      stroke-dasharray="8 4"
-      class="c-compass-animation__ring c-compass-animation__ring--middle"
-    />
-
-    {{/* Inner ring (fast rotation) */}}
-    <circle
-      cx="200"
-      cy="200"
-      r="80"
-      fill="none"
-      stroke="url(#compassGradient)"
-      stroke-width="2"
-      stroke-dasharray="6 3"
-      class="c-compass-animation__ring c-compass-animation__ring--inner"
-    />
-
-    {{/* Cardinal directions */}}
-    <text x="200" y="35" text-anchor="middle" class="c-compass-animation__direction">N</text>
-    <text x="365" y="205" text-anchor="middle" class="c-compass-animation__direction">E</text>
-    <text x="200" y="375" text-anchor="middle" class="c-compass-animation__direction">S</text>
-    <text x="35" y="205" text-anchor="middle" class="c-compass-animation__direction">W</text>
-
-    {{/* Central compass needle (oscillating) */}}
-    <g class="c-compass-animation__needle">
-      {{/* Needle shaft */}}
-      <path
-        d="M 200 200 L 200 80"
-        stroke="#234E3E"
-        stroke-width="3"
-        stroke-linecap="round"
+    {{/* Outermost circle with tick marks */}}
+    <g class="c-compass-animation__ring c-compass-animation__ring--outer">
+      {{/* Main circle */}}
+      <circle
+        cx="200"
+        cy="200"
+        r="185"
+        fill="none"
+        stroke="#9CA3AF"
+        stroke-width="0.5"
+        opacity="0.4"
       />
-      {{/* Needle tip (north) */}}
-      <circle cx="200" cy="75" r="6" fill="#C5A880" />
-      {{/* Needle base (south) */}}
-      <circle cx="200" cy="200" r="8" fill="#234E3E" />
+
+      {{/* Tick marks around the outer ring */}}
+      {{/* Major ticks at cardinal points */}}
+      <line x1="200" y1="10" x2="200" y2="20" stroke="#9CA3AF" stroke-width="1" opacity="0.5" /> {{/* N */}}
+      <line x1="390" y1="200" x2="380" y2="200" stroke="#9CA3AF" stroke-width="1" opacity="0.5" /> {{/* E */}}
+      <line x1="200" y1="390" x2="200" y2="380" stroke="#9CA3AF" stroke-width="1" opacity="0.5" /> {{/* S */}}
+      <line x1="10" y1="200" x2="20" y2="200" stroke="#9CA3AF" stroke-width="1" opacity="0.5" /> {{/* W */}}
+
+      {{/* Minor ticks at intercardinal points */}}
+      <line x1="330" y1="70" x2="324" y2="76" stroke="#9CA3AF" stroke-width="0.5" opacity="0.4" /> {{/* NE */}}
+      <line x1="330" y1="330" x2="324" y2="324" stroke="#9CA3AF" stroke-width="0.5" opacity="0.4" /> {{/* SE */}}
+      <line x1="70" y1="330" x2="76" y2="324" stroke="#9CA3AF" stroke-width="0.5" opacity="0.4" /> {{/* SW */}}
+      <line x1="70" y1="70" x2="76" y2="76" stroke="#9CA3AF" stroke-width="0.5" opacity="0.4" /> {{/* NW */}}
+    </g>
+
+    {{/* Second ring with dashed stroke */}}
+    <circle
+      cx="200"
+      cy="200"
+      r="150"
+      fill="none"
+      stroke="#9CA3AF"
+      stroke-width="0.5"
+      stroke-dasharray="8 4"
+      opacity="0.3"
+      class="c-compass-animation__ring c-compass-animation__ring--second"
+    />
+
+    {{/* Third ring - solid */}}
+    <circle
+      cx="200"
+      cy="200"
+      r="115"
+      fill="none"
+      stroke="#9CA3AF"
+      stroke-width="0.5"
+      opacity="0.3"
+      class="c-compass-animation__ring c-compass-animation__ring--third"
+    />
+
+    {{/* Inner ring with dots at cardinal/intercardinal points */}}
+    <g class="c-compass-animation__ring c-compass-animation__ring--inner">
+      <circle
+        cx="200"
+        cy="200"
+        r="80"
+        fill="none"
+        stroke="#9CA3AF"
+        stroke-width="0.5"
+        stroke-dasharray="6 3"
+        opacity="0.35"
+      />
+
+      {{/* Dots at cardinal points */}}
+      <circle cx="200" cy="120" r="2" fill="#9CA3AF" opacity="0.5" /> {{/* N */}}
+      <circle cx="280" cy="200" r="2" fill="#9CA3AF" opacity="0.5" /> {{/* E */}}
+      <circle cx="200" cy="280" r="2" fill="#9CA3AF" opacity="0.5" /> {{/* S */}}
+      <circle cx="120" cy="200" r="2" fill="#9CA3AF" opacity="0.5" /> {{/* W */}}
+
+      {{/* Smaller dots at intercardinal points */}}
+      <circle cx="256" cy="144" r="1.5" fill="#9CA3AF" opacity="0.4" /> {{/* NE */}}
+      <circle cx="256" cy="256" r="1.5" fill="#9CA3AF" opacity="0.4" /> {{/* SE */}}
+      <circle cx="144" cy="256" r="1.5" fill="#9CA3AF" opacity="0.4" /> {{/* SW */}}
+      <circle cx="144" cy="144" r="1.5" fill="#9CA3AF" opacity="0.4" /> {{/* NW */}}
+    </g>
+
+    {{/* Cardinal direction - only N in golden */}}
+    <text x="200" y="35" text-anchor="middle" class="c-compass-animation__direction c-compass-animation__direction--north">N</text>
+
+    {{/* RIGHT-ANGLED TRIANGLE NEEDLE pointing northeast (like reference) */}}
+    <g class="c-compass-animation__needle" filter="url(#needleShadow)">
+      {{/* Main triangle needle - pointing from center to northeast */}}
+      {{/* This creates a right-angled triangle */}}
+      <path
+        d="M 200,200 L 195,195 L 240,90 Z"
+        fill="url(#needleGradient)"
+        class="c-compass-animation__needle-triangle"
+      />
+
+      {{/* Opposite smaller triangle (southwest) for balance */}}
+      <path
+        d="M 200,200 L 205,205 L 160,310 Z"
+        fill="#234E3E"
+        opacity="0.3"
+        class="c-compass-animation__needle-triangle c-compass-animation__needle-triangle--opposite"
+      />
+
+      {{/* Center pivot - smaller, cleaner */}}
+      <circle cx="200" cy="200" r="8" fill="#234E3E" opacity="0.8" />
+      <circle cx="200" cy="200" r="5" fill="#6B9080" />
+      <circle cx="200" cy="200" r="2" fill="#C5A880" />
     </g>
   </svg>
 </div>

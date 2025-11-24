@@ -2,16 +2,17 @@
 // COMPASS ANIMATION ATOM - Redesign 2025
 // ==================================
 //
-// Purpose: Decorative SVG compass for hero section
-// Features: 3 rotating rings, oscillating needle, responsive
+// Purpose: Decorative SVG compass matching reference design exactly
+// Features: Minimal circles, right-angled triangle needle, dots & ticks
 //
 // Created: 2025-11-23 (Theme Redesign 2025)
-// Version: 1.0.0
+// Updated: 2025-11-24 (Complete redesign to match reference image)
+// Version: 3.0.0
 //
 // BEM Structure:
 // Block: .c-compass-animation
-// Elements: __svg, __ring, __needle, __direction
-// Modifiers: --outer, --middle, --inner
+// Elements: __svg, __ring, __needle, __needle-triangle, __direction
+// Modifiers: --outer, --second, --third, --inner, --north, --opposite
 //
 
 /*------------------------------------------------------------------
@@ -21,15 +22,22 @@
 .c-compass-animation {
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 450px; // Slightly smaller for cleaner look
   margin: 0 auto;
 
+  // Clean, light background matching reference
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  border-radius: 50%;
+  padding: 20px;
+
   @media (max-width: $breakpoint-md) {
-    max-width: 350px;
+    max-width: 320px;
+    padding: 15px;
   }
 
   @media (max-width: $breakpoint-sm) {
-    max-width: 280px;
+    max-width: 260px;
+    padding: 10px;
   }
 }
 
@@ -40,7 +48,7 @@
 }
 
 /*------------------------------------------------------------------
-  # Rings (Rotating)
+  # Rings (Subtle rotation animations)
 -------------------------------------------------------------------*/
 
 .c-compass-animation__ring {
@@ -48,50 +56,77 @@
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 
-  // Outer ring - slow clockwise
+  // Outer ring with tick marks - very slow rotation
   &--outer {
-    animation-name: rotateClockwise;
-    animation-duration: 40s;
+    animation: rotateClockwiseSlow 60s linear infinite;
   }
 
-  // Middle ring - medium counter-clockwise
-  &--middle {
-    animation-name: rotateCounterClockwise;
-    animation-duration: 25s;
+  // Second ring - slow counter-clockwise
+  &--second {
+    animation: rotateCounterClockwiseSlow 50s linear infinite;
   }
 
-  // Inner ring - fast clockwise
+  // Third ring - medium speed
+  &--third {
+    animation: rotateClockwise 40s linear infinite;
+  }
+
+  // Inner ring with dots - faster rotation
   &--inner {
-    animation-name: rotateClockwise;
-    animation-duration: 15s;
+    animation: rotateCounterClockwise 25s linear infinite;
   }
 }
 
 /*------------------------------------------------------------------
-  # Needle (Oscillating)
+  # Needle (Right-angled triangle with oscillation)
 -------------------------------------------------------------------*/
 
 .c-compass-animation__needle {
-  transform-origin: 200px 200px; // Center of SVG
-  animation: needleOscillate 3s ease-in-out infinite;
+  transform-origin: 200px 200px; // Center pivot
+  // Subtle oscillation around northeast direction (45 degrees)
+  animation: needleOscillateNE 5s ease-in-out infinite;
+}
+
+.c-compass-animation__needle-triangle {
+  // The right-angled triangle inherits gradient fill
+  transition: opacity 0.3s ease;
+
+  // Opposite triangle (southwest balance)
+  &--opposite {
+    // Lighter opacity set inline
+  }
 }
 
 /*------------------------------------------------------------------
-  # Directions (Cardinal points)
+  # Direction Label
 -------------------------------------------------------------------*/
 
 .c-compass-animation__direction {
-  font-family: $font-heading; // Playfair Display
+  font-family: $font-heading; // Crimson Pro for elegance
   font-size: 20px;
-  font-weight: $weight-semibold;
-  fill: $forest-500;
-  opacity: 0.6;
-  letter-spacing: 0.05em;
+  font-weight: 600; // Slightly lighter than bold
+  letter-spacing: 0.1em;
+
+  // North indicator in golden/tan matching reference
+  &--north {
+    fill: #C5A880; // Golden tan color
+    opacity: 0.85;
+  }
 }
 
 /*------------------------------------------------------------------
   # Animations
 -------------------------------------------------------------------*/
+
+// Slower rotations for more subtle effect
+@keyframes rotateClockwiseSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 @keyframes rotateClockwise {
   from {
@@ -99,6 +134,15 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateCounterClockwiseSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
   }
 }
 
@@ -111,13 +155,33 @@
   }
 }
 
-@keyframes needleOscillate {
-  0%,
-  100% {
-    transform: rotate(-15deg);
+// Oscillation around northeast position (45 degrees)
+@keyframes needleOscillateNE {
+  0%, 100% {
+    transform: rotate(40deg); // Slightly less than 45
+  }
+  25% {
+    transform: rotate(48deg); // Slightly more than 45
   }
   50% {
-    transform: rotate(15deg);
+    transform: rotate(45deg); // Perfect northeast
+  }
+  75% {
+    transform: rotate(42deg); // Back toward north
+  }
+}
+
+/*------------------------------------------------------------------
+  # Hover Effects
+-------------------------------------------------------------------*/
+
+.c-compass-animation:hover {
+  .c-compass-animation__needle {
+    animation-duration: 3s; // Speed up on hover
+  }
+
+  .c-compass-animation__needle-triangle {
+    filter: brightness(1.1); // Slight brightness increase
   }
 }
 
@@ -125,8 +189,29 @@
   # Accessibility
 -------------------------------------------------------------------*/
 
-// Reduced motion support
+// Reduced motion support - disable all animations
 @media (prefers-reduced-motion: reduce) {
+  .c-compass-animation__ring,
+  .c-compass-animation__needle {
+    animation: none;
+  }
+
+  // Set needle to static northeast position
+  .c-compass-animation__needle {
+    transform: rotate(45deg);
+  }
+}
+
+/*------------------------------------------------------------------
+  # Print Styles
+-------------------------------------------------------------------*/
+
+@media print {
+  .c-compass-animation {
+    background: none;
+    padding: 0;
+  }
+
   .c-compass-animation__ring,
   .c-compass-animation__needle {
     animation: none;

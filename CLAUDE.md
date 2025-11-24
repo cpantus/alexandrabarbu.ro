@@ -1,153 +1,64 @@
 # Claude Instructions - Andromeda Hugo Theme
 
-**Version**: 5.1.0 - Complete 2025 Refactor + ITCSS Architecture
-
----
-
 ## CRITICAL Rules
 
 1. **Run Hugo from project root**: `hugo server` (always from /home/cere/Work/alex/alexandrabarbu.ro/)
 2. **Preserve multilingual**: Maintain RO (root path) + EN (`/en/`) content parity
-3. **Flexible layout only**: Pages = Header + Sections (2-7) + Footer. Use 36 active section types.
-4. **Reuse components**: 9 atoms → 24 molecules → 2 organisms → 36 sections = **71 components**
+3. **Flexible layout**: Pages = Header + Sections (2-7) + Footer. 36 section types available
+4. **Reuse components**: 9 atoms → 24 molecules → 2 organisms → 36 sections = 71 components
 5. **Test both languages**: Verify `/{page}` (RO) and `/en/{page}` (EN)
-6. **Enhanced design system**: Use glassmorphism, gradients, and organic shapes (v4.0)
 
 ---
 
 ## Architecture
 
-**Component Hierarchy** (2025 Refactor Complete):
+**Component Hierarchy**:
 ```
 Atoms (9)        → button, heading, icon, image, tag, divider, link, spinner, avatar
 Molecules (24)   → card, form-field, accordion, nav, credential-badge, social-links, etc.
 Organisms (2)    → header, footer
 Sections (36)    → hero, cta, pricing, testimonials, faq, contact, stats, etc.
-
 Page = Header + Sections Array + Footer
 ```
 
-**File Structure** (Standard Hugo Theme):
+**File Structure**:
 ```
-alexandrabarbu.ro/              # ← PROJECT ROOT (run Hugo here)
-├── layouts/                    # Hugo templates (root level)
-│   ├── _default/flexible.html  # Layout engine (STABLE)
-│   └── partials/
-│       ├── atoms/              # 5 basic components
-│       ├── molecules/          # 21 composite components
-│       ├── organisms/          # 2 complex (header, footer)
-│       └── sections/           # 36 page sections (5 enhanced v4.0)
-│
-├── assets/                     # Assets at root level (NOT in themes/)
-│   ├── scss/                   # ITCSS Architecture (v5.0.0) ✅
-│   │   ├── main-new.scss       # ITCSS entry point (ACTIVE)
-│   │   ├── 01-settings/        # Design tokens (variables only)
-│   │   │   ├── _tokens-colors.scss
-│   │   │   ├── _tokens-typography.scss  # Crimson Pro + Work Sans
-│   │   │   ├── _tokens-spacing.scss
-│   │   │   ├── _tokens-shadows.scss
-│   │   │   ├── _tokens-motion.scss
-│   │   │   ├── _tokens-gradients.scss
-│   │   │   └── _tokens-components.scss
-│   │   ├── 02-tools/           # Mixins & functions (no CSS output)
-│   │   │   ├── _mixins-card.scss
-│   │   │   ├── _mixins-icon.scss
-│   │   │   ├── _mixins-glassmorphism.scss
-│   │   │   └── _functions-colors.scss
-│   │   ├── 03-generic/         # CSS resets, normalize
-│   │   ├── 05-objects/         # Layout primitives (.o-container, .o-grid)
-│   │   └── 06-components/      # 20 BEM components (.c-*)
-│   │       ├── _card.scss      # All v4.0 features preserved
-│   │       ├── _button.scss
-│   │       ├── _icon.scss
-│   │       ├── _badge.scss
-│   │       ├── _values-compass.scss    # New v4.0
-│   │       ├── _stats.scss             # Enhanced v4.0
-│   │       ├── _feature-blocks.scss    # Enhanced v4.0
-│   │       ├── _pricing.scss           # Enhanced v4.0
-│   │       ├── _credentials.scss       # Enhanced v4.0
-│   │       └── ... (11 more BEM components)
-│   │
-│   └── js/                     # JavaScript at root level
-│       ├── vanilla-collapse.js # Mobile nav, accordions (replaces Bootstrap)
-│       ├── vanilla-dropdown.js # Navigation dropdowns (replaces Bootstrap)
-│       ├── values-compass-interactions.js # Mobile touch
-│       ├── stats-counter.js    # Animated counting
-│       ├── scroll-animations.js # Parallax + scroll effects
-│       └── gsap-enhancements.js # GSAP animations
-│
-├── content/                    # Site content (root level)
-├── config/                     # Hugo configuration
-├── data/                       # Data files
-└── i18n/                       # Translations
+alexandrabarbu.ro/              # ← PROJECT ROOT
+├── layouts/partials/
+│   ├── atoms/ molecules/ organisms/ sections/
+│   └── _default/flexible.html  # Layout engine (STABLE)
+├── assets/
+│   ├── scss/                   # ITCSS Architecture
+│   │   ├── main-new.scss       # Entry point
+│   │   ├── 01-settings/        # Design tokens
+│   │   ├── 02-tools/           # Mixins & functions
+│   │   ├── 03-generic/         # Resets
+│   │   ├── 05-objects/         # Layout primitives
+│   │   └── 06-components/      # BEM components
+│   └── js/                     # Vanilla JS (no Bootstrap)
+├── content/ config/ data/ i18n/
 ```
 
-**NOTE**: Standard Hugo theme structure. Main implementation in `themes/andromeda-hugo/` directory.
-
-**SCSS Architecture**: The theme uses ITCSS (Inverted Triangle CSS) + BEM naming for scalable, maintainable styling. All v4.0 design features are preserved.
-
-**For SCSS/styling work**: See `ARCHITECTURE.md` (Hugo components) and `CLAUDE-ITCSS-ADDENDUM.md` (ITCSS quick reference).
+**SCSS**: ITCSS + BEM. See `ARCHITECTURE.md` and `CLAUDE-ITCSS-ADDENDUM.md` for details.
 
 ---
 
-## Available Sections (31)
+## Available Sections
 
-### Core Foundation (4)
-Essential page components for structure and navigation:
-- `hero-breadcrumb` - Page header with title, subtitle, breadcrumb navigation
-- `values-intro` - Value proposition introduction with CTAs
-- `blog-grid` - Blog post grid with pagination
-- `cta-standard` - Standard call-to-action section
-
-### Interactive (3)
-Engagement components with user interaction:
-- `video-popup` - Video modal with play button overlay
-- `faq-mini` - Compact FAQ accordion (3-5 questions)
-- `method-tabs` - Tabbed content switcher for methodology
-
-### Forms (3)
-User input and data collection:
-- `contact-form-enhanced` - Full contact form with validation
-- `signup-form-enhanced` - Newsletter/service signup form
-- `newsletter-signup` - Simple email subscription
-
-### Info & Trust (6)
-Trust-building and informational components:
-- `contact-info-cards` - Contact methods (phone, email, location)
-- `contact-options` - Alternative contact channels
-- `onboarding-steps` - Process timeline for new clients
-- `privacy-guarantee` - Privacy and confidentiality assurance
-- `job-listings` - Career opportunities section
-- `professional-affiliations` - Credentials and memberships
-
-### Enhanced v4.0 (5) ⭐
-Premium components with glassmorphism, gradients, and animations:
-- `values-compass` - Compass-pattern layout with glassmorphism (NEW)
-- `feature-blocks` - Zigzag layout with parallax scrolling
-- `pricing-tables` - Featured tier elevation with comparison tooltips
-- `stats-numbers` - SVG progress rings with animated counting
-- `credentials-showcase` - Gradient icon circles with credential badges
-
-### Specialized Therapy (2)
-Psychology practice-specific sections:
-- `therapist-match` - Therapist compatibility assessment
-- `testimonials-enhanced` - Client testimonials with photos
-
-### General Purpose (5)
-Reusable content sections (consider upgrading to v4.0 equivalents):
-- `benefits-grid` - Grid of benefits/features (v4.0: use values-compass)
-- `problem-empathy` - Problem statement with empathy
-- `timeline-process` - Linear process timeline
-- `related-services` - Cross-sell related services
-- `service-highlights` - Service feature highlights
+**Core (4)**: hero-breadcrumb, values-intro, blog-grid, cta-standard
+**Interactive (3)**: video-popup, faq-mini, method-tabs
+**Forms (3)**: contact-form-enhanced, signup-form-enhanced, newsletter-signup
+**Trust (6)**: contact-info-cards, contact-options, onboarding-steps, privacy-guarantee, job-listings, professional-affiliations
+**Enhanced (5)**: values-compass, feature-blocks, pricing-tables, stats-numbers, credentials-showcase
+**Therapy (2)**: therapist-match, testimonials-enhanced
+**General (5)**: benefits-grid, problem-empathy, timeline-process, related-services, service-highlights
 
 ---
 
 ## Quick Start
 
-### Create Page (30 seconds)
+**Create Page**:
 ```yaml
-# content/english/services/therapy.md
 ---
 title: "Individual Therapy"
 layout: "flexible"
@@ -164,185 +75,104 @@ benefits_section:
   benefits:
     - icon: "las la-check"
       title: "Evidence-Based"
-      description: "CBT, DBT, ACT methods"
 ---
 ```
 
-### Use Archetypes (Faster)
+**Archetypes**:
 ```bash
 hugo new content/services/therapy.md --kind service-page
-hugo new content/therapy/cbt.md --kind therapy-page
-hugo new content/landing/promo.md --kind landing-page
 ```
 
 ---
 
-## Language URL Structure
+## Language URLs
 
-| Language | URL | Content Path |
-|----------|-----|--------------|
-| Romanian (default) | `/servicii/` | `content/romanian/` |
+| Language | URL | Path |
+|----------|-----|------|
+| Romanian | `/servicii/` | `content/romanian/` |
 | English | `/en/services/` | `content/english/` |
 
 **Common Mistakes**:
-- ❌ `/ro/contact` - Returns 404 (RO is default, no prefix)
-- ✅ `/contact` - Correct for Romanian
-- ✅ `/en/contact` - Correct for English
-
-**In Templates**: Use `.RelPermalink` (Hugo handles language prefixes)
+- ❌ `/ro/contact` (RO is default, no prefix)
+- ✅ `/contact` (Romanian)
+- ✅ `/en/contact` (English)
 
 ---
 
-## Development Commands
+## Commands
 
 ```bash
-hugo server --buildDrafts              # Dev server (MUST run from project root!)
-hugo --gc --minify                     # Production build
+hugo server --buildDrafts              # Dev server
+hugo --gc --minify                     # Production
 hugo --templateMetrics                 # Performance check
-scripts/test-components.sh             # Verify 71 components (9+24+2+36)
 ```
 
 ---
 
 ## Data Hierarchy
 
-**Front Matter** (page-specific):
 ```yaml
+# Front matter (page-specific)
 hero_breadcrumb:
   title: "Unique Title"
 ```
 
-**Shared Data** (`data/shared_sections.yaml`):
 ```yaml
+# data/shared_sections.yaml (shared)
 pricing_plans:
   basic: {...}
-  premium: {...}
 ```
 
-**Site Params** (`config/_default/params.toml`):
 ```toml
+# config/_default/params.toml (site)
 [params.design]
 headings_brand_color = true
 ```
 
-**Access Pattern**:
+**Access**:
 ```html
-{{ .Params.hero_breadcrumb.title }}              # Front matter
-{{ site.Data.shared_sections.pricing_plans }}    # Shared data
-{{ site.Params.design.headings_brand_color }}    # Site params
+{{ .Params.hero_breadcrumb.title }}
+{{ site.Data.shared_sections.pricing_plans }}
+{{ site.Params.design.headings_brand_color }}
 ```
 
 ---
 
-## Color Variant Usage Guidelines
+## Color Variants
 
-### Button Variants Strategy
+**Buttons**: primary (forest), secondary (sage), outline-primary, outline-secondary
+**Strategy**: 50-60% forest, 20-30% sage, 10-20% accents
 
-Achieve balanced color distribution (50-60% forest green, 20-30% sage, 10-20% supporting colors) through strategic variant assignment:
-
-**Available Button Variants:**
-- `primary` (forest green) - Main actions, trust signals, depth
-- `secondary` (sage) - Calm actions, holistic connection
-- `outline-primary` (forest outline) - Secondary actions
-- `outline-secondary` (sage outline) - Tertiary actions
-
-**Selection Decision Tree:**
-1. **Hero/CTA sections** → Use `primary` (forest green - trust, depth, expertise)
-2. **Personal/calm sections** → Use `secondary` (sage - tranquility, holistic approach)
-3. **Alternating pattern** → Avoid color monotony by varying adjacent sections
-4. **Hierarchy** → Primary > Secondary > Outline-primary > Outline-secondary
-
-**Visual Rhythm Pattern (Recommended):**
+**Pattern**:
 ```yaml
-sections:
-  - type: "hero-breadcrumb"
-    button_variant: "primary"           # Section 1: Forest (trust)
-  - type: "values-compass"
-    button_variant: "secondary"         # Section 2: Sage (calm)
-  - type: "feature-blocks"
-    button_variant: "outline-primary"   # Section 3: Forest outline
-  - type: "testimonials"
-    button_variant: "secondary"         # Section 4: Sage (personal)
-  - type: "cta-standard"
-    button_variant: "primary"           # Section 5: Forest (action)
+- type: "hero-breadcrumb"
+  button_variant: "primary"      # Forest (trust)
+- type: "values-compass"
+  button_variant: "secondary"    # Sage (calm)
 ```
 
-### Credential Badge Variants
-
-**8 Available Variants:**
-- `primary` (forest gradient) - Main credentials, certifications
-- `secondary` (sage gradient) - Calm trust signals
-- `coral` (coral gradient) - Compassionate qualities
-- `premium` (plum gradient) - Premium/specialized credentials
-- `sage` (sage gradient) - Calm/holistic approaches
-- `info` (blue gradient) - Educational background
-- `success` (green gradient) - Achievements
-- `warning` (amber gradient) - Important notices
-
-**Semantic Usage:**
-```yaml
-credentials_showcase:
-  credentials:
-    - badge_variant: "primary"      # Licensed Psychologist
-    - badge_variant: "secondary"    # 15+ years experience
-    - badge_variant: "coral"        # Person-centered approach
-    - badge_variant: "premium"      # Trauma specialist
-```
-
-**Balance Guidelines:**
-- **Homepage:** Mix 3-4 different badge variants (avoid all-forest)
-- **Service pages:** 2-3 variants focused on service theme
-- **About page:** 4-6 variants showcasing full credentials
-
-### Common Mistakes to Avoid
-
-❌ **All sections use primary variant** → 90% forest green monotony
-✅ **Alternating pattern** → Balanced 50-60% forest green, 20-30% sage
-
-❌ **Random variant selection** → Visual chaos
-✅ **Semantic selection** → Trust/action = primary, calm/personal = secondary
-
-❌ **All credentials same color** → Bland, undifferentiated
-✅ **Mixed credential badges** → Visual interest, clear differentiation
+**Badge Variants**: primary, secondary, coral, premium, sage, info, success, warning
 
 ---
 
 ## Design System
 
-**Colors**:
-- Primary: `#234E3E` (forest green - depth)
-- Secondary: `#6B9080` (sage - calm)
-- Accent: `#D4AF37` (gold - warmth)
-- Text: `#374151` (warm gray)
-
-**Typography**:
-- Headings: Crimson Pro (400-600) - Elegant serif
-- Body: Work Sans (400-600) - Modern sans-serif
-- Base: 16px
-- Font loading: Google Fonts @import in `_tokens-typography.scss`
-
-**Breakpoints**:
-```
-sm: 576px | md: 768px | lg: 992px | xl: 1200px
-```
+**Colors**: Primary `#234E3E` (forest), Secondary `#6B9080` (sage), Accent `#D4AF37` (gold), Text `#374151`
+**Typography**: Crimson Pro (headings), Work Sans (body), 16px base
+**Breakpoints**: sm:576px, md:768px, lg:992px, xl:1200px
 
 ---
 
 ## Common Tasks
 
-### Add New Section
+**Add Section**:
 ```bash
-# 1. Check existing sections first
-ls layouts/partials/sections/
-
-# 2. Create section (if unique)
+ls layouts/partials/sections/        # Check existing
 touch layouts/partials/sections/my-section.html
-
-# 3. Register in flexible.html (line 22-82)
-# 4. Use in page front matter
+# Register in flexible.html (line 22-82)
 ```
 
-**Section Template** (< 80 lines, data-driven, null-safe):
+**Section Template** (<80 lines, data-driven, null-safe):
 ```html
 {{- $section := .Params.my_section -}}
 {{- if $section -}}
@@ -357,29 +187,19 @@ touch layouts/partials/sections/my-section.html
 {{- end -}}
 ```
 
-### Add Translation
+**Add Translation**:
 ```yaml
 # i18n/ro.yaml
 my_key: "Text în română"
-
-# i18n/en.yaml
-my_key: "Text in English"
 ```
+Usage: `{{ i18n "my_key" }}`
 
-**Usage**: `{{ i18n "my_key" }}`
-
-### Update Navigation
+**Update Nav**:
 ```toml
 # config/_default/menus.ro.toml
 [[main]]
 name = "Servicii"
-url = "servicii/"  # Relative URL (Hugo serves at root)
-weight = 2
-
-# config/_default/menus.en.toml
-[[main]]
-name = "Services"
-url = "services/"  # Hugo adds /en/ automatically
+url = "servicii/"
 weight = 2
 ```
 
@@ -387,45 +207,21 @@ weight = 2
 
 ## Component Composition
 
-**Use Existing Components**:
 ```html
-<!-- ❌ Don't duplicate buttons -->
-<a href="{{ .url }}" class="btn btn-primary">{{ .text }}</a>
+<!-- ❌ Don't duplicate -->
+<a href="{{ .url }}" class="btn">{{ .text }}</a>
 
 <!-- ✅ Use atom -->
 {{ partial "atoms/button.html" (dict "text" .text "url" .url "variant" "primary") }}
-```
-
-**Props Pattern**:
-```html
-{{ partial "atoms/button.html" (dict
-  "text" "Click Me"
-  "url" "/contact"
-  "variant" "primary"
-  "icon" "las la-arrow-right"
-) }}
 ```
 
 ---
 
 ## Quality Standards
 
-**Code Style**:
-- Indentation: 2 spaces
-- Whitespace: Use `{{- -}}`
-- Null safety: Always check `if $var`
-
-**Performance**:
-- Sections: < 80 lines
-- Build: < 3s
-- Images: WebP + srcset + lazy loading
-- Caching: `{{ partialCached "organisms/header.html" . .Language }}`
-
-**Accessibility**:
-- Alt text: Required
-- Semantic HTML: `<section>`, `<article>`, `<nav>`
-- Color contrast: WCAG AA (4.5:1)
-- ARIA labels: For icon-only buttons
+**Code**: 2-space indent, `{{- -}}` whitespace, null checks
+**Performance**: <80 lines/section, <3s build, WebP images, `partialCached`
+**Accessibility**: Alt text, semantic HTML, WCAG AA (4.5:1), ARIA labels
 
 ---
 
@@ -434,121 +230,64 @@ weight = 2
 - [ ] Both languages (RO root, EN `/en/`)
 - [ ] Responsive (375px, 768px, 1200px)
 - [ ] No console errors
-- [ ] Build succeeds (`hugo --gc --minify`)
+- [ ] Build succeeds
 - [ ] Images load with alt text
-- [ ] Links functional
-- [ ] Performance: `hugo --templateMetrics`
+- [ ] Links work
 
 ---
 
-## Common Pitfalls
+## Pitfalls
 
-**Section doesn't render**:
+**Section missing**:
 ```yaml
 sections:
   - type: "my-section"  # ✅ Type added
-
-my_section:             # ❌ Data missing (add this!)
+my_section:             # ❌ Data missing
   title: "Title"
 ```
 
-**Image not loading**:
+**Image path**:
 ```yaml
 # ✅ Correct
 image: "images/feature.png"
-
 # ❌ Wrong
 image: "/assets/images/feature.png"
 ```
 
-**Build fails**:
-```bash
-hugo --verbose --debug  # Check template syntax
-```
-
 ---
 
-## File Modification Rules
+## File Modification
 
-**✅ SAFE**:
-- `content/**/*.md` (maintain RO + EN parity)
-- `layouts/partials/sections/*.html`
-- `data/shared_sections.yaml`
-- `config/_default/params.toml`
-- `i18n/*.yaml`
-
-**⚠️ CAUTION**:
-- `layouts/_default/flexible.html` (stable, rarely changes)
-- `hugo.toml`
-
-**❌ DON'T MODIFY**:
-- `node_modules/`, `public/`, `resources/`
+**✅ SAFE**: `content/**/*.md`, `layouts/partials/sections/*.html`, `data/shared_sections.yaml`, `config/_default/params.toml`, `i18n/*.yaml`
+**⚠️ CAUTION**: `layouts/_default/flexible.html`, `hugo.toml`
+**❌ DON'T**: `node_modules/`, `public/`, `resources/`
 
 ---
 
 ## Documentation
 
-**Read First**: `PROJECT.md` (architecture), `README.md` (quick start), `ARCHITECTURE.md` (technical)
-**Component API**: `docs/components/` (inside theme directory)
-**Data Conventions**: `docs/DATA-CONVENTIONS.md`
-**Tests**: `../../scripts/test-components.sh` (verify 48 components)
+**Read**: `PROJECT.md` (architecture), `README.md` (quick start), `ARCHITECTURE.md` (technical), `docs/components/`, `docs/DATA-CONVENTIONS.md`
 
 ---
 
 ## Summary
 
-**Every Task**:
-1. Read `PROJECT.md` (first time)
-2. Use flexible layout pattern
-3. Check existing sections before creating
-4. Test both RO + EN
-5. Verify responsive
-6. Run `hugo --gc --minify`
-
-**Component Creation**:
-- < 80 lines (sections)
-- Data-driven (no hardcoded text)
-- Null-safe (`if` checks)
-- Compose from atoms/molecules
+**Every Task**: Check existing sections, use flexible layout, test RO+EN, verify responsive, run `hugo --gc --minify`
+**Component Creation**: <80 lines, data-driven, null-safe, compose from atoms/molecules
 
 ---
 
-## v4.0 Creative Design Enhancements 🎨
+## Enhanced Design Features
 
-**NEW**: 5 premium enhanced components with warm, approachable psychology design
+**Values Compass**: Compass layout, glassmorphism, progressive disclosure, mobile tap-to-expand
+**Feature Blocks**: Zigzag + parallax (desktop ≥992px)
+**Pricing**: Featured tier elevation + tooltips
+**Stats**: SVG rings + animated counting
+**Credentials**: Gradient circles + glassmorphism
 
-### Values Compass (NEW)
-```yaml
-sections:
-  - type: "values-compass"
-values_compass:
-  title: "Core Values"
-  benefits:
-    - title: "Science-Based"
-      icon: "flask"
-      description: "Evidence-based CBT, DBT, ACT methods"
-```
-**Features**: Compass layout, glassmorphism, progressive disclosure, gradient icons, mobile tap-to-expand
-
-### Enhanced Components (AUTO-APPLIED)
-- **Feature Blocks**: Zigzag layout + parallax scrolling (desktop ≥992px)
-- **Pricing Tables**: Featured tier 1.08x scale + comparison tooltips
-- **Stats Numbers**: SVG progress rings + animated counting (0→target, 2s)
-- **Credentials**: Gradient icon circles + glassmorphism badges
-
-### Design System v4.0
-**8 New Gradients**: warm (forest→sage), radial, glassmorphism, icon variants
-**10 Animations**: fade-in (4 directions), pulse, float, gradient-shift, blob-morph, staggered-entrance
-**4 Organic Blobs**: soft, organic, smooth, gentle border-radius presets
-**Accessibility**: WCAG AA, reduced-motion support, keyboard nav, touch-optimized
-
-### Performance
-**Added**: +18KB gzipped (+15KB CSS + ~3KB JS)
-**Build**: Maintained <3s
-**Animations**: 60fps GPU-accelerated
+**Design System Additions**: 8 gradients, 10 animations, 4 organic blob presets, WCAG AA, reduced-motion support
+**Performance**: +18KB gzipped, <3s builds, 60fps animations
 
 ---
 
-**Status**: Production Ready ✅ | 71 components (9 atoms + 24 molecules + 2 organisms + 36 sections) | <3s builds | <520KB pages | WebP images | Multilingual | **v5.1.0: Complete 2025 Refactor** | Full BEM + ITCSS
-
-**Version**: 5.1.0 | **Updated**: 2025-11-20 | **Hugo**: v0.152.2 extended | **Architecture**: ITCSS + BEM | **Fonts**: Crimson Pro (serif) + Work Sans (sans)
+**Status**: Production Ready ✅ | 71 components | <3s builds | <520KB pages | ITCSS + BEM | Crimson Pro + Work Sans
