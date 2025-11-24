@@ -47,7 +47,7 @@
     pointer-events: none; // Don't block interactions
   }
 
-  // Second decorative blob (bottom-left)
+  // Second decorative blob (bottom-left) - Very dark green (Redesign 2025)
   &::after {
     content: '';
     position: absolute;
@@ -55,7 +55,7 @@
     left: -8%; // Overflow left
     width: 50%; // Medium blob
     height: 100%;
-    background: rgba($forest-500, 0.25); // Dark forest green with lower opacity
+    background: rgba($forest-900, 0.85); // Almost black forest green with high opacity
     border-radius: 60% 40% 55% 45% / 45% 60% 40% 55%; // Different organic shape
     z-index: 0; // Behind content
     pointer-events: none; // Don't block interactions

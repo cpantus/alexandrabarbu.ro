@@ -120,7 +120,7 @@
 }
 
 .c-footer-info__description {
-  margin: 0 0 $space-3 0; // 24px below description
+  margin: 0 0 $space-10 0; // 80px below description (Redesign 2025: more space before social icons)
   font-size: $font-size-base;
   line-height: $line-height-relaxed;
   color: #ffffff; // White text in footer

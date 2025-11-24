@@ -36,7 +36,7 @@
   border-radius: $radius-md; // 12px
   overflow: hidden;
   box-shadow: $shadow-xs;
-  transition: all $duration-base $easing-medium;
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 
   // Gradient left border (variant-specific)
@@ -49,7 +49,7 @@
     width: 4px; // 4px (design accent)
     background: transparent;
     opacity: 0;
-    transition: opacity $duration-base $easing-medium;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   // Hover effect
@@ -133,7 +133,7 @@
   line-height: $leading-snug; // 1.375
   margin: 0;
   flex: 1;
-  transition: color $duration-fast $easing-subtle;
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (max-width: $breakpoint-md) {
     font-size: $text-base; // 1rem / 16px
@@ -153,7 +153,7 @@
   justify-content: center;
   background: linear-gradient(135deg, $forest-100 0%, $sage-100 100%);
   flex-shrink: 0;
-  transition: transform $duration-base $easing-medium, background $duration-fast $easing-subtle;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background $duration-fast $easing-subtle;
 
   i {
     color: $color-primary;

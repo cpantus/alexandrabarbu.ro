@@ -81,8 +81,10 @@
   flex: 1 1 auto;
   min-width: 0; // Allow flex items to shrink below content size
 
-  // Social section - slightly wider
+  // Social section - slightly wider + pushed down (Redesign 2025)
   &--social {
+    margin-top: $space-16; // 128px top margin to push social icons down
+
     @media (min-width: $breakpoint-md) {
       flex: 1.5 1 auto;
     }

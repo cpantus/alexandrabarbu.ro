@@ -22,8 +22,14 @@
 // Modern CSS reset based on normalize.css v8 + modern-normalize
 @import 'normalize';
 
+// ----------------------------------
+// Accessibility & Interaction Fixes
+// ----------------------------------
+// Remove tap-highlight, preserve keyboard focus indicators
+@import 'accessibility';
+
 // ==================================
 // END OF GENERIC LAYER
 // ==================================
-// Output: CSS custom properties + normalize/reset
-// Phase 1: ✅ COMPLETE - Normalize added
+// Output: CSS custom properties + normalize/reset + accessibility
+// Phase 1: ✅ COMPLETE - Normalize + accessibility added

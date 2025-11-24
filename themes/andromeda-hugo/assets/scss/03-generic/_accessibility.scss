@@ -1,0 +1,141 @@
+// ==================================
+// ACCESSIBILITY & INTERACTION FIXES
+// ==================================
+//
+// Layer: 03-generic
+// Purpose: Global accessibility and interaction improvements
+//
+// Last Updated: 2025-11-24
+// Version: 1.0.0
+//
+// Contents:
+// 1. Tap highlight removal (mobile/touch)
+// 2. Focus-visible support (keyboard navigation)
+//
+
+// ----------------------------------
+// Remove tap highlight on mobile
+// ----------------------------------
+// Remove the default mobile tap highlight (appears as green/gray rectangle)
+// while preserving keyboard focus indicators for accessibility
+//
+// Applies to:
+// - All links
+// - All buttons
+// - Interactive elements
+//
+// Note: :focus-visible will still show focus indicators for keyboard users
+//
+// !important is used to override browser defaults and any competing styles
+*,
+*::before,
+*::after {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+}
+
+// ----------------------------------
+// Universal :active state fix
+// ----------------------------------
+// Remove any browser default outlines/borders on active (click) state
+// This is a catch-all to prevent the green rectangle flash on ANY element
+*:active,
+*:active::before,
+*:active::after {
+  outline: none !important;
+}
+
+// ----------------------------------
+// Focus-visible polyfill
+// ----------------------------------
+// Ensure focus indicators only show for keyboard navigation, not mouse/touch clicks
+// Modern browsers support :focus-visible natively
+// This provides baseline styles for all focusable elements
+
+// Hide focus outline for mouse/touch users
+// But keep it for keyboard users via :focus-visible
+a,
+button,
+input,
+select,
+textarea,
+[tabindex]:not([tabindex="-1"]) {
+  // Hide default focus outline
+  &:focus {
+    outline: none !important;
+  }
+
+  // CRITICAL: Remove any outline/border/background on :active (click) state
+  // This is the primary fix for the green rectangle flash
+  &:active {
+    outline: none !important;
+    border-color: currentColor !important; // Preserve border but remove color flash
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  // Show focus outline ONLY for keyboard navigation
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+// ----------------------------------
+// Specific fixes for navigation
+// ----------------------------------
+// Navigation links have custom focus animations
+// But we still want to remove tap highlight
+nav a,
+.c-navigation__link,
+.c-navigation__dropdown-link,
+.c-header__brand,
+.navbar-brand,
+.logo a {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+
+  // Ensure no tap highlight on pseudo-elements either
+  &::before,
+  &::after {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+  }
+
+  // Remove any outline/border/background on active state (click)
+  // This prevents the green rectangle flash
+  &:active {
+    outline: none !important;
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  // Also prevent on pseudo-elements during active state
+  &:active::before,
+  &:active::after {
+    outline: none !important;
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
+// ----------------------------------
+// High contrast mode support
+// ----------------------------------
+// In high contrast mode, ensure focus indicators are always visible
+@media (prefers-contrast: high) {
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline-width: 3px;
+    outline-color: currentColor;
+  }
+}
+
+// ==================================
+// END OF ACCESSIBILITY
+// ==================================
