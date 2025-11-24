@@ -6,15 +6,15 @@
 /* Background colors
    ========================================================================== */
 
-.bg-primary { background-color: #4DB380 !important; }
-.bg-secondary { background-color: #CC6B49 !important; }
+.bg-primary { background-color: #234E3E !important; } /* Forest green */
+.bg-secondary { background-color: #6B9080 !important; } /* Sage green */
 .bg-success { background-color: #28a745 !important; }
 .bg-danger { background-color: #dc3545 !important; }
 .bg-warning { background-color: #ffc107 !important; }
 .bg-info { background-color: #17a2b8 !important; }
 .bg-light { background-color: #f8f9fa !important; }
 .bg-dark { background-color: #343a40 !important; }
-.bg-white { background-color: #D7F4E6 !important; } /* v5.1: Warm emerald-50 (was pure white) */
+.bg-white { background-color: #D7F4E6 !important; } /* v5.1: Warm forest-50 (was pure white) */
 .bg-black { background-color: #000000 !important; }
 .bg-transparent { background-color: transparent !important; }
 
@@ -22,7 +22,7 @@
    ========================================================================== */
 
 .bg-color { background-color: #f8f9fa !important; }
-.bg-anim { background: linear-gradient(90deg, #4DB380, #CC6B49) !important; }
+.bg-anim { background: linear-gradient(90deg, #234E3E, #6B9080) !important; } /* Forest to sage */
 
 /* Borders
    ========================================================================== */
@@ -37,8 +37,8 @@
 /* Border colors
    ========================================================================== */
 
-.border-primary { border-color: #4DB380 !important; }
-.border-secondary { border-color: #CC6B49 !important; }
+.border-primary { border-color: #234E3E !important; } /* Forest green */
+.border-secondary { border-color: #6B9080 !important; } /* Sage green */
 .border-success { border-color: #28a745 !important; }
 .border-danger { border-color: #dc3545 !important; }
 .border-warning { border-color: #ffc107 !important; }

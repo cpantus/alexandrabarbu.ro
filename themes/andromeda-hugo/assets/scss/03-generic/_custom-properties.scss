@@ -15,28 +15,28 @@
   /* ----------------------------------
    * Button Variant Colors
    * ---------------------------------- */
-  --btn-primary-bg: #{$emerald-500};
-  --btn-primary-hover: #{$emerald-600};
+  --btn-primary-bg: #{$forest-500};
+  --btn-primary-hover: #{$forest-600};
   --btn-primary-text: #ffffff;
 
-  --btn-secondary-bg: #{$terracotta-500};
-  --btn-secondary-hover: #{$terracotta-600};
+  --btn-secondary-bg: #{$sage-500};
+  --btn-secondary-hover: #{$sage-600};
   --btn-secondary-text: #ffffff;
 
-  --btn-outline-primary-border: #{$emerald-500};
-  --btn-outline-primary-text: #{$emerald-600};
-  --btn-outline-primary-hover-bg: #{$emerald-50};
+  --btn-outline-primary-border: #{$forest-500};
+  --btn-outline-primary-text: #{$forest-600};
+  --btn-outline-primary-hover-bg: #{$forest-50};
 
-  --btn-outline-secondary-border: #{$terracotta-500};
-  --btn-outline-secondary-text: #{$terracotta-600};
-  --btn-outline-secondary-hover-bg: #{$terracotta-50};
+  --btn-outline-secondary-border: #{$sage-500};
+  --btn-outline-secondary-text: #{$sage-600};
+  --btn-outline-secondary-hover-bg: #{$sage-50};
 
   /* ----------------------------------
    * Badge Variant Colors (Gradients)
    * For credential badges with visual variety
    * ---------------------------------- */
-  --badge-primary-gradient: linear-gradient(135deg, #{$emerald-400} 0%, #{$emerald-600} 100%);
-  --badge-secondary-gradient: linear-gradient(135deg, #{$terracotta-400} 0%, #{$terracotta-600} 100%);
+  --badge-primary-gradient: linear-gradient(135deg, #{$forest-400} 0%, #{$forest-600} 100%);
+  --badge-secondary-gradient: linear-gradient(135deg, #{$sage-400} 0%, #{$sage-600} 100%);
   --badge-coral-gradient: linear-gradient(135deg, #{$coral-400} 0%, #{$coral-600} 100%);
   --badge-premium-gradient: linear-gradient(135deg, #{$plum-400} 0%, #{$plum-600} 100%);
   --badge-sage-gradient: linear-gradient(135deg, #{$sage-400} 0%, #{$sage-600} 100%);
@@ -48,8 +48,8 @@
    * Icon Gradient Backgrounds
    * For icon circles with brand colors
    * ---------------------------------- */
-  --icon-gradient-primary: linear-gradient(135deg, #{$emerald-400} 0%, #{$emerald-500} 100%);
-  --icon-gradient-secondary: linear-gradient(135deg, #{$terracotta-400} 0%, #{$terracotta-500} 100%);
+  --icon-gradient-primary: linear-gradient(135deg, #{$forest-400} 0%, #{$forest-500} 100%);
+  --icon-gradient-secondary: linear-gradient(135deg, #{$sage-400} 0%, #{$sage-500} 100%);
   --icon-gradient-coral: linear-gradient(135deg, #{$coral-400} 0%, #{$coral-500} 100%);
   --icon-gradient-premium: linear-gradient(135deg, #{$plum-400} 0%, #{$plum-500} 100%);
   --icon-gradient-sage: linear-gradient(135deg, #{$sage-400} 0%, #{$sage-500} 100%);
@@ -59,8 +59,8 @@
    * Card Border Colors
    * For service-highlights, related-services sections
    * ---------------------------------- */
-  --card-border-primary: #{$emerald-200};
-  --card-border-secondary: #{$terracotta-200};
+  --card-border-primary: #{$forest-200};
+  --card-border-secondary: #{$sage-200};
   --card-border-coral: #{$coral-200};
   --card-border-sage: #{$sage-200};
 
@@ -68,8 +68,8 @@
    * Card Hover Shadows (Colored)
    * Subtle brand-colored shadows on hover
    * ---------------------------------- */
-  --card-shadow-primary: 0 10px 30px -5px rgba(#{red($emerald-400)}, #{green($emerald-400)}, #{blue($emerald-400)}, 0.2);
-  --card-shadow-secondary: 0 10px 30px -5px rgba(#{red($terracotta-400)}, #{green($terracotta-400)}, #{blue($terracotta-400)}, 0.2);
+  --card-shadow-primary: 0 10px 30px -5px rgba(#{red($forest-400)}, #{green($forest-400)}, #{blue($forest-400)}, 0.2);
+  --card-shadow-secondary: 0 10px 30px -5px rgba(#{red($sage-400)}, #{green($sage-400)}, #{blue($sage-400)}, 0.2);
   --card-shadow-coral: 0 10px 30px -5px rgba(#{red($coral-400)}, #{green($coral-400)}, #{blue($coral-400)}, 0.2);
 
   /* ----------------------------------
@@ -187,8 +187,8 @@
    * ---------------------------------- */
   --gradient-primary-warm: #{$gradient-warm-vibrant};
   --gradient-glass-light: #{$gradient-glass-light};
-  --gradient-icon-emerald: #{$gradient-icon-emerald};
-  --gradient-icon-terracotta: #{$gradient-icon-terracotta};
+  --gradient-icon-forest: #{$gradient-icon-forest};
+  --gradient-icon-sage: #{$gradient-icon-sage};
   --gradient-radial-primary: #{$gradient-radial-primary};
   --gradient-radial-secondary: #{$gradient-radial-secondary};
 }

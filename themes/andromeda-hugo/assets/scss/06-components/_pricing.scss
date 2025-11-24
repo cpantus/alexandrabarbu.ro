@@ -105,7 +105,7 @@
   p {
     display: inline-block;
     padding: $space-2 $space-4;
-    background: rgba($emerald-50, 0.8);
+    background: rgba($forest-50, 0.8);
     color: $color-primary;
     font-size: $text-sm;
     font-weight: $font-weight-heading-bold; // 600 per design rules
@@ -188,10 +188,10 @@
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.98) 0%,
-    rgba($emerald-50, 0.95) 100%
+    rgba($forest-50, 0.95) 100%
   );
   box-shadow: $shadow-featured;
-  border: 2px solid rgba($emerald-400, 0.3);
+  border: 2px solid rgba($forest-400, 0.3);
   z-index: 10;
 
   // Gradient border always visible
@@ -338,7 +338,7 @@
     width: 24px;
     height: 24px;
     border-radius: $radius-full;
-    background: $gradient-icon-emerald;
+    background: $gradient-icon-forest;
     color: white;
     display: flex;
     align-items: center;

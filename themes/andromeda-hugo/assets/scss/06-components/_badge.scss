@@ -128,7 +128,7 @@
     width: $icon-circle-sm;   // 36px
     height: $icon-circle-sm;
     border-radius: $radius-full;
-    background: $gradient-icon-emerald;  // Default: primary
+    background: $gradient-icon-forest;  // Default: primary
     color: white;
     transition: transform $duration-base $easing-medium;
   }
@@ -174,7 +174,7 @@
  */
 .c-badge--primary .c-badge__icon i,
 .c-badge--primary .c-badge__icon .icon {
-  background: $gradient-icon-emerald;
+  background: $gradient-icon-forest;
 }
 
 /**
@@ -182,7 +182,7 @@
  */
 .c-badge--secondary .c-badge__icon i,
 .c-badge--secondary .c-badge__icon .icon {
-  background: $gradient-icon-terracotta;
+  background: $gradient-icon-sage;
 }
 
 /**

@@ -17,7 +17,7 @@
     left: 10%;
     right: 10%;
     height: 2px;
-    background: linear-gradient(90deg, $emerald-500 0%, $terracotta-500 100%);
+    background: linear-gradient(90deg, $forest-500 0%, $sage-500 100%);
     z-index: 0;
   }
 }
@@ -33,7 +33,7 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, $emerald-500 0%, $terracotta-500 100%);
+    background: linear-gradient(135deg, $forest-500 0%, $sage-500 100%);
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
@@ -47,7 +47,7 @@
   }
   
   &.completed .step-number {
-    background: linear-gradient(135deg, $emerald-600 0%, $emerald-700 100%);
+    background: linear-gradient(135deg, $forest-600 0%, $forest-700 100%);
     
     &::after {
       content: '✓';
@@ -73,14 +73,14 @@
   
   .form-progress {
     height: 6px;
-    background: $emerald-50;
+    background: $forest-50;
     border-radius: $radius-xs;
     margin-bottom: 2rem;
     overflow: hidden;
     
     .progress-bar {
       height: 100%;
-      background: linear-gradient(90deg, $emerald-500 0%, $emerald-600 100%);
+      background: linear-gradient(90deg, $forest-500 0%, $forest-600 100%);
       border-radius: $radius-xs;
       transition: width 0.5s ease;
     }
@@ -93,7 +93,7 @@
     animation-delay: calc(var(--item-index) * 0.1s);
     
     i {
-      color: $emerald-500;
+      color: $forest-500;
       margin-right: 0.5rem;
     }
   }
@@ -122,7 +122,7 @@
     left: -10px;
     right: -10px;
     bottom: -10px;
-    background: linear-gradient(135deg, $emerald-500 0%, $emerald-600 100%);
+    background: linear-gradient(135deg, $forest-500 0%, $forest-600 100%);
     border-radius: 50%;
     opacity: 0.1;
     animation: pulse-ring 2s infinite;
@@ -146,7 +146,7 @@
 
 /* Reassuring Microcopy */
 .reassurance-text {
-  color: $emerald-500;
+  color: $forest-500;
   font-size: 0.875rem;
   margin-top: 0.25rem;
   display: flex;
@@ -160,13 +160,13 @@
 
 /* Account Benefits Card */
 .benefits-card {
-  background: linear-gradient(135deg, $gray-50 0%, lighten($emerald-50, 2%) 100%);
+  background: linear-gradient(135deg, $gray-50 0%, lighten($forest-50, 2%) 100%);
   border-radius: $radius-lg;
   padding: 1.5rem;
   border: 1px solid rgba(77, 179, 128, 0.1);
   
   h5 {
-    color: $emerald-500;
+    color: $forest-500;
     font-weight: 600;
     margin-bottom: 1rem;
   }
@@ -184,7 +184,7 @@
         content: '✓';
         position: absolute;
         left: 0;
-        color: $emerald-500;
+        color: $forest-500;
         font-weight: bold;
       }
     }
@@ -194,25 +194,25 @@
 /* Input Field Focus Effects */
 .user-access-form {
   .form-control {
-    border: 2px solid $emerald-50;  // Design token (Week 3)
+    border: 2px solid $forest-50;  // Design token (Week 3)
     border-radius: $radius-sm;       // 8px - Design token (Week 3)
     padding: $space-3 $space-5;      // 12px 20px - Design tokens (Week 3)
     transition: all $duration-base ease;
     
     &:focus {
-      border-color: $emerald-500;
-      background-color: lighten($emerald-50, 4%);
-      outline: 2px solid $emerald-500; outline-offset: 2px;
+      border-color: $forest-500;
+      background-color: lighten($forest-50, 4%);
+      outline: 2px solid $forest-500; outline-offset: 2px;
       
       & + label {
-        color: $emerald-500;
+        color: $forest-500;
         transform: translateY(-2px);
       }
     }
     
     &:valid {
-      border-color: $emerald-500;
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%234DB380'%3e%3cpath fill-rule='evenodd' d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z'/%3e%3c/svg%3e");
+      border-color: $forest-500;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23234E3E'%3e%3cpath fill-rule='evenodd' d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z'/%3e%3c/svg%3e");
       background-repeat: no-repeat;
       background-position: right calc(0.375em + 0.1875rem) center;
       background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
@@ -223,7 +223,7 @@
     border-radius: $radius-md;
     padding: 14px 30px;
     font-weight: 600;
-    background: linear-gradient(135deg, $emerald-500 0%, $emerald-600 100%);
+    background: linear-gradient(135deg, $forest-500 0%, $forest-600 100%);
     border: none;
     transition: all 0.3s ease;
     position: relative;
@@ -314,7 +314,7 @@
 }
 
 .recaptcha-privacy a {
-  color: $emerald-500;
+  color: $forest-500;
   text-decoration: underline;
 }
 
@@ -337,7 +337,7 @@
   /* Markdown headings within features */
   h1, h2, h3, h4, h5, h6 {
     font-family: $font-heading !important; /* Playfair Display for headlines - Redesign 2025 */
-    color: $emerald-500;
+    color: $forest-500;
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
     
@@ -374,18 +374,18 @@
     position: relative;
     
     &::marker {
-      color: $emerald-500; /* Verde Eucalipt bullet points */
+      color: $forest-500; /* Verde Eucalipt bullet points */
     }
   }
   
   /* Links within markdown */
   a {
-    color: $emerald-500;
+    color: $forest-500;
     text-decoration: none;
     transition: all 0.2s ease;
     
     &:hover {
-      color: darken($emerald-500, 15%);
+      color: darken($forest-500, 15%);
       text-decoration: underline;
     }
   }
@@ -403,7 +403,7 @@
   
   /* Blockquotes */
   blockquote {
-    border-left: 4px solid $emerald-500;
+    border-left: 4px solid $forest-500;
     padding-left: 1rem;
     margin: 1.5rem 0;
     font-style: italic;
@@ -416,7 +416,7 @@
   /* Code styling */
   code {
     background: rgba(77, 179, 128, 0.1);
-    color: $emerald-500;
+    color: $forest-500;
     padding: 0.25rem 0.5rem;
     border-radius: $radius-xs;
     font-size: 0.9em;
@@ -452,7 +452,7 @@
     th {
       background: rgba(77, 179, 128, 0.1);
       font-weight: 600;
-      color: $emerald-500;
+      color: $forest-500;
     }
     
     tr:nth-child(even) {
@@ -464,7 +464,7 @@
   hr {
     border: none;
     height: 1px;
-    background: linear-gradient(90deg, transparent, $emerald-500, transparent);
+    background: linear-gradient(90deg, transparent, $forest-500, transparent);
     margin: 2rem 0;
   }
   

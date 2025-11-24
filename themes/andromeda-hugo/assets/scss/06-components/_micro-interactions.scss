@@ -76,15 +76,15 @@ $duration-slow: 0.4s;
  */
 .c-button--primary {
   &:hover {
-    box-shadow: 0 6px 16px rgba($emerald-500, 0.35),
-                0 2px 8px rgba($emerald-500, 0.25);
+    box-shadow: 0 6px 16px rgba($forest-500, 0.35),
+                0 2px 8px rgba($forest-500, 0.25);
   }
 }
 
 .c-button--secondary {
   &:hover {
-    box-shadow: 0 6px 16px rgba($terracotta-500, 0.35),
-                0 2px 8px rgba($terracotta-500, 0.25);
+    box-shadow: 0 6px 16px rgba($sage-500, 0.35),
+                0 2px 8px rgba($sage-500, 0.25);
   }
 }
 
@@ -144,12 +144,13 @@ a:not(.c-button):not(.c-card):not(.c-services-preview__bottom-link-text):not(.c-
     width: 100%;
   }
 
-  // Exception: Navigation links use different pattern
-  &.c-nav__link::after {
-    bottom: 0;
-    height: 3px;
-    background: $color-primary;
-  }
+  // DEPRECATED: Legacy navigation exception removed
+  // Use .c-navigation__link in _navigation.scss instead
+  // &.c-nav__link::after {
+  //   bottom: 0;
+  //   height: 3px;
+  //   background: $color-primary;
+  // }
 }
 
 /**
@@ -209,7 +210,7 @@ select {
 
   &:focus {
     border-color: $color-primary;
-    box-shadow: 0 0 0 3px rgba($emerald-500, 0.1);
+    box-shadow: 0 0 0 3px rgba($forest-500, 0.1);
   }
 }
 
@@ -243,52 +244,54 @@ input[type="radio"] {
 -------------------------------------------------------------------*/
 
 /**
- * Main navigation links with smooth underline
+ * DEPRECATED: Legacy navigation styles (replaced by BEM .c-navigation__link)
+ * DO NOT USE - kept for backwards compatibility only
+ * Use .c-navigation__link in _navigation.scss instead
  */
-.c-nav__link {
-  position: relative;
-  transition: color $duration-fast $ease-smooth;
+// .c-nav__link {
+//   position: relative;
+//   transition: color $duration-fast $ease-smooth;
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 3px;
-    background: $color-primary;
-    transition: width $duration-normal $ease-smooth;
-  }
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     bottom: 0;
+//     left: 50%;
+//     transform: translateX(-50%);
+//     width: 0;
+//     height: 3px;
+//     background: $color-primary;
+//     transition: width $duration-normal $ease-smooth;
+//   }
 
-  &:hover,
-  &.active {
-    color: $color-primary;
+//   &:hover,
+//   &.active {
+//     color: $color-primary;
 
-    &::after {
-      width: 100%;
-    }
-  }
-}
+//     &::after {
+//       width: 100%;
+//     }
+//   }
+// }
 
 /**
- * Dropdown menu smooth reveal
+ * DEPRECATED: Legacy dropdown styles (replaced by .c-navigation__dropdown)
  */
-.c-nav__dropdown {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-8px);
-  transition: opacity $duration-normal $ease-smooth,
-              transform $duration-normal $ease-smooth,
-              visibility 0s $duration-normal;
+// .c-nav__dropdown {
+//   opacity: 0;
+//   visibility: hidden;
+//   transform: translateY(-8px);
+//   transition: opacity $duration-normal $ease-smooth,
+//               transform $duration-normal $ease-smooth,
+//               visibility 0s $duration-normal;
 
-  .c-nav__item:hover & {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    transition-delay: 0s;
-  }
-}
+//   .c-nav__item:hover & {
+//     opacity: 1;
+//     visibility: visible;
+//     transform: translateY(0);
+//     transition-delay: 0s;
+//   }
+// }
 
 /*------------------------------------------------------------------
   # Testimonial Card Enhancements

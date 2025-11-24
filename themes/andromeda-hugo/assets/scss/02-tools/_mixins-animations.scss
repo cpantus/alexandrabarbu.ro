@@ -66,17 +66,17 @@
 // Enhanced focus ring with optional glow
 //
 // Parameters:
-// @param $color - Ring color (default: $emerald-400)
+// @param $color - Ring color (default: $forest-400)
 // @param $glow - Add glow effect (default: true)
 //
 // Usage:
 // .c-button {
 //   &:focus {
-//     @include focus-ring-enhanced($emerald-400, true);
+//     @include focus-ring-enhanced($forest-400, true);
 //   }
 // }
 //
-@mixin focus-ring-enhanced($color: $emerald-400, $glow: true) {
+@mixin focus-ring-enhanced($color: $forest-400, $glow: true) {
   outline: none;
   box-shadow: 0 0 0 3px rgba($color, 0.4);
 
@@ -101,10 +101,10 @@
 @mixin card-featured() {
   transform: scale(1.15);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15),
-              0 12px 25px -8px rgba($emerald-400, 0.2),
-              0 6px 12px -4px rgba($terracotta-400, 0.15);
+              0 12px 25px -8px rgba($forest-400, 0.2),
+              0 6px 12px -4px rgba($sage-400, 0.15);
   z-index: 10;
-  border: 2px solid rgba($emerald-400, 0.3);
+  border: 2px solid rgba($forest-400, 0.3);
 
   .icon-wrapper {
     width: 84px;   // Extra large for featured cards

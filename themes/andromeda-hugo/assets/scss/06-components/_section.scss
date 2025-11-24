@@ -43,22 +43,22 @@ section {
 // Pattern 1 (1st, 5th, 9th...) - White cream
 // Exclude dark sections (testimonials, footer) from alternating pattern
 section:nth-of-type(4n+1):not(.c-testimonials-dark):not(.c-footer) {
-  background: $cream-50 !important; // REDESIGN 2025: Was $emerald-50
+  background: $cream-50 !important; // REDESIGN 2025: Was $forest-50
 }
 
 // Pattern 2 (2nd, 6th, 10th...) - Light cream
 section:nth-of-type(4n+2):not(.c-testimonials-dark):not(.c-footer) {
-  background: $cream-100 !important; // REDESIGN 2025: Was $emerald-100
+  background: $cream-100 !important; // REDESIGN 2025: Was $forest-100
 }
 
 // Pattern 3 (3rd, 7th, 11th...) - White cream
 section:nth-of-type(4n+3):not(.c-testimonials-dark):not(.c-footer) {
-  background: $cream-50 !important; // REDESIGN 2025: Was $terracotta-50
+  background: $cream-50 !important; // REDESIGN 2025: Was $sage-50
 }
 
 // Pattern 4 (4th, 8th, 12th...) - Light cream
 section:nth-of-type(4n):not(.c-testimonials-dark):not(.c-footer) {
-  background: $cream-100 !important; // REDESIGN 2025: Was $terracotta-100
+  background: $cream-100 !important; // REDESIGN 2025: Was $sage-100
 }
 
 /*------------------------------------------------------------------
@@ -72,15 +72,15 @@ section:nth-of-type(4n):not(.c-testimonials-dark):not(.c-footer) {
  */
 
 .section--light {
-  background: $cream-50 !important; // REDESIGN 2025: White cream (was $emerald-50)
+  background: $cream-50 !important; // REDESIGN 2025: White cream (was $forest-50)
 }
 
 .section--primary {
-  background: $cream-100 !important; // REDESIGN 2025: Light cream (was $emerald-100)
+  background: $cream-100 !important; // REDESIGN 2025: Light cream (was $forest-100)
 }
 
 .section--secondary {
-  background: $cream-200 !important; // REDESIGN 2025: Medium cream (was $terracotta-100)
+  background: $cream-200 !important; // REDESIGN 2025: Medium cream (was $sage-100)
 }
 
 .section--gradient {

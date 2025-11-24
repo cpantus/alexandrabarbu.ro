@@ -38,9 +38,9 @@
 
   // Radial gradient background for depth (lighter center, darker edges)
   @if $variant == 'primary' {
-    background: radial-gradient(circle at 30% 30%, $emerald-400 0%, $emerald-600 100%);
+    background: radial-gradient(circle at 30% 30%, $forest-400 0%, $forest-600 100%);
   } @else if $variant == 'secondary' {
-    background: radial-gradient(circle at 30% 30%, $terracotta-400 0%, $terracotta-600 100%);
+    background: radial-gradient(circle at 30% 30%, $sage-400 0%, $sage-600 100%);
   } @else if $variant == 'coral' {
     background: radial-gradient(circle at 30% 30%, $coral-400 0%, $coral-600 100%);
   } @else if $variant == 'premium' {
@@ -51,7 +51,7 @@
     background: radial-gradient(circle at 30% 30%, $teal-400 0%, $teal-600 100%);
   } @else {
     // Fallback to primary
-    background: radial-gradient(circle at 30% 30%, $emerald-400 0%, $emerald-600 100%);
+    background: radial-gradient(circle at 30% 30%, $forest-400 0%, $forest-600 100%);
   }
 
   // Icon inside circle
@@ -92,9 +92,9 @@
 
   // Semi-transparent gradient (lighter than solid version)
   @if $variant == 'primary' {
-    background: linear-gradient(135deg, rgba($emerald-400, 0.7) 0%, rgba($emerald-500, 0.8) 100%);
+    background: linear-gradient(135deg, rgba($forest-400, 0.7) 0%, rgba($forest-500, 0.8) 100%);
   } @else if $variant == 'secondary' {
-    background: linear-gradient(135deg, rgba($terracotta-400, 0.7) 0%, rgba($terracotta-500, 0.8) 100%);
+    background: linear-gradient(135deg, rgba($sage-400, 0.7) 0%, rgba($sage-500, 0.8) 100%);
   } @else if $variant == 'coral' {
     background: linear-gradient(135deg, rgba($coral-400, 0.7) 0%, rgba($coral-500, 0.8) 100%);
   }
@@ -115,15 +115,15 @@
 
   i, svg {
     @if $variant == 'primary' {
-      color: $emerald-500;
+      color: $forest-500;
     } @else if $variant == 'secondary' {
-      color: $terracotta-500;
+      color: $sage-500;
     } @else if $variant == 'coral' {
       color: $coral-500;
     } @else if $variant == 'sage' {
       color: $sage-500;
     } @else {
-      color: $emerald-500; // Fallback
+      color: $forest-500; // Fallback
     }
 
     font-size: $icon-xl; // 32px default
@@ -162,11 +162,11 @@
     border-radius: $radius-sm;
 
     @if $variant == 'primary' {
-      background: $emerald-100;
-      color: $emerald-700;
+      background: $forest-100;
+      color: $forest-700;
     } @else if $variant == 'secondary' {
-      background: $terracotta-100;
-      color: $terracotta-700;
+      background: $sage-100;
+      color: $sage-700;
     } @else if $variant == 'coral' {
       background: $coral-100;
       color: $coral-700;

@@ -296,26 +296,26 @@
 // Primary variant (emerald)
 .c-accordion--primary {
   .c-accordion__item::before {
-    background: $gradient-icon-emerald;
+    background: $gradient-icon-forest;
   }
 
   .c-accordion__item--active .c-accordion__button-text {
-    color: $emerald-600;
+    color: $forest-600;
   }
 }
 
 // Secondary variant (terracotta)
 .c-accordion--secondary {
   .c-accordion__item::before {
-    background: $gradient-icon-terracotta;
+    background: $gradient-icon-sage;
   }
 
   .c-accordion__item--active .c-accordion__button-text {
-    color: $terracotta-600;
+    color: $sage-600;
   }
 
   .c-accordion__button-icon i {
-    color: $terracotta-600;
+    color: $sage-600;
   }
 }
 

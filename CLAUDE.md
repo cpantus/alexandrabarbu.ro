@@ -238,17 +238,17 @@ headings_brand_color = true
 
 ### Button Variants Strategy
 
-Achieve balanced color distribution (50-60% emerald, 20-30% terracotta, 10-20% supporting colors) through strategic variant assignment:
+Achieve balanced color distribution (50-60% forest green, 20-30% sage, 10-20% supporting colors) through strategic variant assignment:
 
 **Available Button Variants:**
-- `primary` (emerald) - Main actions, trust signals
-- `secondary` (terracotta) - Warm actions, personal connection
-- `outline-primary` (emerald outline) - Secondary actions
-- `outline-secondary` (terracotta outline) - Tertiary actions
+- `primary` (forest green) - Main actions, trust signals, depth
+- `secondary` (sage) - Calm actions, holistic connection
+- `outline-primary` (forest outline) - Secondary actions
+- `outline-secondary` (sage outline) - Tertiary actions
 
 **Selection Decision Tree:**
-1. **Hero/CTA sections** → Use `primary` (emerald - trust, expertise)
-2. **Personal/warm sections** → Use `secondary` (terracotta - connection, warmth)
+1. **Hero/CTA sections** → Use `primary` (forest green - trust, depth, expertise)
+2. **Personal/calm sections** → Use `secondary` (sage - tranquility, holistic approach)
 3. **Alternating pattern** → Avoid color monotony by varying adjacent sections
 4. **Hierarchy** → Primary > Secondary > Outline-primary > Outline-secondary
 
@@ -256,22 +256,22 @@ Achieve balanced color distribution (50-60% emerald, 20-30% terracotta, 10-20% s
 ```yaml
 sections:
   - type: "hero-breadcrumb"
-    button_variant: "primary"           # Section 1: Emerald (trust)
+    button_variant: "primary"           # Section 1: Forest (trust)
   - type: "values-compass"
-    button_variant: "secondary"         # Section 2: Terracotta (warmth)
+    button_variant: "secondary"         # Section 2: Sage (calm)
   - type: "feature-blocks"
-    button_variant: "outline-primary"   # Section 3: Emerald outline
+    button_variant: "outline-primary"   # Section 3: Forest outline
   - type: "testimonials"
-    button_variant: "secondary"         # Section 4: Terracotta (personal)
+    button_variant: "secondary"         # Section 4: Sage (personal)
   - type: "cta-standard"
-    button_variant: "primary"           # Section 5: Emerald (action)
+    button_variant: "primary"           # Section 5: Forest (action)
 ```
 
 ### Credential Badge Variants
 
 **8 Available Variants:**
-- `primary` (emerald gradient) - Main credentials, certifications
-- `secondary` (terracotta gradient) - Warm trust signals
+- `primary` (forest gradient) - Main credentials, certifications
+- `secondary` (sage gradient) - Calm trust signals
 - `coral` (coral gradient) - Compassionate qualities
 - `premium` (plum gradient) - Premium/specialized credentials
 - `sage` (sage gradient) - Calm/holistic approaches
@@ -290,17 +290,17 @@ credentials_showcase:
 ```
 
 **Balance Guidelines:**
-- **Homepage:** Mix 3-4 different badge variants (avoid all-emerald)
+- **Homepage:** Mix 3-4 different badge variants (avoid all-forest)
 - **Service pages:** 2-3 variants focused on service theme
 - **About page:** 4-6 variants showcasing full credentials
 
 ### Common Mistakes to Avoid
 
-❌ **All sections use primary variant** → 90% emerald monotony
-✅ **Alternating pattern** → Balanced 50-60% emerald, 20-30% terracotta
+❌ **All sections use primary variant** → 90% forest green monotony
+✅ **Alternating pattern** → Balanced 50-60% forest green, 20-30% sage
 
 ❌ **Random variant selection** → Visual chaos
-✅ **Semantic selection** → Trust/action = primary, warmth/personal = secondary
+✅ **Semantic selection** → Trust/action = primary, calm/personal = secondary
 
 ❌ **All credentials same color** → Bland, undifferentiated
 ✅ **Mixed credential badges** → Visual interest, clear differentiation
@@ -310,8 +310,9 @@ credentials_showcase:
 ## Design System
 
 **Colors**:
-- Primary: `#4DB380` (emerald - growth)
-- Secondary: `#CC6B49` (terracotta - balance)
+- Primary: `#234E3E` (forest green - depth)
+- Secondary: `#6B9080` (sage - calm)
+- Accent: `#D4AF37` (gold - warmth)
 - Text: `#374151` (warm gray)
 
 **Typography**:
@@ -536,7 +537,7 @@ values_compass:
 - **Credentials**: Gradient icon circles + glassmorphism badges
 
 ### Design System v4.0
-**8 New Gradients**: warm (emerald→terracotta), radial, glassmorphism, icon variants
+**8 New Gradients**: warm (forest→sage), radial, glassmorphism, icon variants
 **10 Animations**: fade-in (4 directions), pulse, float, gradient-shift, blob-morph, staggered-entrance
 **4 Organic Blobs**: soft, organic, smooth, gentle border-radius presets
 **Accessibility**: WCAG AA, reduced-motion support, keyboard nav, touch-optimized

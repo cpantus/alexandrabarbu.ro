@@ -185,11 +185,11 @@
 // Category Border Variants
 // -----------------------------------------------------------------------------
 .c-faq__item--category-general::before {
-  background: $gradient-icon-emerald;
+  background: $gradient-icon-forest;
 }
 
 .c-faq__item--category-services::before {
-  background: $gradient-icon-terracotta;
+  background: $gradient-icon-sage;
 }
 
 .c-faq__item--category-pricing::before {
@@ -388,11 +388,11 @@
 
 // Category title color variants
 .c-faq__category-title--general {
-  background-image: $gradient-icon-emerald;
+  background-image: $gradient-icon-forest;
 }
 
 .c-faq__category-title--services {
-  background-image: $gradient-icon-terracotta;
+  background-image: $gradient-icon-sage;
 }
 
 .c-faq__category-title--pricing {

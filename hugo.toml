@@ -166,9 +166,10 @@ rel = "manifest"
 ######################### site variables ##############################
 # customize your color and font from here.
 [params.variables]
-color_primary = "#4DB380"        # Deep emerald (growth, healing)
-color_secondary = "#CC6B49"      # Complementary teracotta (balance)
-body_color = "#FDFDFD"           # Pure clean white
+color_primary = "#234E3E"        # Deep forest green (depth, grounding)
+color_secondary = "#6B9080"      # Sage green (calm, tranquility)
+color_accent = "#D4AF37"         # Gold (warmth, value)
+body_color = "#F5F1E8"           # Cream (warm, soft)
 text_color = "#374151"           # Warm gray (approachable)
 text_dark = "#111827"            # Near black (clarity)
 text_light = "#9CA3AF"           # Medium gray (hierarchy)

@@ -75,19 +75,19 @@
 
   // Hover state
   &:hover {
-    background-color: rgba($color-emerald-500, 0.1); // Subtle emerald tint
+    background-color: rgba($forest-500, 0.1); // Subtle emerald tint
   }
 
   // Focus state (keyboard navigation)
   &:focus {
-    outline: 2px solid $color-emerald-500;
+    outline: 2px solid $forest-500;
     outline-offset: 2px;
-    box-shadow: 0 0 0 4px rgba($color-emerald-500, 0.1);
+    box-shadow: 0 0 0 4px rgba($forest-500, 0.1);
   }
 
   // Active state (pressed)
   &:active {
-    background-color: rgba($color-emerald-500, 0.15);
+    background-color: rgba($forest-500, 0.15);
     transform: scale(0.95);
   }
 }
@@ -238,7 +238,7 @@
 
 // Focus Within (highlight parent when child has focus)
 .c-mobile-menu__panel:focus-within {
-  outline: 2px solid rgba($color-emerald-500, 0.3);
+  outline: 2px solid rgba($forest-500, 0.3);
   outline-offset: 4px;
 }
 

@@ -10,45 +10,66 @@
 //
 
 // ==================================
-// 8-COLOR PALETTE WITH 9-STEP SCALES
+// REDESIGN 2025 COLOR SYSTEM (PRIMARY)
 // ==================================
+// Based on design-system.md + screenshot analysis
+// Deep forest green + sage + gold/sand + cream palette
 
 // ----------------------------------
-// PRIMARY PALETTE: Emerald (Growth, Healing, Trust)
+// FOREST GREEN SCALE (New Primary)
 // ----------------------------------
-$emerald-50: #E8F5F0;  // Warm mint green - healing background (updated from cold #f0fdf6)
-$emerald-100: #dcfce7;
-$emerald-200: #bbf7d0;
-$emerald-300: #86efac;
-$emerald-400: #4ade80;
-$emerald-500: #4DB380;  // BRAND PRIMARY
-$emerald-600: #16a34a;
-$emerald-700: #15803d;
-$emerald-800: #166534;
-$emerald-900: #14532d;
+// Deep forest green primary brand color
+$forest-50: #E8F1EE;   // Lightest tint
+$forest-100: #C5DBD3;  // Very light
+$forest-200: #9EC3B6;  // Light
+$forest-300: #77AB99;  // Medium-light
+$forest-400: #5A9883;  // Medium
+$forest-500: #234E3E;  // PRIMARY (main brand color)
+$forest-600: #1F4537;  // Medium-dark
+$forest-700: #2F5548;  // Dark (testimonials/footer/contact panel)
+$forest-800: #153026;  // Very dark
+$forest-900: #0D1F19;  // Darkest
 
 // ----------------------------------
-// SECONDARY PALETTE: Terracotta (Warmth, Balance, Grounding)
+// SAGE GREEN SCALE (New Secondary)
 // ----------------------------------
-$terracotta-50: #fff5f3;
-$terracotta-100: #ffe8e1;
-$terracotta-200: #ffd1c4;
-$terracotta-300: #ffb8a3;
-$terracotta-400: #ff9d7f;
-$terracotta-500: #CC6B49;  // BRAND SECONDARY
-$terracotta-600: #b8583a;
-$terracotta-700: #9a4830;
-$terracotta-800: #7d3a26;
-$terracotta-900: #5e2c1d;
+// Warm, muted green for secondary elements
+$sage-50: #EEF4F2;
+$sage-100: #D5E5E0;
+$sage-200: #B8D4CC;
+$sage-300: #9BC3B8;
+$sage-400: #83AEA4;
+$sage-500: #6B9080;  // SECONDARY (main secondary color)
+$sage-600: #5A7A6D;
+$sage-700: #4A6359;
+$sage-800: #3A4D46;
+$sage-900: #2A3733;
 
 // ----------------------------------
-// BACKGROUND PALETTE: Mint (Healing, Calm, Safe Space)
+// GOLD/SAND SCALE (New Accent)
 // ----------------------------------
-// Purpose: Dedicated background colors for psychological healing aesthetic
-// Usage: Section backgrounds, card backgrounds, page backgrounds
-$mint-bg: #E8F5F0;                    // Primary healing background (warm mint)
-$mint-bg-light: #f0fdf6;              // Lighter mint variation (cooler tone)
-$mint-bg-medium: #dcfce7;             // Medium mint (soft emerald tint)
+// Warm metallic accent for highlights
+$gold-50: #F9F5F0;
+$gold-100: #F0E8DC;
+$gold-200: #E6D9C6;
+$gold-300: #DBCAB0;
+$gold-400: #D0BB9A;
+$gold-500: #C5A880;  // ACCENT (compass N, dividers)
+$gold-600: #B0936B;  // Darker gold (secondary button hover)
+$gold-700: #9A7E56;
+$gold-800: #856A41;
+$gold-900: #6F552C;
+
+// ----------------------------------
+// CREAM SCALE (New Backgrounds/Neutrals)
+// ----------------------------------
+// Cool green-tinted cream neutrals for backgrounds
+$cream-50: #FCFDFB;   // PUREST (nearly white)
+$cream-100: #F4F7F5;  // MAIN APP BG
+$cream-200: #E9EFEC;  // BORDERS/DIVIDERS
+$cream-300: #DCE5E0;  // Subtle backgrounds
+$cream-400: #CFD9D4;  // Medium backgrounds
+$cream-500: #C2CEC8;  // Deeper backgrounds
 
 // ----------------------------------
 // SUPPORTING PALETTE: Teal (Info, Calm, Clarity)
@@ -78,19 +99,8 @@ $amber-700: #b45309;
 $amber-800: #92400e;
 $amber-900: #78350f;
 
-// ----------------------------------
-// SUPPORTING PALETTE: Sage (Success, Positive, Growth)
-// ----------------------------------
-$sage-50: #f0fdf4;
-$sage-100: #dcfce7;
-$sage-200: #bbf7d0;
-$sage-300: #86efac;
-$sage-400: #4ade80;
-$sage-500: #22c55e;
-$sage-600: #16a34a;
-$sage-700: #15803d;
-$sage-800: #166534;
-$sage-900: #14532d;
+// NOTE: Sage palette moved to top of file as REDESIGN 2025 secondary color
+// The old sage palette (green success colors) is now available as $color-success-*
 
 // ----------------------------------
 // SUPPORTING PALETTE: Plum (Premium, Depth, Sophistication)
@@ -168,69 +178,7 @@ $gray-900: #111827;
 $white: #ffffff;
 $black: #000000;
 
-// ==================================
-// REDESIGN 2025 COLOR SYSTEM
-// ==================================
-// Based on design-system.md + screenshot analysis
-// Deep forest green + sage + gold/sand + cream palette
-// NOTE: These scales are added for the 2025 redesign. Existing emerald/terracotta
-// scales are preserved for backward compatibility during migration.
-
-// ----------------------------------
-// FOREST GREEN SCALE (New Primary)
-// ----------------------------------
-// Replaces/augments emerald scale
-$forest-50: #E8F1EE;   // Lightest tint
-$forest-100: #C5DBD3;  // Very light
-$forest-200: #9EC3B6;  // Light
-$forest-300: #77AB99;  // Medium-light
-$forest-400: #5A9883;  // Medium
-$forest-500: #234E3E;  // PRIMARY (from design-system.md) - main brand color
-$forest-600: #1F4537;  // Medium-dark
-$forest-700: #2F5548;  // Dark (used in testimonials/footer/contact panel)
-$forest-800: #153026;  // Very dark
-$forest-900: #0D1F19;  // Darkest
-
-// ----------------------------------
-// SAGE GREEN SCALE (New Secondary)
-// ----------------------------------
-// Warm, muted green for secondary elements
-$sage-50: #EEF4F2;
-$sage-100: #D5E5E0;
-$sage-200: #B8D4CC;
-$sage-300: #9BC3B8;
-$sage-400: #83AEA4;
-$sage-500: #6B9080;  // SECONDARY (from design-system.md)
-$sage-600: #5A7A6D;
-$sage-700: #4A6359;
-$sage-800: #3A4D46;
-$sage-900: #2A3733;
-
-// ----------------------------------
-// GOLD/SAND SCALE (New Accent)
-// ----------------------------------
-// Warm metallic accent for highlights
-$gold-50: #F9F5F0;
-$gold-100: #F0E8DC;
-$gold-200: #E6D9C6;
-$gold-300: #DBCAB0;
-$gold-400: #D0BB9A;
-$gold-500: #C5A880;  // ACCENT (from design-system.md) - compass N, dividers
-$gold-600: #B0936B;  // Darker gold (secondary button hover)
-$gold-700: #9A7E56;
-$gold-800: #856A41;
-$gold-900: #6F552C;
-
-// ----------------------------------
-// CREAM SCALE (New Backgrounds/Neutrals)
-// ----------------------------------
-// Cool green-tinted cream neutrals
-$cream-50: #FCFDFB;   // PUREST (nearly white)
-$cream-100: #F4F7F5;  // MAIN APP BG (from design-system.md)
-$cream-200: #E9EFEC;  // BORDERS/DIVIDERS
-$cream-300: #DCE5E0;  // Subtle backgrounds
-$cream-400: #CFD9D4;  // Medium backgrounds
-$cream-500: #C2CEC8;  // Deeper backgrounds
+// NOTE: REDESIGN 2025 palettes (forest, sage, gold, cream) defined at top of file
 
 // ----------------------------------
 // TEXT COLORS (Green-Tinted for Redesign)
@@ -247,12 +195,12 @@ $text-light-cream: #F4F7F5;    // Light text (for dark backgrounds)
 // Rule: Components MUST use semantic names, NOT palette names
 
 // Brand Colors (Base) - REDESIGN 2025: Forest Green + Sage + Gold
-$color-primary: $forest-500;      // Forest green (was emerald)
-$color-secondary: $sage-500;      // Sage green (was terracotta)
+$color-primary: $forest-500;      // Forest green (forest)
+$color-secondary: $sage-500;      // Sage green (sage)
 $color-tertiary: $gold-500;       // Gold/sand accent (was navy)
 $color-neutral: $gray-500;        // Unchanged
 
-// Primary Color Scale (Forest Green - was Emerald)
+// Primary Color Scale (Forest Green)
 $color-primary-50: $forest-50;
 $color-primary-100: $forest-100;
 $color-primary-200: $forest-200;
@@ -264,7 +212,7 @@ $color-primary-700: $forest-700;
 $color-primary-800: $forest-800;
 $color-primary-900: $forest-900;
 
-// Secondary Color Scale (Sage - was Terracotta)
+// Secondary Color Scale (Sage Green)
 $color-secondary-50: $sage-50;
 $color-secondary-100: $sage-100;
 $color-secondary-200: $sage-200;
@@ -307,9 +255,6 @@ $color-text-secondary: $gray-600;              // Secondary text (medium gray)
 $color-text-tertiary: $gray-500;               // Tertiary text (light gray)
 $color-text-muted: $gray-500;                  // Muted text (same as tertiary)
 $color-text-heading: $gray-900;                // Headings (near black)
-
-// ✅ PHASE 8: Legacy $emerald-* aliases removed
-// All components now use $emerald-* tokens directly
 
 // Background Colors - REDESIGN 2025: CREAM AESTHETIC
 // New design: Cream (#F4F7F5) provides clean, neutral canvas for forest green content
@@ -405,31 +350,9 @@ $color-black: $black;
 // ----------------------------------
 // Usage: Testimonial backgrounds, modal overlays, section darkening
 $overlay-dark: rgba($gray-900, 0.85);      // Dark overlay for light text
-$overlay-light: rgba($emerald-50, 0.95);     // Light overlay for dark backgrounds
+$overlay-light: rgba($cream-50, 0.95);     // Light overlay for dark backgrounds (REDESIGN: cream REDESIGN 2025)
 
-// Color palette aliases with $color- prefix
-$color-emerald-50: $emerald-50;
-$color-emerald-100: $emerald-100;
-$color-emerald-200: $emerald-200;
-$color-emerald-300: $emerald-300;
-$color-emerald-400: $emerald-400;
-$color-emerald-500: $emerald-500;
-$color-emerald-600: $emerald-600;
-$color-emerald-700: $emerald-700;
-$color-emerald-800: $emerald-800;
-$color-emerald-900: $emerald-900;
-
-$color-terracotta-50: $terracotta-50;
-$color-terracotta-100: $terracotta-100;
-$color-terracotta-200: $terracotta-200;
-$color-terracotta-300: $terracotta-300;
-$color-terracotta-400: $terracotta-400;
-$color-terracotta-500: $terracotta-500;
-$color-terracotta-600: $terracotta-600;
-$color-terracotta-700: $terracotta-700;
-$color-terracotta-800: $terracotta-800;
-$color-terracotta-900: $terracotta-900;
-
+// Gray Color Scale Aliases (for component use)
 $color-gray-50: $gray-50;
 $color-gray-100: $gray-100;
 $color-gray-200: $gray-200;
@@ -486,8 +409,6 @@ $color-forest-800: $forest-800;
 $color-forest-900: $forest-900;
 
 // Sage Color Scale Aliases (for component use)
-// NOTE: This overrides existing $sage-* variables which were aliased to green
-// The new sage scale is the warm, muted green from design-system.md
 $color-sage-50: $sage-50;
 $color-sage-100: $sage-100;
 $color-sage-200: $sage-200;

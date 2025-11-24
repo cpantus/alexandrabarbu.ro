@@ -153,7 +153,7 @@
   transition: fill $duration-fast $easing-subtle;
 
   .c-video__play-button:hover & {
-    fill: $emerald-700;
+    fill: $forest-700;
   }
 
   @media (max-width: $breakpoint-md) {
@@ -186,7 +186,7 @@
 }
 
 .c-video__play-button:hover i {
-  color: $emerald-700;
+  color: $forest-700;
 }
 
 // -----------------------------------------------------------------------------

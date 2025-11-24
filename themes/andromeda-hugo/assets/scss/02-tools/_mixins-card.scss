@@ -41,14 +41,14 @@
     // Variant-specific gradient glow (soft, elegant) - 8 unified variants
     @if $variant == 'primary' {
       box-shadow:
-        0 0 0 1px rgba($emerald-400, 0.2),
-        0 8px 24px -4px rgba($emerald-500, 0.25),
-        0 16px 48px -8px rgba($emerald-400, 0.15);
+        0 0 0 1px rgba($forest-400, 0.2),
+        0 8px 24px -4px rgba($forest-500, 0.25),
+        0 16px 48px -8px rgba($forest-400, 0.15);
     } @else if $variant == 'secondary' {
       box-shadow:
-        0 0 0 1px rgba($terracotta-400, 0.2),
-        0 8px 24px -4px rgba($terracotta-500, 0.25),
-        0 16px 48px -8px rgba($terracotta-400, 0.15);
+        0 0 0 1px rgba($sage-400, 0.2),
+        0 8px 24px -4px rgba($sage-500, 0.25),
+        0 16px 48px -8px rgba($sage-400, 0.15);
     } @else if $variant == 'tertiary' {
       box-shadow:
         0 0 0 1px rgba($navy-400, 0.2),
@@ -110,10 +110,10 @@
   // Semi-transparent background with tint
   @if $variant == 'primary' {
     background: rgba(#ffffff, $opacity);
-    border: 1px solid rgba($emerald-500, 0.2);
+    border: 1px solid rgba($forest-500, 0.2);
   } @else if $variant == 'secondary' {
     background: rgba(#ffffff, $opacity);
-    border: 1px solid rgba($terracotta-500, 0.2);
+    border: 1px solid rgba($sage-500, 0.2);
   } @else if $variant == 'neutral' {
     background: rgba(#ffffff, $opacity);
     border: 1px solid rgba($gray-300, 0.3);
@@ -156,11 +156,11 @@
     z-index: -1;
 
     @if $gradient == 'primary' {
-      background: linear-gradient(135deg, $emerald-400 0%, $emerald-500 100%);
+      background: linear-gradient(135deg, $forest-400 0%, $forest-500 100%);
     } @else if $gradient == 'secondary' {
-      background: linear-gradient(135deg, $terracotta-400 0%, $terracotta-500 100%);
+      background: linear-gradient(135deg, $sage-400 0%, $sage-500 100%);
     } @else if $gradient == 'healing' {
-      background: linear-gradient(135deg, $emerald-400 0%, $terracotta-400 100%);
+      background: linear-gradient(135deg, $forest-400 0%, $sage-400 100%);
     }
 
     // Mask to create border effect
@@ -178,11 +178,11 @@
 
     &::before {
       @if $gradient == 'primary' {
-        background: linear-gradient(135deg, $emerald-300 0%, $emerald-600 100%);
+        background: linear-gradient(135deg, $forest-300 0%, $forest-600 100%);
       } @else if $gradient == 'secondary' {
-        background: linear-gradient(135deg, $terracotta-300 0%, $terracotta-600 100%);
+        background: linear-gradient(135deg, $sage-300 0%, $sage-600 100%);
       } @else if $gradient == 'healing' {
-        background: linear-gradient(135deg, $emerald-300 0%, $terracotta-300 100%);
+        background: linear-gradient(135deg, $forest-300 0%, $sage-300 100%);
       }
     }
   }
@@ -199,9 +199,9 @@
   // Thick top border
   border-top: 3px solid;
   @if $variant == 'primary' {
-    border-top-color: $emerald-500;
+    border-top-color: $forest-500;
   } @else if $variant == 'secondary' {
-    border-top-color: $terracotta-500;
+    border-top-color: $sage-500;
   } @else if $variant == 'coral' {
     border-top-color: $coral-500;
   } @else if $variant == 'sage' {
@@ -212,9 +212,9 @@
   .card-icon,
   .icon-circle {
     @if $variant == 'primary' {
-      background: linear-gradient(135deg, $emerald-400 0%, $emerald-500 100%);
+      background: linear-gradient(135deg, $forest-400 0%, $forest-500 100%);
     } @else if $variant == 'secondary' {
-      background: linear-gradient(135deg, $terracotta-400 0%, $terracotta-500 100%);
+      background: linear-gradient(135deg, $sage-400 0%, $sage-500 100%);
     } @else if $variant == 'coral' {
       background: linear-gradient(135deg, $coral-400 0%, $coral-500 100%);
     } @else if $variant == 'sage' {
@@ -250,9 +250,9 @@
   border: 1px solid rgba(#ffffff, 0.3);
 
   @if $variant == 'primary-subtle' {
-    background: linear-gradient(135deg, $emerald-50 0%, #ffffff 100%);
+    background: linear-gradient(135deg, $forest-50 0%, #ffffff 100%);
   } @else if $variant == 'secondary-subtle' {
-    background: linear-gradient(135deg, $terracotta-50 0%, #ffffff 100%);
+    background: linear-gradient(135deg, $sage-50 0%, #ffffff 100%);
   } @else if $variant == 'light' {
     background: linear-gradient(135deg, $gray-50 0%, #ffffff 100%);
   }

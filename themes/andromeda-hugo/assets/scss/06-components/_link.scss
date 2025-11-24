@@ -55,7 +55,7 @@
 
   // Focus state for accessibility
   &:focus {
-    outline: 2px solid rgba($emerald-500, 0.5);
+    outline: 2px solid rgba($forest-500, 0.5);
     outline-offset: 2px;
     border-radius: 2px;
   }
@@ -74,15 +74,15 @@
  * Primary link - emerald (brand color, most common)
  */
 .c-link--primary {
-  color: $emerald-600;
+  color: $forest-600;
 
   &::after {
-    background-color: $emerald-600;
+    background-color: $forest-600;
   }
 
   &:hover,
   &:focus {
-    color: $emerald-700;
+    color: $forest-700;
   }
 }
 
@@ -90,15 +90,15 @@
  * Secondary link - terracotta (warm, alternative emphasis)
  */
 .c-link--secondary {
-  color: $terracotta-600;
+  color: $sage-600;
 
   &::after {
-    background-color: $terracotta-600;
+    background-color: $sage-600;
   }
 
   &:hover,
   &:focus {
-    color: $terracotta-700;
+    color: $sage-700;
   }
 }
 

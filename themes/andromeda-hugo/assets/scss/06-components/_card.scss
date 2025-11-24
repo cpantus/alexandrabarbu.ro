@@ -237,12 +237,12 @@
 .c-card__action {
   font-size: $text-sm;
   font-weight: $weight-semibold;
-  color: $emerald-600;
+  color: $forest-600;
   text-decoration: none;
   transition: color $duration-fast $ease-out;
 
   &:hover {
-    color: $emerald-700;
+    color: $forest-700;
     text-decoration: underline;
   }
 }

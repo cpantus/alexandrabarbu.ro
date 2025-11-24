@@ -83,17 +83,34 @@
 .c-footer-info__logo-link {
   display: inline-block;
   margin-bottom: $space-3; // Match title margin (24px)
-  transition: opacity $duration-base $easing-out;
+  transition: all $duration-base $easing-out;
+  text-decoration: none !important; // No underline
+  background-image: none !important; // No gradient underline
+
+  // Make logo gold permanently in footer (footer-specific override)
+  .c-logo,
+  .c-logo__svg,
+  svg {
+    color: $gold-500 !important;
+  }
 
   &:hover,
   &:focus {
-    opacity: 0.8;
+    opacity: 0.8 !important; // Slight opacity change on hover (override default)
+    text-decoration: none !important;
+    background-image: none !important;
   }
 
   &:focus {
     outline: 2px solid $color-primary-600;
     outline-offset: $space-1; // 8px
     border-radius: $border-radius-sm;
+  }
+
+  // Remove any pseudo-element underlines
+  &::before,
+  &::after {
+    display: none !important;
   }
 
   // Reduced motion support
@@ -106,7 +123,7 @@
   margin: 0 0 $space-3 0; // 24px below description
   font-size: $font-size-base;
   line-height: $line-height-relaxed;
-  color: $color-text-secondary;
+  color: #ffffff; // White text in footer
 
   // Max width for readability
   max-width: 60ch;

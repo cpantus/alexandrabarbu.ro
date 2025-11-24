@@ -165,17 +165,17 @@
   // Primary variant (emerald glow)
   &--primary:hover {
     box-shadow:
-      0 0 0 1px rgba($emerald-400, 0.2),
-      0 8px 24px -4px rgba($emerald-500, 0.25),
-      0 16px 48px -8px rgba($emerald-400, 0.15);
+      0 0 0 1px rgba($forest-400, 0.2),
+      0 8px 24px -4px rgba($forest-500, 0.25),
+      0 16px 48px -8px rgba($forest-400, 0.15);
   }
 
   // Secondary variant (terracotta glow)
   &--secondary:hover {
     box-shadow:
-      0 0 0 1px rgba($terracotta-400, 0.2),
-      0 8px 24px -4px rgba($terracotta-500, 0.25),
-      0 16px 48px -8px rgba($terracotta-400, 0.15);
+      0 0 0 1px rgba($sage-400, 0.2),
+      0 8px 24px -4px rgba($sage-500, 0.25),
+      0 16px 48px -8px rgba($sage-400, 0.15);
   }
 
   // Coral variant (coral glow)
@@ -212,13 +212,13 @@
 
   // Primary variant (emerald gradient)
   .c-testimonials__card--primary & {
-    background: $gradient-icon-emerald;
+    background: $gradient-icon-forest;
     box-shadow: $shadow-warm-sm;
   }
 
   // Secondary variant (terracotta gradient)
   .c-testimonials__card--secondary & {
-    background: $gradient-icon-terracotta;
+    background: $gradient-icon-sage;
     box-shadow: $shadow-warm-sm;
   }
 
@@ -328,12 +328,12 @@
 
   // Primary variant ring
   .c-testimonials__card--primary &::before {
-    background: $gradient-icon-emerald;
+    background: $gradient-icon-forest;
   }
 
   // Secondary variant ring
   .c-testimonials__card--secondary &::before {
-    background: $gradient-icon-terracotta;
+    background: $gradient-icon-sage;
   }
 
   // Coral variant ring

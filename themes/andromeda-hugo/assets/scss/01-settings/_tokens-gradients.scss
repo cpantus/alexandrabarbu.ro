@@ -14,72 +14,78 @@
 // ----------------------------------
 // Usage: Background overlays, section backgrounds
 // REDESIGN 2025: Changed to cream gradients for neutral canvas
-$gradient-warm-subtle: linear-gradient(135deg, $cream-50 0%, $cream-100 100%); // Was emerald→terracotta
-$gradient-warm-light: linear-gradient(135deg, $cream-100 0%, $cream-200 100%); // Was emerald→terracotta
-$gradient-warm-medium: linear-gradient(135deg, $cream-100 0%, $cream-300 100%); // Was emerald→terracotta
+$gradient-warm-subtle: linear-gradient(135deg, $cream-50 0%, $cream-100 100%); // Was forest→sage
+$gradient-warm-light: linear-gradient(135deg, $cream-100 0%, $cream-200 100%); // Was forest→sage
+$gradient-warm-medium: linear-gradient(135deg, $cream-100 0%, $cream-300 100%); // Was forest→sage
 $gradient-warm-vibrant: linear-gradient(135deg, $forest-500 0%, $sage-500 60%, $forest-600 100%); // For accents only
 
 // ----------------------------------
 // Radial Gradients (Organic Spotlight)
 // ----------------------------------
 // Usage: Hero backgrounds, section focal points
-$gradient-radial-primary: radial-gradient(circle at top left, $emerald-300, $emerald-500);
-$gradient-radial-secondary: radial-gradient(circle at bottom right, $terracotta-300, $terracotta-500);
-$gradient-radial-warm: radial-gradient(circle at center, $emerald-200, $terracotta-200);
+// REDESIGN 2025: Using forest/sage/gold instead of forest/sage
+$gradient-radial-primary: radial-gradient(circle at top left, $forest-300, $forest-500);
+$gradient-radial-secondary: radial-gradient(circle at bottom right, $sage-300, $sage-500);
+$gradient-radial-warm: radial-gradient(circle at center, $forest-200, $sage-200);
 
 // ----------------------------------
 // Multi-Stop Gradients (Layered Depth)
 // ----------------------------------
 // Usage: Complex backgrounds with depth
+// REDESIGN 2025: Using forest/sage/gold instead of forest/sage
 $gradient-healing-depth: linear-gradient(135deg,
-  $emerald-400 0%,
-  $emerald-300 25%,
-  $terracotta-300 75%,
-  $terracotta-400 100%
+  $forest-400 0%,
+  $forest-300 25%,
+  $sage-300 75%,
+  $sage-400 100%
 );
 
 $gradient-sunrise: linear-gradient(135deg,
-  $terracotta-100 0%,
-  $emerald-100 50%,
-  $terracotta-50 100%
+  $sage-100 0%,
+  $cream-100 50%,
+  $gold-100 100%
 );
 
 // ----------------------------------
 // Icon Background Gradients
 // ----------------------------------
 // Usage: Icon circles in values-compass, problem-empathy, credentials
-$gradient-icon-emerald: linear-gradient(135deg, $emerald-500 0%, $emerald-700 100%);
-$gradient-icon-terracotta: linear-gradient(135deg, $terracotta-500 0%, $terracotta-700 100%);
-$gradient-icon-teal: linear-gradient(135deg, $teal-500 0%, $teal-700 100%);
-$gradient-icon-amber: linear-gradient(135deg, $amber-500 0%, $amber-700 100%);
+// REDESIGN 2025: Using forest/sage/gold instead of forest/sage
+$gradient-icon-forest: linear-gradient(135deg, $forest-500 0%, $forest-700 100%);     // Primary (new)
+$gradient-icon-sage: linear-gradient(135deg, $sage-500 0%, $sage-700 100%);           // Secondary (new)
+$gradient-icon-gold: linear-gradient(135deg, $gold-500 0%, $gold-700 100%);           // Accent (new)
+$gradient-icon-teal: linear-gradient(135deg, $teal-500 0%, $teal-700 100%);           // Info
+$gradient-icon-amber: linear-gradient(135deg, $amber-500 0%, $amber-700 100%);        // Warning
 
 // ----------------------------------
 // Glassmorphism Backgrounds
 // ----------------------------------
 // Usage: Cards, overlays, semi-transparent elements
+// REDESIGN 2025: Using cream/forest/sage instead of forest/sage
 $gradient-glass-light: linear-gradient(135deg,
   rgba(255, 255, 255, 0.8) 0%,
   rgba(255, 255, 255, 0.6) 100%
 );
 
 $gradient-glass-warm: linear-gradient(135deg,
-  rgba($emerald-100, 0.6) 0%,
-  rgba($terracotta-100, 0.4) 100%
+  rgba($cream-100, 0.6) 0%,
+  rgba($sage-100, 0.4) 100%
 );
 
 // ----------------------------------
 // Component-Specific Gradients
 // ----------------------------------
 // Usage: Button component gradients
+// REDESIGN 2025: Using forest/sage/gold instead of forest/sage
 
-// Primary button gradients (emerald) - WCAG AA compliant with white text
-// Updated: Darkened to ensure 4.5:1 contrast ratio with white text
-$gradient-primary: linear-gradient(135deg, $emerald-700 0%, $emerald-800 100%); // Darkened for WCAG AA (4.72:1 contrast)
-$gradient-primary-vibrant: linear-gradient(135deg, $emerald-800 0%, $emerald-900 100%); // Darker hover state
-$gradient-primary-subtle: linear-gradient(135deg, $emerald-600 0%, $emerald-700 100%); // Subtle variant
+// Primary button gradients (forest green) - WCAG AA compliant with white text
+// Forest green naturally has excellent contrast (8.73:1 with white)
+$gradient-primary: linear-gradient(135deg, $forest-500 0%, $forest-600 100%);         // Primary CTA
+$gradient-primary-vibrant: linear-gradient(135deg, $forest-600 0%, $forest-700 100%); // Hover state
+$gradient-primary-subtle: linear-gradient(135deg, $forest-400 0%, $forest-500 100%);  // Subtle variant
 
-// Secondary button gradients (terracotta) - WCAG AA compliant with white text
-// Updated: Darkened to ensure 4.5:1 contrast ratio with white text
-$gradient-secondary: linear-gradient(135deg, $terracotta-600 0%, $terracotta-700 100%); // Darkened for WCAG AA
-$gradient-secondary-vibrant: linear-gradient(135deg, $terracotta-500 0%, $terracotta-700 100%);
-$gradient-secondary-subtle: linear-gradient(135deg, $terracotta-300 0%, $terracotta-500 100%);
+// Secondary button gradients (sage/gold) - WCAG AA compliant with white text
+// Sage: 3.29:1 (requires darker shades), Gold with dark text
+$gradient-secondary: linear-gradient(135deg, $sage-600 0%, $sage-700 100%);           // Darkened for WCAG AA
+$gradient-secondary-vibrant: linear-gradient(135deg, $sage-500 0%, $sage-700 100%);   // Vibrant state
+$gradient-secondary-subtle: linear-gradient(135deg, $gold-500 0%, $gold-600 100%);    // Gold accent variant

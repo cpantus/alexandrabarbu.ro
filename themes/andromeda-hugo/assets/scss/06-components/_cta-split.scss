@@ -31,6 +31,35 @@
   padding: $section-padding-y 0; // Vertical padding for dark green container
   overflow: hidden; // Contain heavy rounding
   background-color: $forest-700; // Dark forest green background (#2F5548)
+  position: relative; // For decorative blob positioning
+
+  // Decorative organic blob background
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10%; // Overflow top
+    right: -5%; // Overflow right
+    width: 60%; // Large blob
+    height: 120%; // Taller than section
+    background: rgba($forest-600, 0.35); // Darker forest green with medium opacity
+    border-radius: 45% 55% 60% 40% / 50% 45% 55% 50%; // Organic blob shape
+    z-index: 0; // Behind content
+    pointer-events: none; // Don't block interactions
+  }
+
+  // Second decorative blob (bottom-left)
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -15%; // Overflow bottom
+    left: -8%; // Overflow left
+    width: 50%; // Medium blob
+    height: 100%;
+    background: rgba($forest-500, 0.25); // Dark forest green with lower opacity
+    border-radius: 60% 40% 55% 45% / 45% 60% 40% 55%; // Different organic shape
+    z-index: 0; // Behind content
+    pointer-events: none; // Don't block interactions
+  }
 }
 
 // ============================================================================
@@ -42,6 +71,8 @@
   grid-template-columns: 1fr; // Mobile: stacked
   border-radius: $radius-2xl; // 32px heavy rounding on overall section
   overflow: hidden; // Clip content to rounded corners
+  position: relative; // Above decorative blobs
+  z-index: 1; // Ensure content is above background blobs
 
   @media (min-width: $breakpoint-lg) {
     grid-template-columns: 60fr 40fr; // Desktop: 60/40 split

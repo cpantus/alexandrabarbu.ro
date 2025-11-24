@@ -17,11 +17,11 @@
 .c-testimonials {
   position: relative;
   padding: var(--spacing-section-y) 0;
-  background-color: $emerald-50; // Light background
+  background-color: $forest-50; // Light background
   overflow: hidden; // Contain decorative quote
 
   // Background variants
-  &--bg-light { background-color: $emerald-50; }
+  &--bg-light { background-color: $forest-50; }
   &--bg-white { background-color: var(--color-white); }
 }
 
@@ -111,7 +111,7 @@
 
 .c-testimonials__item {
   position: relative; // For floating quote and avatar positioning
-  background-color: var(--color-white); // Changed from $emerald-50
+  background-color: var(--color-white); // Changed from $forest-50
   border: 1px solid $gray-200;
   border-left: 3px solid transparent; // Will be set by variant modifiers
   border-radius: var(--border-radius-lg);
@@ -324,7 +324,7 @@
   gap: var(--spacing-sm);
   padding: var(--spacing-md);
   margin-top: var(--spacing-md);
-  background-color: $emerald-50;
+  background-color: $forest-50;
   border-radius: var(--border-radius-md);
 }
 
@@ -353,8 +353,8 @@
   max-width: 800px;
   margin: 0 auto var(--spacing-3xl);
   padding: var(--spacing-md) var(--spacing-lg);
-  background-color: $emerald-100; // Card background
-  border: 1px solid $emerald-200;
+  background-color: $forest-100; // Card background
+  border: 1px solid $forest-200;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-xs);
 }

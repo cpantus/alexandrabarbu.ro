@@ -9,7 +9,7 @@
 /* Contact Page Enhanced Styling */
 .contact-enhanced {
   position: relative;
-  background: linear-gradient(135deg, $gray-50 0%, lighten($emerald-50, 2%) 100%);
+  background: linear-gradient(135deg, $gray-50 0%, lighten($forest-50, 2%) 100%);
   padding: 60px 0;
 }
 
@@ -41,7 +41,7 @@
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background: linear-gradient(135deg, $emerald-500 0%, $emerald-600 100%);
+  background: linear-gradient(135deg, $forest-500 0%, $forest-600 100%);
   color: white;
   font-size: 2.75rem;
   margin-bottom: 1rem;
@@ -53,7 +53,7 @@
   transition: all 0.3s ease;
   
   &:hover {
-    color: $emerald-500 !important;
+    color: $forest-500 !important;
     transform: translateY(-2px);
   }
 }
@@ -89,14 +89,14 @@
   
   .form-control {
     border-radius: $radius-sm;       // 8px - Design token (Week 3)
-    border: 2px solid $emerald-50;  // Design token (Week 3)
+    border: 2px solid $forest-50;  // Design token (Week 3)
     padding: $space-3 $space-5;      // 12px 20px - Design tokens (Week 3)
     transition: all $duration-base ease;
     
     &:focus {
-      border-color: $emerald-500;
-      background-color: lighten($emerald-50, 4%);
-      outline: 2px solid $emerald-500; outline-offset: 2px;
+      border-color: $forest-500;
+      background-color: lighten($forest-50, 4%);
+      outline: 2px solid $forest-500; outline-offset: 2px;
     }
   }
   
@@ -104,7 +104,7 @@
     border-radius: $radius-md;
     padding: 14px 30px;
     font-weight: 600;
-    background: linear-gradient(135deg, $emerald-500 0%, $emerald-600 100%);
+    background: linear-gradient(135deg, $forest-500 0%, $forest-600 100%);
     border: none;
     transition: all 0.3s ease;
     
@@ -117,14 +117,14 @@
 
 /* First Consultation Info Box */
 .consultation-info-box {
-  background: linear-gradient(135deg, $emerald-50 0%, lighten($emerald-50, 3%) 100%);
-  border-left: 4px solid $emerald-500;
+  background: linear-gradient(135deg, $forest-50 0%, lighten($forest-50, 3%) 100%);
+  border-left: 4px solid $forest-500;
   border-radius: $radius-md;
   padding: 1rem 1.5rem;
   margin-bottom: 1.5rem;
   
   strong {
-    color: $emerald-500;
+    color: $forest-500;
     font-size: 1.1rem;
   }
 }
@@ -150,7 +150,7 @@
       border-left: 3px solid transparent;
 
       &:hover {
-        border-left-color: $emerald-500; // Brand color token
+        border-left-color: $forest-500; // Brand color token
       }
     }
   }
@@ -173,11 +173,11 @@
     }
 
     &:not(.collapsed) {
-      background: linear-gradient(135deg, $emerald-50 0%, $emerald-100 100%); // Semantic brand gradient
-      color: $emerald-500; // Brand color
+      background: linear-gradient(135deg, $forest-50 0%, $forest-100 100%); // Semantic brand gradient
+      color: $forest-500; // Brand color
 
       &::after {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%234DB380'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23234E3E'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
         transform: rotate(180deg);
       }
     }
@@ -188,7 +188,7 @@
     }
 
     &:hover {
-      color: $emerald-500; // Brand color
+      color: $forest-500; // Brand color
     }
   }
 
@@ -211,13 +211,13 @@
 
 /* Confidentiality Alert Enhanced */
 .alert-soft-primary {
-  background: linear-gradient(135deg, $emerald-50 0%, lighten($emerald-50, 3%) 100%);
+  background: linear-gradient(135deg, $forest-50 0%, lighten($forest-50, 3%) 100%);
   border: 1px solid rgba(77, 179, 128, 0.2);
   border-radius: $radius-md;
   padding: 1.5rem;
   
   i {
-    color: $emerald-500;
+    color: $forest-500;
   }
 }
 
@@ -251,7 +251,7 @@
 
 /* Gradient Text Effect */
 .gradient-text {
-  background: linear-gradient(135deg, $emerald-500 0%, $emerald-600 100%);
+  background: linear-gradient(135deg, $forest-500 0%, $forest-600 100%);
   -webkit-background-clip: text;
 }
 
@@ -270,9 +270,9 @@
 }
 
 .alert-success {
-  background-color: $emerald-50;      // Design token
-  border: 1px solid $emerald-500;     // Design token
-  color: $emerald-900;                // Design token (darker than #2d5a3d for better contrast)
+  background-color: $forest-50;      // Design token
+  border: 1px solid $forest-500;     // Design token
+  color: $forest-900;                // Design token (darker than #2d5a3d for better contrast)
 }
 
 .alert-warning {
@@ -315,7 +315,7 @@
 }
 
 .contact-icon-link:focus {
-  outline: 2px solid $emerald-500;   // Design token
+  outline: 2px solid $forest-500;   // Design token
   outline-offset: 4px;
   border-radius: $radius-sm;         // 8px - Design token
 }

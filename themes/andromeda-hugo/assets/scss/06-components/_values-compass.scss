@@ -23,8 +23,8 @@
 // Modifiers:
 // .c-values-compass__card--featured        - Featured card (larger, special styling)
 // .c-values-compass__card--expanded        - Mobile tap-to-expand state
-// .c-values-compass__icon--emerald         - Emerald gradient icon
-// .c-values-compass__icon--terracotta      - Terracotta gradient icon
+// .c-values-compass__icon--forest          - Forest gradient icon
+// .c-values-compass__icon--sage            - Sage gradient icon
 // .c-values-compass__icon--teal            - Teal gradient icon
 // .c-values-compass__icon--amber           - Amber gradient icon
 //
@@ -270,7 +270,7 @@
 
   // Focus state (keyboard navigation)
   &:focus-within {
-    @include focus-ring-enhanced($emerald-400, true);
+    @include focus-ring-enhanced($forest-400, true);
   }
 }
 
@@ -281,7 +281,7 @@
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.95) 0%,
-    rgba($emerald-50, 0.9) 100%
+    rgba($forest-50, 0.9) 100%
   );
 
   // Gradient border always visible
@@ -382,11 +382,11 @@
 // Icon Gradient Modifiers (4 color variants)
 // ----------------------------------------------------------------------------
 .c-values-compass__icon--emerald {
-  background: $gradient-icon-emerald;
+  background: $gradient-icon-forest;
 }
 
 .c-values-compass__icon--terracotta {
-  background: $gradient-icon-terracotta;
+  background: $gradient-icon-sage;
 }
 
 .c-values-compass__icon--teal {

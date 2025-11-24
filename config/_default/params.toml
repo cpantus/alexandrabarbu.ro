@@ -38,7 +38,7 @@ title = "O Hartă Personalizată pentru Fiecare Călătorie"
 enable = true
 calendly_enabled = true
 calendly_url = "https://calendly.com/cpninesix1/terapie-online"
-calendly_primary_color = "#4DB380"
+calendly_primary_color = "#234E3E"
 
 [cookies]
 button = "De Acord"
@@ -100,38 +100,63 @@ font_secondary_type = "sans-serif"
 font_size = "16px"
 font_scale = "1.25"
 
-# Brand Colors (Alexandra.md)
-color_primary = "#4DB380"      # Verde Eucalipt (Healing Green)
-color_secondary = "#CC6B49"    # Teracotă (Warm Terracotta)
+# Brand Colors (2025 Redesign)
+color_primary = "#234E3E"      # Forest Green (depth, grounding)
+color_secondary = "#6B9080"    # Sage Green (calm, tranquility)
+color_accent = "#D4AF37"       # Gold (warmth, value)
 white = "#ffffff"
 black = "#111827"              # Text primary (not pure black)
-light = "#f9fafb"              # Gray-50
+light = "#F5F1E8"              # Cream (warm, soft)
 border_color = "#e5e7eb"       # Gray-200
 
 # Design Excellence - Extended Color Scales
-# Green Scale (Healing)
-green_50 = "#f0fdf6"
-green_100 = "#dcfce8"
-green_200 = "#bbf7d5"
-green_300 = "#86efb3"
-green_400 = "#4DB380"
-green_500 = "#3a9d6a"
-green_600 = "#2d7a52"
-green_700 = "#246143"
-green_800 = "#1e4d36"
-green_900 = "#1a4231"
+# Forest Green Scale (Depth)
+forest_50 = "#ecf2f0"
+forest_100 = "#d4e3de"
+forest_200 = "#a8c7bc"
+forest_300 = "#7cab9a"
+forest_400 = "#509078"
+forest_500 = "#234E3E"
+forest_600 = "#1c3e32"
+forest_700 = "#162f26"
+forest_800 = "#0f1f1a"
+forest_900 = "#08100e"
 
-# Terracotta Scale (Warmth)
-terracotta_50 = "#fef7f3"
-terracotta_100 = "#fceee6"
-terracotta_200 = "#f9dcd0"
-terracotta_300 = "#f5c2aa"
-terracotta_400 = "#CC6B49"
-terracotta_500 = "#b55737"
-terracotta_600 = "#964629"
-terracotta_700 = "#7a3921"
-terracotta_800 = "#5e2d1a"
-terracotta_900 = "#4a2315"
+# Sage Green Scale (Calm)
+sage_50 = "#f3f7f5"
+sage_100 = "#e3ece8"
+sage_200 = "#c7d9d1"
+sage_300 = "#abc6ba"
+sage_400 = "#8fb3a3"
+sage_500 = "#6B9080"
+sage_600 = "#567366"
+sage_700 = "#41564d"
+sage_800 = "#2b3a33"
+sage_900 = "#161d1a"
+
+# Gold Scale (Warmth)
+gold_50 = "#fdfaf3"
+gold_100 = "#faf3e0"
+gold_200 = "#f5e7c1"
+gold_300 = "#f0dba2"
+gold_400 = "#ebcf83"
+gold_500 = "#D4AF37"
+gold_600 = "#aa8c2c"
+gold_700 = "#806921"
+gold_800 = "#554616"
+gold_900 = "#2b230b"
+
+# Cream Scale (Soft Backgrounds)
+cream_50 = "#fdfcfa"
+cream_100 = "#faf8f3"
+cream_200 = "#F5F1E8"
+cream_300 = "#eee7d9"
+cream_400 = "#e2d7c1"
+cream_500 = "#d5c7a9"
+cream_600 = "#b9a888"
+cream_700 = "#9d8967"
+cream_800 = "#6a5e47"
+cream_900 = "#362f23"
 
 # Gray Scale (Sophisticated Neutrals)
 gray_50 = "#f9fafb"
@@ -160,5 +185,5 @@ radius_large = "1rem"          # 16px
 shadow_sm = "0 1px 3px 0 rgba(0, 0, 0, 0.1)"
 shadow_md = "0 10px 15px -3px rgba(0, 0, 0, 0.1)"
 shadow_lg = "0 20px 25px -5px rgba(0, 0, 0, 0.1)"
-shadow_primary = "0 10px 30px -5px rgba(77, 179, 128, 0.2)"
-shadow_secondary = "0 10px 30px -5px rgba(204, 107, 73, 0.2)"
+shadow_primary = "0 10px 30px -5px rgba(35, 78, 62, 0.2)"
+shadow_secondary = "0 10px 30px -5px rgba(107, 144, 128, 0.2)"

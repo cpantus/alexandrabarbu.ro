@@ -254,7 +254,7 @@
     width: 24px;
     height: 24px;
     border-radius: $radius-full;
-    background: $gradient-icon-emerald;
+    background: $gradient-icon-forest;
     color: white;
     display: flex;
     align-items: center;
@@ -282,8 +282,8 @@
     inset: 0;
     background: linear-gradient(
       135deg,
-      rgba($emerald-400, 0.1) 0%,
-      rgba($terracotta-400, 0.1) 100%
+      rgba($forest-400, 0.1) 0%,
+      rgba($sage-400, 0.1) 100%
     );
     opacity: 0;
     transition: opacity $duration-normal $ease-out;

@@ -1,0 +1,227 @@
+// Nav Item Component - Navigation links with dropdown support
+// BEM Structure: .c-nav-item
+// Dependencies: 01-settings (tokens), vanilla-dropdown.js
+
+// Nav Item Block (list item)
+.c-nav-item {
+  list-style: none;
+  position: relative;
+
+  // Dropdown modifier
+  &--dropdown {
+    position: relative;
+  }
+
+  // Active state modifier
+  &--active {
+    .c-nav-item__link {
+      color: $color-primary;
+      font-weight: 600;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: $gold-500;
+      }
+    }
+  }
+}
+
+// Nav Link
+.c-nav-item__link {
+  display: flex;
+  align-items: center;
+  gap: $space-1; // 8px
+  padding: $space-2 $space-3; // 16px 24px
+  color: $color-text-primary;
+  text-decoration: none;
+  font-family: $font-family-sans;
+  font-size: $font-size-base;
+  font-weight: 500;
+  border-radius: $border-radius-sm;
+  transition: all $duration-fast $ease-out;
+  position: relative;
+
+  // Hover state
+  &:hover {
+    color: $color-primary;
+    background-color: rgba($color-primary, 0.05);
+  }
+
+  // Focus state
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+
+  // Active modifier
+  &--active {
+    color: $color-primary;
+  }
+
+  // Dropdown modifier (adds chevron)
+  &--dropdown {
+    padding-right: $space-4; // 32px (space for chevron)
+  }
+}
+
+// Icon (left/right positioned)
+.c-nav-item__icon {
+  display: flex;
+  align-items: center;
+  transition: transform $duration-fast $ease-out;
+
+  &--left {
+    margin-right: -$space-1; // -8px (compensate gap)
+  }
+
+  &--right {
+    margin-left: -$space-1;
+  }
+}
+
+// Link text
+.c-nav-item__text {
+  flex: 1;
+}
+
+// Badge
+.c-nav-item__badge {
+  margin-left: $space-1; // 8px
+}
+
+// Dropdown chevron
+.c-nav-item__chevron {
+  position: absolute;
+  right: $space-2; // 16px
+  transition: transform $duration-fast $ease-out;
+
+  // Rotate when dropdown open
+  [aria-expanded="true"] & {
+    transform: rotate(180deg);
+  }
+}
+
+// Dropdown Menu
+.c-nav-item__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  margin-top: $space-1; // 8px
+  padding: $space-2; // 16px
+  background: white;
+  border-radius: $border-radius-base;
+  box-shadow: $shadow-lg;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity $duration-base $ease-out,
+              transform $duration-base $ease-out,
+              visibility $duration-base step-end;
+  list-style: none;
+  z-index: 1000;
+
+  // Show state (controlled by vanilla-dropdown.js)
+  [aria-expanded="true"] ~ & {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity $duration-base $ease-out,
+                transform $duration-base $ease-out,
+                visibility $duration-base step-start;
+  }
+}
+
+// Dropdown Link
+.c-nav-item__dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: $space-1; // 8px
+  padding: $space-2; // 16px
+  color: $color-text-primary;
+  text-decoration: none;
+  font-size: $font-size-sm;
+  border-radius: $border-radius-sm;
+  transition: all $duration-fast $ease-out;
+
+  &:hover {
+    color: $color-primary;
+    background-color: rgba($color-primary, 0.05);
+  }
+}
+
+// Dropdown Item Elements
+.c-nav-item__dropdown-icon {
+  display: flex;
+}
+
+.c-nav-item__dropdown-text {
+  flex: 1;
+}
+
+.c-nav-item__dropdown-badge {
+  margin-left: auto;
+}
+
+// Dropdown Divider
+.c-nav-item__divider {
+  height: 1px;
+  margin: $space-2 0; // 16px vertical
+  background-color: $color-border;
+}
+
+// Responsive (Mobile)
+@media (max-width: 991px) {
+  .c-nav-item {
+    width: 100%;
+    border-bottom: 1px solid rgba($color-border, 0.5);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .c-nav-item__link {
+    padding: $space-3; // 24px (larger touch target)
+  }
+
+  .c-nav-item__dropdown {
+    position: static;
+    box-shadow: none;
+    background: rgba($color-bg-section, 0.5);
+    margin-top: 0;
+    padding-left: $space-4; // 32px indent
+
+    [aria-expanded="true"] ~ & {
+      margin-top: $space-2; // 16px spacing
+    }
+  }
+}
+
+// Accessibility
+@media (prefers-contrast: high) {
+  .c-nav-item__link {
+    outline: 1px solid currentColor;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-nav-item__link,
+  .c-nav-item__icon,
+  .c-nav-item__chevron,
+  .c-nav-item__dropdown {
+    transition: none !important;
+  }
+}
+
+// Print
+@media print {
+  .c-nav-item__dropdown {
+    display: none;
+  }
+}

@@ -100,16 +100,16 @@
  * Primary spinner - emerald (brand color, default)
  */
 .c-spinner--primary .c-spinner__circle {
-  border-color: rgba($emerald-500, 0.2);  // Light gray background
-  border-top-color: $emerald-500;         // Colored segment
+  border-color: rgba($forest-500, 0.2);  // Light gray background
+  border-top-color: $forest-500;         // Colored segment
 }
 
 /**
  * Secondary spinner - terracotta (warm alternative)
  */
 .c-spinner--secondary .c-spinner__circle {
-  border-color: rgba($terracotta-500, 0.2);
-  border-top-color: $terracotta-500;
+  border-color: rgba($sage-500, 0.2);
+  border-top-color: $sage-500;
 }
 
 /**

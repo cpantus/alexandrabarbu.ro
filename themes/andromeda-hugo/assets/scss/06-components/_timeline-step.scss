@@ -357,24 +357,24 @@
 .c-timeline-step--primary {
   .c-timeline-step__icon-wrapper {
     background: white; // Default: white
-    border: 2px solid rgba($emerald-500, 0.2); // Subtle border hint
+    border: 2px solid rgba($forest-500, 0.2); // Subtle border hint
   }
 
   // Icon color: always colored (stays visible)
   .c-timeline-step__number,
   i {
-    color: $emerald-600;
+    color: $forest-600;
   }
 
   // Hover: show colored gradient, keep icon colored but darker
   &:hover .c-timeline-step__icon-wrapper {
     background: linear-gradient(135deg, rgba($forest-300, 0.3), rgba($forest-600, 0.3));
-    border-color: rgba($emerald-600, 0.4);
+    border-color: rgba($forest-600, 0.4);
   }
 
   &:hover .c-timeline-step__number,
   &:hover i {
-    color: $emerald-700; // Darker for better contrast on tinted background
+    color: $forest-700; // Darker for better contrast on tinted background
   }
 }
 
@@ -382,24 +382,24 @@
 .c-timeline-step--secondary {
   .c-timeline-step__icon-wrapper {
     background: white; // Default: white
-    border: 2px solid rgba($terracotta-500, 0.2); // Subtle border hint
+    border: 2px solid rgba($sage-500, 0.2); // Subtle border hint
   }
 
   // Icon color: always colored (stays visible)
   .c-timeline-step__number,
   i {
-    color: $terracotta-600;
+    color: $sage-600;
   }
 
   // Hover: show colored gradient, keep icon colored but darker
   &:hover .c-timeline-step__icon-wrapper {
     background: linear-gradient(135deg, rgba($sage-300, 0.3), rgba($sage-600, 0.3));
-    border-color: rgba($terracotta-600, 0.4);
+    border-color: rgba($sage-600, 0.4);
   }
 
   &:hover .c-timeline-step__number,
   &:hover i {
-    color: $terracotta-700; // Darker for better contrast on tinted background
+    color: $sage-700; // Darker for better contrast on tinted background
   }
 }
 

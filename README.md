@@ -221,7 +221,7 @@ hugo --gc --minify
    - Organic blob backgrounds
 
 ### Design System
-- **8 Gradients**: warm (emerald→terracotta), radial, glassmorphism, icons
+- **8 Gradients**: warm (forest→sage), radial, glassmorphism, icons
 - **10 Animations**: fade-in, pulse, float, gradient-shift, staggered-entrance
 - **Accessibility**: WCAG AA, reduced-motion, keyboard nav, touch-optimized
 - **Performance**: +18KB gzipped, 60fps animations, <3s builds maintained
