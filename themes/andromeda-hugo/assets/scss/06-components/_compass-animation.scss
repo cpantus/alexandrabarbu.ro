@@ -83,17 +83,22 @@
 
 .c-compass-animation__needle {
   transform-origin: 200px 200px; // Center pivot
-  // Subtle oscillation around northeast direction (45 degrees)
-  animation: needleOscillateNE 5s ease-in-out infinite;
+  // Oscillate left-right around NORTH (0 degrees) by ~15 degrees
+  animation: needleOscillateNorth 4s ease-in-out infinite;
 }
 
-.c-compass-animation__needle-triangle {
-  // The right-angled triangle inherits gradient fill
+.c-compass-animation__needle-rhombus {
+  // The rhombus/diamond shape
   transition: opacity 0.3s ease;
 
-  // Opposite triangle (southwest balance)
-  &--opposite {
-    // Lighter opacity set inline
+  // North half (upper, dark green with golden tip)
+  &--north {
+    // Gradient applied inline
+  }
+
+  // South half (lower, light green/sage)
+  &--south {
+    // Light green color set inline
   }
 }
 
@@ -155,19 +160,13 @@
   }
 }
 
-// Oscillation around northeast position (45 degrees)
-@keyframes needleOscillateNE {
+// Oscillation around NORTH (0 degrees) - left-right ~15 degrees
+@keyframes needleOscillateNorth {
   0%, 100% {
-    transform: rotate(40deg); // Slightly less than 45
-  }
-  25% {
-    transform: rotate(48deg); // Slightly more than 45
+    transform: rotate(-15deg); // 15 degrees to the left (west)
   }
   50% {
-    transform: rotate(45deg); // Perfect northeast
-  }
-  75% {
-    transform: rotate(42deg); // Back toward north
+    transform: rotate(15deg); // 15 degrees to the right (east)
   }
 }
 
@@ -196,9 +195,9 @@
     animation: none;
   }
 
-  // Set needle to static northeast position
+  // Set needle to static NORTH position
   .c-compass-animation__needle {
-    transform: rotate(45deg);
+    transform: rotate(0deg);
   }
 }
 

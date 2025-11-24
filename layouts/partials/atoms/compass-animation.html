@@ -17,7 +17,7 @@
 */}}
 
 <div class="c-compass-animation" aria-hidden="true">
-  <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="c-compass-animation__svg">
+  <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="c-compass-animation__svg" style="overflow: visible;">
     <defs>
       {{/* Very subtle gradient for circles */}}
       <linearGradient id="compassCircleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -53,11 +53,11 @@
       />
 
       {{/* Tick marks around the outer ring */}}
-      {{/* Major ticks at cardinal points */}}
-      <line x1="200" y1="10" x2="200" y2="20" stroke="#9CA3AF" stroke-width="1" opacity="0.5" /> {{/* N */}}
-      <line x1="390" y1="200" x2="380" y2="200" stroke="#9CA3AF" stroke-width="1" opacity="0.5" /> {{/* E */}}
-      <line x1="200" y1="390" x2="200" y2="380" stroke="#9CA3AF" stroke-width="1" opacity="0.5" /> {{/* S */}}
-      <line x1="10" y1="200" x2="20" y2="200" stroke="#9CA3AF" stroke-width="1" opacity="0.5" /> {{/* W */}}
+      {{/* Major ticks at cardinal points - BOLD */}}
+      <line x1="200" y1="10" x2="200" y2="25" stroke="#6B7280" stroke-width="3" opacity="0.7" /> {{/* N */}}
+      <line x1="390" y1="200" x2="375" y2="200" stroke="#6B7280" stroke-width="3" opacity="0.7" /> {{/* E */}}
+      <line x1="200" y1="390" x2="200" y2="375" stroke="#6B7280" stroke-width="3" opacity="0.7" /> {{/* S */}}
+      <line x1="10" y1="200" x2="25" y2="200" stroke="#6B7280" stroke-width="3" opacity="0.7" /> {{/* W */}}
 
       {{/* Minor ticks at intercardinal points */}}
       <line x1="330" y1="70" x2="324" y2="76" stroke="#9CA3AF" stroke-width="0.5" opacity="0.4" /> {{/* NE */}}
@@ -117,31 +117,45 @@
       <circle cx="144" cy="144" r="1.5" fill="#9CA3AF" opacity="0.4" /> {{/* NW */}}
     </g>
 
-    {{/* Cardinal direction - only N in golden */}}
-    <text x="200" y="35" text-anchor="middle" class="c-compass-animation__direction c-compass-animation__direction--north">N</text>
+    {{/* Cardinal direction - only N in golden, OUTSIDE outermost circle */}}
+    <text x="200" y="8" text-anchor="middle" class="c-compass-animation__direction c-compass-animation__direction--north">N</text>
 
-    {{/* RIGHT-ANGLED TRIANGLE NEEDLE pointing northeast (like reference) */}}
+    {{/* SINGLE RHOMBUS NEEDLE pointing NORTH */}}
     <g class="c-compass-animation__needle" filter="url(#needleShadow)">
-      {{/* Main triangle needle - pointing from center to northeast */}}
-      {{/* This creates a right-angled triangle */}}
+      {{/* Lower triangle - TRANSPARENT (no fill) */}}
       <path
-        d="M 200,200 L 195,195 L 240,90 Z"
-        fill="url(#needleGradient)"
-        class="c-compass-animation__needle-triangle"
-      />
-
-      {{/* Opposite smaller triangle (southwest) for balance */}}
-      <path
-        d="M 200,200 L 205,205 L 160,310 Z"
-        fill="#234E3E"
+        d="M 200,200 L 220,200 L 200,320 L 180,200 Z"
+        fill="none"
+        stroke="#E5E7EB"
+        stroke-width="1"
         opacity="0.3"
-        class="c-compass-animation__needle-triangle c-compass-animation__needle-triangle--opposite"
+        class="c-compass-animation__needle-lower"
       />
 
-      {{/* Center pivot - smaller, cleaner */}}
-      <circle cx="200" cy="200" r="8" fill="#234E3E" opacity="0.8" />
-      <circle cx="200" cy="200" r="5" fill="#6B9080" />
-      <circle cx="200" cy="200" r="2" fill="#C5A880" />
+      {{/* Upper triangle LEFT half - DARK GREEN */}}
+      <path
+        d="M 200,80 L 200,200 L 180,200 Z"
+        fill="#234E3E"
+        class="c-compass-animation__needle-upper-dark"
+      />
+
+      {{/* Upper triangle RIGHT half - LIGHTER GREEN */}}
+      <path
+        d="M 200,80 L 220,200 L 200,200 Z"
+        fill="#3D6A59"
+        class="c-compass-animation__needle-upper-light"
+      />
+
+      {{/* Needle point - SOLID GOLD tip */}}
+      <path
+        d="M 200,80 L 205,95 L 200,100 L 195,95 Z"
+        fill="#D4AF37"
+        class="c-compass-animation__needle-tip"
+      />
+
+      {{/* Center pivot */}}
+      <circle cx="200" cy="200" r="6" fill="#234E3E" />
+      <circle cx="200" cy="200" r="3" fill="#C5A880" />
     </g>
   </svg>
 </div>

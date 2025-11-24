@@ -110,17 +110,17 @@
 .c-hero-breadcrumb__title {
   // Redesign 2025: Large hero text with Playfair Display
   margin-bottom: $space-4; // 32px (eval1.md spec: ~32px gap to body)
-  font-size: 2.5rem; // 40px mobile
+  font-size: 2.5rem !important; // 40px mobile
   line-height: 1.2; // Tight for impact
   letter-spacing: -0.02em; // Better kerning for Playfair Display
   font-weight: 600; // Semibold for hero
 
   @media (min-width: $breakpoint-md) {
-    font-size: 3.5rem; // 56px tablet
+    font-size: 3.5rem !important; // 56px tablet
   }
 
   @media (min-width: $breakpoint-lg) {
-    font-size: 4.5rem; // 72px desktop (eval1.md spec: ~72px)
+    font-size: 3.75rem !important; // 60px desktop (updated per user request)
     line-height: 1.1; // $leading-display for extra tight hero text
   }
 }
