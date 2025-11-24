@@ -143,6 +143,17 @@
   text-decoration: none;
   transition: opacity $duration-fast $easing-default;
 
+  // Prevent any underlines on logo/brand link
+  &,
+  &:hover,
+  &:focus,
+  &:active,
+  &::before,
+  &::after {
+    text-decoration: none !important;
+    border-bottom: none !important;
+  }
+
   &:hover,
   &:focus {
     opacity: 0.85;

@@ -51,7 +51,7 @@
 @import 'language-selector';       // ✅ Phase 3: BEM refactored - multilingual language switcher with 4 variants + localStorage
 @import 'logo';                    // ✅ Phase 3: BEM refactored - site logo with 4 color variants + 3 size variants + optional linking
 @import 'mobile-menu';             // ✅ Phase 3: BEM refactored - hamburger menu toggle with collapsible panel + animated icons
-@import 'nav-item';                // ✅ Phase 3: BEM refactored - navigation link with dropdown support + badges + active state
+// @import 'nav-item';             // ❌ REMOVED: Unused legacy component - replaced by 'navigation' component (line 39)
 @import 'service-card';            // ✅ Phase 3: NEW molecule - service preview card with icon/image, title, excerpt, CTA button
 @import 'value-card';              // ✅ Phase 3: NEW molecule - value/principle card with icon, title, description (About/Approach pages)
 @import 'process-step';            // ✅ Phase 3: NEW molecule - numbered process step with title & description (therapy timelines)

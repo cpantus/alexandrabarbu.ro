@@ -101,7 +101,7 @@
   font-family: $font-family-serif;
   font-size: $font-size-lg;
   font-weight: 600;
-  color: $color-text-heading;
+  color: #ffffff; // White text in footer
 
   // Remove any underlines/decorations in footer context
   text-decoration: none;
@@ -152,37 +152,21 @@
 
 .c-footer-nav__link {
   display: inline-block;
-  color: $color-text-primary;
+  color: #ffffff; // White text in footer
   text-decoration: none;
   position: relative;
   padding-bottom: $space-1; // Add padding for underline spacing
   transition: color $duration-base $easing-out;
 
-  // Beautiful gradient underline effect (same as navigation dropdown)
+  // Remove gradient underline in footer
   &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 50%; // Half width - elegant and subtle
-    bottom: 0;
-    height: 2px;
-    background: linear-gradient(90deg, $forest-500 0%, $sage-500 50%, $forest-600 100%);
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: left; // Slide from left
-    transition: all $duration-base $easing-medium;
-    border-radius: 1px;
+    display: none; // No underline in footer
   }
 
   &:hover,
   &:focus {
-    color: $color-primary;
+    color: $gold-500; // Gold on hover
     text-decoration: none;
-
-    &::after {
-      opacity: 1;
-      transform: scaleX(1);
-    }
   }
 
   &:focus {
@@ -332,42 +316,5 @@
         }
       }
     }
-  }
-}
-
-// ============================================================================
-// Backward Compatibility
-// ============================================================================
-
-// Legacy Bootstrap classes → BEM mapping
-.col-lg-3.col-md-6.col-sm-6.mt-5.mt-sm-0:has(.footer-widget) {
-  @extend .c-footer-nav__section;
-  @extend .c-footer-nav__section--social;
-}
-
-.col-lg-2.col-md-6.col-sm-6.mt-5.mt-lg-0:has(.footer-widget) {
-  @extend .c-footer-nav__section;
-  @extend .c-footer-nav__section--links;
-}
-
-.footer-widget {
-  h4.mb-4 {
-    @extend .c-footer-nav__title;
-  }
-
-  .footer-links.list-unstyled {
-    @extend .c-footer-nav__links;
-
-    li {
-      @extend .c-footer-nav__item;
-
-      a {
-        @extend .c-footer-nav__link;
-      }
-    }
-  }
-
-  .social-links.list-inline {
-    @extend .c-footer-nav__social;
   }
 }

@@ -50,8 +50,12 @@
       color: $color-primary;
       font-weight: $font-weight-medium;
 
-      // NO ::after styles here - dropdown links should NOT inherit this
-      // Main nav links don't have ::after anyway (we disabled it)
+      // Show golden underline for active page (non-dropdown links only)
+      &:not(.c-navigation__link--dropdown)::after {
+        opacity: 1 !important;
+        transform: scaleX(1) !important;
+        background: $gold-500 !important; // Golden accent for active state
+      }
     }
   }
 
@@ -93,16 +97,16 @@
   position: relative;
   text-decoration: none;
 
-  // Beautiful gradient underline effect (same as dropdowns and footer)
+  // Golden underline effect - proportional to text width
   // Only for non-dropdown links (regular nav items like Acasa, Contact)
   &:not(.c-navigation__link--dropdown)::after {
     content: '';
     position: absolute;
     left: $space-3;   // 24px - align with text
-    width: 50%;       // Half width - elegant and subtle
+    right: $space-3;  // 24px - align with text on right
     bottom: $space-1; // 8px from bottom
     height: 2px;
-    background: linear-gradient(90deg, $forest-500 0%, $sage-500 50%, $forest-600 100%);
+    background: $gold-500 !important;  // Golden accent color (override any other styles)
     opacity: 0;
     transform: scaleX(0);
     transform-origin: left; // Slide from left
@@ -110,15 +114,16 @@
     border-radius: 1px;
   }
 
-  // Hover state - show gradient underline
+  // Hover state - show golden underline
   &:hover,
   &:focus {
     color: $color-primary;
     text-decoration: none;
 
     &:not(.c-navigation__link--dropdown)::after {
-      opacity: 1;
-      transform: scaleX(1);
+      opacity: 1 !important;
+      transform: scaleX(1) !important;
+      background: $gold-500 !important; // Force golden color
     }
   }
 
@@ -253,16 +258,15 @@
   transition: all $duration-fast $easing-medium;
   position: relative;
 
-  // Beautiful gradient underline effect (hidden by default)
-  // Half width for elegant, subtle accent
+  // Golden underline effect - proportional to text width
   &::after {
     content: '';
     position: absolute;
     left: $space-3;   // 24px - start where text starts
-    width: 50%;       // Half width - elegant and subtle
+    right: $space-3;  // 24px - end where text ends (proportional width)
     bottom: $space-2; // 16px from bottom
     height: 2px;
-    background: linear-gradient(90deg, $forest-500 0%, $sage-500 50%, $forest-600 100%);
+    background: $gold-500;  // Golden accent color
     opacity: 0;
     transform: scaleX(0);
     transform-origin: left; // Slide from left
@@ -270,7 +274,7 @@
     border-radius: 1px;
   }
 
-  // Hover state - show gradient underline with slide effect
+  // Hover state - show golden underline with slide effect
   &:hover,
   &:focus {
     color: $color-primary;
