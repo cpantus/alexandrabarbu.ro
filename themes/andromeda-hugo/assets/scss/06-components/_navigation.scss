@@ -84,14 +84,18 @@
   text-decoration: none;
   background: transparent;
   border: none;
+  border-bottom: 0 !important;  // CRITICAL: Remove any border underlines
   border-radius: $radius-sm;
   cursor: pointer;
   transition: all $duration-fast $easing-medium;
   position: relative;
-  text-decoration: none;
 
-  // No underline on link itself for non-dropdown links
-  // (underline will be on the text span instead)
+  // CRITICAL: Prevent any pseudo-elements on the link itself
+  // The underline should ONLY be on .c-navigation__link-text::after
+  &::before,
+  &::after {
+    display: none !important;
+  }
 
   // Hover state
   &:hover,
@@ -142,27 +146,24 @@
     right: 0;
     bottom: -$space-1;  // 8px below text
     height: 2px;
-    background: $gold-500 !important;
+    background: $gold-500;
     opacity: 0;
     transform: scaleX(0);
     transform-origin: left;
     transition: all $duration-base $easing-medium;
-    border-radius: 1px;
   }
 
   // Show underline on parent link hover/focus
   .c-navigation__link:hover &::after,
   .c-navigation__link:focus &::after {
-    opacity: 1 !important;
-    transform: scaleX(1) !important;
-    background: $gold-500 !important; // Force gold on hover
+    opacity: 1;
+    transform: scaleX(1);
   }
 
   // Show underline on active page
   .c-navigation__item--active .c-navigation__link &::after {
-    opacity: 1 !important;
-    transform: scaleX(1) !important;
-    background: $gold-500 !important; // Force gold on active
+    opacity: 1;
+    transform: scaleX(1);
   }
 }
 
@@ -259,6 +260,8 @@
   font-weight: $font-weight-normal;
   line-height: $line-height-snug;
   text-decoration: none;
+  border: none;
+  border-bottom: none;
   border-radius: $radius-sm;
   transition: all $duration-fast $easing-medium;
   position: relative;
@@ -280,31 +283,8 @@
 
   // Active state (current page within dropdown)
   &--active {
-    color: $color-primary;
     font-weight: $font-weight-medium;
-    background: rgba($color-primary, 0.1);
     text-decoration: none;
-
-    // Active items don't show gradient underline
-    &::after {
-      display: none;
-    }
-
-    // Show active indicator bar instead
-    &::before {
-      content: '';
-      position: absolute;
-      left: $space-2;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 4px;
-      height: 20px;
-      background: $color-primary;
-      border-radius: 2px;
-    }
-
-    // Adjust padding for indicator
-    padding-left: calc($space-3 + $space-1); // Add space for indicator
 
     // Keep text decoration off on hover/focus
     &:hover,
@@ -330,20 +310,18 @@
     right: 0;
     bottom: -$space-2;  // 16px below text (accounting for transform slide)
     height: 2px;
-    background: $gold-500 !important;
+    background: $gold-500;
     opacity: 0;
     transform: scaleX(0);
     transform-origin: left;
     transition: all $duration-base $easing-medium;
-    border-radius: 1px;
   }
 
   // Show underline on parent link hover/focus
   .c-navigation__dropdown-link:hover &::after,
   .c-navigation__dropdown-link:focus &::after {
-    opacity: 1 !important;
-    transform: scaleX(1) !important;
-    background: $gold-500 !important; // Force gold on hover
+    opacity: 1;
+    transform: scaleX(1);
   }
 }
 

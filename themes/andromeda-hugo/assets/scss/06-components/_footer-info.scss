@@ -233,31 +233,10 @@
   padding-bottom: $space-1; // Add padding for underline spacing
   transition: color $duration-base $easing-out;
 
-  // Beautiful gradient underline effect (same as navigation)
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 50%; // Half width - elegant and subtle
-    bottom: 0;
-    height: 2px;
-    background: linear-gradient(90deg, $forest-500 0%, $sage-500 50%, $forest-600 100%);
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: left; // Slide from left
-    transition: all $duration-base $easing-medium;
-    border-radius: 1px;
-  }
-
   &:hover,
   &:focus {
     color: $color-primary;
     text-decoration: none;
-
-    &::after {
-      opacity: 1;
-      transform: scaleX(1);
-    }
   }
 
   &:focus {
