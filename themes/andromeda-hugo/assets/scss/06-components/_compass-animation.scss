@@ -174,15 +174,8 @@
   # Hover Effects
 -------------------------------------------------------------------*/
 
-.c-compass-animation:hover {
-  .c-compass-animation__needle {
-    animation-duration: 3s; // Speed up on hover
-  }
-
-  .c-compass-animation__needle-triangle {
-    filter: brightness(1.1); // Slight brightness increase
-  }
-}
+// Removed hover effects to prevent animation choppiness
+// The compass should animate smoothly and continuously without interruption
 
 /*------------------------------------------------------------------
   # Accessibility

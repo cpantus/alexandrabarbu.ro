@@ -49,13 +49,6 @@
     > .c-navigation__link {
       color: $color-primary;
       font-weight: $font-weight-medium;
-
-      // Show golden underline for active page (non-dropdown links only)
-      &:not(.c-navigation__link--dropdown)::after {
-        opacity: 1 !important;
-        transform: scaleX(1) !important;
-        background: $gold-500 !important; // Golden accent for active state
-      }
     }
   }
 
@@ -97,34 +90,14 @@
   position: relative;
   text-decoration: none;
 
-  // Golden underline effect - proportional to text width
-  // Only for non-dropdown links (regular nav items like Acasa, Contact)
-  &:not(.c-navigation__link--dropdown)::after {
-    content: '';
-    position: absolute;
-    left: $space-3;   // 24px - align with text
-    right: $space-3;  // 24px - align with text on right
-    bottom: $space-1; // 8px from bottom
-    height: 2px;
-    background: $gold-500 !important;  // Golden accent color (override any other styles)
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: left; // Slide from left
-    transition: all $duration-base $easing-medium;
-    border-radius: 1px;
-  }
+  // No underline on link itself for non-dropdown links
+  // (underline will be on the text span instead)
 
-  // Hover state - show golden underline
+  // Hover state
   &:hover,
   &:focus {
     color: $color-primary;
     text-decoration: none;
-
-    &:not(.c-navigation__link--dropdown)::after {
-      opacity: 1 !important;
-      transform: scaleX(1) !important;
-      background: $gold-500 !important; // Force golden color
-    }
   }
 
   // Focus state (keyboard navigation) - smooth animation instead of outline
@@ -158,7 +131,39 @@
 -------------------------------------------------------------------*/
 
 .c-navigation__link-text {
-  display: block;
+  position: relative;
+  display: inline-block;
+
+  // Golden underline effect - matches exact text width
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -$space-1;  // 8px below text
+    height: 2px;
+    background: $gold-500 !important;
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: all $duration-base $easing-medium;
+    border-radius: 1px;
+  }
+
+  // Show underline on parent link hover/focus
+  .c-navigation__link:hover &::after,
+  .c-navigation__link:focus &::after {
+    opacity: 1 !important;
+    transform: scaleX(1) !important;
+    background: $gold-500 !important; // Force gold on hover
+  }
+
+  // Show underline on active page
+  .c-navigation__item--active .c-navigation__link &::after {
+    opacity: 1 !important;
+    transform: scaleX(1) !important;
+    background: $gold-500 !important; // Force gold on active
+  }
 }
 
 /*------------------------------------------------------------------
@@ -258,34 +263,13 @@
   transition: all $duration-fast $easing-medium;
   position: relative;
 
-  // Golden underline effect - proportional to text width
-  &::after {
-    content: '';
-    position: absolute;
-    left: $space-3;   // 24px - start where text starts
-    right: $space-3;  // 24px - end where text ends (proportional width)
-    bottom: $space-2; // 16px from bottom
-    height: 2px;
-    background: $gold-500;  // Golden accent color
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: left; // Slide from left
-    transition: all $duration-base $easing-medium;
-    border-radius: 1px;
-  }
-
-  // Hover state - show golden underline with slide effect
+  // Hover state - slide effect (underline is on text span)
   &:hover,
   &:focus {
     color: $color-primary;
     background: transparent;
     transform: translateX($space-1); // Slide right effect
     text-decoration: none;
-
-    &::after {
-      opacity: 1;
-      transform: scaleX(1);
-    }
   }
 
   // Focus state (keyboard navigation) - smooth animation instead of outline
@@ -327,6 +311,39 @@
     &:focus {
       text-decoration: none;
     }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Dropdown Link Text
+-------------------------------------------------------------------*/
+
+.c-navigation__dropdown-link-text {
+  position: relative;
+  display: inline-block;
+
+  // Golden underline effect - matches exact text width
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -$space-2;  // 16px below text (accounting for transform slide)
+    height: 2px;
+    background: $gold-500 !important;
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: all $duration-base $easing-medium;
+    border-radius: 1px;
+  }
+
+  // Show underline on parent link hover/focus
+  .c-navigation__dropdown-link:hover &::after,
+  .c-navigation__dropdown-link:focus &::after {
+    opacity: 1 !important;
+    transform: scaleX(1) !important;
+    background: $gold-500 !important; // Force gold on hover
   }
 }
 

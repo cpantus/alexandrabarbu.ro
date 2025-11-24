@@ -6,6 +6,9 @@
 
 ## CRITICAL Rules
 
+**⚠️ CSS Override Prevention Protocol**
+When modifying existing styles: 1) Read the target file first to understand current implementation, 2) Check for competing selectors if unexpected behavior occurs (`rg "selector" assets/scss`), 3) Use `!important` sparingly and only when specificity conflicts are confirmed.
+
 1. **Run Hugo from theme directory**: `cd themes/andromeda-hugo && hugo server`
 2. **Preserve multilingual**: Maintain RO (root path) + EN (`/en/`) content parity
 3. **Flexible layout only**: Pages = Header + Sections (2-7) + Footer. Use 21 section types.
