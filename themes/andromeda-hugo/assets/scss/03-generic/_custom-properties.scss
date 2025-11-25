@@ -96,165 +96,80 @@
    * Icon Gradient Backgrounds
    * For icon circles with brand colors
    * ---------------------------------- */
-  --icon-gradient-primary: linear-gradient(135deg, #{$forest-400} 0%, #{$forest-500} 100%);
-  --icon-gradient-secondary: linear-gradient(135deg, #{$sage-400} 0%, #{$sage-500} 100%);
-  --icon-gradient-coral: linear-gradient(135deg, #{$coral-400} 0%, #{$coral-500} 100%);
-  --icon-gradient-premium: linear-gradient(135deg, #{$plum-400} 0%, #{$plum-500} 100%);
-  --icon-gradient-sage: linear-gradient(135deg, #{$sage-400} 0%, #{$sage-500} 100%);
-  --icon-gradient-info: linear-gradient(135deg, #{$teal-400} 0%, #{$teal-500} 100%);
 
   /* ----------------------------------
    * Icon Circle Component Properties
    * For icon circles with gradient backgrounds
    * ---------------------------------- */
   // Icon circle sizes (updated v2.1 scale)
-  --icon-circle-sm: 48px;
-  --icon-circle-md: 64px;
-  --icon-circle-lg: 84px;
-  --icon-circle-xl: 104px;
 
   // Icon circle radial gradients (primary)
   --icon-circle-bg-primary-start: #{$forest-400};
   --icon-circle-bg-primary-end: #{$forest-600};
-  --icon-circle-radial-primary: radial-gradient(circle at 30% 30%, var(--icon-circle-bg-primary-start) 0%, var(--icon-circle-bg-primary-end) 100%);
 
   // Icon circle radial gradients (secondary)
   --icon-circle-bg-secondary-start: #{$sage-400};
   --icon-circle-bg-secondary-end: #{$sage-600};
-  --icon-circle-radial-secondary: radial-gradient(circle at 30% 30%, var(--icon-circle-bg-secondary-start) 0%, var(--icon-circle-bg-secondary-end) 100%);
 
   // Icon circle radial gradients (coral)
   --icon-circle-bg-coral-start: #{$coral-400};
   --icon-circle-bg-coral-end: #{$coral-600};
-  --icon-circle-radial-coral: radial-gradient(circle at 30% 30%, var(--icon-circle-bg-coral-start) 0%, var(--icon-circle-bg-coral-end) 100%);
 
   // Icon circle radial gradients (premium)
   --icon-circle-bg-premium-start: #{$plum-400};
   --icon-circle-bg-premium-end: #{$plum-600};
-  --icon-circle-radial-premium: radial-gradient(circle at 30% 30%, var(--icon-circle-bg-premium-start) 0%, var(--icon-circle-bg-premium-end) 100%);
 
   // Icon circle radial gradients (sage)
   --icon-circle-bg-sage-start: #{$sage-400};
   --icon-circle-bg-sage-end: #{$sage-600};
-  --icon-circle-radial-sage: radial-gradient(circle at 30% 30%, var(--icon-circle-bg-sage-start) 0%, var(--icon-circle-bg-sage-end) 100%);
 
   // Icon circle radial gradients (info)
   --icon-circle-bg-info-start: #{$teal-400};
   --icon-circle-bg-info-end: #{$teal-600};
-  --icon-circle-radial-info: radial-gradient(circle at 30% 30%, var(--icon-circle-bg-info-start) 0%, var(--icon-circle-bg-info-end) 100%);
 
   // Icon circle styling
-  --icon-circle-color: #ffffff;
-  --icon-circle-icon-size-ratio: 0.45;  // Icon is 45% of container
-  --icon-circle-shadow: #{$shadow-sm};
-  --icon-circle-shadow-hover: #{$shadow-md};
-  --icon-circle-transform-hover: translateY(-2px) scale(1.12);
-  --icon-circle-transition: transform #{$duration-fast} #{$ease-out}, box-shadow #{$duration-fast} #{$ease-out};
 
   // Icon flat colors (no background)
-  --icon-flat-primary-color: #{$forest-500};
-  --icon-flat-secondary-color: #{$sage-500};
-  --icon-flat-coral-color: #{$coral-500};
-  --icon-flat-sage-color: #{$sage-500};
-  --icon-flat-transform-hover: scale(1.1);
 
   // Glassmorphism icon circle
-  --icon-glass-blur: 12px;
-  --icon-glass-border: 1px solid rgba(255, 255, 255, 0.2);
-  --icon-glass-bg-primary: linear-gradient(135deg, rgba(#{red($forest-400)}, #{green($forest-400)}, #{blue($forest-400)}, 0.7) 0%, rgba(#{red($forest-500)}, #{green($forest-500)}, #{blue($forest-500)}, 0.8) 100%);
-  --icon-glass-bg-secondary: linear-gradient(135deg, rgba(#{red($sage-400)}, #{green($sage-400)}, #{blue($sage-400)}, 0.7) 0%, rgba(#{red($sage-500)}, #{green($sage-500)}, #{blue($sage-500)}, 0.8) 100%);
-  --icon-glass-bg-coral: linear-gradient(135deg, rgba(#{red($coral-400)}, #{green($coral-400)}, #{blue($coral-400)}, 0.7) 0%, rgba(#{red($coral-500)}, #{green($coral-500)}, #{blue($coral-500)}, 0.8) 100%);
 
   /* ----------------------------------
    * Icon Blob Component Properties
    * For service cards with organic blob backgrounds
    * ---------------------------------- */
   // Icon blob sizes
-  --icon-blob-sm: 60px;
-  --icon-blob-md: 80px;  // Default
-  --icon-blob-lg: 100px;
-  --icon-blob-sm-mobile: 56px;
-  --icon-blob-md-mobile: 70px;
-  --icon-blob-lg-mobile: 88px;
 
   // Icon blob colors (redesign 2025 - unified color scheme)
-  --icon-blob-bg-light: #{$forest-100};   // Light green background (default state)
-  --icon-blob-bg-dark: #{$forest-700};    // Dark forest green (hover/active state)
-  --icon-blob-icon-default: #{$forest-500};  // Green icon (default state)
-  --icon-blob-icon-hover: #{$gold-500};   // Gold icon (hover state)
 
   // Icon blob styling
-  --icon-blob-border-radius: 50%;
-  --icon-blob-icon-size-ratio: 0.4;  // Icon is 40% of blob diameter
-  --icon-blob-transform-hover: scale(1.05);
-  --icon-blob-transition: transform #{$duration-base} #{$ease-in-out}, background-color 400ms #{$ease-in-out};
-  --icon-blob-icon-transition: color 400ms #{$ease-in-out};
 
   /* ----------------------------------
    * Badge Component Properties
    * For credential badges with glassmorphism
    * ---------------------------------- */
   // Badge sizes
-  --badge-padding-sm: #{$space-2} #{$space-4};     // 8px 16px
-  --badge-padding-md: #{$space-3} #{$space-5};     // 12px 20px (default)
-  --badge-padding-lg: #{$space-4} #{$space-6};     // 16px 24px
 
   // Badge base styling
-  --badge-bg: #{$gradient-glass-light};
-  --badge-bg-hover: rgba(255, 255, 255, 0.95);
-  --badge-border-radius: #{$radius-md};
-  --badge-shadow: #{$shadow-sm};
-  --badge-shadow-hover: #{$shadow-md};
-  --badge-transform-hover: translateY(-2px) scale(1.02);
-  --badge-transition: all #{$duration-base} #{$easing-medium};
-  --badge-margin: #{$space-2};
 
   // Badge gradient border (hover effect)
-  --badge-border-gradient: #{$gradient-warm-vibrant};
-  --badge-border-width: 2px;
 
   // Badge inner layout
-  --badge-gap: #{$space-3};  // 12px gap between icon and content
 
   // Badge icon (circular gradient)
-  --badge-icon-size: #{$icon-circle-sm};  // 36px
-  --badge-icon-border-radius: #{$radius-full};
-  --badge-icon-color: white;
-  --badge-icon-transform-hover: rotate(8deg) scale(1.1);
-  --badge-icon-transition: transform #{$duration-base} #{$easing-medium};
 
   // Badge text
-  --badge-label-font-size: #{$text-sm};
-  --badge-label-font-weight: #{$font-weight-heading-bold};  // 600
-  --badge-label-color: #{$gray-700};
-  --badge-label-line-height: 1.2;
-  --badge-value-font-size: #{$text-xs};
-  --badge-value-color: #{$gray-500};
-  --badge-value-line-height: 1.2;
-  --badge-content-gap: #{$space-0};  // 2px minimal gap
 
   // Badge size variants - text sizing
-  --badge-label-sm: #{$text-sm};
-  --badge-value-sm: #{$text-xs};
-  --badge-label-lg: #{$text-base};
-  --badge-value-lg: #{$text-sm};
 
   /* ----------------------------------
    * Card Border Colors
    * For service-highlights, related-services sections
    * ---------------------------------- */
-  --card-border-primary: #{$forest-200};
-  --card-border-secondary: #{$sage-200};
-  --card-border-coral: #{$coral-200};
-  --card-border-sage: #{$sage-200};
 
   /* ----------------------------------
    * Card Hover Shadows (Colored)
    * Subtle brand-colored shadows on hover
    * ---------------------------------- */
-  --card-shadow-primary: 0 10px 30px -5px rgba(#{red($forest-400)}, #{green($forest-400)}, #{blue($forest-400)}, 0.2);
-  --card-shadow-secondary: 0 10px 30px -5px rgba(#{red($sage-400)}, #{green($sage-400)}, #{blue($sage-400)}, 0.2);
-  --card-shadow-coral: 0 10px 30px -5px rgba(#{red($coral-400)}, #{green($coral-400)}, #{blue($coral-400)}, 0.2);
 
   /* ----------------------------------
    * Spacing System
@@ -270,7 +185,6 @@
   --spacing-4xl: #{$space-20};            // 80px
   --spacing-5xl: #{$space-24};            // 96px
   --spacing-section-y: #{$section-padding-y};         // Section vertical padding (desktop)
-  --spacing-section-y-mobile: #{$section-padding-y-mobile}; // Section vertical padding (mobile)
 
   /* ----------------------------------
    * Typography System
@@ -278,9 +192,7 @@
    * ---------------------------------- */
   // Font families
   --font-family-heading: #{$font-heading};
-  --font-family-body: #{$font-body};
   --font-family-sans: #{$font-sans};
-  --font-family-serif: #{$font-serif};
 
   // Font sizes
   --font-size-xs: #{$text-xs};            // 12px
@@ -291,20 +203,13 @@
   --font-size-2xl: #{$text-2xl};          // 24px
   --font-size-3xl: #{$text-3xl};          // 30px
   --font-size-4xl: #{$text-4xl};          // 36px
-  --font-size-5xl: #{$text-5xl};          // 48px
-  --font-size-6xl: #{$text-6xl};          // 64px
 
   // Font weights
-  --font-weight-light: #{$weight-light};         // 300
-  --font-weight-normal: #{$weight-normal};       // 400
   --font-weight-medium: #{$weight-medium};       // 500
   --font-weight-semibold: #{$weight-semibold};   // 600
   --font-weight-bold: #{$weight-bold};           // 700
 
   // Line heights
-  --line-height-tight: #{$leading-tight};        // 1.25
-  --line-height-snug: #{$leading-snug};          // 1.375
-  --line-height-normal: #{$leading-normal};      // 1.5
   --line-height-relaxed: #{$leading-relaxed};    // 1.625
 
   /* ----------------------------------
@@ -314,7 +219,6 @@
   // Surface colors
   --color-surface-primary: #{$color-bg-section};        // #ffffff
   --color-surface-secondary: #{$color-bg-section-secondary}; // gray-50
-  --color-surface-tertiary: #{$color-bg-section-tertiary};   // gray-100
 
   // Brand colors
   --color-brand-primary: #{$color-primary};      // emerald-500
@@ -324,13 +228,9 @@
   --color-text-primary: #{$color-text-primary};     // gray-700
   --color-text-secondary: #{$color-text-secondary}; // gray-600
   --color-text-heading: #{$color-text-heading};     // gray-900
-  --color-text-body: #{$color-text};                // gray-700
 
   // Utility colors
   --color-white: #{$white};
-  --color-black: #{$black};
-  --color-border: #{$color-border};              // gray-300
-  --color-border-light: #{$color-border-light};  // gray-200
 
   /* ----------------------------------
    * Shadow System
@@ -338,22 +238,16 @@
    * ---------------------------------- */
   --shadow-xs: #{$shadow-xs};
   --shadow-sm: #{$shadow-sm};
-  --shadow-base: #{$shadow-base};
   --shadow-md: #{$shadow-md};
   --shadow-lg: #{$shadow-lg};
-  --shadow-xl: #{$shadow-xl};
-  --shadow-2xl: #{$shadow-2xl};
-  --shadow-warm: #{$shadow-warm};
 
   /* ----------------------------------
    * Border Radius System
    * Exposes border radius tokens
    * ---------------------------------- */
-  --border-radius-sm: #{$radius-sm};      // 8px
   --border-radius-md: #{$radius-md};      // 12px
   --border-radius-lg: #{$radius-lg};      // 16px
   --border-radius-xl: #{$radius-xl};      // 24px
-  --border-radius-2xl: #{$radius-2xl};    // 32px
   --border-radius-full: #{$radius-full};  // 9999px
 
   /* ----------------------------------
@@ -363,18 +257,12 @@
   --transition-base: #{$transition-base};
   --transition-normal: #{$transition-normal};
   --transition-fast: #{$transition-fast};
-  --transition-slow: #{$transition-slow};
 
   /* ----------------------------------
    * Gradient System
    * Exposes gradient tokens for backgrounds and effects
    * ---------------------------------- */
   --gradient-primary-warm: #{$gradient-warm-vibrant};
-  --gradient-glass-light: #{$gradient-glass-light};
-  --gradient-icon-forest: #{$gradient-icon-forest};
-  --gradient-icon-sage: #{$gradient-icon-sage};
-  --gradient-radial-primary: #{$gradient-radial-primary};
-  --gradient-radial-secondary: #{$gradient-radial-secondary};
 
   /* ----------------------------------
    * Card Component Properties
@@ -382,11 +270,8 @@
    * ---------------------------------- */
   // Card base
   --card-bg: #{$white};
-  --card-padding: #{$space-6};
   --card-padding-redesign: #{$space-10};
   --card-border-width: 1px;
-  --card-border-color: #{$gray-200};
-  --card-border-radius: #{$radius-lg};
   --card-border-radius-redesign: #{$radius-2xl};
   --card-shadow: #{$shadow-lg};
   --card-shadow-hover: #{$shadow-2xl};
@@ -395,14 +280,6 @@
   // Card top accent borders (4px solid)
   --card-accent-primary: #{$color-primary-500};
   --card-accent-secondary: #{$color-secondary-500};
-  --card-accent-tertiary: #{$color-tertiary};
-  --card-accent-success: #{$color-success};
-  --card-accent-warning: #{$color-warning};
-  --card-accent-error: #{$color-error};
-  --card-accent-info: #{$color-info};
-  --card-accent-neutral: #{$color-neutral};
-  --card-accent-coral: #{$coral-500};
-  --card-accent-sage: #{$sage-500};
 
   // Card redesign hover state
   --card-redesign-hover-border: rgba(#{red($gold-500)}, #{green($gold-500)}, #{blue($gold-500)}, 0.3);
@@ -540,35 +417,16 @@
    * Base element styling for paragraphs, links, lists
    * ---------------------------------- */
   // Paragraph
-  --text-paragraph-margin-bottom: #{$space-4};
-  --text-paragraph-line-height: #{$leading-normal};
 
   // Links
-  --text-link-color: #{$color-primary};
-  --text-link-hover-color: #{$color-primary-600};
-  --text-link-transition: color 0.2s ease-in-out;
-  --text-link-focus-outline: 2px solid #{$color-primary};
-  --text-link-focus-outline-offset: 2px;
 
   // Lists
-  --text-list-margin-bottom: #{$space-4};
-  --text-list-padding-left: #{$space-6};
-  --text-list-line-height: #{$leading-normal};
-  --text-list-item-margin-bottom: #{$space-2};
 
   // Blockquote
-  --text-blockquote-margin-bottom: #{$space-4};
-  --text-blockquote-padding-left: #{$space-4};
-  --text-blockquote-border-left: 4px solid #{$color-primary};
-  --text-blockquote-color: #{$color-text-secondary};
 
   // Inline text
-  --text-strong-font-weight: #{$font-weight-heading};
-  --text-small-font-size: #{$text-sm};
 
   // Horizontal rule
-  --text-hr-margin: #{$space-8} 0;
-  --text-hr-border: 1px solid #{$color-border-light};
 
   /* ----------------------------------
    * Hero Component Properties
@@ -620,11 +478,9 @@
    * ---------------------------------- */
 
   // Form container
-  --form-bg: rgba(255, 255, 255, 0.9);
   --form-border: 1px solid rgba(255, 255, 255, 0.4);
   --form-border-radius: #{$radius-2xl};
   --form-padding: #{$space-8};
-  --form-padding-mobile: #{$space-6};
   --form-shadow: #{$shadow-glass};
   --form-glassmorphism-bg: #{$gradient-glass-light};
   --form-glassmorphism-backdrop: blur(12px);
@@ -775,26 +631,10 @@
   --contact-trust-icon-size: 56px;
   --contact-trust-icon-size-mobile: 48px;
   --contact-trust-icon-bg: rgba(255, 255, 255, 0.15);
-  --contact-trust-icon-border: 2px solid rgba(255, 255, 255, 0.3);
-  --contact-trust-icon-bg-hover: rgba(255, 255, 255, 0.25);
-  --contact-trust-icon-transform-hover: scale(1.1);
-  --contact-trust-icon-color: white;
 
   // Contact form wrapper (right side)
-  --contact-form-wrapper-bg-redesign: #{$cream-50};
-  --contact-form-wrapper-padding-redesign: #{$space-8};
-  --contact-form-wrapper-padding-mobile: #{$space-6};
-  --contact-form-wrapper-border-radius-redesign: 0 #{$radius-3xl} #{$radius-3xl} 0;
-  --contact-form-wrapper-texture-color: #{$gray-100};
-  --contact-form-wrapper-texture-size: 40px;
 
   // Contact form privacy badge
-  --contact-form-privacy-bg: linear-gradient(135deg, rgba(#{red($color-primary-500)}, #{green($color-primary-500)}, #{blue($color-primary-500)}, 0.1) 0%, rgba(#{red($color-primary-600)}, #{green($color-primary-600)}, #{blue($color-primary-600)}, 0.1) 100%);
-  --contact-form-privacy-border: 2px solid #{$color-primary-500};
-  --contact-form-privacy-border-radius: #{$radius-full};
-  --contact-form-privacy-padding: #{$space-2} #{$space-4};
-  --contact-form-privacy-icon-color: #{$color-primary-500};
-  --contact-form-privacy-text-color: #{$color-primary-700};
 
   /* ----------------------------------
    * Signup Form Properties
@@ -890,28 +730,10 @@
   --signup-form-description-line-height: 1.6;
 
   // Form loading state
-  --form-loading-bg: #{$gray-50};
-  --form-loading-border-radius: #{$radius-md};
-  --form-loading-padding: #{$space-6} #{$space-4};
-  --form-loading-spinner-size: 40px;
-  --form-loading-spinner-border: 4px solid #{$gray-200};
-  --form-loading-spinner-border-top: 4px solid #{$color-primary-500};
-  --form-loading-text-color: #{$gray-700};
 
   // Form status messages
-  --form-status-padding: #{$space-3} #{$space-4};
-  --form-status-margin-bottom: #{$space-4};
-  --form-status-border-radius: #{$radius-md};
-  --form-status-font-size: #{$text-sm};
-  --form-status-border-left: 4px;
 
-  --form-status-success-bg: rgba(#{red($color-success-500)}, #{green($color-success-500)}, #{blue($color-success-500)}, 0.1);
-  --form-status-success-border: #{$color-success-500};
-  --form-status-success-color: #{$color-success-700};
 
-  --form-status-error-bg: rgba(#{red($color-error-500)}, #{green($color-error-500)}, #{blue($color-error-500)}, 0.1);
-  --form-status-error-border: #{$color-error-500};
-  --form-status-error-color: #{$color-error-700};
 
   /* ----------------------------------
    * Navigation Component Properties
@@ -1292,17 +1114,6 @@
 
   // Reduced motion: disable all animations when user prefers
   @media (prefers-reduced-motion: reduce) {
-    --anim-hover-enabled: 0;
-    --anim-scroll-enabled: 0;
-    --anim-entrance-enabled: 0;
-    --anim-parallax-enabled: 0;
-    --anim-speed-multiplier: 0;
-    --anim-duration-instant: 0ms;
-    --anim-duration-fast: 0ms;
-    --anim-duration-base: 0ms;
-    --anim-duration-normal: 0ms;
-    --anim-duration-slow: 0ms;
-    --anim-duration-slower: 0ms;
   }
 }
 
