@@ -195,10 +195,17 @@ $text-light-cream: #F4F7F5;    // Light text (for dark backgrounds)
 // Rule: Components MUST use semantic names, NOT palette names
 
 // Brand Colors (Base) - REDESIGN 2025: Forest Green + Sage + Gold
-$color-primary: $forest-500;      // Forest green (forest)
-$color-secondary: $sage-500;      // Sage green (sage)
-$color-tertiary: $gold-500;       // Gold/sand accent (was navy)
-$color-neutral: $gray-500;        // Unchanged
+// NOTE: $color-primary, $color-secondary, $color-accent are defined in main-new.scss config bridge
+// (Hugo-injected from design.toml). They are NOT redefined here to allow client customization.
+// DEFAULT VALUES (if not set in config):
+//   $color-primary: $forest-500     (Forest green)
+//   $color-secondary: $sage-500     (Sage green)
+//   $color-accent: $gold-500        (Gold/sand accent)
+
+// Legacy alias: Components use $color-tertiary (keeping for backward compatibility)
+// TODO Phase 4: Update components to use $color-accent instead of $color-tertiary
+$color-tertiary: $gold-500;         // Gold/sand accent (legacy, use $color-accent in new code)
+$color-neutral: $gray-500;          // Unchanged (not in config)
 
 // Primary Color Scale (Forest Green)
 $color-primary-50: $forest-50;
@@ -249,11 +256,14 @@ $color-neutral-800: $gray-800;
 $color-neutral-900: $gray-900;
 
 // Text Colors
-$color-text: $gray-700;                        // Default text color (alias for primary)
-$color-text-primary: $gray-700;                // Primary text (dark gray)
-$color-text-secondary: $gray-600;              // Secondary text (medium gray)
+// NOTE: $text-primary, $text-secondary, $text-muted are defined in main-new.scss
+// config bridge (Hugo-injected from design.toml). Using different variable names here
+// to avoid conflicts.
+$color-text: $gray-700;                        // Default text color (fallback)
+$color-text-primary: $gray-700;                // Primary text (fallback, use $text-primary from config)
+$color-text-secondary: $gray-600;              // Secondary text (fallback, use $text-secondary from config)
 $color-text-tertiary: $gray-500;               // Tertiary text (light gray)
-$color-text-muted: $gray-500;                  // Muted text (same as tertiary)
+$color-text-muted: $gray-500;                  // Muted text (fallback, use $text-muted from config)
 $color-text-heading: $gray-900;                // Headings (near black)
 
 // Background Colors - REDESIGN 2025: CREAM AESTHETIC
@@ -276,9 +286,13 @@ $color-border-medium: $cream-300;              // Medium border (darker cream)
 $color-border-dark: $cream-400;                // Dark border (darkest cream)
 
 // State Colors
-$color-success: $sage-500;
-$color-warning: $amber-500;
-$color-error: $red-500;
+// NOTE: $color-success, $color-warning, $color-error are defined in main-new.scss
+// config bridge (Hugo-injected from design.toml). They are NOT redefined here to allow
+// client customization via design.toml.
+// DEFAULT VALUES (if not set in config):
+//   $color-success: $sage-500   (Sage green)
+//   $color-warning: $amber-500  (Amber)
+//   $color-error: $red-500      (Red)
 $color-info: $teal-500;
 
 // Warning Color Scale (Amber)

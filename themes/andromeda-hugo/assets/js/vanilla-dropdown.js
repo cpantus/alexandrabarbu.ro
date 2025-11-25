@@ -3,7 +3,10 @@
  * Replaces Bootstrap dropdown functionality for navigation
  * Supports: data-dropdown-toggle, outside click, keyboard navigation, mobile touch
  * Supports both Bootstrap classes (legacy) and BEM classes (new)
- * @version 2.0.0
+ * @version 2.2.0
+ *
+ * v2.2.0 - Simplified hover behavior: dropdown stays open while mouse is over
+ *          parent item OR dropdown menu. Uses CSS :hover as primary mechanism.
  */
 
 (function() {
@@ -11,6 +14,9 @@
 
   // Track all active dropdowns
   const activeDropdowns = new Set();
+
+  // Desktop breakpoint
+  const DESKTOP_BREAKPOINT = 992;
 
   class Dropdown {
     constructor(element) {
@@ -74,26 +80,15 @@
         this.toggle();
       });
 
-      // Bind hover events for desktop (>= 992px)
-      if (window.innerWidth >= 992) {
-        this.initHoverBehavior();
-      }
-
-      // Re-initialize on resize
-      let resizeTimer;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          this.handleResize();
-        }, 150);
-      });
+      // Bind hover events for desktop
+      this.initHoverBehavior();
 
       // Bind keyboard events for accessibility
       this.trigger.addEventListener('keydown', (e) => {
         this.handleKeyboard(e);
       });
 
-      // Handle menu item clicks
+      // Handle menu item clicks - close dropdown after selection
       const menuItems = this.menu.querySelectorAll('.c-navigation__dropdown-link, .c-nav-item__dropdown-link, .dropdown-item');
       menuItems.forEach(item => {
         item.addEventListener('click', () => {
@@ -104,31 +99,21 @@
 
     /**
      * Initialize hover behavior for desktop
+     * Simple approach: open on mouseenter parent, close on mouseleave parent
+     * Since dropdown is INSIDE parent, hovering dropdown keeps parent hovered
      */
     initHoverBehavior() {
-      // Mouse enter on parent (trigger button or parent container)
       this.parent.addEventListener('mouseenter', () => {
-        if (window.innerWidth >= 992) {
+        if (window.innerWidth >= DESKTOP_BREAKPOINT) {
           this.open();
         }
       });
 
-      // Mouse leave on parent
       this.parent.addEventListener('mouseleave', () => {
-        if (window.innerWidth >= 992) {
+        if (window.innerWidth >= DESKTOP_BREAKPOINT) {
           this.close();
         }
       });
-    }
-
-    /**
-     * Handle window resize
-     */
-    handleResize() {
-      // Close dropdown on resize
-      if (this.isOpen) {
-        this.close();
-      }
     }
 
     /**
@@ -161,9 +146,10 @@
       // Position dropdown (handle right-aligned)
       this.positionMenu();
 
-      // Add click outside listener
+      // Add click outside listener (for mobile/click mode)
+      this.boundOutsideClick = this.handleOutsideClick.bind(this);
       setTimeout(() => {
-        document.addEventListener('click', this.handleOutsideClick.bind(this));
+        document.addEventListener('click', this.boundOutsideClick);
       }, 0);
     }
 
@@ -180,7 +166,9 @@
       activeDropdowns.delete(this);
 
       // Remove click outside listener
-      document.removeEventListener('click', this.handleOutsideClick.bind(this));
+      if (this.boundOutsideClick) {
+        document.removeEventListener('click', this.boundOutsideClick);
+      }
     }
 
     /**
@@ -304,15 +292,6 @@
       new Dropdown(trigger);
     });
   }
-
-  /**
-   * Close all dropdowns on window resize (mobile orientation change)
-   */
-  window.addEventListener('resize', () => {
-    activeDropdowns.forEach(dropdown => {
-      dropdown.close();
-    });
-  });
 
   /**
    * Initialize on DOM ready

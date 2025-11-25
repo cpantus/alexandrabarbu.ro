@@ -51,17 +51,17 @@
 
 .c-contact-form-section__grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr; // Enhanced ratio (was 1fr 1fr)
-  gap: $space-12;
+  grid-template-columns: var(--contact-form-grid-ratio); // Enhanced ratio (was 1fr 1fr)
+  gap: var(--contact-form-grid-gap);
   align-items: start; // Changed from center for better layout
 
   @media (max-width: $breakpoint-lg - 1) {
-    gap: $space-8;
+    gap: var(--contact-form-grid-gap-tablet);
   }
 
   @media (max-width: $breakpoint-md - 1) {
     grid-template-columns: 1fr;
-    gap: $space-6;
+    gap: var(--contact-form-grid-gap-mobile);
   }
 }
 
@@ -78,24 +78,24 @@
 
 .c-contact-form-section__panel {
   position: relative;
-  background: linear-gradient(180deg, $color-primary-700 0%, $color-primary-900 100%);
-  border-radius: var(--border-radius-xl);
-  padding: $space-10;
+  background: var(--contact-form-panel-bg);
+  border-radius: var(--contact-form-panel-border-radius);
+  padding: var(--contact-form-panel-padding);
   overflow: hidden; // Contain blobs
-  min-height: 600px;
+  min-height: var(--contact-form-panel-min-height);
 
   @media (max-width: $breakpoint-md - 1) {
     order: 2; // Form first on mobile
     min-height: auto;
-    padding: $space-6;
+    padding: var(--contact-form-panel-padding-mobile);
   }
 }
 
 // Redesign 2025 panel (dark forest green)
 .c-contact-form-section--redesign {
   .c-contact-form-section__panel {
-    background: linear-gradient(135deg, $forest-700 0%, $forest-900 100%); // Dark forest green
-    border-radius: $radius-3xl 0 0 $radius-3xl; // 48px left corners only
+    background: var(--contact-form-panel-bg-redesign); // Dark forest green
+    border-radius: var(--contact-form-panel-border-radius-redesign); // 48px left corners only
     padding: $space-8; // 64px
 
     @media (max-width: $breakpoint-md - 1) {
@@ -109,15 +109,15 @@
 
 .c-contact-form-section__blob {
   position: absolute;
-  background: rgba($color-primary-800, 0.4);
+  background: var(--contact-form-blob-bg);
   border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
   pointer-events: none;
   z-index: 0;
   animation: blob-morph 20s ease-in-out infinite;
 
   &--1 {
-    width: 300px;
-    height: 300px;
+    width: var(--contact-form-blob-1-size);
+    height: var(--contact-form-blob-1-size);
     top: -50px;
     right: -50px;
     opacity: 0.3;
@@ -125,8 +125,8 @@
   }
 
   &--2 {
-    width: 250px;
-    height: 250px;
+    width: var(--contact-form-blob-2-size);
+    height: var(--contact-form-blob-2-size);
     bottom: -40px;
     left: -40px;
     opacity: 0.25;
@@ -164,56 +164,52 @@
 .c-contact-form-section__contact-cards {
   display: flex;
   flex-direction: column;
-  gap: $space-4;
+  gap: var(--contact-card-gap);
   margin-bottom: $space-8;
 }
 
 .c-contact-form-section__contact-card {
   display: flex;
   align-items: flex-start;
-  gap: $space-4;
-  padding: $space-5;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--border-radius-md);
+  gap: var(--contact-card-gap);
+  padding: var(--contact-card-padding);
+  background: var(--contact-card-bg);
+  backdrop-filter: var(--contact-card-backdrop);
+  border: var(--contact-card-border);
+  border-radius: var(--contact-card-border-radius);
   transition: all var(--transition-normal);
 
   &:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateX(4px);
-    box-shadow: var(--shadow-md);
+    background: var(--contact-card-bg-hover);
+    transform: var(--contact-card-transform-hover);
+    box-shadow: var(--contact-card-shadow);
   }
 }
 
 .c-contact-form-section__contact-icon {
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
+  width: var(--contact-card-icon-size);
+  height: var(--contact-card-icon-size);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(
-    circle at 30% 30%,
-    rgba($color-primary-400, 0.3) 0%,
-    rgba($color-primary-600, 0.2) 100%
-  );
+  background: var(--contact-card-icon-bg);
   border-radius: var(--border-radius-full);
 
   i {
     font-size: 20px;
-    color: var(--color-white);
+    color: var(--contact-card-icon-color);
   }
 }
 
 // Redesign 2025 contact icons (gold outline circles)
 .c-contact-form-section--redesign {
   .c-contact-form-section__contact-icon {
-    background: transparent; // Remove fill
-    border: 2px solid $gold-500; // Gold outline (#C5A880)
+    background: var(--contact-card-icon-bg-redesign); // Remove fill
+    border: var(--contact-card-icon-border-redesign); // Gold outline (#C5A880)
 
     i {
-      color: $cream-100; // Cream icon color
+      color: var(--contact-card-icon-color-redesign); // Cream icon color
       font-size: 22px;
     }
   }
@@ -254,7 +250,7 @@
 .c-contact-form-section__trust-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: $space-4;
+  gap: var(--contact-trust-gap);
   margin-top: $space-6;
 }
 
@@ -267,12 +263,12 @@
 }
 
 .c-contact-form-section__trust-icon {
-  width: 56px;
-  height: 56px;
+  width: var(--contact-trust-icon-size);
+  height: var(--contact-trust-icon-size);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--contact-trust-icon-bg);
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--border-radius-full);
   transition: all var(--transition-normal);
@@ -292,7 +288,7 @@
   font-family: var(--font-family-sans);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--color-white);
+  color: var(--contact-trust-text-color);
   margin: 0;
 }
 
@@ -529,18 +525,18 @@
 @media (max-width: $breakpoint-md - 1) {
   .c-contact-form-section__panel {
     min-height: auto;
-    padding: $space-6;
+    padding: var(--contact-form-panel-padding-mobile);
   }
 
   .c-contact-form-section__blob {
     &--1 {
-      width: 200px;
-      height: 200px;
+      width: var(--contact-form-blob-mobile-1-size);
+      height: var(--contact-form-blob-mobile-1-size);
     }
 
     &--2 {
-      width: 180px;
-      height: 180px;
+      width: var(--contact-form-blob-mobile-2-size);
+      height: var(--contact-form-blob-mobile-2-size);
     }
   }
 
@@ -550,8 +546,8 @@
   }
 
   .c-contact-form-section__trust-icon {
-    width: 48px;
-    height: 48px;
+    width: var(--contact-trust-icon-size-mobile);
+    height: var(--contact-trust-icon-size-mobile);
 
     i {
       font-size: 20px;

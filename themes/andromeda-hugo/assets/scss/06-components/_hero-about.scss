@@ -36,11 +36,11 @@
    ========================================================================== */
 
 .c-hero-about {
-  padding: $space-24 0;
-  background: #ffffff;
+  padding: var(--hero-about-padding-mobile);
+  background: var(--hero-about-bg);
 
   @media (min-width: $breakpoint-md) {
-    padding: $space-32 0;
+    padding: var(--hero-about-padding-desktop);
   }
 }
 
@@ -75,7 +75,7 @@
   font-weight: $weight-semibold;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: $forest-500;
+  color: var(--hero-about-kicker-color);
   margin-bottom: $space-4;
 }
 
@@ -100,7 +100,7 @@
 .c-hero-about__paragraph {
   font-size: $font-size-lg;
   line-height: 1.8;
-  color: #374151;
+  color: var(--hero-about-paragraph-color);
   margin-bottom: $space-6;
 
   &:last-child {
@@ -134,16 +134,16 @@
 .c-hero-about__image {
   position: relative;
   z-index: 2;
-  border-radius: 16px;
+  border-radius: var(--hero-about-image-border-radius);
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  box-shadow: var(--hero-about-image-shadow);
 }
 
 .c-hero-about__img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 16px;
+  border-radius: var(--hero-about-image-border-radius);
 }
 
 /* Quote Overlay Box */
@@ -153,9 +153,9 @@
   left: -5%;
   max-width: 280px;
   padding: $space-6 $space-8;
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--hero-about-quote-bg);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: var(--hero-about-quote-shadow);
   z-index: 3;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
@@ -166,7 +166,7 @@
 
   &:hover {
     transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: var(--hero-about-quote-shadow-hover);
   }
 }
 
@@ -175,14 +175,14 @@
   font-style: italic;
   font-size: $font-size-md;
   line-height: 1.8;
-  color: #1F2937;
+  color: var(--hero-about-quote-text-color);
   margin-bottom: $space-2;
 }
 
 .c-hero-about__quote-author {
   font-size: $font-size-sm;
   font-weight: $weight-semibold;
-  color: $forest-500;
+  color: var(--hero-about-quote-author-color);
   margin: 0;
 }
 

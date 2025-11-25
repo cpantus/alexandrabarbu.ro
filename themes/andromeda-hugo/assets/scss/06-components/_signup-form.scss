@@ -56,23 +56,23 @@
    ============================================ */
 
 .c-signup-form__card {
-  background: $gradient-glass-light;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: $radius-2xl;
-  padding: $space-8;
-  box-shadow: $shadow-glass;
-  max-width: 720px;
+  background: var(--signup-form-card-bg);
+  backdrop-filter: var(--signup-form-card-backdrop);
+  border: var(--signup-form-card-border);
+  border-radius: var(--signup-form-card-border-radius);
+  padding: var(--signup-form-card-padding);
+  box-shadow: var(--signup-form-card-shadow);
+  max-width: var(--signup-form-card-max-width);
   margin: 0 auto;
 
   /* Responsive padding */
   @media (max-width: 767px) {
-    padding: $space-6;
-    border-radius: $radius-xl;
+    padding: var(--signup-form-card-padding-tablet);
+    border-radius: var(--signup-form-card-border-radius-mobile);
   }
 
   @media (max-width: 575px) {
-    padding: $space-5;
+    padding: var(--signup-form-card-padding-mobile);
   }
 }
 
@@ -102,11 +102,11 @@
   &::after {
     content: '';
     position: absolute;
-    top: 20px;
+    top: var(--signup-step-line-top);
     left: 50%;
     width: 100%;
-    height: 2px;
-    background: $color-border;
+    height: var(--signup-step-line-height);
+    background: var(--signup-step-line-bg);
     z-index: -1;
     transition: background 0.3s ease;
   }
@@ -119,24 +119,24 @@
   /* Active step state */
   &--active {
     .c-signup-form__step-number {
-      background: $gradient-warm-vibrant;
-      color: #fff;
+      background: var(--signup-step-active-bg);
+      color: var(--signup-step-active-color);
       border-color: transparent;
-      box-shadow: $shadow-warm;
-      transform: scale(1.1);
+      box-shadow: var(--signup-step-active-shadow);
+      transform: var(--signup-step-active-transform);
     }
 
     .c-signup-form__step-label {
-      color: $color-primary;
-      font-weight: $weight-semibold;
+      color: var(--signup-step-active-label-color);
+      font-weight: var(--signup-step-active-label-weight);
     }
   }
 
   /* Completed step state */
   &--completed {
     .c-signup-form__step-number {
-      background: $gradient-warm-vibrant;
-      color: #fff;
+      background: var(--signup-step-completed-bg);
+      color: var(--signup-step-completed-color);
       border-color: transparent;
 
       /* Checkmark icon for completed */
@@ -148,12 +148,12 @@
     }
 
     .c-signup-form__step-label {
-      color: $gray-700;
+      color: var(--signup-step-completed-label-color);
     }
 
     /* Green connecting line for completed steps */
     &::after {
-      background: linear-gradient(to right, $color-primary, $color-secondary);
+      background: var(--signup-step-completed-line-bg);
     }
   }
 
@@ -165,37 +165,37 @@
 }
 
 .c-signup-form__step-number {
-  width: 40px;
-  height: 40px;
-  border: 2px solid $color-border;
+  width: var(--signup-step-number-size);
+  height: var(--signup-step-number-size);
+  border: var(--signup-step-number-border);
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
-  font-weight: $weight-semibold;
+  background: var(--signup-step-number-bg);
+  font-weight: var(--signup-step-number-font-weight);
   font-size: $text-base;
-  margin-bottom: $space-2;
+  margin-bottom: var(--signup-step-number-margin-bottom);
   transition: all 0.3s ease;
-  color: $gray-600;
+  color: var(--signup-step-number-color);
 
   /* Responsive sizing */
   @media (max-width: 575px) {
-    width: 32px;
-    height: 32px;
+    width: var(--signup-step-number-size-mobile);
+    height: var(--signup-step-number-size-mobile);
     font-size: $text-sm;
   }
 }
 
 .c-signup-form__step-label {
   display: block;
-  font-size: $text-sm;
-  color: $gray-600;
+  font-size: var(--signup-step-label-font-size);
+  color: var(--signup-step-label-color);
   transition: color 0.3s ease, font-weight 0.3s ease;
 
   /* Responsive font size */
   @media (max-width: 767px) {
-    font-size: $text-xs;
+    font-size: var(--signup-step-label-font-size-tablet);
   }
 
   @media (max-width: 575px) {
@@ -213,27 +213,27 @@
 }
 
 .c-signup-form__title {
-  font-size: $text-2xl;
-  font-weight: $weight-semibold;
-  color: $gray-900;
-  margin-bottom: $space-2;
+  font-size: var(--signup-form-title-font-size);
+  font-weight: var(--signup-form-title-font-weight);
+  color: var(--signup-form-title-color);
+  margin-bottom: var(--signup-form-title-margin-bottom);
   text-align: center;
 
   @media (max-width: 767px) {
-    font-size: $text-xl;
+    font-size: var(--signup-form-title-font-size-tablet);
   }
 }
 
 .c-signup-form__description {
-  font-size: $text-base;
-  color: $gray-600;
+  font-size: var(--signup-form-description-font-size);
+  color: var(--signup-form-description-color);
   text-align: center;
-  margin-bottom: $space-6;
-  line-height: 1.6;
+  margin-bottom: var(--signup-form-description-margin-bottom);
+  line-height: var(--signup-form-description-line-height);
 
   @media (max-width: 767px) {
-    font-size: $text-sm;
-    margin-bottom: $space-5;
+    font-size: var(--signup-form-description-font-size-tablet);
+    margin-bottom: var(--signup-form-description-margin-bottom-tablet);
   }
 }
 
@@ -243,47 +243,47 @@
 
 .c-signup-form__actions {
   display: flex;
-  gap: $space-3;
+  gap: var(--signup-action-gap);
   justify-content: space-between;
   margin-top: $space-6;
 
   /* Responsive layout - stack on mobile */
   @media (max-width: 575px) {
     flex-direction: column;
-    gap: $space-2;
+    gap: var(--signup-action-gap-mobile);
   }
 }
 
 .c-signup-form__action-button {
   flex: 1;
-  padding: $space-3 $space-6;
-  border-radius: $radius-lg;
-  font-weight: $weight-semibold;
+  padding: var(--signup-action-button-padding);
+  border-radius: var(--signup-action-button-border-radius);
+  font-weight: var(--signup-action-button-font-weight);
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
 
   /* Primary button (Next, Submit) */
   &--primary {
-    background: $gradient-warm-vibrant;
-    color: #fff;
-    box-shadow: $shadow-warm;
+    background: var(--signup-action-primary-bg);
+    color: var(--signup-action-primary-color);
+    box-shadow: var(--signup-action-primary-shadow);
 
     &:hover {
-      transform: translateY(-2px);
-      box-shadow: $shadow-warm-lg;
+      transform: var(--signup-action-primary-transform-hover);
+      box-shadow: var(--signup-action-primary-shadow-hover);
     }
   }
 
   /* Secondary button (Back, Cancel) */
   &--secondary {
-    background: transparent;
-    color: $gray-700;
-    border: 1px solid $color-border;
+    background: var(--signup-action-secondary-bg);
+    color: var(--signup-action-secondary-color);
+    border: var(--signup-action-secondary-border);
 
     &:hover {
-      background: rgba($gray-100, 0.5);
-      border-color: $gray-400;
+      background: var(--signup-action-secondary-bg-hover);
+      border-color: var(--signup-action-secondary-border-hover);
     }
   }
 
@@ -296,8 +296,8 @@
 
   /* Responsive sizing */
   @media (max-width: 575px) {
-    padding: $space-3 $space-4;
-    font-size: $text-sm;
+    padding: var(--signup-action-button-padding-mobile);
+    font-size: var(--signup-action-button-font-size-mobile);
   }
 }
 
@@ -307,9 +307,9 @@
 
 .c-signup-form__progress {
   width: 100%;
-  height: 4px;
-  background: rgba($gray-300, 0.3);
-  border-radius: $radius-full;
+  height: var(--signup-progress-height);
+  background: var(--signup-progress-bg);
+  border-radius: var(--signup-progress-border-radius);
   margin-bottom: $space-6;
   overflow: hidden;
 
@@ -320,9 +320,9 @@
 
 .c-signup-form__progress-bar {
   height: 100%;
-  background: $gradient-warm-vibrant;
-  border-radius: $radius-full;
-  transition: width 0.4s ease;
+  background: var(--signup-progress-bar-bg);
+  border-radius: var(--signup-progress-border-radius);
+  transition: var(--signup-progress-bar-transition);
   width: 0%;
 
   /* Width set dynamically via JS or inline style */

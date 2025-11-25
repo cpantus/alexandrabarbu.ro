@@ -1,7 +1,7 @@
 # Andromeda Hugo Theme - ITCSS Architecture Guide
 
-**Version**: 5.0.0 - ITCSS + BEM Production
-**Updated**: 2025-11-19
+**Version**: 5.5.0 - ITCSS + BEM + Hugo Pipes Theme Customization
+**Updated**: 2025-11-25
 **Status**: Production Ready ✅
 
 ---
@@ -588,9 +588,99 @@ All new BEM components include `@extend` directives to maintain backward compati
 
 ---
 
+## Hugo Pipes & Theme Customization
+
+The theme uses Hugo Pipes to inject design tokens from `config/_default/design.toml` into SCSS at build time.
+
+### How It Works
+
+```
+design.toml → Hugo Pipes → main-new.scss → CSS Custom Properties → Components
+```
+
+1. **design.toml**: Client configuration (95 tokens)
+2. **Hugo Template**: `resources.ExecuteAsTemplate` processes SCSS as Hugo template
+3. **SCSS Variables**: Hugo injects values into SCSS variables
+4. **CSS Custom Properties**: Generated in `:root` for runtime access
+5. **Components**: Use CSS vars for all styling
+
+### Configuration Injection
+
+In `main-new.scss` (lines 35-275):
+
+```scss
+// Hugo-injected variables from design.toml
+$brand-primary: {{ site.Params.design.brand.primary | default "#234E3E" }};
+$brand-secondary: {{ site.Params.design.brand.secondary | default "#6B9080" }};
+$enable-hover-animations: {{ site.Params.design.animations.enable_hover_animations | default true }};
+// ... 95+ tokens
+```
+
+### CSS Custom Properties
+
+Generated in `03-generic/_custom-properties.scss`:
+
+```scss
+:root {
+  // Animation system
+  --anim-hover-enabled: 1;      // From $enable-hover-animations
+  --anim-speed-multiplier: 1;   // From $animation-speed-multiplier
+  --anim-easing: ease-in-out;   // From $animation-easing
+
+  // Background system
+  --bg-gradients-enabled: 1;
+  --bg-glassmorphism-blur: 12px;
+
+  // 530+ component properties...
+}
+```
+
+### Conditional Mixins
+
+Mixins respect config toggles:
+
+```scss
+// Animations only apply if enabled in design.toml
+@mixin hover-lift($lift: 2px) {
+  @if $enable-hover-animations {
+    transition: transform var(--anim-duration-base);
+    &:hover { transform: translateY(-#{$lift}); }
+  }
+}
+
+// Gradients fallback to solid colors if disabled
+@mixin gradient-background($gradient, $fallback) {
+  @if $enable-gradients {
+    background: $gradient;
+  } @else {
+    background: $fallback;
+  }
+}
+```
+
+### Key Files
+
+| File | Purpose |
+|------|---------|
+| `config/_default/design.toml` | Client configuration (95 tokens) |
+| `main-new.scss` | Hugo template injection (lines 35-275) |
+| `03-generic/_custom-properties.scss` | CSS variables generation |
+| `02-tools/_mixins-animations.scss` | Conditional animation mixins |
+| `02-tools/_mixins-glassmorphism.scss` | Conditional gradient mixins |
+
+### Documentation
+
+See `THEME-CUSTOMIZATION.md` for:
+- Complete token reference
+- Example client configurations
+- Multi-environment setup
+- CSS variable reference
+
+---
+
 ## Performance
 
-**Build Time**: ~37.5 seconds (99 pages, 207 images)
+**Build Time**: ~750ms (optimized from ~37.5s)
 **CSS Output**: ~520KB uncompressed
 **Components**: 20 BEM components (9,850 lines)
 **Optimization**: Hugo minification + fingerprinting enabled
@@ -617,6 +707,6 @@ All existing HTML templates work via `@extend` compatibility layer.
 
 ---
 
-**Status**: Production Ready ✅ | 20 components | 6 ITCSS layers | BEM naming | Token-based | Legacy compatible
+**Status**: Production Ready ✅ | 20 components | 6 ITCSS layers | BEM naming | Token-based | Legacy compatible | Hugo Pipes Customization
 
-**Version**: 5.0.0 | **Updated**: 2025-11-19
+**Version**: 5.5.0 | **Updated**: 2025-11-25

@@ -50,22 +50,22 @@
   // Layout
   display: flex;
   flex-direction: column;
-  gap: $space-6; // 48px between sections on mobile
+  gap: var(--footer-nav-gap);
 
   // Spacing (8pt grid)
-  padding: $space-6 0; // 48px vertical padding
+  padding: var(--footer-nav-padding);
 
   // Typography
-  font-family: $font-family-sans;
-  font-size: $font-size-base;
+  font-family: var(--footer-nav-font-family);
+  font-size: var(--footer-nav-font-size);
   line-height: $line-height-normal;
-  color: $color-text-primary;
+  color: var(--footer-nav-color);
 
   // Responsive layout - side by side on tablet+
   @media (min-width: $breakpoint-md) {
     flex-direction: row;
-    gap: $space-8; // 64px between sections on desktop
-    padding: $space-8 0; // 64px vertical padding
+    gap: var(--footer-nav-gap-desktop);
+    padding: var(--footer-nav-padding-desktop);
   }
 
   @media (min-width: $breakpoint-lg) {
@@ -100,11 +100,11 @@
 }
 
 .c-footer-nav__title {
-  margin-bottom: $space-3; // 24px below heading
-  font-family: $font-family-serif;
-  font-size: $font-size-lg;
-  font-weight: 600;
-  color: #ffffff; // White text in footer
+  margin-bottom: var(--footer-nav-title-margin-bottom);
+  font-family: var(--footer-nav-title-font-family);
+  font-size: var(--footer-nav-title-font-size);
+  font-weight: var(--footer-nav-title-font-weight);
+  color: var(--footer-nav-title-color);
 
   // Remove any underlines/decorations in footer context
   text-decoration: none;
@@ -127,7 +127,7 @@
 // ============================================================================
 
 .c-footer-nav__social {
-  margin-top: $space-8; // 64px above social links to push icons down while keeping title aligned
+  margin-top: var(--footer-nav-social-margin-top);
 
   // Override social-links molecule spacing for footer context
   .c-social {
@@ -146,7 +146,7 @@
 }
 
 .c-footer-nav__item {
-  margin-bottom: $space-2; // 16px between items
+  margin-bottom: var(--footer-nav-item-margin);
 
   &:last-child {
     margin-bottom: 0;
@@ -155,11 +155,11 @@
 
 .c-footer-nav__link {
   display: inline-block;
-  color: #ffffff; // White text in footer
+  color: var(--footer-nav-link-color);
   text-decoration: none;
   position: relative;
-  padding-bottom: $space-1; // Add padding for underline spacing
-  transition: color $duration-base $easing-out;
+  padding-bottom: var(--footer-nav-link-padding-bottom);
+  transition: var(--footer-nav-link-transition);
 
   // Remove gradient underline in footer
   &::after {
@@ -168,7 +168,7 @@
 
   &:hover,
   &:focus {
-    color: $gold-500; // Gold on hover
+    color: var(--footer-nav-link-color-hover);
     text-decoration: none;
   }
 
@@ -179,10 +179,10 @@
 
   @keyframes footerLinkFocusGlow {
     0%, 100% {
-      box-shadow: 0 0 0 0 rgba($color-primary, 0);
+      box-shadow: 0 0 0 0 transparent;
     }
     50% {
-      box-shadow: 0 0 0 4px rgba($color-primary, 0.2);
+      box-shadow: 0 0 0 4px var(--nav-focus-glow-color);
     }
   }
 
@@ -202,19 +202,19 @@
 // Primary variant (emerald - default)
 .c-footer-nav--primary {
   .c-footer-nav__title {
-    color: $color-primary-700;
+    color: var(--footer-nav-primary-title-color);
   }
 
   .c-footer-nav__link {
-    color: $color-primary-600;
+    color: var(--footer-nav-primary-link-color);
 
     &:hover,
     &:focus {
-      color: $color-primary-700;
+      color: var(--footer-nav-primary-link-hover-color);
     }
 
     &:focus {
-      outline-color: $color-primary-600;
+      outline-color: var(--footer-nav-primary-link-color);
     }
   }
 }
@@ -222,19 +222,19 @@
 // Secondary variant (terracotta - warm)
 .c-footer-nav--secondary {
   .c-footer-nav__title {
-    color: $color-secondary-700;
+    color: var(--footer-nav-secondary-title-color);
   }
 
   .c-footer-nav__link {
-    color: $color-secondary-600;
+    color: var(--footer-nav-secondary-link-color);
 
     &:hover,
     &:focus {
-      color: $color-secondary-700;
+      color: var(--footer-nav-secondary-link-hover-color);
     }
 
     &:focus {
-      outline-color: $color-secondary-600;
+      outline-color: var(--footer-nav-secondary-link-color);
     }
   }
 }
@@ -242,19 +242,19 @@
 // Tertiary variant (blue - calm)
 .c-footer-nav--tertiary {
   .c-footer-nav__title {
-    color: $color-tertiary-700;
+    color: var(--footer-nav-tertiary-title-color);
   }
 
   .c-footer-nav__link {
-    color: $color-tertiary-600;
+    color: var(--footer-nav-tertiary-link-color);
 
     &:hover,
     &:focus {
-      color: $color-tertiary-700;
+      color: var(--footer-nav-tertiary-link-hover-color);
     }
 
     &:focus {
-      outline-color: $color-tertiary-600;
+      outline-color: var(--footer-nav-tertiary-link-color);
     }
   }
 }
@@ -262,19 +262,19 @@
 // Neutral variant (gray - subtle)
 .c-footer-nav--neutral {
   .c-footer-nav__title {
-    color: $color-neutral-800;
+    color: var(--footer-nav-neutral-title-color);
   }
 
   .c-footer-nav__link {
-    color: $color-neutral-700;
+    color: var(--footer-nav-neutral-link-color);
 
     &:hover,
     &:focus {
-      color: $color-neutral-900;
+      color: var(--footer-nav-neutral-link-hover-color);
     }
 
     &:focus {
-      outline-color: $color-neutral-600;
+      outline-color: var(--footer-nav-neutral-link-color);
     }
   }
 }

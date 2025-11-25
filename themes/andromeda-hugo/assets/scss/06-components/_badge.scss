@@ -128,7 +128,7 @@
     width: $icon-circle-sm;   // 36px
     height: $icon-circle-sm;
     border-radius: $radius-full;
-    background: $gradient-icon-forest;  // Default: primary
+    background: var(--badge-primary-gradient);  // Default: primary
     color: white;
     transition: transform $duration-base $easing-medium;
   }
@@ -170,19 +170,19 @@
 -------------------------------------------------------------------*/
 
 /**
- * Primary variant (emerald gradient)
+ * Primary variant (forest green gradient)
  */
 .c-badge--primary .c-badge__icon i,
 .c-badge--primary .c-badge__icon .icon {
-  background: $gradient-icon-forest;
+  background: var(--badge-primary-gradient);
 }
 
 /**
- * Secondary variant (terracotta gradient)
+ * Secondary variant (sage green gradient)
  */
 .c-badge--secondary .c-badge__icon i,
 .c-badge--secondary .c-badge__icon .icon {
-  background: $gradient-icon-sage;
+  background: var(--badge-secondary-gradient);
 }
 
 /**
@@ -190,7 +190,7 @@
  */
 .c-badge--coral .c-badge__icon i,
 .c-badge--coral .c-badge__icon .icon {
-  background: linear-gradient(135deg, $coral-300 0%, $coral-600 100%);
+  background: var(--badge-coral-gradient);
 }
 
 /**
@@ -198,7 +198,7 @@
  */
 .c-badge--premium .c-badge__icon i,
 .c-badge--premium .c-badge__icon .icon {
-  background: linear-gradient(135deg, $plum-300 0%, $plum-600 100%);
+  background: var(--badge-premium-gradient);
 }
 
 /**
@@ -206,7 +206,7 @@
  */
 .c-badge--sage .c-badge__icon i,
 .c-badge--sage .c-badge__icon .icon {
-  background: linear-gradient(135deg, $sage-300 0%, $sage-600 100%);
+  background: var(--badge-sage-gradient);
 }
 
 /**
@@ -214,7 +214,7 @@
  */
 .c-badge--info .c-badge__icon i,
 .c-badge--info .c-badge__icon .icon {
-  background: linear-gradient(135deg, $teal-400 0%, $teal-500 100%);
+  background: var(--badge-info-gradient);
 }
 
 /**
@@ -222,7 +222,7 @@
  */
 .c-badge--success .c-badge__icon i,
 .c-badge--success .c-badge__icon .icon {
-  background: $gradient-icon-teal;
+  background: var(--badge-success-gradient);
 }
 
 /**
@@ -230,7 +230,7 @@
  */
 .c-badge--warning .c-badge__icon i,
 .c-badge--warning .c-badge__icon .icon {
-  background: $gradient-icon-amber;
+  background: var(--badge-amber-gradient);
 }
 
 /*------------------------------------------------------------------

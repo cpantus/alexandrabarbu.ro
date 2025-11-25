@@ -4,34 +4,65 @@
 // Layer: 02-tools (NO CSS output)
 // Purpose: Glassmorphism and organic blob shape mixins for v4.0 design
 // Source: Migrated from _design-enhancements.scss
+// Version: 2.0.0 (Phase 4 - Theme Customization with conditionals)
 //
 // Dependencies:
 // - 01-settings/_tokens-components.scss ($glass-blur, $glass-opacity, $glass-border)
 // - 01-settings/_tokens-shadows.scss ($blob-soft, $blob-organic, $blob-smooth, $blob-gentle, $shadow-glass)
 //
+// IMPORTANT: These mixins use Hugo-injected variables from design.toml:
+// - $enable-glassmorphism (bool)
+// - $enable-gradients (bool)
+// - $glassmorphism-blur (string)
+// - $glassmorphism-opacity (string)
+//
 
 // ----------------------------------
-// Glassmorphism Effect
+// Glassmorphism Effect (Conditional)
 // ----------------------------------
 // Creates the frosted glass effect with backdrop blur
+// Only applies effect if $enable-glassmorphism is true
 //
 // Parameters:
-// @param $blur - Backdrop blur amount (default: $glass-blur = 12px)
-// @param $opacity - Background opacity (default: $glass-opacity = 0.75)
+// @param $blur - Backdrop blur amount (default: from design.toml or $glass-blur)
+// @param $opacity - Background opacity (default: from design.toml or $glass-opacity)
 //
 // Usage:
 // .c-card {
-//   @include glassmorphism();  // Uses defaults
+//   @include glassmorphism();  // Uses design.toml values
 // }
 // .c-card--light {
 //   @include glassmorphism(8px, 0.9);  // Custom values
 // }
 //
-@mixin glassmorphism($blur: $glass-blur, $opacity: $glass-opacity) {
+@mixin glassmorphism($blur: null, $opacity: null) {
+  // Use design.toml values if available, else fallback to tokens
+  $resolved-blur: if($blur, $blur, if(variable-exists(glassmorphism-blur), $glassmorphism-blur, $glass-blur));
+  $resolved-opacity: if($opacity, $opacity, if(variable-exists(glassmorphism-opacity), $glassmorphism-opacity, $glass-opacity));
+
+  @if $enable-glassmorphism {
+    backdrop-filter: blur($resolved-blur);
+    -webkit-backdrop-filter: blur($resolved-blur);
+    background: rgba(255, 255, 255, $resolved-opacity);
+    border: none !important;  // v4.0 architecture: gradient glows replace decorative borders
+    box-shadow: $shadow-glass;
+  } @else {
+    // Fallback: solid white background when glassmorphism disabled
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: $shadow-sm;
+  }
+}
+
+// ----------------------------------
+// Glassmorphism Effect (Always On)
+// ----------------------------------
+// Non-conditional version for critical UI elements
+//
+@mixin glassmorphism-always($blur: $glass-blur, $opacity: $glass-opacity) {
   backdrop-filter: blur($blur);
   -webkit-backdrop-filter: blur($blur);
   background: rgba(255, 255, 255, $opacity);
-  border: none !important;  // v4.0 architecture: gradient glows replace decorative borders
+  border: none !important;
   box-shadow: $shadow-glass;
 }
 
@@ -61,6 +92,188 @@
   } @else if $variant == 'gentle' {
     border-radius: $blob-gentle;
   }
+}
+
+// ==================================
+// GRADIENT BACKGROUND MIXINS (Conditional)
+// ==================================
+// These mixins respect the gradient toggle settings from design.toml
+
+// ----------------------------------
+// Gradient Background (Conditional)
+// ----------------------------------
+// Only applies gradient if $enable-gradients is true
+//
+// Parameters:
+// @param $gradient - The gradient value
+// @param $fallback - Fallback solid color when gradients disabled
+//
+// Usage:
+// .c-hero {
+//   @include gradient-background($gradient-warm-vibrant, $forest-500);
+// }
+//
+@mixin gradient-background($gradient, $fallback: null) {
+  @if $enable-gradients {
+    background: $gradient;
+  } @else {
+    @if $fallback {
+      background: $fallback;
+    } @else {
+      // Extract first color from gradient for fallback
+      background: $forest-500;
+    }
+  }
+}
+
+// ----------------------------------
+// Section Gradient (Conditional)
+// ----------------------------------
+// Pre-configured for section backgrounds
+//
+// Parameters:
+// @param $variant - Gradient variant ('warm', 'cool', 'neutral', 'accent')
+//
+// Usage:
+// .c-section--warm {
+//   @include section-gradient('warm');
+// }
+//
+@mixin section-gradient($variant: 'warm') {
+  @if $enable-gradients {
+    @if $variant == 'warm' {
+      background: $gradient-warm-subtle;
+    } @else if $variant == 'cool' {
+      background: $gradient-glass-light;
+    } @else if $variant == 'neutral' {
+      background: $gradient-warm-light;
+    } @else if $variant == 'accent' {
+      background: $gradient-warm-vibrant;
+    }
+  } @else {
+    // Solid fallbacks
+    @if $variant == 'warm' {
+      background: $cream-100;
+    } @else if $variant == 'cool' {
+      background: #fff;
+    } @else if $variant == 'neutral' {
+      background: $cream-100;
+    } @else if $variant == 'accent' {
+      background: $forest-500;
+    }
+  }
+}
+
+// ----------------------------------
+// Icon Gradient (Conditional)
+// ----------------------------------
+// For icon circles with gradient backgrounds
+//
+// Parameters:
+// @param $variant - Color variant ('primary', 'secondary', 'accent', 'info', 'warning')
+//
+// Usage:
+// .c-icon--primary {
+//   @include icon-gradient('primary');
+// }
+//
+@mixin icon-gradient($variant: 'primary') {
+  @if $enable-gradients {
+    @if $variant == 'primary' {
+      background: $gradient-icon-forest;
+    } @else if $variant == 'secondary' {
+      background: $gradient-icon-sage;
+    } @else if $variant == 'accent' {
+      background: $gradient-icon-gold;
+    } @else if $variant == 'info' {
+      background: $gradient-icon-teal;
+    } @else if $variant == 'warning' {
+      background: $gradient-icon-amber;
+    }
+  } @else {
+    // Solid fallbacks
+    @if $variant == 'primary' {
+      background: $forest-500;
+    } @else if $variant == 'secondary' {
+      background: $sage-500;
+    } @else if $variant == 'accent' {
+      background: $gold-500;
+    } @else if $variant == 'info' {
+      background: $teal-500;
+    } @else if $variant == 'warning' {
+      background: $amber-500;
+    }
+  }
+}
+
+// ----------------------------------
+// Button Gradient (Conditional)
+// ----------------------------------
+// For buttons with gradient backgrounds
+//
+// Parameters:
+// @param $variant - Button variant ('primary', 'secondary')
+// @param $state - Button state ('default', 'hover')
+//
+// Usage:
+// .c-button--primary {
+//   @include button-gradient('primary', 'default');
+//   &:hover {
+//     @include button-gradient('primary', 'hover');
+//   }
+// }
+//
+@mixin button-gradient($variant: 'primary', $state: 'default') {
+  @if $enable-gradients {
+    @if $variant == 'primary' {
+      @if $state == 'hover' {
+        background: $gradient-primary-vibrant;
+      } @else {
+        background: $gradient-primary;
+      }
+    } @else if $variant == 'secondary' {
+      @if $state == 'hover' {
+        background: $gradient-secondary-vibrant;
+      } @else {
+        background: $gradient-secondary;
+      }
+    }
+  } @else {
+    // Solid fallbacks
+    @if $variant == 'primary' {
+      @if $state == 'hover' {
+        background: $forest-600;
+      } @else {
+        background: $forest-500;
+      }
+    } @else if $variant == 'secondary' {
+      @if $state == 'hover' {
+        background: $sage-600;
+      } @else {
+        background: $sage-500;
+      }
+    }
+  }
+}
+
+// ----------------------------------
+// Gradient State Variables (Helper)
+// ----------------------------------
+// Outputs background state CSS variables for components
+//
+// Usage:
+// :root {
+//   @include background-state-vars;
+// }
+//
+@mixin background-state-vars {
+  --bg-gradients-enabled: #{if($enable-gradients, 1, 0)};
+  --bg-glassmorphism-enabled: #{if($enable-glassmorphism, 1, 0)};
+  --bg-glassmorphism-blur: #{$glassmorphism-blur};
+  --bg-glassmorphism-opacity: #{$glassmorphism-opacity};
+  --bg-overlay-opacity: #{$overlay-opacity};
+  --bg-gradient-type: #{$gradient-type};
+  --bg-gradient-angle: #{$gradient-angle};
 }
 
 // ==================================

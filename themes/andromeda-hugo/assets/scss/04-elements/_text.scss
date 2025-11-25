@@ -15,27 +15,27 @@
 // ----------------------------------
 p {
   margin-top: 0;
-  margin-bottom: $space-4;
-  line-height: $leading-normal;
+  margin-bottom: var(--text-paragraph-margin-bottom);
+  line-height: var(--text-paragraph-line-height);
 }
 
 // ----------------------------------
 // Links
 // ----------------------------------
 a {
-  color: $color-primary;
+  color: var(--text-link-color);
   text-decoration: none;
-  transition: color 0.2s ease-in-out;
+  transition: var(--text-link-transition);
 
   &:hover,
   &:focus {
-    color: $color-primary-600;
+    color: var(--text-link-hover-color);
     text-decoration: underline;
   }
 
   &:focus {
-    outline: 2px solid $color-primary;
-    outline-offset: 2px;
+    outline: var(--text-link-focus-outline);
+    outline-offset: var(--text-link-focus-outline-offset);
   }
 }
 
@@ -44,19 +44,19 @@ a {
 // ----------------------------------
 ul, ol {
   margin-top: 0;
-  margin-bottom: $space-4;
-  padding-left: $space-6;
-  line-height: $leading-normal;
+  margin-bottom: var(--text-list-margin-bottom);
+  padding-left: var(--text-list-padding-left);
+  line-height: var(--text-list-line-height);
 }
 
 li {
-  margin-bottom: $space-2;
+  margin-bottom: var(--text-list-item-margin-bottom);
 }
 
 // Nested lists should have less bottom margin
 li > ul,
 li > ol {
-  margin-top: $space-2;
+  margin-top: var(--text-list-item-margin-bottom);
   margin-bottom: 0;
 }
 
@@ -64,18 +64,18 @@ li > ol {
 // Blockquotes
 // ----------------------------------
 blockquote {
-  margin: 0 0 $space-4;
-  padding-left: $space-4;
-  border-left: 4px solid $color-primary;
+  margin: 0 0 var(--text-blockquote-margin-bottom);
+  padding-left: var(--text-blockquote-padding-left);
+  border-left: var(--text-blockquote-border-left);
   font-style: italic;
-  color: $color-text-secondary;
+  color: var(--text-blockquote-color);
 }
 
 // ----------------------------------
 // Inline Text Elements
 // ----------------------------------
 strong, b {
-  font-weight: $font-weight-heading;
+  font-weight: var(--text-strong-font-weight);
 }
 
 em, i {
@@ -83,16 +83,16 @@ em, i {
 }
 
 small {
-  font-size: $text-sm;
+  font-size: var(--text-small-font-size);
 }
 
 // ----------------------------------
 // Horizontal Rule
 // ----------------------------------
 hr {
-  margin: $space-8 0;
+  margin: var(--text-hr-margin);
   border: 0;
-  border-top: 1px solid $color-border-light;
+  border-top: var(--text-hr-border);
 }
 
 // ==================================

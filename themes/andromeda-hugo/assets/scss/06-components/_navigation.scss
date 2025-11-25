@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: $space-2; // 16px (8pt grid)
+  gap: var(--nav-list-gap);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -31,7 +31,7 @@
   @media (max-width: $breakpoint-md - 1) {
     flex-direction: column;
     align-items: stretch;
-    gap: $space-1; // 8px
+    gap: var(--nav-list-gap-mobile);
   }
 }
 
@@ -47,15 +47,15 @@
   // Active state (current page)
   &--active {
     > .c-navigation__link {
-      color: $color-primary;
-      font-weight: $font-weight-medium;
+      color: var(--nav-link-color-active);
+      font-weight: var(--nav-link-font-weight-active);
     }
   }
 
   // Open state (dropdown expanded)
   &--open {
     > .c-navigation__link {
-      color: $color-primary;
+      color: var(--nav-link-color-active);
     }
 
     > .c-navigation__dropdown {
@@ -74,20 +74,20 @@
 .c-navigation__link {
   display: inline-flex;
   align-items: center;
-  gap: $space-1; // 8px
-  padding: $space-2 $space-3; // 16px 24px
-  color: $color-text-primary;
-  font-family: $font-family-sans;
-  font-size: $font-size-base;
-  font-weight: $font-weight-normal;
-  line-height: $line-height-snug;
+  gap: var(--nav-link-gap);
+  padding: var(--nav-link-padding);
+  color: var(--nav-link-color);
+  font-family: var(--nav-link-font-family);
+  font-size: var(--nav-link-font-size);
+  font-weight: var(--nav-link-font-weight);
+  line-height: var(--nav-link-line-height);
   text-decoration: none;
   background: transparent;
   border: none;
   border-bottom: 0 !important;  // CRITICAL: Remove any border underlines
-  border-radius: $radius-sm;
+  border-radius: var(--nav-link-border-radius);
   cursor: pointer;
-  transition: all $duration-fast $easing-medium;
+  transition: var(--nav-link-transition);
   position: relative;
 
   // CRITICAL: Prevent any pseudo-elements on the link itself
@@ -100,7 +100,7 @@
   // Hover state
   &:hover,
   &:focus {
-    color: $color-primary;
+    color: var(--nav-link-color-hover);
     text-decoration: none;
   }
 
@@ -112,10 +112,10 @@
 
   @keyframes focusGlow {
     0%, 100% {
-      box-shadow: 0 0 0 0 rgba($color-primary, 0);
+      box-shadow: 0 0 0 0 transparent;
     }
     50% {
-      box-shadow: 0 0 0 4px rgba($color-primary, 0.2);
+      box-shadow: 0 0 0 4px var(--nav-focus-glow-color);
     }
   }
 
@@ -144,13 +144,13 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -$space-1;  // 8px below text
-    height: 2px;
-    background: $gold-500;
+    bottom: calc(-1 * var(--nav-link-underline-offset));
+    height: var(--nav-link-underline-height);
+    background: var(--nav-link-underline-color);
     opacity: 0;
     transform: scaleX(0);
     transform-origin: left;
-    transition: all $duration-base $easing-medium;
+    transition: var(--nav-link-underline-transition);
   }
 
   // Show underline on parent link hover/focus
@@ -175,7 +175,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform $duration-base $easing-medium;
+  transition: var(--nav-dropdown-transition);
 
   .c-navigation__item--open & {
     transform: rotate(180deg);
@@ -188,24 +188,24 @@
 
 .c-navigation__dropdown {
   position: absolute;
-  top: calc(100% + $space-1); // 8px below parent
+  top: calc(100% + var(--nav-dropdown-offset));
   left: 0;
-  min-width: 220px;
-  background: $gradient-glass-light;
+  min-width: var(--nav-dropdown-min-width);
+  background: var(--nav-dropdown-bg);
   @include glassmorphism($radius-md, 0.98);
-  border-radius: $radius-md;
-  box-shadow: $shadow-lg;
+  border-radius: var(--nav-dropdown-border-radius);
+  box-shadow: var(--nav-dropdown-shadow);
   list-style: none;
   margin: 0;
-  padding: $space-2; // 16px
+  padding: var(--nav-dropdown-padding);
   z-index: $z-dropdown;
 
   // Hidden by default
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-$space-2); // Slide up animation
+  transform: var(--nav-dropdown-transform);
   pointer-events: none;
-  transition: all $duration-base $easing-medium;
+  transition: var(--nav-dropdown-transition);
 
   // Mobile: Full width, no absolute positioning
   @media (max-width: $breakpoint-md - 1) {
@@ -214,8 +214,8 @@
     min-width: auto;
     transform: translateY(0);
     box-shadow: none;
-    background: rgba($color-primary, 0.03);
-    margin-top: $space-1;
+    background: var(--nav-dropdown-bg-mobile);
+    margin-top: var(--nav-dropdown-gap);
   }
 
   // Open state (added via JS)
@@ -243,7 +243,7 @@
   list-style: none;
 
   &:not(:last-child) {
-    margin-bottom: $space-1; // 8px
+    margin-bottom: var(--nav-dropdown-gap);
   }
 }
 
@@ -253,25 +253,25 @@
 
 .c-navigation__dropdown-link {
   display: block;
-  padding: $space-2 $space-3; // 16px 24px
-  color: $color-text-primary;
-  font-family: $font-family-sans;
-  font-size: $font-size-sm;
-  font-weight: $font-weight-normal;
-  line-height: $line-height-snug;
+  padding: var(--nav-dropdown-link-padding);
+  color: var(--nav-dropdown-link-color);
+  font-family: var(--nav-link-font-family);
+  font-size: var(--nav-dropdown-link-font-size);
+  font-weight: var(--nav-dropdown-link-font-weight);
+  line-height: var(--nav-link-line-height);
   text-decoration: none;
   border: none;
   border-bottom: none;
-  border-radius: $radius-sm;
-  transition: all $duration-fast $easing-medium;
+  border-radius: var(--nav-dropdown-link-border-radius);
+  transition: var(--nav-link-transition);
   position: relative;
 
   // Hover state - slide effect (underline is on text span)
   &:hover,
   &:focus {
-    color: $color-primary;
+    color: var(--nav-dropdown-link-color-hover);
     background: transparent;
-    transform: translateX($space-1); // Slide right effect
+    transform: var(--nav-dropdown-link-transform-hover);
     text-decoration: none;
   }
 
@@ -283,7 +283,7 @@
 
   // Active state (current page within dropdown)
   &--active {
-    font-weight: $font-weight-medium;
+    font-weight: var(--nav-dropdown-link-font-weight-active);
     text-decoration: none;
 
     // Keep text decoration off on hover/focus
@@ -308,13 +308,13 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -$space-2;  // 16px below text (accounting for transform slide)
-    height: 2px;
-    background: $gold-500;
+    bottom: calc(-1 * var(--nav-dropdown-link-underline-offset));
+    height: var(--nav-link-underline-height);
+    background: var(--nav-link-underline-color);
     opacity: 0;
     transform: scaleX(0);
     transform-origin: left;
-    transition: all $duration-base $easing-medium;
+    transition: var(--nav-link-underline-transition);
   }
 
   // Show underline on parent link hover/focus
@@ -332,26 +332,26 @@
 // Tablet: Adjust spacing
 @media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg - 1) {
   .c-navigation__list {
-    gap: $space-1; // Reduce gap on tablet
+    gap: var(--nav-list-gap-tablet);
   }
 
   .c-navigation__link {
-    padding: $space-2; // Reduce padding on tablet
+    padding: var(--nav-link-padding-tablet);
   }
 
   .c-navigation__dropdown {
-    min-width: 200px; // Narrower dropdowns
+    min-width: var(--nav-dropdown-min-width-tablet);
   }
 }
 
 // Large screens: Enhanced spacing
 @media (min-width: $breakpoint-xl) {
   .c-navigation__list {
-    gap: $space-3; // 24px on large screens
+    gap: var(--nav-list-gap-desktop);
   }
 
   .c-navigation__link {
-    font-size: $font-size-md; // Slightly larger font
+    font-size: var(--nav-link-font-size-desktop);
   }
 }
 
@@ -367,23 +367,23 @@
   left: 0;
   right: 0;
   z-index: $z-fixed;
-  background: transparent;
-  transition: all $duration-base $easing-medium;
-  padding: $space-4 0; // 32px vertical padding
+  background: var(--navbar-bg);
+  transition: var(--navbar-transition);
+  padding: var(--navbar-padding);
 
   // Scrolled state - glassmorphism effect (redesign 2025)
   &--scrolled {
-    background: $gradient-glass-light;
+    background: var(--navbar-bg-scrolled);
     @include glassmorphism(0, 0.95); // 0 = no border radius for navigation bar
-    box-shadow: 0 4px 12px rgba($forest-900, 0.08);
-    padding: $space-3 0; // 24px (reduced when scrolled)
+    box-shadow: var(--navbar-shadow-scrolled);
+    padding: var(--navbar-padding-scrolled);
   }
 
   @media (max-width: $breakpoint-md - 1) {
     position: static; // No fixed positioning on mobile
-    background: white;
-    box-shadow: 0 2px 8px rgba($gray-900, 0.05);
-    padding: $space-3 0;
+    background: var(--navbar-bg-mobile);
+    box-shadow: var(--navbar-shadow-mobile);
+    padding: var(--navbar-padding-mobile);
   }
 }
 

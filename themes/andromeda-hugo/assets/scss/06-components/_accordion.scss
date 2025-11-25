@@ -21,8 +21,8 @@
 .c-accordion {
   display: flex;
   flex-direction: column;
-  gap: $space-3; // 24px (8pt grid)
-  max-width: 900px;
+  gap: var(--accordion-gap);
+  max-width: var(--accordion-max-width);
   margin: 0 auto;
 }
 
@@ -31,12 +31,12 @@
 -------------------------------------------------------------------*/
 
 .c-accordion__item {
-  background: $gradient-glass-light;
+  background: var(--accordion-item-bg);
   @include glassmorphism($radius-md, 0.95);
-  border-radius: $radius-md; // 12px
+  border-radius: var(--accordion-item-border-radius);
   overflow: hidden;
-  box-shadow: $shadow-xs;
-  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--accordion-item-shadow);
+  transition: var(--accordion-item-transition);
   position: relative;
 
   // Gradient left border (variant-specific)
@@ -46,7 +46,7 @@
     left: 0;
     top: 0;
     bottom: 0;
-    width: 4px; // 4px (design accent)
+    width: var(--accordion-item-border-width);
     background: transparent;
     opacity: 0;
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -54,7 +54,7 @@
 
   // Hover effect
   &:hover {
-    box-shadow: $shadow-sm;
+    box-shadow: var(--accordion-item-shadow-hover);
 
     &::before {
       opacity: 0.6;
@@ -63,7 +63,7 @@
 
   // Active (expanded) state
   &--active {
-    box-shadow: $shadow-md;
+    box-shadow: var(--accordion-item-shadow-active);
 
     &::before {
       opacity: 1;
@@ -74,7 +74,7 @@
     }
 
     .c-accordion__button-text {
-      color: $color-primary;
+      color: var(--accordion-button-text-color-active);
     }
   }
 }
@@ -95,87 +95,87 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: $space-4; // 32px (8pt grid)
+  gap: var(--accordion-button-gap);
   width: 100%;
-  padding: $space-5 $space-6; // 40px 48px (8pt grid)
+  padding: var(--accordion-button-padding);
   background: transparent;
   border: none;
   cursor: pointer;
   user-select: none;
-  transition: background $duration-fast $easing-subtle;
+  transition: var(--accordion-button-transition);
   text-align: left;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.7);
+    background: var(--accordion-button-bg-hover);
   }
 
   // Focus state for accessibility
   &:focus-visible {
-    outline: 2px solid $color-primary;
+    outline: 2px solid var(--accordion-icon-color);
     outline-offset: -2px;
   }
 
   @media (max-width: $breakpoint-md) {
-    padding: $space-4 $space-5; // 32px 40px
+    padding: var(--accordion-button-padding-tablet);
   }
 
   @media (max-width: $breakpoint-sm) {
-    padding: $space-4; // 32px
-    gap: $space-3; // 24px
+    padding: var(--accordion-button-padding-mobile);
+    gap: var(--accordion-button-gap-mobile);
   }
 }
 
 .c-accordion__button-text {
-  font-family: $font-heading; // Playfair Display
-  font-size: $text-lg; // 1.125rem / 18px
-  font-weight: $weight-semibold; // 600
-  color: $gray-900;
-  line-height: $leading-snug; // 1.375
+  font-family: var(--accordion-button-text-font-family);
+  font-size: var(--accordion-button-text-font-size);
+  font-weight: var(--accordion-button-text-font-weight);
+  color: var(--accordion-button-text-color);
+  line-height: var(--accordion-button-text-line-height);
   margin: 0;
   flex: 1;
-  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--accordion-button-text-transition);
 
   @media (max-width: $breakpoint-md) {
-    font-size: $text-base; // 1rem / 16px
+    font-size: var(--accordion-button-text-font-size-tablet);
   }
 
   @media (max-width: $breakpoint-sm) {
-    font-size: $text-sm; // 0.9375rem / 15px
+    font-size: var(--accordion-button-text-font-size-mobile);
   }
 }
 
 .c-accordion__button-icon {
-  width: 32px; // 32px (4 × 8pt)
-  height: 32px; // 32px (4 × 8pt)
-  border-radius: $radius-full;
+  width: var(--accordion-icon-size);
+  height: var(--accordion-icon-size);
+  border-radius: var(--accordion-icon-border-radius);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, $forest-100 0%, $sage-100 100%);
+  background: var(--accordion-icon-bg);
   flex-shrink: 0;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background $duration-fast $easing-subtle;
+  transition: var(--accordion-icon-transition);
 
   i {
-    color: $color-primary;
-    font-size: $text-base; // 1rem
-    font-weight: $weight-bold; // 700
+    color: var(--accordion-icon-color);
+    font-size: var(--accordion-icon-font-size);
+    font-weight: var(--accordion-icon-font-weight);
     transition: color $duration-fast $easing-subtle;
   }
 
   .c-accordion__item--active & {
-    background: $gradient-warm-vibrant;
+    background: var(--accordion-icon-bg-active);
 
     i {
-      color: white;
+      color: var(--accordion-icon-color-active);
     }
   }
 
   @media (max-width: $breakpoint-sm) {
-    width: 28px; // 28px (~3.5 × 8pt)
-    height: 28px; // 28px
+    width: var(--accordion-icon-size-mobile);
+    height: var(--accordion-icon-size-mobile);
 
     i {
-      font-size: $text-sm; // 0.875rem
+      font-size: var(--accordion-icon-font-size-mobile);
     }
   }
 }
@@ -201,16 +201,16 @@
 }
 
 .c-accordion__content {
-  padding: 0 $space-6 $space-6 $space-6; // 0 48px 48px 48px (8pt grid)
-  border-top: 1px solid rgba($gray-300, 0.3);
+  padding: var(--accordion-content-padding);
+  border-top: var(--accordion-content-border-top);
 
   // Typography for content
   p {
-    font-family: $font-body; // DM Sans
-    font-size: $text-base; // 1rem
-    line-height: $leading-relaxed; // 1.625
-    color: $gray-700;
-    margin: $space-4 0 0; // 32px top margin
+    font-family: var(--accordion-content-font-family);
+    font-size: var(--accordion-content-font-size);
+    line-height: var(--accordion-content-line-height);
+    color: var(--accordion-content-color);
+    margin: var(--accordion-content-margin-top) 0 0;
 
     &:last-child {
       margin-bottom: 0;
@@ -219,40 +219,40 @@
 
   ul,
   ol {
-    margin: $space-3 0; // 24px vertical margin
-    padding-left: $space-6; // 48px indent
+    margin: var(--accordion-list-margin);
+    padding-left: var(--accordion-list-padding);
 
     li {
-      font-family: $font-body; // DM Sans
-      font-size: $text-sm; // 0.9375rem
-      line-height: $leading-normal; // 1.5
-      color: $gray-700;
-      margin-bottom: $space-2; // 16px between items
+      font-family: var(--accordion-content-font-family);
+      font-size: var(--accordion-list-font-size);
+      line-height: var(--accordion-list-line-height);
+      color: var(--accordion-content-color);
+      margin-bottom: var(--accordion-list-item-margin);
     }
   }
 
   @media (max-width: $breakpoint-md) {
-    padding: 0 $space-5 $space-5 $space-5; // 0 40px 40px 40px
+    padding: var(--accordion-content-padding-tablet);
 
     p {
-      font-size: $text-sm; // 0.9375rem
+      font-size: var(--accordion-content-font-size-tablet);
     }
   }
 
   @media (max-width: $breakpoint-sm) {
-    padding: 0 $space-4 $space-4 $space-4; // 0 32px 32px 32px
+    padding: var(--accordion-content-padding-mobile);
 
     p {
-      font-size: $text-xs; // 0.875rem
-      margin-top: $space-3; // 24px
+      font-size: var(--accordion-content-font-size-mobile);
+      margin-top: var(--accordion-content-margin-top-mobile);
     }
 
     ul,
     ol {
-      padding-left: $space-5; // 40px
+      padding-left: var(--accordion-list-padding-mobile);
 
       li {
-        font-size: $text-xs; // 0.875rem
+        font-size: var(--accordion-list-font-size-mobile);
       }
     }
   }
@@ -265,30 +265,30 @@
 // Redesign variant (forest green - 2025 redesign)
 .c-accordion--redesign {
   .c-accordion__item {
-    border-radius: $radius-lg; // 16px (redesign spec)
+    border-radius: var(--accordion-item-border-radius-lg);
   }
 
   .c-accordion__item::before {
-    background: linear-gradient(180deg, $forest-400 0%, $forest-600 100%);
+    background: var(--accordion-redesign-border);
   }
 
   .c-accordion__item--active .c-accordion__button-text {
-    color: $forest-600;
+    color: var(--accordion-redesign-text-active);
   }
 
   .c-accordion__button-icon {
-    background: linear-gradient(135deg, $forest-100 0%, $sage-100 100%);
+    background: var(--accordion-redesign-icon-bg);
 
     i {
-      color: $forest-600;
+      color: var(--accordion-redesign-icon-color);
     }
   }
 
   .c-accordion__item--active .c-accordion__button-icon {
-    background: linear-gradient(135deg, $forest-500 0%, $sage-500 100%);
+    background: var(--accordion-redesign-icon-bg-active);
 
     i {
-      color: white;
+      color: var(--accordion-icon-color-active);
     }
   }
 }
@@ -296,56 +296,56 @@
 // Primary variant (emerald)
 .c-accordion--primary {
   .c-accordion__item::before {
-    background: $gradient-icon-forest;
+    background: var(--accordion-primary-border);
   }
 
   .c-accordion__item--active .c-accordion__button-text {
-    color: $forest-600;
+    color: var(--accordion-primary-text-active);
   }
 }
 
 // Secondary variant (terracotta)
 .c-accordion--secondary {
   .c-accordion__item::before {
-    background: $gradient-icon-sage;
+    background: var(--accordion-secondary-border);
   }
 
   .c-accordion__item--active .c-accordion__button-text {
-    color: $sage-600;
+    color: var(--accordion-secondary-text-active);
   }
 
   .c-accordion__button-icon i {
-    color: $sage-600;
+    color: var(--accordion-secondary-icon-color);
   }
 }
 
 // Tertiary variant (navy)
 .c-accordion--tertiary {
   .c-accordion__item::before {
-    background: linear-gradient(180deg, $navy-400 0%, $navy-600 100%);
+    background: var(--accordion-tertiary-border);
   }
 
   .c-accordion__item--active .c-accordion__button-text {
-    color: $navy-600;
+    color: var(--accordion-tertiary-text-active);
   }
 
   .c-accordion__button-icon i {
-    color: $navy-600;
+    color: var(--accordion-tertiary-icon-color);
   }
 }
 
 // Neutral variant (gray)
 .c-accordion--neutral {
   .c-accordion__item::before {
-    background: linear-gradient(180deg, $gray-400 0%, $gray-600 100%);
+    background: var(--accordion-neutral-border);
   }
 
   .c-accordion__item--active .c-accordion__button-text {
-    color: $gray-700;
+    color: var(--accordion-neutral-text-active);
   }
 
   .c-accordion__button-icon i {
-    color: $gray-600;
+    color: var(--accordion-neutral-icon-color);
   }
 }
 

@@ -26,8 +26,10 @@
 // Font Families
 // ----------------------------------
 // REDESIGN 2025: New font families
-$font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;  // Headings - Elegant, sophisticated serif
-$font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; // Body - Modern, clean sans
+// NOTE: These can be overridden by Hugo config bridge (design.toml)
+// Using !default means: only set if not already defined
+$font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif !default;  // Headings - Elegant, sophisticated serif
+$font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !default; // Body - Modern, clean sans
 
 // LEGACY: Old font families (commented out during redesign)
 // $font-heading: 'Crimson Pro', Georgia, 'Times New Roman', serif;    // Headings ONLY - Elegant, calligraphic
@@ -41,9 +43,10 @@ $font-serif: $font-heading;                                          // Serif fo
 // Font Weights (RESTRICTED)
 // ----------------------------------
 // RULE: Headings ONLY 500 or 600, Body ONLY 400
-$font-weight-heading: 500;                 // Default heading weight
+// NOTE: Customizable via Hugo config bridge (design.toml)
+$font-weight-heading: 500 !default;                 // Default heading weight
 $font-weight-heading-bold: 600;            // Emphasized heading weight
-$font-weight-body: 400;                    // Body text weight (NEVER bold in paragraphs)
+$font-weight-body: 400 !default;                    // Body text weight (NEVER bold in paragraphs)
 
 // FORBIDDEN: Do NOT use 300 (thin), 700 (bold), 800 (extrabold)
 // Rationale: Soft hierarchy, warm professional personality

@@ -24,7 +24,7 @@
 .c-card {
   position: relative; // For badge positioning
   @include card-v4('primary', false);
-  border-top: 4px solid $color-primary-500; // v5.1: Brand color accent (emerald)
+  border-top: 4px solid var(--card-accent-primary); // v5.1: Brand color accent (emerald)
 
   // Variant modifiers (8 unified variants)
   &--primary {
@@ -33,7 +33,7 @@
 
   &--secondary {
     @include card-v4('secondary', false);
-    border-top-color: $color-secondary-500; // v5.1: Terracotta accent
+    border-top-color: var(--card-accent-secondary); // v5.1: Terracotta accent
   }
 
   &--tertiary {
@@ -175,8 +175,8 @@
 .c-card__header {
   display: flex;
   align-items: center;
-  gap: $space-3;
-  margin-bottom: $space-4;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
 }
 
 /**
@@ -190,10 +190,10 @@
  * Card title element
  */
 .c-card__title {
-  font-family: $font-heading;
-  font-size: $text-xl;
-  font-weight: $weight-semibold;
-  color: $gray-900;
+  font-family: var(--card-title-font-family);
+  font-size: var(--card-title-font-size);
+  font-weight: var(--card-title-font-weight);
+  color: var(--card-title-color);
   margin: 0;
 }
 
@@ -201,10 +201,10 @@
  * Card body (main content)
  */
 .c-card__body {
-  color: $gray-600;
-  font-size: $text-base;
-  line-height: $leading-relaxed;
-  margin-bottom: $space-4;
+  color: var(--card-body-color);
+  font-size: var(--card-body-font-size);
+  line-height: var(--card-body-line-height);
+  margin-bottom: var(--card-body-margin-bottom);
 
   p:last-child {
     margin-bottom: 0;
@@ -218,31 +218,31 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: $space-4;
-  padding-top: $space-4;
-  border-top: 1px solid $gray-200;
+  margin-top: var(--card-footer-margin-top);
+  padding-top: var(--card-footer-padding-top);
+  border-top: var(--card-footer-border-top);
 }
 
 /**
  * Card metadata element
  */
 .c-card__meta {
-  font-size: $text-sm;
-  color: $gray-500;
+  font-size: var(--card-meta-font-size);
+  color: var(--card-meta-color);
 }
 
 /**
  * Card action link element
  */
 .c-card__action {
-  font-size: $text-sm;
-  font-weight: $weight-semibold;
-  color: $forest-600;
+  font-size: var(--card-action-font-size);
+  font-weight: var(--card-action-font-weight);
+  color: var(--card-action-color);
   text-decoration: none;
-  transition: color $duration-fast $ease-out;
+  transition: var(--card-action-transition);
 
   &:hover {
-    color: $forest-700;
+    color: var(--card-action-hover-color);
     text-decoration: underline;
   }
 }
@@ -265,46 +265,44 @@
  * Usage: Add .c-card--redesign modifier to any card
  */
 .c-card--redesign {
-  border-radius: $radius-2xl;  // 32px heavy rounding
-  border: 1px solid $color-border-redesign-light;  // Cream border (#E9EFEC)
-  background: white;
-  padding: $space-10;  // 40px (matches design spec)
-  transition: transform 400ms $ease-in-out,
-              box-shadow 1200ms $ease-in-out,
-              border-color 400ms $ease-in-out;  // Slower shadow (1200ms)
-  box-shadow: $shadow-lg;  // Resting state shadow
+  border-radius: var(--card-border-radius-redesign);  // 32px heavy rounding
+  border: var(--card-border-width) solid var(--card-redesign-border-light);  // Cream border (#E9EFEC)
+  background: var(--card-bg);
+  padding: var(--card-padding-redesign);  // 40px (matches design spec)
+  transition: var(--card-transition);  // Slower shadow (1200ms)
+  box-shadow: var(--card-shadow);  // Resting state shadow
 
   // Remove top accent border from v4.0 design
-  border-top-width: 1px;
-  border-top-color: $color-border-redesign-light;
+  border-top-width: var(--card-border-width);
+  border-top-color: var(--card-redesign-border-light);
 
   // Hover state
   &:hover {
-    border-color: rgba($gold-500, 0.3);  // Gold accent at 30% opacity
-    box-shadow: $shadow-2xl;  // Deeper shadow
-    transform: translateY(-2px);  // Slight lift
+    border-color: var(--card-redesign-hover-border);  // Gold accent at 30% opacity
+    box-shadow: var(--card-shadow-hover);  // Deeper shadow
+    transform: translateY(var(--card-redesign-hover-lift));  // Slight lift
   }
 
   // Card title in redesign uses Playfair Display (serif)
   .c-card__title {
-    font-family: $font-heading;  // Playfair Display
-    font-size: $text-2xl;  // 24px
-    font-weight: $font-weight-heading-bold;  // 600
-    color: $forest-700;  // Dark green
-    margin-bottom: $space-4;  // 16px
+    font-family: var(--card-title-font-family);  // Playfair Display
+    font-size: var(--card-title-font-size-redesign);  // 24px
+    font-weight: var(--card-title-font-weight-redesign);  // 600
+    color: var(--card-title-color-redesign);  // Dark green
+    margin-bottom: var(--card-title-margin-bottom);  // 16px
   }
 
   // Card body text styling
   .c-card__body {
-    font-family: $font-body;  // DM Sans
-    font-size: $text-base;  // 16px
-    line-height: 1.6;
-    color: $text-muted-green;  // Muted green-grey (#587065)
+    font-family: var(--card-body-font-family);  // DM Sans
+    font-size: var(--card-body-font-size);  // 16px
+    line-height: var(--card-body-line-height-redesign);
+    color: var(--card-body-color-redesign);  // Muted green-grey (#587065)
   }
 
   // Icon blob positioning and spacing
   .c-icon-blob {
-    margin-bottom: $space-6;  // 24px gap between icon and title
+    margin-bottom: var(--card-icon-blob-margin-bottom);  // 24px gap between icon and title
   }
 }
 
@@ -315,33 +313,33 @@
 .c-card__badge {
   // Position in top-right corner
   position: absolute;
-  top: $space-4;  // 32px from top
-  right: $space-4; // 32px from right
+  top: var(--card-badge-position-top);  // 32px from top
+  right: var(--card-badge-position-right); // 32px from right
   z-index: 10;
 
   // Layout
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: var(--card-badge-size);
+  height: var(--card-badge-size);
 
   // Visual
-  background: $gray-300;
-  color: $gray-700;
-  font-family: $font-body;
-  font-size: $font-size-lg; // 18px
-  font-weight: $font-weight-semibold; // 600
-  border-radius: $border-radius-full; // Circular
-  box-shadow: $shadow-sm;
+  background: var(--card-badge-bg);
+  color: var(--card-badge-color);
+  font-family: var(--card-body-font-family);
+  font-size: var(--card-badge-font-size); // 18px
+  font-weight: var(--card-badge-font-weight); // 600
+  border-radius: var(--card-badge-border-radius); // Circular
+  box-shadow: var(--card-badge-shadow);
 
   // Responsive
   @media (max-width: $breakpoint-sm) {
-    width: 40px;
-    height: 40px;
-    top: $space-3;
-    right: $space-3;
-    font-size: $font-size-base; // 16px
+    width: var(--card-badge-size-mobile);
+    height: var(--card-badge-size-mobile);
+    top: var(--card-badge-position-top-mobile);
+    right: var(--card-badge-position-right-mobile);
+    font-size: var(--card-badge-font-size-mobile); // 16px
   }
 }
 
@@ -355,14 +353,14 @@
 .c-card-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: $space-6;
+  gap: var(--card-grid-gap);
 
   @media (min-width: $breakpoint-md) {
     grid-template-columns: repeat(2, 1fr);
   }
 
   @media (min-width: $breakpoint-lg) {
-    gap: $space-8;
+    gap: var(--card-grid-gap-lg);
   }
 }
 
@@ -398,7 +396,7 @@
 .c-card-grid--masonry {
   display: grid;
   grid-template-columns: 1fr;
-  gap: $space-6;
+  gap: var(--card-grid-gap);
 
   @media (min-width: $breakpoint-md) {
     grid-template-columns: repeat(2, 1fr);

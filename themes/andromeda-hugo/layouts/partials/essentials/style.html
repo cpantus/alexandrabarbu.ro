@@ -42,7 +42,9 @@
     {{ end }}
   {{ end }}
 {{ end }}
-{{ $mainStyle := resources.Get "scss/style.scss" | resources.ExecuteAsTemplate "style.scss" . | toCSS }}
+{{/* Process main-new.scss as template to inject design tokens from design.toml */}}
+{{/* Note: main-new.scss contains inlined config bridge code with Hugo template syntax */}}
+{{ $mainStyle := resources.Get "scss/main-new.scss" | resources.ExecuteAsTemplate "main-new.scss" . | toCSS }}
 {{ $styles = $styles | append $mainStyle }}
 {{ $styles = $styles | resources.Concat "/css/style.css" | fingerprint "sha512" }}
 

@@ -38,14 +38,14 @@
 
 .c-hero-breadcrumb {
   // Redesign 2025: Generous vertical spacing per eval1.md
-  padding: 4rem 0; // 64px mobile (generous mobile padding)
-  background: $cream-100; // Redesign 2025: Cream background (#F4F7F5)
+  padding: var(--hero-breadcrumb-padding-mobile);
+  background: var(--hero-breadcrumb-bg);
   position: relative;
   overflow: hidden;
 
   @media (min-width: $breakpoint-lg) {
     // eval1.md spec: ~120px top, ~140px bottom
-    padding: 7.5rem 0 8.75rem 0; // 120px top, 140px bottom (7.5rem + 8.75rem)
+    padding: var(--hero-breadcrumb-padding-desktop);
   }
 
   // Redesign 2025: Clean background, no radial gradients
@@ -101,7 +101,7 @@
   font-weight: $font-weight-semibold;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: $forest-600; // Redesign 2025: Forest green
+  color: var(--hero-breadcrumb-kicker-color);
 }
 
 /* Title
@@ -130,7 +130,7 @@
 
 .c-hero-breadcrumb__title-main {
   display: inline; // Inline with accent
-  color: $text-primary-green; // Dark green-black (#1A332A)
+  color: var(--hero-breadcrumb-title-main-color);
 }
 
 /* Title Accent Span (italic variant)
@@ -139,7 +139,7 @@
 .c-hero-breadcrumb__title-accent {
   display: inline; // Inline after main
   font-style: italic; // Playfair Display italic
-  color: $sage-500; // Sage green (#6B9080) for accent
+  color: var(--hero-breadcrumb-title-accent-color);
 }
 
 /* Subtitle
@@ -152,7 +152,7 @@
   font-size: 1.125rem; // 18px (eval1.md spec)
   font-weight: 500; // Medium weight (emphasize as subheading)
   line-height: 1.6; // Comfortable reading (eval1.md spec)
-  color: $text-muted-green; // Muted green-grey (#587065)
+  color: var(--hero-breadcrumb-subtitle-color);
   max-width: 600px; // eval1.md spec: ~600px max for text column
 
   @media (min-width: $breakpoint-lg) {
@@ -170,7 +170,7 @@
   font-size: 1rem; // 16px (standard body)
   font-weight: 400; // Normal weight
   line-height: 1.7; // Generous for readability
-  color: $text-muted-green; // Muted green-grey (#587065)
+  color: var(--hero-breadcrumb-description-color);
   max-width: 600px; // eval1.md spec: ~600px max for text column
 
   @media (min-width: $breakpoint-lg) {
@@ -311,8 +311,8 @@
   width: 100%;
   height: auto;
   border-radius: 32px; // Organic soft border
-  border: 4px solid $cream-200; // Redesign 2025: Subtle cream border
-  box-shadow: $shadow-2xl;
+  border: var(--hero-breadcrumb-image-border);
+  box-shadow: var(--hero-breadcrumb-image-shadow);
   clip-path: ellipse(48% 48% at 50% 50%); // Subtle organic shape
 
   @media (min-width: $breakpoint-md) {
@@ -330,10 +330,10 @@
   right: 10%;
   z-index: 2;
   padding: $space-4; // 32px
-  background: rgba($forest-900, 0.85); // Redesign 2025: Forest dark with glassmorphism
+  background: var(--hero-breadcrumb-quote-bg);
   backdrop-filter: blur(12px);
   border-radius: $border-radius-lg; // 16px
-  box-shadow: $shadow-lg;
+  box-shadow: var(--hero-breadcrumb-quote-shadow);
 
   @media (min-width: $breakpoint-md) {
     padding: $space-5; // 40px
@@ -351,7 +351,7 @@
 
 .c-hero-breadcrumb__quote-icon {
   font-size: 24px;
-  color: $gold-500; // Redesign 2025: Gold accent
+  color: var(--hero-breadcrumb-quote-icon-color);
   margin-bottom: $space-2; // 16px
   display: block;
 }
@@ -362,7 +362,7 @@
   font-size: 18px;
   font-style: italic;
   line-height: 1.6;
-  color: white;
+  color: var(--hero-breadcrumb-quote-text-color);
 }
 
 .c-hero-breadcrumb__quote-author {
@@ -370,7 +370,7 @@
   font-family: $font-family-sans;
   font-size: 14px;
   font-weight: $font-weight-medium;
-  color: $cream-100; // Redesign 2025: Cream text
+  color: var(--hero-breadcrumb-quote-author-color);
   opacity: 0.9;
 }
 
@@ -427,41 +427,41 @@
 
 .c-hero-breadcrumb--primary {
   .c-hero-breadcrumb__subtitle {
-    color: $forest-600; // Redesign 2025: Forest green
+    color: var(--hero-variant-primary-subtitle);
   }
 
   .c-hero-breadcrumb__shape {
-    fill: $forest-500;
+    fill: var(--hero-variant-primary-shape);
   }
 }
 
 .c-hero-breadcrumb--secondary {
   .c-hero-breadcrumb__subtitle {
-    color: $sage-600; // Redesign 2025: Sage green
+    color: var(--hero-variant-secondary-subtitle);
   }
 
   .c-hero-breadcrumb__shape {
-    fill: $sage-500;
+    fill: var(--hero-variant-secondary-shape);
   }
 }
 
 .c-hero-breadcrumb--tertiary {
   .c-hero-breadcrumb__subtitle {
-    color: $gold-600; // Redesign 2025: Gold
+    color: var(--hero-variant-tertiary-subtitle);
   }
 
   .c-hero-breadcrumb__shape {
-    fill: $gold-500;
+    fill: var(--hero-variant-tertiary-shape);
   }
 }
 
 .c-hero-breadcrumb--neutral {
   .c-hero-breadcrumb__subtitle {
-    color: $cream-500; // Redesign 2025: Cream
+    color: var(--hero-variant-neutral-subtitle);
   }
 
   .c-hero-breadcrumb__shape {
-    fill: $cream-400;
+    fill: var(--hero-variant-neutral-shape);
   }
 }
 

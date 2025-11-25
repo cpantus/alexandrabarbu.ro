@@ -15,21 +15,69 @@
   /* ----------------------------------
    * Button Variant Colors
    * ---------------------------------- */
+  // Primary button (forest green)
   --btn-primary-bg: #{$forest-500};
-  --btn-primary-hover: #{$forest-600};
+  --btn-primary-hover: #{$sage-500};
   --btn-primary-text: #ffffff;
+  --btn-primary-shadow: #{$shadow-primary-redesign};
+  --btn-primary-shadow-lg: #{$shadow-primary-lg-redesign};
 
-  --btn-secondary-bg: #{$sage-500};
-  --btn-secondary-hover: #{$sage-600};
-  --btn-secondary-text: #ffffff;
+  // Secondary button (gold/sand)
+  --btn-secondary-bg: #{$gold-500};
+  --btn-secondary-hover: #{darken($gold-500, 8%)};
+  --btn-secondary-text: #{$forest-700};
+  --btn-secondary-shadow: 0 10px 30px -5px rgba(#{red($gold-500)}, #{green($gold-500)}, #{blue($gold-500)}, 0.2);
+  --btn-secondary-shadow-lg: 0 20px 40px -8px rgba(#{red($gold-500)}, #{green($gold-500)}, #{blue($gold-500)}, 0.3);
 
+  // Outline primary button
   --btn-outline-primary-border: #{$forest-500};
-  --btn-outline-primary-text: #{$forest-600};
-  --btn-outline-primary-hover-bg: #{$forest-50};
+  --btn-outline-primary-text: #{$forest-500};
+  --btn-outline-primary-hover-bg: #{$forest-500};
+  --btn-outline-primary-hover-text: #ffffff;
 
-  --btn-outline-secondary-border: #{$sage-500};
-  --btn-outline-secondary-text: #{$sage-600};
-  --btn-outline-secondary-hover-bg: #{$sage-50};
+  // Outline secondary button
+  --btn-outline-secondary-border: #{$forest-500};
+  --btn-outline-secondary-text: #{$forest-500};
+  --btn-outline-secondary-hover-bg: #{$sage-500};
+  --btn-outline-secondary-hover-text: #ffffff;
+  --btn-outline-secondary-shadow-hover: 0 10px 30px -5px rgba(#{red($sage-500)}, #{green($sage-500)}, #{blue($sage-500)}, 0.2);
+
+  // Outline redesign button
+  --btn-outline-redesign-border: #{$forest-700};
+  --btn-outline-redesign-text: #{$forest-700};
+  --btn-outline-redesign-hover-color: #{$gold-500};
+
+  // Semantic button colors (with pre-computed gradients)
+  --btn-tertiary-gradient: linear-gradient(135deg, #{lighten($color-tertiary, 5%)}, #{darken($color-tertiary, 5%)});
+  --btn-tertiary-gradient-hover: linear-gradient(135deg, #{lighten($color-tertiary, 8%)}, #{darken($color-tertiary, 2%)});
+
+  --btn-success-gradient: linear-gradient(135deg, #{lighten($color-success, 5%)}, #{darken($color-success, 5%)});
+  --btn-success-gradient-hover: linear-gradient(135deg, #{lighten($color-success, 8%)}, #{darken($color-success, 2%)});
+
+  --btn-warning-gradient: linear-gradient(135deg, #{lighten($color-warning, 5%)}, #{darken($color-warning, 5%)});
+  --btn-warning-gradient-hover: linear-gradient(135deg, #{lighten($color-warning, 8%)}, #{darken($color-warning, 2%)});
+
+  --btn-error-gradient: linear-gradient(135deg, #{lighten($color-error, 5%)}, #{darken($color-error, 5%)});
+  --btn-error-gradient-hover: linear-gradient(135deg, #{lighten($color-error, 8%)}, #{darken($color-error, 2%)});
+
+  --btn-info-gradient: linear-gradient(135deg, #{lighten($color-info, 5%)}, #{darken($color-info, 5%)});
+  --btn-info-gradient-hover: linear-gradient(135deg, #{lighten($color-info, 8%)}, #{darken($color-info, 2%)});
+
+  --btn-neutral-gradient: linear-gradient(135deg, #{lighten($color-neutral, 15%)}, #{lighten($color-neutral, 5%)});
+  --btn-neutral-gradient-hover: linear-gradient(135deg, #{lighten($color-neutral, 18%)}, #{lighten($color-neutral, 8%)});
+
+  // Button base properties
+  --btn-font-family: #{$font-body};
+  --btn-font-weight: #{$button-font-weight};
+  --btn-border-radius: #{$radius-full};
+  --btn-padding-y: #{$button-padding-y};
+  --btn-padding-x: #{$button-padding-x};
+  --btn-transition: #{$button-transition};
+  --btn-min-height: 44px;
+  --btn-min-width: 44px;
+
+  // Button focus state
+  --btn-focus-ring-color: rgba(#{red($sage-500)}, #{green($sage-500)}, #{blue($sage-500)}, 0.15);
 
   /* ----------------------------------
    * Badge Variant Colors (Gradients)
@@ -54,6 +102,142 @@
   --icon-gradient-premium: linear-gradient(135deg, #{$plum-400} 0%, #{$plum-500} 100%);
   --icon-gradient-sage: linear-gradient(135deg, #{$sage-400} 0%, #{$sage-500} 100%);
   --icon-gradient-info: linear-gradient(135deg, #{$teal-400} 0%, #{$teal-500} 100%);
+
+  /* ----------------------------------
+   * Icon Circle Component Properties
+   * For icon circles with gradient backgrounds
+   * ---------------------------------- */
+  // Icon circle sizes (updated v2.1 scale)
+  --icon-circle-sm: 48px;
+  --icon-circle-md: 64px;
+  --icon-circle-lg: 84px;
+  --icon-circle-xl: 104px;
+
+  // Icon circle radial gradients (primary)
+  --icon-circle-bg-primary-start: #{$forest-400};
+  --icon-circle-bg-primary-end: #{$forest-600};
+  --icon-circle-radial-primary: radial-gradient(circle at 30% 30%, var(--icon-circle-bg-primary-start) 0%, var(--icon-circle-bg-primary-end) 100%);
+
+  // Icon circle radial gradients (secondary)
+  --icon-circle-bg-secondary-start: #{$sage-400};
+  --icon-circle-bg-secondary-end: #{$sage-600};
+  --icon-circle-radial-secondary: radial-gradient(circle at 30% 30%, var(--icon-circle-bg-secondary-start) 0%, var(--icon-circle-bg-secondary-end) 100%);
+
+  // Icon circle radial gradients (coral)
+  --icon-circle-bg-coral-start: #{$coral-400};
+  --icon-circle-bg-coral-end: #{$coral-600};
+  --icon-circle-radial-coral: radial-gradient(circle at 30% 30%, var(--icon-circle-bg-coral-start) 0%, var(--icon-circle-bg-coral-end) 100%);
+
+  // Icon circle radial gradients (premium)
+  --icon-circle-bg-premium-start: #{$plum-400};
+  --icon-circle-bg-premium-end: #{$plum-600};
+  --icon-circle-radial-premium: radial-gradient(circle at 30% 30%, var(--icon-circle-bg-premium-start) 0%, var(--icon-circle-bg-premium-end) 100%);
+
+  // Icon circle radial gradients (sage)
+  --icon-circle-bg-sage-start: #{$sage-400};
+  --icon-circle-bg-sage-end: #{$sage-600};
+  --icon-circle-radial-sage: radial-gradient(circle at 30% 30%, var(--icon-circle-bg-sage-start) 0%, var(--icon-circle-bg-sage-end) 100%);
+
+  // Icon circle radial gradients (info)
+  --icon-circle-bg-info-start: #{$teal-400};
+  --icon-circle-bg-info-end: #{$teal-600};
+  --icon-circle-radial-info: radial-gradient(circle at 30% 30%, var(--icon-circle-bg-info-start) 0%, var(--icon-circle-bg-info-end) 100%);
+
+  // Icon circle styling
+  --icon-circle-color: #ffffff;
+  --icon-circle-icon-size-ratio: 0.45;  // Icon is 45% of container
+  --icon-circle-shadow: #{$shadow-sm};
+  --icon-circle-shadow-hover: #{$shadow-md};
+  --icon-circle-transform-hover: translateY(-2px) scale(1.12);
+  --icon-circle-transition: transform #{$duration-fast} #{$ease-out}, box-shadow #{$duration-fast} #{$ease-out};
+
+  // Icon flat colors (no background)
+  --icon-flat-primary-color: #{$forest-500};
+  --icon-flat-secondary-color: #{$sage-500};
+  --icon-flat-coral-color: #{$coral-500};
+  --icon-flat-sage-color: #{$sage-500};
+  --icon-flat-transform-hover: scale(1.1);
+
+  // Glassmorphism icon circle
+  --icon-glass-blur: 12px;
+  --icon-glass-border: 1px solid rgba(255, 255, 255, 0.2);
+  --icon-glass-bg-primary: linear-gradient(135deg, rgba(#{red($forest-400)}, #{green($forest-400)}, #{blue($forest-400)}, 0.7) 0%, rgba(#{red($forest-500)}, #{green($forest-500)}, #{blue($forest-500)}, 0.8) 100%);
+  --icon-glass-bg-secondary: linear-gradient(135deg, rgba(#{red($sage-400)}, #{green($sage-400)}, #{blue($sage-400)}, 0.7) 0%, rgba(#{red($sage-500)}, #{green($sage-500)}, #{blue($sage-500)}, 0.8) 100%);
+  --icon-glass-bg-coral: linear-gradient(135deg, rgba(#{red($coral-400)}, #{green($coral-400)}, #{blue($coral-400)}, 0.7) 0%, rgba(#{red($coral-500)}, #{green($coral-500)}, #{blue($coral-500)}, 0.8) 100%);
+
+  /* ----------------------------------
+   * Icon Blob Component Properties
+   * For service cards with organic blob backgrounds
+   * ---------------------------------- */
+  // Icon blob sizes
+  --icon-blob-sm: 60px;
+  --icon-blob-md: 80px;  // Default
+  --icon-blob-lg: 100px;
+  --icon-blob-sm-mobile: 56px;
+  --icon-blob-md-mobile: 70px;
+  --icon-blob-lg-mobile: 88px;
+
+  // Icon blob colors (redesign 2025 - unified color scheme)
+  --icon-blob-bg-light: #{$forest-100};   // Light green background (default state)
+  --icon-blob-bg-dark: #{$forest-700};    // Dark forest green (hover/active state)
+  --icon-blob-icon-default: #{$forest-500};  // Green icon (default state)
+  --icon-blob-icon-hover: #{$gold-500};   // Gold icon (hover state)
+
+  // Icon blob styling
+  --icon-blob-border-radius: 50%;
+  --icon-blob-icon-size-ratio: 0.4;  // Icon is 40% of blob diameter
+  --icon-blob-transform-hover: scale(1.05);
+  --icon-blob-transition: transform #{$duration-base} #{$ease-in-out}, background-color 400ms #{$ease-in-out};
+  --icon-blob-icon-transition: color 400ms #{$ease-in-out};
+
+  /* ----------------------------------
+   * Badge Component Properties
+   * For credential badges with glassmorphism
+   * ---------------------------------- */
+  // Badge sizes
+  --badge-padding-sm: #{$space-2} #{$space-4};     // 8px 16px
+  --badge-padding-md: #{$space-3} #{$space-5};     // 12px 20px (default)
+  --badge-padding-lg: #{$space-4} #{$space-6};     // 16px 24px
+
+  // Badge base styling
+  --badge-bg: #{$gradient-glass-light};
+  --badge-bg-hover: rgba(255, 255, 255, 0.95);
+  --badge-border-radius: #{$radius-md};
+  --badge-shadow: #{$shadow-sm};
+  --badge-shadow-hover: #{$shadow-md};
+  --badge-transform-hover: translateY(-2px) scale(1.02);
+  --badge-transition: all #{$duration-base} #{$easing-medium};
+  --badge-margin: #{$space-2};
+
+  // Badge gradient border (hover effect)
+  --badge-border-gradient: #{$gradient-warm-vibrant};
+  --badge-border-width: 2px;
+
+  // Badge inner layout
+  --badge-gap: #{$space-3};  // 12px gap between icon and content
+
+  // Badge icon (circular gradient)
+  --badge-icon-size: #{$icon-circle-sm};  // 36px
+  --badge-icon-border-radius: #{$radius-full};
+  --badge-icon-color: white;
+  --badge-icon-transform-hover: rotate(8deg) scale(1.1);
+  --badge-icon-transition: transform #{$duration-base} #{$easing-medium};
+
+  // Badge text
+  --badge-label-font-size: #{$text-sm};
+  --badge-label-font-weight: #{$font-weight-heading-bold};  // 600
+  --badge-label-color: #{$gray-700};
+  --badge-label-line-height: 1.2;
+  --badge-value-font-size: #{$text-xs};
+  --badge-value-color: #{$gray-500};
+  --badge-value-line-height: 1.2;
+  --badge-content-gap: #{$space-0};  // 2px minimal gap
+
+  // Badge size variants - text sizing
+  --badge-label-sm: #{$text-sm};
+  --badge-value-sm: #{$text-xs};
+  --badge-label-lg: #{$text-base};
+  --badge-value-lg: #{$text-sm};
 
   /* ----------------------------------
    * Card Border Colors
@@ -191,6 +375,935 @@
   --gradient-icon-sage: #{$gradient-icon-sage};
   --gradient-radial-primary: #{$gradient-radial-primary};
   --gradient-radial-secondary: #{$gradient-radial-secondary};
+
+  /* ----------------------------------
+   * Card Component Properties
+   * Base card styling and variants
+   * ---------------------------------- */
+  // Card base
+  --card-bg: #{$white};
+  --card-padding: #{$space-6};
+  --card-padding-redesign: #{$space-10};
+  --card-border-width: 1px;
+  --card-border-color: #{$gray-200};
+  --card-border-radius: #{$radius-lg};
+  --card-border-radius-redesign: #{$radius-2xl};
+  --card-shadow: #{$shadow-lg};
+  --card-shadow-hover: #{$shadow-2xl};
+  --card-transition: transform 400ms #{$ease-in-out}, box-shadow 1200ms #{$ease-in-out}, border-color 400ms #{$ease-in-out};
+
+  // Card top accent borders (4px solid)
+  --card-accent-primary: #{$color-primary-500};
+  --card-accent-secondary: #{$color-secondary-500};
+  --card-accent-tertiary: #{$color-tertiary};
+  --card-accent-success: #{$color-success};
+  --card-accent-warning: #{$color-warning};
+  --card-accent-error: #{$color-error};
+  --card-accent-info: #{$color-info};
+  --card-accent-neutral: #{$color-neutral};
+  --card-accent-coral: #{$coral-500};
+  --card-accent-sage: #{$sage-500};
+
+  // Card redesign hover state
+  --card-redesign-hover-border: rgba(#{red($gold-500)}, #{green($gold-500)}, #{blue($gold-500)}, 0.3);
+  --card-redesign-hover-lift: -2px;
+  --card-redesign-border-light: #{$color-border-redesign-light};
+
+  // Card title
+  --card-title-font-family: #{$font-heading};
+  --card-title-font-size: #{$text-xl};
+  --card-title-font-size-redesign: #{$text-2xl};
+  --card-title-font-weight: #{$weight-semibold};
+  --card-title-font-weight-redesign: #{$font-weight-heading-bold};
+  --card-title-color: #{$gray-900};
+  --card-title-color-redesign: #{$forest-700};
+  --card-title-margin-bottom: #{$space-4};
+
+  // Card body
+  --card-body-font-family: #{$font-body};
+  --card-body-font-size: #{$text-base};
+  --card-body-line-height: #{$leading-relaxed};
+  --card-body-line-height-redesign: 1.6;
+  --card-body-color: #{$gray-600};
+  --card-body-color-redesign: #{$text-muted-green};
+  --card-body-margin-bottom: #{$space-4};
+
+  // Card footer
+  --card-footer-padding-top: #{$space-4};
+  --card-footer-margin-top: #{$space-4};
+  --card-footer-border-top: 1px solid #{$gray-200};
+
+  // Card meta
+  --card-meta-font-size: #{$text-sm};
+  --card-meta-color: #{$gray-500};
+
+  // Card action link
+  --card-action-font-size: #{$text-sm};
+  --card-action-font-weight: #{$weight-semibold};
+  --card-action-color: #{$forest-600};
+  --card-action-hover-color: #{$forest-700};
+  --card-action-transition: color #{$duration-fast} #{$ease-out};
+
+  // Card badge (number badge)
+  --card-badge-size: 48px;
+  --card-badge-size-mobile: 40px;
+  --card-badge-bg: #{$gray-300};
+  --card-badge-color: #{$gray-700};
+  --card-badge-font-size: #{$font-size-lg};
+  --card-badge-font-size-mobile: #{$font-size-base};
+  --card-badge-font-weight: #{$font-weight-semibold};
+  --card-badge-border-radius: #{$border-radius-full};
+  --card-badge-shadow: #{$shadow-sm};
+  --card-badge-position-top: #{$space-4};
+  --card-badge-position-right: #{$space-4};
+  --card-badge-position-top-mobile: #{$space-3};
+  --card-badge-position-right-mobile: #{$space-3};
+
+  // Card grid layouts
+  --card-grid-gap: #{$space-6};
+  --card-grid-gap-lg: #{$space-8};
+
+  // Card icon blob spacing
+  --card-icon-blob-margin-bottom: #{$space-6};
+
+  /* ----------------------------------
+   * Heading Component Properties
+   * Typography-specific heading styles
+   * ---------------------------------- */
+  // Base heading
+  --heading-font-family: #{$font-heading};
+  --heading-font-weight: #{$font-weight-heading};
+  --heading-color: #{$color-text-heading};
+  --heading-margin-bottom: #{$space-3};
+  --heading-line-height: #{$leading-snug};
+
+  // H1 heading
+  --heading-h1-font-size: #{$text-4xl};
+  --heading-h1-font-size-mobile: #{$text-3xl};
+  --heading-h1-font-size-responsive: clamp(#{$text-4xl}, 5vw, #{$text-5xl});
+  --heading-h1-line-height: 1.2;
+  --heading-h1-letter-spacing: -0.02em;
+  --heading-h1-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --heading-h1-margin-bottom: #{$space-4};
+
+  // H2 heading
+  --heading-h2-font-size: #{$text-3xl};
+  --heading-h2-font-size-mobile: #{$text-2xl};
+  --heading-h2-line-height: #{$leading-tight};
+  --heading-h2-letter-spacing: -0.02em;
+
+  // H3 heading
+  --heading-h3-font-size: #{$text-2xl};
+  --heading-h3-font-size-mobile: #{$text-xl};
+
+  // H4 heading
+  --heading-h4-font-size: #{$text-xl};
+
+  // H5 heading
+  --heading-h5-font-size: #{$text-lg};
+
+  // H6 heading
+  --heading-h6-font-size: #{$text-base};
+  --heading-h6-font-weight: #{$font-weight-heading-bold};
+
+  // Heading subtitle
+  --heading-subtitle-font-family: #{$font-body};
+  --heading-subtitle-font-size: #{$text-lg};
+  --heading-subtitle-font-size-mobile: #{$text-base};
+  --heading-subtitle-font-weight: #{$font-weight-body};
+  --heading-subtitle-color: #{$color-text-secondary};
+  --heading-subtitle-margin-top: #{$space-2};
+  --heading-subtitle-margin-top-mobile: #{$space-1};
+  --heading-subtitle-line-height: #{$leading-normal};
+
+  // Heading accent (italic sage)
+  --heading-accent-color: #{$sage-500};
+
+  // Heading display variant
+  --heading-display-font-size: #{$text-5xl};
+  --heading-display-font-size-md: #{$text-6xl};
+  --heading-display-font-size-xl: clamp(#{$text-6xl}, 5vw, 72px);
+  --heading-display-line-height: #{$leading-display};
+  --heading-display-font-weight: #{$font-weight-heading-bold};
+  --heading-display-letter-spacing: -0.03em;
+
+  // Heading focus state
+  --heading-focus-outline: 2px solid #{$color-primary};
+  --heading-focus-outline-offset: 4px;
+  --heading-focus-border-radius: 2px;
+
+  // Heading mobile margin
+  --heading-margin-bottom-mobile: #{$space-2};
+
+  /* ----------------------------------
+   * Text Element Properties
+   * Base element styling for paragraphs, links, lists
+   * ---------------------------------- */
+  // Paragraph
+  --text-paragraph-margin-bottom: #{$space-4};
+  --text-paragraph-line-height: #{$leading-normal};
+
+  // Links
+  --text-link-color: #{$color-primary};
+  --text-link-hover-color: #{$color-primary-600};
+  --text-link-transition: color 0.2s ease-in-out;
+  --text-link-focus-outline: 2px solid #{$color-primary};
+  --text-link-focus-outline-offset: 2px;
+
+  // Lists
+  --text-list-margin-bottom: #{$space-4};
+  --text-list-padding-left: #{$space-6};
+  --text-list-line-height: #{$leading-normal};
+  --text-list-item-margin-bottom: #{$space-2};
+
+  // Blockquote
+  --text-blockquote-margin-bottom: #{$space-4};
+  --text-blockquote-padding-left: #{$space-4};
+  --text-blockquote-border-left: 4px solid #{$color-primary};
+  --text-blockquote-color: #{$color-text-secondary};
+
+  // Inline text
+  --text-strong-font-weight: #{$font-weight-heading};
+  --text-small-font-size: #{$text-sm};
+
+  // Horizontal rule
+  --text-hr-margin: #{$space-8} 0;
+  --text-hr-border: 1px solid #{$color-border-light};
+
+  /* ----------------------------------
+   * Hero Component Properties
+   * Hero sections (about and breadcrumb)
+   * ---------------------------------- */
+  // Hero About
+  --hero-about-bg: #ffffff;
+  --hero-about-padding-mobile: #{$space-24} 0;
+  --hero-about-padding-desktop: #{$space-32} 0;
+  --hero-about-kicker-color: #{$forest-500};
+  --hero-about-paragraph-color: #374151;
+  --hero-about-image-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  --hero-about-image-border-radius: 16px;
+  --hero-about-quote-bg: rgba(255, 255, 255, 0.95);
+  --hero-about-quote-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --hero-about-quote-shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.15);
+  --hero-about-quote-text-color: #1F2937;
+  --hero-about-quote-author-color: #{$forest-500};
+
+  // Hero Breadcrumb
+  --hero-breadcrumb-bg: #{$cream-100};
+  --hero-breadcrumb-padding-mobile: 4rem 0;
+  --hero-breadcrumb-padding-desktop: 7.5rem 0 8.75rem 0;
+  --hero-breadcrumb-kicker-color: #{$forest-600};
+  --hero-breadcrumb-title-main-color: #{$text-primary-green};
+  --hero-breadcrumb-title-accent-color: #{$sage-500};
+  --hero-breadcrumb-subtitle-color: #{$text-muted-green};
+  --hero-breadcrumb-description-color: #{$text-muted-green};
+  --hero-breadcrumb-image-border: 4px solid #{$cream-200};
+  --hero-breadcrumb-image-shadow: #{$shadow-2xl};
+  --hero-breadcrumb-quote-bg: rgba(#{red($forest-900)}, #{green($forest-900)}, #{blue($forest-900)}, 0.85);
+  --hero-breadcrumb-quote-shadow: #{$shadow-lg};
+  --hero-breadcrumb-quote-icon-color: #{$gold-500};
+  --hero-breadcrumb-quote-text-color: white;
+  --hero-breadcrumb-quote-author-color: #{$cream-100};
+
+  // Hero variant colors
+  --hero-variant-primary-subtitle: #{$forest-600};
+  --hero-variant-primary-shape: #{$forest-500};
+  --hero-variant-secondary-subtitle: #{$sage-600};
+  --hero-variant-secondary-shape: #{$sage-500};
+  --hero-variant-tertiary-subtitle: #{$gold-600};
+  --hero-variant-tertiary-shape: #{$gold-500};
+  --hero-variant-neutral-subtitle: #{$cream-500};
+  --hero-variant-neutral-shape: #{$cream-400};
+
+  /* ----------------------------------
+   * Form Component Properties
+   * ---------------------------------- */
+
+  // Form container
+  --form-bg: rgba(255, 255, 255, 0.9);
+  --form-border: 1px solid rgba(255, 255, 255, 0.4);
+  --form-border-radius: #{$radius-2xl};
+  --form-padding: #{$space-8};
+  --form-padding-mobile: #{$space-6};
+  --form-shadow: #{$shadow-glass};
+  --form-glassmorphism-bg: #{$gradient-glass-light};
+  --form-glassmorphism-backdrop: blur(12px);
+
+  // Form inputs (text, textarea, select)
+  --form-input-bg: rgba(255, 255, 255, 0.9);
+  --form-input-bg-focus: #fff;
+  --form-input-border: 2px solid rgba(#{red($color-primary)}, #{green($color-primary)}, #{blue($color-primary)}, 0.15);
+  --form-input-border-focus: #{$color-primary};
+  --form-input-border-radius: #{$radius-lg};
+  --form-input-padding: 14px 18px;
+  --form-input-padding-sm: #{$space-2} #{$space-3};
+  --form-input-padding-lg: #{$space-4} #{$space-5};
+  --form-input-font-family: #{$font-body};
+  --form-input-font-size: #{$text-base};
+  --form-input-color: #{$color-text-primary};
+  --form-input-placeholder-color: #{$color-text-muted};
+  --form-input-placeholder-opacity: 0.6;
+  --form-input-shadow-focus: 0 0 0 3px rgba(#{red($color-primary)}, #{green($color-primary)}, #{blue($color-primary)}, 0.1);
+  --form-input-transform-focus: translateY(-2px);
+  --form-input-transition: all 0.3s ease;
+
+  // Form group
+  --form-group-margin-bottom: #{$space-6};
+  --form-group-margin-bottom-compact: #{$space-4};
+
+  // Textarea specific
+  --form-textarea-min-height: 120px;
+  --form-textarea-resize: vertical;
+
+  // Select specific
+  --form-select-padding-right: #{$space-10};
+  --form-select-background-size: 1.5rem;
+  --form-select-background-position: right #{$space-3} center;
+
+  // Form input validation states
+  --form-input-valid-border: rgba(#{red($color-success)}, #{green($color-success)}, #{blue($color-success)}, 0.3);
+  --form-input-valid-border-focus: #{$color-success};
+  --form-input-valid-shadow: 0 0 0 3px rgba(#{red($color-success)}, #{green($color-success)}, #{blue($color-success)}, 0.1);
+  --form-input-invalid-border: #{$color-error};
+  --form-input-invalid-shadow: 0 0 0 3px rgba(#{red($color-error)}, #{green($color-error)}, #{blue($color-error)}, 0.15);
+
+  // Form labels
+  --form-label-color: #{$color-text-primary};
+  --form-label-font-weight: #{$weight-medium};
+  --form-label-font-size: #{$text-sm};
+  --form-label-margin-bottom: #{$space-2};
+  --form-label-color-valid: #{$color-success};
+  --form-label-color-invalid: #{$color-error};
+  --form-label-color-muted: #{$color-text-muted};
+
+  // Form floating labels
+  --form-floating-label-top: #{$space-3};
+  --form-floating-label-left: #{$space-4};
+  --form-floating-label-top-float: -#{$space-2};
+  --form-floating-label-left-float: #{$space-2};
+  --form-floating-label-font-size-float: #{$text-xs};
+  --form-floating-label-bg: #fff;
+  --form-floating-label-padding: 0 #{$space-1};
+
+  // Form feedback messages
+  --form-feedback-color-error: #{$color-error};
+  --form-feedback-color-success: #{$color-success};
+  --form-feedback-font-size: #{$text-sm};
+  --form-feedback-margin-top: #{$space-1};
+
+  // Form submit button (uses button custom properties + these overrides)
+  --form-submit-padding: #{$space-4} #{$space-8};
+  --form-submit-font-weight: #{$weight-semibold};
+  --form-submit-font-size: #{$text-lg};
+
+  // Form privacy notice
+  --form-privacy-bg: rgba(#{red($color-primary)}, #{green($color-primary)}, #{blue($color-primary)}, 0.05);
+  --form-privacy-border: 4px solid #{$color-primary};
+  --form-privacy-border-radius: #{$radius-md};
+  --form-privacy-padding: #{$space-4};
+  --form-privacy-font-size: #{$text-sm};
+  --form-privacy-color: #{$color-text-secondary};
+
+  // Form success message
+  --form-success-bg: #{$gradient-glass-warm};
+  --form-success-border: 2px solid #{$color-success};
+  --form-success-border-radius: #{$radius-lg};
+  --form-success-padding: #{$space-6};
+  --form-success-icon-bg: #{$gradient-icon-forest};
+  --form-success-icon-size: 64px;
+  --form-success-title-color: #{$color-success};
+  --form-success-text-color: #{$color-text-secondary};
+
+  // Form checkbox and radio
+  --form-checkbox-size: 1.25rem;
+  --form-checkbox-border: 2px solid rgba(#{red($color-primary)}, #{green($color-primary)}, #{blue($color-primary)}, 0.3);
+  --form-checkbox-border-radius: #{$radius-sm};
+  --form-checkbox-bg: #fff;
+  --form-checkbox-checked-bg: #{$color-secondary};
+  --form-checkbox-checked-border: #{$color-secondary};
+  --form-checkbox-checked-mark-size: 0.625rem;
+  --form-checkbox-checked-mark-color: #fff;
+  --form-checkbox-focus-outline: 2px solid #{$sage-500};
+  --form-checkbox-focus-offset: 2px;
+
+  /* ----------------------------------
+   * Contact Form Enhanced Properties
+   * ---------------------------------- */
+
+  // Contact form grid
+  --contact-form-grid-ratio: 1fr 1.2fr;
+  --contact-form-grid-gap: #{$space-12};
+  --contact-form-grid-gap-tablet: #{$space-8};
+  --contact-form-grid-gap-mobile: #{$space-6};
+
+  // Contact form panel (left side)
+  --contact-form-panel-bg: linear-gradient(180deg, #{$color-primary-700} 0%, #{$color-primary-900} 100%);
+  --contact-form-panel-bg-redesign: linear-gradient(135deg, #{$forest-700} 0%, #{$forest-900} 100%);
+  --contact-form-panel-border-radius: #{$radius-xl};
+  --contact-form-panel-border-radius-redesign: #{$radius-3xl} 0 0 #{$radius-3xl};
+  --contact-form-panel-padding: #{$space-10};
+  --contact-form-panel-padding-mobile: #{$space-6};
+  --contact-form-panel-min-height: 600px;
+
+  // Contact form blobs (decorative)
+  --contact-form-blob-bg: rgba(#{red($color-primary-800)}, #{green($color-primary-800)}, #{blue($color-primary-800)}, 0.4);
+  --contact-form-blob-1-size: 300px;
+  --contact-form-blob-2-size: 250px;
+  --contact-form-blob-mobile-1-size: 200px;
+  --contact-form-blob-mobile-2-size: 180px;
+
+  // Contact cards (glassmorphism)
+  --contact-card-bg: rgba(255, 255, 255, 0.1);
+  --contact-card-bg-hover: rgba(255, 255, 255, 0.15);
+  --contact-card-border: 1px solid rgba(255, 255, 255, 0.2);
+  --contact-card-border-radius: #{$radius-md};
+  --contact-card-padding: #{$space-5};
+  --contact-card-gap: #{$space-4};
+  --contact-card-backdrop: blur(12px);
+  --contact-card-shadow: #{$shadow-md};
+  --contact-card-transform-hover: translateX(4px);
+
+  // Contact card icons
+  --contact-card-icon-size: 48px;
+  --contact-card-icon-bg: radial-gradient(circle at 30% 30%, rgba(#{red($color-primary-400)}, #{green($color-primary-400)}, #{blue($color-primary-400)}, 0.3) 0%, rgba(#{red($color-primary-600)}, #{green($color-primary-600)}, #{blue($color-primary-600)}, 0.2) 100%);
+  --contact-card-icon-bg-redesign: transparent;
+  --contact-card-icon-border-redesign: 2px solid #{$gold-500};
+  --contact-card-icon-color: white;
+  --contact-card-icon-color-redesign: #{$cream-100};
+
+  // Contact trust badges
+  --contact-trust-icon-size: 56px;
+  --contact-trust-icon-size-mobile: 48px;
+  --contact-trust-icon-bg: rgba(255, 255, 255, 0.15);
+  --contact-trust-icon-border: 2px solid rgba(255, 255, 255, 0.3);
+  --contact-trust-icon-bg-hover: rgba(255, 255, 255, 0.25);
+  --contact-trust-icon-transform-hover: scale(1.1);
+  --contact-trust-icon-color: white;
+
+  // Contact form wrapper (right side)
+  --contact-form-wrapper-bg-redesign: #{$cream-50};
+  --contact-form-wrapper-padding-redesign: #{$space-8};
+  --contact-form-wrapper-padding-mobile: #{$space-6};
+  --contact-form-wrapper-border-radius-redesign: 0 #{$radius-3xl} #{$radius-3xl} 0;
+  --contact-form-wrapper-texture-color: #{$gray-100};
+  --contact-form-wrapper-texture-size: 40px;
+
+  // Contact form privacy badge
+  --contact-form-privacy-bg: linear-gradient(135deg, rgba(#{red($color-primary-500)}, #{green($color-primary-500)}, #{blue($color-primary-500)}, 0.1) 0%, rgba(#{red($color-primary-600)}, #{green($color-primary-600)}, #{blue($color-primary-600)}, 0.1) 100%);
+  --contact-form-privacy-border: 2px solid #{$color-primary-500};
+  --contact-form-privacy-border-radius: #{$radius-full};
+  --contact-form-privacy-padding: #{$space-2} #{$space-4};
+  --contact-form-privacy-icon-color: #{$color-primary-500};
+  --contact-form-privacy-text-color: #{$color-primary-700};
+
+  /* ----------------------------------
+   * Signup Form Properties
+   * ---------------------------------- */
+
+  // Signup form card
+  --signup-form-card-bg: #{$gradient-glass-light};
+  --signup-form-card-border: 1px solid rgba(255, 255, 255, 0.4);
+  --signup-form-card-border-radius: #{$radius-2xl};
+  --signup-form-card-border-radius-mobile: #{$radius-xl};
+  --signup-form-card-padding: #{$space-8};
+  --signup-form-card-padding-tablet: #{$space-6};
+  --signup-form-card-padding-mobile: #{$space-5};
+  --signup-form-card-shadow: #{$shadow-glass};
+  --signup-form-card-max-width: 720px;
+  --signup-form-card-backdrop: blur(12px);
+
+  // Signup form steps
+  --signup-step-number-size: 40px;
+  --signup-step-number-size-mobile: 32px;
+  --signup-step-number-border: 2px solid #{$color-border};
+  --signup-step-number-bg: #fff;
+  --signup-step-number-color: #{$gray-600};
+  --signup-step-number-font-weight: #{$weight-semibold};
+  --signup-step-number-margin-bottom: #{$space-2};
+
+  // Signup step active state
+  --signup-step-active-bg: #{$gradient-warm-vibrant};
+  --signup-step-active-color: #fff;
+  --signup-step-active-shadow: #{$shadow-warm};
+  --signup-step-active-transform: scale(1.1);
+  --signup-step-active-label-color: #{$color-primary};
+  --signup-step-active-label-weight: #{$weight-semibold};
+
+  // Signup step completed state
+  --signup-step-completed-bg: #{$gradient-warm-vibrant};
+  --signup-step-completed-color: #fff;
+  --signup-step-completed-label-color: #{$gray-700};
+  --signup-step-completed-line-bg: linear-gradient(to right, #{$color-primary}, #{$color-secondary});
+
+  // Signup step line
+  --signup-step-line-height: 2px;
+  --signup-step-line-bg: #{$color-border};
+  --signup-step-line-top: 20px;
+
+  // Signup step labels
+  --signup-step-label-font-size: #{$text-sm};
+  --signup-step-label-font-size-tablet: #{$text-xs};
+  --signup-step-label-color: #{$gray-600};
+
+  // Signup form actions
+  --signup-action-gap: #{$space-3};
+  --signup-action-gap-mobile: #{$space-2};
+  --signup-action-button-padding: #{$space-3} #{$space-6};
+  --signup-action-button-padding-mobile: #{$space-3} #{$space-4};
+  --signup-action-button-border-radius: #{$radius-lg};
+  --signup-action-button-font-weight: #{$weight-semibold};
+  --signup-action-button-font-size-mobile: #{$text-sm};
+
+  // Signup action button variants
+  --signup-action-primary-bg: #{$gradient-warm-vibrant};
+  --signup-action-primary-color: #fff;
+  --signup-action-primary-shadow: #{$shadow-warm};
+  --signup-action-primary-shadow-hover: #{$shadow-warm-lg};
+  --signup-action-primary-transform-hover: translateY(-2px);
+
+  --signup-action-secondary-bg: transparent;
+  --signup-action-secondary-color: #{$gray-700};
+  --signup-action-secondary-border: 1px solid #{$color-border};
+  --signup-action-secondary-bg-hover: rgba(#{red($gray-100)}, #{green($gray-100)}, #{blue($gray-100)}, 0.5);
+  --signup-action-secondary-border-hover: #{$gray-400};
+
+  // Signup progress bar
+  --signup-progress-height: 4px;
+  --signup-progress-bg: rgba(#{red($gray-300)}, #{green($gray-300)}, #{blue($gray-300)}, 0.3);
+  --signup-progress-border-radius: #{$radius-full};
+  --signup-progress-bar-bg: #{$gradient-warm-vibrant};
+  --signup-progress-bar-transition: width 0.4s ease;
+
+  // Signup form title
+  --signup-form-title-font-size: #{$text-2xl};
+  --signup-form-title-font-size-tablet: #{$text-xl};
+  --signup-form-title-font-weight: #{$weight-semibold};
+  --signup-form-title-color: #{$gray-900};
+  --signup-form-title-margin-bottom: #{$space-2};
+
+  // Signup form description
+  --signup-form-description-font-size: #{$text-base};
+  --signup-form-description-font-size-tablet: #{$text-sm};
+  --signup-form-description-color: #{$gray-600};
+  --signup-form-description-margin-bottom: #{$space-6};
+  --signup-form-description-margin-bottom-tablet: #{$space-5};
+  --signup-form-description-line-height: 1.6;
+
+  // Form loading state
+  --form-loading-bg: #{$gray-50};
+  --form-loading-border-radius: #{$radius-md};
+  --form-loading-padding: #{$space-6} #{$space-4};
+  --form-loading-spinner-size: 40px;
+  --form-loading-spinner-border: 4px solid #{$gray-200};
+  --form-loading-spinner-border-top: 4px solid #{$color-primary-500};
+  --form-loading-text-color: #{$gray-700};
+
+  // Form status messages
+  --form-status-padding: #{$space-3} #{$space-4};
+  --form-status-margin-bottom: #{$space-4};
+  --form-status-border-radius: #{$radius-md};
+  --form-status-font-size: #{$text-sm};
+  --form-status-border-left: 4px;
+
+  --form-status-success-bg: rgba(#{red($color-success-500)}, #{green($color-success-500)}, #{blue($color-success-500)}, 0.1);
+  --form-status-success-border: #{$color-success-500};
+  --form-status-success-color: #{$color-success-700};
+
+  --form-status-error-bg: rgba(#{red($color-error-500)}, #{green($color-error-500)}, #{blue($color-error-500)}, 0.1);
+  --form-status-error-border: #{$color-error-500};
+  --form-status-error-color: #{$color-error-700};
+
+  /* ----------------------------------
+   * Navigation Component Properties
+   * ---------------------------------- */
+
+  // Navigation list
+  --nav-list-gap: #{$space-2};
+  --nav-list-gap-mobile: #{$space-1};
+  --nav-list-gap-tablet: #{$space-1};
+  --nav-list-gap-desktop: #{$space-3};
+
+  // Navigation link
+  --nav-link-gap: #{$space-1};
+  --nav-link-padding: #{$space-2} #{$space-3};
+  --nav-link-padding-tablet: #{$space-2};
+  --nav-link-color: #{$color-text-primary};
+  --nav-link-color-hover: #{$color-primary};
+  --nav-link-color-active: #{$color-primary};
+  --nav-link-font-family: #{$font-family-sans};
+  --nav-link-font-size: #{$font-size-base};
+  --nav-link-font-size-desktop: #{$font-size-md};
+  --nav-link-font-weight: #{$font-weight-normal};
+  --nav-link-font-weight-active: #{$font-weight-medium};
+  --nav-link-line-height: #{$line-height-snug};
+  --nav-link-border-radius: #{$radius-sm};
+  --nav-link-transition: all #{$duration-fast} #{$easing-medium};
+
+  // Navigation link underline
+  --nav-link-underline-color: #{$gold-500};
+  --nav-link-underline-height: 2px;
+  --nav-link-underline-offset: #{$space-1};
+  --nav-link-underline-transition: all #{$duration-base} #{$easing-medium};
+
+  // Navigation dropdown
+  --nav-dropdown-min-width: 220px;
+  --nav-dropdown-min-width-tablet: 200px;
+  --nav-dropdown-bg: #{$gradient-glass-light};
+  --nav-dropdown-bg-mobile: rgba(#{red($color-primary)}, #{green($color-primary)}, #{blue($color-primary)}, 0.03);
+  --nav-dropdown-border-radius: #{$radius-md};
+  --nav-dropdown-shadow: #{$shadow-lg};
+  --nav-dropdown-padding: #{$space-2};
+  --nav-dropdown-gap: #{$space-1};
+  --nav-dropdown-offset: 0; // No gap - dropdown touches trigger for reliable hover
+  --nav-dropdown-transform: translateY(-#{$space-2});
+  --nav-dropdown-transition: all #{$duration-base} #{$easing-medium};
+
+  // Navigation dropdown link
+  --nav-dropdown-link-padding: #{$space-2} #{$space-3};
+  --nav-dropdown-link-color: #{$color-text-primary};
+  --nav-dropdown-link-color-hover: #{$color-primary};
+  --nav-dropdown-link-font-size: #{$font-size-sm};
+  --nav-dropdown-link-font-weight: #{$font-weight-normal};
+  --nav-dropdown-link-font-weight-active: #{$font-weight-medium};
+  --nav-dropdown-link-border-radius: #{$radius-sm};
+  --nav-dropdown-link-transform-hover: translateX(#{$space-1});
+  --nav-dropdown-link-underline-offset: #{$space-2};
+
+  // Navigation focus glow
+  --nav-focus-glow-color: rgba(#{red($color-primary)}, #{green($color-primary)}, #{blue($color-primary)}, 0.2);
+
+  // Navbar (scroll states)
+  --navbar-padding: #{$space-4} 0;
+  --navbar-padding-scrolled: #{$space-3} 0;
+  --navbar-padding-mobile: #{$space-3} 0;
+  --navbar-bg: transparent;
+  --navbar-bg-scrolled: #{$gradient-glass-light};
+  --navbar-bg-mobile: white;
+  --navbar-shadow-scrolled: 0 4px 12px rgba(#{red($forest-900)}, #{green($forest-900)}, #{blue($forest-900)}, 0.08);
+  --navbar-shadow-mobile: 0 2px 8px rgba(#{red($gray-900)}, #{green($gray-900)}, #{blue($gray-900)}, 0.05);
+  --navbar-transition: all #{$duration-base} #{$easing-medium};
+
+  /* ----------------------------------
+   * Footer Component Properties
+   * ---------------------------------- */
+
+  // Footer CTA section
+  --footer-cta-padding: #{$space-16} 0;
+  --footer-cta-padding-mobile: #{$space-12} 0;
+  --footer-cta-bg: #{$cream-100};
+  --footer-cta-border-top: 1px solid #{$cream-200};
+  --footer-cta-max-width: 800px;
+  --footer-cta-text-font-size: #{$font-size-lg};
+  --footer-cta-text-font-size-mobile: #{$font-size-base};
+  --footer-cta-text-color: #{$color-text-secondary};
+  --footer-cta-text-margin: #{$space-4} 0 #{$space-6};
+  --footer-cta-text-margin-mobile: #{$space-3} 0 #{$space-5};
+  --footer-cta-button-margin: #{$space-6};
+  --footer-cta-button-margin-mobile: #{$space-5};
+
+  // Footer main
+  --footer-bg: #2F5548;
+  --footer-color: #ffffff;
+  --footer-padding-top: #{$space-12};
+  --footer-padding-top-mobile: #{$space-10};
+  --footer-main-padding-bottom: #{$space-8};
+  --footer-main-padding-bottom-mobile: #{$space-6};
+  --footer-container-max-width: 1320px;
+  --footer-container-padding: 0 #{$space-4};
+  --footer-container-padding-mobile: 0 #{$space-3};
+
+  // Footer divider
+  --footer-divider-height: 1px;
+  --footer-divider-bg: rgba(#{red($cream-100)}, #{green($cream-100)}, #{blue($cream-100)}, 0.1);
+  --footer-divider-margin: #{$space-10};
+  --footer-divider-margin-mobile: #{$space-8};
+
+  // Footer content grid
+  --footer-content-columns: 2fr 1fr 1fr 1fr;
+  --footer-content-columns-tablet: 1fr 1fr;
+  --footer-content-columns-mobile: 1fr;
+  --footer-content-gap: #{$space-8};
+  --footer-content-gap-tablet: #{$space-6};
+  --footer-content-gap-mobile: #{$space-8};
+
+  // Footer copyright
+  --footer-copyright-bg: #{$forest-900};
+  --footer-copyright-border-top: 1px solid rgba(#{red($cream-100)}, #{green($cream-100)}, #{blue($cream-100)}, 0.1);
+  --footer-copyright-padding: #{$space-5} 0;
+  --footer-copyright-padding-mobile: #{$space-4} 0;
+  --footer-copyright-font-size: #{$font-size-sm};
+  --footer-copyright-color: rgba(#{red($cream-100)}, #{green($cream-100)}, #{blue($cream-100)}, 0.7);
+  --footer-copyright-link-color: #{$cream-100};
+  --footer-copyright-link-hover-color: #{$color-primary-600};
+
+  // Footer nav
+  --footer-nav-gap: #{$space-6};
+  --footer-nav-gap-desktop: #{$space-8};
+  --footer-nav-padding: #{$space-6} 0;
+  --footer-nav-padding-desktop: #{$space-8} 0;
+  --footer-nav-font-family: #{$font-family-sans};
+  --footer-nav-font-size: #{$font-size-base};
+  --footer-nav-color: #{$color-text-primary};
+
+  // Footer nav title
+  --footer-nav-title-font-family: #{$font-family-serif};
+  --footer-nav-title-font-size: #{$font-size-lg};
+  --footer-nav-title-font-weight: 600;
+  --footer-nav-title-color: #ffffff;
+  --footer-nav-title-margin-bottom: #{$space-3};
+
+  // Footer nav links
+  --footer-nav-link-color: #ffffff;
+  --footer-nav-link-color-hover: #{$gold-500};
+  --footer-nav-link-padding-bottom: #{$space-1};
+  --footer-nav-link-transition: color #{$duration-base} #{$easing-out};
+  --footer-nav-item-margin: #{$space-2};
+
+  // Footer nav social
+  --footer-nav-social-margin-top: #{$space-8};
+
+  // Footer nav variants
+  --footer-nav-primary-title-color: #{$color-primary-700};
+  --footer-nav-primary-link-color: #{$color-primary-600};
+  --footer-nav-primary-link-hover-color: #{$color-primary-700};
+  --footer-nav-secondary-title-color: #{$color-secondary-700};
+  --footer-nav-secondary-link-color: #{$color-secondary-600};
+  --footer-nav-secondary-link-hover-color: #{$color-secondary-700};
+  --footer-nav-tertiary-title-color: #{$color-tertiary-700};
+  --footer-nav-tertiary-link-color: #{$color-tertiary-600};
+  --footer-nav-tertiary-link-hover-color: #{$color-tertiary-700};
+  --footer-nav-neutral-title-color: #{$color-neutral-800};
+  --footer-nav-neutral-link-color: #{$color-neutral-700};
+  --footer-nav-neutral-link-hover-color: #{$color-neutral-900};
+
+  /* ----------------------------------
+   * Accordion Component Properties
+   * ---------------------------------- */
+
+  // Accordion base
+  --accordion-gap: #{$space-3};
+  --accordion-max-width: 900px;
+
+  // Accordion item
+  --accordion-item-bg: #{$gradient-glass-light};
+  --accordion-item-border-radius: #{$radius-md};
+  --accordion-item-border-radius-lg: #{$radius-lg};
+  --accordion-item-shadow: #{$shadow-xs};
+  --accordion-item-shadow-hover: #{$shadow-sm};
+  --accordion-item-shadow-active: #{$shadow-md};
+  --accordion-item-border-width: 4px;
+  --accordion-item-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Accordion button
+  --accordion-button-gap: #{$space-4};
+  --accordion-button-gap-mobile: #{$space-3};
+  --accordion-button-padding: #{$space-5} #{$space-6};
+  --accordion-button-padding-tablet: #{$space-4} #{$space-5};
+  --accordion-button-padding-mobile: #{$space-4};
+  --accordion-button-bg-hover: rgba(255, 255, 255, 0.7);
+  --accordion-button-transition: background #{$duration-fast} #{$easing-subtle};
+
+  // Accordion button text
+  --accordion-button-text-font-family: #{$font-heading};
+  --accordion-button-text-font-size: #{$text-lg};
+  --accordion-button-text-font-size-tablet: #{$text-base};
+  --accordion-button-text-font-size-mobile: #{$text-sm};
+  --accordion-button-text-font-weight: #{$weight-semibold};
+  --accordion-button-text-color: #{$gray-900};
+  --accordion-button-text-color-active: #{$color-primary};
+  --accordion-button-text-line-height: #{$leading-snug};
+  --accordion-button-text-transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Accordion button icon
+  --accordion-icon-size: 32px;
+  --accordion-icon-size-mobile: 28px;
+  --accordion-icon-border-radius: #{$radius-full};
+  --accordion-icon-bg: linear-gradient(135deg, #{$forest-100} 0%, #{$sage-100} 100%);
+  --accordion-icon-bg-active: #{$gradient-warm-vibrant};
+  --accordion-icon-color: #{$color-primary};
+  --accordion-icon-color-active: white;
+  --accordion-icon-font-size: #{$text-base};
+  --accordion-icon-font-size-mobile: #{$text-sm};
+  --accordion-icon-font-weight: #{$weight-bold};
+  --accordion-icon-transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background #{$duration-fast} #{$easing-subtle};
+
+  // Accordion content
+  --accordion-content-padding: 0 #{$space-6} #{$space-6} #{$space-6};
+  --accordion-content-padding-tablet: 0 #{$space-5} #{$space-5} #{$space-5};
+  --accordion-content-padding-mobile: 0 #{$space-4} #{$space-4} #{$space-4};
+  --accordion-content-border-top: 1px solid rgba(#{red($gray-300)}, #{green($gray-300)}, #{blue($gray-300)}, 0.3);
+  --accordion-content-font-family: #{$font-body};
+  --accordion-content-font-size: #{$text-base};
+  --accordion-content-font-size-tablet: #{$text-sm};
+  --accordion-content-font-size-mobile: #{$text-xs};
+  --accordion-content-line-height: #{$leading-relaxed};
+  --accordion-content-color: #{$gray-700};
+  --accordion-content-margin-top: #{$space-4};
+  --accordion-content-margin-top-mobile: #{$space-3};
+
+  // Accordion list styling
+  --accordion-list-margin: #{$space-3} 0;
+  --accordion-list-padding: #{$space-6};
+  --accordion-list-padding-mobile: #{$space-5};
+  --accordion-list-font-size: #{$text-sm};
+  --accordion-list-font-size-mobile: #{$text-xs};
+  --accordion-list-line-height: #{$leading-normal};
+  --accordion-list-item-margin: #{$space-2};
+
+  // Accordion variants - border colors
+  --accordion-primary-border: #{$gradient-icon-forest};
+  --accordion-primary-text-active: #{$forest-600};
+  --accordion-secondary-border: #{$gradient-icon-sage};
+  --accordion-secondary-text-active: #{$sage-600};
+  --accordion-secondary-icon-color: #{$sage-600};
+  --accordion-tertiary-border: linear-gradient(180deg, #{$navy-400} 0%, #{$navy-600} 100%);
+  --accordion-tertiary-text-active: #{$navy-600};
+  --accordion-tertiary-icon-color: #{$navy-600};
+  --accordion-neutral-border: linear-gradient(180deg, #{$gray-400} 0%, #{$gray-600} 100%);
+  --accordion-neutral-text-active: #{$gray-700};
+  --accordion-neutral-icon-color: #{$gray-600};
+
+  // Accordion redesign variant
+  --accordion-redesign-border: linear-gradient(180deg, #{$forest-400} 0%, #{$forest-600} 100%);
+  --accordion-redesign-text-active: #{$forest-600};
+  --accordion-redesign-icon-bg: linear-gradient(135deg, #{$forest-100} 0%, #{$sage-100} 100%);
+  --accordion-redesign-icon-bg-active: linear-gradient(135deg, #{$forest-500} 0%, #{$sage-500} 100%);
+  --accordion-redesign-icon-color: #{$forest-600};
+
+  /* ----------------------------------
+   * Testimonials Component Properties
+   * ---------------------------------- */
+
+  // Testimonials section
+  --testimonials-bg: #{$forest-50};
+  --testimonials-padding: var(--spacing-section-y) 0;
+  --testimonials-padding-tablet: var(--spacing-5xl) 0;
+  --testimonials-padding-mobile: var(--spacing-4xl) 0;
+
+  // Testimonials decorative quote
+  --testimonials-decorative-quote-color: #{$color-primary-200};
+  --testimonials-decorative-quote-opacity: 0.3;
+  --testimonials-decorative-quote-size: 120px;
+  --testimonials-decorative-quote-size-tablet: 160px;
+  --testimonials-decorative-quote-size-desktop: 200px;
+
+  // Testimonials header
+  --testimonials-header-max-width: 800px;
+  --testimonials-header-margin-bottom: var(--spacing-5xl);
+  --testimonials-subtitle-font-size: 16px;
+  --testimonials-subtitle-color: #{$gray-600};
+  --testimonials-description-line-height: 1.625;
+
+  // Testimonials grid
+  --testimonials-grid-gap: 24px;
+  --testimonials-grid-gap-tablet: var(--spacing-xl);
+  --testimonials-grid-gap-mobile: var(--spacing-lg);
+  --testimonials-grid-margin-bottom: var(--spacing-4xl);
+
+  // Testimonials card
+  --testimonials-card-bg: var(--color-white);
+  --testimonials-card-border: 1px solid #{$gray-200};
+  --testimonials-card-border-left-width: 3px;
+  --testimonials-card-border-left-width-hover: 4px;
+  --testimonials-card-border-radius: var(--border-radius-lg);
+  --testimonials-card-padding: var(--spacing-2xl);
+  --testimonials-card-padding-mobile: var(--spacing-xl);
+  --testimonials-card-shadow: var(--shadow-sm);
+  --testimonials-card-shadow-hover: var(--shadow-lg);
+  --testimonials-card-transform-hover: translateY(-4px);
+  --testimonials-card-transition: all var(--transition-normal);
+
+  // Testimonials card border colors
+  --testimonials-card-border-primary: #{$color-primary-500};
+  --testimonials-card-border-secondary: #{$color-secondary-500};
+  --testimonials-card-border-coral: #{$coral-500};
+
+  // Testimonials floating quote
+  --testimonials-floating-quote-color: #{$color-primary-200};
+  --testimonials-floating-quote-opacity: 0.15;
+  --testimonials-floating-quote-size: 48px;
+
+  // Testimonials avatar
+  --testimonials-avatar-size: 48px;
+  --testimonials-avatar-margin: 0 auto var(--spacing-md);
+  --testimonials-avatar-shadow: var(--shadow-md);
+  --testimonials-avatar-primary-gradient: radial-gradient(circle at 30% 30%, #{lighten($color-primary-500, 10%)} 0%, #{$color-primary-500} 100%);
+  --testimonials-avatar-secondary-gradient: radial-gradient(circle at 30% 30%, #{lighten($color-secondary-500, 10%)} 0%, #{$color-secondary-500} 100%);
+  --testimonials-avatar-coral-gradient: radial-gradient(circle at 30% 30%, #{lighten($coral-500, 10%)} 0%, #{$coral-500} 100%);
+
+  // Testimonials initials
+  --testimonials-initials-font-size: 18px;
+
+  // Testimonials rating
+  --testimonials-star-size: 20px;
+  --testimonials-star-color-filled: #FFA500;
+  --testimonials-star-color-empty: #{$gray-300};
+  --testimonials-star-glow: drop-shadow(0 0 2px rgba(255, 165, 0, 0.4));
+  --testimonials-star-transform-hover: scale(1.1);
+
+  // Testimonials quote
+  --testimonials-quote-font-size: #{$text-lg};
+  --testimonials-quote-line-height: #{$leading-relaxed};
+  --testimonials-quote-padding-top: #{$space-4};
+  --testimonials-quote-decoration-size: 4rem;
+  --testimonials-quote-decoration-opacity: 0.08;
+  --testimonials-quote-decoration-color: #{$color-primary};
+
+  // Testimonials author
+  --testimonials-author-margin-top: #{$space-6};
+  --testimonials-author-border-top: 1px solid #{$gray-200};
+  --testimonials-author-name-margin-bottom: 4px;
+
+  // Testimonials outcome
+  --testimonials-outcome-bg: #{$forest-50};
+  --testimonials-outcome-padding: var(--spacing-md);
+  --testimonials-outcome-border-radius: var(--border-radius-md);
+  --testimonials-outcome-icon-size: 16px;
+
+  // Testimonials privacy
+  --testimonials-privacy-max-width: 800px;
+  --testimonials-privacy-bg: #{$forest-100};
+  --testimonials-privacy-border: 1px solid #{$forest-200};
+  --testimonials-privacy-border-radius: var(--border-radius-md);
+  --testimonials-privacy-padding: var(--spacing-md) var(--spacing-lg);
+  --testimonials-privacy-icon-size: 18px;
+  --testimonials-privacy-icon-color: #{$color-primary-500};
+  --testimonials-privacy-text-color: #{$gray-700};
+
+  // Testimonials verified icon
+  --testimonials-verified-color: #{$color-primary-500};
+  --testimonials-verified-size: 20px;
+
+  /* ----------------------------------
+   * Background System Properties
+   * Configurable via design.toml
+   * ---------------------------------- */
+
+  // Background state flags and values
+  @include background-state-vars;
+
+  /* ----------------------------------
+   * Animation System Properties
+   * Configurable via design.toml
+   * ---------------------------------- */
+
+  // Animation state flags (1 = enabled, 0 = disabled)
+  @include animation-state-vars;
+
+  // Reduced motion: disable all animations when user prefers
+  @media (prefers-reduced-motion: reduce) {
+    --anim-hover-enabled: 0;
+    --anim-scroll-enabled: 0;
+    --anim-entrance-enabled: 0;
+    --anim-parallax-enabled: 0;
+    --anim-speed-multiplier: 0;
+    --anim-duration-instant: 0ms;
+    --anim-duration-fast: 0ms;
+    --anim-duration-base: 0ms;
+    --anim-duration-normal: 0ms;
+    --anim-duration-slow: 0ms;
+    --anim-duration-slower: 0ms;
+  }
 }
 
 /*

@@ -1,6 +1,6 @@
 /*
 ========================================================================
-  Form Component - BEM Refactoring (v4.0)
+  Form Component - BEM Refactoring (v4.0) - CSS Custom Properties
 
   BEM Structure:
     .c-form                        - Form container
@@ -34,6 +34,7 @@
     - .invalid-feedback            → .c-form__feedback
 
   Created: 2025-11-19 (Session 10 - Phase 3 BEM Refactoring)
+  Updated: 2025-11-25 (Phase 4.7 - CSS Custom Properties)
 ========================================================================
 */
 
@@ -46,13 +47,13 @@
 
   // Enhanced glassmorphism variant (v4.0)
   &--enhanced {
-    background: $gradient-glass-light;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: $radius-2xl;
-    padding: $space-8;
-    box-shadow: $shadow-glass, $shadow-warm;
+    background: var(--form-glassmorphism-bg);
+    backdrop-filter: var(--form-glassmorphism-backdrop);
+    -webkit-backdrop-filter: var(--form-glassmorphism-backdrop);
+    border: var(--form-border);
+    border-radius: var(--form-border-radius);
+    padding: var(--form-padding);
+    box-shadow: var(--form-shadow), $shadow-warm;
 
     @media (prefers-reduced-motion: no-preference) {
       animation: fadeInUp 0.6s ease-out;
@@ -66,7 +67,7 @@
   // Compact variant
   &--compact {
     .c-form__group {
-      margin-bottom: $space-4;
+      margin-bottom: var(--form-group-margin-bottom-compact);
     }
   }
 }
@@ -76,7 +77,7 @@
 -------------------------------------------------------------------*/
 
 .c-form__group {
-  margin-bottom: $space-6;
+  margin-bottom: var(--form-group-margin-bottom);
 
   // Floating label variant
   &--floating {
@@ -84,23 +85,23 @@
 
     .c-form__label {
       position: absolute;
-      top: $space-3;
-      left: $space-4;
+      top: var(--form-floating-label-top);
+      left: var(--form-floating-label-left);
       pointer-events: none;
       transition: all 0.3s ease;
-      color: $color-text-muted;
+      color: var(--form-label-color-muted);
     }
 
     .c-form__input:focus + .c-form__label,
     .c-form__input:not(:placeholder-shown) + .c-form__label,
     .c-form__textarea:focus + .c-form__label,
     .c-form__textarea:not(:placeholder-shown) + .c-form__label {
-      top: -$space-2;
-      left: $space-2;
-      font-size: $text-xs;
-      color: $color-primary;
-      background: #fff;
-      padding: 0 $space-1;
+      top: var(--form-floating-label-top-float);
+      left: var(--form-floating-label-left-float);
+      font-size: var(--form-floating-label-font-size-float);
+      color: var(--form-input-border-focus);
+      background: var(--form-floating-label-bg);
+      padding: var(--form-floating-label-padding);
     }
   }
 
@@ -108,16 +109,16 @@
   &--valid {
     .c-form__input,
     .c-form__textarea {
-      border-color: rgba($color-success, 0.3); // Subtle green border
+      border-color: var(--form-input-valid-border);
 
       &:focus {
-        border-color: $color-success;
-        box-shadow: 0 0 0 3px rgba($color-success, 0.1);
+        border-color: var(--form-input-valid-border-focus);
+        box-shadow: var(--form-input-valid-shadow);
       }
     }
 
     .c-form__label {
-      color: $color-success; // Green label on success
+      color: var(--form-label-color-valid);
     }
   }
 
@@ -125,22 +126,22 @@
   &--invalid {
     .c-form__input,
     .c-form__textarea {
-      border-color: $color-error;
-      animation: shake 0.4s ease-in-out; // Shake on error
+      border-color: var(--form-input-invalid-border);
+      animation: shake 0.4s ease-in-out;
 
       &:focus {
-        border-color: $color-error;
-        box-shadow: 0 0 0 3px rgba($color-error, 0.15);
+        border-color: var(--form-input-invalid-border);
+        box-shadow: var(--form-input-invalid-shadow);
       }
     }
 
     .c-form__label {
-      color: $color-error; // Red label on error
+      color: var(--form-label-color-invalid);
     }
 
     .c-form__feedback {
       display: block;
-      animation: slideInFade 0.3s ease-out; // Slide in error message
+      animation: slideInFade 0.3s ease-out;
     }
   }
 }
@@ -151,10 +152,10 @@
 
 .c-form__label {
   display: block;
-  margin-bottom: $space-2;
-  color: $color-text-primary;
-  font-weight: $weight-medium;
-  font-size: $text-sm;
+  margin-bottom: var(--form-label-margin-bottom);
+  color: var(--form-label-color);
+  font-weight: var(--form-label-font-weight);
+  font-size: var(--form-label-font-size);
   transition: color 0.3s ease;
 }
 
@@ -166,45 +167,45 @@
 .c-form__textarea,
 .c-form__select {
   width: 100%;
-  padding: 14px 18px; // Enhanced padding from 12px 16px
-  border: 2px solid rgba($color-primary, 0.15);
-  border-radius: $radius-lg;
-  background: rgba(255, 255, 255, 0.9);
-  font-family: $font-body;
-  font-size: $text-base;
-  color: $color-text-primary;
-  transition: all 0.3s ease;
+  padding: var(--form-input-padding);
+  border: var(--form-input-border);
+  border-radius: var(--form-input-border-radius);
+  background: var(--form-input-bg);
+  font-family: var(--form-input-font-family);
+  font-size: var(--form-input-font-size);
+  color: var(--form-input-color);
+  transition: var(--form-input-transition);
 
   &:focus {
     outline: none;
-    border-image: $gradient-warm-vibrant 1; // Gradient border on focus
+    border-image: $gradient-warm-vibrant 1;
     border-image-slice: 1;
-    background: #fff;
-    box-shadow: 0 0 0 3px rgba($color-primary, 0.1); // Focus ring
-    transform: translateY(-2px);
+    background: var(--form-input-bg-focus);
+    box-shadow: var(--form-input-shadow-focus);
+    transform: var(--form-input-transform-focus);
   }
 
   &::placeholder {
-    color: $color-text-muted;
-    opacity: 0.6;
+    color: var(--form-input-placeholder-color);
+    opacity: var(--form-input-placeholder-opacity);
   }
 
   // Size variants
   &--sm {
-    padding: $space-2 $space-3;
+    padding: var(--form-input-padding-sm);
     font-size: $text-sm;
   }
 
   &--lg {
-    padding: $space-4 $space-5;
+    padding: var(--form-input-padding-lg);
     font-size: $text-lg;
   }
 }
 
 // Textarea specific
 .c-form__textarea {
-  min-height: 120px;
-  resize: vertical;
+  min-height: var(--form-textarea-min-height);
+  resize: var(--form-textarea-resize);
 }
 
 // Select specific
@@ -212,27 +213,27 @@
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23374151'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right $space-3 center;
-  background-size: 1.5rem;
-  padding-right: $space-10;
+  background-position: var(--form-select-background-position);
+  background-size: var(--form-select-background-size);
+  padding-right: var(--form-select-padding-right);
 }
 
 // Checkbox and radio
 .c-form__checkbox,
 .c-form__radio {
   appearance: none;
-  width: 1.25rem;
-  height: 1.25rem;
-  border: 2px solid rgba($color-primary, 0.3);
-  border-radius: $radius-sm;
-  background: #fff;
+  width: var(--form-checkbox-size);
+  height: var(--form-checkbox-size);
+  border: var(--form-checkbox-border);
+  border-radius: var(--form-checkbox-border-radius);
+  background: var(--form-checkbox-bg);
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
 
   &:checked {
-    background-color: $color-secondary;
-    border-color: $color-secondary;
+    background-color: var(--form-checkbox-checked-bg);
+    border-color: var(--form-checkbox-checked-border);
 
     &::after {
       content: '';
@@ -240,16 +241,16 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 0.625rem;
-      height: 0.625rem;
-      background: #fff;
+      width: var(--form-checkbox-checked-mark-size);
+      height: var(--form-checkbox-checked-mark-size);
+      background: var(--form-checkbox-checked-mark-color);
       border-radius: 2px;
     }
   }
 
   &:focus {
-    outline: 2px solid $sage-500;
-    outline-offset: 2px;
+    outline: var(--form-checkbox-focus-outline);
+    outline-offset: var(--form-checkbox-focus-offset);
   }
 }
 
@@ -267,9 +268,9 @@
 
 .c-form__feedback {
   display: none;
-  color: $color-error;
-  font-size: $text-sm;
-  margin-top: $space-1;
+  color: var(--form-feedback-color-error);
+  font-size: var(--form-feedback-font-size);
+  margin-top: var(--form-feedback-margin-top);
 }
 
 /*------------------------------------------------------------------
@@ -278,12 +279,12 @@
 
 .c-form__privacy {
   margin-top: $space-6;
-  padding: $space-4;
-  background: rgba($color-primary, 0.05);
-  border-left: 4px solid $color-primary;
-  border-radius: $radius-md;
-  font-size: $text-sm;
-  color: $color-text-secondary;
+  padding: var(--form-privacy-padding);
+  background: var(--form-privacy-bg);
+  border-left: var(--form-privacy-border);
+  border-radius: var(--form-privacy-border-radius);
+  font-size: var(--form-privacy-font-size);
+  color: var(--form-privacy-color);
 
   a {
     color: $color-primary;
@@ -300,11 +301,11 @@
 -------------------------------------------------------------------*/
 
 .c-form__submit {
-  padding: $space-4 $space-8;
+  padding: var(--form-submit-padding);
   border: none;
-  border-radius: $radius-lg;
-  font-weight: $weight-semibold;
-  font-size: $text-lg;
+  border-radius: var(--form-input-border-radius);
+  font-weight: var(--form-submit-font-weight);
+  font-size: var(--form-submit-font-size);
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
@@ -374,11 +375,11 @@
 
 .c-form__success {
   display: none;
-  background: $gradient-glass-warm;
+  background: var(--form-success-bg);
   backdrop-filter: blur(10px);
-  border: 2px solid $color-success;
-  border-radius: $radius-lg;
-  padding: $space-6;
+  border: var(--form-success-border);
+  border-radius: var(--form-success-border-radius);
+  padding: var(--form-success-padding);
   text-align: center;
   animation: fadeInUp 0.5s ease-out;
 
@@ -388,10 +389,10 @@
 }
 
 .c-form__success-icon {
-  width: 64px;
-  height: 64px;
+  width: var(--form-success-icon-size);
+  height: var(--form-success-icon-size);
   margin: 0 auto $space-4;
-  background: $gradient-icon-forest;
+  background: var(--form-success-icon-bg);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -406,12 +407,12 @@
 }
 
 .c-form__success-title {
-  color: $color-success;
+  color: var(--form-success-title-color);
   margin-bottom: $space-2;
 }
 
 .c-form__success-text {
-  color: $color-text-secondary;
+  color: var(--form-success-text-color);
 }
 
 /*------------------------------------------------------------------
@@ -450,9 +451,9 @@
   @extend .c-form__input;
 
   &:focus {
-    border-color: $color-secondary;
-    outline: 2px solid $sage-500;
-    outline-offset: 2px;
+    border-color: var(--form-checkbox-checked-bg);
+    outline: var(--form-checkbox-focus-outline);
+    outline-offset: var(--form-checkbox-focus-offset);
   }
 }
 
@@ -472,13 +473,13 @@ select.form-control {
   }
 
   &:checked {
-    background-color: $color-secondary;
-    border-color: $color-secondary;
+    background-color: var(--form-checkbox-checked-bg);
+    border-color: var(--form-checkbox-checked-border);
   }
 
   &:focus {
-    outline: 2px solid $sage-500;
-    outline-offset: 2px;
+    outline: var(--form-checkbox-focus-outline);
+    outline-offset: var(--form-checkbox-focus-offset);
   }
 }
 
@@ -580,7 +581,7 @@ select.form-control {
  * Required Asterisk
  */
 .c-form__required {
-  color: $color-error;
+  color: var(--form-feedback-color-error);
   margin-left: $space-half;
   font-weight: $weight-semibold;
 }
@@ -592,7 +593,7 @@ select.form-control {
   display: block;
   margin-top: $space-1;
   margin-bottom: $space-2;
-  color: $color-text-muted;
+  color: var(--form-label-color-muted);
   font-size: $font-size-xs;
   line-height: $line-height-normal;
 }
@@ -603,7 +604,7 @@ select.form-control {
 .c-form__help-text {
   display: block;
   margin-top: $space-2;
-  color: $color-text-secondary;
+  color: var(--form-privacy-color);
   font-size: $font-size-sm;
   line-height: $line-height-normal;
 }
@@ -621,7 +622,7 @@ select.form-control {
     .c-form__input,
     .c-form__textarea,
     .c-form__select {
-      padding-left: $space-10; // Make room for icon
+      padding-left: $space-10;
     }
   }
 
@@ -629,7 +630,7 @@ select.form-control {
     .c-form__input,
     .c-form__textarea,
     .c-form__select {
-      padding-right: $space-10; // Make room for icon
+      padding-right: $space-10;
     }
   }
 }
@@ -642,7 +643,7 @@ select.form-control {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $color-text-muted;
+  color: var(--form-label-color-muted);
   pointer-events: none;
   z-index: 1;
 
@@ -658,7 +659,7 @@ select.form-control {
   .c-form__input:focus ~ &,
   .c-form__textarea:focus ~ &,
   .c-form__select:focus ~ & {
-    color: $color-primary;
+    color: var(--form-input-border-focus);
   }
 }
 
@@ -682,14 +683,14 @@ select.form-control {
 
 .c-form__check-label {
   display: inline-block;
-  color: $color-text-primary;
+  color: var(--form-input-color);
   font-size: $font-size-base;
   font-weight: $weight-regular;
   cursor: pointer;
   margin: 0;
 
   &:hover {
-    color: $color-primary;
+    color: var(--form-input-border-focus);
   }
 }
 
@@ -701,11 +702,11 @@ select.form-control {
   // Adding extensions for molecule
 
   &--invalid {
-    color: $color-error;
+    color: var(--form-feedback-color-error);
   }
 
   &--valid {
-    color: $color-success;
+    color: var(--form-feedback-color-success);
   }
 
   &--visible {
@@ -732,14 +733,14 @@ select.form-control {
 
 @media (max-width: $breakpoint-md - 1) {
   .c-form__group {
-    margin-bottom: $space-4;
+    margin-bottom: var(--form-group-margin-bottom-compact);
   }
 
   .c-form__input,
   .c-form__textarea,
   .c-form__select {
     font-size: $font-size-base;
-    padding: $space-2 $space-3;
+    padding: var(--form-input-padding-sm);
   }
 
   .c-form__input-wrapper {
@@ -818,16 +819,16 @@ select.form-control {
   z-index: 2;
 
   &--success {
-    color: $color-success;
+    color: var(--form-label-color-valid);
   }
 
   &--error {
-    color: $color-error;
+    color: var(--form-label-color-invalid);
   }
 
   // Adjust position for floating labels
   .c-form__group--floating & {
-    top: calc(50% + 8px); // Adjust for floating label offset
+    top: calc(50% + 8px);
   }
 }
 

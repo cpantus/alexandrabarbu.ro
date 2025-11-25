@@ -24,68 +24,68 @@
 // CTA Section (Optional)
 // =============================================================================
 .c-footer__cta {
-  padding: $space-16 0;
-  background-color: $cream-100; // Redesign 2025: Clean cream background
-  border-top: 1px solid $cream-200; // Redesign 2025: Subtle cream border
+  padding: var(--footer-cta-padding);
+  background-color: var(--footer-cta-bg);
+  border-top: var(--footer-cta-border-top);
 
   @media (max-width: $breakpoint-md - 1) {
-    padding: $space-12 0;
+    padding: var(--footer-cta-padding-mobile);
   }
 }
 
 .c-footer__cta-container {
-  max-width: 1320px;
+  max-width: var(--footer-container-max-width);
   margin: 0 auto;
-  padding: 0 $space-4;
+  padding: var(--footer-container-padding);
 
   @media (max-width: $breakpoint-md - 1) {
-    padding: 0 $space-3;
+    padding: var(--footer-container-padding-mobile);
   }
 }
 
 .c-footer__cta-content {
   text-align: center;
-  max-width: 800px;
+  max-width: var(--footer-cta-max-width);
   margin: 0 auto;
 }
 
 .c-footer__cta-text {
-  font-family: $font-family-sans;
-  font-size: $font-size-lg;
+  font-family: var(--footer-nav-font-family);
+  font-size: var(--footer-cta-text-font-size);
   line-height: $line-height-relaxed;
-  color: $color-text-secondary;
-  margin: $space-4 0 $space-6;
+  color: var(--footer-cta-text-color);
+  margin: var(--footer-cta-text-margin);
 
   @media (max-width: $breakpoint-md - 1) {
-    font-size: $font-size-base;
-    margin: $space-3 0 $space-5;
+    font-size: var(--footer-cta-text-font-size-mobile);
+    margin: var(--footer-cta-text-margin-mobile);
   }
 }
 
 .c-footer__cta-button {
   display: flex;
   justify-content: center;
-  margin-top: $space-6;
+  margin-top: var(--footer-cta-button-margin);
 
   @media (max-width: $breakpoint-md - 1) {
-    margin-top: $space-5;
+    margin-top: var(--footer-cta-button-margin-mobile);
   }
 }
 
 // Main Footer
 // =============================================================================
 .c-footer {
-  background: #2F5548; // Redesign 2025: Dark forest green
-  color: #ffffff; // White text for all content
-  border-top: none; // Redesign 2025: Remove border
-  padding-top: $space-12;
+  background: var(--footer-bg);
+  color: var(--footer-color);
+  border-top: none;
+  padding-top: var(--footer-padding-top);
 
   &--with-cta {
     padding-top: 0;
   }
 
   @media (max-width: $breakpoint-md - 1) {
-    padding-top: $space-10;
+    padding-top: var(--footer-padding-top-mobile);
   }
 
   @media print {
@@ -95,59 +95,59 @@
 }
 
 .c-footer__main {
-  padding-bottom: $space-8;
+  padding-bottom: var(--footer-main-padding-bottom);
 
   @media (max-width: $breakpoint-md - 1) {
-    padding-bottom: $space-6;
+    padding-bottom: var(--footer-main-padding-bottom-mobile);
   }
 }
 
 .c-footer__container {
-  max-width: 1320px;
+  max-width: var(--footer-container-max-width);
   margin: 0 auto;
-  padding: 0 $space-4;
+  padding: var(--footer-container-padding);
 
   @media (max-width: $breakpoint-md - 1) {
-    padding: 0 $space-3;
+    padding: var(--footer-container-padding-mobile);
   }
 }
 
 .c-footer__divider {
   width: 100%;
-  height: 1px;
-  background-color: rgba($cream-100, 0.1); // Redesign 2025: Subtle cream divider on forest green
-  margin-bottom: $space-10;
+  height: var(--footer-divider-height);
+  background-color: var(--footer-divider-bg);
+  margin-bottom: var(--footer-divider-margin);
 
   @media (max-width: $breakpoint-md - 1) {
-    margin-bottom: $space-8;
+    margin-bottom: var(--footer-divider-margin-mobile);
   }
 }
 
 .c-footer__content {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: $space-8;
+  grid-template-columns: var(--footer-content-columns);
+  gap: var(--footer-content-gap);
 
   @media (max-width: $breakpoint-lg - 1) {
-    grid-template-columns: 1fr 1fr;
-    gap: $space-6;
+    grid-template-columns: var(--footer-content-columns-tablet);
+    gap: var(--footer-content-gap-tablet);
   }
 
   @media (max-width: $breakpoint-md - 1) {
-    grid-template-columns: 1fr;
-    gap: $space-8;
+    grid-template-columns: var(--footer-content-columns-mobile);
+    gap: var(--footer-content-gap-mobile);
   }
 }
 
 // Copyright Bar
 // =============================================================================
 .c-footer__copyright {
-  background: $forest-900; // Redesign 2025: Darker forest green
-  border-top: 1px solid rgba($cream-100, 0.1); // Redesign 2025: Subtle cream divider
-  padding: $space-5 0;
+  background: var(--footer-copyright-bg);
+  border-top: var(--footer-copyright-border-top);
+  padding: var(--footer-copyright-padding);
 
   @media (max-width: $breakpoint-md - 1) {
-    padding: $space-4 0;
+    padding: var(--footer-copyright-padding-mobile);
   }
 
   @media print {
@@ -157,31 +157,31 @@
 }
 
 .c-footer__copyright-container {
-  max-width: 1320px;
+  max-width: var(--footer-container-max-width);
   margin: 0 auto;
-  padding: 0 $space-4;
+  padding: var(--footer-container-padding);
 
   @media (max-width: $breakpoint-md - 1) {
-    padding: 0 $space-3;
+    padding: var(--footer-container-padding-mobile);
   }
 }
 
 .c-footer__copyright-text {
-  font-family: $font-family-sans;
-  font-size: $font-size-sm;
+  font-family: var(--footer-nav-font-family);
+  font-size: var(--footer-copyright-font-size);
   line-height: $line-height-normal;
-  color: rgba($cream-100, 0.7); // Redesign 2025: Muted cream text
+  color: var(--footer-copyright-color);
   text-align: center;
   margin: 0;
 
   a {
-    color: $cream-100; // Redesign 2025: Cream links
+    color: var(--footer-copyright-link-color);
     text-decoration: none;
-    transition: color $duration-fast $easing-default;
+    transition: var(--footer-nav-link-transition);
 
     &:hover,
     &:focus {
-      color: $color-primary-600;
+      color: var(--footer-copyright-link-hover-color);
       text-decoration: underline;
     }
   }

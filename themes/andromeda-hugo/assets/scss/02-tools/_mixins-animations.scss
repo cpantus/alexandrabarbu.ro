@@ -3,7 +3,15 @@
 // ==================================
 // Layer: 02-tools (NO CSS output)
 // Purpose: Animation and interaction mixins extracted from _design-enhancements.scss
-// Version: 1.0.0 (Phase 8 - Legacy cleanup)
+// Version: 2.0.0 (Phase 4 - Theme Customization with conditionals)
+//
+// IMPORTANT: These mixins use Hugo-injected variables from design.toml:
+// - $enable-hover-animations (bool)
+// - $enable-scroll-animations (bool)
+// - $enable-entrance-animations (bool)
+// - $enable-parallax (bool)
+// - $animation-speed-multiplier (number)
+// - $animation-easing (string)
 //
 
 // ----------------------------------
@@ -115,6 +123,263 @@
     font-size: $text-xl;
     font-weight: $weight-bold;
   }
+}
+
+// ==================================
+// CONDITIONAL ANIMATION MIXINS
+// ==================================
+// These mixins respect the animation toggle settings from design.toml
+// They allow complete control over animations without editing component code.
+
+// ----------------------------------
+// Hover Animation (Conditional)
+// ----------------------------------
+// Only applies hover effects if $enable-hover-animations is true
+//
+// Parameters:
+// @param $transform - Transform value (default: translateY(-2px))
+// @param $shadow - Box shadow on hover (optional)
+// @param $scale - Scale factor (optional)
+//
+// Usage:
+// .c-card {
+//   @include hover-animation(translateY(-4px), $shadow-lg, 1.02);
+// }
+//
+@mixin hover-animation($transform: translateY(-2px), $shadow: null, $scale: null) {
+  @if $enable-hover-animations {
+    transition: transform var(--anim-duration-base) var(--anim-easing),
+                box-shadow var(--anim-duration-base) var(--anim-easing);
+
+    &:hover {
+      @if $scale {
+        transform: $transform scale($scale);
+      } @else {
+        transform: $transform;
+      }
+
+      @if $shadow {
+        box-shadow: $shadow;
+      }
+    }
+  }
+}
+
+// ----------------------------------
+// Hover Lift (Common Pattern)
+// ----------------------------------
+// Pre-configured hover lift effect (most common hover animation)
+//
+// Parameters:
+// @param $lift - Lift distance (default: 2px)
+// @param $shadow-increase - Whether to increase shadow (default: true)
+//
+// Usage:
+// .c-card {
+//   @include hover-lift(4px, true);
+// }
+//
+@mixin hover-lift($lift: 2px, $shadow-increase: true) {
+  @if $enable-hover-animations {
+    transition: transform var(--anim-duration-base) var(--anim-easing),
+                box-shadow var(--anim-duration-slow) var(--anim-easing);
+
+    &:hover {
+      transform: translateY(-#{$lift});
+
+      @if $shadow-increase {
+        box-shadow: var(--shadow-lg);
+      }
+    }
+  }
+}
+
+// ----------------------------------
+// Hover Scale (Icon/Badge Pattern)
+// ----------------------------------
+// Pre-configured scale effect for icons and badges
+//
+// Parameters:
+// @param $scale - Scale factor (default: 1.1)
+// @param $rotate - Optional rotation (default: 0)
+//
+// Usage:
+// .c-badge__icon {
+//   @include hover-scale(1.1, 8deg);
+// }
+//
+@mixin hover-scale($scale: 1.1, $rotate: 0) {
+  @if $enable-hover-animations {
+    transition: transform var(--anim-duration-fast) var(--anim-easing);
+
+    &:hover {
+      @if $rotate != 0 {
+        transform: scale($scale) rotate($rotate);
+      } @else {
+        transform: scale($scale);
+      }
+    }
+  }
+}
+
+// ----------------------------------
+// Entrance Animation (Conditional)
+// ----------------------------------
+// Only applies entrance animations if $enable-entrance-animations is true
+//
+// Parameters:
+// @param $animation - Animation name (default: fade-in-up)
+// @param $duration - Duration (default: uses speed multiplier)
+// @param $delay - Delay before animation (default: 0)
+//
+// Usage:
+// .c-hero {
+//   @include entrance-animation(fade-in-up, 0.6s, 0.2s);
+// }
+//
+@mixin entrance-animation($animation: fade-in-up, $duration: 0.6s, $delay: 0) {
+  @if $enable-entrance-animations {
+    opacity: 0;
+    animation: $animation calc(#{$duration} * var(--anim-speed-multiplier)) var(--anim-easing) #{$delay} forwards;
+  }
+}
+
+// ----------------------------------
+// Staggered Entrance (Conditional)
+// ----------------------------------
+// Conditional version of staggered entrance animation
+//
+// Parameters:
+// @param $animation - Animation name (default: fade-in-up)
+// @param $delay-base - Base delay between items (default: 150ms)
+// @param $max-items - Maximum items to stagger (default: 6)
+//
+// Usage:
+// .c-testimonials__grid > * {
+//   @include staggered-entrance-conditional(fade-in-up, 100ms, 4);
+// }
+//
+@mixin staggered-entrance-conditional($animation: fade-in-up, $delay-base: 150ms, $max-items: 6) {
+  @if $enable-entrance-animations {
+    opacity: 0;
+    animation: $animation calc(#{$duration-slow} * var(--anim-speed-multiplier)) $ease-out forwards;
+
+    @for $i from 1 through $max-items {
+      &:nth-child(#{$i}) {
+        animation-delay: calc(#{$i * $delay-base} * var(--anim-speed-multiplier));
+      }
+    }
+  }
+}
+
+// ----------------------------------
+// Scroll Animation (Conditional)
+// ----------------------------------
+// Only applies scroll-triggered animations if $enable-scroll-animations is true
+// Note: Requires JavaScript observer to add .is-visible class
+//
+// Parameters:
+// @param $animation - Animation name (default: fade-in-up)
+// @param $duration - Duration (default: 0.6s)
+//
+// Usage:
+// .c-section {
+//   @include scroll-animation(fade-in-up);
+// }
+//
+@mixin scroll-animation($animation: fade-in-up, $duration: 0.6s) {
+  @if $enable-scroll-animations {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity calc(#{$duration} * var(--anim-speed-multiplier)) var(--anim-easing),
+                transform calc(#{$duration} * var(--anim-speed-multiplier)) var(--anim-easing);
+
+    &.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  } @else {
+    // Ensure content is visible when animations are disabled
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// ----------------------------------
+// Parallax Effect (Conditional)
+// ----------------------------------
+// Only applies parallax if $enable-parallax is true
+//
+// Parameters:
+// @param $strength - Parallax strength override (optional)
+//
+// Usage:
+// .c-hero__bg {
+//   @include parallax-effect(0.3);
+// }
+//
+@mixin parallax-effect($strength: null) {
+  @if $enable-parallax {
+    will-change: transform;
+
+    $parallax-value: if($strength, $strength, var(--anim-parallax-strength));
+
+    // Parallax is applied via JavaScript using this CSS variable
+    --parallax-strength: #{$parallax-value};
+  }
+}
+
+// ----------------------------------
+// Reduced Motion Support
+// ----------------------------------
+// Automatically disables animations when user prefers reduced motion
+// This mixin wraps content that should be disabled
+//
+// Usage:
+// .c-card {
+//   @include respect-reduced-motion {
+//     transition: transform 0.3s ease;
+//     &:hover { transform: translateY(-4px); }
+//   }
+// }
+//
+@mixin respect-reduced-motion {
+  @if $respect-reduced-motion {
+    @media (prefers-reduced-motion: no-preference) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// ----------------------------------
+// Animation State (Helper)
+// ----------------------------------
+// Outputs animation state CSS variables for components
+// Use in :root or component scope
+//
+// Usage:
+// :root {
+//   @include animation-state-vars;
+// }
+//
+@mixin animation-state-vars {
+  --anim-hover-enabled: #{if($enable-hover-animations, 1, 0)};
+  --anim-scroll-enabled: #{if($enable-scroll-animations, 1, 0)};
+  --anim-entrance-enabled: #{if($enable-entrance-animations, 1, 0)};
+  --anim-parallax-enabled: #{if($enable-parallax, 1, 0)};
+  --anim-speed-multiplier: #{$animation-speed-multiplier};
+  --anim-easing: #{$animation-easing};
+  --anim-parallax-strength: #{$parallax-strength};
+
+  // Duration tokens adjusted by speed multiplier
+  --anim-duration-instant: calc(#{$duration-instant} * #{$animation-speed-multiplier});
+  --anim-duration-fast: calc(#{$duration-fast} * #{$animation-speed-multiplier});
+  --anim-duration-base: calc(#{$duration-base} * #{$animation-speed-multiplier});
+  --anim-duration-normal: calc(#{$duration-normal} * #{$animation-speed-multiplier});
+  --anim-duration-slow: calc(#{$duration-slow} * #{$animation-speed-multiplier});
+  --anim-duration-slower: calc(#{$duration-slower} * #{$animation-speed-multiplier});
 }
 
 // ==================================

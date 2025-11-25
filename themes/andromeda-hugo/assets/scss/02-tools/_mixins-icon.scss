@@ -17,12 +17,12 @@
  * NOTE: Updated size scale for better visual hierarchy (v2.1)
  */
 @mixin icon-circle($size: 'md', $variant: 'primary') {
-  // Size map (updated for enhanced design system)
+  // Size map (uses CSS custom properties)
   $sizes: (
-    'sm': 48px,  // Small icons (buttons, inline elements)
-    'md': 64px,  // Medium icons (cards, features)
-    'lg': 84px,  // Large icons (hero sections, emphasis)
-    'xl': 104px, // Extra large icons (hero, major features)
+    'sm': var(--icon-circle-sm),   // 48px
+    'md': var(--icon-circle-md),   // 64px (default)
+    'lg': var(--icon-circle-lg),   // 84px
+    'xl': var(--icon-circle-xl),   // 104px
   );
 
   $circle-size: map-get($sizes, $size);
@@ -36,42 +36,41 @@
   border-radius: $radius-full;
   flex-shrink: 0;
 
-  // Radial gradient background for depth (lighter center, darker edges)
+  // Radial gradient background for depth (uses CSS custom properties)
   @if $variant == 'primary' {
-    background: radial-gradient(circle at 30% 30%, $forest-400 0%, $forest-600 100%);
+    background: var(--icon-circle-radial-primary);
   } @else if $variant == 'secondary' {
-    background: radial-gradient(circle at 30% 30%, $sage-400 0%, $sage-600 100%);
+    background: var(--icon-circle-radial-secondary);
   } @else if $variant == 'coral' {
-    background: radial-gradient(circle at 30% 30%, $coral-400 0%, $coral-600 100%);
+    background: var(--icon-circle-radial-coral);
   } @else if $variant == 'premium' {
-    background: radial-gradient(circle at 30% 30%, $plum-400 0%, $plum-600 100%);
+    background: var(--icon-circle-radial-premium);
   } @else if $variant == 'sage' {
-    background: radial-gradient(circle at 30% 30%, $sage-400 0%, $sage-600 100%);
+    background: var(--icon-circle-radial-sage);
   } @else if $variant == 'info' {
-    background: radial-gradient(circle at 30% 30%, $teal-400 0%, $teal-600 100%);
+    background: var(--icon-circle-radial-info);
   } @else {
     // Fallback to primary
-    background: radial-gradient(circle at 30% 30%, $forest-400 0%, $forest-600 100%);
+    background: var(--icon-circle-radial-primary);
   }
 
   // Icon inside circle
   i, svg {
-    color: #ffffff;
-    font-size: $circle-size * 0.45; // 45% of container size
+    color: var(--icon-circle-color);
+    font-size: calc(#{$circle-size} * var(--icon-circle-icon-size-ratio)); // 45% of container
     line-height: 1;
   }
 
   // Subtle shadow for depth
-  box-shadow: $shadow-sm;
+  box-shadow: var(--icon-circle-shadow);
 
   // Smooth transitions
-  transition: transform $duration-fast $ease-out,
-              box-shadow $duration-fast $ease-out;
+  transition: var(--icon-circle-transition);
 
-  // Hover effect: lift + scale + stronger shadow (enhanced from v2.0)
+  // Hover effect: lift + scale + stronger shadow
   &:hover {
-    transform: translateY(-2px) scale(1.12);
-    box-shadow: $shadow-md;
+    transform: var(--icon-circle-transform-hover);
+    box-shadow: var(--icon-circle-shadow-hover);
   }
 }
 
@@ -82,25 +81,26 @@
  * @param {string} $variant - Color variant (primary, secondary, etc.)
  * @param {number} $blur - Backdrop blur amount (default: 12px)
  */
-@mixin icon-circle-glass($size: 'md', $variant: 'primary', $blur: 12px) {
+@mixin icon-circle-glass($size: 'md', $variant: 'primary', $blur: null) {
   @include icon-circle($size, $variant);
 
   // Glassmorphism overlay
   position: relative;
-  backdrop-filter: blur($blur);
-  -webkit-backdrop-filter: blur($blur);
+  $blur-amount: if($blur, $blur, var(--icon-glass-blur));
+  backdrop-filter: blur($blur-amount);
+  -webkit-backdrop-filter: blur($blur-amount);
 
-  // Semi-transparent gradient (lighter than solid version)
+  // Semi-transparent gradient (uses CSS custom properties)
   @if $variant == 'primary' {
-    background: linear-gradient(135deg, rgba($forest-400, 0.7) 0%, rgba($forest-500, 0.8) 100%);
+    background: var(--icon-glass-bg-primary);
   } @else if $variant == 'secondary' {
-    background: linear-gradient(135deg, rgba($sage-400, 0.7) 0%, rgba($sage-500, 0.8) 100%);
+    background: var(--icon-glass-bg-secondary);
   } @else if $variant == 'coral' {
-    background: linear-gradient(135deg, rgba($coral-400, 0.7) 0%, rgba($coral-500, 0.8) 100%);
+    background: var(--icon-glass-bg-coral);
   }
 
   // Glass border
-  border: 1px solid rgba(#ffffff, 0.2);
+  border: var(--icon-glass-border);
 }
 
 /**
@@ -115,15 +115,15 @@
 
   i, svg {
     @if $variant == 'primary' {
-      color: $forest-500;
+      color: var(--icon-flat-primary-color);
     } @else if $variant == 'secondary' {
-      color: $sage-500;
+      color: var(--icon-flat-secondary-color);
     } @else if $variant == 'coral' {
-      color: $coral-500;
+      color: var(--icon-flat-coral-color);
     } @else if $variant == 'sage' {
-      color: $sage-500;
+      color: var(--icon-flat-sage-color);
     } @else {
-      color: $forest-500; // Fallback
+      color: var(--icon-flat-primary-color); // Fallback
     }
 
     font-size: $icon-xl; // 32px default
@@ -133,7 +133,7 @@
   transition: transform $duration-fast $ease-out;
 
   &:hover {
-    transform: scale(1.1);
+    transform: var(--icon-flat-transform-hover);
   }
 }
 
@@ -161,6 +161,7 @@
     padding: $space-1 $space-2;
     border-radius: $radius-sm;
 
+    // Uses color tokens (these remain as SCSS vars, no CSS custom properties needed for these light shades)
     @if $variant == 'primary' {
       background: $forest-100;
       color: $forest-700;

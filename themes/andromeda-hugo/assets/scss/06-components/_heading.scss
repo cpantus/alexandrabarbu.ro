@@ -26,52 +26,52 @@
  * Provides Playfair Display typography for all heading levels
  */
 .c-heading {
-  font-family: $font-heading;
-  font-weight: $font-weight-heading;  // Default: 500 (medium)
-  color: $color-text-heading;
-  margin-bottom: $space-3;  // 24px
-  line-height: $leading-snug;  // 1.375
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);  // Default: 500 (medium)
+  color: var(--heading-color);
+  margin-bottom: var(--heading-margin-bottom);  // 24px
+  line-height: var(--heading-line-height);  // 1.375
 }
 
 // H1 specific styling
 h1.c-heading {
-  font-size: $text-4xl;  // 36px
-  line-height: 1.2;  // Improved from 1.25
-  letter-spacing: -0.02em;  // Better kerning for Playfair Display
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);  // Subtle depth
-  margin-bottom: $space-4;  // 32px
+  font-size: var(--heading-h1-font-size);  // 36px
+  line-height: var(--heading-h1-line-height);  // Improved from 1.25
+  letter-spacing: var(--heading-h1-letter-spacing);  // Better kerning for Playfair Display
+  text-shadow: var(--heading-h1-text-shadow);  // Subtle depth
+  margin-bottom: var(--heading-h1-margin-bottom);  // 32px
 
   @media (min-width: 768px) {
-    font-size: clamp($text-4xl, 5vw, $text-5xl);  // Responsive 36px - 48px
+    font-size: var(--heading-h1-font-size-responsive);  // Responsive 36px - 48px
   }
 }
 
 // H2 specific styling
 h2.c-heading {
-  font-size: $text-3xl;  // 30px
-  line-height: $leading-tight;  // 1.25
-  letter-spacing: -0.02em;  // Better kerning for Playfair Display
+  font-size: var(--heading-h2-font-size);  // 30px
+  line-height: var(--heading-h2-line-height);  // 1.25
+  letter-spacing: var(--heading-h2-letter-spacing);  // Better kerning for Playfair Display
 }
 
 // H3 specific styling
 h3.c-heading {
-  font-size: $text-2xl;  // 24px
+  font-size: var(--heading-h3-font-size);  // 24px
 }
 
 // H4 specific styling
 h4.c-heading {
-  font-size: $text-xl;  // 20px
+  font-size: var(--heading-h4-font-size);  // 20px
 }
 
 // H5 specific styling
 h5.c-heading {
-  font-size: $text-lg;  // 18px
+  font-size: var(--heading-h5-font-size);  // 18px
 }
 
 // H6 specific styling
 h6.c-heading {
-  font-size: $text-base;  // 16px
-  font-weight: $font-weight-heading-bold;  // 600 for smallest heading
+  font-size: var(--heading-h6-font-size);  // 16px
+  font-weight: var(--heading-h6-font-weight);  // 600 for smallest heading
 }
 
 /*------------------------------------------------------------------
@@ -82,12 +82,12 @@ h6.c-heading {
  * Subtitle element - paired with heading
  */
 .c-heading__subtitle {
-  font-family: $font-body;
-  font-size: $text-lg;  // 18px
-  font-weight: $font-weight-body;  // 400
-  color: $color-text-secondary;
-  margin-top: $space-2;  // 16px
-  line-height: $leading-normal;  // 1.5
+  font-family: var(--heading-subtitle-font-family);
+  font-size: var(--heading-subtitle-font-size);  // 18px
+  font-weight: var(--heading-subtitle-font-weight);  // 400
+  color: var(--heading-subtitle-color);
+  margin-top: var(--heading-subtitle-margin-top);  // 16px
+  line-height: var(--heading-subtitle-line-height);  // 1.5
 }
 
 /**
@@ -97,7 +97,7 @@ h6.c-heading {
  */
 .c-heading__accent {
   font-style: italic;  // Italic variant of Playfair Display
-  color: $sage-500;    // Sage green (#6B9080)
+  color: var(--heading-accent-color);    // Sage green (#6B9080)
   font-weight: inherit;  // Inherit weight from parent heading
 }
 
@@ -207,17 +207,17 @@ h6.c-heading {
  * Uses text-5xl (48px) or text-6xl (60px) up to 72px at xl screens
  */
 .c-heading--display {
-  font-size: $text-5xl;  // 48px
-  line-height: $leading-display;  // 1.1 for extra tight, dramatic effect
-  font-weight: $font-weight-heading-bold;  // 600 for more impact
-  letter-spacing: -0.03em;  // Tighter kerning for large text
+  font-size: var(--heading-display-font-size);  // 48px
+  line-height: var(--heading-display-line-height);  // 1.1 for extra tight, dramatic effect
+  font-weight: var(--heading-display-font-weight);  // 600 for more impact
+  letter-spacing: var(--heading-display-letter-spacing);  // Tighter kerning for large text
 
   @media (min-width: 768px) {
-    font-size: $text-6xl;  // 60px on larger screens
+    font-size: var(--heading-display-font-size-md);  // 60px on larger screens
   }
 
   @media (min-width: 1200px) {
-    font-size: clamp($text-6xl, 5vw, 72px);  // Up to 72px on xl screens (redesign spec)
+    font-size: var(--heading-display-font-size-xl);  // Up to 72px on xl screens (redesign spec)
   }
 }
 
@@ -278,25 +278,25 @@ h6.c-heading {
 @media (max-width: 767px) {
   // Reduce heading sizes on mobile for better readability
   h1.c-heading {
-    font-size: $text-3xl;  // 30px on mobile
+    font-size: var(--heading-h1-font-size-mobile);  // 30px on mobile
   }
 
   h2.c-heading {
-    font-size: $text-2xl;  // 24px on mobile
+    font-size: var(--heading-h2-font-size-mobile);  // 24px on mobile
   }
 
   h3.c-heading {
-    font-size: $text-xl;  // 20px on mobile
+    font-size: var(--heading-h3-font-size-mobile);  // 20px on mobile
   }
 
   .c-heading {
     // Reduce margin on mobile
-    margin-bottom: $space-2;  // 16px
+    margin-bottom: var(--heading-margin-bottom-mobile);  // 16px
   }
 
   .c-heading__subtitle {
-    font-size: $text-base;  // 16px on mobile
-    margin-top: $space-1;  // 8px
+    font-size: var(--heading-subtitle-font-size-mobile);  // 16px on mobile
+    margin-top: var(--heading-subtitle-margin-top-mobile);  // 8px
   }
 }
 
@@ -311,9 +311,9 @@ h6.c-heading {
 .c-heading {
   // Focus indicator for keyboard navigation (if heading is interactive/linked)
   &:focus-visible {
-    outline: 2px solid $color-primary;
-    outline-offset: 4px;
-    border-radius: 2px;
+    outline: var(--heading-focus-outline);
+    outline-offset: var(--heading-focus-outline-offset);
+    border-radius: var(--heading-focus-border-radius);
   }
 
   // Respect reduced motion preference

@@ -78,7 +78,7 @@
 .c-scientific-approach__description {
   font-size: $font-size-lg;
   line-height: 1.8;
-  color: #374151;
+  color: $gray-700;
   margin-bottom: $space-12;
 }
 
@@ -104,7 +104,7 @@
 
 .c-scientific-approach__feature {
   padding: $space-12;
-  background: #ffffff;
+  background: $white;
   border-radius: 12px;
   box-shadow: $shadow-sm;
   transition: $transition-base;
@@ -144,8 +144,8 @@
 
   // Hover animation - triggered on feature card hover
   .c-scientific-approach__feature:hover & {
-    background-color: #234E3E; // Dark forest green
-    color: #D4AF37; // Gold/tan
+    background-color: $forest-500; // Dark forest green
+    color: $gold-500; // Gold/tan
     transform: scale(1.15) rotate(5deg); // Scale + subtle rotation for dynamic effect
   }
 }
@@ -163,7 +163,7 @@
 .c-scientific-approach__feature-text {
   font-size: $font-size-base;
   line-height: 1.8;
-  color: #374151;
+  color: $gray-700;
   margin: 0;
 }
 

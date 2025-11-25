@@ -23,11 +23,11 @@
  * REDESIGN 2025: Pill-shaped buttons with forest/sage/gold colors
  */
 .c-button {
-  font-family: $font-body;
-  font-weight: $button-font-weight;
-  border-radius: $radius-full;  // REDESIGN: Pill shape (was $button-border-radius)
-  padding: $button-padding-y $button-padding-x;
-  transition: $button-transition;
+  font-family: var(--btn-font-family);
+  font-weight: var(--btn-font-weight);
+  border-radius: var(--btn-border-radius);  // REDESIGN: Pill shape
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  transition: var(--btn-transition);
   border: 0;
   position: relative;
   overflow: hidden;
@@ -36,8 +36,8 @@
   text-decoration: none;
   cursor: pointer;
   line-height: 1.5;
-  min-height: 44px;  // REDESIGN: Ensure touch target compliance
-  min-width: 44px;
+  min-height: var(--btn-min-height);  // REDESIGN: Ensure touch target compliance
+  min-width: var(--btn-min-width);
 
   // Hover lift effect (subtle elevation with scale)
   // REDESIGN: Reduced translateY to -1px (was -2px)
@@ -56,19 +56,19 @@
   &:focus,
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px rgba($sage-500, 0.15);
+    box-shadow: 0 0 0 3px var(--btn-focus-ring-color);
     animation: focus-ring 0.3s ease-in-out;
   }
 
   @keyframes focus-ring {
     0% {
-      box-shadow: 0 0 0 0 rgba($sage-500, 0);
+      box-shadow: 0 0 0 0 transparent;
     }
     50% {
-      box-shadow: 0 0 0 6px rgba($sage-500, 0.25);
+      box-shadow: 0 0 0 6px var(--btn-focus-ring-color);
     }
     100% {
-      box-shadow: 0 0 0 3px rgba($sage-500, 0.15);
+      box-shadow: 0 0 0 3px var(--btn-focus-ring-color);
     }
   }
 
@@ -122,22 +122,22 @@
  * REDESIGN 2025: Dark green background, sage green hover
  */
 .c-button--primary {
-  background: $forest-500;  // Dark green (#234E3E)
-  color: white;
-  box-shadow: $shadow-primary-redesign;
+  background: var(--btn-primary-bg);  // Dark green (#234E3E)
+  color: var(--btn-primary-text);
+  box-shadow: var(--btn-primary-shadow);
 
   &:hover,
   &:active,
   &:focus {
-    background: $sage-500;  // Sage green hover (#6B9080)
-    box-shadow: $shadow-primary-lg-redesign;
-    color: white;
+    background: var(--btn-primary-hover);  // Sage green hover (#6B9080)
+    box-shadow: var(--btn-primary-shadow-lg);
+    color: var(--btn-primary-text);
   }
 
   &:disabled,
   &[disabled] {
-    background: $forest-500;
-    box-shadow: $shadow-primary-redesign;
+    background: var(--btn-primary-bg);
+    box-shadow: var(--btn-primary-shadow);
   }
 }
 
@@ -146,22 +146,22 @@
  * REDESIGN 2025: Gold background with darker gold hover
  */
 .c-button--secondary {
-  background: $gold-500;  // Gold/sand (#C5A880)
-  color: $forest-700;  // Dark green text for contrast
-  box-shadow: 0 10px 30px -5px rgba($gold-500, 0.2);
+  background: var(--btn-secondary-bg);  // Gold/sand (#C5A880)
+  color: var(--btn-secondary-text);  // Dark green text for contrast
+  box-shadow: var(--btn-secondary-shadow);
 
   &:hover,
   &:active,
   &:focus {
-    background: darken($gold-500, 8%);  // Darker gold (#B0936B approximate)
-    box-shadow: 0 20px 40px -8px rgba($gold-500, 0.3);
-    color: $forest-700;
+    background: var(--btn-secondary-hover);  // Darker gold (#B0936B approximate)
+    box-shadow: var(--btn-secondary-shadow-lg);
+    color: var(--btn-secondary-text);
   }
 
   &:disabled,
   &[disabled] {
-    background: $gold-500;
-    box-shadow: 0 10px 30px -5px rgba($gold-500, 0.2);
+    background: var(--btn-secondary-bg);
+    box-shadow: var(--btn-secondary-shadow);
   }
 }
 
@@ -170,24 +170,24 @@
  * REDESIGN 2025: Forest green outline with filled hover
  */
 .c-button--outline-primary {
-  color: $forest-500;
-  border: 2px solid $forest-500;
+  color: var(--btn-outline-primary-text);
+  border: 2px solid var(--btn-outline-primary-border);
   background-color: transparent;
   box-shadow: none;
 
   &:hover,
   &:active,
   &:focus {
-    color: white;
-    border-color: $forest-500;
-    background: $forest-500;
-    box-shadow: $shadow-primary-redesign;
+    color: var(--btn-outline-primary-hover-text);
+    border-color: var(--btn-outline-primary-border);
+    background: var(--btn-outline-primary-hover-bg);
+    box-shadow: var(--btn-primary-shadow);
   }
 
   &:disabled,
   &[disabled] {
-    color: $forest-500;
-    border-color: $forest-500;
+    color: var(--btn-outline-primary-text);
+    border-color: var(--btn-outline-primary-border);
     background-color: transparent;
     box-shadow: none;
   }
@@ -199,24 +199,24 @@
  * NOTE: Changed from sage to forest green for WCAG AA compliance (sage 3.29:1 vs forest 8.73:1)
  */
 .c-button--outline-secondary {
-  color: $forest-500;  // Forest green for better contrast (8.73:1)
-  border: 2px solid $forest-500;
+  color: var(--btn-outline-secondary-text);  // Forest green for better contrast (8.73:1)
+  border: 2px solid var(--btn-outline-secondary-border);
   background-color: transparent;
   box-shadow: none;
 
   &:hover,
   &:active,
   &:focus {
-    color: white;
-    border-color: $sage-500;
-    background: $sage-500;  // Sage green hover (OK for filled state)
-    box-shadow: 0 10px 30px -5px rgba($sage-500, 0.2);
+    color: var(--btn-outline-secondary-hover-text);
+    border-color: var(--btn-outline-secondary-hover-bg);
+    background: var(--btn-outline-secondary-hover-bg);  // Sage green hover (OK for filled state)
+    box-shadow: var(--btn-outline-secondary-shadow-hover);
   }
 
   &:disabled,
   &[disabled] {
-    color: $forest-500;
-    border-color: $forest-500;
+    color: var(--btn-outline-secondary-text);
+    border-color: var(--btn-outline-secondary-border);
     background-color: transparent;
     box-shadow: none;
   }
@@ -227,24 +227,24 @@
  * REDESIGN 2025: Dark green text/border with gold color on hover
  */
 .c-button--outline-redesign {
-  color: $forest-700;
-  border: 2px solid $forest-700;
+  color: var(--btn-outline-redesign-text);
+  border: 2px solid var(--btn-outline-redesign-border);
   background-color: transparent;
   box-shadow: none;
 
   &:hover,
   &:active,
   &:focus {
-    color: $gold-500;
-    border-color: $gold-500;
+    color: var(--btn-outline-redesign-hover-color);
+    border-color: var(--btn-outline-redesign-hover-color);
     background-color: transparent;
     box-shadow: none;
   }
 
   &:disabled,
   &[disabled] {
-    color: $forest-700;
-    border-color: $forest-700;
+    color: var(--btn-outline-redesign-text);
+    border-color: var(--btn-outline-redesign-border);
     background-color: transparent;
     box-shadow: none;
     opacity: 0.5;
@@ -255,22 +255,22 @@
  * Tertiary button - calm navy blue
  */
 .c-button--tertiary {
-  background: linear-gradient(135deg, lighten($color-tertiary, 5%), darken($color-tertiary, 5%));
+  background: var(--btn-tertiary-gradient);
   color: white;
-  box-shadow: 0 2px 8px rgba($color-tertiary, 0.25);
+  box-shadow: var(--shadow-sm);
 
   &:hover,
   &:active,
   &:focus {
-    background: linear-gradient(135deg, lighten($color-tertiary, 8%), darken($color-tertiary, 2%));
-    box-shadow: 0 4px 12px rgba($color-tertiary, 0.35);
+    background: var(--btn-tertiary-gradient-hover);
+    box-shadow: var(--shadow-md);
     color: white;
   }
 
   &:disabled,
   &[disabled] {
-    background: linear-gradient(135deg, lighten($color-tertiary, 5%), darken($color-tertiary, 5%));
-    box-shadow: 0 2px 8px rgba($color-tertiary, 0.25);
+    background: var(--btn-tertiary-gradient);
+    box-shadow: var(--shadow-sm);
   }
 }
 
@@ -278,22 +278,22 @@
  * Success button - positive green
  */
 .c-button--success {
-  background: linear-gradient(135deg, lighten($color-success, 5%), darken($color-success, 5%));
+  background: var(--btn-success-gradient);
   color: white;
-  box-shadow: 0 2px 8px rgba($color-success, 0.25);
+  box-shadow: var(--shadow-sm);
 
   &:hover,
   &:active,
   &:focus {
-    background: linear-gradient(135deg, lighten($color-success, 8%), darken($color-success, 2%));
-    box-shadow: 0 4px 12px rgba($color-success, 0.35);
+    background: var(--btn-success-gradient-hover);
+    box-shadow: var(--shadow-md);
     color: white;
   }
 
   &:disabled,
   &[disabled] {
-    background: linear-gradient(135deg, lighten($color-success, 5%), darken($color-success, 5%));
-    box-shadow: 0 2px 8px rgba($color-success, 0.25);
+    background: var(--btn-success-gradient);
+    box-shadow: var(--shadow-sm);
   }
 }
 
@@ -301,22 +301,22 @@
  * Warning button - attention amber
  */
 .c-button--warning {
-  background: linear-gradient(135deg, lighten($color-warning, 5%), darken($color-warning, 5%));
+  background: var(--btn-warning-gradient);
   color: white;
-  box-shadow: 0 2px 8px rgba($color-warning, 0.25);
+  box-shadow: var(--shadow-sm);
 
   &:hover,
   &:active,
   &:focus {
-    background: linear-gradient(135deg, lighten($color-warning, 8%), darken($color-warning, 2%));
-    box-shadow: 0 4px 12px rgba($color-warning, 0.35);
+    background: var(--btn-warning-gradient-hover);
+    box-shadow: var(--shadow-md);
     color: white;
   }
 
   &:disabled,
   &[disabled] {
-    background: linear-gradient(135deg, lighten($color-warning, 5%), darken($color-warning, 5%));
-    box-shadow: 0 2px 8px rgba($color-warning, 0.25);
+    background: var(--btn-warning-gradient);
+    box-shadow: var(--shadow-sm);
   }
 }
 
@@ -324,22 +324,22 @@
  * Error button - critical red
  */
 .c-button--error {
-  background: linear-gradient(135deg, lighten($color-error, 5%), darken($color-error, 5%));
+  background: var(--btn-error-gradient);
   color: white;
-  box-shadow: 0 2px 8px rgba($color-error, 0.25);
+  box-shadow: var(--shadow-sm);
 
   &:hover,
   &:active,
   &:focus {
-    background: linear-gradient(135deg, lighten($color-error, 8%), darken($color-error, 2%));
-    box-shadow: 0 4px 12px rgba($color-error, 0.35);
+    background: var(--btn-error-gradient-hover);
+    box-shadow: var(--shadow-md);
     color: white;
   }
 
   &:disabled,
   &[disabled] {
-    background: linear-gradient(135deg, lighten($color-error, 5%), darken($color-error, 5%));
-    box-shadow: 0 2px 8px rgba($color-error, 0.25);
+    background: var(--btn-error-gradient);
+    box-shadow: var(--shadow-sm);
   }
 }
 
@@ -347,22 +347,22 @@
  * Info button - informational teal
  */
 .c-button--info {
-  background: linear-gradient(135deg, lighten($color-info, 5%), darken($color-info, 5%));
+  background: var(--btn-info-gradient);
   color: white;
-  box-shadow: 0 2px 8px rgba($color-info, 0.25);
+  box-shadow: var(--shadow-sm);
 
   &:hover,
   &:active,
   &:focus {
-    background: linear-gradient(135deg, lighten($color-info, 8%), darken($color-info, 2%));
-    box-shadow: 0 4px 12px rgba($color-info, 0.35);
+    background: var(--btn-info-gradient-hover);
+    box-shadow: var(--shadow-md);
     color: white;
   }
 
   &:disabled,
   &[disabled] {
-    background: linear-gradient(135deg, lighten($color-info, 5%), darken($color-info, 5%));
-    box-shadow: 0 2px 8px rgba($color-info, 0.25);
+    background: var(--btn-info-gradient);
+    box-shadow: var(--shadow-sm);
   }
 }
 
@@ -370,22 +370,22 @@
  * Neutral button - subtle gray
  */
 .c-button--neutral {
-  background: linear-gradient(135deg, lighten($color-neutral, 15%), lighten($color-neutral, 5%));
-  color: $gray-800;
-  box-shadow: 0 2px 8px rgba($color-neutral, 0.2);
+  background: var(--btn-neutral-gradient);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-sm);
 
   &:hover,
   &:active,
   &:focus {
-    background: linear-gradient(135deg, lighten($color-neutral, 18%), lighten($color-neutral, 8%));
-    box-shadow: 0 4px 12px rgba($color-neutral, 0.3);
-    color: $gray-900;
+    background: var(--btn-neutral-gradient-hover);
+    box-shadow: var(--shadow-md);
+    color: var(--color-text-heading);
   }
 
   &:disabled,
   &[disabled] {
-    background: linear-gradient(135deg, lighten($color-neutral, 15%), lighten($color-neutral, 5%));
-    box-shadow: 0 2px 8px rgba($color-neutral, 0.2);
+    background: var(--btn-neutral-gradient);
+    box-shadow: var(--shadow-sm);
   }
 }
 
@@ -397,16 +397,16 @@
  * Small button modifier
  */
 .c-button--sm {
-  padding: $space-2 $space-4;
-  font-size: $text-sm;
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
 }
 
 /**
  * Large button modifier
  */
 .c-button--lg {
-  padding: $space-4 $space-8;
-  font-size: $text-lg;
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-lg);
 }
 
 /*------------------------------------------------------------------
@@ -440,7 +440,7 @@
  */
 .c-button:hover {
   [data-icon-animate="slide-right"] {
-    animation: icon-slide-right $duration-base $ease-in-out;
+    animation: icon-slide-right var(--transition-base);
   }
 }
 
