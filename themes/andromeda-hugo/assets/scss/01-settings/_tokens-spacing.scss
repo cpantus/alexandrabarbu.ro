@@ -50,12 +50,22 @@ $container-narrow: 768px;      // Narrow content (text-heavy pages)
 $container-wide: 1400px;       // Wide layouts
 
 // ----------------------------------
-// Breakpoints
+// Breakpoints (min-width, mobile-first)
 // ----------------------------------
-$breakpoint-sm: 576px;
-$breakpoint-md: 768px;
-$breakpoint-lg: 992px;
-$breakpoint-xl: 1200px;
+$breakpoint-sm: 576px;    // Small devices (landscape phones)
+$breakpoint-md: 768px;    // Medium devices (tablets)
+$breakpoint-lg: 992px;    // Large devices (desktops)
+$breakpoint-xl: 1200px;   // Extra large devices (large desktops)
+$breakpoint-xxl: 1400px;  // Extra extra large devices
+
+// ----------------------------------
+// Breakpoints (max-width, for edge cases)
+// ----------------------------------
+// Use for @media (max-width: $breakpoint-sm-max) patterns
+$breakpoint-sm-max: 575px;   // Below small
+$breakpoint-md-max: 767px;   // Below medium (mobile)
+$breakpoint-lg-max: 991px;   // Below large (tablet)
+$breakpoint-xl-max: 1199px;  // Below extra large
 
 // ----------------------------------
 // Semantic Spacing Mappings

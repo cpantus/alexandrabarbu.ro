@@ -107,7 +107,7 @@
 
 .c-stat-card__prefix {
   font-family: $font-heading; // Playfair Display
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   opacity: 0.9;
 }
 
@@ -117,7 +117,7 @@
 
 .c-stat-card__number {
   font-family: $font-heading; // Playfair Display
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   line-height: 1;
   transition: color $duration-fast $easing-subtle;
 
@@ -141,7 +141,7 @@
 
 .c-stat-card__suffix {
   font-family: $font-heading; // Playfair Display
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   opacity: 0.85;
 }
 
@@ -160,7 +160,7 @@
 .c-stat-card__label-text {
   margin: 0;
   color: $gray-700;
-  font-weight: 500;
+  font-weight: $font-weight-medium;
   line-height: 1.4;
 }
 
@@ -384,11 +384,11 @@
   .c-stat-card__number,
   .c-stat-card__prefix,
   .c-stat-card__suffix {
-    font-weight: 800; // Bolder text for better visibility
+    font-weight: $font-weight-extrabold; // Bolder text for better visibility
   }
 
   .c-stat-card__label-text {
-    font-weight: 600;
+    font-weight: $font-weight-semibold;
   }
 }
 

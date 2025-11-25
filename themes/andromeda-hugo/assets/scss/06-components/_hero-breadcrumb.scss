@@ -113,7 +113,7 @@
   font-size: 2.5rem !important; // 40px mobile
   line-height: 1.2; // Tight for impact
   letter-spacing: -0.02em; // Better kerning for Playfair Display
-  font-weight: 600; // Semibold for hero
+  font-weight: $font-weight-semibold; // Semibold for hero
 
   @media (min-width: $breakpoint-md) {
     font-size: 3.5rem !important; // 56px tablet
@@ -150,7 +150,7 @@
   margin: 0 0 $space-4 0; // 32px bottom (reduced to accommodate description)
   font-family: $font-family-sans; // DM Sans
   font-size: 1.125rem; // 18px (eval1.md spec)
-  font-weight: 500; // Medium weight (emphasize as subheading)
+  font-weight: $font-weight-medium; // Medium weight (emphasize as subheading)
   line-height: 1.6; // Comfortable reading (eval1.md spec)
   color: var(--hero-breadcrumb-subtitle-color);
   max-width: 600px; // eval1.md spec: ~600px max for text column
@@ -168,7 +168,7 @@
   margin: 0 0 $space-6 0; // 48px bottom (eval1.md spec: ~48px to CTAs)
   font-family: $font-family-sans; // DM Sans
   font-size: 1rem; // 16px (standard body)
-  font-weight: 400; // Normal weight
+  font-weight: $font-weight-normal; // Normal weight
   line-height: 1.7; // Generous for readability
   color: var(--hero-breadcrumb-description-color);
   max-width: 600px; // eval1.md spec: ~600px max for text column
@@ -350,7 +350,7 @@
 }
 
 .c-hero-breadcrumb__quote-icon {
-  font-size: 24px;
+  font-size: $text-2xl; // 24px
   color: var(--hero-breadcrumb-quote-icon-color);
   margin-bottom: $space-2; // 16px
   display: block;
@@ -359,7 +359,7 @@
 .c-hero-breadcrumb__quote-text {
   margin: 0;
   font-family: $font-family-serif; // Playfair Display
-  font-size: 18px;
+  font-size: $text-lg; // 18px
   font-style: italic;
   line-height: 1.6;
   color: var(--hero-breadcrumb-quote-text-color);
@@ -368,7 +368,7 @@
 .c-hero-breadcrumb__quote-author {
   margin: $space-2 0 0 0; // 16px top
   font-family: $font-family-sans;
-  font-size: 14px;
+  font-size: $text-sm; // 14px
   font-weight: $font-weight-medium;
   color: var(--hero-breadcrumb-quote-author-color);
   opacity: 0.9;

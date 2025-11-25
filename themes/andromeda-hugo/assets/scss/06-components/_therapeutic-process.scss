@@ -74,7 +74,7 @@
       var(--color-brand-secondary) 100%
     );
 
-    @media (max-width: 767px) {
+    @media (max-width: $breakpoint-md-max) {
       left: 20px;
     }
   }
@@ -90,7 +90,7 @@
   align-items: flex-start;
   position: relative;
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     gap: var(--spacing-md);
   }
 }
@@ -114,7 +114,7 @@
   box-shadow: var(--shadow-lg);
   z-index: 1;
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     width: 50px;
     height: 50px;
     font-size: 1.5rem;
@@ -125,7 +125,7 @@
   font-size: 2rem;
   line-height: 1;
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     font-size: 1.5rem;
   }
 }

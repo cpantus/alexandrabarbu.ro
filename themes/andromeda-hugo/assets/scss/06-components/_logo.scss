@@ -94,7 +94,7 @@
   /* Focus state */
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba($color-primary, 0.2);
+    box-shadow: $shadow-focus-sm;
   }
 
   &:focus-visible {
@@ -163,7 +163,7 @@
   color: $color-primary;
 
   .c-logo__link:focus {
-    box-shadow: 0 0 0 3px rgba($color-primary, 0.2);
+    box-shadow: $shadow-focus-sm;
   }
 }
 
@@ -174,7 +174,7 @@
   color: $color-secondary;
 
   .c-logo__link:focus {
-    box-shadow: 0 0 0 3px rgba($color-secondary, 0.2);
+    box-shadow: $shadow-focus-secondary-sm;
   }
 }
 
@@ -185,7 +185,7 @@
   color: $color-tertiary;
 
   .c-logo__link:focus {
-    box-shadow: 0 0 0 3px rgba($color-tertiary, 0.2);
+    box-shadow: $shadow-focus-sm; // Using primary focus for tertiary (no tertiary token)
   }
 }
 
@@ -196,7 +196,7 @@
   color: $color-neutral-700;
 
   .c-logo__link:focus {
-    box-shadow: 0 0 0 3px rgba($color-neutral, 0.2);
+    box-shadow: $shadow-focus-neutral-sm;
   }
 }
 

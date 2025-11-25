@@ -64,7 +64,7 @@
 .c-confidentiality-notice__subtitle {
   font-family: $font-family-sans;
   font-size: $font-size-lg; // 18px
-  font-weight: 400;
+  font-weight: $font-weight-normal;
   color: $color-text-secondary;
   line-height: $line-height-normal;
   margin-top: $space-2; // 16px
@@ -92,7 +92,7 @@
   p {
     font-family: $font-family-sans;
     font-size: $font-size-lg; // 18px
-    font-weight: 400;
+    font-weight: $font-weight-normal;
     color: $color-text-secondary;
     line-height: $line-height-relaxed;
     margin: 0 0 $space-3; // 0 0 24px
@@ -150,7 +150,7 @@
 .c-confidentiality-notice__limits-title {
   font-family: $font-family-serif;
   font-size: $font-size-xl; // 20px
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   color: $color-warning-700;
   line-height: $line-height-snug;
   margin: 0 0 $space-4; // 0 0 32px
@@ -183,7 +183,7 @@
   li {
     font-family: $font-family-sans;
     font-size: $font-size-base; // 16px
-    font-weight: 400;
+    font-weight: $font-weight-normal;
     color: $color-text-primary;
     line-height: $line-height-relaxed;
     padding-left: $space-4; // 32px
@@ -266,7 +266,7 @@
   .c-confidentiality-notice__subtitle,
   .c-confidentiality-notice__intro p {
     color: $color-text-primary;
-    font-weight: 500;
+    font-weight: $font-weight-medium;
   }
 
   .c-confidentiality-notice__limits {
@@ -280,11 +280,11 @@
 
   .c-confidentiality-notice__limits-list li {
     color: $color-text-primary;
-    font-weight: 500;
+    font-weight: $font-weight-medium;
 
     &::before {
       color: $color-warning-900;
-      font-weight: 700;
+      font-weight: $font-weight-bold;
     }
   }
 }

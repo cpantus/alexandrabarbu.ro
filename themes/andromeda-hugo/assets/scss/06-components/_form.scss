@@ -88,7 +88,12 @@
       top: var(--form-floating-label-top);
       left: var(--form-floating-label-left);
       pointer-events: none;
-      transition: all 0.3s ease;
+      transition: top $duration-base $easing-medium,
+                  left $duration-base $easing-medium,
+                  font-size $duration-base $easing-medium,
+                  color $duration-base $easing-medium,
+                  background $duration-base $easing-medium,
+                  padding $duration-base $easing-medium;
       color: var(--form-label-color-muted);
     }
 
@@ -228,7 +233,9 @@
   border-radius: var(--form-checkbox-border-radius);
   background: var(--form-checkbox-bg);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color $duration-fast $easing-medium,
+              border-color $duration-fast $easing-medium,
+              box-shadow $duration-fast $easing-medium;
   position: relative;
 
   &:checked {
@@ -307,7 +314,9 @@
   font-weight: var(--form-submit-font-weight);
   font-size: var(--form-submit-font-size);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform $duration-base $easing-medium,
+              box-shadow $duration-base $easing-medium,
+              background $duration-base $easing-medium;
   position: relative;
   overflow: hidden;
 
@@ -325,11 +334,11 @@
       width: 100%;
       height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.5s ease;
+      transition: left $duration-slow $easing-medium;
     }
 
     &:hover {
-      transform: translateY(-2px);
+      transform: translateY($hover-lift-sm);
       box-shadow: $shadow-warm-lg;
 
       &::before {

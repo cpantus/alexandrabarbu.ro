@@ -71,7 +71,7 @@
 .c-testimonials__subtitle {
   font-family: $font-body;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   color: $color-secondary;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -81,7 +81,7 @@
 .c-testimonials__title {
   font-family: $font-heading;
   font-size: 2.25rem;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   color: $gray-900;
   line-height: 1.2;
   margin-bottom: $space-4;
@@ -148,12 +148,14 @@
   border-radius: $radius-lg;
   border: none !important;
   box-shadow: $shadow-sm;
-  transition: all $duration-base $easing-medium;
+  transition: transform $duration-base $easing-medium,
+              box-shadow $duration-base $easing-medium,
+              background $duration-base $easing-medium;
   position: relative;
 
   // Base hover effects
   &:hover {
-    transform: translateY(-2px) scale(1.02);
+    transform: translateY($hover-lift-sm) scale(1.02);
     background: rgba(255, 255, 255, 0.95);
 
     .c-testimonials__photo {
@@ -257,7 +259,7 @@
   &::before {
     content: '"';
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: $font-weight-bold;
     color: $color-primary;
     opacity: 0.1;
     position: absolute;
@@ -360,7 +362,7 @@
 .c-testimonials__author-name {
   font-family: $font-heading;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   color: $gray-900;
   margin: 0;
 

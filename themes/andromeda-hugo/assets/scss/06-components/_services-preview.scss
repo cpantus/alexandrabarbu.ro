@@ -68,7 +68,8 @@
     right: 0;
     height: 1px;
     background: $gold-500; // Gold underline (#C5A880)
-    transition: all $transition-fast;
+    transition: background $transition-fast,
+                height $transition-fast;
   }
 
   &:hover {
@@ -90,7 +91,7 @@
   padding-top: $space-16; // Regular padding (64px)
   padding-bottom: $space-12; // 48px bottom padding to move content up
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     padding-top: $space-12; // 48px on mobile
     padding-bottom: $space-8; // 32px on mobile
   }
@@ -111,12 +112,12 @@
   font-family: $font-heading; // Playfair Display serif
   font-size: 2.25rem; // 36px as per new spec
   font-style: italic;
-  font-weight: 400; // Regular weight (400) as per design spec
+  font-weight: $font-weight-normal; // Regular weight as per design spec
   letter-spacing: 0.02em; // Adjusted tracking for larger serif font
   border-radius: $radius-full; // Pill shape
   box-shadow: 0 4px 16px rgba($forest-900, 0.15); // Deeper shadow for larger element
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     font-size: 1.5rem; // 24px on mobile
     padding: $space-2 $space-5; // 8px 20px on mobile
   }
@@ -125,13 +126,13 @@
 .c-services-preview__title {
   font-family: $font-heading; // Playfair Display serif
   font-size: 3.75rem !important; // 60px (60px = 3.75rem) - !important needed to override h2.c-heading
-  font-weight: 400; // Regular weight (400) as per design spec
+  font-weight: $font-weight-normal; // Regular weight as per design spec
   color: $cream-50; // Cream text on dark background
   margin-bottom: $space-6; // 24px to intro
   line-height: $leading-tight;
   padding-top: 100px; // 100px top padding to move title down
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     font-size: $font-size-4xl !important; // ~36px mobile - !important needed to override h2.c-heading
     padding-top: $space-12; // 48px on mobile
   }
@@ -145,7 +146,7 @@
   line-height: $leading-relaxed; // 1.625
   margin: 0 0 $space-6 0; // 24px bottom margin (reduced from 64px for tighter spacing)
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     margin-bottom: $space-4; // 16px on mobile
   }
 }
@@ -163,13 +164,13 @@
   padding-top: 300px; // 300px top padding (reduced from 400px for tighter spacing)
   padding-bottom: 40px; // 40px bottom padding
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     padding-top: $space-12; // 48px on mobile
     padding-bottom: $space-12; // 48px on mobile
   }
 
   // Tablet: 2 columns
-  @media (min-width: 768px) and (max-width: 991px) {
+  @media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg-max) {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -190,7 +191,9 @@
   border-radius: $radius-2xl; // Heavy rounding (32px / 2rem)
   padding: $space-10; // 40px padding
   text-align: center;
-  transition: all $transition-normal;
+  transition: transform $transition-normal,
+              box-shadow $transition-normal,
+              border-color $transition-normal;
   box-shadow: $shadow-sm;
   position: relative;
   display: flex; // Flexbox for footer positioning
@@ -204,7 +207,7 @@
   }
 
   // Mobile: adjust padding
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     padding: $space-8; // 32px on mobile
   }
 }

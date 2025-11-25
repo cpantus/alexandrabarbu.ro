@@ -170,17 +170,17 @@
 
 // Alternative: Support for icon fonts (e.g., Line Awesome)
 .c-video__play-button i {
-  font-size: 32px;
+  font-size: $icon-xl; // 32px
   color: $color-primary;
   margin-left: 4px;
   transition: color $duration-fast $easing-subtle;
 
   @media (max-width: $breakpoint-md) {
-    font-size: 28px;
+    font-size: $icon-lg; // 24px (normalized from 28px)
   }
 
   @media (max-width: $breakpoint-sm) {
-    font-size: 24px;
+    font-size: $text-2xl; // 24px
     margin-left: 3px;
   }
 }
@@ -200,7 +200,7 @@
   i {
     width: 40px;
     height: 40px;
-    font-size: 40px;
+    font-size: $text-4xl; // 36px (normalized from 40px)
   }
 
   @media (max-width: $breakpoint-md) {
@@ -211,7 +211,7 @@
     i {
       width: 32px;
       height: 32px;
-      font-size: 32px;
+      font-size: $icon-xl; // 32px
     }
   }
 
@@ -223,7 +223,7 @@
     i {
       width: 28px;
       height: 28px;
-      font-size: 28px;
+      font-size: $text-3xl; // 30px (normalized from 28px)
     }
   }
 }
@@ -236,7 +236,7 @@
   i {
     width: 24px;
     height: 24px;
-    font-size: 24px;
+    font-size: $text-2xl; // 24px
   }
 
   @media (max-width: $breakpoint-sm) {
@@ -247,7 +247,7 @@
     i {
       width: 20px;
       height: 20px;
-      font-size: 20px;
+      font-size: $text-xl; // 20px
     }
   }
 }
@@ -260,8 +260,7 @@
     box-shadow: $shadow-glass;
   }
   50% {
-    box-shadow: 0 0 0 8px rgba($color-primary, 0.1),
-                0 0 0 16px rgba($color-primary, 0.05),
+    box-shadow: $shadow-ring-double,
                 $shadow-glass;
   }
 }

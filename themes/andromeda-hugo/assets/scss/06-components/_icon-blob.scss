@@ -55,7 +55,7 @@
  * Transitions to gold on hover
  */
 .c-icon-blob__icon {
-  font-size: 32px;      // Icon size (40% of blob diameter)
+  font-size: $icon-xl;  // 32px - Icon size (40% of blob diameter)
   line-height: 1;
   z-index: 1;           // Above background
   transition: color 400ms $ease-in-out;
@@ -221,7 +221,7 @@
   height: 60px;
 
   .c-icon-blob__icon {
-    font-size: 24px;  // 40% of diameter
+    font-size: $text-2xl;  // 24px (40% of diameter)
   }
 }
 
@@ -233,7 +233,7 @@
   height: 100px;
 
   .c-icon-blob__icon {
-    font-size: 70px;  // Enlarged icon size
+    font-size: $text-6xl;  // 64px (normalized from 70px)
   }
 }
 
@@ -244,13 +244,13 @@
 /**
  * Mobile optimizations - slightly smaller blobs
  */
-@media (max-width: 767px) {
+@media (max-width: $breakpoint-md-max) {
   .c-icon-blob {
     width: 70px;
     height: 70px;
 
     .c-icon-blob__icon {
-      font-size: 28px;
+      font-size: $text-3xl;  // 30px (normalized from 28px)
     }
   }
 
@@ -259,7 +259,7 @@
     height: 56px;
 
     .c-icon-blob__icon {
-      font-size: 22px;
+      font-size: $text-xl;  // 20px (normalized from 22px)
     }
   }
 
@@ -268,7 +268,7 @@
     height: 88px;
 
     .c-icon-blob__icon {
-      font-size: 61px;  // 70px scaled proportionally for mobile
+      font-size: $text-6xl;  // 64px (normalized from 61px)
     }
   }
 }

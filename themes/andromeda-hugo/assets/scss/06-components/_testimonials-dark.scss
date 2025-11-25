@@ -41,7 +41,7 @@
   width: 56px;
   height: 56px;
   margin: 0 auto $space-6; // 24px bottom margin
-  font-size: 28px;
+  font-size: $text-3xl; // 30px (normalized from 28px)
 
   // Icon color variants
   &--gold {
@@ -76,7 +76,7 @@
   color: $cream-100; // Cream (#F4F7F5)
   margin-bottom: 0;
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     font-size: $font-size-3xl; // 36px mobile
   }
 }
@@ -91,12 +91,12 @@
   gap: $grid-gap; // 32px
 
   // Tablet: 2 columns
-  @media (max-width: 991px) {
+  @media (max-width: $breakpoint-lg-max) {
     grid-template-columns: repeat(2, 1fr);
   }
 
   // Mobile: 1 column
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     grid-template-columns: 1fr;
     gap: $space-10; // 40px vertical gap
   }
@@ -110,7 +110,7 @@
   text-align: center;
   padding: 0 $space-4; // 16px horizontal padding for breathing room
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     padding: 0;
   }
 }
@@ -132,7 +132,7 @@
 
   span {
     font-family: $font-body; // DM Sans
-    font-size: 16px;
+    font-size: $text-base; // 16px
     font-weight: $weight-semibold; // 600
     color: $cream-100; // Cream text
     text-transform: uppercase;
@@ -146,7 +146,7 @@
 
 .c-testimonials-dark__quote {
   font-family: $font-heading; // Playfair Display (serif)
-  font-size: 18px; // 18-20px range per spec
+  font-size: $text-lg; // 18px (per spec: 18-20px range)
   font-style: italic;
   font-weight: $weight-normal; // 400
   line-height: 1.7; // Good readability
@@ -158,7 +158,7 @@
   border: none;
 
   @media (min-width: 992px) {
-    font-size: 20px; // Slightly larger on desktop
+    font-size: $text-xl; // 20px on desktop
   }
 }
 
@@ -182,7 +182,7 @@
 
 .c-testimonials-dark__role {
   font-family: $font-body; // DM Sans
-  font-size: 14px; // ~14px per spec
+  font-size: $text-sm; // 14px per spec
   font-weight: $weight-normal; // 400
   color: rgba($cream-100, 0.7); // 70% opacity cream
   margin: 0;
@@ -192,19 +192,19 @@
 // RESPONSIVE ADJUSTMENTS
 // ============================================================================
 
-@media (max-width: 991px) {
+@media (max-width: $breakpoint-lg-max) {
   .c-testimonials-dark {
     padding: $section-padding-y-mobile 0; // 64px vertical (mobile padding)
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: $breakpoint-md-max) {
   .c-testimonials-dark {
     padding: $space-16 0; // 64px vertical
   }
 
   .c-testimonials-dark__quote {
-    font-size: 17px; // Slightly smaller on mobile
+    font-size: $text-lg; // 18px (normalized from 17px)
   }
 }
 

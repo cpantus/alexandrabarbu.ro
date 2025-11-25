@@ -48,7 +48,7 @@
   // Uppercase eyebrow label
   font-family: $font-sans; // DM Sans
   font-size: $font-sm; // 14px
-  font-weight: 600; // Semibold
+  font-weight: $font-weight-semibold;
   letter-spacing: 0.1em; // Wide tracking
   text-transform: uppercase;
   color: $color-primary-600; // Emerald
@@ -207,7 +207,7 @@
 // High contrast mode
 @media (prefers-contrast: high) {
   .c-first-session-timeline__subtitle {
-    font-weight: 700; // Bolder for high contrast
+    font-weight: $font-weight-bold; // Bolder for high contrast
   }
 
   .c-first-session-timeline__description {

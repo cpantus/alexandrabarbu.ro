@@ -251,7 +251,7 @@
   flex-shrink: 0;
   width: 24px;
   height: 24px;
-  font-size: 24px;
+  font-size: $text-2xl; // 24px
   color: $color-primary;
   margin-top: 2px; // Align with text baseline
 }
@@ -267,7 +267,8 @@
   border-radius: $radius-2xl;
   overflow: hidden;
   box-shadow: $shadow-lg;
-  transition: all $duration-normal $ease-out;
+  transition: transform $duration-normal $ease-out,
+              box-shadow $duration-normal $ease-out;
   background: $gradient-glass-light;
   @include glassmorphism(8px, 0.8); // v4.0 glassmorphism mixin
 
@@ -303,7 +304,8 @@
     background: $gradient-warm-vibrant;
     opacity: 0;
     transform: scale(0);
-    transition: all $duration-normal $ease-out;
+    transition: opacity $duration-normal $ease-out,
+                transform $duration-normal $ease-out;
     z-index: 2;
   }
 

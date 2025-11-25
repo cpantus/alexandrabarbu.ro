@@ -159,7 +159,7 @@
   // Color set by variant modifiers (not white by default)
   font-family: $font-heading; // Playfair Display
   font-size: 1.5rem; // 24px
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   line-height: 1;
   z-index: 1;
   transition: color $duration-base $easing-medium;
@@ -185,7 +185,7 @@
   background: linear-gradient(135deg, rgba($color-primary, 0.05), rgba($color-primary, 0.1));
   border-radius: 12px;
   font-size: 0.875rem; // 14px
-  font-weight: 500;
+  font-weight: $font-weight-medium;
   color: $gray-700;
   white-space: nowrap;
 }

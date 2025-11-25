@@ -40,7 +40,7 @@
   position: fixed;
   top: -100px;
   left: $space-2;
-  z-index: 9999;
+  z-index: $z-skip-link;
   padding: $space-2 $space-3;
   background-color: $color-primary-600;
   color: $color-white;
@@ -93,7 +93,9 @@
   z-index: 1000;
   background: rgba($cream-50, 0.95); // Redesign 2025: Clean white/cream background
   border-bottom: 1px solid $cream-200; // Redesign 2025: Subtle cream border
-  transition: all $duration-normal $easing-default;
+  transition: background $duration-normal $easing-default,
+              box-shadow $duration-normal $easing-default,
+              border-color $duration-normal $easing-default;
 
   &--sticky {
     background: rgba($cream-50, 0.98); // Redesign 2025: Slightly more opaque on scroll

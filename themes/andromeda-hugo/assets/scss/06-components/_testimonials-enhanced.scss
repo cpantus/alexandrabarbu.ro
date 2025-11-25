@@ -127,7 +127,7 @@
   }
 
   // Mobile: reduce padding
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     padding: var(--testimonials-card-padding-mobile);
   }
 
@@ -379,7 +379,7 @@
 // RESPONSIVE ADJUSTMENTS
 // ============================================================================
 
-@media (max-width: 991px) {
+@media (max-width: $breakpoint-lg-max) {
   .c-testimonials {
     padding: var(--testimonials-padding-tablet);
   }
@@ -389,7 +389,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: $breakpoint-md-max) {
   .c-testimonials {
     padding: var(--testimonials-padding-mobile);
   }
@@ -400,7 +400,7 @@
   }
 
   .c-testimonials__decorative-quote {
-    font-size: 100px;
+    font-size: 100px; // Decorative element - intentionally large, not tokenized
     top: 40px;
     left: 20px;
   }

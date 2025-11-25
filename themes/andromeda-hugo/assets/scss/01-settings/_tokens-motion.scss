@@ -1,9 +1,9 @@
 // ==================================
-// MOTION, BREAKPOINTS & Z-INDEX TOKENS
+// MOTION & Z-INDEX TOKENS
 // ==================================
 //
 // Layer: 01-settings (NO CSS output)
-// Purpose: Animation system, responsive breakpoints, layering
+// Purpose: Animation system, layering (breakpoints in _tokens-spacing.scss)
 // Philosophy: Welcoming Motion, Accessible
 //
 // Last Updated: 2025-11-19
@@ -52,6 +52,35 @@ $transition-transform: transform $duration-normal $ease-in-out;
 $transition-opacity: opacity $duration-normal $ease-in-out;
 
 // ----------------------------------
+// Hover Lift Tokens (3-tier system)
+// ----------------------------------
+// Standardized translateY values for hover effects
+// Level 1 - Subtle: Links, small elements (-2px)
+// Level 2 - Medium: Cards, buttons (-4px)
+// Level 3 - Strong: Featured cards, CTAs (-8px)
+$hover-lift-sm: -2px;    // Level 1 - Subtle lift
+$hover-lift-md: -4px;    // Level 2 - Medium lift
+$hover-lift-lg: -8px;    // Level 3 - Strong lift
+
+// ----------------------------------
+// Parallax Exceptions (Documented)
+// ----------------------------------
+// These values are NOT tokenized intentionally:
+//
+// 1. Hero Breadcrumb Parallax (-20px/+20px)
+//    File: _hero-breadcrumb.scss:477
+//    Reason: Scroll-based parallax effect with larger displacement
+//    Value: translateY(-20px) at scroll offset
+//
+// 2. Compass/Card Decorative Elements
+//    File: _values-compass.scss connectors
+//    Reason: Decorative parallax animation, not hover state
+//
+// 3. Form Tooltip Positioning (-10px)
+//    File: _contact-form-enhanced.scss:480
+//    Reason: Layout positioning, not hover lift effect
+
+// ----------------------------------
 // Component-Specific Transitions
 // ----------------------------------
 // Specialized transition combinations for specific components
@@ -86,19 +115,10 @@ $input-transition: border-color $duration-fast $ease-out,
 //   - Shadow: $shadow-warm-md
 
 // ==================================
-// BREAKPOINT TOKENS
-// ==================================
-// Mobile-first responsive design
-
-$breakpoint-sm: 576px;    // Small devices (landscape phones)
-$breakpoint-md: 768px;    // Medium devices (tablets)
-$breakpoint-lg: 992px;    // Large devices (desktops)
-$breakpoint-xl: 1200px;   // Extra large devices (large desktops)
-$breakpoint-xxl: 1400px;  // Extra extra large devices
-
-// ==================================
 // Z-INDEX SCALE
 // ==================================
+// NOTE: Breakpoints moved to _tokens-spacing.scss (single source of truth)
+//
 // Layering system for consistent stacking
 
 $z-base: 0;
@@ -128,5 +148,5 @@ $easing-bounce: $ease-bounce;                  // Playful animations
 $easing-ease-out: $ease-out;                   // Alias for ease-out
 
 // ==================================
-// END OF MOTION, BREAKPOINTS & Z-INDEX TOKENS
+// END OF MOTION & Z-INDEX TOKENS
 // ==================================

@@ -127,12 +127,14 @@
   @include glassmorphism(12px, 0.9); // v4.0 glassmorphism mixin
   border-radius: $radius-xl;
   box-shadow: $shadow-base;
-  transition: all $duration-base $easing-medium; // Level 2 card motion
+  transition: transform $duration-base $easing-medium,
+              box-shadow $duration-base $easing-medium,
+              background $duration-base $easing-medium; // Level 2 card motion
   @include staggered-entrance(fade-in-up, 150ms); // v4.0 staggered animation
 
   // Hover state with lift and gradient glow
   &:hover {
-    transform: translateY(-8px);
+    transform: translateY($hover-lift-lg);
     box-shadow: $shadow-warm-lg;
     background: rgba(255, 255, 255, 0.95);
 

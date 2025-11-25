@@ -32,7 +32,7 @@
 .c-service-faq__subtitle {
   font-family: $font-sans;
   font-size: $font-sm; // 14px
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: $color-primary-600;
@@ -65,11 +65,11 @@
   background-color: $forest-50;
   border-radius: 12px;
   margin-block-end: $space-3; // 24px
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: $shadow-xs;
   transition: box-shadow 0.25s ease-out;
 
   &:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    box-shadow: $shadow-dropdown;
   }
 
   &:last-child {
@@ -78,7 +78,7 @@
 }
 
 .c-service-faq__item--active {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: $shadow-dropdown;
 }
 
 /* ==================== QUESTION BUTTON ==================== */
@@ -96,7 +96,7 @@
   text-align: left;
   font-family: $font-serif; // Playfair Display
   font-size: $font-lg; // 18px
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   color: $color-text-primary;
   transition: background-color 0.25s ease-out;
 

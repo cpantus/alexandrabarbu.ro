@@ -175,9 +175,9 @@
   position: relative;
   z-index: 1;
   font-family: var(--font-family-heading);
-  font-size: 20px;
+  font-size: $text-xl; // 20px
   font-style: italic;
-  font-weight: 400;
+  font-weight: $font-weight-normal;
   line-height: 1.6;
   color: var(--color-white);
   margin: 0 auto var(--spacing-lg);
@@ -191,8 +191,8 @@
     margin: 0;
   }
 
-  @media (min-width: 768px) {
-    font-size: 22px;
+  @media (min-width: $breakpoint-md) {
+    font-size: $text-2xl; // 24px (normalized from 22px)
   }
 }
 
@@ -201,7 +201,7 @@
   position: relative;
   z-index: 1;
   font-family: var(--font-family-sans);
-  font-size: 14px;
+  font-size: $text-sm; // 14px
   font-weight: var(--font-weight-semibold);
   color: $color-primary-100;
   margin: 0;
@@ -240,12 +240,14 @@
   border-radius: $border-radius-md; // 12px (token-driven, consistent cards)
   padding: $card-padding-large; // 24px (token-driven, consistent card padding)
   text-align: center;
-  transition: all $duration-base $ease-out; // 200ms (token-driven)
+  transition: transform $duration-base $ease-out,
+              box-shadow $duration-base $ease-out,
+              border-top-width $duration-base $ease-out; // token-driven
   box-shadow: $shadow-sm; // At rest (token-driven)
 
   // Hover effect (Level 2 molecule motion: -2px lift + shadow upgrade)
   &:hover {
-    transform: translateY(-2px); // Consistent with values-compass
+    transform: translateY($hover-lift-sm); // Consistent with values-compass
     box-shadow: $shadow-md; // +1 level (token-driven)
     border-top-width: 4px; // Intensify accent on hover
   }
@@ -302,7 +304,8 @@
   color: $color-white;
   font-size: $icon-2x; // 32px (token-driven)
   box-shadow: $shadow-md; // At rest (token-driven)
-  transition: all $duration-base $ease-out; // 200ms (token-driven)
+  transition: transform $duration-base $ease-out,
+              box-shadow $duration-base $ease-out; // token-driven
 
   // Icon inside
   i {

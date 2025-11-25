@@ -214,7 +214,7 @@ select {
 
   &:focus {
     border-color: $color-primary;
-    box-shadow: 0 0 0 3px rgba($forest-500, 0.1);
+    box-shadow: $shadow-focus-sm;
   }
 }
 
@@ -410,7 +410,7 @@ input[type="radio"] {
 
   &:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba($gray-900, 0.15);
+    box-shadow: $shadow-tooltip;
   }
 }
 

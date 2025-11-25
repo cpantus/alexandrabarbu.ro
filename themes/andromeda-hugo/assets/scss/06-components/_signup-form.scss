@@ -42,7 +42,7 @@
   }
 
   /* Responsive padding adjustments */
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     padding: $space-8 0;
 
     &--compact {
@@ -66,12 +66,12 @@
   margin: 0 auto;
 
   /* Responsive padding */
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     padding: var(--signup-form-card-padding-tablet);
     border-radius: var(--signup-form-card-border-radius-mobile);
   }
 
-  @media (max-width: 575px) {
+  @media (max-width: $breakpoint-sm-max) {
     padding: var(--signup-form-card-padding-mobile);
   }
 }
@@ -87,7 +87,7 @@
   position: relative;
 
   /* Responsive margin */
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     margin-bottom: $space-6;
   }
 }
@@ -108,7 +108,7 @@
     height: var(--signup-step-line-height);
     background: var(--signup-step-line-bg);
     z-index: -1;
-    transition: background 0.3s ease;
+    transition: background $duration-base $easing-medium;
   }
 
   /* Hide line after last step */
@@ -142,7 +142,7 @@
       /* Checkmark icon for completed */
       &::before {
         content: '✓';
-        font-size: 18px;
+        font-size: $text-lg; // 18px
         font-weight: bold;
       }
     }
@@ -176,11 +176,15 @@
   font-weight: var(--signup-step-number-font-weight);
   font-size: $text-base;
   margin-bottom: var(--signup-step-number-margin-bottom);
-  transition: all 0.3s ease;
+  transition: background $duration-base $easing-medium,
+              color $duration-base $easing-medium,
+              border-color $duration-base $easing-medium,
+              box-shadow $duration-base $easing-medium,
+              transform $duration-base $easing-medium;
   color: var(--signup-step-number-color);
 
   /* Responsive sizing */
-  @media (max-width: 575px) {
+  @media (max-width: $breakpoint-sm-max) {
     width: var(--signup-step-number-size-mobile);
     height: var(--signup-step-number-size-mobile);
     font-size: $text-sm;
@@ -191,14 +195,15 @@
   display: block;
   font-size: var(--signup-step-label-font-size);
   color: var(--signup-step-label-color);
-  transition: color 0.3s ease, font-weight 0.3s ease;
+  transition: color $duration-base $easing-medium,
+              font-weight $duration-base $easing-medium;
 
   /* Responsive font size */
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     font-size: var(--signup-step-label-font-size-tablet);
   }
 
-  @media (max-width: 575px) {
+  @media (max-width: $breakpoint-sm-max) {
     display: none; /* Hide labels on very small screens */
   }
 }
@@ -219,7 +224,7 @@
   margin-bottom: var(--signup-form-title-margin-bottom);
   text-align: center;
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     font-size: var(--signup-form-title-font-size-tablet);
   }
 }
@@ -231,7 +236,7 @@
   margin-bottom: var(--signup-form-description-margin-bottom);
   line-height: var(--signup-form-description-line-height);
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     font-size: var(--signup-form-description-font-size-tablet);
     margin-bottom: var(--signup-form-description-margin-bottom-tablet);
   }
@@ -248,7 +253,7 @@
   margin-top: $space-6;
 
   /* Responsive layout - stack on mobile */
-  @media (max-width: 575px) {
+  @media (max-width: $breakpoint-sm-max) {
     flex-direction: column;
     gap: var(--signup-action-gap-mobile);
   }
@@ -259,7 +264,10 @@
   padding: var(--signup-action-button-padding);
   border-radius: var(--signup-action-button-border-radius);
   font-weight: var(--signup-action-button-font-weight);
-  transition: all 0.3s ease;
+  transition: background $duration-base $easing-medium,
+              transform $duration-base $easing-medium,
+              box-shadow $duration-base $easing-medium,
+              border-color $duration-base $easing-medium;
   border: none;
   cursor: pointer;
 
@@ -295,7 +303,7 @@
   }
 
   /* Responsive sizing */
-  @media (max-width: 575px) {
+  @media (max-width: $breakpoint-sm-max) {
     padding: var(--signup-action-button-padding-mobile);
     font-size: var(--signup-action-button-font-size-mobile);
   }
@@ -313,7 +321,7 @@
   margin-bottom: $space-6;
   overflow: hidden;
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     margin-bottom: $space-5;
   }
 }

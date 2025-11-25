@@ -126,7 +126,7 @@
   }
 
   // Mobile: full padding
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     flex-direction: column;
   }
 }
@@ -147,7 +147,7 @@
   padding: var(--spacing-sm);
   box-shadow: var(--shadow-sm);
 
-  @media (max-width: 767px) {
+  @media (max-width: $breakpoint-md-max) {
     width: 60px;
     height: 60px;
   }

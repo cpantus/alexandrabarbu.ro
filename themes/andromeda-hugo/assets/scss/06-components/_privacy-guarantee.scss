@@ -61,7 +61,7 @@
 .c-privacy-guarantee__subtitle {
   font-family: $font-family-sans;
   font-size: $font-size-lg; // 18px
-  font-weight: 400;
+  font-weight: $font-weight-normal;
   color: $color-text-secondary;
   line-height: $line-height-normal;
   margin-top: $space-2; // 16px
@@ -89,7 +89,7 @@
   p {
     font-family: $font-family-sans;
     font-size: $font-size-lg; // 18px
-    font-weight: 400;
+    font-weight: $font-weight-normal;
     color: $color-text-secondary;
     line-height: $line-height-relaxed;
     margin: 0 0 $space-3; // 0 0 24px
@@ -184,7 +184,7 @@
   .c-privacy-guarantee__subtitle,
   .c-privacy-guarantee__intro p {
     color: $color-text-primary;
-    font-weight: 500;
+    font-weight: $font-weight-medium;
   }
 }
 

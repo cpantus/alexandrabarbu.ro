@@ -108,8 +108,8 @@
 
 .c-compass-animation__direction {
   font-family: $font-heading; // Playfair Display for elegance
-  font-size: 20px;
-  font-weight: 600; // Slightly lighter than bold
+  font-size: $text-xl; // 20px
+  font-weight: $font-weight-semibold; // Slightly lighter than bold
   letter-spacing: 0.1em;
 
   // North indicator in golden/tan matching reference

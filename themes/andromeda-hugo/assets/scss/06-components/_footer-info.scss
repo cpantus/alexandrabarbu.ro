@@ -170,7 +170,7 @@
   margin-bottom: $space-3; // 24px below heading
   font-family: $font-family-serif;
   font-size: $font-size-lg;
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   color: $color-text-heading;
 
   // Remove any underlines/decorations in footer context
@@ -246,10 +246,10 @@
 
   @keyframes footerInfoLinkFocusGlow {
     0%, 100% {
-      box-shadow: 0 0 0 0 rgba($color-primary, 0);
+      box-shadow: $shadow-pulse-start;
     }
     50% {
-      box-shadow: 0 0 0 4px rgba($color-primary, 0.2);
+      box-shadow: $shadow-focus-md;
     }
   }
 
@@ -350,7 +350,7 @@
 @media (prefers-contrast: high) {
   .c-footer-info {
     .c-footer-info__title {
-      font-weight: 700; // Bolder for high contrast
+      font-weight: $font-weight-bold; // Bolder for high contrast
     }
 
     .c-footer-info__link {

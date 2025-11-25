@@ -226,35 +226,35 @@ h6.c-heading {
  * Use with variant prop to determine gradient colors
  */
 .c-heading--gradient {
-  background: linear-gradient(135deg, $forest-500 0%, $forest-700 100%);
+  background: $gradient-icon-forest; // Using icon gradient token for text effect
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 
   // Gradient variants based on color modifiers
   &.c-heading--primary {
-    background: linear-gradient(135deg, $forest-400 0%, $forest-600 100%);
+    background: $gradient-primary-subtle; // Using button gradient token
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   &.c-heading--secondary {
-    background: linear-gradient(135deg, $sage-400 0%, $sage-600 100%);
+    background: $gradient-icon-sage; // Using icon gradient token
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   &.c-heading--tertiary {
-    background: linear-gradient(135deg, $navy-400 0%, $navy-600 100%);
+    background: linear-gradient(135deg, $navy-400 0%, $navy-600 100%); // No navy gradient token
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   &.c-heading--success {
-    background: linear-gradient(135deg, $sage-400 0%, $sage-600 100%);
+    background: $gradient-icon-sage; // Using icon gradient token
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -275,7 +275,7 @@ h6.c-heading {
 /**
  * Mobile optimizations
  */
-@media (max-width: 767px) {
+@media (max-width: $breakpoint-md-max) {
   // Reduce heading sizes on mobile for better readability
   h1.c-heading {
     font-size: var(--heading-h1-font-size-mobile);  // 30px on mobile

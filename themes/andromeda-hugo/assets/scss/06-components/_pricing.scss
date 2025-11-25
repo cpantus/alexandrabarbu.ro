@@ -150,7 +150,9 @@
   border-radius: $radius-xl;
   padding: $space-8;
   box-shadow: $shadow-base;
-  transition: all $duration-base $easing-medium; // Level 2 card motion
+  transition: transform $duration-base $easing-medium,
+              box-shadow $duration-base $easing-medium,
+              background $duration-base $easing-medium; // Level 2 card motion
   border: 2px solid transparent;
   @include staggered-entrance(fade-in-up, 150ms); // v4.0 staggered animation
 
@@ -171,7 +173,7 @@
 
   // Hover state
   &:hover {
-    transform: translateY(-2px); // Level 2 molecule motion (not -8px)
+    transform: translateY($hover-lift-sm); // Level 2 molecule motion (not -8px)
     box-shadow: $shadow-md; // +1 level only (sm → md)
     background: rgba(255, 255, 255, 0.95);
 

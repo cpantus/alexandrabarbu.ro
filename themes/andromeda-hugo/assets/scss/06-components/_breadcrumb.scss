@@ -57,9 +57,9 @@
 
   // Typography
   font-family: $font-family-sans;
-  font-size: 13px; // Reduced from 14px for lighter visual weight
+  font-size: $text-xs; // 12px (normalized from 13px for lighter visual weight)
   line-height: $line-height-normal;
-  font-weight: 400;
+  font-weight: $font-weight-normal;
 }
 
 /*------------------------------------*\
@@ -111,7 +111,7 @@
   // Typography
   color: $gray-500; // Lightened from $color-text-secondary ($gray-600) for reduced visual weight
   text-decoration: none;
-  font-weight: 400;
+  font-weight: $font-weight-normal;
 
   // Transitions
   transition: color $transition-base;
@@ -138,7 +138,7 @@
 
   // Accessibility - high contrast mode
   @media (prefers-contrast: high) {
-    font-weight: 500;
+    font-weight: $font-weight-medium;
   }
 }
 
@@ -158,11 +158,11 @@
  */
 .c-breadcrumb__text--current {
   color: $color-text-primary;
-  font-weight: 500;
+  font-weight: $font-weight-medium;
 
   // Accessibility
   @media (prefers-contrast: high) {
-    font-weight: 600;
+    font-weight: $font-weight-semibold;
   }
 }
 
@@ -225,7 +225,7 @@
   // Visually distinct
   .c-breadcrumb__text {
     color: $color-text-primary;
-    font-weight: 500;
+    font-weight: $font-weight-medium;
   }
 }
 
@@ -429,7 +429,7 @@
 @media (prefers-contrast: high) {
   .c-breadcrumb__link {
     text-decoration: underline;
-    font-weight: 500;
+    font-weight: $font-weight-medium;
 
     &:focus {
       outline-width: 3px;
@@ -437,7 +437,7 @@
   }
 
   .c-breadcrumb__separator {
-    font-weight: 600;
+    font-weight: $font-weight-semibold;
   }
 }
 

@@ -35,7 +35,9 @@
   border: none !important;  // Override glassmorphism border
   border-radius: $radius-md;
   box-shadow: $shadow-sm;
-  transition: all $duration-base $easing-medium;
+  transition: transform $duration-base $easing-medium,
+              box-shadow $duration-base $easing-medium,
+              background $duration-base $easing-medium;
   margin: $space-2;
   position: relative;
   overflow: hidden;

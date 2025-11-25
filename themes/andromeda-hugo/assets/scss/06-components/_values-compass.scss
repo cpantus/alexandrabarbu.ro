@@ -233,7 +233,9 @@
   border-radius: $values-border-radius;
   padding: $card-padding-lg;
   text-align: center;
-  transition: all $duration-base $easing-medium; // Level 2 card motion
+  transition: transform $duration-base $easing-medium,
+              box-shadow $duration-base $easing-medium,
+              background $duration-base $easing-medium; // Level 2 card motion
   cursor: default;
 
   // Staggered entrance animation (v4.0)
@@ -263,7 +265,7 @@
 
   // Hover state (Level 2 molecule motion: -2px lift + shadow upgrade)
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY($hover-lift-sm);
     box-shadow: $shadow-md; // +1 level from $shadow-sm (at rest)
     background: rgba(255, 255, 255, 0.95);
   }
@@ -291,7 +293,7 @@
 
   // Enhanced hover state
   &:hover {
-    transform: translateY(-2px) scale(1.02); // Level 2 molecule motion (consistent lift)
+    transform: translateY($hover-lift-sm) scale(1.02); // Level 2 molecule motion (consistent lift)
     box-shadow: $shadow-featured;
   }
 
@@ -335,7 +337,8 @@
   border-radius: $radius-full;
   margin: 0 auto $space-5;
   box-shadow: $shadow-base;
-  transition: all $duration-base $easing-medium; // Level 2 molecule motion
+  transition: transform $duration-base $easing-medium,
+              box-shadow $duration-base $easing-medium; // Level 2 molecule motion
   position: relative;
   overflow: hidden;
 

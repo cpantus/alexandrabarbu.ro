@@ -182,7 +182,7 @@
   gap: $space-3; // 24px spacing between language selector and CTA
 
   // Responsive: Stack vertically on mobile
-  @media (max-width: 991px) {
+  @media (max-width: $breakpoint-lg-max) {
     flex-direction: column;
     align-items: stretch;
     gap: $space-2; // 16px vertical spacing
@@ -199,7 +199,7 @@
 // CTA Button (optional navigation button)
 .c-mobile-menu__cta {
   // Responsive: Full width on mobile
-  @media (max-width: 991px) {
+  @media (max-width: $breakpoint-lg-max) {
     width: 100%;
     justify-content: center;
   }

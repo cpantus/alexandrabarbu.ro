@@ -85,7 +85,7 @@
   /* Typography */
   font-family: $font-heading;
   font-size: $font-size-base;
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   line-height: $line-height-normal;
   color: inherit;
 
@@ -116,7 +116,7 @@
 
   /* Focus state */
   &:focus {
-    box-shadow: 0 0 0 3px rgba($color-primary, 0.2);
+    box-shadow: $shadow-focus-sm;
   }
 
   /* Hover state */
@@ -136,7 +136,7 @@
 
 .c-language-selector__option {
   font-family: $font-heading;
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   padding: $space-2;
   color: $color-text;
   background-color: $cream-50; // REDESIGN 2025: Cream white background
@@ -187,7 +187,7 @@
     }
 
     &:focus {
-      box-shadow: 0 0 0 3px rgba($color-primary, 0.2);
+      box-shadow: $shadow-focus-sm;
       background-color: rgba($color-primary, 0.12);
     }
   }
@@ -210,7 +210,7 @@
     }
 
     &:focus {
-      box-shadow: 0 0 0 3px rgba($color-secondary, 0.2);
+      box-shadow: $shadow-focus-secondary-sm;
       background-color: rgba($color-secondary, 0.12);
     }
   }
@@ -233,7 +233,7 @@
     }
 
     &:focus {
-      box-shadow: 0 0 0 3px rgba($color-tertiary, 0.2);
+      box-shadow: $shadow-focus-sm; // Using primary focus for tertiary
       background-color: rgba($color-tertiary, 0.12);
     }
   }
@@ -256,7 +256,7 @@
     }
 
     &:focus {
-      box-shadow: 0 0 0 3px rgba($color-neutral, 0.2);
+      box-shadow: $shadow-focus-neutral-sm;
       background-color: rgba($color-neutral, 0.12);
     }
   }

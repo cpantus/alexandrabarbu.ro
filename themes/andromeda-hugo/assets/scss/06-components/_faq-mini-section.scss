@@ -169,7 +169,7 @@
 //
 .c-faq-mini-section__footer-link {
   font-family: $font-family-sans;
-  font-weight: 500;
+  font-weight: $font-weight-medium;
   text-decoration: none;
   transition: color $duration-fast $easing-ease-out;
 
@@ -292,7 +292,7 @@
   }
 
   .c-faq-mini-section__footer-link {
-    font-weight: 600;
+    font-weight: $font-weight-semibold;
     text-decoration: underline;
   }
 }

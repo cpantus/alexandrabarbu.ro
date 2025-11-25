@@ -56,6 +56,50 @@ $shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
 $shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
 
 // ----------------------------------
+// Focus Ring Tokens (Accessibility)
+// ----------------------------------
+// Usage: Focus states, selection rings, keyboard navigation
+// Pattern: 0 0 0 [width]px [color] - creates ring without blur
+// Sizes: sm (3px), md (4px), lg (8px for double-ring effects)
+
+$focus-ring-width-sm: 3px;
+$focus-ring-width-md: 4px;
+$focus-ring-width-lg: 8px;
+
+// Primary focus rings (forest green)
+$shadow-focus-sm: 0 0 0 $focus-ring-width-sm rgba($forest-500, 0.2);
+$shadow-focus-md: 0 0 0 $focus-ring-width-md rgba($forest-500, 0.3);
+
+// Secondary focus rings (sage)
+$shadow-focus-secondary-sm: 0 0 0 $focus-ring-width-sm rgba($sage-500, 0.2);
+$shadow-focus-secondary-md: 0 0 0 $focus-ring-width-md rgba($sage-500, 0.3);
+
+// Neutral focus rings (gray - for non-themed elements)
+$shadow-focus-neutral-sm: 0 0 0 $focus-ring-width-sm rgba($gray-400, 0.3);
+$shadow-focus-neutral-md: 0 0 0 $focus-ring-width-md rgba($gray-400, 0.3);
+
+// Pulse animation rings (social links, CTAs)
+// At-rest: 0 spread, Animated: 4px spread
+$shadow-pulse-start: 0 0 0 0 rgba($forest-500, 0);
+$shadow-pulse-end: 0 0 0 $focus-ring-width-md rgba($forest-500, 0.3);
+
+// Double ring effect (video popup decorative)
+$shadow-ring-double: 0 0 0 $focus-ring-width-lg rgba($forest-500, 0.1),
+                     0 0 0 16px rgba($forest-500, 0.05);
+
+// Avatar/logo ring (solid color, no transparency)
+$shadow-ring-forest: 0 0 0 $focus-ring-width-sm $forest-500;
+$shadow-ring-sage: 0 0 0 $focus-ring-width-sm $sage-500;
+$shadow-ring-neutral: 0 0 0 $focus-ring-width-sm $gray-400;
+
+// ----------------------------------
+// Tooltip & Micro-UI Shadows
+// ----------------------------------
+// Usage: Tooltips, dropdowns, popovers
+$shadow-tooltip: 0 4px 12px rgba(0, 0, 0, 0.15);
+$shadow-dropdown: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+// ----------------------------------
 // Shadow Transition Rules (ENFORCE)
 // ----------------------------------
 // At rest: xs or sm ONLY

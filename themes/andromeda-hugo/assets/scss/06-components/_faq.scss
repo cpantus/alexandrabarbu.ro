@@ -71,7 +71,7 @@
 .c-faq__subtitle {
   font-family: $font-body;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   color: $color-secondary;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -81,7 +81,7 @@
 .c-faq__title {
   font-family: $font-heading;
   font-size: 2.25rem;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   color: $gray-900;
   line-height: 1.2;
   margin-bottom: $space-4;
@@ -230,7 +230,7 @@
 .c-faq__question-text {
   font-family: $font-heading;
   font-size: 1.125rem;
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   color: $gray-900;
   line-height: 1.4;
   margin: 0;
@@ -263,7 +263,7 @@
   i {
     color: $color-primary;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: $font-weight-bold;
     transition: color $duration-fast $easing-subtle;
   }
 
@@ -367,7 +367,7 @@
 .c-faq__category-title {
   font-family: $font-heading;
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   color: $gray-900;
   margin: 0 0 $space-6;
   padding-bottom: $space-3;

@@ -86,7 +86,7 @@
 .c-problem-empathy__subtitle {
   font-family: $font-body;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   color: $color-secondary;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -96,7 +96,7 @@
 .c-problem-empathy__title {
   font-family: $font-heading;
   font-size: 2.25rem;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
   color: $gray-900;
   line-height: 1.2;
   margin-bottom: $space-4;
@@ -158,7 +158,9 @@
   border: none !important; // Remove glassmorphism border - gradient glow only
   border-radius: $radius-xl;
   box-shadow: $shadow-base;
-  transition: all $duration-normal $ease-out;
+  transition: transform $duration-normal $ease-out,
+              box-shadow $duration-normal $ease-out,
+              background $duration-normal $ease-out;
   position: relative;
 
   // Staggered entrance animation (v4.0)
@@ -166,7 +168,7 @@
 
   // Hover state with gradient glow and lift effect
   &:hover {
-    transform: translateY(-2px) scale(1.02); // Level 2 molecule motion
+    transform: translateY($hover-lift-sm) scale(1.02); // Level 2 molecule motion
     background: rgba(255, 255, 255, 0.95);
 
     // Gradient glow effect (soft, warm)
@@ -267,7 +269,7 @@
     opacity: 1 !important;
     visibility: visible !important;
     font-family: "Line Awesome Free" !important;
-    font-weight: 900 !important;
+    font-weight: $font-weight-extrabold !important; // Icon font requires heavy weight
     -webkit-font-smoothing: antialiased;
   }
 }
@@ -290,7 +292,7 @@
 .c-problem-empathy__card-title {
   font-family: $font-heading;
   font-size: 1.25rem; // 20px
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   color: $color-primary;
   line-height: 1.3;
   margin: 0;

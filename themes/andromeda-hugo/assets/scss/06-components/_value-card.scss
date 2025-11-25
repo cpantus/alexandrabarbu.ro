@@ -95,7 +95,7 @@
   // Typography (Playfair Display serif)
   font-family: $font-family-heading;
   font-size: $font-size-xl; // 20px
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   line-height: $line-height-snug; // 1.375
 
   // Spacing
@@ -121,7 +121,7 @@
   // Typography (DM Sans sans-serif)
   font-family: $font-family-body;
   font-size: $font-size-base; // 16px
-  font-weight: 400;
+  font-weight: $font-weight-normal;
   line-height: $line-height-relaxed; // 1.625
   color: $color-text-secondary;
 
