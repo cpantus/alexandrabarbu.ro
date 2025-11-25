@@ -27,8 +27,8 @@
  *   - Social links molecule integration
  *   - Responsive layout (stacked mobile → side-by-side desktop)
  *   - 8pt spacing grid
- *   - Crimson Pro typography for headings
- *   - Work Sans typography for body text
+ *   - Playfair Display typography for headings
+ *   - DM Sans typography for body text
  *   - Color variants via design tokens
  *   - Hover effects on links
  *   - Print styles (optimized for print)
@@ -81,9 +81,10 @@
   flex: 1 1 auto;
   min-width: 0; // Allow flex items to shrink below content size
 
-  // Social section - slightly wider + pushed down (Redesign 2025)
+  // Social section - slightly wider (Redesign 2025)
   &--social {
-    margin-top: $space-16; // 128px top margin to push social icons down
+    // Margin removed from section to keep title aligned with other footer titles
+    // Margin now applied to .c-footer-nav__social to push only icons down
 
     @media (min-width: $breakpoint-md) {
       flex: 1.5 1 auto;
@@ -126,7 +127,7 @@
 // ============================================================================
 
 .c-footer-nav__social {
-  margin-top: $space-3; // 24px above social links
+  margin-top: $space-8; // 64px above social links to push icons down while keeping title aligned
 
   // Override social-links molecule spacing for footer context
   .c-social {

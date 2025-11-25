@@ -47,8 +47,8 @@
     - Image with overlay badge for content type
     - Metadata with icon atoms (date, author, read time)
     - Heading atom integration with color variants
-    - Button atom integration for "read more" action
-    - Hover effects (lift card, highlight title)
+    - Text-only "read more" link with gold hover effect (REDESIGN 2025)
+    - Hover effects (lift card, gold underline on title)
     - Flexbox layout (description grows to fill space)
     - Responsive behavior (image aspect ratio maintains, text scales)
     - Parameter validation with clear error messages
@@ -212,15 +212,12 @@
       <p class="c-blog-card__description">{{ $description | markdownify }}</p>
     {{ end }}
 
-    {{/* Read More Link */}}
+    {{/* Read More Link (Text-Only) */}}
     {{ if $link }}
       <div class="c-blog-card__action">
-        {{ partial "atoms/button.html" (dict
-          "text" (i18n "read_more" | default "Citeste mai mult")
-          "href" ($link | relLangURL)
-          "variant" (printf "outline-%s" $variant)
-          "size" "sm"
-        ) }}
+        <a href="{{ $link | relLangURL }}" class="c-blog-card__read-more">
+          {{ i18n "read_more" | default "Citeste mai mult" }}
+        </a>
       </div>
     {{ end }}
   </div>

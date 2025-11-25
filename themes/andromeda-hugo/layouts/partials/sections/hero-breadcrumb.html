@@ -12,7 +12,8 @@
     hero_breadcrumb:
       title: "Main title text" (overrides .Title)
       title_accent: "Italic accent text (e.g., Nordul Interior)"
-      subtitle: "Body text below title"
+      subtitle: "Subheading text below title (18px, medium weight)"
+      description: "Longer body text below subtitle (16px, normal weight)"
       kicker: "Optional kicker text (above title)"
       variant: "primary|secondary|tertiary|neutral" (default: primary)
       breadcrumb_variant: "primary|secondary|tertiary|neutral" (default: neutral)
@@ -39,7 +40,7 @@
     - Uses breadcrumb molecule for navigation (optional)
     - Uses image atom for custom hero image (alternative to compass)
     - Responsive layout (stacked mobile, side-by-side desktop)
-    - Optional kicker, subtitle, quote box, CTA buttons
+    - Optional kicker, subtitle, description, quote box, CTA buttons
     - Color variant support
 
   Example (Homepage with compass):
@@ -77,6 +78,7 @@
 {{- $titleAccent := "" -}}
 {{- $kicker := "" -}}
 {{- $subtitle := "" -}}
+{{- $description := "" -}}
 {{- $heroImage := .Params.hero_image -}}
 {{- $quoteText := "" -}}
 {{- $quoteAuthor := "" -}}
@@ -92,6 +94,7 @@
   {{- $titleAccent = $section.title_accent | default $titleAccent -}}
   {{- $kicker = $section.kicker | default $kicker -}}
   {{- $subtitle = $section.subtitle | default $subtitle -}}
+  {{- $description = $section.description | default $description -}}
   {{- $heroImage = $section.hero_image | default $heroImage -}}
   {{- $quoteText = $section.quote_text | default $quoteText -}}
   {{- $quoteAuthor = $section.quote_author | default $quoteAuthor -}}
@@ -119,6 +122,11 @@
         {{/* Optional subtitle */}}
         {{- if $subtitle -}}
           <p class="c-hero-breadcrumb__subtitle">{{ $subtitle | markdownify }}</p>
+        {{- end -}}
+
+        {{/* Optional description (longer body text) */}}
+        {{- if $description -}}
+          <p class="c-hero-breadcrumb__description">{{ $description | markdownify }}</p>
         {{- end -}}
 
         {{/* Breadcrumb navigation using molecule */}}

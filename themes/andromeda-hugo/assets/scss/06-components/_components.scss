@@ -74,6 +74,7 @@
 @import 'credentials';             // ✅ Phase 3: BEM refactored with legacy compat
 @import 'contact-form-enhanced';   // ✅ Phase 5: BEM refactored - two-column contact form with trust badges (Forms section)
 @import 'faq-content';             // ✅ Phase 5: BEM refactored - FAQ accordion section (Interactive section)
+@import 'contact-method-card';     // ✅ Phase 5: BEM molecule - individual contact method card (used by contact-info-cards)
 @import 'contact-info-cards';      // ✅ Phase 5: BEM refactored - contact methods grid using contact-method-card (Info & Trust section)
 @import 'video-section';           // ✅ Phase 5: BEM refactored - centered video section with title/description (Interactive section)
 @import 'faq-mini-section';        // ✅ Phase 5: BEM refactored - compact FAQ section with 3-5 questions (Interactive section)
@@ -97,6 +98,11 @@
 @import 'about-preview';           // 🔄 NEW - therapist introduction section with photo & credentials
 @import 'approach-preview';        // 🔄 NEW - 4 therapeutic principles preview
 @import 'simple-process';          // 🔄 NEW - 3-step visual timeline (how therapy works)
+
+// About Page Sections (NEW 2025-11-24)
+@import 'hero-about';              // ✅ NEW - About hero with portrait, quote overlay, biographical text
+@import 'credentials-education';   // ✅ NEW - Education credentials with glassmorphic cards on dark green
+@import 'scientific-approach';     // ✅ NEW - Scientific approach with 2x2 feature grid
 @import 'my-story';                // 🔄 NEW - personal narrative section with photos
 @import 'training-certifications'; // 🔄 NEW - education timeline with credentials
 @import 'therapeutic-process';     // 🔄 NEW - detailed process timeline for service pages

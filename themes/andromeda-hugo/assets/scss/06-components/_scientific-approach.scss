@@ -1,0 +1,175 @@
+/* =============================================================================
+   SCIENTIFIC APPROACH COMPONENT
+   ============================================================================= */
+
+/**
+ * Scientific approach methodology section
+ *
+ * Features:
+ * - Two-column layout (description left, features right)
+ * - Approach label badge
+ * - 2x2 feature card grid
+ * - Icon with colored background
+ * - Responsive layout
+ *
+ * BEM Structure:
+ * .c-scientific-approach
+ *   .c-scientific-approach__grid
+ *   .c-scientific-approach__content
+ *     .c-scientific-approach__label
+ *     .c-scientific-approach__title
+ *     .c-scientific-approach__description
+ *     .c-scientific-approach__cta
+ *   .c-scientific-approach__features
+ *     .c-scientific-approach__feature
+ *       .c-scientific-approach__icon
+ *       .c-scientific-approach__feature-title
+ *       .c-scientific-approach__feature-text
+ */
+
+/* Block
+   ========================================================================== */
+
+.c-scientific-approach {
+  padding: $space-32 0;
+  background: $gray-50;
+}
+
+/* Grid Layout
+   ========================================================================== */
+
+.c-scientific-approach__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-20;
+  align-items: start;
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: 5fr 7fr;
+    gap: $space-32;
+  }
+}
+
+/* Content Column (Left)
+   ========================================================================== */
+
+.c-scientific-approach__content {
+  // Content styles
+}
+
+.c-scientific-approach__label {
+  display: inline-block;
+  padding: $space-2 $space-4;
+  font-size: $font-size-xs;
+  font-weight: $weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $forest-500;
+  background: rgba($forest-500, 0.1);
+  border-radius: $border-radius-full;
+  margin-bottom: $space-6;
+}
+
+.c-scientific-approach__title {
+  margin-bottom: $space-12;
+  line-height: $line-height-tight;
+}
+
+.c-scientific-approach__description {
+  font-size: $font-size-lg;
+  line-height: 1.8;
+  color: #374151;
+  margin-bottom: $space-12;
+}
+
+.c-scientific-approach__cta {
+  margin-top: $space-12;
+}
+
+/* Features Grid (Right) - 2x2
+   ========================================================================== */
+
+.c-scientific-approach__features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-6;
+
+  @media (min-width: $breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Feature Card
+   ========================================================================== */
+
+.c-scientific-approach__feature {
+  padding: $space-12;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: $shadow-sm;
+  transition: $transition-base;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+}
+
+/* Feature Icon with Light Sage Circular Background
+   ========================================================================== */
+
+.c-scientific-approach__icon {
+  width: 96px; // 50% larger than original 64px (64 * 1.5 = 96px)
+  height: 96px; // 50% larger than original 64px
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $space-6;
+  border-radius: 50%; /* Circular background */
+  font-size: 2.625rem; // 50% larger icon size (1.75rem * 1.5 = 2.625rem = ~42px)
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); // Smooth bounce animation
+
+  /* Light sage background with gold-500 icon */
+  background: $sage-100; /* #D5E5E0 - light sage/mint green */
+  color: $gold-500; /* #C5A880 - gold-500 */
+
+  /* Legacy variant classes preserved but use same style */
+  &--primary,
+  &--secondary,
+  &--coral,
+  &--sage {
+    background: $sage-100;
+    color: $gold-500; /* #C5A880 - gold-500 */
+  }
+
+  // Hover animation - triggered on feature card hover
+  .c-scientific-approach__feature:hover & {
+    background-color: #234E3E; // Dark forest green
+    color: #D4AF37; // Gold/tan
+    transform: scale(1.15) rotate(5deg); // Scale + subtle rotation for dynamic effect
+  }
+}
+
+/* Feature Content
+   ========================================================================== */
+
+.c-scientific-approach__feature-title {
+  font-size: $font-size-lg;
+  font-weight: $weight-bold;
+  color: $gray-900;
+  margin-bottom: $space-2;
+}
+
+.c-scientific-approach__feature-text {
+  font-size: $font-size-base;
+  line-height: 1.8;
+  color: #374151;
+  margin: 0;
+}
+
+/* Legacy Compatibility
+   ========================================================================== */
+
+.scientific-approach {
+  @extend .c-scientific-approach;
+}

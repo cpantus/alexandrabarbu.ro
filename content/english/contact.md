@@ -26,38 +26,30 @@ hero_breadcrumb:
       url: "/en/contact/"
 
 # Contact Info Cards Section
-contact_info_cards:
-  title: "How to **Contact Me**"
-  description: "Choose the method that suits you best"
-  cards:
-    - title: "Phone"
-      icon: "phone"
-      value: "+40 721 234 567"
-      description: "Monday - Friday: 09:00 - 20:00 | Saturday: 10:00 - 14:00"
-      link: "tel:+40721234567"
-      link_text: "Call Now"
-    - title: "Email"
-      icon: "envelope"
-      value: "contact@alexandrabarbu.ro"
-      description: "I respond within 24 hours (business days)"
-      link: "mailto:contact@alexandrabarbu.ro"
-      link_text: "Send Email"
-    - title: "WhatsApp"
-      icon: "lab la-whatsapp"
-      value: "+40 721 234 567"
-      description: "Text or voice messages, I respond quickly"
-      link: "https://wa.me/40721234567"
-      link_text: "Open WhatsApp"
-    - title: "Bucharest Office"
-      icon: "map-marker-alt"
-      value: "Doamnei St. no. 12, Sector 3"
-      description: "Bucharest 030167, Romania"
-      link: "https://maps.google.com/?q=Str.+Doamnei+12+Bucuresti"
-      link_text: "View on Map"
-  map:
-    enable: true
-    title: "Office Location"
-    embed_url: "https://maps.google.com/maps?q=Str.%20Doamnei%2012%20Bucuresti&t=&z=15&ie=UTF8&iwloc=&output=embed"
+contact_info_title: "How to **Contact Me**"
+contact_info_subtitle: "Choose the method that suits you best"
+contact_methods:
+  - icon: "phone"
+    label: "Phone"
+    value: "+40 721 234 567"
+    subtitle: "Monday - Friday: 09:00 - 20:00 | Saturday: 10:00 - 14:00"
+    link: "tel:+40721234567"
+  - icon: "envelope"
+    label: "Email"
+    value: "contact@alexandrabarbu.ro"
+    subtitle: "I respond within 24 hours (business days)"
+    link: "mailto:contact@alexandrabarbu.ro"
+  - icon: "whatsapp"
+    icon_prefix: "lab"
+    label: "WhatsApp"
+    value: "+40 721 234 567"
+    subtitle: "Text or voice messages, I respond quickly"
+    link: "https://wa.me/40721234567"
+  - icon: "map-marker-alt"
+    label: "Bucharest Office"
+    value: "Doamnei St. no. 12, Sector 3"
+    subtitle: "Bucharest 030167, Romania"
+    link: "https://maps.google.com/?q=Str.+Doamnei+12+Bucuresti"
     description: "Private office in central Bucharest, easily accessible by public transport or personal car. Parking available in the area."
 
 # Contact Options Section
@@ -163,7 +155,7 @@ feature_blocks:
       - "Comfort and confidentiality guaranteed"
       - "Informed decision, no pressure"
       - "Quick response within 24 hours"
-    image: "images/consultation-room.jpg"
+    image: "images/free-consultation.jpg"
 
 # Pricing Tables Section
 pricing_tables:

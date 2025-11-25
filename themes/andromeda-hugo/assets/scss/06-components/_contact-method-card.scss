@@ -1,0 +1,261 @@
+/* ===========================================================================
+   CONTACT METHOD CARD - BEM Component (Molecule - Glassmorphism Design)
+   =========================================================================== */
+
+/**
+ * Individual contact method card with icon, label, value, and optional link.
+ *
+ * STRUCTURE:
+ * .c-contact-method
+ *   .c-contact-method__icon-wrapper
+ *     icon atom
+ *   .c-contact-method__content
+ *     .c-contact-method__label
+ *     .c-contact-method__value (or link)
+ *     .c-contact-method__secondary (optional)
+ *
+ * USAGE: Phone, email, location contact cards
+ * DESIGN: Glassmorphism cards with dark circular icon backgrounds (matching benefits-results)
+ */
+
+/* BASE COMPONENT
+   =========================================================================== */
+
+.c-contact-method {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--spacing-xl);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(197, 168, 128, 0.2); // Gold border with transparency
+  border-radius: var(--border-radius-lg);
+  transition: $transition-base;
+  will-change: transform; // GPU acceleration
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 768px) {
+    padding: calc(var(--spacing-xl) + 8px); // 40-48px on larger screens
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(197, 168, 128, 0.4); // Stronger gold on hover
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* ICON WRAPPER
+   =========================================================================== */
+
+.c-contact-method__icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 24px;
+  background: $color-forest-700; // Dark green circular background (#2F5548)
+  border-radius: $border-radius-full;
+  transition: $transition-base;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  .c-contact-method:hover & {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .c-contact-method__icon {
+    color: $color-gold-500; // Gold icon color
+    font-size: 2rem;
+  }
+}
+
+/* CONTENT
+   =========================================================================== */
+
+.c-contact-method__content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.c-contact-method__label {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-text-redesign-on-dark; // Light cream on dark background
+  margin-bottom: $space-2;
+  position: relative;
+  padding-bottom: 16px; // Space for underline
+
+  // Gold underline below label
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    background: $color-gold-500;
+    border-radius: var(--border-radius-full);
+  }
+}
+
+.c-contact-method__value {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
+  color: $color-text-redesign-on-dark; // Light cream on dark background
+  margin-bottom: $space-1;
+  word-break: break-word;
+  margin-top: 8px; // Space after label underline
+
+  &--link {
+    color: $color-gold-500; // Gold for links
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: $space-1;
+    transition: color $transition-base;
+
+    &:hover {
+      color: $color-gold-400; // Lighter gold on hover
+    }
+
+    .c-contact-method__link-icon {
+      opacity: 0.6;
+      color: $color-gold-500;
+    }
+  }
+}
+
+.c-contact-method__secondary {
+  font-size: $font-size-sm;
+  color: $color-text-redesign-on-dark; // Light cream on dark background
+  line-height: $line-height-relaxed;
+  opacity: 0.85; // Slightly dimmed for hierarchy
+}
+
+/* VARIANT MODIFIERS
+   =========================================================================== */
+
+// Glassmorphism design uses consistent styling across all cards
+// All icons are gold, all cards have gold borders
+// Variants are kept for backwards compatibility but use same styling
+
+.c-contact-method--primary,
+.c-contact-method--secondary,
+.c-contact-method--tertiary {
+  // All variants use same glassmorphism styling
+  // Icon color (gold) and border color (gold) are defined in base component
+}
+
+/* SIZE MODIFIERS
+   =========================================================================== */
+
+.c-contact-method--sm {
+  padding: var(--spacing-md);
+
+  .c-contact-method__icon-wrapper {
+    width: 64px;
+    height: 64px;
+    margin-bottom: $space-2;
+  }
+
+  .c-contact-method__label {
+    font-size: $font-size-xs;
+  }
+
+  .c-contact-method__value {
+    font-size: $font-size-base;
+  }
+}
+
+.c-contact-method--lg {
+  padding: calc(var(--spacing-xl) + 16px);
+
+  .c-contact-method__icon-wrapper {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 32px;
+  }
+
+  .c-contact-method__label {
+    font-size: $font-size-base;
+  }
+
+  .c-contact-method__value {
+    font-size: $font-size-xl;
+  }
+}
+
+/* RESPONSIVE
+   =========================================================================== */
+
+@media (max-width: $breakpoint-md - 1) {
+  .c-contact-method {
+    padding: var(--spacing-lg);
+  }
+
+  .c-contact-method__icon-wrapper {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+  }
+
+  .c-contact-method__value {
+    font-size: $font-size-base;
+  }
+}
+
+/* ACCESSIBILITY
+   =========================================================================== */
+
+.c-contact-method__value--link {
+  &:focus {
+    outline: 2px solid $color-gold-500;
+    outline-offset: 2px;
+  }
+}
+
+// Reduced motion support - disable all animations for users who prefer reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .c-contact-method {
+    transition: none;
+
+    &:hover {
+      transform: none; // Disable card lift animation
+    }
+  }
+
+  .c-contact-method__icon-wrapper {
+    transition: none;
+
+    .c-contact-method:hover & {
+      transform: none; // Disable icon scale + rotate animation
+    }
+  }
+}
+
+/* PRINT STYLES
+   =========================================================================== */
+
+@media print {
+  .c-contact-method {
+    border: 1px solid $color-border;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+
+  .c-contact-method__link-icon {
+    display: none;
+  }
+}

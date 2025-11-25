@@ -7,11 +7,8 @@ draft: false
 sections:
   - type: "hero-breadcrumb"
   - type: "values-intro"
-  - type: "method-tabs"
   - type: "feature-blocks"
-  - type: "blog-grid"
   - type: "newsletter-signup"
-  - type: "onboarding-steps"
   - type: "cta-standard"
 
 # Hero Breadcrumb Section
@@ -29,138 +26,34 @@ values_intro:
   kicker: "Învață și Crește"
   title: "Resurse Validate **Științific pentru Bunăstarea Ta**"
   description: |
-    Îți pun la dispoziție o colecție curatoriată de articole, ghiduri practice și exerciții bazate pe cercetări
-    în psihologie și psihoterapie. Toate resursele sunt create pentru a te ajuta să înțelegi mai bine provocările
-    tale și să descoperi instrumente practice pe care le poți folosi imediat. Aceste resurse completează procesul
-    terapeutic, dar nu îl înlocuiesc.
+    Îți pun la dispoziție o colecție curatoriată de articole, ghiduri practice, teste psihologice și exerciții
+    bazate pe cercetări în psihologie și psihoterapie. Toate resursele sunt create pentru a te ajuta să înțelegi
+    mai bine provocările tale și să descoperi instrumente practice pe care le poți folosi imediat. Aceste resurse
+    completează procesul terapeutic, dar nu îl înlocuiesc.
   button_text: "Explorează Resursele"
   button_url: "#resurse"
   button_variant: "primary"
 
-# Method Tabs Section - Category Filters
-method_tabs:
-  title: "Explorează pe **Categorii**"
-  description: "Găsește rapid resursele de care ai nevoie"
-  methods:
-    - name: "Anxietate și Stres"
-      slug: "anxietate"
-      icon: "wind"
-      description: |
-        Articole și exerciții pentru gestionarea anxietății, atacurilor de panică, stresului cronic și
-        îngrijorărilor excesive. Tehnici de relaxare, respirație și mindfulness.
-      benefits:
-        - "Tehnici de gestionare a anxietății"
-        - "Exerciții de respirație și relaxare"
-        - "Înțelegerea atacurilor de panică"
-        - "Instrumente de mindfulness"
-    - name: "Depresie și Mood"
-      slug: "depresie"
-      icon: "cloud-rain"
-      description: |
-        Resurse despre depresie, tristețe persistentă, pierderea motivației și energia scăzută. Strategii
-        comportamentale și cognitive pentru îmbunătățirea dispoziției.
-      benefits:
-        - "Înțelegerea depresiei"
-        - "Activare comportamentală"
-        - "Gândire echilibrată"
-        - "Rutine zilnice sănătoase"
-    - name: "Relații și Comunicare"
-      slug: "relatii"
-      icon: "user-friends"
-      description: |
-        Ghiduri despre comunicare eficientă, rezolvarea conflictelor, construirea relațiilor sănătoase și
-        stabilirea limitelor personale.
-      benefits:
-        - "Comunicare asertivă"
-        - "Rezolvarea conflictelor"
-        - "Stabilirea limitelor"
-        - "Empatie și ascultare activă"
-    - name: "Mindfulness și Autocunoaștere"
-      slug: "mindfulness"
-      icon: "spa"
-      description: |
-        Practici de mindfulness, meditație, conștientizare corporală și creșterea conștientizării de sine.
-        Tehnici pentru a trăi în prezent.
-      benefits:
-        - "Exerciții de meditație ghidată"
-        - "Body scan și relaxare musculară"
-        - "Acceptare și non-judecată"
-        - "Prezență și conștientizare"
-    - name: "Dezvoltare Personală"
-      slug: "dezvoltare"
-      icon: "seedling"
-      description: |
-        Articole despre reziliență, valori personale, obiective de viață, auto-compasiune și creștere continuă.
-        Resurse pentru a-ți descoperi potențialul.
-      benefits:
-        - "Clarificarea valorilor"
-        - "Stabilirea obiectivelor"
-        - "Auto-compasiune"
-        - "Reziliență și adaptabilitate"
-
-# Feature Blocks Section - Featured Resources & Downloadable Materials
+# Feature Blocks Section - Resource Categories
 feature_blocks:
-  - title: "Ghid Complet: Gestionarea Anxietății"
-    subtitle: "Ghid PDF Gratuit"
+  - title: "Articole de Psihologie"
+    subtitle: "Conținut Educațional"
     description: |
-      Un ghid practic de 20 de pagini cu tehnici validate științific pentru reducerea anxietății. Include
-      exerciții de respirație, mindfulness, restructurare cognitivă și planuri de acțiune personalizate.
+      Explorează o colecție curatoriată de articole validate științific despre sănătate mintală, terapie și
+      dezvoltare personală. Articole despre anxietate, depresie, relații, mindfulness și multe altele, organizate
+      pe categorii pentru acces rapid. Conținut informativ bazat pe cercetări în psihologie și psihoterapie.
     image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=600&fit=crop"
-  - title: "5 Exerciții de Mindfulness pentru Început"
-    subtitle: "Audio Ghidat"
+    button_text: "Citește Articole"
+    button_url: "/resurse/articole/"
+  - title: "Teste Psihologice"
+    subtitle: "Instrumente de Auto-Evaluare"
     description: |
-      Exerciții simple de 5-10 minute pe care le poți face oriunde. Perfecte pentru începători. Include
-      audio ghidat și instrucțiuni pas cu pas.
-    image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&h=600&fit=crop"
-  - title: "Jurnal de Gânduri și Emoții"
-    subtitle: "Template Descărcabil"
-    description: |
-      Un template descărcabil pentru a-ți monitoriza gândurile, emoțiile și comportamentele. Instrument esențial
-      în terapia cognitiv-comportamentală.
-    image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop"
-  - title: "Ghidul Complet de Gestionare a Anxietății"
-    subtitle: "Materiale Descărcabile"
-    description: |
-      20 de pagini cu tehnici CBT, mindfulness, exerciții de respirație și planuri de acțiune. Format PDF,
-      descărcabil gratuit.
-    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80"
-  - title: "Template Jurnal de Gânduri și Emoții"
-    subtitle: "Instrument Practic"
-    description: |
-      Instrument esențial pentru auto-observare și restructurare cognitivă. Include instrucțiuni complete
-      de utilizare. Format descărcabil și imprimabil.
-    image: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&q=80"
-  - title: "Exerciții Audio de Mindfulness și Relaxare"
-    subtitle: "Audio Ghidat"
-    description: |
-      5 exerciții audio ghidate (5-15 minute fiecare): body scan, respirație conștientă, meditație focalizată,
-      relaxare musculară progresivă, vizualizare calmantă.
-    image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&q=80"
-  - title: "Planificator Săptămânal de Bunăstare"
-    subtitle: "Template Săptămânal"
-    description: |
-      Template pentru planificarea activităților plăcute, monitorizarea dispoziției, stabilirea obiectivelor
-      și urmărirea progresului. Perfect pentru activare comportamentală.
-    image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80"
-
-# Blog Grid Section - Main Resources
-blog_grid:
-  title: "Toate **Resursele**"
-  description: "Explorează colecția completă de articole, ghiduri și exerciții"
-  categories:
-    - name: "Toate"
-      slug: "toate"
-    - name: "Anxietate"
-      slug: "anxietate"
-    - name: "Depresie"
-      slug: "depresie"
-    - name: "Relații"
-      slug: "relatii"
-    - name: "Mindfulness"
-      slug: "mindfulness"
-    - name: "Dezvoltare"
-      slug: "dezvoltare"
-  items: []  # Placeholder - will be populated with actual blog posts
+      Accesează teste și chestionare psihologice validate științific pentru auto-evaluare: GAD-7 (anxietate),
+      PHQ-9 (depresie), PSS-10 (stres perceput), Maslach Burnout Inventory, Self-Compassion Scale și multe altele.
+      Instrumente folosite de profesioniști, adaptate pentru auto-evaluare educațională și informativă.
+    image: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&h=600&fit=crop"
+    button_text: "Explorează Teste"
+    button_url: "/resurse/teste-psihologice/"
 
 # Newsletter Signup Section
 newsletter_signup:
@@ -172,36 +65,6 @@ newsletter_signup:
   button_text: "Abonează-te Gratuit"
   button_variant: "primary"
   privacy_text: "Nu îți vom trimite spam niciodată. Poți să te dezabonezi oricând."
-
-# Onboarding Steps Section - Workshops and Events
-onboarding_steps:
-  title: "Workshop-uri și **Evenimente Live**"
-  intro: "Participă la sesiuni interactive online pentru a învăța și practica împreună"
-  steps:
-    - title: "Workshop Mindfulness pentru Început (Online)"
-      duration: "2 ore"
-      description: |
-        O introducere practică în mindfulness cu exerciții ghidate, discuții interactive și materiale descărcabile.
-        Ideal pentru începători. Data viitoare: TBD.
-      icon: "video"
-    - title: "Gestionarea Anxietății - Sesiune Q&A Live"
-      duration: "1 oră"
-      description: |
-        Sesiune interactivă de întrebări și răspunsuri despre anxietate, atacuri de panică și strategii de gestionare.
-        Gratuit pentru toate persoanele interesate. Data viitoare: TBD.
-      icon: "comments"
-    - title: "Comunicare Asertivă în Relații"
-      duration: "90 minute"
-      description: |
-        Workshop practic pentru a învăța să comunici clar, să stabilești limite sănătoase și să rezolvi conflicte
-        constructiv. Include exerciții de rol. Data viitoare: TBD.
-      icon: "users"
-    - title: "Jurnal Terapeutic - Cum să Scrii pentru Vindecare"
-      duration: "1 oră"
-      description: |
-        Descoperă puterea scrisului terapeutic. Tehnici de journaling, prompt-uri și exerciții ghidate pentru
-        procesarea emoțiilor și auto-reflecție. Data viitoare: TBD.
-      icon: "pen"
 
 # CTA Standard Section
 cta_standard:

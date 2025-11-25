@@ -23,7 +23,7 @@
 
 /**
  * Base heading component
- * Provides Crimson Pro typography for all heading levels
+ * Provides Playfair Display typography for all heading levels
  */
 .c-heading {
   font-family: $font-heading;
@@ -37,7 +37,7 @@
 h1.c-heading {
   font-size: $text-4xl;  // 36px
   line-height: 1.2;  // Improved from 1.25
-  letter-spacing: -0.02em;  // Better kerning for Crimson Pro
+  letter-spacing: -0.02em;  // Better kerning for Playfair Display
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);  // Subtle depth
   margin-bottom: $space-4;  // 32px
 
@@ -50,7 +50,7 @@ h1.c-heading {
 h2.c-heading {
   font-size: $text-3xl;  // 30px
   line-height: $leading-tight;  // 1.25
-  letter-spacing: -0.02em;  // Better kerning for Crimson Pro
+  letter-spacing: -0.02em;  // Better kerning for Playfair Display
 }
 
 // H3 specific styling

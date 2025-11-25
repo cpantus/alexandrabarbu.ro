@@ -1,0 +1,150 @@
+{{/*
+  ============================================================================
+  Hero About Section - About page hero with portrait and quote
+  ============================================================================
+  Features:
+  - Two-column layout (text left, image right)
+  - Portrait photo with organic blob background
+  - Overlapping quote box with serif typography
+  - Optional kicker, title, paragraphs, CTA
+  - Responsive (stacked mobile, side-by-side desktop)
+
+  Data Structure:
+  ---------------
+  hero_about:
+    kicker: "CINE SUNT EU"
+    title: "Alexandra Barbu"
+    name_variant: "split"
+    paragraphs:
+      - "First paragraph..."
+    quote:
+      text: "Quote text..."
+      author: "Attribution"
+    image: "images/about/portrait.jpg"
+    button_text: "Learn More"
+    button_url: "/services/"
+    button_variant: "primary"
+
+  BEM Structure:
+  --------------
+  .c-hero-about
+  .c-hero-about__grid
+  .c-hero-about__content
+  .c-hero-about__kicker
+  .c-hero-about__title
+  .c-hero-about__name-first
+  .c-hero-about__name-last
+  .c-hero-about__paragraphs
+  .c-hero-about__paragraph
+  .c-hero-about__cta
+  .c-hero-about__media
+  .c-hero-about__image-wrapper
+  .c-hero-about__blob
+  .c-hero-about__image
+  .c-hero-about__quote
+  .c-hero-about__quote-text
+  .c-hero-about__quote-author
+
+  Version: 1.0.0
+  ============================================================================
+*/}}
+
+{{- $section := .Params.hero_about -}}
+{{- if not $section -}}
+  {{- $section = site.Data.shared_sections.hero_about -}}
+{{- end -}}
+
+{{- if $section -}}
+<section class="c-hero-about section">
+  <div class="o-container">
+    <div class="c-hero-about__grid">
+
+      {{/* Content Column (Left) */}}
+      <div class="c-hero-about__content">
+
+        {{/* Optional Kicker */}}
+        {{- if $section.kicker -}}
+          <p class="c-hero-about__kicker">{{ $section.kicker }}</p>
+        {{- end -}}
+
+        {{/* Title - with optional name formatting */}}
+        {{- if $section.title -}}
+          {{- if eq $section.name_variant "split" -}}
+            {{/* Split name: first regular, last italic */}}
+            {{- $nameParts := split $section.title " " -}}
+            {{- $firstName := index $nameParts 0 -}}
+            {{- $lastName := index $nameParts 1 -}}
+            <h1 class="c-hero-about__title c-heading c-heading--h1">
+              <span class="c-hero-about__name-first">{{ $firstName }}</span>
+              {" "}<span class="c-hero-about__name-last c-heading__accent">{{ $lastName }}</span>
+            </h1>
+          {{- else -}}
+            {{/* Standard title */}}
+            {{ partial "atoms/heading.html" (dict
+              "text" $section.title
+              "level" "h1"
+              "class" "c-hero-about__title"
+            ) }}
+          {{- end -}}
+        {{- end -}}
+
+        {{/* Body Paragraphs */}}
+        {{- if $section.paragraphs -}}
+          <div class="c-hero-about__paragraphs">
+            {{- range $section.paragraphs -}}
+              <p class="c-hero-about__paragraph">{{ . | markdownify }}</p>
+            {{- end -}}
+          </div>
+        {{- end -}}
+
+        {{/* Optional CTA */}}
+        {{- if $section.button_url -}}
+          <div class="c-hero-about__cta">
+            {{ partial "atoms/button.html" (dict
+              "text" (default "Learn More" $section.button_text)
+              "href" ($section.button_url | relLangURL)
+              "variant" (default "primary" $section.button_variant)
+              "icon" "las la-arrow-right"
+            ) }}
+          </div>
+        {{- end -}}
+
+      </div>
+
+      {{/* Media Column (Right) */}}
+      <div class="c-hero-about__media">
+
+        {{- if $section.image -}}
+          <div class="c-hero-about__image-wrapper">
+
+            {{/* Organic blob background */}}
+            <div class="c-hero-about__blob" aria-hidden="true"></div>
+
+            {{/* Portrait Image */}}
+            <div class="c-hero-about__image">
+              {{ partial "atoms/image.html" (dict
+                "src" $section.image
+                "alt" (default .Title $section.title)
+                "class" "c-hero-about__img"
+              ) }}
+            </div>
+
+            {{/* Quote Overlay Box */}}
+            {{- if $section.quote -}}
+              <div class="c-hero-about__quote">
+                <p class="c-hero-about__quote-text">{{ $section.quote.text | markdownify }}</p>
+                {{- if $section.quote.author -}}
+                  <p class="c-hero-about__quote-author">{{ $section.quote.author }}</p>
+                {{- end -}}
+              </div>
+            {{- end -}}
+
+          </div>
+        {{- end -}}
+
+      </div>
+
+    </div>
+  </div>
+</section>
+{{- end -}}

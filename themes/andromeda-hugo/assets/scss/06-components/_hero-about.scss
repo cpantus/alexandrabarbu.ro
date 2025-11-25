@@ -1,0 +1,194 @@
+/* =============================================================================
+   HERO ABOUT COMPONENT
+   ============================================================================= */
+
+/**
+ * Hero section for About page
+ *
+ * Features:
+ * - Two-column layout (text left, image right)
+ * - Portrait with organic blob background (orange gradient)
+ * - Quote overlay with glassmorphism
+ * - Responsive typography
+ * - Stack on mobile
+ *
+ * BEM Structure:
+ * .c-hero-about
+ *   .c-hero-about__grid
+ *   .c-hero-about__content
+ *     .c-hero-about__kicker
+ *     .c-hero-about__title
+ *       .c-hero-about__name-first
+ *       .c-hero-about__name-last
+ *     .c-hero-about__paragraphs
+ *     .c-hero-about__paragraph
+ *     .c-hero-about__cta
+ *   .c-hero-about__media
+ *     .c-hero-about__image-wrapper
+ *     .c-hero-about__blob
+ *     .c-hero-about__image
+ *     .c-hero-about__quote
+ *       .c-hero-about__quote-text
+ *       .c-hero-about__quote-author
+ */
+
+/* Block
+   ========================================================================== */
+
+.c-hero-about {
+  padding: $space-24 0;
+  background: #ffffff;
+
+  @media (min-width: $breakpoint-md) {
+    padding: $space-32 0;
+  }
+}
+
+/* Grid Layout
+   ========================================================================== */
+
+.c-hero-about__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-12;
+  align-items: center;
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: 1fr 1fr;
+    gap: $space-16;
+  }
+}
+
+/* Content Column
+   ========================================================================== */
+
+.c-hero-about__content {
+  order: 2;
+
+  @media (min-width: $breakpoint-lg) {
+    order: 1;
+  }
+}
+
+.c-hero-about__kicker {
+  font-size: $font-size-sm;
+  font-weight: $weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $forest-500;
+  margin-bottom: $space-4;
+}
+
+.c-hero-about__title {
+  margin-bottom: $space-12;
+}
+
+/* Name variant (first name regular, last name italic) */
+.c-hero-about__name-first {
+  font-weight: $weight-normal;
+}
+
+.c-hero-about__name-last {
+  font-style: italic;
+  font-weight: $weight-normal;
+}
+
+.c-hero-about__paragraphs {
+  margin-bottom: $space-12;
+}
+
+.c-hero-about__paragraph {
+  font-size: $font-size-lg;
+  line-height: 1.8;
+  color: #374151;
+  margin-bottom: $space-6;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Media Column
+   ========================================================================== */
+
+.c-hero-about__media {
+  order: 1;
+  position: relative;
+
+  @media (min-width: $breakpoint-lg) {
+    order: 2;
+  }
+}
+
+.c-hero-about__image-wrapper {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Organic Blob Background (Orange Gradient) - HIDDEN */
+.c-hero-about__blob {
+  display: none; /* Removed orange gradient background */
+}
+
+.c-hero-about__image {
+  position: relative;
+  z-index: 2;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+}
+
+.c-hero-about__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+}
+
+/* Quote Overlay Box */
+.c-hero-about__quote {
+  position: absolute;
+  bottom: 10%;
+  left: -5%;
+  max-width: 280px;
+  padding: $space-6 $space-8;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 3;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  @media (min-width: $breakpoint-lg) {
+    left: -10%;
+    max-width: 320px;
+  }
+
+  &:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+}
+
+.c-hero-about__quote-text {
+  font-family: $font-heading; // Playfair Display serif
+  font-style: italic;
+  font-size: $font-size-md;
+  line-height: 1.8;
+  color: #1F2937;
+  margin-bottom: $space-2;
+}
+
+.c-hero-about__quote-author {
+  font-size: $font-size-sm;
+  font-weight: $weight-semibold;
+  color: $forest-500;
+  margin: 0;
+}
+
+/* Legacy Compatibility
+   ========================================================================== */
+
+.hero-about {
+  @extend .c-hero-about;
+}

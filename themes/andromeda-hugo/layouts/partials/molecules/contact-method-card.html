@@ -1,0 +1,82 @@
+{{/*
+Contact Method Card Molecule - BEM Component
+
+Displays a contact method card with icon, label, value, and optional link.
+
+Parameters:
+  icon (required): Icon name (without "la-" prefix, e.g., "phone", "envelope")
+  icon_prefix (optional): Icon library prefix (default: "las" for solid, use "lab" for brands like WhatsApp)
+  label (required): Card label (e.g., "Phone", "Email")
+  value (required): Contact value (e.g., "+40 123 456 789", "contact@example.com")
+  subtitle (optional): Secondary information (e.g., "Monday - Friday, 9:00 - 18:00")
+  link (optional): URL for clickable card/value
+  variant (optional): Color variant (primary|secondary|tertiary) - default: primary
+  size (optional): Card size (sm|md|lg) - default: md
+*/}}
+
+{{- $icon := .icon -}}
+{{- $icon_prefix := .icon_prefix | default "las" -}}
+{{- $label := .label -}}
+{{- $value := .value -}}
+{{- $subtitle := .subtitle -}}
+{{- $link := .link -}}
+{{- $variant := .variant | default "primary" -}}
+{{- $size := .size | default "md" -}}
+
+{{/* Validate required parameters */}}
+{{- if not $label -}}
+  {{/* Warning: Missing required parameter 'label' */}}
+  {{ warnf "contact-method-card.html: Missing required parameter 'label'" }}
+  {{ return }}
+{{- end -}}
+{{- if not $value -}}
+  {{/* Warning: Missing required parameter 'value' */}}
+  {{ warnf "contact-method-card.html: Missing required parameter 'value'" }}
+  {{ return }}
+{{- end -}}
+
+{{/* Build BEM classes */}}
+{{- $cardClasses := "c-contact-method" -}}
+{{- $cardClasses = printf "%s c-contact-method--%s" $cardClasses $variant -}}
+{{- $cardClasses = printf "%s c-contact-method--%s" $cardClasses $size -}}
+
+<div class="{{ $cardClasses }}">
+
+  {{/* Icon wrapper */}}
+  {{- if $icon -}}
+  <div class="c-contact-method__icon-wrapper">
+    {{ partial "atoms/icon.html" (dict
+      "name" $icon
+      "prefix" $icon_prefix
+      "class" "c-contact-method__icon"
+    ) }}
+  </div>
+  {{- end -}}
+
+  {{/* Content */}}
+  <div class="c-contact-method__content">
+
+    {{/* Label */}}
+    <div class="c-contact-method__label">{{ $label }}</div>
+
+    {{/* Value (with optional link) */}}
+    {{- if $link -}}
+      <a href="{{ $link }}" class="c-contact-method__value c-contact-method__value--link">
+        {{ $value }}
+        {{ partial "atoms/icon.html" (dict
+          "name" "external-link-alt"
+          "class" "c-contact-method__link-icon"
+        ) }}
+      </a>
+    {{- else -}}
+      <div class="c-contact-method__value">{{ $value }}</div>
+    {{- end -}}
+
+    {{/* Subtitle */}}
+    {{- if $subtitle -}}
+      <div class="c-contact-method__secondary">{{ $subtitle }}</div>
+    {{- end -}}
+
+  </div>
+
+</div>

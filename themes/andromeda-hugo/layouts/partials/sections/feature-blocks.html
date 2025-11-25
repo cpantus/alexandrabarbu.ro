@@ -110,7 +110,10 @@
           {{- if $item.features -}}
             <ul class="c-feature-blocks__list">
               {{- range $item.features -}}
-                <li class="c-feature-blocks__list-item">{{ . | markdownify }}</li>
+                <li class="c-feature-blocks__list-item">
+                  {{- partial "atoms/icon.html" (dict "icon" "las la-check-circle" "class" "c-feature-blocks__list-icon") -}}
+                  <span class="c-feature-blocks__list-text">{{ . | markdownify }}</span>
+                </li>
               {{- end -}}
             </ul>
           {{- end -}}

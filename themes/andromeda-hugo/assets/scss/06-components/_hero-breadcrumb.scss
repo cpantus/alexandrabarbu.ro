@@ -147,11 +147,29 @@
 
 .c-hero-breadcrumb__subtitle {
   // Redesign 2025: 18px body text (eval1.md spec)
-  margin: 0 0 $space-6 0; // 48px bottom (eval1.md spec: ~48px to CTAs)
+  margin: 0 0 $space-4 0; // 32px bottom (reduced to accommodate description)
   font-family: $font-family-sans; // DM Sans
   font-size: 1.125rem; // 18px (eval1.md spec)
-  font-weight: 400; // Normal weight
+  font-weight: 500; // Medium weight (emphasize as subheading)
   line-height: 1.6; // Comfortable reading (eval1.md spec)
+  color: $text-muted-green; // Muted green-grey (#587065)
+  max-width: 600px; // eval1.md spec: ~600px max for text column
+
+  @media (min-width: $breakpoint-lg) {
+    max-width: none; // Remove constraint on desktop (grid handles width)
+  }
+}
+
+/* Description
+   ========================================================================== */
+
+.c-hero-breadcrumb__description {
+  // Body text with more detail (below subtitle)
+  margin: 0 0 $space-6 0; // 48px bottom (eval1.md spec: ~48px to CTAs)
+  font-family: $font-family-sans; // DM Sans
+  font-size: 1rem; // 16px (standard body)
+  font-weight: 400; // Normal weight
+  line-height: 1.7; // Generous for readability
   color: $text-muted-green; // Muted green-grey (#587065)
   max-width: 600px; // eval1.md spec: ~600px max for text column
 

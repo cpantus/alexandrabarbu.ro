@@ -7,17 +7,14 @@ draft: false
 sections:
   - type: "hero-breadcrumb"
   - type: "values-intro"
-  - type: "method-tabs"
   - type: "feature-blocks"
-  - type: "blog-grid"
   - type: "newsletter-signup"
-  - type: "onboarding-steps"
   - type: "cta-standard"
 
 # Hero Breadcrumb Section
 hero_breadcrumb:
   title: "Free Resources"
-  subtitle: "Articles, guides and practical exercises for your mental health"
+  subtitle: "Articles, guides, tests and practical exercises for your mental health"
   breadcrumb:
     - name: "Home"
       url: "/en/"
@@ -29,138 +26,34 @@ values_intro:
   kicker: "Learn and Grow"
   title: "Scientifically **Validated Resources for Your Wellbeing**"
   description: |
-    I provide you with a curated collection of articles, practical guides and exercises based on research
-    in psychology and psychotherapy. All resources are created to help you better understand your challenges
-    and discover practical tools you can use immediately. These resources complement the
+    I provide you with a curated collection of articles, practical guides, psychological tests and exercises
+    based on research in psychology and psychotherapy. All resources are created to help you better understand
+    your challenges and discover practical tools you can use immediately. These resources complement the
     therapeutic process, but do not replace it.
   button_text: "Explore Resources"
   button_url: "#resources"
   button_variant: "primary"
 
-# Method Tabs Section - Category Filters
-method_tabs:
-  title: "Explore by **Categories**"
-  description: "Quickly find the resources you need"
-  methods:
-    - name: "Anxiety and Stress"
-      slug: "anxiety"
-      icon: "wind"
-      description: |
-        Articles and exercises for managing anxiety, panic attacks, chronic stress and
-        excessive worries. Relaxation, breathing and mindfulness techniques.
-      benefits:
-        - "Anxiety management techniques"
-        - "Breathing and relaxation exercises"
-        - "Understanding panic attacks"
-        - "Mindfulness tools"
-    - name: "Depression and Mood"
-      slug: "depression"
-      icon: "cloud-rain"
-      description: |
-        Resources about depression, persistent sadness, loss of motivation and low energy. Behavioral
-        and cognitive strategies for improving mood.
-      benefits:
-        - "Understanding depression"
-        - "Behavioral activation"
-        - "Balanced thinking"
-        - "Healthy daily routines"
-    - name: "Relationships and Communication"
-      slug: "relationships"
-      icon: "user-friends"
-      description: |
-        Guides about effective communication, conflict resolution, building healthy relationships and
-        setting personal boundaries.
-      benefits:
-        - "Assertive communication"
-        - "Conflict resolution"
-        - "Setting boundaries"
-        - "Empathy and active listening"
-    - name: "Mindfulness and Self-Awareness"
-      slug: "mindfulness"
-      icon: "spa"
-      description: |
-        Mindfulness practices, meditation, body awareness and increasing self-awareness.
-        Techniques for living in the present.
-      benefits:
-        - "Guided meditation exercises"
-        - "Body scan and muscle relaxation"
-        - "Acceptance and non-judgment"
-        - "Presence and awareness"
-    - name: "Personal Development"
-      slug: "development"
-      icon: "seedling"
-      description: |
-        Articles about resilience, personal values, life goals, self-compassion and continuous growth.
-        Resources to discover your potential.
-      benefits:
-        - "Clarifying values"
-        - "Setting goals"
-        - "Self-compassion"
-        - "Resilience and adaptability"
-
-# Feature Blocks Section - Featured Resources & Downloadable Materials
+# Feature Blocks Section - Resource Categories
 feature_blocks:
-  - title: "Complete Guide: Managing Anxiety"
-    subtitle: "Free PDF Guide"
+  - title: "Psychology Articles"
+    subtitle: "Educational Content"
     description: |
-      A practical 20-page guide with scientifically validated techniques for reducing anxiety. Includes
-      breathing exercises, mindfulness, cognitive restructuring and personalized action plans.
+      Explore a curated collection of scientifically validated articles about mental health, therapy and
+      personal development. Articles about anxiety, depression, relationships, mindfulness and many more, organized
+      by categories for quick access. Informative content based on research in psychology and psychotherapy.
     image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=600&fit=crop"
-  - title: "5 Mindfulness Exercises for Beginners"
-    subtitle: "Guided Audio"
+    button_text: "Read Articles"
+    button_url: "/en/resources/articles/"
+  - title: "Psychological Tests"
+    subtitle: "Self-Assessment Tools"
     description: |
-      Simple 5-10 minute exercises you can do anywhere. Perfect for beginners. Includes
-      guided audio and step-by-step instructions.
-    image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&h=600&fit=crop"
-  - title: "Thoughts and Emotions Journal"
-    subtitle: "Downloadable Template"
-    description: |
-      A downloadable template to monitor your thoughts, emotions and behaviors. Essential tool
-      in cognitive-behavioral therapy.
-    image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=600&fit=crop"
-  - title: "Complete Anxiety Management Guide"
-    subtitle: "Downloadable Materials"
-    description: |
-      20 pages with CBT techniques, mindfulness, breathing exercises and action plans. PDF format,
-      free download.
-    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80"
-  - title: "Thoughts and Emotions Journal Template"
-    subtitle: "Practical Tool"
-    description: |
-      Essential tool for self-observation and cognitive restructuring. Includes complete
-      usage instructions. Downloadable and printable format.
-    image: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&q=80"
-  - title: "Mindfulness and Relaxation Audio Exercises"
-    subtitle: "Guided Audio"
-    description: |
-      5 guided audio exercises (5-15 minutes each): body scan, conscious breathing, focused meditation,
-      progressive muscle relaxation, calming visualization.
-    image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&q=80"
-  - title: "Weekly Wellbeing Planner"
-    subtitle: "Weekly Template"
-    description: |
-      Template for planning pleasant activities, monitoring mood, setting goals
-      and tracking progress. Perfect for behavioral activation.
-    image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80"
-
-# Blog Grid Section - Main Resources
-blog_grid:
-  title: "All **Resources**"
-  description: "Explore the complete collection of articles, guides and exercises"
-  categories:
-    - name: "All"
-      slug: "all"
-    - name: "Anxiety"
-      slug: "anxiety"
-    - name: "Depression"
-      slug: "depression"
-    - name: "Relationships"
-      slug: "relationships"
-    - name: "Mindfulness"
-      slug: "mindfulness"
-    - name: "Development"
-      slug: "development"
-  items: []  # Placeholder - will be populated with actual blog posts
+      Access scientifically validated psychological tests and questionnaires for self-assessment: GAD-7 (anxiety),
+      PHQ-9 (depression), PSS-10 (perceived stress), Maslach Burnout Inventory, Self-Compassion Scale and many others.
+      Tools used by professionals, adapted for educational and informative self-assessment.
+    image: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&h=600&fit=crop"
+    button_text: "Explore Tests"
+    button_url: "/en/resources/psychological-tests/"
 
 # Newsletter Signup Section
 newsletter_signup:
@@ -172,36 +65,6 @@ newsletter_signup:
   button_text: "Subscribe Free"
   button_variant: "primary"
   privacy_text: "We will never send you spam. You can unsubscribe anytime."
-
-# Onboarding Steps Section - Workshops and Events
-onboarding_steps:
-  title: "Live **Workshops and Events**"
-  intro: "Participate in interactive online sessions to learn and practice together"
-  steps:
-    - title: "Mindfulness Workshop for Beginners (Online)"
-      duration: "2 hours"
-      description: |
-        A practical introduction to mindfulness with guided exercises, interactive discussions and downloadable materials.
-        Ideal for beginners. Next date: TBD.
-      icon: "video"
-    - title: "Managing Anxiety - Live Q&A Session"
-      duration: "1 hour"
-      description: |
-        Interactive question and answer session about anxiety, panic attacks and management strategies.
-        Free for all interested persons. Next date: TBD.
-      icon: "comments"
-    - title: "Assertive Communication in Relationships"
-      duration: "90 minutes"
-      description: |
-        Practical workshop to learn to communicate clearly, set healthy boundaries and resolve conflicts
-        constructively. Includes role exercises. Next date: TBD.
-      icon: "users"
-    - title: "Therapeutic Journaling - How to Write for Healing"
-      duration: "1 hour"
-      description: |
-        Discover the power of therapeutic writing. Journaling techniques, prompts and guided exercises for
-        processing emotions and self-reflection. Next date: TBD.
-      icon: "pen"
 
 # CTA Standard Section
 cta_standard:

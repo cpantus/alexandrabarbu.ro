@@ -59,7 +59,7 @@
 
 .c-example__title {
   // Use typography tokens (ALWAYS use $font-heading/$font-body, NOT legacy aliases)
-  font-family: $font-heading;  // Crimson Pro (serif)
+  font-family: $font-heading;  // Playfair Display (serif)
   font-size: $font-size-2xl;
   font-weight: $font-weight-heading-bold;  // 600 (soft hierarchy, not 700 bold)
   color: $gray-900;
@@ -71,7 +71,7 @@
 }
 
 .c-example__subtitle {
-  font-family: $font-body;  // Work Sans (sans-serif)
+  font-family: $font-body;  // DM Sans (sans-serif)
   font-size: $font-size-lg;
   color: $gray-600;
 }

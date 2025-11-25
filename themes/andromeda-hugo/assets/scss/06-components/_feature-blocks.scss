@@ -239,29 +239,25 @@
 }
 
 .c-feature-blocks__list-item {
-  padding-left: $space-6;
+  display: flex;
+  align-items: flex-start;
+  gap: $space-3;
   margin-bottom: $space-3;
-  position: relative;
   font-size: $text-base;
   color: $color-text-secondary;
+}
 
-  // Custom checkmark icon (gradient circle)
-  &::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 24px;
-    height: 24px;
-    border-radius: $radius-full;
-    background: $gradient-icon-forest;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: $weight-bold;
-    font-size: $text-sm;
-  }
+.c-feature-blocks__list-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  color: $color-primary;
+  margin-top: 2px; // Align with text baseline
+}
+
+.c-feature-blocks__list-text {
+  flex: 1;
 }
 
 // Image Wrapper (Image Side)

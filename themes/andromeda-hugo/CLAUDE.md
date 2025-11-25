@@ -173,8 +173,8 @@ related_services:
 
 ## Design System
 
-**Colors**: Primary #4DB380 (emerald), Secondary #CC6B49 (terracotta), Text #374151
-**Typography**: Crimson Pro (serif) + Work Sans (sans) | Base 16px
+**Colors**: Primary #234E3E (forest green), Secondary #6B9080 (sage green), Accent #D4AF37 (gold), Text #374151
+**Typography**: Playfair Display (serif headings) + DM Sans (sans body) | Base 16px
 **Breakpoints**: sm:576px | md:768px | lg:992px | xl:1200px
 
 ---

@@ -140,11 +140,8 @@ UPDATED: 2025-11-20
         {{/* Category Filter Tabs */}}
         {{- with .categories -}}
           <div class="c-blog-grid__filters" role="tablist" aria-label="{{ T "filter_by_category" | default "Filter by category" }}">
-            <button class="c-blog-grid__filter c-blog-grid__filter--active" data-filter="all" role="tab" aria-selected="true">
-              {{ T "all" | default "All" }}
-            </button>
-            {{- range . -}}
-              <button class="c-blog-grid__filter" data-filter="{{ .slug }}" role="tab" aria-selected="false">
+            {{- range $index, $category := . -}}
+              <button class="c-blog-grid__filter{{ if eq $index 0 }} c-blog-grid__filter--active{{ end }}" data-filter="{{ .slug }}" role="tab" aria-selected="{{ if eq $index 0 }}true{{ else }}false{{ end }}">
                 {{ .name }}
               </button>
             {{- end -}}

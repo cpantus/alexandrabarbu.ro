@@ -52,9 +52,22 @@ hasChildren = true
 
 
 [[main]]
+weight = 6
 name = "Resurse"
 url = "resurse/"
-weight = 6
+hasChildren = true
+
+  [[main]]
+  parent = "Resurse"
+  name = "Articole"
+  url = "resurse/articole/"
+  weight = 1
+
+  [[main]]
+  parent = "Resurse"
+  name = "Teste Psihologice"
+  url = "resurse/teste-psihologice/"
+  weight = 2
 
 [[main]]
 name = "Contact"

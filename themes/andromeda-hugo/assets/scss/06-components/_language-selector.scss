@@ -27,7 +27,7 @@
  *   </div>
  *
  * Design Tokens:
- * - Typography: Crimson Pro (language names)
+ * - Typography: Playfair Display (language names)
  * - Spacing: 8pt grid ($space-2, $space-3)
  * - Colors: $color-primary, $color-secondary, $color-tertiary, $color-neutral
  * - Transitions: $transition-base (250ms)
@@ -91,7 +91,7 @@
 
   /* Layout */
   display: inline-block;
-  padding: $space-1 calc(#{$space-3} + #{$space-1}) $space-1 $space-2; /* Extra padding-right for arrow */
+  padding: $space-1 calc(#{$space-4} + #{$space-2}) $space-1 $space-2; /* Extra padding-right for arrow */
   min-width: auto;
 
   /* Borders */

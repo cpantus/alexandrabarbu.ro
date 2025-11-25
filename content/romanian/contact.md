@@ -7,13 +7,9 @@ draft: false
 sections:
   - type: "hero-breadcrumb"
   - type: "contact-info-cards"
-  - type: "contact-options"
   - type: "contact-form-enhanced"
   - type: "feature-blocks"
-  - type: "pricing-tables"
   - type: "faq-mini"
-  - type: "privacy-guarantee"
-  - type: "cta-standard"
 
 # Hero Breadcrumb Section
 hero_breadcrumb:
@@ -26,71 +22,27 @@ hero_breadcrumb:
       url: "/contact/"
 
 # Contact Info Cards Section
-contact_info_cards:
-  title: "Cum Mă **Poți Contacta**"
-  description: "Alege modalitatea care ți se potrivește cel mai bine"
-  cards:
-    - title: "Telefon"
-      icon: "phone"
-      value: "+40 721 234 567"
-      description: "Luni - Vineri: 09:00 - 20:00 | Sâmbătă: 10:00 - 14:00"
-      link: "tel:+40721234567"
-      link_text: "Sună Acum"
-    - title: "Email"
-      icon: "envelope"
-      value: "contact@alexandrabarbu.ro"
-      description: "Răspund în maxim 24 de ore (zile lucrătoare)"
-      link: "mailto:contact@alexandrabarbu.ro"
-      link_text: "Trimite Email"
-    - title: "WhatsApp"
-      icon: "lab la-whatsapp"
-      value: "+40 721 234 567"
-      description: "Mesaje text sau vocale, răspund rapid"
-      link: "https://wa.me/40721234567"
-      link_text: "Deschide WhatsApp"
-    - title: "Cabinet București"
-      icon: "map-marker-alt"
-      value: "Str. Doamnei nr. 12, Sector 3"
-      description: "București 030167, România"
-      link: "https://maps.google.com/?q=Str.+Doamnei+12+Bucuresti"
-      link_text: "Vezi pe Hartă"
-  map:
-    enable: true
-    title: "Locația Cabinetului"
-    embed_url: "https://maps.google.com/maps?q=Str.%20Doamnei%2012%20Bucuresti&t=&z=15&ie=UTF8&iwloc=&output=embed"
+contact_info_title: "Cum Mă **Poți Contacta**"
+contact_info_subtitle: "Alege modalitatea care ți se potrivește cel mai bine"
+contact_methods:
+  - icon: "phone"
+    label: "Telefon"
+    value: "+40 721 234 567"
+    subtitle: "Luni - Vineri: 09:00 - 20:00 | Sâmbătă: 10:00 - 14:00"
+    link: "tel:+40721234567"
+  - icon: "whatsapp"
+    icon_prefix: "lab"
+    label: "WhatsApp"
+    value: "+40 721 234 567"
+    subtitle: "Mesaje text sau vocale, răspund rapid"
+    link: "https://wa.me/40721234567"
+  - icon: "map-marker-alt"
+    label: "Cabinet București"
+    value: "Str. Doamnei nr. 12, Sector 3"
+    subtitle: "București 030167, România"
+    link: "https://maps.google.com/?q=Str.+Doamnei+12+Bucuresti"
     description: "Cabinet privat în centrul Bucureștiului, ușor accesibil cu transportul în comun sau mașina personală. Parcare disponibilă în zonă."
 
-# Contact Options Section
-contact_options:
-  title: "Opțiuni de **Ședințe**"
-  description: "Flexibilitate completă - alege ce ți se potrivește"
-  options:
-    - title: "Ședințe la Cabinet"
-      icon: "clinic-medical"
-      description: |
-        Întâlniri față în față într-un spațiu confidențial, confortabil și sigur în centrul Bucureștiului.
-        Atmosferă caldă, profesională și lipsită de judecată.
-      features:
-        - "Confidențialitate totală"
-        - "Spațiu privat și confortabil"
-        - "Acces ușor cu transportul în comun"
-        - "Parcare disponibilă în zonă"
-      button_text: "Vezi Locația"
-      button_url: "#contact-info"
-      button_variant: "primary"
-    - title: "Ședințe Online"
-      icon: "video"
-      description: |
-        Terapie la fel de eficientă, din confortul casei tale. Folosesc platforme securizate (Zoom, Google Meet)
-        cu criptare end-to-end pentru a proteja confidențialitatea.
-      features:
-        - "Eficacitate dovedită științific"
-        - "Conexiune sigură și criptată"
-        - "Flexibilitate de program"
-        - "Ideal pentru persoane în alte orașe"
-      button_text: "Află Mai Mult"
-      button_url: "/servicii/"
-      button_variant: "secondary"
 
 # Contact Form Enhanced Section
 contact_form_enhanced:
@@ -163,77 +115,8 @@ feature_blocks:
       - "Confort și confidențialitate garantată"
       - "Decizie informată, fără presiune"
       - "Răspuns rapid în maxim 24 de ore"
-    image: "images/consultation-room.jpg"
+    image: "images/free-consultation.jpg"
 
-# Pricing Tables Section
-pricing_tables:
-  title: "Tarife **Transparente**"
-  description: "Fără costuri ascunse. Pachete cu discount disponibile."
-  toggle:
-    enable: false
-  packages:
-    - name: "Sesiune Individuală"
-      price: "250"
-      currency: "RON"
-      duration: "/ 50 minute"
-      description: "O sesiune de terapie individuală față în față sau online"
-      features:
-        - text: "50 de minute sesiune"
-          included: true
-        - text: "La cabinet sau online"
-          included: true
-        - text: "Metode bazate pe evidențe (CBT, EFT, SFT, ACT)"
-          included: true
-        - text: "Materiale și exerciții personalizate"
-          included: true
-        - text: "Suport între ședințe (email)"
-          included: true
-      button_text: "Programează"
-      button_url: "#contact-form"
-      button_variant: "outline-primary"
-      featured: false
-    - name: "Pachet 5 Ședințe"
-      price: "1,150"
-      currency: "RON"
-      duration: "/ 5 sesiuni"
-      description: "Pachet cu discount pentru terapie pe termen mediu"
-      badge: "Economisești 100 RON"
-      features:
-        - text: "5 ședințe × 50 minute (250 RON/ședință → 230 RON/ședință)"
-          included: true
-        - text: "Toate beneficiile sesiunii individuale"
-          included: true
-        - text: "Flexibilitate de programare"
-          included: true
-        - text: "Valabilitate 3 luni"
-          included: true
-        - text: "Evaluare progres inclusă"
-          included: true
-      button_text: "Alege Pachetul"
-      button_url: "#contact-form"
-      button_variant: "primary"
-      featured: true
-    - name: "Terapie de Cuplu/Familie"
-      price: "350"
-      currency: "RON"
-      duration: "/ 75 minute"
-      description: "Sesiune extinsă pentru terapia de cuplu sau de familie"
-      features:
-        - text: "75 de minute sesiune"
-          included: true
-        - text: "La cabinet sau online"
-          included: true
-        - text: "Metode validate (Gottman, EFT, structurală)"
-          included: true
-        - text: "Exerciții pentru acasă"
-          included: true
-        - text: "Suport între ședințe"
-          included: true
-      button_text: "Programează"
-      button_url: "#contact-form"
-      button_variant: "outline-primary"
-      featured: false
-  note: "Tarifele includ TVA. Poți achita cash, card sau transfer bancar. Emitem facturi fiscale."
 
 # FAQ Mini Section
 faq_items:
@@ -259,28 +142,4 @@ faq_mini_footer: "Mai ai întrebări?"
 faq_mini_link_text: "Vezi toate întrebările"
 faq_mini_link_url: "/faq"
 
-# Privacy Guarantee Section - Emergency Notice
-privacy_guarantee:
-  title: "Urgențe și **Situații de Criză**"
-  description: |
-    Important: Cabinetul meu NU oferă servicii de urgență psihiatrică 24/7. Dacă te afli într-o situație de criză (gânduri suicidare, risc de vătămare), te rog să contactezi serviciile de urgență:
-  features:
-    - "Telefonul Sufletului: 0800 801 200 (gratuit, 24/7)"
-    - "Serviciul de Urgență: 112"
-    - "Spitalul de Psihiatrie Alexandru Obregia: 021 334 5894"
-
-# CTA Standard Section
-cta_standard:
-  kicker: "Fă Primul Pas Astăzi"
-  title: "Pregătit să **Începi Călătoria Ta**?"
-  description: |
-    A cere ajutor este un semn de curaj și auto-compasiune. Fiecare călătorie începe cu un prim pas.
-    Îți ofer un spațiu sigur, empatic și lipsit de judecată pentru a explora provocările tale și a descoperi
-    propriile soluții.
-  button_text: "Programează Consultația Gratuită"
-  button_url: "#contact-form"
-  button_variant: "primary"
-  secondary_button_text: "Sună Acum"
-  secondary_button_url: "tel:+40721234567"
-  secondary_button_variant: "secondary"
 ---

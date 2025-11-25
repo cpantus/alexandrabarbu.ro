@@ -5,16 +5,10 @@ layout: "flexible"
 
 sections:
   - type: "hero-breadcrumb"
-  - type: "problem-empathy"
   - type: "services-preview"
   - type: "methodology-zigzag"
   - type: "cta-split"
-  - type: "about-preview"
-  - type: "approach-preview"
   - type: "testimonials-enhanced"
-  - type: "simple-process"
-  - type: "faq-mini"
-  - type: "cta-standard"
 
 # ============================================================================
 # 1. HERO SECTION (Redesign 2025)
@@ -23,7 +17,7 @@ sections:
 hero_breadcrumb:
   title: "Găsim"
   title_accent: "Nordul Interior"
-  subtitle: "Călătoria spre vindecare începe cu un singur pas. Explorează drumul către echilibru interior și transformare autentică prin terapie integrativă."
+  subtitle: "Călătoria spre vindecare începe cu un singur pas. Când știi unde ești, poți merge oriunde."
   show_breadcrumb: false
   show_compass: true
   cta_buttons:
@@ -31,7 +25,7 @@ hero_breadcrumb:
       url: "/contact/"
       variant: "primary"
       icon: "las la-calendar"
-    - text: "Descoperă Servicii"
+    - text: "Alfa mai multe"
       url: "/servicii/"
       variant: "outline-primary"
       icon: "las la-arrow-right"
@@ -41,6 +35,7 @@ hero_breadcrumb:
 # ============================================================================
 
 problem_empathy:
+  enable: false
   title: "Recunoști Aceste Semne?"
   subtitle: "Nu ești singur"
   description: "Multe persoane se confruntă cu provocări similare. Primul pas către vindecare este recunoașterea nevoii de ajutor."
@@ -65,7 +60,7 @@ problem_empathy:
 
 services_preview:
   top_link:
-    text: "Află mai multe despre terapie"
+    text: "Află mai multe despre terapie ->"
     url: "/abordare/"
   badge: "Servicii Oferite"
   title: "Începe Călătoria Ta"
@@ -133,8 +128,8 @@ cta_evaluation:
     text: "Primul pas este cel mai greu, dar cel mai important. Evaluarea gratuită te ajută să descoperi dacă terapia este potrivită pentru tine."
     author: "Alexandra Barbu"
   right_icon: "clock"
-  right_title: "Evaluare Gratuită 30 Min"
-  right_description: "Descoperă dacă terapia este potrivită pentru tine printr-o consultație gratuită de 30 de minute. Fără obligații, complet confidențial."
+  right_title: "Evaluare Gratuită 15 Min"
+  right_description: "Descoperă dacă terapia este potrivită pentru tine printr-o consultație gratuită de 15 de minute. Fără obligații, complet confidențial."
   button_text: "Începe Evaluarea"
   button_url: "/contact/"
   disclaimer: "Complet confidențial • Fără obligații • Online sau la cabinet"
@@ -144,6 +139,7 @@ cta_evaluation:
 # ============================================================================
 
 about_preview:
+  enable: false
   title: "Despre Mine"
   subtitle: "Terapeutul Tău"
   image: "images/about/alexandra-barbu-portrait.jpg"
@@ -169,6 +165,7 @@ about_preview:
 # ============================================================================
 
 approach_preview:
+  enable: false
   title: "Abordarea Mea Terapeutică"
   subtitle: "Principii Fundamentale"
   description: "Combin cele mai eficiente metode terapeutice pentru rezultate durabile și transformare reală."

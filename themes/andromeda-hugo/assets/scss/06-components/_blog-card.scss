@@ -50,6 +50,10 @@
     border-top-left-radius: $radius-2xl; // Match card radius
     border-top-right-radius: $radius-2xl;
   }
+
+  .c-blog-card__meta {
+    color: $forest-700; // Redesign: dark green meta text
+  }
 }
 
 /* Image Wrapper
@@ -158,13 +162,20 @@
 
 .c-blog-card__title-link {
   /* Remove default link styling */
-  text-decoration: none;
+  text-decoration: none !important;  /* CRITICAL: Must use !important to override 04-elements/_text.scss a:hover rule */
   color: inherit;
 
   /* Hover State */
-  &:hover {
+  &:hover,
+  &:focus {
+    /* CRITICAL: Override base element a:hover style from 04-elements/_text.scss (line 30-34)
+     * That style applies text-decoration: underline to ALL links on hover
+     * We must block it here to prevent double underline (base + component) */
+    text-decoration: none !important;
+
     .c-blog-card__title {
       text-decoration: underline;
+      text-decoration-color: #C5A880 !important;  /* REDESIGN: Gold underline (force exact color) */
       text-underline-offset: 4px;
     }
   }
@@ -233,6 +244,44 @@
 
   /* Spacing (button atoms already have appropriate sizing) */
   margin-top: auto;  /* Push to bottom if description doesn't fill space */
+}
+
+/* Read More Link (Text-Only Style - REDESIGN 2025)
+   ========================================================================== */
+
+.c-blog-card__read-more {
+  /* Typography */
+  font-family: $font-family-sans;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-snug;
+
+  /* Color */
+  color: $forest-500;
+  text-decoration: none;
+
+  /* Transition */
+  transition: color $duration-base $ease-out;
+
+  /* Remove button-like styling */
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  /* Hover State */
+  &:hover {
+    color: #C5A880 !important;  /* REDESIGN: Gold hover color (force exact color) */
+    text-decoration: none;
+  }
+
+  /* Focus State (Accessibility) */
+  &:focus,
+  &:focus-visible {
+    outline: 2px solid $sage-500;
+    outline-offset: 2px;
+    border-radius: $border-radius-sm;
+  }
 }
 
 /* Color Variant Modifiers
@@ -423,18 +472,19 @@
 /**
  * Component Notes:
  *
- * 1. **Layout**: Flexbox column layout with flex-grow for description to push button to bottom
+ * 1. **Layout**: Flexbox column layout with flex-grow for description to push link to bottom
  * 2. **Image**: Aspect ratio 16:9 with object-fit cover, badge overlaid in top-right corner
  * 3. **Metadata**: Flexbox row with wrapping, icon atoms with text labels
- * 4. **Title**: Heading atom integration, underline on hover when linked
+ * 4. **Title**: Heading atom integration, gold underline on hover when linked (REDESIGN 2025)
  * 5. **Description**: Line clamping to 3 lines with ellipsis
- * 6. **Action**: Button atom with outline variant matching card variant
- * 7. **Hover Effect**: Lift card 4px with shadow upgrade
+ * 6. **Action**: Text-only "read more" link with gold hover effect (REDESIGN 2025)
+ * 7. **Hover Effect**: Lift card 4px with shadow upgrade, gold underline on title
  * 8. **Color Variants**: 4 semantic variants (primary, secondary, tertiary, neutral)
  * 9. **Responsive**: Scales padding and font sizes across breakpoints
  * 10. **Accessibility**: WCAG AA, keyboard nav, reduced motion, high contrast
  * 11. **Print**: Simplified layout, hide decorative elements
  * 12. **Compatibility**: Legacy class mappings via @extend
+ * 13. **Double Underline Fix**: Explicit text-decoration:none on link hover to prevent cascade conflict
  *
  * Typography Scale:
  * - Title: $font-size-xl (32px) desktop, $font-size-lg (24px) mobile

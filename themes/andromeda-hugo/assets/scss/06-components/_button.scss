@@ -223,6 +223,35 @@
 }
 
 /**
+ * Outline redesign button - dark green with gold hover
+ * REDESIGN 2025: Dark green text/border with gold color on hover
+ */
+.c-button--outline-redesign {
+  color: $forest-700;
+  border: 2px solid $forest-700;
+  background-color: transparent;
+  box-shadow: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $gold-500;
+    border-color: $gold-500;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  &:disabled,
+  &[disabled] {
+    color: $forest-700;
+    border-color: $forest-700;
+    background-color: transparent;
+    box-shadow: none;
+    opacity: 0.5;
+  }
+}
+
+/**
  * Tertiary button - calm navy blue
  */
 .c-button--tertiary {

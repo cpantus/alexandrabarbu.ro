@@ -157,7 +157,7 @@
 
 .c-timeline-step__number {
   // Color set by variant modifiers (not white by default)
-  font-family: $font-heading; // Crimson Pro
+  font-family: $font-heading; // Playfair Display
   font-size: 1.5rem; // 24px
   font-weight: 600;
   line-height: 1;
@@ -195,7 +195,7 @@
 }
 
 .c-timeline-step__duration-text {
-  font-family: $font-body; // Work Sans
+  font-family: $font-body; // DM Sans
 }
 
 // ============================================================================
@@ -292,7 +292,7 @@
 // ============================================================================
 
 .c-timeline-step__description {
-  font-family: $font-body; // Work Sans
+  font-family: $font-body; // DM Sans
   font-size: 0.9375rem; // 15px
   line-height: 1.6;
   color: $gray-600;
@@ -339,7 +339,7 @@
 }
 
 .c-timeline-step__highlight-text {
-  font-family: $font-body; // Work Sans
+  font-family: $font-body; // DM Sans
   font-size: 0.9375rem; // 15px
   line-height: 1.5;
   color: $gray-700;

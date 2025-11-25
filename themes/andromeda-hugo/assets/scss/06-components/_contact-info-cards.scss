@@ -1,5 +1,5 @@
 /* ===========================================================================
-   CONTACT INFO CARDS SECTION - BEM Component
+   CONTACT INFO CARDS SECTION - BEM Component (Glassmorphism Design)
    =========================================================================== */
 
 /**
@@ -16,17 +16,18 @@
  *         contact-method-card molecule
  *
  * USAGE: Contact methods grid (phone, email, location)
+ * DESIGN: Dark green background with glassmorphism cards (matching benefits-results)
  */
 
 /* BASE COMPONENT
    =========================================================================== */
 
 .c-contact-info-section {
-  padding: 0; // No top padding (follows previous section)
-  padding-bottom: $section-padding-y;
+  padding: var(--spacing-section-y) 0;
+  background: $color-bg-redesign-dark; // Forest-700 dark green background
 
   @media (max-width: $breakpoint-md - 1) {
-    padding-bottom: $section-padding-y-mobile;
+    padding: $section-padding-y-mobile 0;
   }
 }
 
@@ -43,7 +44,7 @@
 
 .c-contact-info-section__header {
   text-align: center;
-  margin-bottom: $space-6;
+  margin-bottom: var(--spacing-5xl);
 
   @media (max-width: $breakpoint-md - 1) {
     margin-bottom: $space-5;
@@ -51,14 +52,23 @@
 }
 
 .c-contact-info-section__title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: $color-text-redesign-on-dark; // Light cream text on dark background
   margin-bottom: $space-2;
+  font-family: var(--font-family-heading);
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-4xl);
+  }
 }
 
 .c-contact-info-section__subtitle {
-  color: $color-text-muted;
+  color: $color-text-redesign-on-dark; // Light cream text on dark background
   font-size: $font-size-base;
   line-height: $line-height-relaxed;
   margin: 0;
+  opacity: 0.9; // Slightly dimmed for hierarchy
 }
 
 /* GRID LAYOUT

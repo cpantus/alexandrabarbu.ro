@@ -41,23 +41,23 @@ section {
  */
 
 // Pattern 1 (1st, 5th, 9th...) - White cream
-// Exclude dark sections (testimonials, footer, credentials, benefits-results) from alternating pattern
-section:nth-of-type(4n+1):not(.c-testimonials-dark):not(.c-footer):not(.c-credentials-education):not(.c-benefits-results) {
+// Exclude dark sections (testimonials, footer, credentials, benefits-results, contact-info) from alternating pattern
+section:nth-of-type(4n+1):not(.c-testimonials-dark):not(.c-footer):not(.c-credentials-education):not(.c-benefits-results):not(.c-contact-info-section) {
   background: $cream-50 !important; // REDESIGN 2025: Was $forest-50
 }
 
 // Pattern 2 (2nd, 6th, 10th...) - Light cream
-section:nth-of-type(4n+2):not(.c-testimonials-dark):not(.c-footer):not(.c-credentials-education):not(.c-benefits-results) {
+section:nth-of-type(4n+2):not(.c-testimonials-dark):not(.c-footer):not(.c-credentials-education):not(.c-benefits-results):not(.c-contact-info-section) {
   background: $cream-100 !important; // REDESIGN 2025: Was $forest-100
 }
 
 // Pattern 3 (3rd, 7th, 11th...) - White cream
-section:nth-of-type(4n+3):not(.c-testimonials-dark):not(.c-footer):not(.c-credentials-education):not(.c-benefits-results) {
+section:nth-of-type(4n+3):not(.c-testimonials-dark):not(.c-footer):not(.c-credentials-education):not(.c-benefits-results):not(.c-contact-info-section) {
   background: $cream-50 !important; // REDESIGN 2025: Was $sage-50
 }
 
 // Pattern 4 (4th, 8th, 12th...) - Light cream
-section:nth-of-type(4n):not(.c-testimonials-dark):not(.c-footer):not(.c-credentials-education):not(.c-benefits-results) {
+section:nth-of-type(4n):not(.c-testimonials-dark):not(.c-footer):not(.c-credentials-education):not(.c-benefits-results):not(.c-contact-info-section) {
   background: $cream-100 !important; // REDESIGN 2025: Was $sage-100
 }
 

@@ -90,12 +90,13 @@ facebook = ""
 [emergency_banner]
 enable = false
 
-# Design System Variables (Design Excellence v3.1 - Hugo Way)
+# Design System Variables (2025 Redesign - Actual Fonts in Use)
 [variables]
-# Typography
-font_primary = "Poppins:wght@300;400;500;600;700;800"
-font_primary_type = "sans-serif"
-font_secondary = "Open Sans:wght@300;400;500;600;700"
+# Typography (CURRENT: Playfair Display + DM Sans)
+# Note: Actual font loading handled by SCSS (01-settings/_tokens-typography.scss)
+font_primary = "Playfair Display"
+font_primary_type = "serif"
+font_secondary = "DM Sans"
 font_secondary_type = "sans-serif"
 font_size = "16px"
 font_scale = "1.25"

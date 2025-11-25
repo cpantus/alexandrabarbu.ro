@@ -1,0 +1,132 @@
+{{/*
+  ============================================================================
+  Scientific Approach Section - Methodology and principles display
+  ============================================================================
+  Features:
+  - Two-column layout (description left, feature grid right)
+  - Approach label badge
+  - 2x2 grid of feature cards with icons
+  - Optional CTA button
+  - Responsive (stacked mobile)
+
+  Data Structure:
+  ---------------
+  scientific_approach:
+    label: "ABORDARE ȘTIINȚIFICĂ"
+    title: "Unde Știința întâlnește Empatia"
+    title_accent: "Empatia"
+    description: "Abordarea mea combină..."
+    button_text: "Află Mai Multe"
+    button_url: "/abordare/"
+    button_variant: "primary"
+    features:
+      - icon: "brain"
+        title: "Neuroplasticitate"
+        description: "Creierul poate..."
+        variant: "primary"
+
+  BEM Structure:
+  --------------
+  .c-scientific-approach
+  .c-scientific-approach__grid
+  .c-scientific-approach__content
+  .c-scientific-approach__label
+  .c-scientific-approach__title
+  .c-scientific-approach__description
+  .c-scientific-approach__cta
+  .c-scientific-approach__features
+  .c-scientific-approach__feature
+  .c-scientific-approach__icon
+  .c-scientific-approach__feature-title
+  .c-scientific-approach__feature-text
+
+  Version: 1.0.0
+  ============================================================================
+*/}}
+
+{{- $section := .Params.scientific_approach -}}
+{{- if not $section -}}
+  {{- $section = site.Data.shared_sections.scientific_approach -}}
+{{- end -}}
+
+{{- if $section -}}
+<section class="c-scientific-approach section">
+  <div class="o-container">
+    <div class="c-scientific-approach__grid">
+
+      {{/* Content Column (Left) */}}
+      <div class="c-scientific-approach__content">
+
+        {{/* Approach Label */}}
+        {{- if $section.label -}}
+          <span class="c-scientific-approach__label">{{ $section.label }}</span>
+        {{- end -}}
+
+        {{/* Title with optional accent */}}
+        {{- if $section.title -}}
+          <h2 class="c-scientific-approach__title c-heading c-heading--h2">
+            {{ $section.title }}
+            {{- if $section.title_accent -}}
+              {" "}<span class="c-heading__accent">{{ $section.title_accent }}</span>
+            {{- end -}}
+          </h2>
+        {{- end -}}
+
+        {{/* Description */}}
+        {{- if $section.description -}}
+          <p class="c-scientific-approach__description">{{ $section.description | markdownify }}</p>
+        {{- end -}}
+
+        {{/* Optional CTA */}}
+        {{- if $section.button_url -}}
+          <div class="c-scientific-approach__cta">
+            {{ partial "atoms/button.html" (dict
+              "text" (default "Learn More" $section.button_text)
+              "href" ($section.button_url | relLangURL)
+              "variant" (default "primary" $section.button_variant)
+              "icon" "las la-arrow-right"
+            ) }}
+          </div>
+        {{- end -}}
+
+      </div>
+
+      {{/* Features Grid (Right) - 2x2 */}}
+      {{- if $section.features -}}
+        <div class="c-scientific-approach__features">
+          {{- range $index, $feature := $section.features -}}
+            {{- $variant := default "primary" .variant -}}
+
+            <div class="c-scientific-approach__feature c-scientific-approach__feature--{{ $variant }}"
+                 data-aos="fade-up"
+                 data-aos-delay="{{ mul $index 100 }}">
+
+              {{/* Feature Icon */}}
+              {{- if .icon -}}
+                <div class="c-scientific-approach__icon c-scientific-approach__icon--{{ $variant }}">
+                  {{ partial "atoms/icon.html" (dict
+                    "icon" (printf "las la-%s" .icon)
+                    "size" "2x"
+                  ) }}
+                </div>
+              {{- end -}}
+
+              {{/* Feature Title */}}
+              {{- if .title -}}
+                <h3 class="c-scientific-approach__feature-title">{{ .title }}</h3>
+              {{- end -}}
+
+              {{/* Feature Description */}}
+              {{- if .description -}}
+                <p class="c-scientific-approach__feature-text">{{ .description | markdownify }}</p>
+              {{- end -}}
+
+            </div>
+          {{- end -}}
+        </div>
+      {{- end -}}
+
+    </div>
+  </div>
+</section>
+{{- end -}}

@@ -68,8 +68,9 @@
   }
 
   .c-blog-grid__filter--active {
-    background: linear-gradient(135deg, $forest-500 0%, $sage-500 100%); // Redesign: forest-sage gradient
-    border-color: $forest-600;
+    background: $forest-700; // Redesign: dark green background
+    border-color: $forest-700;
+    color: $gold-500; // Redesign: gold text
   }
 }
 
@@ -167,9 +168,9 @@
 }
 
 .c-blog-grid__filter--active {
-  background: $gradient-warm-vibrant;
-  border-color: $color-primary;
-  color: white;
+  background: $forest-700;
+  border-color: $forest-700;
+  color: $gold-500;
 
   &:hover {
     transform: translateY(-2px);
@@ -457,7 +458,7 @@
   }
 
   &:hover {
-    color: $forest-700;
+    color: $gold-500;
 
     i {
       transform: translateX(4px);
