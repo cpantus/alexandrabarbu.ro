@@ -111,7 +111,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all $duration-base $easing-medium;
+  transition: transform $duration-base $easing-medium, background $duration-base $easing-medium, border-color $duration-base $easing-medium, box-shadow $duration-base $easing-medium;
   box-shadow: $shadow-glass;
 
   // Pulse animation (respects reduced-motion preference)

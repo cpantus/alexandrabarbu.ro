@@ -759,13 +759,13 @@
   --nav-link-font-weight-active: #{$font-weight-medium};
   --nav-link-line-height: #{$line-height-snug};
   --nav-link-border-radius: #{$radius-sm};
-  --nav-link-transition: all #{$duration-fast} #{$easing-medium};
+  --nav-link-transition: color #{$duration-fast} #{$easing-medium}, background-color #{$duration-fast} #{$easing-medium};
 
   // Navigation link underline
   --nav-link-underline-color: #{$gold-500};
   --nav-link-underline-height: 2px;
   --nav-link-underline-offset: #{$space-1};
-  --nav-link-underline-transition: all #{$duration-base} #{$easing-medium};
+  --nav-link-underline-transition: transform #{$duration-base} #{$easing-medium}, opacity #{$duration-instant} linear;
 
   // Navigation dropdown
   --nav-dropdown-min-width: 220px;
@@ -778,7 +778,7 @@
   --nav-dropdown-gap: #{$space-1};
   --nav-dropdown-offset: 0; // No gap - dropdown touches trigger for reliable hover
   --nav-dropdown-transform: translateY(-#{$space-2});
-  --nav-dropdown-transition: all #{$duration-base} #{$easing-medium};
+  --nav-dropdown-transition: opacity #{$duration-base} #{$easing-medium}, visibility #{$duration-base} #{$easing-medium}, transform #{$duration-base} #{$easing-medium};
 
   // Navigation dropdown link
   --nav-dropdown-link-padding: #{$space-2} #{$space-3};

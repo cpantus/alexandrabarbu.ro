@@ -83,7 +83,7 @@
 .c-footer-info__logo-link {
   display: inline-block;
   margin-bottom: $space-3; // Match title margin (24px)
-  transition: all $duration-base $easing-out;
+  transition: opacity $duration-base $easing-out;
   text-decoration: none !important; // No underline
   background-image: none !important; // No gradient underline
 

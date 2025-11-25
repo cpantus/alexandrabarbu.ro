@@ -84,7 +84,7 @@
   border-radius: $border-radius-circle; // Circular
   background: transparent;
   position: relative;
-  transition: all $transition-base $easing-ease-out;
+  transition: background-color $duration-base $easing-out, border-color $duration-base $easing-out, transform $duration-base $easing-out;
 
   // NO underlines or decorations
   text-decoration: none !important;

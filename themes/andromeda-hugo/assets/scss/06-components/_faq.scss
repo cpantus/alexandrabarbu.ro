@@ -126,7 +126,7 @@
   border-radius: $radius-md;
   overflow: hidden;
   box-shadow: $shadow-xs;
-  transition: all $duration-base $easing-medium;
+  transition: box-shadow $duration-base $easing-medium;
   position: relative;
 
   // Gradient left border (color-coded by category)

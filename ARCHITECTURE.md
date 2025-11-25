@@ -2,7 +2,7 @@
 
 **System**: Hugo + Atomic Design + ITCSS | **Purpose**: Enable Claude Code to understand and extend project
 
-**Version**: 5.1.0 | **Updated**: 2025-11-21 | **Structure**: Hugo standard (theme directory)
+**Version**: 5.2.0 | **Updated**: 2025-11-25 | **Structure**: Hugo standard (theme directory)
 
 ---
 
@@ -130,6 +130,81 @@ alexandrabarbu.ro/                      # ← PROJECT ROOT (run Hugo here!)
 NOTE: Hugo lookup order: project root → theme directory.
 Theme contains 135 SCSS files, 127 layout files. Project overrides are minimal.
 ```
+
+---
+
+## SCSS Design Tokens (v5.2.0)
+
+The theme uses a comprehensive design token system in `themes/andromeda-hugo/assets/scss/01-settings/`:
+
+### Spacing Tokens (`_tokens-spacing.scss`)
+```scss
+// 8px base grid
+$space-1: 4px;    $space-2: 8px;    $space-3: 12px;   $space-4: 16px;
+$space-6: 24px;   $space-8: 32px;   $space-12: 48px;  $space-16: 64px;
+$space-24: 96px;  $space-32: 128px;
+
+// Breakpoints (min-width, mobile-first)
+$breakpoint-sm: 576px;   $breakpoint-md: 768px;    $breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;  $breakpoint-xxl: 1400px;
+
+// Max-width breakpoints (for edge cases)
+$breakpoint-sm-max: 575px;  $breakpoint-md-max: 767px;
+$breakpoint-lg-max: 991px;  $breakpoint-xl-max: 1199px;
+```
+
+### Motion Tokens (`_tokens-motion.scss`)
+```scss
+// Durations (3-tier system)
+$duration-instant: 100ms;  $duration-fast: 200ms;    $duration-base: 300ms;
+$duration-normal: 400ms;   $duration-slow: 600ms;    $duration-slower: 800ms;
+
+// Hover lift tokens (standardized translateY)
+$hover-lift-sm: -2px;   // Level 1 - Subtle (links, small elements)
+$hover-lift-md: -4px;   // Level 2 - Medium (cards, buttons)
+$hover-lift-lg: -8px;   // Level 3 - Strong (featured cards, CTAs)
+
+// Z-index scale
+$z-dropdown: 1000;  $z-sticky: 1020;  $z-fixed: 1030;
+$z-modal: 1050;     $z-tooltip: 1070; $z-skip-link: 10000;
+```
+
+### Shadow Tokens (`_tokens-shadows.scss`)
+```scss
+// Elevation shadows (7 levels)
+$shadow-xs → $shadow-sm → $shadow-base → $shadow-md → $shadow-lg → $shadow-xl → $shadow-2xl
+
+// Focus ring tokens (accessibility)
+$shadow-focus-sm: 0 0 0 3px rgba($forest-500, 0.2);
+$shadow-focus-md: 0 0 0 4px rgba($forest-500, 0.3);
+$shadow-focus-secondary-sm/md, $shadow-focus-neutral-sm/md
+
+// Pulse animation tokens
+$shadow-pulse-start: 0 0 0 0 rgba($forest-500, 0);
+$shadow-pulse-end: 0 0 0 4px rgba($forest-500, 0.3);
+
+// Avatar/logo ring tokens
+$shadow-ring-forest, $shadow-ring-sage, $shadow-ring-neutral
+```
+
+### Typography Tokens (`_tokens-typography.scss`)
+```scss
+// Font weights (semantic)
+$font-weight-normal: 400;    $font-weight-medium: 500;
+$font-weight-semibold: 600;  $font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+// Font sizes (modular scale)
+$text-xs: 0.75rem;   $text-sm: 0.875rem;  $text-base: 1rem;
+$text-lg: 1.125rem;  $text-xl: 1.25rem;   $text-2xl: 1.5rem;
+$text-3xl: 1.875rem; $text-4xl: 2.25rem;  $text-5xl: 3rem;
+```
+
+### Token Usage Rules
+1. **Never hard-code** breakpoints, font-sizes, font-weights, or shadows
+2. **Hover transitions**: Use specific properties, avoid `transition: all`
+3. **Shadow progression**: Only increase by 1 level on hover (sm→md, not sm→lg)
+4. **Focus states**: Use $shadow-focus-* tokens for accessibility
 
 ---
 

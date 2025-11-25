@@ -401,7 +401,7 @@
     font-size: $text-lg;
     font-weight: $font-weight-heading-bold; // 600 per design rules
     border-radius: $radius-lg;
-    transition: all $duration-base $easing-strong; // Level 3 button motion
+    transition: transform $duration-base $easing-strong, box-shadow $duration-base $easing-strong; // Level 3 button motion
 
     // Featured card special button
     .c-pricing__card--featured & {
@@ -410,7 +410,7 @@
       box-shadow: $shadow-primary;
 
       &:hover {
-        transform: translateY(-2px);
+        transform: translateY($hover-lift-sm);
         box-shadow: $shadow-primary-lg;
       }
     }
@@ -502,7 +502,7 @@
   background: white;
   border-radius: $radius-full;
   box-shadow: $shadow-base;
-  transition: all $duration-fast $easing-subtle;
+  transition: transform $duration-fast $easing-subtle;
 }
 
 // Animations

@@ -177,7 +177,7 @@
   backdrop-filter: var(--contact-card-backdrop);
   border: var(--contact-card-border);
   border-radius: var(--contact-card-border-radius);
-  transition: all var(--transition-normal);
+  transition: background var(--transition-normal), transform var(--transition-normal), box-shadow var(--transition-normal);
 
   &:hover {
     background: var(--contact-card-bg-hover);
@@ -271,7 +271,7 @@
   background: var(--contact-trust-icon-bg);
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--border-radius-full);
-  transition: all var(--transition-normal);
+  transition: background var(--transition-normal), transform var(--transition-normal);
 
   i {
     font-size: $text-2xl; // 24px

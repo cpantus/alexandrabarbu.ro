@@ -161,12 +161,12 @@
   padding: $space-8; // 32px padding
   background-color: $cream-50; // White background on cream
   border-radius: $radius-lg; // 12px rounded corners
-  transition: all 0.3s ease;
+  transition: background-color $duration-base $easing-medium, transform $duration-base $easing-medium, box-shadow $duration-base $easing-medium;
 
   // Hover state: subtle background color change
   &:hover {
     background-color: rgba($sage-500, 0.05); // Very subtle sage tint
-    transform: translateY(-2px);
+    transform: translateY($hover-lift-sm);
     box-shadow: $shadow-md;
   }
 }

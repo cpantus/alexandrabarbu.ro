@@ -73,7 +73,7 @@
   background-color: rgba($color-primary, 0.9);
   backdrop-filter: blur(8px); // Glassmorphism
   box-shadow: $shadow-lg;
-  transition: all $transition-normal $easing-ease-out;
+  transition: background-color $duration-normal $easing-out, transform $duration-normal $easing-out, box-shadow $duration-normal $easing-out;
 
   // Typography
   color: $color-white;

@@ -19,12 +19,12 @@
   background: rgba(215, 244, 230, 0.95);
   border-radius: $radius-lg;
   padding: 2rem;
-  transition: all 0.3s ease;
+  transition: transform $duration-base $easing-medium, box-shadow $duration-base $easing-medium, border-color $duration-base $easing-medium;
   border: 1px solid rgba(77, 179, 128, 0.1);
   height: 100%;
-  
+
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY($hover-lift-md);
     box-shadow: $shadow-warm-md;
     border-color: rgba(77, 179, 128, 0.3);
     
@@ -50,19 +50,19 @@
 
 /* Contact Info Hover Links */
 .hover-link {
-  transition: all 0.3s ease;
-  
+  transition: color $duration-base $easing-medium, transform $duration-base $easing-medium;
+
   &:hover {
     color: $forest-500 !important;
-    transform: translateY(-2px);
+    transform: translateY($hover-lift-sm);
   }
 }
 
 /* Trust Badges Animation */
 .trust-badge {
   animation: gentle-pulse 3s infinite;
-  transition: all 0.3s ease;
-  
+  transition: transform $duration-base $easing-medium, box-shadow $duration-base $easing-medium;
+
   &:hover {
     transform: scale(1.05);
     box-shadow: $shadow-warm-sm;
@@ -91,25 +91,25 @@
     border-radius: $radius-sm;       // 8px - Design token (Week 3)
     border: 2px solid $forest-50;  // Design token (Week 3)
     padding: $space-3 $space-5;      // 12px 20px - Design tokens (Week 3)
-    transition: all $duration-base ease;
-    
+    transition: border-color $duration-base $easing-medium, background-color $duration-base $easing-medium;
+
     &:focus {
       border-color: $forest-500;
       background-color: lighten($forest-50, 4%);
       outline: 2px solid $forest-500; outline-offset: 2px;
     }
   }
-  
+
   .btn-primary {
     border-radius: $radius-md;
     padding: 14px 30px;
     font-weight: 600;
     background: linear-gradient(135deg, $forest-500 0%, $forest-600 100%);
     border: none;
-    transition: all 0.3s ease;
-    
+    transition: transform $duration-base $easing-medium, box-shadow $duration-base $easing-medium;
+
     &:hover {
-      transform: translateY(-2px);
+      transform: translateY($hover-lift-sm);
       box-shadow: $shadow-warm-md;
     }
   }
@@ -193,7 +193,7 @@
   }
 
   .accordion-collapse {
-    transition: all $duration-slow $easing-medium; // 350ms for collapse animation
+    transition: height $duration-slow $easing-medium; // 350ms for collapse animation
   }
 
   .accordion-body {

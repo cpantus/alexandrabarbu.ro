@@ -39,8 +39,8 @@
     font-weight: bold;
     margin-bottom: 1rem;
     box-shadow: $shadow-warm-md;
-    transition: all 0.3s ease;
-    
+    transition: transform $duration-base $easing-medium;
+
     &:hover {
       transform: scale(1.1) rotate(5deg);
     }
@@ -197,8 +197,8 @@
     border: 2px solid $forest-50;  // Design token (Week 3)
     border-radius: $radius-sm;       // 8px - Design token (Week 3)
     padding: $space-3 $space-5;      // 12px 20px - Design tokens (Week 3)
-    transition: all $duration-base ease;
-    
+    transition: border-color $duration-base $easing-medium, background-color $duration-base $easing-medium;
+
     &:focus {
       border-color: $forest-500;
       background-color: lighten($forest-50, 4%);
@@ -225,10 +225,10 @@
     font-weight: 600;
     background: linear-gradient(135deg, $forest-500 0%, $forest-600 100%);
     border: none;
-    transition: all 0.3s ease;
+    transition: transform $duration-base $easing-medium, box-shadow $duration-base $easing-medium;
     position: relative;
     overflow: hidden;
-    
+
     &::before {
       content: '';
       position: absolute;
@@ -239,11 +239,11 @@
       border-radius: 50%;
       background: rgba(215, 244, 230, 0.3);
       transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
+      transition: width $duration-slow $easing-medium, height $duration-slow $easing-medium;
     }
-    
+
     &:hover {
-      transform: translateY(-2px);
+      transform: translateY($hover-lift-sm);
       box-shadow: $shadow-warm-md;
       
       &::before {
@@ -382,8 +382,8 @@
   a {
     color: $forest-500;
     text-decoration: none;
-    transition: all 0.2s ease;
-    
+    transition: color $duration-fast $easing-medium;
+
     &:hover {
       color: darken($forest-500, 15%);
       text-decoration: underline;
