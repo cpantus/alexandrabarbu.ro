@@ -161,16 +161,19 @@ $red-900: #7f1d1d;
 // ----------------------------------
 // GRAYSCALE PALETTE: Neutral (Text, Backgrounds, Borders)
 // ----------------------------------
-$gray-50: #f9fafb;
-$gray-100: #f3f4f6;
-$gray-200: #e5e7eb;
-$gray-300: #d1d5db;
-$gray-400: #9ca3af;
-$gray-500: #6b7280;
-$gray-600: #4b5563;
-$gray-700: #374151;
-$gray-800: #1f2937;
-$gray-900: #111827;
+// DESIGN EXCELLENCE: Forest-tinted neutrals for cohesive feel
+// Principle: "Tint ALL neutrals with primary color" - creates warmth and unity
+// Original pure grays replaced with forest green undertones
+$gray-50: #F8FAF9;   // Forest-tinted (was #f9fafb)
+$gray-100: #F1F5F3;  // Forest-tinted (was #f3f4f6)
+$gray-200: #E3E9E6;  // Forest-tinted (was #e5e7eb)
+$gray-300: #CED6D2;  // Forest-tinted (was #d1d5db)
+$gray-400: #98A59E;  // Forest-tinted (was #9ca3af)
+$gray-500: #68766E;  // Forest-tinted (was #6b7280)
+$gray-600: #495550;  // Forest-tinted (was #4b5563)
+$gray-700: #364A42;  // Forest-tinted (was #374151) - PRIMARY BODY TEXT
+$gray-800: #1E2F28;  // Forest-tinted (was #1f2937)
+$gray-900: #101B16;  // Forest-tinted (was #111827)
 
 // ----------------------------------
 // BASE COLORS (Legacy compatibility)

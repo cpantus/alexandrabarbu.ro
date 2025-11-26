@@ -14,15 +14,32 @@
 // BLOCK: Testimonials Section
 // ============================================================================
 
+/**
+ * DESIGN EXCELLENCE: Overlapping Elements
+ * Principle: "Elements touch/bleed into each other = rhythm, organic flow, vibrant pulse"
+ * Testimonials section uses negative margin to overlap into adjacent sections
+ */
 .c-testimonials {
   position: relative;
   padding: var(--testimonials-padding);
   background-color: var(--testimonials-bg);
-  overflow: hidden; // Contain decorative quote
+  overflow: visible; // DESIGN EXCELLENCE: Allow cards to overflow into adjacent sections
 
   // Background variants
   &--bg-light { background-color: var(--testimonials-bg); }
   &--bg-white { background-color: var(--color-white); }
+
+  // DESIGN EXCELLENCE: Section overlap modifier
+  // Cards extend beyond section boundary for visual flow
+  &--overlap {
+    margin-bottom: -60px; // Pull next section up
+    padding-bottom: calc(var(--testimonials-padding) + 60px); // Compensate
+
+    @media (min-width: $breakpoint-lg) {
+      margin-bottom: -80px; // More overlap on desktop
+      padding-bottom: calc(var(--testimonials-padding) + 80px);
+    }
+  }
 }
 
 // ============================================================================
@@ -109,6 +126,11 @@
 // ELEMENT: Testimonial Card
 // ============================================================================
 
+/**
+ * DESIGN EXCELLENCE: Card Overlap Effect
+ * Principle: "Overlapping creates layers that make design feel more dynamic"
+ * Featured testimonial card breaks the grid, creating visual hierarchy
+ */
 .c-testimonials__item {
   position: relative; // For floating quote and avatar positioning
   background-color: var(--testimonials-card-bg);
@@ -135,6 +157,37 @@
   &--primary { border-left-color: var(--testimonials-card-border-primary); }
   &--secondary { border-left-color: var(--testimonials-card-border-secondary); }
   &--coral { border-left-color: var(--testimonials-card-border-coral); }
+
+  // DESIGN EXCELLENCE: Featured card that breaks the grid
+  &--featured {
+    @media (min-width: $breakpoint-lg) {
+      // Extend beyond grid column
+      margin-left: -20px;
+      margin-right: -20px;
+      padding: calc(var(--testimonials-card-padding) + 8px);
+
+      // Visual emphasis
+      box-shadow: var(--testimonials-card-shadow-hover),
+                  0 30px 60px -20px rgba($forest-500, 0.15);
+      border-left-width: 6px;
+      z-index: 2;
+
+      // Slight scale for prominence
+      transform: scale(1.02);
+
+      &:hover {
+        transform: scale(1.02) translateY(-4px);
+      }
+    }
+  }
+
+  // DESIGN EXCELLENCE: Staggered overlap effect for grid items
+  // Alternating cards have slight vertical offset for organic feel
+  @media (min-width: $breakpoint-lg) {
+    &:nth-child(even) {
+      margin-top: 24px; // Offset creates visual rhythm
+    }
+  }
 }
 
 // ============================================================================

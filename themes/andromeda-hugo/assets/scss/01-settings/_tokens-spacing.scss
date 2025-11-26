@@ -70,11 +70,23 @@ $breakpoint-xl-max: 1199px;  // Below extra large
 // ----------------------------------
 // Semantic Spacing Mappings
 // ----------------------------------
+// DESIGN EXCELLENCE: Macro White Space for luxury feel
+// Principle: "Large expanse = minimalism, modernity, luxury, emphasis on focal point"
+// Premium sections (hero, CTA) get extra breathing room
+
 // Section padding (vertical)
 $section-padding-y: $space-24;            // 96px (desktop)
 $section-padding-y-mobile: $space-16;     // 64px (mobile)
 $section-padding-y-xlarge: $space-32;     // REDESIGN 2025: 128px (extra generous sections)
 $section-padding-x: 0;                    // Horizontal (handled by container)
+
+// DESIGN EXCELLENCE: Premium section padding (hero, CTA, testimonials)
+$section-padding-hero: 160px;             // Hero sections - maximum impact
+$section-padding-hero-mobile: 80px;       // Hero on mobile
+$section-padding-cta: 140px;              // CTA sections - conversion-critical
+$section-padding-cta-mobile: 72px;        // CTA on mobile
+$section-padding-testimonial: 120px;      // Social proof sections
+$section-padding-testimonial-mobile: 64px; // Testimonials on mobile
 
 // Card padding
 $card-padding: $space-10;                 // REDESIGN 2025: 40px (updated from 16px for heavier cards)

@@ -37,19 +37,20 @@
    ========================================================================== */
 
 .c-hero-breadcrumb {
-  // Redesign 2025: Generous vertical spacing per eval1.md
-  padding: var(--hero-breadcrumb-padding-mobile);
-  background: var(--hero-breadcrumb-bg);
+  // DESIGN EXCELLENCE: Macro White Space for luxury feel
+  // Principle: "Element in sea of nothingness = premium, powerful, unmissable"
+  padding: $section-padding-hero-mobile 0;
+  background: $bg-noise-hero; // DESIGN EXCELLENCE: Noise texture for tactile depth
   position: relative;
   overflow: hidden;
 
   @media (min-width: $breakpoint-lg) {
-    // eval1.md spec: ~120px top, ~140px bottom
-    padding: var(--hero-breadcrumb-padding-desktop);
+    // Premium hero padding (160px) - creates commanding presence
+    padding: $section-padding-hero 0;
   }
 
-  // Redesign 2025: Clean background, no radial gradients
-  // Compass animation provides visual interest
+  // DESIGN EXCELLENCE: Noise texture creates visual interest without distraction
+  // Principle: "Gradient meshes, noise textures" avoid flat solids
 }
 
 /* Container
@@ -108,20 +109,23 @@
    ========================================================================== */
 
 .c-hero-breadcrumb__title {
-  // Redesign 2025: Large hero text with Playfair Display
+  // DESIGN EXCELLENCE: Dramatic hierarchy through scale
+  // Principle: "Hero ≥100px for impact" - we use 80px as balance for this context
+  // Creates tension: tiny kicker (12px) vs massive headline (80px) = 6.7x ratio
   margin-bottom: $space-4; // 32px (eval1.md spec: ~32px gap to body)
-  font-size: 2.5rem !important; // 40px mobile
-  line-height: 1.2; // Tight for impact
-  letter-spacing: -0.02em; // Better kerning for Playfair Display
+  font-size: 2.75rem !important; // 44px mobile (was 40px)
+  line-height: 1.15; // Tighter for impact
+  letter-spacing: -0.025em; // Enhanced kerning for large display
   font-weight: $font-weight-semibold; // Semibold for hero
 
   @media (min-width: $breakpoint-md) {
-    font-size: 3.5rem !important; // 56px tablet
+    font-size: 4rem !important; // 64px tablet (was 56px)
   }
 
   @media (min-width: $breakpoint-lg) {
-    font-size: 3.75rem !important; // 60px desktop (updated per user request)
-    line-height: 1.1; // $leading-display for extra tight hero text
+    font-size: 5rem !important; // 80px desktop (was 60px) - DRAMATIC IMPACT
+    line-height: 1.05; // Extra tight for display scale
+    letter-spacing: -0.03em; // Tighter tracking at large sizes
   }
 }
 
@@ -323,29 +327,54 @@
 /* Quote Box (overlapping image)
    ========================================================================== */
 
+/**
+ * DESIGN EXCELLENCE: Overlapping Elements
+ * Principle: "Overlapping text/images adds dimensionality and natural hierarchy"
+ * Quote box dramatically breaks the grid boundary, creating visual tension
+ */
 .c-hero-breadcrumb__quote-box {
   position: absolute;
-  bottom: -10%; // Overlaps image by 20%
-  left: 10%;
-  right: 10%;
+  bottom: -15%; // Overlaps image significantly
+  left: 5%;
+  right: 5%;
   z-index: 2;
   padding: $space-4; // 32px
   background: var(--hero-breadcrumb-quote-bg);
-  backdrop-filter: blur(12px);
-  border-radius: $border-radius-lg; // 16px
-  box-shadow: var(--hero-breadcrumb-quote-shadow);
+  backdrop-filter: blur(16px);
+  border-radius: $border-radius-xl; // 24px - more prominent
+  box-shadow: var(--hero-breadcrumb-quote-shadow),
+              0 20px 40px -10px rgba($forest-500, 0.15); // Enhanced depth shadow
+  border: 1px solid rgba($cream-200, 0.5);
+
+  // Subtle entrance animation
+  animation: quote-float-in 0.8s $easing-medium backwards;
+  animation-delay: 0.4s;
 
   @media (min-width: $breakpoint-md) {
-    padding: $space-5; // 40px
-    left: 5%;
-    right: 5%;
+    padding: $space-6; // 48px
+    bottom: -20%; // More dramatic overlap on tablet
+    left: 0;
+    right: 0;
   }
 
   @media (min-width: $breakpoint-lg) {
-    bottom: -15%; // More overlap on desktop
-    left: -10%; // Extend beyond image
+    // DESIGN EXCELLENCE: Break the grid boundary
+    bottom: -25%; // Dramatic 25% overlap into next section
+    left: -15%; // Extend 15% beyond image left edge
     right: auto;
-    max-width: 80%;
+    max-width: 85%;
+    padding: $space-8; // 64px - generous padding for premium feel
+  }
+}
+
+@keyframes quote-float-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

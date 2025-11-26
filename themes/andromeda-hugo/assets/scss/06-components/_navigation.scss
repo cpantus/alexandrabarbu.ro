@@ -43,6 +43,8 @@
   position: relative;
   margin: 0;
   padding: 0;
+  // DESIGN EXCELLENCE: Neighborhood awareness - items dim when sibling is hovered
+  transition: opacity $duration-fast $easing-subtle;
 
   // Active state (current page)
   &--active {
@@ -63,6 +65,42 @@
       visibility: visible;
       transform: translateY(0);
       pointer-events: auto;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+  # Neighborhood Awareness (Design Excellence)
+-------------------------------------------------------------------*/
+
+/**
+ * DESIGN EXCELLENCE: Navigation neighborhood awareness
+ * Principle: "Adjacent items dim/shift on hover" - creates focus hierarchy
+ * When hovering one nav item, siblings fade to 70% opacity
+ * The hovered item stays at 100% - draws attention to interaction point
+ */
+.c-navigation__list:hover {
+  // When list is hovered, dim all items
+  .c-navigation__item {
+    opacity: 0.7;
+  }
+
+  // But keep the hovered item fully visible
+  .c-navigation__item:hover {
+    opacity: 1;
+  }
+
+  // Keep active item visible too (current page shouldn't fade)
+  .c-navigation__item--active {
+    opacity: 1;
+  }
+}
+
+// Disable on mobile (touch doesn't have hover semantics)
+@media (max-width: $breakpoint-md - 1) {
+  .c-navigation__list:hover {
+    .c-navigation__item {
+      opacity: 1;
     }
   }
 }
@@ -104,8 +142,9 @@
     text-decoration: none;
   }
 
-  // Focus state (keyboard navigation) - smooth animation instead of outline
-  &:focus {
+  // Focus state (keyboard navigation only) - smooth animation instead of outline
+  // Use :focus-visible to only trigger on keyboard, not mouse clicks
+  &:focus-visible {
     outline: none;
     animation: focusGlow 0.3s ease-in-out;
   }
@@ -117,11 +156,6 @@
     50% {
       box-shadow: 0 0 0 4px var(--nav-focus-glow-color);
     }
-  }
-
-  // Active (pressed) state
-  &:active {
-    transform: translateY(1px);
   }
 
   // Dropdown variant
@@ -153,15 +187,9 @@
     transition: var(--nav-link-underline-transition);
   }
 
-  // Show underline on parent link hover/focus
+  // Show underline ONLY on hover/focus - not for active page
   .c-navigation__link:hover &::after,
   .c-navigation__link:focus &::after {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-
-  // Show underline on active page
-  .c-navigation__item--active .c-navigation__link &::after {
     opacity: 1;
     transform: scaleX(1);
   }
@@ -275,8 +303,9 @@
     text-decoration: none;
   }
 
-  // Focus state (keyboard navigation) - smooth animation instead of outline
-  &:focus {
+  // Focus state (keyboard navigation only) - smooth animation instead of outline
+  // Use :focus-visible to only trigger on keyboard, not mouse clicks
+  &:focus-visible {
     outline: none;
     animation: focusGlow 0.3s ease-in-out;
   }

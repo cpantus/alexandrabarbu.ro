@@ -204,6 +204,56 @@
 }
 
 // =============================================================================
+// STAGGERED SCROLL REVEALS (Design Excellence)
+// =============================================================================
+
+/**
+ * DESIGN EXCELLENCE: Staggered fade-ups for card grids
+ * Principle: "Staggered fade-ups (50-100ms delays)" - creates rhythm and flow
+ * Cards animate in sequence, drawing eye through the content
+ */
+
+// Base stagger animation class
+.u-stagger-reveal {
+  opacity: 0;
+  animation: fade-in-up $duration-normal $easing-medium forwards;
+
+  // Progressive delays (100ms × index) for up to 12 items
+  @for $i from 1 through 12 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{($i - 1) * 100}ms;
+    }
+  }
+}
+
+// Faster stagger variant (50ms delays)
+.u-stagger-reveal--fast {
+  opacity: 0;
+  animation: fade-in-up $duration-fast $easing-medium forwards;
+
+  @for $i from 1 through 12 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{($i - 1) * 50}ms;
+    }
+  }
+}
+
+// Apply stagger to card grids automatically
+.c-card-grid--stagger,
+.c-card-grid[data-stagger] {
+  > .c-card {
+    opacity: 0;
+    animation: fade-in-up $duration-normal $easing-medium forwards;
+
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{($i - 1) * 100}ms;
+      }
+    }
+  }
+}
+
+// =============================================================================
 // USAGE NOTES
 // =============================================================================
 //
@@ -219,5 +269,10 @@
 // General-Purpose Animations (included here):
 // All animations that can be reused across multiple components are centralized
 // in this file for maintainability and consistency.
+//
+// Design Excellence Additions:
+// - .u-stagger-reveal - Progressive fade-in-up with 100ms delays
+// - .u-stagger-reveal--fast - Progressive fade-in-up with 50ms delays
+// - .c-card-grid--stagger - Auto-stagger for card grids
 //
 // =============================================================================

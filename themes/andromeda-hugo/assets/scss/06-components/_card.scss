@@ -344,6 +344,51 @@
 }
 
 /*------------------------------------------------------------------
+  # Card Hover Spotlight (Design Excellence)
+-------------------------------------------------------------------*/
+
+/**
+ * DESIGN EXCELLENCE: Card hover spotlight effect
+ * Principle: "Hovered card gets spotlight, neighbors dim (opacity: 0.85)"
+ * Creates hierarchy through contrast - focused card stands out
+ */
+.c-card-grid:hover,
+.c-card-grid--3col:hover,
+.c-card-grid--4col:hover {
+  // When grid is hovered, dim all cards
+  .c-card {
+    opacity: 0.75;
+    transform: scale(0.98);
+  }
+
+  // But spotlight the hovered card
+  .c-card:hover {
+    opacity: 1;
+    transform: translateY($hover-lift-md) scale(1);
+    z-index: 2;
+  }
+}
+
+// Card transition for smooth spotlight effect
+.c-card {
+  transition: opacity $duration-base $easing-medium,
+              transform $duration-base $easing-medium,
+              box-shadow $duration-slow $easing-medium;
+}
+
+// Disable spotlight on mobile (touch doesn't have hover semantics)
+@media (max-width: $breakpoint-md - 1) {
+  .c-card-grid:hover,
+  .c-card-grid--3col:hover,
+  .c-card-grid--4col:hover {
+    .c-card {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
   # Card Grid Layouts (Object-like, but card-specific)
 -------------------------------------------------------------------*/
 

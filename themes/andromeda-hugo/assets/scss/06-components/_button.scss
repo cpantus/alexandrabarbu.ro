@@ -436,7 +436,9 @@
 -------------------------------------------------------------------*/
 
 /**
- * Slide-right icon animation on hover
+ * DESIGN EXCELLENCE: Arrow slide-replace microinteraction
+ * Principle: "Hero CTA: arrow slide (NEVER opacity)" - creates momentum
+ * The arrow slides out right and new arrow slides in from left
  */
 .c-button:hover {
   [data-icon-animate="slide-right"] {
@@ -451,6 +453,52 @@
   }
   50% {
     transform: translateX(4px);
+  }
+}
+
+/**
+ * Arrow slide-replace effect for primary CTAs
+ * Creates a "pushing forward" momentum feel
+ * Targets direct child icons (i tags with line-awesome classes)
+ */
+.c-button--primary,
+.c-button--secondary {
+  // Arrow/chevron/angle icons get the slide animation
+  .c-button__icon,
+  > i[class*="la-arrow"],
+  > i[class*="la-chevron"],
+  > i[class*="la-angle"] {
+    display: inline-flex;
+    transition: transform $duration-base $easing-strong;
+  }
+
+  &:hover {
+    .c-button__icon,
+    > i[class*="la-arrow"],
+    > i[class*="la-chevron"],
+    > i[class*="la-angle"] {
+      animation: arrow-slide-replace $duration-base $easing-strong;
+    }
+  }
+}
+
+// Arrow slide-replace: slides out right, returns from left (creates momentum)
+@keyframes arrow-slide-replace {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translateX(8px);
+    opacity: 0;
+  }
+  41% {
+    transform: translateX(-8px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 
