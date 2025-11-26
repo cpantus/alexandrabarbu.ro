@@ -44,6 +44,7 @@
 @import 'stat-card';               // ✅ Phase 3: BEM refactored - animated stat display with 4 variants + 3 sizes
 @import 'blog-card';               // ✅ Phase 3: BEM refactored - blog/article card with 4 variants + metadata + hover
 @import 'article';                 // ✅ 2025-11-26: Article content styles - callouts, blockquotes, enhanced typography
+@import 'callout';                 // ✅ 2025-11-26: Unified callout/notice/blockquote system (Redesign 2025)
 @import 'back-to-top';             // ✅ Phase 3: BEM refactored - floating scroll-to-top button with 4 variants + auto-show
 @import 'cookie-consent';          // ✅ Phase 3: BEM refactored - GDPR cookie banner with 4 variants + localStorage
 @import 'emergency-banner';        // ✅ Phase 3: BEM refactored - crisis resources banner with 4 variants + sessionStorage

@@ -1,0 +1,987 @@
+// ==================================
+// COMPONENT: Callout (Redesign 2025)
+// ==================================
+//
+// Purpose: Unified callout/notice/blockquote system matching theme design language
+// BEM: .c-callout, .c-blockquote
+//
+// Design Principles (Redesign 2025):
+// - Heavy rounded corners (16-24px) for friendly feel
+// - Icon blob integration with gradient backgrounds
+// - Forest/Sage/Gold/Cream color palette
+// - Subtle shadows and hover effects
+// - Glassmorphism for premium variants
+//
+// Variants:
+// - info (teal) - General information
+// - tip/success (sage) - Helpful tips, success messages
+// - warning (gold/amber) - Caution/attention
+// - important/danger (coral) - Critical/error info
+// - note/clinical (forest) - Professional notes
+// - example (gold) - Code/practical examples
+// - quote (default blockquote style)
+//
+// Version: 1.0.0
+// Created: 2025-11-26
+//
+
+// ==================================
+// CALLOUT BASE
+// ==================================
+
+.c-callout {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  padding-left: 4rem;
+  border-radius: 16px;
+  background: $color-cream-50;
+  border: 1px solid $color-border-redesign-light;
+  box-shadow: 0 2px 8px rgba($color-forest-900, 0.04);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+  // Hover effect (subtle lift)
+  &:hover {
+    box-shadow: 0 4px 16px rgba($color-forest-900, 0.08);
+    transform: translateY(-1px);
+  }
+
+  // Icon container (circular with gradient)
+  &__icon {
+    position: absolute;
+    left: 1.25rem;
+    top: 1.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.125rem;
+    color: $color-white;
+
+    // Default gradient (info)
+    background: linear-gradient(135deg, $color-info-500, $color-info-600);
+
+    // Icon shadow for depth
+    box-shadow: 0 2px 6px rgba($color-forest-900, 0.15);
+
+    // SVG icon styling
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      fill: currentColor;
+    }
+
+    // Line Awesome icon styling
+    i {
+      font-size: 1.125rem;
+      line-height: 1;
+    }
+  }
+
+  // Title (optional)
+  &__title {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: $font-heading;
+    font-size: 1rem;
+    font-weight: 700;
+    color: $color-forest-700;
+  }
+
+  // Content
+  &__content {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: $color-text-secondary;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    // Links within callouts
+    a {
+      color: inherit;
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-color: currentColor;
+      text-underline-offset: 2px;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    // Lists
+    ul, ol {
+      margin: 0.75rem 0 0;
+      padding-left: 1.25rem;
+
+      li {
+        margin-bottom: 0.375rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    // Code within callouts
+    code {
+      padding: 0.125rem 0.375rem;
+      background: rgba($color-forest-500, 0.1);
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+  }
+
+  // ----------------------------------
+  // VARIANT: Info (Teal) - Default
+  // ----------------------------------
+  &--info,
+  &:not([class*="--"]) {
+    background: linear-gradient(135deg, $color-info-50, rgba($color-info-100, 0.3));
+    border-color: $color-info-200;
+
+    .c-callout__icon {
+      background: linear-gradient(135deg, $color-info-500, $color-info-600);
+    }
+
+    .c-callout__title {
+      color: $color-info-700;
+    }
+
+    .c-callout__content {
+      color: $color-info-900;
+
+      a {
+        color: $color-info-600;
+      }
+    }
+  }
+
+  // ----------------------------------
+  // VARIANT: Tip/Success (Sage)
+  // ----------------------------------
+  &--tip,
+  &--success {
+    background: linear-gradient(135deg, $color-sage-50, rgba($color-sage-100, 0.4));
+    border-color: $color-sage-200;
+
+    .c-callout__icon {
+      background: linear-gradient(135deg, $color-sage-500, $color-sage-600);
+    }
+
+    .c-callout__title {
+      color: $color-sage-700;
+    }
+
+    .c-callout__content {
+      color: $color-sage-900;
+
+      a {
+        color: $color-sage-600;
+      }
+    }
+  }
+
+  // ----------------------------------
+  // VARIANT: Warning (Gold/Amber)
+  // ----------------------------------
+  &--warning {
+    background: linear-gradient(135deg, $color-warning-50, rgba($color-warning-100, 0.3));
+    border-color: $color-warning-200;
+
+    .c-callout__icon {
+      background: linear-gradient(135deg, $color-warning-500, $color-warning-600);
+    }
+
+    .c-callout__title {
+      color: $color-warning-700;
+    }
+
+    .c-callout__content {
+      color: $color-warning-900;
+
+      a {
+        color: $color-warning-600;
+      }
+    }
+  }
+
+  // ----------------------------------
+  // VARIANT: Important/Danger (Coral)
+  // ----------------------------------
+  &--important,
+  &--danger {
+    background: linear-gradient(135deg, $color-error-50, rgba($color-error-100, 0.3));
+    border-color: $color-error-200;
+
+    .c-callout__icon {
+      background: linear-gradient(135deg, $color-error-500, $color-error-600);
+    }
+
+    .c-callout__title {
+      color: $color-error-700;
+    }
+
+    .c-callout__content {
+      color: $color-error-900;
+
+      a {
+        color: $color-error-600;
+      }
+    }
+  }
+
+  // ----------------------------------
+  // VARIANT: Note/Clinical (Forest)
+  // ----------------------------------
+  &--note,
+  &--clinical {
+    background: linear-gradient(135deg, $color-forest-50, rgba($color-forest-100, 0.4));
+    border-color: $color-forest-200;
+
+    .c-callout__icon {
+      background: linear-gradient(135deg, $color-forest-500, $color-forest-600);
+    }
+
+    .c-callout__title {
+      color: $color-forest-700;
+    }
+
+    .c-callout__content {
+      color: $color-forest-900;
+
+      a {
+        color: $color-forest-500;
+      }
+    }
+  }
+
+  // ----------------------------------
+  // VARIANT: Example (Gold)
+  // ----------------------------------
+  &--example {
+    background: linear-gradient(135deg, $color-gold-50, rgba($color-gold-100, 0.4));
+    border-color: $color-gold-200;
+
+    .c-callout__icon {
+      background: linear-gradient(135deg, $color-gold-500, $color-gold-600);
+    }
+
+    .c-callout__title {
+      color: $color-gold-700;
+    }
+
+    .c-callout__content {
+      color: $color-gold-900;
+
+      a {
+        color: $color-gold-600;
+      }
+
+      // Example code blocks have darker bg
+      code {
+        background: rgba($color-gold-600, 0.15);
+      }
+    }
+  }
+
+  // ----------------------------------
+  // MODIFIER: Large (more prominent)
+  // ----------------------------------
+  &--lg {
+    padding: 2rem;
+    padding-left: 5rem;
+    border-radius: 20px;
+
+    .c-callout__icon {
+      width: 3rem;
+      height: 3rem;
+      left: 1.5rem;
+      top: 1.5rem;
+      font-size: 1.25rem;
+    }
+
+    .c-callout__title {
+      font-size: 1.125rem;
+    }
+
+    .c-callout__content {
+      font-size: 1rem;
+    }
+  }
+
+  // ----------------------------------
+  // MODIFIER: Glass (premium feel)
+  // ----------------------------------
+  &--glass {
+    @if $enable-glassmorphism {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba($color-white, 0.7);
+      border-color: rgba($color-white, 0.5);
+    }
+  }
+
+  // ----------------------------------
+  // MODIFIER: No Icon (compact)
+  // ----------------------------------
+  &--no-icon {
+    padding-left: 1.5rem;
+
+    .c-callout__icon {
+      display: none;
+    }
+  }
+}
+
+// ==================================
+// BLOCKQUOTE (Enhanced Quote Style)
+// ==================================
+
+.c-blockquote {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.5rem 2rem;
+  padding-left: 3rem;
+  background: linear-gradient(135deg, $color-cream-100, $color-cream-50);
+  border-radius: 0 20px 20px 0;
+  border-left: 4px solid $color-gold-500;
+  box-shadow: 0 2px 12px rgba($color-forest-900, 0.06);
+
+  // Large quote mark
+  &::before {
+    content: '\201C'; // Opening curly quote
+    position: absolute;
+    top: 0.5rem;
+    left: 0.75rem;
+    font-family: Georgia, serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: $color-gold-300;
+    opacity: 0.6;
+  }
+
+  // Quote text
+  &__text {
+    position: relative;
+    font-family: $font-heading;
+    font-size: 1.125rem;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.6;
+    color: $color-forest-700;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  // Attribution / Citation
+  &__cite {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-family: $font-body;
+    font-size: 0.875rem;
+    font-style: normal;
+    color: $color-sage-600;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: $color-gold-400;
+    }
+  }
+
+  // ----------------------------------
+  // VARIANT: Featured (larger, centered)
+  // ----------------------------------
+  &--featured {
+    padding: 2.5rem 3rem;
+    text-align: center;
+    border-left: none;
+    border-radius: 24px;
+    background: linear-gradient(135deg, $color-sage-50, $color-cream-100);
+    border: 2px solid $color-sage-200;
+
+    &::before {
+      position: static;
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 4rem;
+      color: $color-sage-300;
+    }
+
+    .c-blockquote__text {
+      font-size: 1.375rem;
+
+      @media (min-width: 768px) {
+        font-size: 1.5rem;
+      }
+    }
+
+    .c-blockquote__cite {
+      justify-content: center;
+      margin-top: 1.25rem;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  // ----------------------------------
+  // VARIANT: Testimonial style
+  // ----------------------------------
+  &--testimonial {
+    padding: 2rem;
+    background: $color-white;
+    border-left: 4px solid $color-forest-500;
+    border-radius: 0 16px 16px 0;
+
+    &::before {
+      color: $color-forest-200;
+    }
+
+    .c-blockquote__text {
+      font-style: normal;
+      font-weight: 400;
+      font-family: $font-body;
+      font-size: 1rem;
+      color: $color-text-primary;
+    }
+
+    .c-blockquote__cite {
+      color: $color-forest-600;
+      font-weight: 600;
+
+      &::before {
+        background: $color-forest-300;
+      }
+    }
+  }
+}
+
+// ==================================
+// PULL QUOTE (Large emphasis)
+// ==================================
+
+.c-pullquote {
+  margin: 3rem 0;
+  padding: 2rem 1rem;
+  text-align: center;
+  border-top: 2px solid $color-sage-200;
+  border-bottom: 2px solid $color-sage-200;
+
+  &__text {
+    font-family: $font-heading;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: $color-forest-600;
+
+    @media (min-width: 768px) {
+      font-size: 1.75rem;
+      padding: 0 2rem;
+    }
+  }
+
+  &__cite {
+    margin-top: 1rem;
+    font-size: 0.9375rem;
+    color: $color-sage-600;
+
+    &::before {
+      content: '— ';
+    }
+  }
+}
+
+// ==================================
+// LEGACY CLASS MAPPINGS
+// ==================================
+// Support for existing .notice classes in content
+
+.notice {
+  @extend .c-callout;
+
+  // Map variant classes
+  &-info,
+  &.info {
+    @extend .c-callout--info;
+  }
+
+  &-tip,
+  &.tip,
+  &-success,
+  &.success {
+    @extend .c-callout--tip;
+  }
+
+  &-warning,
+  &.warning {
+    @extend .c-callout--warning;
+  }
+
+  &-important,
+  &.important,
+  &-danger,
+  &.danger {
+    @extend .c-callout--important;
+  }
+
+  &-note,
+  &.note,
+  &-clinical,
+  &.clinical {
+    @extend .c-callout--note;
+  }
+
+  &-example,
+  &.example {
+    @extend .c-callout--example;
+  }
+}
+
+// Base blockquote override
+blockquote:not(.c-blockquote):not(.c-pullquote) {
+  @extend .c-blockquote;
+
+  // Nested paragraph becomes quote text
+  p {
+    @extend .c-blockquote__text;
+  }
+
+  // Footer/cite becomes attribution
+  footer,
+  cite {
+    @extend .c-blockquote__cite;
+  }
+}
+
+// ==================================
+// RESPONSIVE ADJUSTMENTS
+// ==================================
+
+@media (max-width: 767px) {
+  .c-callout {
+    padding: 1.25rem;
+    padding-left: 3.5rem;
+    border-radius: 12px;
+
+    &__icon {
+      width: 2rem;
+      height: 2rem;
+      left: 1rem;
+      top: 1rem;
+      font-size: 1rem;
+    }
+
+    &__title {
+      font-size: 0.9375rem;
+    }
+
+    &__content {
+      font-size: 0.875rem;
+    }
+
+    &--lg {
+      padding: 1.5rem;
+      padding-left: 4rem;
+      border-radius: 14px;
+
+      .c-callout__icon {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+    }
+  }
+
+  .c-blockquote {
+    padding: 1.25rem 1.5rem;
+    padding-left: 2.5rem;
+    border-radius: 0 14px 14px 0;
+
+    &::before {
+      font-size: 2.5rem;
+      left: 0.5rem;
+    }
+
+    &__text {
+      font-size: 1rem;
+    }
+
+    &--featured {
+      padding: 1.5rem;
+
+      &::before {
+        font-size: 3rem;
+      }
+
+      .c-blockquote__text {
+        font-size: 1.125rem;
+      }
+    }
+  }
+
+  .c-pullquote {
+    margin: 2rem 0;
+    padding: 1.5rem 0.5rem;
+
+    &__text {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+// ==================================
+// HIGHLIGHT BOX (Key Takeaways)
+// ==================================
+
+.c-highlight {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, $color-sage-50, $color-forest-50);
+  border: 2px solid $color-sage-200;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba($color-forest-900, 0.04);
+
+  &__title {
+    margin-bottom: 0.75rem;
+    font-family: $font-heading;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: $color-forest-700;
+  }
+
+  &__content {
+    color: $color-forest-800;
+    line-height: 1.65;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul, ol {
+      margin-bottom: 0;
+      padding-left: 1.25rem;
+    }
+  }
+}
+
+// Legacy alias
+.highlight-box {
+  @extend .c-highlight;
+}
+
+// ==================================
+// EXERCISE BOX (Practical Activities)
+// ==================================
+
+.c-exercise {
+  margin: 2rem 0;
+  padding: 0;
+  background: $color-cream-50;
+  border: 1px solid $color-border-redesign-medium;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba($color-forest-900, 0.04);
+
+  &__header {
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, $color-forest-500, $color-sage-500);
+    color: $color-white;
+
+    h4 {
+      margin: 0;
+      font-family: $font-heading;
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 1.25rem;
+        height: 1.25rem;
+        background: rgba($color-white, 0.2);
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &__content {
+    padding: 1.5rem;
+
+    ol, ul {
+      margin-bottom: 0;
+      padding-left: 1.25rem;
+
+      li {
+        margin-bottom: 0.75rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Legacy alias
+.exercise-box {
+  @extend .c-exercise;
+}
+
+// ==================================
+// KEY FACT BOX (Statistics/Data)
+// ==================================
+
+.c-key-fact {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: $color-cream-50;
+  border: 1px solid $color-border-redesign-light;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba($color-forest-900, 0.04);
+
+  &__icon {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, $color-forest-100, $color-sage-100);
+    border-radius: 50%;
+    color: $color-forest-600;
+    font-size: 1.125rem;
+  }
+
+  &__content {
+    flex: 1;
+
+    strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: $color-forest-700;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.9375rem;
+      color: $color-text-secondary;
+      line-height: 1.5;
+    }
+  }
+}
+
+// Legacy alias
+.key-fact-box {
+  @extend .c-key-fact;
+}
+
+// ==================================
+// STEP-BY-STEP INSTRUCTIONS
+// ==================================
+
+.c-steps {
+  counter-reset: step-counter;
+  margin: 1.5rem 0;
+  padding: 0;
+  list-style: none;
+
+  &__item {
+    position: relative;
+    margin-bottom: 1.25rem;
+    padding-left: 3.5rem;
+    min-height: 2.5rem;
+
+    &::before {
+      counter-increment: step-counter;
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2.25rem;
+      height: 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, $color-forest-500, $color-sage-500);
+      border-radius: 50%;
+      color: $color-white;
+      font-weight: 700;
+      font-size: 0.875rem;
+      box-shadow: 0 2px 6px rgba($color-forest-900, 0.15);
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Connector line between steps
+  &--connected {
+    .c-steps__item {
+      &::after {
+        content: '';
+        position: absolute;
+        left: 1.0625rem;
+        top: 2.5rem;
+        width: 2px;
+        height: calc(100% - 0.5rem);
+        background: linear-gradient(to bottom, $color-sage-300, $color-sage-100);
+      }
+
+      &:last-child::after {
+        display: none;
+      }
+    }
+  }
+}
+
+// ==================================
+// DEFINITION LIST
+// ==================================
+
+dl.c-definitions,
+.c-article dl {
+  margin: 1.5rem 0;
+
+  dt {
+    margin-top: 1.25rem;
+    padding-bottom: 0.375rem;
+    font-weight: 700;
+    color: $color-forest-700;
+    border-bottom: 2px solid $color-sage-200;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  dd {
+    margin: 0.5rem 0 0 1.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid $color-sage-200;
+    color: $color-text-secondary;
+  }
+}
+
+// ==================================
+// ARTICLE META INFO
+// ==================================
+
+.c-article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid $color-border-redesign-light;
+  font-size: 0.875rem;
+  color: $color-text-secondary;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+
+    i, svg {
+      color: $color-sage-500;
+    }
+  }
+}
+
+// ==================================
+// DISCLAIMER / FOOTER NOTE
+// ==================================
+
+.c-article-disclaimer {
+  display: block;
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, $color-cream-100, $color-cream-50);
+  border: 1px solid $color-border-redesign-light;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-style: italic;
+  color: $color-text-secondary;
+  line-height: 1.65;
+}
+
+// ==================================
+// REDUCED MOTION
+// ==================================
+
+@media (prefers-reduced-motion: reduce) {
+  .c-callout {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// ==================================
+// RESPONSIVE ADJUSTMENTS (Additional)
+// ==================================
+
+@media (max-width: 767px) {
+  .c-highlight {
+    padding: 1.25rem;
+    border-radius: 14px;
+  }
+
+  .c-exercise {
+    border-radius: 14px;
+
+    &__header {
+      padding: 0.875rem 1.25rem;
+    }
+
+    &__content {
+      padding: 1.25rem;
+    }
+  }
+
+  .c-key-fact {
+    padding: 1rem;
+    border-radius: 12px;
+
+    &__icon {
+      width: 2rem;
+      height: 2rem;
+      font-size: 1rem;
+    }
+  }
+
+  .c-steps__item {
+    padding-left: 3rem;
+
+    &::before {
+      width: 2rem;
+      height: 2rem;
+      font-size: 0.8125rem;
+    }
+  }
+}
