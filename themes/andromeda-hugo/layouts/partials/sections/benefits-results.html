@@ -97,10 +97,11 @@
     {{- end -}}
 
     {{/* Benefits Grid */}}
+    {{/* DESIGN EXCELLENCE 2.1 + 2.2: Card Spotlight + Staggered Reveals */}}
     {{- if $data.items -}}
-    <div class="c-benefits-results__grid">
+    <div class="c-benefits-results__grid c-card-grid c-card-grid--stagger">
       {{- range $index, $item := $data.items -}}
-        <div class="c-benefits-results__item" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+        <div class="c-benefits-results__item c-card">
 
           {{/* Benefit Icon */}}
           {{- if $item.icon -}}

@@ -119,10 +119,12 @@
     {{- end -}}
 
     {{/* Services Grid */}}
+    {{/* DESIGN EXCELLENCE 2.1 + 2.2: Card Spotlight + Staggered Reveals */}}
+    {{/* c-card-grid enables neighbor dimming on hover, --stagger adds entrance animation */}}
     {{- if $data.services -}}
-    <div class="c-services-preview__grid">
+    <div class="c-services-preview__grid c-card-grid c-card-grid--3col c-card-grid--stagger">
       {{- range $index, $service := $data.services -}}
-        <div class="c-services-preview__card" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+        <div class="c-services-preview__card c-card">
 
           {{/* Service Icon with Blob Background (Redesign 2025) */}}
           {{- if $service.icon -}}

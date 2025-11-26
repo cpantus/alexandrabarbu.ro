@@ -389,6 +389,59 @@
 }
 
 /*------------------------------------------------------------------
+  # Staggered Scroll Reveals (Design Excellence 2.2)
+-------------------------------------------------------------------*/
+
+/**
+ * DESIGN EXCELLENCE 2.2: Staggered Scroll Reveals
+ * Cards animate in sequence when grid scrolls into viewport
+ * Usage: Add .c-card-grid--stagger to grid container
+ *
+ * Behavior:
+ * - Cards start invisible (opacity: 0, translated down)
+ * - JS adds .is-visible when grid enters viewport (IntersectionObserver)
+ * - Animation triggers with staggered delays (100ms between cards)
+ *
+ * Limit: First 8 cards get unique delays, 9+ share 700ms delay
+ */
+.c-card-grid--stagger {
+  // Cards start hidden, waiting for scroll trigger
+  > * {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity $duration-base $easing-medium,
+                transform $duration-base $easing-medium;
+  }
+
+  // When grid becomes visible (JS adds this class)
+  &.is-visible > * {
+    opacity: 1;
+    transform: translateY(0);
+
+    // Stagger delays (100ms increments, capped at 8 cards)
+    @for $i from 1 through 8 {
+      &:nth-child(#{$i}) {
+        transition-delay: #{($i - 1) * 100}ms;
+      }
+    }
+
+    // Cards 9+ get same delay as card 8
+    &:nth-child(n+9) {
+      transition-delay: 700ms;
+    }
+  }
+
+  // Reduced motion: instant reveal, no animation
+  @media (prefers-reduced-motion: reduce) {
+    > * {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
   # Card Grid Layouts (Object-like, but card-specific)
 -------------------------------------------------------------------*/
 

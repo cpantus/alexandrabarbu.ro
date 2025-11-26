@@ -157,37 +157,6 @@
   &--primary { border-left-color: var(--testimonials-card-border-primary); }
   &--secondary { border-left-color: var(--testimonials-card-border-secondary); }
   &--coral { border-left-color: var(--testimonials-card-border-coral); }
-
-  // DESIGN EXCELLENCE: Featured card that breaks the grid
-  &--featured {
-    @media (min-width: $breakpoint-lg) {
-      // Extend beyond grid column
-      margin-left: -20px;
-      margin-right: -20px;
-      padding: calc(var(--testimonials-card-padding) + 8px);
-
-      // Visual emphasis
-      box-shadow: var(--testimonials-card-shadow-hover),
-                  0 30px 60px -20px rgba($forest-500, 0.15);
-      border-left-width: 6px;
-      z-index: 2;
-
-      // Slight scale for prominence
-      transform: scale(1.02);
-
-      &:hover {
-        transform: scale(1.02) translateY(-4px);
-      }
-    }
-  }
-
-  // DESIGN EXCELLENCE: Staggered overlap effect for grid items
-  // Alternating cards have slight vertical offset for organic feel
-  @media (min-width: $breakpoint-lg) {
-    &:nth-child(even) {
-      margin-top: 24px; // Offset creates visual rhythm
-    }
-  }
 }
 
 // ============================================================================
