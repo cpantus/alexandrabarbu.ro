@@ -1,124 +1,123 @@
-{{/*
-  Testimonials Enhanced Section - White Cards with Design Excellence Features
-
-  Usage:
-    sections:
-      - type: "testimonials-enhanced"
-
-    testimonials_enhanced:
-      title: "What Clients Say"
-      subtitle: "Real stories from our community"
-      testimonials:
-        - quote: "Therapy helped me understand my patterns..."
-          name: "Maria S."
-          role: "Individual Therapy Client"
-          featured: true
-        - quote: "I learned tools to manage anxiety..."
-          name: "Alexandru P."
-          role: "CBT Program Participant"
-
-  BEM Structure:
-    .c-testimonials                    Block
-    .c-testimonials__header            Element: section header
-    .c-testimonials__grid              Element: testimonials grid
-    .c-testimonials__item              Element: single testimonial card
-    .c-testimonials__item--primary     Modifier: primary border color
-    .c-testimonials__avatar            Element: avatar circle
-    .c-testimonials__quote             Element: quote text
-    .c-testimonials__author            Element: author info
-
-  Version: 4.0.0 (Design Excellence)
-  Last Updated: 2025-11-26
-*/}}
-
-{{- /* Parameter extraction - support both data keys */ -}}
+{{/* Enhanced Testimonials Section - Display client testimonials with verification and details */}}
 {{- $section := .Params.testimonials_enhanced -}}
-{{- if not $section -}}
-  {{- $section = .Params.testimonials_section -}}
-{{- end -}}
-{{- if not $section -}}
-  {{- return -}}
-{{- end -}}
 
-{{- $title := $section.title | default "" -}}
-{{- $subtitle := $section.subtitle | default "" -}}
-{{- $testimonials := $section.testimonials | default slice -}}
+{{- with $section -}}
+  {{- if .enable -}}
+    <section class="section testimonials-enhanced {{ if .background }}bg-{{ .background }}{{ else }}bg-light{{ end }}">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            {{- if or .subtitle .title .description -}}
+              <div class="section-title text-center mb-5" data-aos="fade-up">
+                {{- if .subtitle -}}
+                  <p class="subtitle text-muted">{{ .subtitle | markdownify }}</p>
+                {{- end -}}
+                {{- if .title -}}
+                  {{ partial "atoms/heading.html" (dict
+                    "text" .title
+                    "level" 2
+                    "class" "title mb-3"
+                  ) }}
+                {{- end -}}
+                {{- if .description -}}
+                  <p class="lead text-muted">{{ .description | markdownify }}</p>
+                {{- end -}}
+              </div>
+            {{- end -}}
 
-{{- if not $testimonials -}}
-  {{- return -}}
-{{- end -}}
+            <div class="testimonials-grid row g-4">
+              {{- range $index, $testimonial := .testimonials -}}
+                {{- $colorVariants := slice "primary" "secondary" "coral" -}}
+                {{- $colorVariant := index $colorVariants (mod $index 3) -}}
+                <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+                  <div class="card card-v4 card-gradient-border card-gradient-border-{{ $colorVariant }} h-100">
+                    <div class="card-body">
+                    {{/* Rating stars */}}
+                    {{- if .rating -}}
+                      <div class="testimonial-rating mb-3">
+                        {{- range seq .rating -}}
+                          {{ partial "atoms/icon.html" (dict "name" "star" "class" "text-warning") }}
+                        {{- end -}}
+                        {{- if lt .rating 5 -}}
+                          {{- range seq (sub 5 .rating) -}}
+                            {{ partial "atoms/icon.html" (dict "name" "star" "class" "text-muted opacity-25") }}
+                          {{- end -}}
+                        {{- end -}}
+                      </div>
+                    {{- end -}}
 
-{{- /* Color variants for border rotation */ -}}
-{{- $borderColors := slice "primary" "secondary" "coral" -}}
+                    {{/* Quote */}}
+                    {{- if .quote -}}
+                      <blockquote class="testimonial-quote mb-4">
+                        <p class="mb-0 fst-italic">"{{ .quote }}"</p>
+                      </blockquote>
+                    {{- end -}}
 
-<section class="c-testimonials">
-  <div class="o-container">
+                    {{/* Client details */}}
+                    <div class="testimonial-author d-flex align-items-start">
+                      <div class="author-info flex-grow-1">
+                        {{- if .name -}}
+                          <p class="author-name fw-semibold mb-1">{{ .name }}</p>
+                        {{- end -}}
 
-    {{- /* Section Header */ -}}
-    {{- if or $title $subtitle -}}
-    <div class="c-testimonials__header">
-      {{- if $subtitle -}}
-        <p class="c-testimonials__subtitle">{{ $subtitle }}</p>
-      {{- end -}}
-      {{- if $title -}}
-        {{ partial "atoms/heading.html" (dict
-          "text" $title
-          "level" 2
-          "class" "c-testimonials__title"
-        ) }}
-      {{- end -}}
-    </div>
-    {{- end -}}
+                        <div class="author-meta small text-muted">
+                          {{- if .age_range -}}
+                            <span class="me-2">{{ .age_range }}</span>
+                          {{- end -}}
+                          {{- if .therapy_type -}}
+                            <span class="d-block">{{ .therapy_type }}</span>
+                          {{- end -}}
+                          {{- if .duration -}}
+                            <span class="d-block">{{ .duration }}</span>
+                          {{- end -}}
+                        </div>
+                      </div>
 
-    {{- /* Testimonials Grid */ -}}
-    {{- /* Design Excellence 3.2: nth-child(even) gets 24px offset via CSS */ -}}
-    <div class="c-testimonials__grid">
-      {{- range $index, $testimonial := $testimonials -}}
-        {{- /* Rotate border colors: primary → secondary → coral */ -}}
-        {{- $colorIndex := mod $index 3 -}}
-        {{- $borderColor := index $borderColors $colorIndex -}}
+                      {{/* Verification badge */}}
+                      {{- if .verified -}}
+                        <div class="verification-badge ms-2" title="Verified client">
+                          {{ partial "atoms/icon.html" (dict "name" "shield-check" "class" "text-success") }}
+                        </div>
+                      {{- end -}}
+                    </div>
 
-        <div class="c-testimonials__item c-testimonials__item--{{ $borderColor }}">
-          {{- /* Floating Quote Mark */ -}}
-          <span class="c-testimonials__floating-quote">"</span>
-
-          {{- /* Avatar Circle with Initials */ -}}
-          {{- if $testimonial.name -}}
-            {{- $initials := substr $testimonial.name 0 2 -}}
-            <div class="c-testimonials__avatar c-testimonials__avatar--{{ $borderColor }}">
-              <span>{{ upper $initials }}</span>
+                    {{/* Therapy outcome (optional) */}}
+                    {{- if .outcome -}}
+                      <div class="testimonial-outcome mt-3 pt-3 border-top">
+                        <p class="small text-muted mb-0">
+                          {{ partial "atoms/icon.html" (dict "name" "check-circle" "class" "text-primary me-1") }}
+                          {{ .outcome }}
+                        </p>
+                      </div>
+                    {{- end -}}
+                    </div>
+                  </div>
+                </div>
+              {{- end -}}
             </div>
-          {{- end -}}
 
-          {{- /* Quote Text */ -}}
-          {{- if $testimonial.quote -}}
-            <blockquote class="c-testimonials__quote">
-              {{ $testimonial.quote }}
-            </blockquote>
-          {{- end -}}
+            {{- if .privacy_note -}}
+              <div class="privacy-note text-center mt-5" data-aos="fade-up">
+                <p class="small text-muted">
+                  {{ partial "atoms/icon.html" (dict "name" "lock" "class" "text-muted me-1") }}
+                  {{ .privacy_note | markdownify }}
+                </p>
+              </div>
+            {{- end -}}
 
-          {{- /* Author Info */ -}}
-          <div class="c-testimonials__author">
-            {{- if $testimonial.name -}}
-              <p class="c-testimonials__name">{{ $testimonial.name }}</p>
-            {{- end -}}
-            {{- if $testimonial.role -}}
-              <p class="c-testimonials__role">{{ $testimonial.role }}</p>
-            {{- end -}}
-            {{- if $testimonial.outcome -}}
-              <p class="c-testimonials__outcome">{{ $testimonial.outcome }}</p>
+            {{- if .cta_button -}}
+              <div class="testimonials-cta text-center mt-4" data-aos="fade-up">
+                {{ partial "atoms/button.html" (dict
+                  "text" .cta_button.text
+                  "url" .cta_button.url
+                  "variant" (.cta_button.variant | default "primary")
+                  "icon" .cta_button.icon
+                ) }}
+              </div>
             {{- end -}}
           </div>
-
-          {{- /* Verified Badge */ -}}
-          {{- if $testimonial.verified -}}
-            <span class="c-testimonials__verified">
-              <i class="las la-check-circle"></i> Verificat
-            </span>
-          {{- end -}}
         </div>
-      {{- end -}}
-    </div>
-
-  </div>
-</section>
+      </div>
+    </section>
+  {{- end -}}
+{{- end -}}

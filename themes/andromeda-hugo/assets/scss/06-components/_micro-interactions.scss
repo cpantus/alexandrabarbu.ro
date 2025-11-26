@@ -88,33 +88,9 @@ $duration-slow: 0.4s;
   }
 }
 
-/**
- * Subtle ripple effect on button click
- * Creates visual feedback for user interaction
- */
-.c-button::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(white, 0.5);
-  transform: translate(-50%, -50%);
-  transition: width $duration-fast $ease-smooth,
-              height $duration-fast $ease-smooth,
-              opacity $duration-fast $ease-smooth;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.c-button:active::after {
-  width: 100%;
-  height: 100%;
-  opacity: 0.3;
-  transition-duration: 0s;
-}
+// REMOVED: Ripple effect caused visual artifacts (dark oval on click)
+// Button feedback is now handled by hover/active background color change only
+// See: _button.scss for hover/active states
 
 /*------------------------------------------------------------------
   # Link Underline Animations

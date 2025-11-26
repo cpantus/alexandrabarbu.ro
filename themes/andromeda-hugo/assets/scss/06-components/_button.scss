@@ -127,11 +127,16 @@
   box-shadow: var(--btn-primary-shadow);
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     background: var(--btn-primary-hover);  // Sage green hover (#6B9080)
     box-shadow: var(--btn-primary-shadow-lg);
     color: var(--btn-primary-text);
+  }
+
+  // Focus should NOT change background color - only show focus ring
+  // This prevents button staying sage after click (focus persists)
+  &:focus {
+    // Keep original background, focus ring is handled by base .c-button
   }
 
   &:disabled,
@@ -151,11 +156,15 @@
   box-shadow: var(--btn-secondary-shadow);
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     background: var(--btn-secondary-hover);  // Darker gold (#B0936B approximate)
     box-shadow: var(--btn-secondary-shadow-lg);
     color: var(--btn-secondary-text);
+  }
+
+  // Focus should NOT change background color
+  &:focus {
+    // Keep original background
   }
 
   &:disabled,
@@ -176,8 +185,7 @@
   box-shadow: none;
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     color: var(--btn-outline-primary-hover-text);
     border-color: var(--btn-outline-primary-border);
     background: var(--btn-outline-primary-hover-bg);
@@ -205,8 +213,7 @@
   box-shadow: none;
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     color: var(--btn-outline-secondary-hover-text);
     border-color: var(--btn-outline-secondary-hover-bg);
     background: var(--btn-outline-secondary-hover-bg);  // Sage green hover (OK for filled state)
@@ -233,8 +240,7 @@
   box-shadow: none;
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     color: var(--btn-outline-redesign-hover-color);
     border-color: var(--btn-outline-redesign-hover-color);
     background-color: transparent;
@@ -260,8 +266,7 @@
   box-shadow: var(--shadow-sm);
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     background: var(--btn-tertiary-gradient-hover);
     box-shadow: var(--shadow-md);
     color: white;
@@ -283,8 +288,7 @@
   box-shadow: var(--shadow-sm);
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     background: var(--btn-success-gradient-hover);
     box-shadow: var(--shadow-md);
     color: white;
@@ -306,8 +310,7 @@
   box-shadow: var(--shadow-sm);
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     background: var(--btn-warning-gradient-hover);
     box-shadow: var(--shadow-md);
     color: white;
@@ -329,8 +332,7 @@
   box-shadow: var(--shadow-sm);
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     background: var(--btn-error-gradient-hover);
     box-shadow: var(--shadow-md);
     color: white;
@@ -352,8 +354,7 @@
   box-shadow: var(--shadow-sm);
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     background: var(--btn-info-gradient-hover);
     box-shadow: var(--shadow-md);
     color: white;
@@ -375,8 +376,7 @@
   box-shadow: var(--shadow-sm);
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     background: var(--btn-neutral-gradient-hover);
     box-shadow: var(--shadow-md);
     color: var(--color-text-heading);

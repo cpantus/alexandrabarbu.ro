@@ -65,13 +65,11 @@ textarea,
     outline: none !important;
   }
 
-  // CRITICAL: Remove any outline/border/background on :active (click) state
-  // This is the primary fix for the green rectangle flash
+  // Remove outline on :active (click) state
+  // NOTE: Do NOT set background-color/border/box-shadow here - it breaks styled buttons!
+  // The tap highlight is handled by -webkit-tap-highlight-color above
   &:active {
     outline: none !important;
-    border-color: currentColor !important; // Preserve border but remove color flash
-    background-color: transparent !important;
-    box-shadow: none !important;
   }
 
   // Show focus outline ONLY for keyboard navigation
@@ -102,22 +100,9 @@ nav a,
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
   }
 
-  // Remove any outline/border/background on active state (click)
-  // This prevents the green rectangle flash
+  // Remove outline on :active (nav elements don't need background changes)
   &:active {
     outline: none !important;
-    border: none !important;
-    background-color: transparent !important;
-    box-shadow: none !important;
-  }
-
-  // Also prevent on pseudo-elements during active state
-  &:active::before,
-  &:active::after {
-    outline: none !important;
-    border: none !important;
-    background-color: transparent !important;
-    box-shadow: none !important;
   }
 }
 
