@@ -23,6 +23,8 @@
     strength: 0.3,        // How strongly button follows cursor (0-1)
     maxMove: 8,           // Maximum pixels to move
     easing: 0.15,         // Smoothing factor (lower = smoother)
+    pressScale: 0.98,     // Scale when button is pressed (matches CSS :active)
+    pressY: 1,            // Y offset when pressed (matches CSS :active translateY)
     // Fixed selector: classes are on SAME element, not parent-child
     selector: '[data-magnetic], .c-hero-breadcrumb__cta-button.c-button--primary, .c-button--primary.c-hero-breadcrumb__cta-button'
   };
@@ -51,7 +53,8 @@
       currentX: 0,
       currentY: 0,
       rafId: null,
-      isHovering: false
+      isHovering: false,
+      isPressed: false  // Track pressed state for click feedback
     };
 
     buttons.set(button, state);
@@ -60,6 +63,12 @@
     button.addEventListener('mouseenter', () => handleEnter(button, state));
     button.addEventListener('mousemove', (e) => handleMove(button, state, e));
     button.addEventListener('mouseleave', () => handleLeave(button, state));
+
+    // Press state listeners - enable click feedback while magnetic effect is active
+    button.addEventListener('mousedown', () => handlePress(button, state, true));
+    button.addEventListener('mouseup', () => handlePress(button, state, false));
+    // Also handle case where mouse leaves while pressed
+    button.addEventListener('mouseleave', () => handlePress(button, state, false));
   }
 
   /**
@@ -101,6 +110,49 @@
   }
 
   /**
+   * Handle press state (mousedown/mouseup) - provide click feedback
+   * This ensures the button shows press effect even while magnetic effect is active
+   */
+  function handlePress(button, state, isPressed) {
+    state.isPressed = isPressed;
+    // Apply transform immediately for instant click feedback (no waiting for animation loop)
+    applyImmediateTransform(button, state);
+  }
+
+  /**
+   * Apply transform immediately (for press effect) - bypasses smooth interpolation
+   */
+  function applyImmediateTransform(button, state) {
+    if (state.isPressed) {
+      // Immediate press feedback: use current magnetic position + press effect
+      button.style.transform = `translate(${state.currentX}px, ${state.currentY + CONFIG.pressY}px) scale(${CONFIG.pressScale})`;
+    } else {
+      // Release: restore just the magnetic position (animation loop will continue smoothing)
+      button.style.transform = `translate(${state.currentX}px, ${state.currentY}px)`;
+    }
+  }
+
+  /**
+   * Update button transform - combines magnetic effect with press effect
+   * Extracted for reuse in both animation loop and immediate press feedback
+   */
+  function updateTransform(button, state) {
+    // Build transform combining magnetic translate + press scale/translate
+    let transform;
+
+    if (state.isPressed) {
+      // When pressed: apply magnetic translate + press scale + press translateY
+      // Order matters: translate first, then scale for proper visual effect
+      transform = `translate(${state.currentX}px, ${state.currentY + CONFIG.pressY}px) scale(${CONFIG.pressScale})`;
+    } else {
+      // Normal state: just magnetic translate
+      transform = `translate(${state.currentX}px, ${state.currentY}px)`;
+    }
+
+    button.style.transform = transform;
+  }
+
+  /**
    * Animation loop - smooth interpolation
    */
   function startAnimation(button, state) {
@@ -109,8 +161,8 @@
       state.currentX += (state.targetX - state.currentX) * CONFIG.easing;
       state.currentY += (state.targetY - state.currentY) * CONFIG.easing;
 
-      // Apply transform (GPU-accelerated)
-      button.style.transform = `translate(${state.currentX}px, ${state.currentY}px)`;
+      // Apply combined transform (magnetic + press effects)
+      updateTransform(button, state);
 
       // Continue if still moving or hovering
       const isMoving = Math.abs(state.currentX - state.targetX) > 0.1 ||
