@@ -18,22 +18,20 @@ Mindfulness, tradus uneori ca "atenție conștientă" sau "prezență atentă", 
 
 ### Definiția operațională
 
-Jon Kabat-Zinn, pionierul mindfulness-ului în medicina occidentală, definește practica astfel:
-
-> "Mindfulness înseamnă să acorzi atenție într-un mod particular: cu intenție, în momentul prezent și fără judecată."
+{{< blockquote variant="featured" cite="Jon Kabat-Zinn, pionierul mindfulness-ului în medicina occidentală" >}}
+Mindfulness înseamnă să acorzi atenție într-un mod particular: cu intenție, în momentul prezent și fără judecată.
+{{< /blockquote >}}
 
 ### Ce nu este mindfulness
 
-{{< notice type="info" >}}
-**Clarificări importante:**
-
+{{< callout type="info" title="Clarificări importante" >}}
 Pentru a înțelege mai bine conceptul, este util să clarificăm ce NU este:
 
 - **Nu este golirea minții** - Gândurile vor apărea mereu; practica constă în cum ne raportăm la ele
 - **Nu este relaxare** - Deși relaxarea poate fi un efect secundar, nu este scopul principal
 - **Nu este evadare** - Dimpotrivă, este o confruntare directă cu experiența prezentă
 - **Nu este specific unei religii** - Deși are origini budiste, practica modernă este seculară și bazată pe evidențe
-{{< /notice >}}
+{{< /callout >}}
 
 ---
 
@@ -63,9 +61,9 @@ Cercetările din ultimele decenii au demonstrat multiple beneficii ale practicii
 - Reducerea inflamației cronice
 - Modularea răspunsului la durere
 
-{{< notice type="clinical" >}}
-**Notă științifică:** Un studiu publicat în JAMA Internal Medicine (2014) a analizat 47 de studii clinice și a concluzionat că meditația mindfulness are efect moderat în reducerea anxietății, depresiei și durerii.
-{{< /notice >}}
+{{< key-fact icon="las la-microscope" label="Studiu JAMA 2014" >}}
+Un studiu publicat în JAMA Internal Medicine care a analizat 47 de studii clinice a concluzionat că meditația mindfulness are efect moderat în reducerea anxietății, depresiei și durerii.
+{{< /key-fact >}}
 
 ---
 
@@ -77,31 +75,27 @@ Practica mindfulness se bazează pe două elemente fundamentale:
 
 Capacitatea de a direcționa atenția către un obiect specific (respirație, senzații, sunete) și de a o menține acolo.
 
-{{< notice type="tip" >}}
-**Cum se manifestă:**
+{{< callout type="tip" title="Cum se manifestă" >}}
 - Observi respirația fără a o controla
 - Când atenția se abate (și se va abate), o readuci blând
 - Fiecare "revenire" este exercițiul propriu-zis, nu un eșec
-{{< /notice >}}
+{{< /callout >}}
 
 ### 2. Monitorizarea deschisă
 
 Capacitatea de a observa tot ce apare în câmpul conștiinței - gânduri, emoții, senzații - fără a te atașa sau a respinge.
 
-{{< notice type="tip" >}}
-**Cum se manifestă:**
+{{< callout type="tip" title="Cum se manifestă" >}}
 - Observi gândurile ca pe "nori pe cer" - vin și pleacă
 - Nu etichetezi experiențele ca "bune" sau "rele"
 - Menții o atitudine de curiozitate, nu de judecată
-{{< /notice >}}
+{{< /callout >}}
 
 ---
 
 ## Exerciții pentru Începători
 
-{{< notice type="example" >}}
-### Exercițiul 1: Respirația conștientă (3 minute)
-
+{{< exercise title="Exercițiul 1: Respirația conștientă (3 minute)" >}}
 Acesta este exercițiul fundament al mindfulness-ului.
 
 **Instrucțiuni:**
@@ -117,13 +111,11 @@ Acesta este exercițiul fundament al mindfulness-ului.
 6. Continuă timp de 3 minute
 
 **Important:** Scopul nu este să nu ai gânduri, ci să observi când mintea a plecat și să o readuci.
-{{< /notice >}}
+{{< /exercise >}}
 
 ---
 
-{{< notice type="example" >}}
-### Exercițiul 2: Scanarea corporală (5 minute)
-
+{{< exercise title="Exercițiul 2: Scanarea corporală (5 minute)" >}}
 Acest exercițiu te ajută să devii conștient de senzațiile din corp.
 
 **Instrucțiuni:**
@@ -140,13 +132,11 @@ Acest exercițiu te ajută să devii conștient de senzațiile din corp.
    - Picioare (unul câte unul, până la degete)
 4. La fiecare zonă, observă orice senzație: căldură, răceală, presiune, furnicături, tensiune sau absența senzațiilor
 5. Nu încerca să schimbi nimic, doar observă
-{{< /notice >}}
+{{< /exercise >}}
 
 ---
 
-{{< notice type="example" >}}
-### Exercițiul 3: Mindfulness în activități cotidiene
-
+{{< exercise title="Exercițiul 3: Mindfulness în activități cotidiene" >}}
 Nu trebuie să meditezi formal pentru a practica mindfulness. Poți transforma activitățile zilnice în practică.
 
 **Exemplu - Spălatul pe dinți:**
@@ -163,67 +153,53 @@ Nu trebuie să meditezi formal pentru a practica mindfulness. Poți transforma a
 - Mersul pe jos
 - Așteptatul (la coadă, la semafor)
 - Prima cafea sau ceai din zi
-{{< /notice >}}
+{{< /exercise >}}
 
 ---
 
 ## Obstacole Comune și Soluții
 
-{{< notice type="warning" >}}
-### "Nu reușesc să îmi golesc mintea"
-
+{{< callout type="warning" title="Nu reușesc să îmi golesc mintea" >}}
 **Soluție:** Nu trebuie să o golești. Gândurile sunt naturale. Practica constă în a observa când mintea a plecat și a reveni la prezent.
-{{< /notice >}}
+{{< /callout >}}
 
-{{< notice type="warning" >}}
-### "Mă simt mai anxios când încerc să meditez"
-
+{{< callout type="warning" title="Mă simt mai anxios când încerc să meditez" >}}
 **Soluție:** Aceasta poate fi normal la început. Încearcă:
 - Exerciții mai scurte (1-2 minute)
 - Meditație cu ochii deschiși
 - Meditație în mișcare (plimbare conștientă)
 - Focalizare pe senzațiile din tălpi (grounding)
-{{< /notice >}}
+{{< /callout >}}
 
-{{< notice type="warning" >}}
-### "Nu am timp"
-
+{{< callout type="warning" title="Nu am timp" >}}
 **Soluție:** Începe cu 3 minute dimineața. Studiile arată beneficii chiar și cu 10 minute pe zi. Mindfulness-ul informal (în activități cotidiene) nu necesită timp suplimentar.
-{{< /notice >}}
+{{< /callout >}}
 
-{{< notice type="warning" >}}
-### "Mă plictisesc"
-
+{{< callout type="warning" title="Mă plictisesc" >}}
 **Soluție:** Plictiseala este o experiență ca oricare alta - observ-o cu curiozitate. Cum se simte plictiseala în corp? Ce gânduri o însoțesc?
-{{< /notice >}}
+{{< /callout >}}
 
 ---
 
 ## Cum să Construiești o Practică Regulată
 
-{{< notice type="example" >}}
-### Săptămâna 1-2: Fundația
-
+{{< highlight-box title="Săptămâna 1-2: Fundația" >}}
 - 3 minute de respirație conștientă, zilnic
 - Alege un moment fix (dimineața funcționează cel mai bine)
 - Leagă practica de un obicei existent (după cafea, înainte de duș)
-{{< /notice >}}
+{{< /highlight-box >}}
 
-{{< notice type="example" >}}
-### Săptămâna 3-4: Consolidare
-
+{{< highlight-box title="Săptămâna 3-4: Consolidare" >}}
 - Crește la 5-7 minute
 - Adaugă o activitate cotidiană în mindfulness
 - Ține un jurnal scurt despre experiență
-{{< /notice >}}
+{{< /highlight-box >}}
 
-{{< notice type="example" >}}
-### Luna 2 și după
-
+{{< highlight-box title="Luna 2 și după" >}}
 - 10-15 minute zilnic
 - Explorează ghidaje audio sau aplicații (Headspace, Calm, Insight Timer)
 - Participă la un curs sau grup de meditație
-{{< /notice >}}
+{{< /highlight-box >}}
 
 ---
 
@@ -237,13 +213,11 @@ Nu trebuie să meditezi formal pentru a practica mindfulness. Poți transforma a
 
 ### Aplicații
 
-{{< notice type="info" >}}
-**Aplicații recomandate:**
-
+{{< callout type="info" title="Aplicații recomandate" >}}
 - **Headspace** - ghidaje structurate pentru începători
 - **Calm** - meditații și povești pentru somn
 - **Insight Timer** - meditații gratuite de la diverși instructori
-{{< /notice >}}
+{{< /callout >}}
 
 ---
 
@@ -251,7 +225,9 @@ Nu trebuie să meditezi formal pentru a practica mindfulness. Poți transforma a
 
 Mindfulness nu este o soluție instantanee și nu necesită perfecțiune. Este o practică - cu cât o faci mai des, cu atât devine mai naturală. Cea mai importantă meditație este cea pe care o faci, nu cea pe care o planifici.
 
-> Începe mic. Fii răbdător cu tine. Și amintește-ți: de fiecare dată când observi că mintea a plecat și o readuci în prezent, ai făcut o genuflexiune pentru mușchiul atenției.
+{{< pullquote >}}
+Începe mic. Fii răbdător cu tine. Și amintește-ți: de fiecare dată când observi că mintea a plecat și o readuci în prezent, ai făcut o genuflexiune pentru mușchiul atenției.
+{{< /pullquote >}}
 
 ---
 

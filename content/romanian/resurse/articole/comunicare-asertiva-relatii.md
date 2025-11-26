@@ -12,9 +12,9 @@ draft: false
 
 Comunicarea este fundamentul oricărei relații sănătoase. Cu toate acestea, mulți dintre noi nu am învățat cum să ne exprimăm nevoile și limitele într-un mod care să fie respectuos atât față de noi, cât și față de celălalt. Comunicarea asertivă este abilitatea de a-ți exprima gândurile, sentimentele și nevoile în mod direct și onest, respectând în același timp drepturile și sentimentele celorlalți.
 
-{{< notice type="info" >}}
-**Definiție:** Asertivitatea reprezintă punctul de echilibru dintre pasivitate (ignorarea propriilor nevoi) și agresivitate (ignorarea nevoilor celorlalți). Este o abilitate care se poate învăța și dezvolta.
-{{< /notice >}}
+{{< highlight-box title="Ce este asertivitatea?" >}}
+Asertivitatea reprezintă punctul de echilibru dintre pasivitate (ignorarea propriilor nevoi) și agresivitate (ignorarea nevoilor celorlalți). Este o abilitate care se poate învăța și dezvolta.
+{{< /highlight-box >}}
 
 ## Cele Trei Stiluri de Comunicare
 
@@ -22,7 +22,7 @@ Comunicarea este fundamentul oricărei relații sănătoase. Cu toate acestea, m
 
 ### Comunicarea Pasivă
 
-{{< notice type="note" >}}
+{{< callout type="note" title="Stilul pasiv" >}}
 **Caracteristici:**
 - Evitarea conflictelor cu orice preț
 - Dificultăți în a spune "nu"
@@ -37,11 +37,11 @@ Comunicarea este fundamentul oricărei relații sănătoase. Cu toate acestea, m
 - Stimă de sine scăzută
 - Relații dezechilibrate
 - Burnout emoțional
-{{< /notice >}}
+{{< /callout >}}
 
 ### Comunicarea Agresivă
 
-{{< notice type="warning" >}}
+{{< callout type="warning" title="Stilul agresiv" >}}
 **Caracteristici:**
 - Ignorarea nevoilor și drepturilor celorlalți
 - Ton ridicat, gesturi amenințătoare
@@ -56,11 +56,11 @@ Comunicarea este fundamentul oricărei relații sănătoase. Cu toate acestea, m
 - Izolare socială
 - Vinovăție după episoade agresive
 - Escaladarea conflictelor
-{{< /notice >}}
+{{< /callout >}}
 
 ### Comunicarea Asertivă
 
-{{< notice type="tip" >}}
+{{< callout type="tip" title="Stilul asertiv" >}}
 **Caracteristici:**
 - Exprimarea directă și onestă a nevoilor
 - Respectarea propriilor drepturi și ale celorlalți
@@ -75,7 +75,7 @@ Comunicarea este fundamentul oricărei relații sănătoase. Cu toate acestea, m
 - Stimă de sine sănătoasă
 - Rezolvarea eficientă a conflictelor
 - Respect reciproc
-{{< /notice >}}
+{{< /callout >}}
 
 ---
 
@@ -83,49 +83,43 @@ Comunicarea este fundamentul oricărei relații sănătoase. Cu toate acestea, m
 
 Una dintre cele mai eficiente metode pentru comunicarea asertivă este tehnica DESC, un acronim care oferă o structură clară pentru conversațiile dificile.
 
-{{< notice type="example" >}}
-### D - Descrie situația
-
+{{< exercise title="D - Descrie situația" >}}
 Prezintă faptele în mod obiectiv, fără interpretări sau judecăți.
 
 **Evită:** "Întotdeauna întârzii!" (generalizare, acuzație)
 
 **Folosește:** "În ultimele trei săptămâni, ai ajuns cu 15-20 de minute mai târziu la întâlnirile noastre."
-{{< /notice >}}
+{{< /exercise >}}
 
-{{< notice type="example" >}}
-### E - Exprimă sentimentele
-
+{{< exercise title="E - Exprimă sentimentele" >}}
 Folosește propoziții la persoana I pentru a descrie cum te afectează situația.
 
 **Evită:** "Mă enervezi când faci asta!" (blamare)
 
 **Folosește:** "Mă simt neimportant și frustrat când aștept."
-{{< /notice >}}
+{{< /exercise >}}
 
-{{< notice type="example" >}}
-### S - Specifică ce dorești
-
+{{< exercise title="S - Specifică ce dorești" >}}
 Formulează o cerere clară și concretă.
 
 **Evită:** "Vreau să fii mai atent!" (vag)
 
 **Folosește:** "Aș dori să mă anunți dacă vei întârzia mai mult de 10 minute."
-{{< /notice >}}
+{{< /exercise >}}
 
-{{< notice type="example" >}}
-### C - Consecințele
-
+{{< exercise title="C - Consecințele" >}}
 Explică beneficiile colaborării sau consecințele naturale ale nerespectării cererii.
 
 **Evită:** "Dacă nu te schimbi, mă despart de tine!" (amenințare)
 
 **Folosește:** "Dacă voi ști la ce să mă aștept, mă voi simți mai relaxat și timpul nostru împreună va fi mai plăcut."
-{{< /notice >}}
+{{< /exercise >}}
 
 ### Exemplu complet DESC
 
-> "Am observat că în ultimul timp, când îți povestesc despre ziua mea, te uiți frecvent la telefon (D). Mă simt neascultată și asta mă întristează (E). Mi-ar plăcea ca în timpul conversațiilor noastre să punem telefoanele deoparte (S). Cred că așa am putea fi mai conectați și conversațiile noastre ar fi mai satisfăcătoare pentru amândoi (C)."
+{{< blockquote variant="testimonial" cite="Exemplu de comunicare DESC" >}}
+Am observat că în ultimul timp, când îți povestesc despre ziua mea, te uiți frecvent la telefon (D). Mă simt neascultată și asta mă întristează (E). Mi-ar plăcea ca în timpul conversațiilor noastre să punem telefoanele deoparte (S). Cred că așa am putea fi mai conectați și conversațiile noastre ar fi mai satisfăcătoare pentru amândoi (C).
+{{< /blockquote >}}
 
 ---
 
@@ -145,19 +139,19 @@ Limitele sunt esențiale pentru relații sănătoase. Ele definesc unde "eu" se 
 
 ### Cum să stabilești limite
 
-{{< notice type="example" >}}
-**Pașii pentru stabilirea limitelor:**
-
-1. **Identifică-ți nevoile** - Ce îți lipsește? Ce te deranjează?
-2. **Formulează limita clar** - Fii specific și direct
-3. **Comunică cu calm** - Fără scuze excesive sau justificări elaborate
-4. **Acceptă reacțiile** - Celălalt poate fi dezamăgit; asta nu înseamnă că limita ta este greșită
-5. **Menține consecvența** - Limitele fluctuante sunt dificil de respectat
-{{< /notice >}}
+{{< steps connected="true" >}}
+{{< step >}}**Identifică-ți nevoile** - Ce îți lipsește? Ce te deranjează?{{< /step >}}
+{{< step >}}**Formulează limita clar** - Fii specific și direct{{< /step >}}
+{{< step >}}**Comunică cu calm** - Fără scuze excesive sau justificări elaborate{{< /step >}}
+{{< step >}}**Acceptă reacțiile** - Celălalt poate fi dezamăgit; asta nu înseamnă că limita ta este greșită{{< /step >}}
+{{< step >}}**Menține consecvența** - Limitele fluctuante sunt dificil de respectat{{< /step >}}
+{{< /steps >}}
 
 ### Formula pentru stabilirea limitelor
 
-> "Când [comportament], mă simt [emoție]. Am nevoie ca [limita]. Dacă nu se poate, voi [consecința]."
+{{< pullquote >}}
+"Când [comportament], mă simt [emoție]. Am nevoie ca [limita]. Dacă nu se poate, voi [consecința]."
+{{< /pullquote >}}
 
 **Exemplu:** "Când primesc critici în fața colegilor, mă simt umilit. Am nevoie ca feedback-ul să fie oferit în privat. Dacă nu este posibil, voi solicita o discuție ulterioară în doi."
 
@@ -167,9 +161,7 @@ Limitele sunt esențiale pentru relații sănătoase. Ele definesc unde "eu" se 
 
 ### Convingeri care ne blochează
 
-{{< notice type="warning" >}}
-**Credințe limitante despre asertivitate:**
-
+{{< callout type="warning" title="Credințe limitante despre asertivitate" >}}
 Multe persoane evită comunicarea asertivă din cauza unor convingeri eronate:
 
 - "Dacă spun nu, voi fi respins/ă"
@@ -177,54 +169,44 @@ Multe persoane evită comunicarea asertivă din cauza unor convingeri eronate:
 - "Oamenii buni nu provoacă conflict"
 - "Dacă ar ține la mine, ar ști ce am nevoie"
 - "Asertivitatea este egoism"
-{{< /notice >}}
+{{< /callout >}}
 
 ### Realitatea
 
-{{< notice type="tip" >}}
-**Adevăruri despre asertivitate:**
-
+{{< callout type="tip" title="Adevăruri despre asertivitate" >}}
 - A spune "nu" nu te face o persoană rea
 - Nevoile tale sunt la fel de valide ca ale celorlalți
 - Conflictul gestionat sănătos întărește relațiile
 - Nimeni nu poate citi gândurile - comunicarea este esențială
 - Asertivitatea este respect - pentru tine și pentru celălalt
-{{< /notice >}}
+{{< /callout >}}
 
 ---
 
 ## Exerciții Practice
 
-{{< notice type="example" >}}
-### Exercițiul 1: Jurnalul de comunicare
-
+{{< exercise title="Exercițiul 1: Jurnalul de comunicare" >}}
 Timp de o săptămână, notează situațiile în care ai comunicat pasiv sau agresiv. Pentru fiecare, rescrie răspunsul într-o manieră asertivă folosind tehnica DESC.
-{{< /notice >}}
+{{< /exercise >}}
 
-{{< notice type="example" >}}
-### Exercițiul 2: Practica în oglindă
-
+{{< exercise title="Exercițiul 2: Practica în oglindă" >}}
 Alege o situație în care trebuie să stabilești o limită. Exersează în fața oglinzii:
 - Postură dreaptă, deschisă
 - Contact vizual
 - Voce calmă și fermă
 - Mesajul la persoana I
-{{< /notice >}}
+{{< /exercise >}}
 
-{{< notice type="example" >}}
-### Exercițiul 3: Începe mic
-
+{{< exercise title="Exercițiul 3: Începe mic" >}}
 Nu începe cu cea mai dificilă conversație. Practică asertivitatea în situații cu miză mică:
 - Returnarea unui produs defect
 - Exprimarea preferinței la restaurant
 - Refuzul politicos al unei solicitări minore
-{{< /notice >}}
+{{< /exercise >}}
 
 ---
 
 ## Gestionarea Răspunsurilor Dificile
-
-Nu toată lumea va răspunde pozitiv la comunicarea ta asertivă. Iată cum să gestionezi reacțiile dificile:
 
 ### Dacă celălalt devine defensiv
 
@@ -242,13 +224,11 @@ Nu toată lumea va răspunde pozitiv la comunicarea ta asertivă. Iată cum să 
 
 ### Dacă tu devii anxios
 
-{{< notice type="tip" >}}
-**Este normal să simți disconfort inițial:**
-
+{{< callout type="tip" title="Este normal să simți disconfort inițial" >}}
 - Respiră adânc înainte de conversație
 - Amintește-ți că ai dreptul să-ți exprimi nevoile
 - Celebrează fiecare pas, indiferent de rezultat
-{{< /notice >}}
+{{< /callout >}}
 
 ---
 
@@ -256,7 +236,9 @@ Nu toată lumea va răspunde pozitiv la comunicarea ta asertivă. Iată cum să 
 
 Comunicarea asertivă este o abilitate care se dezvoltă cu practică. Nu te aștepta să fii perfect de la început - important este să începi. Fiecare conversație în care îți exprimi nevoile cu respect este un pas către relații mai sănătoase și o stimă de sine mai solidă.
 
-> Amintește-ți: asertivitatea nu garantează că vei obține întotdeauna ce dorești. Garantează însă că îți vei fi comunicat nevoile cu claritate și demnitate, și asta este tot ce poți controla.
+{{< blockquote variant="featured" >}}
+Amintește-ți: asertivitatea nu garantează că vei obține întotdeauna ce dorești. Garantează însă că îți vei fi comunicat nevoile cu claritate și demnitate, și asta este tot ce poți controla.
+{{< /blockquote >}}
 
 ---
 

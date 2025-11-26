@@ -1,0 +1,15 @@
+{{- $icon := .Get "icon" | default "las la-chart-bar" -}}
+{{- $label := .Get "label" | default "" -}}
+{{- $content := .Inner | markdownify -}}
+
+<div class="c-key-fact">
+  <div class="c-key-fact__icon">
+    <i class="{{ $icon }}"></i>
+  </div>
+  <div class="c-key-fact__content">
+    {{- if $label }}
+    <strong>{{ $label }}</strong>
+    {{- end }}
+    {{- $content -}}
+  </div>
+</div>

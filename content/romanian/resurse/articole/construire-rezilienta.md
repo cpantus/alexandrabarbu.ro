@@ -18,9 +18,7 @@ Reziliența este capacitatea de a te adapta și de a te recupera în fața adver
 
 ### Ce nu este reziliența
 
-{{< notice type="info" >}}
-**Mituri despre reziliență:**
-
+{{< callout type="info" title="Mituri despre reziliență" >}}
 **Mit:** Reziliența înseamnă să nu simți durere sau tristețe.
 **Realitate:** Persoanele reziliente simt emoții dificile la fel de intens; diferența stă în cum se raportează la ele și cum le procesează.
 
@@ -29,7 +27,7 @@ Reziliența este capacitatea de a te adapta și de a te recupera în fața adver
 
 **Mit:** Dacă nu ești rezilent, ești slab.
 **Realitate:** Reziliența se dezvoltă adesea ca răspuns la experiențe dificile, nu în absența lor.
-{{< /notice >}}
+{{< /callout >}}
 
 ---
 
@@ -39,9 +37,7 @@ Cercetările în domeniul psihologiei pozitive au identificat patru factori prin
 
 ### 1. Conexiunea Socială
 
-{{< notice type="tip" >}}
-**Cel mai puternic predictor al rezilienței**
-
+{{< highlight-box title="Cel mai puternic predictor al rezilienței" >}}
 Relațiile de calitate sunt cel mai puternic predictor al rezilienței. Oamenii care au o rețea de suport solidă se recuperează mai rapid după evenimente dificile.
 
 **Cum să cultivi conexiunea:**
@@ -49,7 +45,7 @@ Relațiile de calitate sunt cel mai puternic predictor al rezilienței. Oamenii 
 - Fii dispus să ceri și să oferi ajutor
 - Participă la comunități (grupuri de interese, voluntariat)
 - Menține contactul regulat cu persoanele importante
-{{< /notice >}}
+{{< /highlight-box >}}
 
 ### 2. Flexibilitatea Cognitivă
 
@@ -85,46 +81,38 @@ Oamenii care au un sens al scopului - fie că este vorba de carieră, familie, c
 
 ## 10 Strategii Practice pentru Reziliență
 
-{{< notice type="example" >}}
-### 1. Acceptă ceea ce nu poți controla
-
+{{< exercise title="1. Acceptă ceea ce nu poți controla" >}}
 Energia investită în a lupta contra realității este energie pierdută. Acceptarea nu înseamnă aprobare sau resemnare, ci recunoașterea lucidă a situației prezente.
 
 **Exercițiu:** Când te confrunți cu o situație dificilă, întreabă-te:
 - Ce pot controla aici?
 - Ce nu pot controla?
 - Unde îmi investesc energia?
-{{< /notice >}}
+{{< /exercise >}}
 
 ---
 
-{{< notice type="example" >}}
-### 2. Cultivă o narațiune constructivă
-
+{{< exercise title="2. Cultivă o narațiune constructivă" >}}
 Povestea pe care ți-o spui despre experiențele tale influențează modul în care le procesezi. Persoanele reziliente își repovestesc experiențele într-un mod care include creșterea și învățarea.
 
 **De la:** "Mi s-a întâmplat ceva teribil și viața mea este distrusă."
 **La:** "Am trecut printr-o experiență foarte dificilă. A fost dureros, dar am învățat despre propria forță."
-{{< /notice >}}
+{{< /exercise >}}
 
 ---
 
-{{< notice type="example" >}}
-### 3. Practică auto-compasiunea
-
+{{< exercise title="3. Practică auto-compasiunea" >}}
 Auto-compasiunea înseamnă să te tratezi cu aceeași bunătate cu care ai trata un prieten drag care trece printr-o perioadă grea.
 
 **Cele trei componente ale auto-compasiunii:**
 - **Bunătate față de sine** - mai degrabă decât auto-critică severă
 - **Umanitate comună** - recunoașterea că suferința face parte din experiența umană
 - **Mindfulness** - observarea echilibrată a emoțiilor fără supraimplicare
-{{< /notice >}}
+{{< /exercise >}}
 
 ---
 
-{{< notice type="example" >}}
-### 4. Menține rutine și structură
-
+{{< exercise title="4. Menține rutine și structură" >}}
 În perioade de incertitudine, rutinele oferă un sentiment de control și predictibilitate.
 
 **Rutine esențiale pentru reziliență:**
@@ -132,27 +120,17 @@ Auto-compasiunea înseamnă să te tratezi cu aceeași bunătate cu care ai trat
 - Mese la ore fixe
 - Mișcare fizică zilnică
 - Timp dedicat relaxării
-{{< /notice >}}
+{{< /exercise >}}
 
 ---
 
-{{< notice type="clinical" >}}
-### 5. Mișcă-te fizic
-
-Exercițiul fizic nu este doar pentru sănătatea corporală. Are efecte demonstrate asupra:
-- Reducerii anxietății și depresiei
-- Îmbunătățirii calității somnului
-- Creșterii rezistenței la stres
-- Îmbunătățirii funcției cognitive
-
-**Recomandare:** 30 de minute de activitate moderată, de cel puțin 5 ori pe săptămână.
-{{< /notice >}}
+{{< key-fact icon="las la-running" label="Mișcare fizică" >}}
+Exercițiul fizic nu este doar pentru sănătatea corporală. Are efecte demonstrate asupra reducerii anxietății și depresiei, îmbunătățirii somnului și creșterii rezistenței la stres. Recomandare: 30 de minute de activitate moderată, de cel puțin 5 ori pe săptămână.
+{{< /key-fact >}}
 
 ---
 
-{{< notice type="warning" >}}
-### 6. Limitează expunerea la știri negative
-
+{{< callout type="warning" title="6. Limitează expunerea la știri negative" >}}
 Informarea este importantă, dar expunerea excesivă la știri negative activează sistemul de stres al organismului.
 
 **Recomandări:**
@@ -160,23 +138,19 @@ Informarea este importantă, dar expunerea excesivă la știri negative activeaz
 - Limitează la 1-2 surse de încredere
 - Evită știrile înainte de culcare
 - Echilibrează cu conținut pozitiv sau neutru
-{{< /notice >}}
+{{< /callout >}}
 
 ---
 
-{{< notice type="example" >}}
-### 7. Practică recunoștința
-
+{{< exercise title="7. Practică recunoștința" >}}
 Recunoștința nu înseamnă să ignori problemele, ci să echilibrezi perspectiva prin recunoașterea a ceea ce funcționează bine în viața ta.
 
 **Exercițiu zilnic:** Seara, notează 3 lucruri pentru care ești recunoscător astăzi. Pot fi lucruri simple: o cafea bună, un mesaj de la un prieten, soarele.
-{{< /notice >}}
+{{< /exercise >}}
 
 ---
 
-{{< notice type="example" >}}
-### 8. Dezvoltă toleranța la incertitudine
-
+{{< exercise title="8. Dezvoltă toleranța la incertitudine" >}}
 Viața este în mod inerent incertă. Încercarea de a controla totul duce la anxietate și epuizare.
 
 **Cum să dezvolți toleranța:**
@@ -184,13 +158,11 @@ Viața este în mod inerent incertă. Încercarea de a controla totul duce la an
 - Observă că incertitudinea nu înseamnă automat pericol
 - Practică să stai cu disconfortul de a nu ști
 - Focalizează-te pe proces, nu doar pe rezultat
-{{< /notice >}}
+{{< /exercise >}}
 
 ---
 
-{{< notice type="tip" >}}
-### 9. Învață din adversitate (Creșterea Post-Traumatică)
-
+{{< callout type="tip" title="9. Învață din adversitate (Creșterea Post-Traumatică)" >}}
 Cercetările arată că multe persoane raportează schimbări pozitive după experiențe dificile:
 - Relații mai profunde
 - Aprecierea mai mare a vieții
@@ -199,13 +171,11 @@ Cercetările arată că multe persoane raportează schimbări pozitive după exp
 - Dezvoltare spirituală
 
 **Întrebare de reflecție:** "Ce am învățat despre mine prin această experiență?"
-{{< /notice >}}
+{{< /callout >}}
 
 ---
 
-{{< notice type="important" >}}
-### 10. Caută ajutor profesional când e necesar
-
+{{< callout type="important" title="10. Caută ajutor profesional când e necesar" >}}
 Reziliența nu înseamnă să te descurci singur în toate situațiile. A recunoaște când ai nevoie de sprijin profesional și a-l solicita este un act de reziliență, nu de slăbiciune.
 
 **Semne că ar fi util să consulți un specialist:**
@@ -213,43 +183,18 @@ Reziliența nu înseamnă să te descurci singur în toate situațiile. A recuno
 - Funcționarea zilnică este afectată semnificativ
 - Folosești substanțe pentru a face față
 - Ai gânduri de auto-vătămare
-{{< /notice >}}
+{{< /callout >}}
 
 ---
 
 ## Plan de Acțiune pentru Următoarele 30 de Zile
 
-{{< notice type="example" >}}
-### Săptămâna 1: Fundația
-
-- [ ] Evaluează-ți rețeaua de suport - cine sunt persoanele pe care te poți baza?
-- [ ] Stabilește o rutină de somn consistentă
-- [ ] Începe un jurnal de recunoștință (3 lucruri/zi)
-{{< /notice >}}
-
-{{< notice type="example" >}}
-### Săptămâna 2: Conexiune
-
-- [ ] Contactează o persoană cu care nu ai vorbit de mult
-- [ ] Planifică o activitate socială pentru săptămâna următoare
-- [ ] Practică o conversație în care ceri ajutor pentru ceva minor
-{{< /notice >}}
-
-{{< notice type="example" >}}
-### Săptămâna 3: Flexibilitate
-
-- [ ] Identifică o situație dificilă și rescrie-o dintr-o perspectivă de creștere
-- [ ] Practică tehnica "Ce pot controla?"
-- [ ] Expune-te la ceva minor care te face inconfortabil
-{{< /notice >}}
-
-{{< notice type="example" >}}
-### Săptămâna 4: Integrare
-
-- [ ] Reflectează asupra progresului făcut
-- [ ] Identifică ce strategii funcționează cel mai bine pentru tine
-- [ ] Stabilește 2-3 practici pe care le vei continua
-{{< /notice >}}
+{{< steps connected="true" >}}
+{{< step >}}**Săptămâna 1: Fundația** - Evaluează-ți rețeaua de suport, stabilește o rutină de somn consistentă, începe un jurnal de recunoștință{{< /step >}}
+{{< step >}}**Săptămâna 2: Conexiune** - Contactează o persoană cu care nu ai vorbit de mult, planifică o activitate socială, practică să ceri ajutor pentru ceva minor{{< /step >}}
+{{< step >}}**Săptămâna 3: Flexibilitate** - Identifică o situație dificilă și rescrie-o dintr-o perspectivă de creștere, practică tehnica "Ce pot controla?"{{< /step >}}
+{{< step >}}**Săptămâna 4: Integrare** - Reflectează asupra progresului făcut, identifică strategiile care funcționează cel mai bine, stabilește 2-3 practici de continuat{{< /step >}}
+{{< /steps >}}
 
 ---
 
@@ -257,7 +202,9 @@ Reziliența nu înseamnă să te descurci singur în toate situațiile. A recuno
 
 Reziliența nu este o destinație, ci un proces continuu. Nu vei deveni "complet rezilent" și apoi gata - vei continua să te confrunți cu dificultăți și să înveți din ele. Ceea ce se schimbă este încrederea că poți face față, bazată pe experiența anterioară.
 
-> Fiecare adversitate pe care o traversezi cu conștientizare și intenție devine o dovadă a capacității tale de adaptare. Nu ești definit de ceea ce ți se întâmplă, ci de modul în care răspunzi.
+{{< blockquote variant="featured" >}}
+Fiecare adversitate pe care o traversezi cu conștientizare și intenție devine o dovadă a capacității tale de adaptare. Nu ești definit de ceea ce ți se întâmplă, ci de modul în care răspunzi.
+{{< /blockquote >}}
 
 ---
 

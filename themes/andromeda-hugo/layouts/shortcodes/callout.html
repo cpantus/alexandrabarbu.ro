@@ -1,0 +1,40 @@
+{{- $type := .Get "type" | default "info" -}}
+{{- $title := .Get "title" | default "" -}}
+{{- $icon := .Get "icon" | default "" -}}
+{{- $size := .Get "size" | default "" -}}
+{{- $content := .Inner | markdownify -}}
+
+{{- /* Icon mapping for each type */ -}}
+{{- $defaultIcons := dict
+  "info" "las la-info-circle"
+  "tip" "las la-lightbulb"
+  "success" "las la-check-circle"
+  "warning" "las la-exclamation-triangle"
+  "important" "las la-exclamation-circle"
+  "danger" "las la-times-circle"
+  "note" "las la-clipboard"
+  "clinical" "las la-stethoscope"
+  "example" "las la-code"
+-}}
+
+{{- $iconClass := $icon -}}
+{{- if not $icon -}}
+  {{- $iconClass = index $defaultIcons $type | default "las la-info-circle" -}}
+{{- end -}}
+
+{{- $sizeClass := "" -}}
+{{- if eq $size "lg" -}}
+  {{- $sizeClass = " c-callout--lg" -}}
+{{- end -}}
+
+<div class="c-callout c-callout--{{ $type }}{{ $sizeClass }}">
+  <span class="c-callout__icon">
+    <i class="{{ $iconClass }}"></i>
+  </span>
+  {{- if $title }}
+  <span class="c-callout__title">{{ $title }}</span>
+  {{- end }}
+  <div class="c-callout__content">
+    {{- $content -}}
+  </div>
+</div>

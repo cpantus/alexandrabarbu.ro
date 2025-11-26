@@ -12,9 +12,9 @@ draft: false
 
 Anxietatea este o reacție naturală a organismului la situații percepute ca amenințătoare. Cu toate acestea, atunci când devine excesivă sau persistentă, poate afecta semnificativ calitatea vieții. În acest articol, prezint cinci tehnici validate științific care te pot ajuta să gestionezi anxietatea în mod eficient.
 
-{{< notice type="info" >}}
-**De reținut:** Aceste tehnici funcționează cel mai bine când sunt practicate regulat, nu doar în momentele de criză. Consideră-le exerciții de "fitness emoțional" - cu cât le practici mai des, cu atât devin mai eficiente.
-{{< /notice >}}
+{{< highlight-box title="De reținut" >}}
+Aceste tehnici funcționează cel mai bine când sunt practicate regulat, nu doar în momentele de criză. Consideră-le exerciții de "fitness emoțional" - cu cât le practici mai des, cu atât devin mai eficiente.
+{{< /highlight-box >}}
 
 ## 1. Respirația Diafragmatică
 
@@ -26,20 +26,18 @@ Atunci când suntem anxioși, tendința naturală este să respirăm superficial
 
 ### Exercițiu practic
 
-{{< notice type="example" >}}
-**Pașii pentru respirația diafragmatică:**
-
+{{< exercise title="Respirația diafragmatică - Ghid pas cu pas" >}}
 1. Găsește o poziție confortabilă, așezat sau întins
 2. Plasează o mână pe piept și una pe abdomen
 3. Inspiră lent pe nas timp de 4 secunde, simțind cum abdomenul se ridică
 4. Menține aerul timp de 2 secunde
 5. Expiră lent pe gură timp de 6 secunde
 6. Repetă de 5-10 ori
-{{< /notice >}}
+{{< /exercise >}}
 
-{{< notice type="clinical" >}}
-**Notă clinică:** Studiile arată că practica regulată a respirației diafragmatice timp de doar 5 minute zilnic poate reduce semnificativ nivelul de cortizol și simptomele de anxietate.
-{{< /notice >}}
+{{< key-fact icon="las la-flask" label="Dovezi științifice" >}}
+Studiile arată că practica regulată a respirației diafragmatice timp de doar 5 minute zilnic poate reduce semnificativ nivelul de cortizol și simptomele de anxietate.
+{{< /key-fact >}}
 
 ---
 
@@ -61,9 +59,9 @@ Identifică și numește cu voce tare:
 - **2 lucruri** pe care le poți mirosi
 - **1 lucru** pe care îl poți gusta
 
-{{< notice type="tip" >}}
-**Când să folosești:** Această tehnică este deosebit de utilă în momentele de anxietate acută sau la începutul unui atac de panică. Poți să o practici oriunde - la birou, în transport sau acasă.
-{{< /notice >}}
+{{< callout type="tip" title="Când să folosești" >}}
+Această tehnică este deosebit de utilă în momentele de anxietate acută sau la începutul unui atac de panică. Poți să o practici oriunde - la birou, în transport sau acasă.
+{{< /callout >}}
 
 ---
 
@@ -104,15 +102,13 @@ Expunerea graduală implică confruntarea treptată cu situațiile temute, înce
 
 ### Pași pentru implementare
 
-{{< notice type="example" >}}
-**Procesul de expunere graduală:**
-
-1. **Identifică** situația sau obiectul care îți provoacă anxietate
-2. **Creează o ierarhie** de la 0 (fără anxietate) la 10 (anxietate maximă)
-3. **Începe** cu situațiile de nivel 2-3
-4. **Rămâi** în situație până când anxietatea scade cu cel puțin 50%
-5. **Progresează** către nivelul următor doar după ce te simți confortabil
-{{< /notice >}}
+{{< steps connected="true" >}}
+{{< step >}}**Identifică** situația sau obiectul care îți provoacă anxietate{{< /step >}}
+{{< step >}}**Creează o ierarhie** de la 0 (fără anxietate) la 10 (anxietate maximă){{< /step >}}
+{{< step >}}**Începe** cu situațiile de nivel 2-3{{< /step >}}
+{{< step >}}**Rămâi** în situație până când anxietatea scade cu cel puțin 50%{{< /step >}}
+{{< step >}}**Progresează** către nivelul următor doar după ce te simți confortabil{{< /step >}}
+{{< /steps >}}
 
 ### Exemplu de ierarhie pentru anxietatea socială
 
@@ -124,9 +120,9 @@ Expunerea graduală implică confruntarea treptată cu situațiile temute, înce
 | 8 | Prezentare în fața echipei |
 | 10 | Prezentare în fața conducerii |
 
-{{< notice type="important" >}}
-**Important:** Expunerea trebuie făcută fără comportamente de siguranță (evitări subtile) pentru a fi eficientă. Dacă în timpul expunerii verifici constant telefonul sau eviți contactul vizual, efectul terapeutic este diminuat.
-{{< /notice >}}
+{{< callout type="important" title="Atenție" >}}
+Expunerea trebuie făcută fără comportamente de siguranță (evitări subtile) pentru a fi eficientă. Dacă în timpul expunerii verifici constant telefonul sau eviți contactul vizual, efectul terapeutic este diminuat.
+{{< /callout >}}
 
 ---
 
@@ -140,9 +136,7 @@ Anxietatea se manifestă adesea prin tensiuni musculare de care nu suntem conșt
 
 ### Exercițiu ghidat
 
-{{< notice type="example" >}}
-**Ghid pas cu pas pentru Body Scan:**
-
+{{< exercise title="Body Scan - 10 minute" >}}
 1. Întinde-te într-o poziție confortabilă și închide ochii
 2. Începe cu atenția la vârful capului
 3. Mută-ți lent atenția în jos prin corp:
@@ -155,15 +149,13 @@ Anxietatea se manifestă adesea prin tensiuni musculare de care nu suntem conșt
    - Gambe și picioare
 4. La fiecare zonă, observă orice senzație fără a încerca să o schimbi
 5. Dacă găsești tensiune, inspiră adânc și expiră imaginându-ți cum tensiunea se dizolvă
-{{< /notice >}}
+{{< /exercise >}}
 
 ---
 
 ## Când să ceri ajutor profesional
 
-{{< notice type="warning" >}}
-**Semne că este timpul să consulți un specialist:**
-
+{{< callout type="warning" title="Semne că este timpul să consulți un specialist" >}}
 Aceste tehnici sunt instrumente valoroase pentru gestionarea anxietății ușoare și moderate. Cu toate acestea, este important să consulți un specialist dacă:
 
 - Anxietatea interferează semnificativ cu activitățile zilnice
@@ -171,7 +163,7 @@ Aceste tehnici sunt instrumente valoroase pentru gestionarea anxietății ușoar
 - Evitarea situațiilor anxiogene îți limitează viața
 - Simptomele persistă mai mult de câteva săptămâni
 - Ai gânduri de auto-vătămare
-{{< /notice >}}
+{{< /callout >}}
 
 ---
 
@@ -179,7 +171,9 @@ Aceste tehnici sunt instrumente valoroase pentru gestionarea anxietății ușoar
 
 Gestionarea anxietății este un proces care necesită practică și răbdare. Aceste cinci tehnici nu sunt soluții instantanee, ci instrumente pe care le poți dezvolta și rafina în timp. Recomand să experimentezi cu fiecare tehnică și să descoperi ce funcționează cel mai bine pentru tine.
 
-> Amintește-ți: anxietatea este o reacție normală a organismului. Obiectivul nu este eliminarea completă a anxietății, ci dezvoltarea capacității de a o gestiona eficient.
+{{< pullquote >}}
+Amintește-ți: anxietatea este o reacție normală a organismului. Obiectivul nu este eliminarea completă a anxietății, ci dezvoltarea capacității de a o gestiona eficient.
+{{< /pullquote >}}
 
 ---
 

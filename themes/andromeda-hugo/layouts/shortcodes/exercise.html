@@ -1,0 +1,11 @@
+{{- $title := .Get "title" | default "Exercițiu practic" -}}
+{{- $content := .Inner | markdownify -}}
+
+<div class="c-exercise">
+  <div class="c-exercise__header">
+    <h4>{{ $title }}</h4>
+  </div>
+  <div class="c-exercise__content">
+    {{- $content -}}
+  </div>
+</div>

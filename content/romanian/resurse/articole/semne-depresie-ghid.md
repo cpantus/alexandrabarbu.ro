@@ -12,9 +12,9 @@ draft: false
 
 Depresia este una dintre cele mai frecvente tulburări de sănătate mintală, afectând peste 280 de milioane de oameni la nivel global. Cu toate acestea, multe persoane nu recunosc semnele depresiei la ele însele sau la cei dragi, ceea ce întârzie accesul la ajutor specializat. Acest ghid te ajută să înțelegi diferența dintre tristețea normală și depresie și să identifici momentul potrivit pentru a cere sprijin.
 
-{{< notice type="info" >}}
-**De ce este important:** Recunoașterea timpurie a semnelor depresiei poate face diferența dintre o intervenție rapidă și eficientă și luni sau ani de suferință evitabilă. Depresia este o afecțiune tratabilă.
-{{< /notice >}}
+{{< key-fact icon="las la-globe" label="280 milioane de oameni" >}}
+Depresia afectează peste 280 de milioane de oameni la nivel global. Este a doua cauză de dizabilitate în lume.
+{{< /key-fact >}}
 
 ## Tristețe vs. Depresie: Care Este Diferența?
 
@@ -36,9 +36,9 @@ Este esențial să înțelegem că tristețea este o emoție normală și sănă
 - Afectează semnificativ funcționarea la muncă, acasă și în relații
 - Nu se ameliorează prin activitățile care înainte aduceau plăcere
 
-{{< notice type="clinical" >}}
-**Criteriu temporal:** Conform DSM-5, simptomele trebuie să fie prezente majoritatea zilelor, pe parcursul a cel puțin două săptămâni, pentru a se considera depresie clinică.
-{{< /notice >}}
+{{< callout type="clinical" title="Criteriu temporal DSM-5" >}}
+Conform DSM-5, simptomele trebuie să fie prezente majoritatea zilelor, pe parcursul a cel puțin două săptămâni, pentru a se considera depresie clinică.
+{{< /callout >}}
 
 ---
 
@@ -58,15 +58,13 @@ Depresia se manifestă printr-o combinație de simptome emoționale, cognitive, 
 
 ### Simptome Cognitive
 
-{{< notice type="note" >}}
-**Semnale de alarmă cognitive:**
-
+{{< callout type="note" title="Semnale de alarmă cognitive" >}}
 - **Dificultăți de concentrare** - cititul pare imposibil, conversațiile sunt greu de urmărit
 - **Indecizie** - chiar și deciziile simple par copleșitoare
 - **Gânduri negative repetitive** - ruminație asupra trecutului sau îngrijorări despre viitor
 - **Memoria afectată** - dificultăți în a-ți aminti informații sau evenimente recente
 - **Gânduri despre moarte** - în cazuri severe, gânduri de suicid sau auto-vătămare
-{{< /notice >}}
+{{< /callout >}}
 
 ### Simptome Fizice
 
@@ -104,35 +102,25 @@ Depresia nu este doar "în minte" - are manifestări fizice concrete:
 
 Nu toate depresiile sunt la fel. Iată principalele forme:
 
-{{< notice type="info" >}}
-**Tulburarea Depresivă Majoră**
-
+{{< highlight-box title="Tulburarea Depresivă Majoră" >}}
 Forma clasică de depresie, caracterizată prin episoade de cel puțin două săptămâni cu simptome severe care afectează funcționarea zilnică.
-{{< /notice >}}
+{{< /highlight-box >}}
 
-{{< notice type="info" >}}
-**Distimia (Tulburarea Depresivă Persistentă)**
-
+{{< callout type="info" title="Distimia (Tulburarea Depresivă Persistentă)" >}}
 O formă mai ușoară dar cronică de depresie, cu simptome prezente majoritatea zilelor timp de cel puțin doi ani.
-{{< /notice >}}
+{{< /callout >}}
 
-{{< notice type="info" >}}
-**Depresia Sezonieră**
-
+{{< callout type="info" title="Depresia Sezonieră" >}}
 Apare în anumite perioade ale anului, de obicei în lunile de toamnă și iarnă, când lumina naturală este redusă.
-{{< /notice >}}
+{{< /callout >}}
 
-{{< notice type="info" >}}
-**Depresia Postpartum**
-
+{{< callout type="info" title="Depresia Postpartum" >}}
 Apare în primele săptămâni sau luni după naștere și este diferită de "baby blues" prin intensitate și durată.
-{{< /notice >}}
+{{< /callout >}}
 
-{{< notice type="info" >}}
-**Depresia cu Caracteristici Atipice**
-
+{{< callout type="info" title="Depresia cu Caracteristici Atipice" >}}
 Include simptome "inverse" precum hipersomnie, creșterea apetitului și sensibilitate la respingere.
-{{< /notice >}}
+{{< /callout >}}
 
 ---
 
@@ -162,20 +150,18 @@ Depresia poate afecta pe oricine, dar unii factori cresc vulnerabilitatea:
 
 ## Când Să Ceri Ajutor Profesional
 
-{{< notice type="warning" >}}
-**Consultă un specialist dacă:**
-
+{{< callout type="warning" title="Consultă un specialist dacă" >}}
 - Simptomele persistă mai mult de două săptămâni
 - Funcționarea la muncă, școală sau în relații este afectată semnificativ
 - Ai gânduri de auto-vătămare sau suicid
 - Folosești alcool sau substanțe pentru a face față
 - Simptomele fizice nu au o explicație medicală
 - Te simți copleșit și fără speranță
-{{< /notice >}}
+{{< /callout >}}
 
-{{< notice type="important" >}}
-**Urgență:** Dacă ai gânduri de suicid sau auto-vătămare, contactează imediat un serviciu de urgență sau linia de criză: **0800 801 200** (TelVerde pentru sănătate mintală).
-{{< /notice >}}
+{{< callout type="important" title="Urgență - Linie de criză" size="lg" >}}
+Dacă ai gânduri de suicid sau auto-vătămare, contactează imediat un serviciu de urgență sau linia de criză: **0800 801 200** (TelVerde pentru sănătate mintală).
+{{< /callout >}}
 
 ---
 
@@ -185,13 +171,11 @@ Dacă te recunoști în descrierile de mai sus, iată câțiva pași pe care îi
 
 ### În această săptămână
 
-{{< notice type="example" >}}
-**Primii pași:**
-
-1. **Vorbește cu cineva de încredere** - partener, prieten, membru al familiei
-2. **Programează o consultație** cu medicul de familie sau un psihoterapeut
-3. **Începe să ții un jurnal** al dispoziției pentru a observa tiparele
-{{< /notice >}}
+{{< steps connected="true" >}}
+{{< step >}}**Vorbește cu cineva de încredere** - partener, prieten, membru al familiei{{< /step >}}
+{{< step >}}**Programează o consultație** cu medicul de familie sau un psihoterapeut{{< /step >}}
+{{< step >}}**Începe să ții un jurnal** al dispoziției pentru a observa tiparele{{< /step >}}
+{{< /steps >}}
 
 ### Pe termen scurt
 
@@ -202,22 +186,20 @@ Dacă te recunoști în descrierile de mai sus, iată câțiva pași pe care îi
 
 ### Ce să eviți
 
-{{< notice type="warning" >}}
-**Comportamente contraproductive:**
-
+{{< callout type="warning" title="Comportamente contraproductive" >}}
 - Să aștepți să "treacă de la sine"
 - Să te izolezi complet
 - Să te compari cu alții
 - Să iei decizii importante de viață în această perioadă
-{{< /notice >}}
+{{< /callout >}}
 
 ---
 
 ## Depresia Este Tratabilă
 
-{{< notice type="tip" >}}
-Cel mai important lucru pe care vreau să îl reții din acest articol este că **depresia este o condiție tratabilă**. Cu tratamentul adecvat, majoritatea persoanelor experimentează o ameliorare semnificativă.
-{{< /notice >}}
+{{< blockquote variant="featured" cite="Organizația Mondială a Sănătății" >}}
+Cu tratamentul adecvat, majoritatea persoanelor cu depresie experimentează o ameliorare semnificativă a simptomelor.
+{{< /blockquote >}}
 
 Opțiunile de tratament includ:
 
@@ -232,7 +214,9 @@ Opțiunile de tratament includ:
 
 Recunoașterea semnelor depresiei este primul pas către vindecare. Dacă te identifici cu simptomele descrise în acest articol, nu ești singur și nu ești slab pentru că te simți așa. Depresia este o afecțiune medicală reală care merită și răspunde la tratament.
 
-> Următorul pas este să ceri ajutor. Indiferent dacă alegi să vorbești cu medicul de familie, să programezi o consultație cu un psihoterapeut sau să suni la o linie de suport, faptul că iei această decizie este un act de curaj și grijă față de tine.
+{{< pullquote >}}
+Următorul pas este să ceri ajutor. Indiferent dacă alegi să vorbești cu medicul de familie, să programezi o consultație cu un psihoterapeut sau să suni la o linie de suport, faptul că iei această decizie este un act de curaj și grijă față de tine.
+{{< /pullquote >}}
 
 ---
 

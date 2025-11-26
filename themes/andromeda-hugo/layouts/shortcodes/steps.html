@@ -1,0 +1,11 @@
+{{- $connected := .Get "connected" | default "false" -}}
+{{- $content := .Inner -}}
+
+{{- $connectedClass := "" -}}
+{{- if eq $connected "true" -}}
+  {{- $connectedClass = " c-steps--connected" -}}
+{{- end -}}
+
+<ol class="c-steps{{ $connectedClass }}">
+  {{- $content -}}
+</ol>

@@ -1,0 +1,11 @@
+{{- $title := .Get "title" | default "" -}}
+{{- $content := .Inner | markdownify -}}
+
+<div class="c-highlight">
+  {{- if $title }}
+  <div class="c-highlight__title">{{ $title }}</div>
+  {{- end }}
+  <div class="c-highlight__content">
+    {{- $content -}}
+  </div>
+</div>

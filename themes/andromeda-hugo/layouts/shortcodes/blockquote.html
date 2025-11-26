@@ -1,0 +1,17 @@
+{{- $variant := .Get "variant" | default "" -}}
+{{- $cite := .Get "cite" | default "" -}}
+{{- $content := .Inner | markdownify -}}
+
+{{- $variantClass := "" -}}
+{{- if $variant -}}
+  {{- $variantClass = printf " c-blockquote--%s" $variant -}}
+{{- end -}}
+
+<blockquote class="c-blockquote{{ $variantClass }}">
+  <div class="c-blockquote__text">
+    {{- $content -}}
+  </div>
+  {{- if $cite }}
+  <cite class="c-blockquote__cite">{{ $cite }}</cite>
+  {{- end }}
+</blockquote>

@@ -1,0 +1,9 @@
+{{- $cite := .Get "cite" | default "" -}}
+{{- $content := .Inner | markdownify -}}
+
+<div class="c-pullquote">
+  <p class="c-pullquote__text">{{ $content }}</p>
+  {{- if $cite }}
+  <cite class="c-pullquote__cite">{{ $cite }}</cite>
+  {{- end }}
+</div>
