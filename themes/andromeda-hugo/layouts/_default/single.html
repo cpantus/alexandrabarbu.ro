@@ -1,0 +1,117 @@
+{{- define "main" -}}
+{{/*
+  Single Page Template
+  ====================
+  Default template for single content pages (articles, blog posts, etc.)
+  Uses .c-article wrapper for enhanced typography and notice/callout styling.
+*/}}
+
+{{/* Build breadcrumb items from page hierarchy */}}
+{{- $breadcrumbItems := slice (dict "text" (i18n "home" | default "Acasă") "url" "/") -}}
+{{- range .Ancestors.Reverse -}}
+  {{- if ne .Kind "home" -}}
+    {{- $breadcrumbItems = $breadcrumbItems | append (dict "text" .Title "url" .RelPermalink) -}}
+  {{- end -}}
+{{- end -}}
+{{- $breadcrumbItems = $breadcrumbItems | append (dict "text" .Title "active" true) -}}
+
+{{/* Hero breadcrumb section */}}
+<section class="c-hero-breadcrumb">
+  <div class="container">
+    {{- partial "molecules/breadcrumb.html" (dict "items" $breadcrumbItems "variant" "primary") -}}
+    <h1 class="c-hero-breadcrumb__title">{{ .Title }}</h1>
+    {{- if .Params.description -}}
+    <p class="c-hero-breadcrumb__subtitle">{{ .Params.description }}</p>
+    {{- end -}}
+  </div>
+</section>
+
+{{/* Article content */}}
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        {{/* Article meta info */}}
+        {{- if or .Params.author .Params.date .Params.readTime -}}
+        <div class="c-article-meta">
+          {{- if .Params.author -}}
+          <span class="c-article-meta__item">
+            <i class="las la-user"></i>
+            {{ .Params.author }}
+          </span>
+          {{- end -}}
+          {{- if .Params.date -}}
+          <span class="c-article-meta__item">
+            <i class="las la-calendar"></i>
+            {{ .Date.Format "2 January 2006" }}
+          </span>
+          {{- end -}}
+          {{- if .Params.readTime -}}
+          <span class="c-article-meta__item">
+            <i class="las la-clock"></i>
+            {{ .Params.readTime }}
+          </span>
+          {{- end -}}
+        </div>
+        {{- end -}}
+
+        {{/* Featured image */}}
+        {{- if .Params.image -}}
+        <figure class="c-article__featured-image mb-4">
+          <img src="{{ .Params.image }}" alt="{{ .Title }}" class="img-fluid rounded">
+        </figure>
+        {{- end -}}
+
+        {{/* Main content with .c-article wrapper for enhanced styling */}}
+        <article class="c-article">
+          {{ .Content }}
+        </article>
+
+        {{/* Tags */}}
+        {{- if .Params.tags -}}
+        <div class="c-article__tags mt-4 pt-4 border-top">
+          <span class="me-2"><strong>{{ i18n "tags" | default "Tags" }}:</strong></span>
+          {{- range .Params.tags -}}
+          <a href="{{ `/tags/` | relLangURL }}{{ . | urlize }}/" class="badge bg-sage-100 text-forest-700 me-1 mb-1">{{ . }}</a>
+          {{- end -}}
+        </div>
+        {{- end -}}
+
+        {{/* Categories */}}
+        {{- if .Params.categories -}}
+        <div class="c-article__categories mt-3">
+          <span class="me-2"><strong>{{ i18n "categories" | default "Categories" }}:</strong></span>
+          {{- range .Params.categories -}}
+          <a href="{{ `/categories/` | relLangURL }}{{ . | urlize }}/" class="badge bg-forest-100 text-forest-800 me-1 mb-1">{{ . }}</a>
+          {{- end -}}
+        </div>
+        {{- end -}}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* Related content (if any) */}}
+{{- $related := .Site.RegularPages.Related . | first 3 -}}
+{{- if $related -}}
+<section class="section bg-cream-50">
+  <div class="container">
+    <h2 class="text-center mb-4">{{ i18n "related_articles" | default "Articole Similare" }}</h2>
+    <div class="row">
+      {{- range $related -}}
+      <div class="col-md-4 mb-4">
+        {{ partial "molecules/card.html" (dict
+          "title" .Title
+          "description" .Params.description
+          "url" .RelPermalink
+          "image" .Params.image
+          "variant" "feature"
+        ) }}
+      </div>
+      {{- end -}}
+    </div>
+  </div>
+</section>
+{{- end -}}
+
+{{- end -}}
