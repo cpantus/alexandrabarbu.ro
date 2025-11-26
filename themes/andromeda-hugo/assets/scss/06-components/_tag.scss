@@ -77,12 +77,12 @@
 }
 
 /**
- * Secondary tag - terracotta (warmth, personal, balance)
+ * Secondary tag - sage with gold border (warmth, personal, balance)
  */
 .c-tag--secondary {
   background-color: $sage-100;
   color: $sage-700;
-  border: 1px solid $sage-300;
+  border: 1px solid $gold-500;
 }
 
 /**
@@ -139,6 +139,23 @@
   border: 1px solid $gray-300;
 }
 
+/**
+ * Redesign tag - gold border style (matches social icons)
+ * Used for article/resource badges overlaid on images
+ */
+.c-tag--redesign {
+  background-color: rgba($cream-50, 0.95);  // Light cream, slightly transparent
+  color: $forest-700;  // Dark forest text for readability
+  border: 1px solid $gold-500;  // Thin gold border like social icons
+  backdrop-filter: blur(4px);  // Subtle glassmorphism
+
+  // Gold hover accent
+  &:hover {
+    border-color: $gold-600;
+    background-color: rgba($cream-100, 0.98);
+  }
+}
+
 /*------------------------------------------------------------------
   # Tag Elements
 -------------------------------------------------------------------*/
@@ -181,6 +198,65 @@
 .c-tag__icon--right {
   // Flex gap automatically handles spacing
   // Added for semantic structure and future flexibility
+}
+
+/*------------------------------------------------------------------
+  # Interactive Modifiers
+-------------------------------------------------------------------*/
+
+/**
+ * Link modifier - makes tags clickable with hover effects
+ * Used for taxonomy links (tags, categories)
+ */
+.c-tag--link {
+  text-decoration: none !important;
+  background-image: none !important;
+  // NOTE: Do NOT set border-bottom: none - the border is a design element from variants
+  // text-decoration: none is sufficient to prevent link underlines
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  // Reset any pseudo-element underlines (from global link styles)
+  &::before,
+  &::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  &:hover,
+  &:focus {
+    transform: translateY(-1px);
+    box-shadow: $shadow-xs;
+    text-decoration: none !important;
+    background-image: none !important;
+    // border is handled by variant-specific hover states below
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  // Variant-specific hover states
+  &.c-tag--primary:hover {
+    background-color: $forest-200;
+    border-color: $forest-400;
+  }
+
+  &.c-tag--secondary:hover {
+    background-color: $sage-200;
+    border-color: $gold-600;
+  }
+
+  &.c-tag--tertiary:hover {
+    background-color: $navy-200;
+    border-color: $navy-400;
+  }
+
+  &.c-tag--redesign:hover {
+    background-color: rgba($cream-100, 0.98);
+    border-color: $gold-600;
+    box-shadow: 0 2px 8px rgba($gold-500, 0.2);
+  }
 }
 
 /*------------------------------------------------------------------
