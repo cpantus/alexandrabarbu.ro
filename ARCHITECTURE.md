@@ -2,7 +2,7 @@
 
 **System**: Hugo + Atomic Design + ITCSS | **Purpose**: Enable Claude Code to understand and extend project
 
-**Version**: 5.2.0 | **Updated**: 2025-11-25 | **Structure**: Hugo standard (theme directory)
+**Version**: 5.3.0 | **Updated**: 2025-11-26 | **Structure**: Hugo standard (theme directory)
 
 ---
 
@@ -238,6 +238,85 @@ content/fr/  # French
 {{ .Language.Lang }}                    # Current language
 {{ partialCached "org.html" . .Language }}  # Cache per language
 ```
+
+---
+
+## SEO & LLM Optimization
+
+The theme includes comprehensive SEO for traditional search engines and AI systems (ChatGPT, Perplexity, Claude).
+
+### LLM SEO Features
+
+| Feature | Purpose | Output |
+|---------|---------|--------|
+| `/llms.txt` | AI crawler guidance | Plain-text site summary |
+| Schema.org JSON-LD | Semantic understanding | 7 schema types |
+| E-E-A-T signals | Author credibility | Credentials, education |
+
+### Schema Types (Auto-generated)
+
+| Schema | Triggers | Location |
+|--------|----------|----------|
+| `WebSite` | Homepage | `seo/schemas/website.html` |
+| `Organization` | Homepage | `seo/schemas/organization.html` |
+| `Person` | Homepage (configurable) | `seo/schemas/person.html` |
+| `Article` | `/blog/`, `/articole/`, `/resurse/` | `seo/schemas/article.html` |
+| `Service` | `/servicii/`, `/services/` | `seo/schemas/service.html` |
+| `FAQPage` | Pages with `faq_items` | `seo/schemas/faq.html` |
+| `BreadcrumbList` | All pages | `seo/schemas/breadcrumb.html` |
+
+### Configuration
+
+```toml
+# config/_default/seo.toml
+[params.seo]
+  enable = true
+
+[params.seo.llms_txt]
+  enable = true
+  max_articles = 10
+
+[params.seo.organization]
+  enable = true
+  type = "ProfessionalService"
+
+[params.seo.person]
+  enable = true
+  default_author = "default"  # References data/authors/default.yaml
+```
+
+### File Structure
+
+```
+layouts/partials/seo/
+├── structured-data.html      # Main orchestrator
+├── hreflang.html             # Language alternates
+└── schemas/                  # 7 schema templates
+    ├── website.html
+    ├── organization.html
+    ├── person.html
+    ├── article.html
+    ├── service.html
+    ├── faq.html
+    └── breadcrumb.html
+
+layouts/_default/llms.txt     # AI crawler file template
+config/_default/seo.toml      # All SEO configuration
+config/_default/outputs.toml  # Enables LlmsTxt output
+data/authors/                 # Author profiles for E-E-A-T
+```
+
+### Testing
+
+```bash
+# Check llms.txt
+curl http://localhost:1313/llms.txt
+
+# Check JSON-LD schemas
+curl -s http://localhost:1313/ | grep -A 20 'application/ld+json'
+```
+
+**Full Documentation**: `themes/andromeda-hugo/docs/SEO-STRUCTURED-DATA.md`
 
 ---
 
