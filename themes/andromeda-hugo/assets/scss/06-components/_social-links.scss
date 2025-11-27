@@ -163,6 +163,33 @@
 }
 
 // -----------------------------------------------------------------------------
+// Design Excellence: Spotlight Effect (neighbors dim on hover)
+// -----------------------------------------------------------------------------
+// When hovering over one social icon, others dim to create focus
+.c-social__list:hover {
+  .c-social__link {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+
+  // Spotlight the hovered link
+  .c-social__link:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+// Disable spotlight on mobile (touch doesn't have hover semantics)
+@media (max-width: $breakpoint-md - 1) {
+  .c-social__list:hover {
+    .c-social__link {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
 // Modifier: Inline layout
 // -----------------------------------------------------------------------------
 .c-social--inline {
@@ -255,17 +282,3 @@
   }
 }
 
-// -----------------------------------------------------------------------------
-// Backward Compatibility (Legacy classes via @extend)
-// -----------------------------------------------------------------------------
-// Support old class names for gradual migration
-// TODO: Remove after all templates migrated to BEM classes
-
-.social-links {
-  @extend .c-social;
-  @extend .c-social--grid; // Default was grid
-
-  .social-link {
-    @extend .c-social__link;
-  }
-}
