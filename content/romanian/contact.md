@@ -49,7 +49,7 @@ contact_methods:
 contact_form_enhanced:
   variant: "primary"
   trust_badges:
-    - icon: "shield-check"
+    - icon: "shield-alt"
       text: "Confidențialitate"
     - icon: "clock"
       text: "Răspuns rapid"

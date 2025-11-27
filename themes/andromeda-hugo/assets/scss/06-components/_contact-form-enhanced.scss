@@ -274,13 +274,13 @@
   align-items: center;
   justify-content: center;
   background: var(--contact-trust-icon-bg);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid $gold-500;
   border-radius: var(--border-radius-full);
   transition: background var(--transition-normal), transform var(--transition-normal);
 
   i {
     font-size: $text-2xl; // 24px
-    color: var(--color-white);
+    color: $gold-500;
   }
 
   &:hover {
@@ -293,7 +293,7 @@
   font-family: var(--font-family-sans);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--contact-trust-text-color);
+  color: $gold-500;
   margin: 0;
 }
 
