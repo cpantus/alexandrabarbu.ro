@@ -2,121 +2,156 @@
 title: "{{ replace .Name "-" " " | title }}"
 description: ""
 date: {{ .Date }}
-draft: true
+draft: false
 layout: "flexible"
 
 sections:
-  # Hero section with breadcrumb
   - type: "hero-breadcrumb"
-    enable: true
-    title: "{{ replace .Name "-" " " | title }}"
-    subtitle: ""
-    background_image: ""
-
-  # Service details with features
-  - type: "feature-details"
-    enable: true
-    title: "Service Overview"
-    subtitle: ""
-    description: ""
-    features:
-      - icon: "check-circle"
-        title: "Feature 1"
-        description: "Description of feature 1"
-      - icon: "check-circle"
-        title: "Feature 2"
-        description: "Description of feature 2"
-      - icon: "check-circle"
-        title: "Feature 3"
-        description: "Description of feature 3"
-
-  # How it works section
-  - type: "how-it-works"
-    enable: true
-    title: "How It Works"
-    subtitle: "Process"
-    steps:
-      - title: "Step 1"
-        description: "Description of step 1"
-        image: ""
-      - title: "Step 2"
-        description: "Description of step 2"
-        image: ""
-      - title: "Step 3"
-        description: "Description of step 3"
-        image: ""
-
-  # Pricing section
+  - type: "values-intro"
+  - type: "feature-blocks"
+  - type: "first-session-timeline"
   - type: "pricing-tables"
-    enable: true
-    title: "Pricing Plans"
-    subtitle: "Choose Your Plan"
-    monthly_yearly_toggle: "toggle"
-    pricing_card:
-      - name: "Basic"
-        currency: "$"
-        monthly_price: "99"
-        yearly_price: "990"
-        content: "Perfect for individuals"
-        services:
-          - "Service 1"
-          - "Service 2"
-          - "Service 3"
-        button_label: "Get Started"
-        button_link: "/contact"
-        featured: false
-
-  # Benefits grid
-  - type: "benefits-grid"
-    enable: true
-    title: "Benefits"
-    subtitle: "Why Choose This Service"
-    benefits:
-      - icon: "heart"
-        title: "Benefit 1"
-        description: "Description of benefit 1"
-      - icon: "shield-alt"
-        title: "Benefit 2"
-        description: "Description of benefit 2"
-      - icon: "users"
-        title: "Benefit 3"
-        description: "Description of benefit 3"
-
-  # FAQ section
-  - type: "faq-mini"
-    enable: true
-    title: "Frequently Asked Questions"
-    subtitle: "FAQ"
-    faq:
-      - question: "Question 1?"
-        answer: "Answer to question 1"
-      - question: "Question 2?"
-        answer: "Answer to question 2"
-      - question: "Question 3?"
-        answer: "Answer to question 3"
-
-  # Contact form
+  - type: "testimonials-enhanced"
+  - type: "service-faq-inline"
   - type: "contact-form-enhanced"
-    enable: true
-    title: "Get in Touch"
-    subtitle: "Contact"
-    description: "Have questions? Reach out to us."
+
+# Hero Breadcrumb
+hero_breadcrumb:
+  title: "{{ replace .Name "-" " " | title }}"
+  subtitle: "Evidence-Based Therapy"
+  background: "light"
+  show_breadcrumb: true
+
+# Service Introduction
+values_intro:
+  enable: true
+  title: "Service Overview"
+  description: "Brief description of what this service offers and who it helps."
+  intro_text: |
+    Detailed description of the service approach, methods, and benefits.
+
+  values:
+    - title: "Evidence-Based"
+      description: "Research-supported therapeutic approaches"
+      icon: "microscope"
+
+    - title: "Personalized Care"
+      description: "Tailored treatment plans for individual needs"
+      icon: "user-circle"
+
+    - title: "Professional Support"
+      description: "Experienced, licensed therapist guidance"
+      icon: "award"
+
+# Service Features
+feature_blocks:
+  - title: "Feature 1"
+    subtitle: "Key benefit"
+    description: "Description of this service feature and its benefits."
+    image: "images/services/feature-1.jpg"
+
+  - title: "Feature 2"
+    subtitle: "Key benefit"
+    description: "Description of this service feature and its benefits."
+    image: "images/services/feature-2.jpg"
+
+# First Session
+first_session_timeline:
+  enable: true
+  title: "What to Expect in Your First Session"
+  subtitle: "First Session Guide"
+  description: "A clear overview of the first therapy session process."
+
+  timeline:
+    - number: 1
+      title: "Initial Assessment"
+      description: "We'll discuss your concerns and goals"
+      duration: "15 minutes"
+
+    - number: 2
+      title: "History & Background"
+      description: "Understanding your story and context"
+      duration: "15 minutes"
+
+    - number: 3
+      title: "Treatment Planning"
+      description: "Developing your personalized approach"
+      duration: "15 minutes"
+
+    - number: 4
+      title: "Next Steps"
+      description: "Scheduling and practical arrangements"
+      duration: "5 minutes"
+
+# Pricing
+pricing_tables:
+  enable: true
+  title: "Session Pricing"
+  subtitle: "Transparent Pricing"
+  default_yearly: false
+
+  plans:
+    - name: "Single Session"
+      price_monthly: 250
+      price_yearly: null
+      description: "Pay per session - flexible scheduling"
+      features:
+        - "50-minute session"
+        - "Evidence-based therapy"
+        - "Personalized approach"
+      button_text: "Book Session"
+      button_url: "/contact/"
+      featured: false
+
+    - name: "Package (5 Sessions)"
+      price_monthly: 225
+      price_yearly: null
+      description: "Save 10% with package deal"
+      features:
+        - "5 × 50-minute sessions"
+        - "All Single Session benefits"
+        - "10% discount"
+      button_text: "Get Package"
+      button_url: "/contact/"
+      featured: true
+
+# Testimonials
+testimonials_enhanced:
+  enable: true
+  title: "Client Experiences"
+  subtitle: "Success Stories"
+
+  testimonials:
+    - quote: "This therapy changed my life. I feel more confident and at peace."
+      author: "A.M."
+      role: "Client"
+      rating: 5
+      verified: true
+      outcome: "Reduced anxiety by 70%"
+
+# FAQ
+service_faq_inline:
+  enable: true
+  title: "Frequently Asked Questions"
+  subtitle: "Common Questions"
+
+  faqs:
+    - question: "How long is each session?"
+      answer: "Each session is 50 minutes long."
+      icon: "clock"
+
+    - question: "How many sessions will I need?"
+      answer: "This varies by individual goals and needs. We'll discuss this in your first session."
+      icon: "question-circle"
+
+# Contact Form
+contact_form:
+  enable: true
+  title: "Ready to Get Started?"
+  subtitle: "Book Your First Session"
+  description: "Contact us to schedule your initial consultation."
 ---
 
-## Service Description
+## Additional Information
 
-Write your detailed service description here. This content will be displayed on the page.
-
-### Key Features
-
-- Feature 1
-- Feature 2
-- Feature 3
-
-### Target Audience
-
-Describe who this service is for.
-
-### Expected Results
-
-Describe the expected outcomes and results.
+Add any additional markdown content here.

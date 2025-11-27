@@ -1,46 +1,147 @@
-{{/* Privacy Guarantee Section - v4.0 with gradient icon wrapper */}}
-{{ with .Params.privacy_guarantee }}
-<section class="section pt-0">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <div class="bg-light rounded p-5 text-center" data-aos="fade-up">
-          {{/* Main icon with gradient circle wrapper */}}
-          {{ partial "atoms/icon.html" (dict
-            "name" "shield-alt"
-            "withWrapper" true
-            "wrapperVariant" "primary"
-            "wrapperSize" "xl"
-            "class" "privacy-shield mb-4"
-          ) }}
+{{- /*
+================================================================================
+SECTION: Privacy Guarantee
+================================================================================
+Displays privacy & confidentiality assurance for therapy clients.
 
-          {{ partial "atoms/heading.html" (dict
-            "level" "h4"
-            "text" (.title | default "Confidențialitate 100%")
-            "class" "mb-3"
-            "colorVariant" "primary"
-          ) }}
-          <p class="mb-4">{{ .description | default "Datele tale sunt protejate conform GDPR și sunt utilizate exclusiv pentru procesul terapeutic. Nu împărtășim niciodată informațiile tale personale cu terți." }}</p>
+PARAMETERS:
+  .title          (string)  Section heading
+  .subtitle       (string)  Optional subtitle
+  .intro          (string)  Optional intro text (markdown supported)
+  .variant        (string)  Color variant: primary|secondary|tertiary|neutral (default: primary)
+  .guarantees     (array)   Array of guarantee objects
+  .cta_text       (string)  Optional CTA button text
+  .cta_url        (string)  Optional CTA button URL
+  .cta_variant    (string)  Optional CTA button variant
 
-          {{ with .features }}
-          <div class="row justify-content-center mt-4">
-            {{ range $index, $feature := . }}
-            <div class="col-md-4 mb-3" data-aos="fade-up" data-aos-delay="100">
-              <div class="d-flex align-items-center justify-content-center">
-                {{ partial "atoms/icon.html" (dict
-                  "name" "check-circle"
-                  "class" "text-primary me-2"
-                  "size" "20"
-                ) }}
-                <span>{{ $feature }}</span>
-              </div>
-            </div>
-            {{ end }}
-          </div>
-          {{ end }}
-        </div>
-      </div>
+GUARANTEE OBJECT:
+  .icon           (string)  Icon name (Line Awesome)
+  .title          (string)  Guarantee title
+  .description    (string)  Guarantee description
+
+USAGE EXAMPLE:
+---
+sections:
+  - type: "privacy-guarantee"
+
+privacy_guarantee:
+  title: "Confidențialitate Totală"
+  subtitle: "Spațiu sigur pentru povestea ta"
+  intro: "Confidențialitatea este fundamentul terapiei. Fiecare cuvânt pe care îl împărtășești rămâne între noi."
+  variant: "primary"
+  guarantees:
+    - icon: "shield-alt"
+      title: "Confidențialitate Profesională"
+      description: "Toate informațiile sunt protejate de secretul profesional și codul deontologic."
+    - icon: "lock"
+      title: "Date Securizate"
+      description: "Datele personale sunt stocate conform GDPR pe servere securizate în România."
+    - icon: "file-contract"
+      title: "Contract Clar"
+      description: "Limitele confidențialității sunt explicate clar în contractul terapeutic."
+    - icon: "user-shield"
+      title: "Excepții Legale"
+      description: "Informații dezvăluite doar în situații de pericol iminent conform legii."
+  cta_text: "Citește Politica de Confidențialitate"
+  cta_url: "/politica-confidentialitate"
+  cta_variant: "outline-primary"
+---
+
+MOLECULE DEPENDENCIES:
+- atoms/heading.html
+- atoms/button.html
+- atoms/icon.html
+- molecules/feature-highlight.html
+
+SCSS:
+- assets/scss/06-components/_privacy-guarantee.scss
+
+BEM CLASSES:
+- .c-privacy-guarantee             Block
+- .c-privacy-guarantee__header     Section header
+- .c-privacy-guarantee__intro      Intro text
+- .c-privacy-guarantee__grid       Guarantees grid
+- .c-privacy-guarantee__cta        CTA wrapper
+
+ACCESSIBILITY:
+- Semantic HTML (section, ul)
+- Heading hierarchy
+- Keyboard navigable
+- High contrast support
+- Screen reader friendly
+
+VERSION: 1.0.0 (2025-11-20)
+AUTHOR: Claude Code
+*/ -}}
+
+{{- $section := .Params.privacy_guarantee -}}
+{{- if $section -}}
+
+{{- $variant := $section.variant | default "primary" -}}
+{{- $guarantees := $section.guarantees -}}
+
+<section class="c-privacy-guarantee c-privacy-guarantee--{{ $variant }}" id="privacy-guarantee">
+  <div class="o-container">
+
+    {{- /* Section Header */ -}}
+    {{- if or $section.title $section.subtitle -}}
+    <div class="c-privacy-guarantee__header">
+      {{- if $section.title -}}
+        {{ partial "atoms/heading.html" (dict
+          "text" $section.title
+          "level" 2
+          "variant" $variant
+          "alignment" "center"
+        ) }}
+      {{- end -}}
+
+      {{- if $section.subtitle -}}
+      <p class="c-privacy-guarantee__subtitle">{{ $section.subtitle }}</p>
+      {{- end -}}
     </div>
+    {{- end -}}
+
+    {{- /* Optional Intro Text */ -}}
+    {{- if $section.intro -}}
+    <div class="c-privacy-guarantee__intro">
+      {{- if findRE "^<p>" $section.intro -}}
+        {{- $section.intro | safeHTML -}}
+      {{- else -}}
+        <p>{{ $section.intro | markdownify }}</p>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    {{- /* Guarantees Grid */ -}}
+    {{- if $guarantees -}}
+    <ul class="c-privacy-guarantee__grid">
+      {{- range $guarantees -}}
+        <li class="c-privacy-guarantee__item">
+          {{ partial "molecules/feature-highlight.html" (dict
+            "icon" .icon
+            "title" .title
+            "description" .description
+            "variant" $variant
+            "layout" "compact"
+          ) }}
+        </li>
+      {{- end -}}
+    </ul>
+    {{- end -}}
+
+    {{- /* Optional CTA */ -}}
+    {{- if and $section.cta_text $section.cta_url -}}
+    <div class="c-privacy-guarantee__cta">
+      {{ partial "atoms/button.html" (dict
+        "text" $section.cta_text
+        "url" $section.cta_url
+        "variant" ($section.cta_variant | default "outline-primary")
+        "size" "md"
+      ) }}
+    </div>
+    {{- end -}}
+
   </div>
 </section>
-{{ end }}
+
+{{- end -}}

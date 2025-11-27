@@ -2,201 +2,135 @@
 title: "{{ replace .Name "-" " " | title }}"
 description: ""
 date: {{ .Date }}
-draft: true
+draft: false
 layout: "flexible"
 
 sections:
-  # Hero section with CTA
-  - type: "hero-cta"
-    enable: true
-    title: "{{ replace .Name "-" " " | title }}"
-    subtitle: "Transform Your Life"
-    description: "Compelling value proposition goes here"
-    image: ""
-    button:
-      enable: true
-      label: "Get Started"
-      link: "#signup"
-    secondary_button:
-      enable: true
-      label: "Learn More"
-      link: "#features"
-
-  # Social proof / Stats
-  - type: "stats"
-    enable: true
-    stats:
-      - number: "1000+"
-        label: "Happy Clients"
-      - number: "15+"
-        label: "Years Experience"
-      - number: "98%"
-        label: "Satisfaction Rate"
-      - number: "50+"
-        label: "Therapy Techniques"
-
-  # Benefits overview
-  - type: "benefits-grid"
-    enable: true
-    title: "Why Choose Us"
-    subtitle: "Benefits"
-    description: "Discover what makes our approach unique and effective"
-    benefits:
-      - icon: "user-md"
-        title: "Expert Guidance"
-        description: "Work with experienced, licensed professionals"
-      - icon: "heart"
-        title: "Personalized Care"
-        description: "Tailored approach for your unique needs"
-      - icon: "clock"
-        title: "Flexible Schedule"
-        description: "Convenient appointment times"
-      - icon: "shield-check"
-        title: "Confidential"
-        description: "Safe, private, and secure environment"
-
-  # Feature showcase
-  - type: "feature-details"
-    enable: true
-    title: "How It Works"
-    subtitle: "Simple Process"
-    features:
-      - icon: "calendar-check"
-        title: "1. Book Consultation"
-        description: "Schedule your initial consultation online or by phone"
-      - icon: "clipboard-list"
-        title: "2. Assessment"
-        description: "We'll assess your needs and create a personalized plan"
-      - icon: "hands-helping"
-        title: "3. Begin Sessions"
-        description: "Start your journey with regular, supportive sessions"
-      - icon: "chart-line"
-        title: "4. Track Progress"
-        description: "Monitor improvements and celebrate milestones"
-
-  # Testimonials
-  - type: "testimonials-slider"
-    enable: true
-    title: "What Our Clients Say"
-    subtitle: "Testimonials"
-    testimonials:
-      - quote: "Life-changing experience. I finally have the tools I need."
-        author: "Sarah M."
-        role: "Individual Client"
-        rating: 5
-        avatar: ""
-      - quote: "Professional, caring, and incredibly effective approach."
-        author: "John D."
-        role: "Couples Client"
-        rating: 5
-        avatar: ""
-      - quote: "I wish I had started therapy here years ago!"
-        author: "Maria L."
-        role: "Family Client"
-        rating: 5
-        avatar: ""
-
-  # Pricing
+  - type: "hero-breadcrumb"
+  - type: "problem-empathy"
+  - type: "feature-blocks"
   - type: "pricing-tables"
-    enable: true
-    title: "Transparent Pricing"
-    subtitle: "Choose Your Plan"
-    monthly_yearly_toggle: "toggle"
-    offer: "Special: 20% off first month"
-    pricing_card:
-      - name: "Individual"
-        currency: "$"
-        monthly_price: "120"
-        yearly_price: "1200"
-        content: "One-on-one sessions"
-        services:
-          - "Weekly 50-minute sessions"
-          - "Personalized treatment plan"
-          - "Email support between sessions"
-          - "Progress tracking"
-        button_label: "Get Started"
-        button_link: "#signup"
-        featured: false
+  - type: "testimonials-enhanced"
+  - type: "faq-mini-section"
+  - type: "cta-standard"
+  - type: "contact-form-enhanced"
 
-      - name: "Couples"
-        currency: "$"
-        monthly_price: "180"
-        yearly_price: "1800"
-        content: "Relationship therapy"
-        services:
-          - "Weekly 60-minute sessions"
-          - "Couples assessment"
-          - "Communication exercises"
-          - "Homework assignments"
-          - "Progress monitoring"
-        button_label: "Get Started"
-        button_link: "#signup"
-        featured: true
+# Hero Section
+hero_breadcrumb:
+  title: "{{ replace .Name "-" " " | title }}"
+  subtitle: "Transform Your Life Today"
+  background: "primary"
+  show_breadcrumb: false
+  button_text: "Get Started"
+  button_url: "/contact/"
 
-      - name: "Family"
-        currency: "$"
-        monthly_price: "200"
-        yearly_price: "2000"
-        content: "Family counseling"
-        services:
-          - "Weekly 75-minute sessions"
-          - "Family dynamics assessment"
-          - "Conflict resolution strategies"
-          - "Individual check-ins"
-          - "Resource library access"
-        button_label: "Get Started"
-        button_link: "#signup"
-        featured: false
+# Problem/Empathy Section
+problem_empathy:
+  enable: true
+  subtitle: "You're Not Alone"
+  title: "Are You Experiencing These Challenges?"
+  description: "Many people face similar struggles. The first step to healing is recognizing the need for support."
 
-  # FAQ
-  - type: "faq-mini"
-    enable: true
-    title: "Frequently Asked Questions"
-    subtitle: "FAQ"
-    faq:
-      - question: "Do you accept insurance?"
-        answer: "Yes, we accept most major insurance plans. Contact us to verify your coverage."
-      - question: "What if I need to cancel?"
-        answer: "We require 24-hour notice for cancellations. Please review our cancellation policy."
-      - question: "Are sessions confidential?"
-        answer: "Absolutely. Confidentiality is a cornerstone of therapy, with few legal exceptions."
-      - question: "Can I switch plans?"
-        answer: "Yes, you can adjust your therapy plan at any time to better suit your needs."
+  challenges:
+    - title: "Challenge 1"
+      description: "Description of common problem"
+      icon: "brain"
+      index: 0
 
-  # Signup form
-  - type: "signup-form-enhanced"
-    enable: true
-    title: "Start Your Journey Today"
-    subtitle: "Book Consultation"
-    description: "Fill out the form below and we'll be in touch within 24 hours"
-    image: ""
-    form_action: ""
-    button_label: "Request Consultation"
+    - title: "Challenge 2"
+      description: "Description of common problem"
+      icon: "heart"
+      index: 1
 
-  # Trust signals
-  - type: "brands-carousel"
-    enable: true
-    title: "Recognized By"
-    subtitle: "Credentials"
-    brands:
-      - image: ""
-        name: "Credential 1"
-      - image: ""
-        name: "Credential 2"
-      - image: ""
-        name: "Credential 3"
+    - title: "Challenge 3"
+      description: "Description of common problem"
+      icon: "users"
+      index: 2
+
+  empathy_text: "I understand what you're going through. These challenges are real and deserve professional attention."
+
+# Features
+feature_blocks:
+  - title: "Feature 1"
+    subtitle: "Key benefit"
+    description: "How this feature helps solve the problem"
+    image: "images/features/feature-1.jpg"
+
+  - title: "Feature 2"
+    subtitle: "Key benefit"
+    description: "How this feature helps solve the problem"
+    image: "images/features/feature-2.jpg"
+
+# Pricing
+pricing_tables:
+  enable: true
+  title: "Simple, Transparent Pricing"
+  subtitle: "Choose Your Plan"
+  default_yearly: false
+
+  plans:
+    - name: "Basic"
+      price_monthly: 250
+      description: "Perfect for getting started"
+      features:
+        - "Feature 1"
+        - "Feature 2"
+        - "Feature 3"
+      button_text: "Get Started"
+      button_url: "/contact/"
+      featured: false
+
+    - name: "Premium"
+      price_monthly: 350
+      description: "Best value for comprehensive care"
+      features:
+        - "All Basic features"
+        - "Feature 4"
+        - "Feature 5"
+      button_text: "Choose Premium"
+      button_url: "/contact/"
+      featured: true
+
+# Testimonials
+testimonials_enhanced:
+  enable: true
+  title: "What Clients Say"
+  subtitle: "Success Stories"
+
+  testimonials:
+    - quote: "This service changed my life completely."
+      author: "Client Name"
+      role: "Client"
+      rating: 5
+      verified: true
+
+# FAQ
+faq_mini_section:
+  enable: true
+  title: "Common Questions"
+  subtitle: "FAQ"
+
+  questions:
+    - question: "How does it work?"
+      answer: "Brief answer explaining the process."
+
+    - question: "How long does it take?"
+      answer: "Brief answer about duration."
+
+# CTA
+cta_standard:
+  enable: true
+  title: "Ready to Get Started?"
+  description: "Take the first step towards positive change today."
+  primary_button_text: "Book Now"
+  primary_button_url: "/contact/"
+  secondary_button_text: "Learn More"
+  secondary_button_url: "/about/"
+
+# Contact Form
+contact_form:
+  enable: true
+  title: "Schedule Your Free Consultation"
+  subtitle: "Get In Touch"
+  description: "Fill out the form and we'll get back to you within 24 hours."
 ---
-
-## Landing Page Content
-
-Additional content for SEO and context. This helps with search engine rankings while providing valuable information.
-
-### Our Commitment
-
-Brief statement about your commitment to client wellbeing.
-
-### What Makes Us Different
-
-- Unique differentiator 1
-- Unique differentiator 2
-- Unique differentiator 3
