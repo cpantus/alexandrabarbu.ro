@@ -20,7 +20,7 @@ sections:
 hero_breadcrumb:
   title: "Couples Therapy"
   subtitle: "Rebuild Connection, Communication and Intimacy"
-  description: "Therapy based on Gottman Method and CBT for conflict resolution, rebuilding trust and strengthening your relationship."
+  description: "Therapy based on Gottman Method and CBT for conflict resolution, rebuilding trust and strengthening your relationship. Whether you're facing dysfunctional communication, infidelity, or simply feel disconnected, couples therapy provides the tools to rediscover your connection. 70%+ of couples report significant improvements after the therapeutic process."
   image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1200&h=600&fit=crop"
 
 breadcrumb:
@@ -380,15 +380,11 @@ cta_standard:
   title: "Ready to Rebuild Your Relationship?"
   description: "Don't wait until it's too late. The earlier you start therapy, the higher the chances of success. Book a free 30-minute consultation."
 
-  primary_button:
-    text: "Book Free Consultation"
-    url: "/en/contact/"
-    variant: "primary"
-
-  secondary_button:
-    text: "See Other Services"
-    url: "/en/services/"
-    variant: "outline-secondary"
+  button_text: "Book Free Consultation"
+  button_url: "/en/contact/"
+  secondary_button_text: "See Other Services"
+  secondary_button_url: "/en/services/"
+  secondary_button_variant: "outline-secondary"
 
   benefits:
     - text: "Free 30-minute consultation for both"

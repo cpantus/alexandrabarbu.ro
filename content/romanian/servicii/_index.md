@@ -14,7 +14,7 @@ sections:
 hero_breadcrumb:
   title: "Servicii de Terapie"
   subtitle: "Găsește Serviciul Potrivit Pentru Tine"
-  description: "Oferă terapie psihologică specializată pentru indivizi, cupluri, familii și organizații. Toate serviciile folosesc metode validate științific și sunt adaptate nevoilor tale unice."
+  description: "Oferă terapie psihologică specializată pentru indivizi, cupluri, familii și organizații. Toate serviciile folosesc metode validate științific și sunt adaptate nevoilor tale unice. Fie că te confrunți cu anxietate, depresie, probleme în relații sau cauți dezvoltare personală, există un serviciu creat special pentru tine. Prima consultație este gratuită și fără obligații."
   image: "images/services/hero-services.jpg"
 
 breadcrumb:
@@ -139,15 +139,11 @@ cta_standard:
   title: "Gata Să Începi?"
   description: "Primul pas este cel mai important. Programează o consultație gratuită de 30 minute pentru a discuta despre situația ta și a identifica serviciul potrivit."
 
-  primary_button:
-    text: "Programează Consultație Gratuită"
-    url: "/contact/"
-    variant: "primary"
-
-  secondary_button:
-    text: "Vezi Toate Serviciile"
-    url: "#services-preview"
-    variant: "outline-secondary"
+  button_text: "Programează Consultație Gratuită"
+  button_url: "/contact/"
+  secondary_button_text: "Vezi Toate Serviciile"
+  secondary_button_url: "#services-preview"
+  secondary_button_variant: "outline-secondary"
 
   benefits:
     - text: "Consultație inițială gratuită 30 minute"

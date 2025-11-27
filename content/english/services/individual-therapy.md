@@ -20,7 +20,7 @@ sections:
 hero_breadcrumb:
   title: "Individual Therapy"
   subtitle: "Personalized Approach for Your Healing and Growth"
-  description: "Evidence-based therapy for anxiety, depression, trauma, and personal development. I use CBT, EMDR, and Mindfulness for measurable results."
+  description: "Evidence-based therapy for anxiety, depression, trauma, and personal development. I use CBT, EMDR, and Mindfulness for measurable results. Whether you're struggling with panic attacks, persistent sadness, or want to know yourself better, individual therapy provides a safe space for transformation. Progress is monitored objectively, with practical techniques you can use daily."
   image: "images/services/individual-therapy-hero.jpg"
 
 breadcrumb:
@@ -368,15 +368,11 @@ cta_standard:
   title: "Ready to Take the First Step Toward Healing?"
   description: "You don't have to go through this alone. Book a free 30-minute consultation and let's begin the journey to a better life together."
 
-  primary_button:
-    text: "Book Free Consultation"
-    url: "/en/contact/"
-    variant: "primary"
-
-  secondary_button:
-    text: "See Other Services"
-    url: "/en/services/"
-    variant: "outline-secondary"
+  button_text: "Book Free Consultation"
+  button_url: "/en/contact/"
+  secondary_button_text: "See Other Services"
+  secondary_button_url: "/en/services/"
+  secondary_button_variant: "outline-secondary"
 
   benefits:
     - text: "Free 30-minute initial consultation"

@@ -14,7 +14,7 @@ sections:
 hero_breadcrumb:
   title: "Therapy Services"
   subtitle: "Find the Right Service for You"
-  description: "I offer specialized psychological therapy for individuals, couples, families, and organizations. All services use scientifically validated methods and are adapted to your unique needs."
+  description: "I offer specialized psychological therapy for individuals, couples, families, and organizations. All services use scientifically validated methods and are adapted to your unique needs. Whether you're dealing with anxiety, depression, relationship issues, or seeking personal development, there's a service designed specifically for you. The first consultation is free and without obligations."
   image: "images/services/hero-services.jpg"
 
 breadcrumb:
@@ -139,15 +139,11 @@ cta_standard:
   title: "Ready to Begin?"
   description: "The first step is the most important. Book a free 30-minute consultation to discuss your situation and identify the right service."
 
-  primary_button:
-    text: "Book Free Consultation"
-    url: "/en/contact/"
-    variant: "primary"
-
-  secondary_button:
-    text: "See All Services"
-    url: "#services-preview"
-    variant: "outline-secondary"
+  button_text: "Book Free Consultation"
+  button_url: "/en/contact/"
+  secondary_button_text: "See All Services"
+  secondary_button_url: "#services-preview"
+  secondary_button_variant: "outline-secondary"
 
   benefits:
     - text: "Free 30-minute initial consultation"

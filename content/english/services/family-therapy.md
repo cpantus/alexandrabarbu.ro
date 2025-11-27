@@ -20,7 +20,7 @@ sections:
 hero_breadcrumb:
   title: "Family Therapy"
   subtitle: "Healing and Harmonizing Family Dynamics"
-  description: "Systemic therapy for resolving family conflicts, improving communication and building healthier relationships between all family members."
+  description: "Systemic therapy for resolving family conflicts, improving communication and building healthier relationships between all family members. Whether you're navigating a divorce, facing issues with adolescents, or going through a difficult transition, family therapy transforms the entire system for lasting harmony. All members learn to truly listen and validate each other's emotions."
   image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=1200&h=600&fit=crop"
 
 breadcrumb:
@@ -380,15 +380,11 @@ cta_standard:
   title: "Ready to Heal Your Family?"
   description: "Family problems don't disappear on their own - they usually worsen. The earlier you intervene, the easier it is to rebuild. Book a free 30-minute consultation."
 
-  primary_button:
-    text: "Book Free Consultation"
-    url: "/en/contact/"
-    variant: "primary"
-
-  secondary_button:
-    text: "See Other Services"
-    url: "/en/services/"
-    variant: "outline-secondary"
+  button_text: "Book Free Consultation"
+  button_url: "/en/contact/"
+  secondary_button_text: "See Other Services"
+  secondary_button_url: "/en/services/"
+  secondary_button_variant: "outline-secondary"
 
   benefits:
     - text: "Free 30-minute consultation for whole family"

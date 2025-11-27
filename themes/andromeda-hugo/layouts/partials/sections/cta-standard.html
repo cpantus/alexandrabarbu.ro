@@ -89,7 +89,7 @@ Version: 5.0.1 (New component)
             {{- end -}}
             {{ partial "atoms/button.html" (dict
               "text" $section.button_text
-              "url" $section.button_url
+              "href" $section.button_url
               "variant" ($section.button_variant | default $defaultButtonVariant)
               "size" "lg"
             ) }}
@@ -98,7 +98,7 @@ Version: 5.0.1 (New component)
             {{- if and $section.secondary_button_text $section.secondary_button_url -}}
               {{ partial "atoms/button.html" (dict
                 "text" $section.secondary_button_text
-                "url" $section.secondary_button_url
+                "href" $section.secondary_button_url
                 "variant" ($section.secondary_button_variant | default "outline-secondary")
                 "size" "lg"
               ) }}

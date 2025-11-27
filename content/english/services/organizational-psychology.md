@@ -368,15 +368,11 @@ cta_standard:
   title: "Ready to Invest in Your People?"
   description: "People are the company's most valuable asset. Investment in human capital brings the best long-term ROI. Book a free 60-minute consultation to discuss your company's needs."
 
-  primary_button:
-    text: "Book Free Consultation"
-    url: "/en/contact/"
-    variant: "primary"
-
-  secondary_button:
-    text: "See Other Services"
-    url: "/en/services/"
-    variant: "outline-secondary"
+  button_text: "Book Free Consultation"
+  button_url: "/en/contact/"
+  secondary_button_text: "See Other Services"
+  secondary_button_url: "/en/services/"
+  secondary_button_variant: "outline-secondary"
 
   benefits:
     - text: "Free 60-minute consultation for your company"
