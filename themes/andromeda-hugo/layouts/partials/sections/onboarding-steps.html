@@ -2,9 +2,9 @@
   Onboarding Steps Section
 
   Description:
-    Displays client onboarding/intake process timeline as a grid of numbered
-    process steps. Used for "How to Start" or "Getting Started" sections.
-    Shows sequential steps with numbers, titles, and descriptions.
+    Displays client onboarding/intake process as a grid of icon-based value cards.
+    Used for "How to Start", "First Session", or "Getting Started" sections.
+    Shows sequential steps with icons, titles, and descriptions.
 
   BEM Structure:
     - Block: .c-onboarding-steps
@@ -18,10 +18,10 @@
       subtitle: "Your Journey Starts" # Optional: Section subtitle
       intro: "Getting started..."     # Optional: Intro paragraph
       steps:                          # Required: Array of steps
-        - step: 1                     # Required: Step number
+        - icon: "handshake"           # Optional: Line Awesome icon name (without 'la-' prefix)
           title: "Initial Contact"    # Required: Step title
           description: "Reach out"    # Required: Step description
-        - step: 2
+        - icon: "comments"
           title: "Assessment"
           description: "We discuss"
       cta:                            # Optional: Call-to-action
@@ -30,18 +30,18 @@
         variant: "primary"            # Optional: Button variant
 
   Dependencies:
-    - Molecules: process-step.html
-    - Atoms: heading.html, button.html
-    - SCSS: _onboarding-steps.scss
+    - Molecules: value-card.html
+    - Atoms: heading.html, button.html, icon.html
+    - SCSS: _onboarding-steps.scss, _value-card.scss
 
   Accessibility:
-    - Semantic HTML with ordered list (ol)
-    - Heading hierarchy (h2 for title)
-    - Process-step molecules have proper ARIA labels
+    - Semantic HTML with article elements (via value-card)
+    - Heading hierarchy (h2 for section, h3 for cards)
+    - Icon ARIA labels via value-card molecule
     - Focus indicators via CSS
 
-  Version: 1.0.0
-  Last Updated: 2025-11-20
+  Version: 2.0.0
+  Last Updated: 2025-11-27
 */ -}}
 
 {{- /* Extract Section Data */ -}}
@@ -107,12 +107,9 @@
         {{- end -}}
 
         {{- /* Steps Grid */ -}}
-        <ol class="c-onboarding-steps__grid">
+        <div class="c-onboarding-steps__grid">
           {{- range $index, $step_item := $steps -}}
             {{- /* Validate step data */ -}}
-            {{- if not $step_item.step -}}
-              {{- warnf "onboarding-steps: Step %d missing 'step' number (page: %s)" $index $.Page.File.Path -}}
-            {{- end -}}
             {{- if not $step_item.title -}}
               {{- warnf "onboarding-steps: Step %d missing 'title' (page: %s)" $index $.Page.File.Path -}}
             {{- end -}}
@@ -120,21 +117,20 @@
               {{- warnf "onboarding-steps: Step %d missing 'description' (page: %s)" $index $.Page.File.Path -}}
             {{- end -}}
 
-            {{- /* Determine step variant (rotate through variants for visual variety) */ -}}
-            {{- $step_variants := slice "primary" "secondary" "tertiary" "neutral" -}}
-            {{- $step_variant_idx := mod $index (len $step_variants) -}}
-            {{- $step_variant := index $step_variants $step_variant_idx -}}
+            {{- /* Get icon name - use provided icon or default to circle */ -}}
+            {{- $icon := $step_item.icon | default "circle" -}}
 
-            <li class="c-onboarding-steps__item">
-              {{ partial "molecules/process-step.html" (dict
-                "step" $step_item.step
+            <div class="c-onboarding-steps__item">
+              {{ partial "molecules/value-card.html" (dict
                 "title" $step_item.title
+                "icon" $icon
                 "description" $step_item.description
-                "variant" $step_variant
+                "variant" "primary"
+                "icon_style" "wrapper"
               ) }}
-            </li>
+            </div>
           {{- end -}}
-        </ol>
+        </div>
 
         {{- /* Optional CTA */ -}}
         {{- if $cta -}}

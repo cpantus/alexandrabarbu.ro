@@ -6,12 +6,9 @@ draft: false
 
 sections:
   - type: "hero-breadcrumb"
-  - type: "values-intro"
-  - type: "method-tabs"
-  - type: "feature-blocks"
-  - type: "values-compass"
-  - type: "onboarding-steps"
   - type: "cta-standard"
+  - type: "feature-blocks"
+  - type: "onboarding-steps"
 
 # Hero Breadcrumb Section
 hero_breadcrumb:
@@ -163,47 +160,39 @@ values_compass:
         Respect și îmbrățișez diversitatea culturală, valorile personale și sistemele de credințe ale fiecărei
         persoane. Abordarea mea este flexibilă și adaptată contextului tău cultural și personal unic.
 
-# Onboarding Steps Section - General Process
+# Onboarding Steps Section - General Process (uses value-card molecules)
 onboarding_steps:
   title: "Cum Decurge **Prima Ședință**?"
   intro: "Procesul terapeutic începe cu o întâlnire inițială de cunoaștere și evaluare"
   steps:
     - title: "Cunoaștere și Construirea Relației"
-      duration: "10-15 minute"
+      icon: "handshake"
       description: |
         Ne cunoaștem, discutăm despre așteptările tale de la terapie și clarifăm orice întrebări ai despre proces.
         Este important să te simți confortabil și în siguranță.
-      icon: "handshake"
     - title: "Explorarea Provocărilor Tale"
-      duration: "20-25 minute"
+      icon: "comments"
       description: |
         Îmi vei povesti despre dificultățile care te-au adus în terapie, impactul lor asupra vieții tale și
         ce ai încercat până acum. Ascult cu atenție și fac întrebări pentru a înțelege mai bine situația ta.
-      icon: "comments"
     - title: "Stabilirea Obiectivelor"
-      duration: "10-15 minute"
+      icon: "bullseye"
       description: |
         Împreună, vom identifica obiective clare și realiste pentru terapie. Ce îți dorești să fie diferit?
         Cum vei ști că terapia funcționează? Stabilim așteptări clare și un plan preliminar.
-      icon: "bullseye"
     - title: "Planificare și Pași Următori"
-      duration: "5-10 minute"
+      icon: "map-marked-alt"
       description: |
         Discutăm despre frecvența ședințelor, metodele pe care le vom folosi și primii pași concreți.
         Îți ofer și câteva resurse sau exerciții simple, dacă este cazul.
-      icon: "map-marked-alt"
 
 # CTA Standard Section
 cta_standard:
-  kicker: "Fă Primul Pas"
-  title: "Pregătit să Începi **Călătoria Ta Terapeutică**?"
+  title: "Pregătit să Începi Călătoria Ta Terapeutică?"
   description: |
     Prima ședință este întotdeauna de cunoaștere, fără obligații. Putem discuta despre provocările tale și
     cum te pot ajuta, într-un cadru sigur și confidențial.
-  button_text: "Programează o Consultație Gratuită"
+  button_text: "Programează Consultație"
   button_url: "/contact/"
-  button_variant: "primary"
-  secondary_button_text: "Vezi Serviciile"
-  secondary_button_url: "/servicii/"
-  secondary_button_variant: "outline-secondary"
+  button_variant: "secondary"
 ---

@@ -80,11 +80,10 @@
   {{- /* Icon */ -}}
   <div class="c-value-card__icon">
     {{ partial "atoms/icon.html" (dict
-      "icon" $icon
-      "size" "2xl"
+      "name" $icon
+      "size" "lg"
       "variant" $variant
-      "wrapper" (ne $icon_style "flat")
-      "wrapper_size" "lg"
+      "withWrapper" (ne $icon_style "flat")
       "glass" (eq $icon_style "glass")
     ) }}
   </div>
