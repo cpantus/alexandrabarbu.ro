@@ -145,7 +145,7 @@
   }
 
   // Links
-  a {
+  a:not(.c-tag) {
     color: $color-forest-500;
     text-decoration: underline;
     text-decoration-color: $color-sage-300;
@@ -205,6 +205,30 @@
       }
     }
   }
+}
+
+// ==================================
+// ARTICLE TAXONOMY SECTIONS (Tags/Categories)
+// ==================================
+
+.c-article__tags,
+.c-article__categories {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0 0.75rem; // Extra bottom padding for hover effects
+}
+
+.c-article__categories {
+  padding-bottom: 1.5rem; // Extra space for last row box-shadow
+  margin-bottom: 2rem; // Spacing before next section
+}
+
+.c-article__taxonomy-label {
+  font-size: 0.9375rem;
+  color: $color-text-secondary;
+  flex-shrink: 0;
 }
 
 // Note: Callout boxes (.c-callout, .c-highlight, .c-exercise, .c-steps, etc.)

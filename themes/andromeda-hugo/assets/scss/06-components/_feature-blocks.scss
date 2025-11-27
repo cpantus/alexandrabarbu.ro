@@ -85,7 +85,9 @@
   margin-bottom: $space-16;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  // DESIGN EXCELLENCE 3.2: Asymmetric Balance - 55/45 split instead of 50/50
+  // Creates visual tension and avoids predictable symmetric layouts
+  grid-template-columns: 55fr 45fr;
   gap: $space-8;
   align-items: center;
 
@@ -177,7 +179,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: $gradient-warm-vibrant;
+    background: $gold-500; // Gold underline
     transition: width $duration-normal $ease-out;
   }
 
@@ -292,27 +294,7 @@
     opacity: 1;
   }
 
-  // Decorative corner accent (hidden by default)
-  &::after {
-    content: '';
-    position: absolute;
-    top: $space-4;
-    right: $space-4;
-    width: 60px;
-    height: 60px;
-    border-radius: $radius-full;
-    background: $gradient-warm-vibrant;
-    opacity: 0;
-    transform: scale(0);
-    transition: opacity $duration-normal $ease-out,
-                transform $duration-normal $ease-out;
-    z-index: 2;
-  }
-
-  &:hover::after {
-    opacity: 0.2;
-    transform: scale(1);
-  }
+  // Decorative corner accent removed (was causing parasitic circle on hover)
 
   // Responsive adjustments
   @media (max-width: $breakpoint-lg) {
@@ -346,7 +328,11 @@
 // Zigzag Pattern (Alternating Left/Right Layout)
 // ----------------------------------------------------------------------------
 // Even items: Image left, Text right (reverse order)
+// DESIGN EXCELLENCE 3.2: Inverted asymmetry (45/55) creates dynamic zigzag
 .c-feature-blocks__item--even {
+  // Inverted column widths for visual rhythm
+  grid-template-columns: 45fr 55fr;
+
   .c-feature-blocks__content {
     order: 2; // Content on right
     transform-origin: right center;
@@ -358,6 +344,8 @@
   }
 
   @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr; // Reset to single column
+
     .c-feature-blocks__content {
       order: 1; // Stack: content first on mobile
     }
@@ -369,7 +357,10 @@
 }
 
 // Odd items: Text left, Image right (natural order)
+// DESIGN EXCELLENCE 3.2: Maintains 55/45 asymmetry from parent
 .c-feature-blocks__item--odd {
+  // Inherits 55fr 45fr from parent, no override needed
+
   .c-feature-blocks__content {
     order: 1; // Content on left
     transform-origin: left center;
@@ -381,6 +372,8 @@
   }
 
   @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr; // Reset to single column
+
     .c-feature-blocks__content {
       order: 1; // Stack: content first on mobile
     }
@@ -450,8 +443,7 @@
     }
   }
 
-  .c-feature-blocks__image-wrapper::before,
-  .c-feature-blocks__image-wrapper::after {
+  .c-feature-blocks__image-wrapper::before {
     display: none;
   }
 }

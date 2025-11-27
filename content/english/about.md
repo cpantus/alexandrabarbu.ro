@@ -19,7 +19,7 @@ sections:
 hero_breadcrumb:
   title: "About Me"
   subtitle: "My Story and Therapeutic Approach"
-  description: "15+ years of experience helping people overcome emotional challenges and find balance in life."
+  description: "15+ years of experience helping people overcome emotional challenges and find balance in life. With thousands of hours of therapy provided, I guide each person to discover their own inner resources for healing. I believe in the power of empathy and scientifically validated methods."
   image: "images/about/alexandra-barbu-portrait.jpg"
   breadcrumb:
     - name: "Home"

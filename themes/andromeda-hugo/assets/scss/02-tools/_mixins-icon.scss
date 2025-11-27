@@ -49,6 +49,10 @@
     background: var(--icon-circle-radial-sage);
   } @else if $variant == 'info' {
     background: var(--icon-circle-radial-info);
+  } @else if $variant == 'gold' {
+    background: var(--icon-circle-radial-gold);
+  } @else if $variant == 'primary-gold' {
+    background: var(--icon-circle-radial-primary);
   } @else {
     // Fallback to primary
     background: var(--icon-circle-radial-primary);
@@ -56,7 +60,11 @@
 
   // Icon inside circle
   i, svg {
-    color: var(--icon-circle-color);
+    @if $variant == 'primary-gold' {
+      color: var(--icon-circle-color-gold);
+    } @else {
+      color: var(--icon-circle-color);
+    }
     font-size: calc(#{$circle-size} * var(--icon-circle-icon-size-ratio)); // 45% of container
     line-height: 1;
   }

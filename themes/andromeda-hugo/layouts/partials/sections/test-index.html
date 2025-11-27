@@ -1,0 +1,42 @@
+{{/*
+  Test Index Section
+
+  Simple numbered index linking to feature-blocks tests below.
+  Auto-generates from feature_blocks data (single source of truth).
+
+  Front Matter Parameters:
+  - .Params.test_index.enable (bool): Enable/disable section
+  - .Params.feature_blocks (array): Source data for test list
+
+  Example Usage:
+  ```yaml
+  sections:
+    - type: "test-index"
+
+  test_index:
+    enable: true
+  ```
+
+  Created: 2025-11-27
+  Version: 1.1.0 - Simplified to anchor links
+*/}}
+
+{{- $tests := .Params.feature_blocks -}}
+{{- $index := .Params.test_index -}}
+{{- if and $index.enable $tests -}}
+<nav class="c-test-index" aria-label="Index teste">
+  <div class="container">
+    <div class="c-test-index__wrapper">
+      <h2 class="c-test-index__title">{{ $index.title | default "Teste Disponibile" }}</h2>
+      <ol class="c-test-index__list">
+        {{- range $i, $test := $tests -}}
+          {{- $slug := $test.title | urlize -}}
+          <li class="c-test-index__item">
+            <a href="#{{ $slug }}" class="c-test-index__link">{{ $test.title }}</a>
+          </li>
+        {{- end -}}
+      </ol>
+    </div>
+  </div>
+</nav>
+{{- end -}}

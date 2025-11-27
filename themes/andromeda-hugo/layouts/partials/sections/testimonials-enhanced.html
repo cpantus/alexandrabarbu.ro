@@ -1,123 +1,91 @@
-{{/* Enhanced Testimonials Section - Display client testimonials with verification and details */}}
+{{/* Testimonials Enhanced Section - Dark forest green design with gold accents */}}
 {{- $section := .Params.testimonials_enhanced -}}
+{{- if not $section -}}
+  {{- $section = .Params.testimonials_section -}}
+{{- end -}}
 
 {{- with $section -}}
-  {{- if .enable -}}
-    <section class="section testimonials-enhanced {{ if .background }}bg-{{ .background }}{{ else }}bg-light{{ end }}">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            {{- if or .subtitle .title .description -}}
-              <div class="section-title text-center mb-5" data-aos="fade-up">
-                {{- if .subtitle -}}
-                  <p class="subtitle text-muted">{{ .subtitle | markdownify }}</p>
-                {{- end -}}
-                {{- if .title -}}
-                  {{ partial "atoms/heading.html" (dict
-                    "text" .title
-                    "level" 2
-                    "class" "title mb-3"
-                  ) }}
-                {{- end -}}
-                {{- if .description -}}
-                  <p class="lead text-muted">{{ .description | markdownify }}</p>
-                {{- end -}}
-              </div>
-            {{- end -}}
+<section class="c-testimonials-dark">
+  <div class="container">
+    {{/* Header with gold quote icon and decorative dividers */}}
+    <div class="c-testimonials-dark__header">
+      {{- if .icon_color -}}
+        <div class="c-testimonials-dark__icon c-testimonials-dark__icon--{{ .icon_color }}">
+          <i class="las la-quote-right"></i>
+        </div>
+      {{- else -}}
+        <div class="c-testimonials-dark__icon c-testimonials-dark__icon--gold">
+          <i class="las la-quote-right"></i>
+        </div>
+      {{- end -}}
 
-            <div class="testimonials-grid row g-4">
-              {{- range $index, $testimonial := .testimonials -}}
-                {{- $colorVariants := slice "primary" "secondary" "coral" -}}
-                {{- $colorVariant := index $colorVariants (mod $index 3) -}}
-                <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
-                  <div class="card card-v4 card-gradient-border card-gradient-border-{{ $colorVariant }} h-100">
-                    <div class="card-body">
-                    {{/* Rating stars */}}
-                    {{- if .rating -}}
-                      <div class="testimonial-rating mb-3">
-                        {{- range seq .rating -}}
-                          {{ partial "atoms/icon.html" (dict "name" "star" "class" "text-warning") }}
-                        {{- end -}}
-                        {{- if lt .rating 5 -}}
-                          {{- range seq (sub 5 .rating) -}}
-                            {{ partial "atoms/icon.html" (dict "name" "star" "class" "text-muted opacity-25") }}
-                          {{- end -}}
-                        {{- end -}}
-                      </div>
-                    {{- end -}}
+      {{- if .title -}}
+        <div class="c-testimonials-dark__divider"></div>
+        <h2 class="c-testimonials-dark__title">{{ .title | markdownify }}</h2>
+        <div class="c-testimonials-dark__divider"></div>
+      {{- end -}}
 
-                    {{/* Quote */}}
-                    {{- if .quote -}}
-                      <blockquote class="testimonial-quote mb-4">
-                        <p class="mb-0 fst-italic">"{{ .quote }}"</p>
-                      </blockquote>
-                    {{- end -}}
+      {{- if .subtitle -}}
+        <p class="c-testimonials-dark__subtitle">{{ .subtitle | markdownify }}</p>
+      {{- end -}}
+    </div>
 
-                    {{/* Client details */}}
-                    <div class="testimonial-author d-flex align-items-start">
-                      <div class="author-info flex-grow-1">
-                        {{- if .name -}}
-                          <p class="author-name fw-semibold mb-1">{{ .name }}</p>
-                        {{- end -}}
-
-                        <div class="author-meta small text-muted">
-                          {{- if .age_range -}}
-                            <span class="me-2">{{ .age_range }}</span>
-                          {{- end -}}
-                          {{- if .therapy_type -}}
-                            <span class="d-block">{{ .therapy_type }}</span>
-                          {{- end -}}
-                          {{- if .duration -}}
-                            <span class="d-block">{{ .duration }}</span>
-                          {{- end -}}
-                        </div>
-                      </div>
-
-                      {{/* Verification badge */}}
-                      {{- if .verified -}}
-                        <div class="verification-badge ms-2" title="Verified client">
-                          {{ partial "atoms/icon.html" (dict "name" "shield-check" "class" "text-success") }}
-                        </div>
-                      {{- end -}}
-                    </div>
-
-                    {{/* Therapy outcome (optional) */}}
-                    {{- if .outcome -}}
-                      <div class="testimonial-outcome mt-3 pt-3 border-top">
-                        <p class="small text-muted mb-0">
-                          {{ partial "atoms/icon.html" (dict "name" "check-circle" "class" "text-primary me-1") }}
-                          {{ .outcome }}
-                        </p>
-                      </div>
-                    {{- end -}}
-                    </div>
-                  </div>
-                </div>
-              {{- end -}}
+    {{/* Testimonials Grid */}}
+    {{- if .testimonials -}}
+    <div class="c-testimonials-dark__grid">
+      {{- range .testimonials -}}
+        <div class="c-testimonials-dark__item">
+          {{/* Avatar with initials - FIRST (above divider) */}}
+          {{- if .name -}}
+            {{- $initials := substr .name 0 1 -}}
+            <div class="c-testimonials-dark__avatar">
+              <span>{{ $initials }}</span>
             </div>
+          {{- end -}}
 
-            {{- if .privacy_note -}}
-              <div class="privacy-note text-center mt-5" data-aos="fade-up">
-                <p class="small text-muted">
-                  {{ partial "atoms/icon.html" (dict "name" "lock" "class" "text-muted me-1") }}
-                  {{ .privacy_note | markdownify }}
-                </p>
-              </div>
+          {{/* Author info - SECOND (above divider) */}}
+          <div class="c-testimonials-dark__author">
+            {{- if .name -}}
+              <p class="c-testimonials-dark__name">{{ .name }}</p>
             {{- end -}}
-
-            {{- if .cta_button -}}
-              <div class="testimonials-cta text-center mt-4" data-aos="fade-up">
-                {{ partial "atoms/button.html" (dict
-                  "text" .cta_button.text
-                  "url" .cta_button.url
-                  "variant" (.cta_button.variant | default "primary")
-                  "icon" .cta_button.icon
-                ) }}
-              </div>
+            {{- if .role -}}
+              <p class="c-testimonials-dark__role">{{ .role }}</p>
             {{- end -}}
           </div>
+
+          {{/* Decorative divider - THIRD */}}
+          <div class="c-testimonials-dark__divider"></div>
+
+          {{/* Quote text - LAST */}}
+          {{- if .quote -}}
+            <blockquote class="c-testimonials-dark__quote">"{{ .quote }}"</blockquote>
+          {{- end -}}
         </div>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    {{/* Privacy note */}}
+    {{- if .privacy_note -}}
+      <div class="c-testimonials-dark__privacy text-center mt-5">
+        <p class="small">
+          <i class="las la-lock me-1"></i>
+          {{ .privacy_note | markdownify }}
+        </p>
       </div>
-    </section>
-  {{- end -}}
+    {{- end -}}
+
+    {{/* CTA Button */}}
+    {{- if .cta_button -}}
+      <div class="c-testimonials-dark__cta text-center mt-4">
+        {{ partial "atoms/button.html" (dict
+          "text" .cta_button.text
+          "url" .cta_button.url
+          "variant" (.cta_button.variant | default "primary")
+          "icon" .cta_button.icon
+        ) }}
+      </div>
+    {{- end -}}
+  </div>
+</section>
 {{- end -}}

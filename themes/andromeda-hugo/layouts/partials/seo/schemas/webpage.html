@@ -1,0 +1,58 @@
+{{/*
+  WebPage Schema
+  ==============
+  Generates Schema.org WebPage with appropriate subtypes.
+  https://schema.org/WebPage
+*/}}
+
+{{- $config := site.Params.seo.webpage | default dict -}}
+{{- $pageTypes := $config.types | default dict -}}
+
+{{/* Determine page type based on URL patterns */}}
+{{- $pageType := "WebPage" -}}
+{{- $path := .RelPermalink | lower -}}
+
+{{- range $pattern, $type := $pageTypes -}}
+  {{- if in $path $pattern -}}
+    {{- $pageType = $type -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Allow front matter override */}}
+{{- with .Params.seo.page_type -}}
+  {{- $pageType = . -}}
+{{- end -}}
+
+{{/* Build base schema */}}
+{{- $schema := dict
+  "@context" "https://schema.org"
+  "@type" $pageType
+  "name" .Title
+  "url" .Permalink
+  "inLanguage" .Lang
+-}}
+
+{{- with .Description | default .Params.description | default site.Params.description -}}
+  {{- $schema = merge $schema (dict "description" .) -}}
+{{- end -}}
+
+{{- if not .IsHome -}}
+  {{- $isPartOf := dict
+    "@type" "WebSite"
+    "name" site.Title
+    "url" site.BaseURL
+  -}}
+  {{- $schema = merge $schema (dict "isPartOf" $isPartOf) -}}
+{{- end -}}
+
+{{- with .Date -}}
+  {{- $schema = merge $schema (dict "datePublished" (.Format "2006-01-02T15:04:05Z07:00")) -}}
+{{- end -}}
+
+{{- with .Lastmod | default .Date -}}
+  {{- $schema = merge $schema (dict "dateModified" (.Format "2006-01-02T15:04:05Z07:00")) -}}
+{{- end -}}
+
+<script type="application/ld+json">
+{{ $schema | jsonify (dict "indent" "  " "noHTMLEscape" true) | safeJS }}
+</script>

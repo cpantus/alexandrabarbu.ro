@@ -92,14 +92,13 @@
       </div>
 
       {{/* Features Grid (Right) - 2x2 */}}
+      {{/* DESIGN EXCELLENCE 2.1 + 2.2: Card Spotlight + Staggered Reveals */}}
       {{- if $section.features -}}
-        <div class="c-scientific-approach__features">
+        <div class="c-scientific-approach__features c-card-grid c-card-grid--stagger">
           {{- range $index, $feature := $section.features -}}
             {{- $variant := default "primary" .variant -}}
 
-            <div class="c-scientific-approach__feature c-scientific-approach__feature--{{ $variant }}"
-                 data-aos="fade-up"
-                 data-aos-delay="{{ mul $index 100 }}">
+            <div class="c-scientific-approach__feature c-scientific-approach__feature--{{ $variant }} c-card">
 
               {{/* Feature Icon */}}
               {{- if .icon -}}

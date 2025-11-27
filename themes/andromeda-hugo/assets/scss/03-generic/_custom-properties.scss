@@ -102,8 +102,30 @@
    * For icon circles with gradient backgrounds
    * ---------------------------------- */
   // Icon circle sizes (updated v2.1 scale)
+  --icon-circle-sm: 48px;
+  --icon-circle-md: 64px;
+  --icon-circle-lg: 84px;
+  --icon-circle-xl: 104px;
 
-  // Icon circle radial gradients (primary)
+  // Icon circle radial gradients (variant backgrounds)
+  --icon-circle-radial-primary: radial-gradient(circle at 30% 30%, #{lighten($forest-500, 10%)} 0%, #{$forest-600} 100%);
+  --icon-circle-radial-secondary: radial-gradient(circle at 30% 30%, #{lighten($sage-500, 10%)} 0%, #{$sage-600} 100%);
+  --icon-circle-radial-coral: radial-gradient(circle at 30% 30%, #{lighten($coral-500, 10%)} 0%, #{$coral-600} 100%);
+  --icon-circle-radial-premium: radial-gradient(circle at 30% 30%, #{lighten($plum-500, 10%)} 0%, #{$plum-600} 100%);
+  --icon-circle-radial-sage: radial-gradient(circle at 30% 30%, #{lighten($sage-500, 10%)} 0%, #{$sage-600} 100%);
+  --icon-circle-radial-info: radial-gradient(circle at 30% 30%, #{lighten($teal-500, 10%)} 0%, #{$teal-600} 100%);
+  --icon-circle-radial-gold: radial-gradient(circle at 30% 30%, #{lighten($gold-500, 10%)} 0%, #{$gold-600} 100%);
+
+  // Icon circle styling
+  --icon-circle-color: #ffffff;
+  --icon-circle-color-gold: #{$gold-500};
+  --icon-circle-icon-size-ratio: 0.45;
+  --icon-circle-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --icon-circle-shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.2);
+  --icon-circle-transition: transform 0.3s ease, box-shadow 0.3s ease;
+  --icon-circle-transform-hover: translateY(-2px) scale(1.02);
+
+  // Icon circle radial gradients (legacy - for backwards compatibility)
   --icon-circle-bg-primary-start: #{$forest-400};
   --icon-circle-bg-primary-end: #{$forest-600};
 
@@ -127,11 +149,19 @@
   --icon-circle-bg-info-start: #{$teal-400};
   --icon-circle-bg-info-end: #{$teal-600};
 
-  // Icon circle styling
-
   // Icon flat colors (no background)
+  --icon-flat-primary-color: #{$forest-500};
+  --icon-flat-secondary-color: #{$sage-500};
+  --icon-flat-coral-color: #{$coral-500};
+  --icon-flat-sage-color: #{$sage-600};
+  --icon-flat-transform-hover: scale(1.1);
 
   // Glassmorphism icon circle
+  --icon-glass-blur: 12px;
+  --icon-glass-bg-primary: linear-gradient(135deg, rgba(#{red($forest-500)}, #{green($forest-500)}, #{blue($forest-500)}, 0.8) 0%, rgba(#{red($forest-600)}, #{green($forest-600)}, #{blue($forest-600)}, 0.9) 100%);
+  --icon-glass-bg-secondary: linear-gradient(135deg, rgba(#{red($sage-500)}, #{green($sage-500)}, #{blue($sage-500)}, 0.8) 0%, rgba(#{red($sage-600)}, #{green($sage-600)}, #{blue($sage-600)}, 0.9) 100%);
+  --icon-glass-bg-coral: linear-gradient(135deg, rgba(#{red($coral-500)}, #{green($coral-500)}, #{blue($coral-500)}, 0.8) 0%, rgba(#{red($coral-600)}, #{green($coral-600)}, #{blue($coral-600)}, 0.9) 100%);
+  --icon-glass-border: 1px solid rgba(255, 255, 255, 0.2);
 
   /* ----------------------------------
    * Icon Blob Component Properties

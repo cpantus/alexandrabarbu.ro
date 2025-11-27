@@ -6,8 +6,8 @@
 // Features: Gold icon, decorative dividers, 3-column grid, avatar circles, cream text
 // Design: eval1.md Section 5 specifications
 //
-// Version: 1.0.0 - Redesign 2025
-// Updated: 2025-11-23
+// Version: 1.1.0 - Redesign 2025 (aligned grid + footer-style avatars)
+// Updated: 2025-11-26
 //
 
 // ============================================================================
@@ -82,13 +82,28 @@
 }
 
 // ============================================================================
-// ELEMENT: Testimonials Grid (3 Columns)
+// ELEMENT: Subtitle (Description below title)
+// ============================================================================
+
+.c-testimonials-dark__subtitle {
+  font-family: $font-body; // DM Sans
+  font-size: $text-base; // 16px
+  font-weight: $weight-normal; // 400
+  color: rgba($cream-100, 0.85); // Slightly muted cream
+  max-width: 600px;
+  margin: $space-4 auto 0; // 16px top, centered
+  line-height: 1.6;
+}
+
+// ============================================================================
+// ELEMENT: Testimonials Grid (3 Columns - ALIGNED)
 // ============================================================================
 
 .c-testimonials-dark__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: $grid-gap; // 32px
+  align-items: start; // All items align to top
 
   // Tablet: 2 columns
   @media (max-width: $breakpoint-lg-max) {
@@ -103,7 +118,7 @@
 }
 
 // ============================================================================
-// ELEMENT: Testimonial Item
+// ELEMENT: Testimonial Item (NO stagger - clean alignment)
 // ============================================================================
 
 .c-testimonials-dark__item {
@@ -116,19 +131,29 @@
 }
 
 // ============================================================================
-// ELEMENT: Avatar Circle (48px with Initials)
+// ELEMENT: Avatar Circle (Footer social icon style - 48px with 1px border)
 // ============================================================================
 
 .c-testimonials-dark__avatar {
+  // Size matches footer social icons
   width: 48px;
   height: 48px;
-  margin: 0 auto $space-6; // 24px bottom margin, centered
-  display: flex;
+  margin: 0 auto $space-3; // 12px bottom margin, centered
+
+  // Flexbox centering
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba($cream-100, 0.15); // Subtle cream tint
-  border: 2px solid rgba($cream-100, 0.3); // Cream border
+
+  // Visual styling - matches footer social icons
+  background: transparent;
+  border: 1px solid rgba($cream-100, 0.5); // Thin border like footer icons
   border-radius: $radius-full; // Perfect circle
+
+  // Transition for hover effect
+  transition:
+    border-color $duration-base $easing-out,
+    transform $duration-base $easing-out;
 
   span {
     font-family: $font-body; // DM Sans
@@ -137,6 +162,17 @@
     color: $cream-100; // Cream text
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    transition: color $duration-base $easing-out;
+  }
+
+  // Hover effect triggered by parent item hover
+  .c-testimonials-dark__item:hover & {
+    border-color: $gold-500;
+    transform: scale(1.1);
+
+    span {
+      color: $gold-500;
+    }
   }
 }
 
@@ -151,7 +187,7 @@
   font-weight: $weight-normal; // 400
   line-height: 1.7; // Good readability
   color: $cream-100; // Cream (#F4F7F5)
-  margin: 0 0 $space-8; // 32px bottom margin
+  margin: $space-4 0 0 0; // 16px top margin (after divider), no bottom
 
   // Remove default blockquote styling
   padding: 0;
@@ -167,7 +203,8 @@
 // ============================================================================
 
 .c-testimonials-dark__author {
-  margin-top: $space-6; // 24px top margin
+  margin-top: 0;
+  margin-bottom: $space-4; // 16px bottom margin before divider
 }
 
 .c-testimonials-dark__name {
@@ -177,7 +214,7 @@
   color: $color-gold-500; // Gold accent
   text-transform: uppercase;
   letter-spacing: 0.1em; // Tracking-wide
-  margin-bottom: $space-2; // 8px
+  margin-bottom: $space-1; // 4px
 }
 
 .c-testimonials-dark__role {
@@ -213,11 +250,11 @@
 // ============================================================================
 
 // Ensure sufficient contrast (WCAG AA: 4.5:1 for text)
-// Dark forest green #2F5548 + Cream #F4F7F5 = ~11:1 contrast ratio ✅
+// Dark forest green #2F5548 + Cream #F4F7F5 = ~11:1 contrast ratio
 
 // Reduced motion support
 @media (prefers-reduced-motion: reduce) {
-  .c-testimonials-dark__item {
+  .c-testimonials-dark__avatar {
     transition: none;
   }
 }

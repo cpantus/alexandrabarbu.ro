@@ -83,12 +83,18 @@
   {{- end -}}
 {{- end -}}
 
+{{- $numbered := .Params.feature_blocks_numbered | default false -}}
 {{- if $data -}}
 <section class="c-feature-blocks">
   <div class="o-container">
     {{- range $index, $item := $data -}}
       {{- $isEven := eq (mod $index 2) 0 -}}
-      <div class="c-feature-blocks__item {{ if $isEven }}c-feature-blocks__item--even{{ else }}c-feature-blocks__item--odd{{ end }}">
+      {{- $slug := $item.title | urlize -}}
+      {{- $displayTitle := $item.title -}}
+      {{- if $numbered -}}
+        {{- $displayTitle = printf "%d. %s" (add $index 1) $item.title -}}
+      {{- end -}}
+      <div id="{{ $slug }}" class="c-feature-blocks__item {{ if $isEven }}c-feature-blocks__item--even{{ else }}c-feature-blocks__item--odd{{ end }}">
 
         {{/* Content Side (Text) */}}
         <div class="c-feature-blocks__content">
@@ -97,8 +103,13 @@
           {{- end -}}
 
           {{/* Heading Atom - Primary variant for brand color */}}
+          {{/* Note: Don't markdownify numbered titles to avoid "1. Title" becoming <ol> */}}
+          {{- $headingText := $displayTitle -}}
+          {{- if not $numbered -}}
+            {{- $headingText = $item.title | markdownify -}}
+          {{- end -}}
           {{- partial "atoms/heading.html" (dict
-            "text" ($item.title | markdownify)
+            "text" $headingText
             "level" "h2"
             "variant" "primary"
             "class" "c-feature-blocks__title"

@@ -1,0 +1,127 @@
+{{/*
+  Structured Data (JSON-LD) Entry Point
+  =====================================
+  Orchestrates all Schema.org structured data generation.
+
+  Configuration: config/_default/seo.toml
+  Author data: data/authors/*.yaml
+
+  Include in head.html:
+    {{ partial "seo/structured-data.html" . }}
+
+  Schemas generated:
+  - WebSite (homepage only)
+  - Organization/LocalBusiness (homepage only)
+  - Person (homepage only, if enabled)
+  - WebPage (all pages)
+  - Article/BlogPosting (content matching path_patterns)
+  - Service (service pages)
+  - FAQPage (pages with FAQ content)
+  - BreadcrumbList (pages with ancestors)
+*/}}
+
+{{- $seo := site.Params.seo | default dict -}}
+
+{{/* Master toggle - exit early if disabled */}}
+{{- if eq ($seo.enable | default true) false -}}
+  {{- return -}}
+{{- end -}}
+
+{{/* ========================================================================
+   HOMEPAGE-ONLY SCHEMAS
+   ======================================================================== */}}
+
+{{- if .IsHome -}}
+  {{/* WebSite schema - always on homepage */}}
+  {{- partial "seo/schemas/website.html" . -}}
+
+  {{/* Organization schema */}}
+  {{- if $seo.organization.enable | default true -}}
+    {{- partial "seo/schemas/organization.html" . -}}
+  {{- end -}}
+
+  {{/* Person schema (site owner/primary author) */}}
+  {{- if and ($seo.person.enable | default true) ($seo.person.show_on_homepage | default true) -}}
+    {{- partial "seo/schemas/person.html" . -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* ========================================================================
+   ALL PAGES - WebPage Schema
+   ======================================================================== */}}
+
+{{- if $seo.webpage.enable | default true -}}
+  {{- partial "seo/schemas/webpage.html" . -}}
+{{- end -}}
+
+{{/* ========================================================================
+   CONTENT TYPE DETECTION & SCHEMAS
+   ======================================================================== */}}
+
+{{/* Article schema - detect by path patterns */}}
+{{- $articleConfig := $seo.article | default dict -}}
+{{- if $articleConfig.enable | default true -}}
+  {{- $articlePatterns := $articleConfig.path_patterns | default (slice "/blog/" "/articole/" "/articles/" "/posts/" "/resurse/") -}}
+  {{- $isArticle := false -}}
+  {{- $path := .RelPermalink | lower -}}
+
+  {{- range $articlePatterns -}}
+    {{- if in $path . -}}
+      {{- $isArticle = true -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{/* Also check if it's a regular page with date and author (blog-like content) */}}
+  {{- if and (not $isArticle) .IsPage (not .IsHome) .Date .Params.author -}}
+    {{- $isArticle = true -}}
+  {{- end -}}
+
+  {{/* Don't generate Article schema for list pages */}}
+  {{- if and $isArticle .IsPage -}}
+    {{- partial "seo/schemas/article.html" . -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Service schema - detect by path patterns */}}
+{{- $serviceConfig := $seo.service | default dict -}}
+{{- if $serviceConfig.enable | default true -}}
+  {{- $servicePatterns := $serviceConfig.path_patterns | default (slice "/servicii/" "/services/") -}}
+  {{- $isService := false -}}
+  {{- $path := .RelPermalink | lower -}}
+
+  {{- range $servicePatterns -}}
+    {{- if in $path . -}}
+      {{- $isService = true -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{/* Only for single service pages, not list pages */}}
+  {{- if and $isService .IsPage -}}
+    {{- partial "seo/schemas/service.html" . -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* ========================================================================
+   FAQ SCHEMA (Auto-detect from front matter)
+   ======================================================================== */}}
+
+{{- $faqConfig := $seo.faq | default dict -}}
+{{- if $faqConfig.enable | default true -}}
+  {{/* Check multiple possible FAQ front matter keys */}}
+  {{- $hasFaq := or .Params.faq_items .Params.faq_mini.faqs .Params.faq_content.faqs .Params.service_faq_inline.faqs -}}
+  {{- if $hasFaq -}}
+    {{- partial "seo/schemas/faq.html" . -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* ========================================================================
+   BREADCRUMB SCHEMA
+   ======================================================================== */}}
+
+{{- $breadcrumbConfig := $seo.breadcrumb | default dict -}}
+{{- if $breadcrumbConfig.enable | default true -}}
+  {{/* Only generate if page has ancestors (not homepage) */}}
+  {{- if and .Ancestors (not .IsHome) -}}
+    {{- partial "seo/schemas/breadcrumb.html" . -}}
+  {{- end -}}
+{{- end -}}

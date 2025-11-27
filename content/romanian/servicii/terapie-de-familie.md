@@ -6,6 +6,7 @@ layout: "flexible"
 sections:
   - type: "hero-breadcrumb"
   - type: "feature-blocks"
+  - type: "cta-standard"
   - type: "benefits-results"
   - type: "faq-mini"
 
@@ -13,7 +14,7 @@ sections:
 hero_breadcrumb:
   title: "Terapie de Familie"
   subtitle: "Vindecare și Armonizare a Dinamicii Familiale"
-  description: "Terapie sistemică pentru rezolvarea conflictelor familiale, îmbunătățirea comunicării și construirea relațiilor mai sănătoase între toți membrii familiei."
+  description: "Terapie sistemică pentru rezolvarea conflictelor familiale, îmbunătățirea comunicării și construirea relațiilor mai sănătoase între toți membrii familiei. Fie că navigați printr-un divorț, vă confruntați cu probleme ale adolescenților sau treceți printr-o tranziție dificilă, terapia de familie transformă întregul sistem pentru armonie durabilă. Toți membrii învață să se asculte cu adevărat și să valideze emoțiile celorlalți."
   image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=1200&h=600&fit=crop"
 
 breadcrumb:
@@ -69,6 +70,16 @@ benefits_results:
       description: "Familia se simte mai apropiată. Ritualuri de conexiune (mese împreună, activități), mai mult timp de calitate, sentimentul de apartenență."
       icon: "heart"
       timeline: "După 12-18 sesiuni"
+
+
+# CTA Standard
+cta_standard:
+  title: "Gata Să Faci Primul Pas Spre Vindecare?"
+  description: "Nu trebuie să treci prin asta singur. Programează o consultație gratuită de 30 minute și să începem împreună călătoria spre o viață mai bună."
+  background: "gradient"
+  button_text: "Programează Consultație Gratuită"
+  button_url: "/contact/"
+  button_variant: "secondary"
 
 
 

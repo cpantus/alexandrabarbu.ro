@@ -24,6 +24,7 @@ hero_breadcrumb:
   title: "Finding Your"
   title_accent: "Inner North"
   subtitle: "The journey to healing begins with a single step. Explore the path to inner balance and authentic transformation through integrative therapy."
+  description: "I am a clinical psychologist with over 15 years of experience, specialized in cognitive therapy, EMDR, and mindfulness. I provide a safe and confidential space to explore your challenges and rediscover your inner balance."
   show_breadcrumb: false
   show_compass: true
   cta_buttons:

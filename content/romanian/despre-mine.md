@@ -7,7 +7,6 @@ sections:
   - type: "hero-about"
   - type: "credentials-education"
   - type: "scientific-approach"
-  - type: "cta-standard"
 
 # ============================================================================
 # 1. HERO SECTION
@@ -16,6 +15,8 @@ sections:
 hero_about:
   kicker: "CINE SUNT EU"
   title: "Alexandra Barbu"
+  subtitle: "Psiholog clinician cu abordare integrativă și bazată pe evidențe"
+  description: "Cu peste 15 ani de experiență și mii de ore de terapie oferite, ghidez fiecare persoană să descopere propriile resurse interioare pentru vindecare. Cred în puterea empatiei și a metodelor validate științific."
   name_variant: "split"
   paragraphs:
     - "Sunt psiholog clinician cu peste 15 ani de experiență în terapia individuală și de cuplu. Misiunea mea este să te ajut să găsești claritate, echilibru și puterea de a-ți înfrunta provocările."
@@ -243,16 +244,8 @@ approach_preview:
 
 cta_standard:
   title: "Hai Să Ne Cunoaștem"
-  subtitle: "Consultație Gratuită"
   description: "Programează o consultație gratuită de 30 de minute pentru a vedea dacă putem lucra împreună. Fără obligații, complet confidențial."
   button_text: "Programează Consultație"
   button_url: "/contact/"
   button_variant: "secondary"
-  guarantees:
-    - text: "30 minute consultație gratuită"
-      icon: "check-circle"
-    - text: "Fără presiune sau obligații"
-      icon: "shield-alt"
-    - text: "Confidențialitate 100%"
-      icon: "lock"
 ---

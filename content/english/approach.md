@@ -17,6 +17,7 @@ sections:
 hero_breadcrumb:
   title: "My Therapeutic Approach"
   subtitle: "An integrative, client-centered approach based on scientific evidence"
+  description: "I combine the most effective therapeutic methods - CBT, EFT, Mindfulness, and Solution-Focused Therapy - to create a personalized plan for your needs. Each session is adapted to your unique rhythm and goals."
   breadcrumb:
     - name: "Home"
       url: "/en/"

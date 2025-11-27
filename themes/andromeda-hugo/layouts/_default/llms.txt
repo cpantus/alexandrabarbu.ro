@@ -1,0 +1,94 @@
+{{- /*
+  llms.txt Template
+  =================
+  Generates an llms.txt file for AI crawler guidance.
+  https://llmstxt.org/
+
+  Configuration: config/_default/seo.toml [seo.llms_txt]
+*/ -}}
+{{- $config := site.Params.seo.llms_txt | default dict -}}
+{{- $enabled := $config.enabled | default true -}}
+{{- if not $enabled -}}
+  {{- return -}}
+{{- end -}}
+
+{{- $personConfig := site.Params.seo.person | default dict -}}
+{{- $authorId := $personConfig.default_author | default "default" -}}
+{{- $author := index site.Data.authors $authorId | default dict -}}
+
+# {{ site.Title }}
+
+> {{ site.Params.description | default "A professional website built with Hugo." }}
+
+{{ with $author.name -}}
+## About the Author
+
+{{ . }}{{ with $author.job_title }} - {{ . }}{{ end }}
+{{ with $author.description }}{{ . | plainify }}{{ end }}
+{{- end }}
+
+## Site Structure
+
+This website is organized into the following main sections:
+
+{{- range site.Menus.main }}
+- [{{ .Name }}]({{ .URL | absURL }}){{ with .Title }}: {{ . }}{{ end }}
+{{- end }}
+
+## Key Pages
+
+{{- /* Homepage */ -}}
+{{- with site.Home }}
+- [{{ .Title }}]({{ .Permalink }}): {{ .Description | default site.Params.description }}
+{{- end }}
+
+{{- /* Services/Main Sections */ -}}
+{{- $serviceSections := $config.service_sections | default (slice "services" "servicii") -}}
+{{- range $serviceSections -}}
+  {{- with site.GetPage . -}}
+    {{- range .Pages }}
+- [{{ .Title }}]({{ .Permalink }}){{ with .Description }}: {{ . | truncate 100 }}{{ end }}
+    {{- end -}}
+  {{- end -}}
+{{- end }}
+
+## Recent Articles
+
+{{- /* Blog/Articles */ -}}
+{{- $articleSections := $config.article_sections | default (slice "articles" "articole" "blog" "resurse") -}}
+{{- $maxArticles := $config.max_articles | default 10 -}}
+{{- $articles := slice -}}
+{{- range $articleSections -}}
+  {{- with site.GetPage . -}}
+    {{- range .Pages -}}
+      {{- $articles = $articles | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $articles = $articles | first $maxArticles -}}
+
+{{- range $articles }}
+- [{{ .Title }}]({{ .Permalink }}) ({{ .Date.Format "2006-01-02" }}){{ with .Description }}: {{ . | truncate 80 }}{{ end }}
+{{- end }}
+
+## Contact Information
+
+{{- with site.Params.contact_info }}
+{{- with .email }}
+- Email: {{ index . 0 }}
+{{- end }}
+{{- with .phone }}
+- Phone: {{ index . 0 }}
+{{- end }}
+{{- end }}
+
+## Language
+
+This site is available in:
+{{- range site.Languages }}
+- {{ .LanguageName }} ({{ .Lang }})
+{{- end }}
+
+---
+
+*Generated automatically for AI assistants. For full site experience, visit [{{ site.BaseURL }}]({{ site.BaseURL }})*

@@ -73,7 +73,10 @@
   align-items: center;
 
   @media (min-width: $breakpoint-lg) {
-    grid-template-columns: 1fr 1fr; // Redesign 2025: 50/50 split (text left, compass right)
+    // DESIGN EXCELLENCE 3.2: Asymmetric Balance
+    // Principle: "55/45 splits with compensating elements create visual tension"
+    // 55% text column gives content prominence, 45% media creates balanced tension
+    grid-template-columns: 55fr 45fr;
     gap: $space-8; // 64px desktop
   }
 }
@@ -95,13 +98,18 @@
 /* Kicker Text
    ========================================================================== */
 
+/**
+ * DESIGN EXCELLENCE 3.3: Tension Through Scale
+ * Kicker text is tiny (10px) to create dramatic contrast with hero title (80-100px)
+ * This 8-10x ratio creates visual tension that draws attention
+ */
 .c-hero-breadcrumb__kicker {
-  margin: 0 0 $space-2 0; // 16px bottom
+  margin: 0 0 $space-3 0; // 12px bottom (tighter to headline)
   font-family: $font-family-sans;
-  font-size: $text-xs; // 12px (token-driven)
+  font-size: $text-kicker; // 10px - TINY for scale contrast
   font-weight: $font-weight-semibold;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.2em; // Extra tracking for tiny text legibility
   color: var(--hero-breadcrumb-kicker-color);
 }
 
@@ -109,24 +117,16 @@
    ========================================================================== */
 
 .c-hero-breadcrumb__title {
-  // DESIGN EXCELLENCE: Dramatic hierarchy through scale
-  // Principle: "Hero ≥100px for impact" - we use 80px as balance for this context
-  // Creates tension: tiny kicker (12px) vs massive headline (80px) = 6.7x ratio
+  // DESIGN EXCELLENCE 3.3: Tension Through Scale
+  // Principle: "Hero ≥100px for impact" - creates 10x ratio with kicker (10px)
+  // Creates tension: tiny kicker (10px) vs massive headline (100px) = 10x ratio
   margin-bottom: $space-4; // 32px (eval1.md spec: ~32px gap to body)
-  font-size: 2.75rem !important; // 44px mobile (was 40px)
-  line-height: 1.15; // Tighter for impact
-  letter-spacing: -0.025em; // Enhanced kerning for large display
+  font-size: $text-hero; // Fluid: clamp(48px, 8vw, 100px)
+  line-height: $leading-display; // 1.1 - Extra tight for display scale
+  letter-spacing: -0.03em; // Tighter tracking at large sizes
   font-weight: $font-weight-semibold; // Semibold for hero
 
-  @media (min-width: $breakpoint-md) {
-    font-size: 4rem !important; // 64px tablet (was 56px)
-  }
-
-  @media (min-width: $breakpoint-lg) {
-    font-size: 5rem !important; // 80px desktop (was 60px) - DRAMATIC IMPACT
-    line-height: 1.05; // Extra tight for display scale
-    letter-spacing: -0.03em; // Tighter tracking at large sizes
-  }
+  // No breakpoint overrides needed - clamp() handles responsiveness automatically
 }
 
 /* Title Main Span (regular text)
@@ -222,24 +222,9 @@
 }
 
 .c-hero-breadcrumb__cta-button {
-  // Fade-in-up animation with stagger
-  animation: fadeInUp 0.6s ease-out backwards;
-
-  &:nth-child(1) {
-    animation-delay: 0s;
-  }
-
-  &:nth-child(2) {
-    animation-delay: 0.1s;
-  }
-
-  &:nth-child(3) {
-    animation-delay: 0.2s;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
+  // NOTE: Removed fadeInUp animation because CSS animations completely
+  // override the transform property, blocking the button :active press effect.
+  // The parent container can animate instead if entrance animation is needed.
 }
 
 /* Media Column
@@ -261,6 +246,11 @@
 /* Compass Wrapper (Redesign 2025)
    ========================================================================== */
 
+/**
+ * DESIGN EXCELLENCE 3.4: Scroll-Linked Parallax
+ * Compass wrapper supports parallax via data-parallax-layer="fast" attribute
+ * GPU-accelerated with will-change hint (removed after scroll stops)
+ */
 .c-hero-breadcrumb__compass-wrapper {
   position: relative;
   width: 100%;
@@ -269,11 +259,17 @@
   align-items: center;
   justify-content: center;
 
+  // GPU acceleration hint for parallax (desktop only)
+  @media (min-width: $breakpoint-lg) {
+    will-change: transform;
+  }
+
   // Compass animation atom provides its own sizing
   .c-compass-animation {
     width: 100%;
     max-width: 300px; // ~300px mobile (eval1.md spec)
     height: auto;
+    // Centered on mobile - no offset
 
     @media (min-width: $breakpoint-md) {
       max-width: 400px; // ~400px tablet
@@ -281,6 +277,7 @@
 
     @media (min-width: $breakpoint-lg) {
       max-width: 500px; // ~500px desktop (eval1.md spec)
+      transform: translateX(8rem); // Offset compass to the right on desktop only
     }
   }
 }
@@ -421,6 +418,11 @@
   }
 }
 
+/**
+ * DESIGN EXCELLENCE 3.4: Scroll-Linked Parallax
+ * Decorative shapes support parallax via data-parallax-layer="slow" attribute
+ * Moves slower than main content for depth perception
+ */
 .c-hero-breadcrumb__shape {
   position: absolute;
   width: auto;
@@ -434,8 +436,14 @@
   // Subtle float animation
   animation: float 6s ease-in-out infinite;
 
+  // GPU acceleration hint for parallax (desktop only)
+  @media (min-width: $breakpoint-lg) {
+    will-change: transform;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     animation: none;
+    will-change: auto; // Reset for reduced motion
   }
 }
 

@@ -2,10 +2,6 @@
 
 # main menu
 
-[[main]]
-name = "Acasă"
-url = "/"
-weight = 1
 
 [[main]]
 name = "Despre"
@@ -13,8 +9,8 @@ url = "despre-mine/"
 weight = 2
 
 [[main]]
-name = "Abordare"
-url = "abordare/"
+name = "Corporate"
+url = "servicii/psihologie-organizationala/"
 weight = 4
 
 [[main]]
@@ -40,12 +36,6 @@ hasChildren = true
   name = "Terapie de Familie"
   url = "servicii/terapie-de-familie/"
   weight = 3
-
-  [[main]]
-  parent = "Servicii"
-  name = "Psihologie Organizațională"
-  url = "servicii/psihologie-organizationala/"
-  weight = 4
 
 
 

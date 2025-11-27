@@ -186,14 +186,16 @@
           </div>
         {{- else if $showCompass -}}
           {{/* Compass animation atom (default for homepage hero) */}}
-          <div class="c-hero-breadcrumb__compass-wrapper">
+          {{/* DESIGN EXCELLENCE 3.4: data-parallax-layer="fast" for scroll parallax */}}
+          <div class="c-hero-breadcrumb__compass-wrapper" data-parallax-layer="fast">
             {{ partial "atoms/compass-animation.html" }}
           </div>
         {{- else -}}
           {{/* Decorative SVG shapes (fallback) */}}
+          {{/* DESIGN EXCELLENCE 3.4: data-parallax-layer="slow" for subtle depth */}}
           <div class="c-hero-breadcrumb__shapes" aria-hidden="true">
-            <img src="{{ "images/shapes/shape-1.svg" | relURL }}" alt="" class="c-hero-breadcrumb__shape c-hero-breadcrumb__shape--1">
-            <img src="{{ "images/shapes/shape-2.svg" | relURL }}" alt="" class="c-hero-breadcrumb__shape c-hero-breadcrumb__shape--2">
+            <img src="{{ "images/shapes/shape-1.svg" | relURL }}" alt="" class="c-hero-breadcrumb__shape c-hero-breadcrumb__shape--1" data-parallax-layer="slow">
+            <img src="{{ "images/shapes/shape-2.svg" | relURL }}" alt="" class="c-hero-breadcrumb__shape c-hero-breadcrumb__shape--2" data-parallax-layer="medium">
           </div>
         {{- end -}}
       </div>

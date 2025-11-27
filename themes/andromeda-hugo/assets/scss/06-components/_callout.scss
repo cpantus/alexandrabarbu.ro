@@ -187,25 +187,25 @@
   }
 
   // ----------------------------------
-  // VARIANT: Warning (Gold/Amber)
+  // VARIANT: Warning (Gold)
   // ----------------------------------
   &--warning {
-    background: linear-gradient(135deg, $color-warning-50, rgba($color-warning-100, 0.3));
-    border-color: $color-warning-200;
+    background: $color-gold-100;
+    border-color: $color-gold-200;
 
     .c-callout__icon {
-      background: linear-gradient(135deg, $color-warning-500, $color-warning-600);
+      background: linear-gradient(135deg, $color-gold-600, $color-gold-700);
     }
 
     .c-callout__title {
-      color: $color-warning-700;
+      color: $color-gold-800;
     }
 
     .c-callout__content {
-      color: $color-warning-900;
+      color: $color-gold-900;
 
       a {
-        color: $color-warning-600;
+        color: $color-gold-700;
       }
     }
   }
@@ -550,21 +550,6 @@
   }
 }
 
-// Base blockquote override
-blockquote:not(.c-blockquote):not(.c-pullquote) {
-  @extend .c-blockquote;
-
-  // Nested paragraph becomes quote text
-  p {
-    @extend .c-blockquote__text;
-  }
-
-  // Footer/cite becomes attribution
-  footer,
-  cite {
-    @extend .c-blockquote__cite;
-  }
-}
 
 // ==================================
 // RESPONSIVE ADJUSTMENTS
@@ -697,24 +682,22 @@ blockquote:not(.c-blockquote):not(.c-pullquote) {
   &__header {
     padding: 1rem 1.5rem;
     background: linear-gradient(135deg, $color-forest-500, $color-sage-500);
-    color: $color-white;
+    color: $color-gold-500;  // Gold text
 
     h4 {
       margin: 0;
       font-family: $font-heading;
       font-size: 1rem;
       font-weight: 600;
+      color: $color-gold-500;  // Gold text
       display: flex;
       align-items: center;
       gap: 0.5rem;
 
-      &::before {
-        content: '';
-        display: inline-block;
-        width: 1.25rem;
-        height: 1.25rem;
-        background: rgba($color-white, 0.2);
-        border-radius: 50%;
+      // Icon styling (Line Awesome)
+      i {
+        font-size: 1.125rem;
+        color: $color-gold-500;  // Gold icon
       }
     }
   }
@@ -827,7 +810,7 @@ blockquote:not(.c-blockquote):not(.c-pullquote) {
       justify-content: center;
       background: linear-gradient(135deg, $color-forest-500, $color-sage-500);
       border-radius: 50%;
-      color: $color-white;
+      color: $color-gold-500;
       font-weight: 700;
       font-size: 0.875rem;
       box-shadow: 0 2px 6px rgba($color-forest-900, 0.15);
@@ -893,6 +876,7 @@ dl.c-definitions,
 .c-article-meta {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
@@ -908,6 +892,33 @@ dl.c-definitions,
     i, svg {
       color: $color-sage-500;
     }
+  }
+}
+
+// ==================================
+// RELATED ARTICLES LINKS
+// ==================================
+// Note: Uses !important to override the micro-interactions global a:not(...) selector
+// which has higher specificity due to multiple :not() pseudo-classes
+
+.career-benefits-item h4 a,
+.career-benefits-item .h4 a {
+  font-size: 1rem;
+  font-weight: 500;
+  color: $color-forest-700;
+  text-decoration: none !important;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+
+  // Disable the ::after pseudo-element from micro-interactions
+  &::after {
+    display: none !important;
+  }
+
+  &:hover {
+    color: $color-forest-500;
+    text-decoration: underline !important;
+    text-decoration-color: $color-gold-500 !important;
   }
 }
 

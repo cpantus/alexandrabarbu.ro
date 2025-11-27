@@ -125,8 +125,11 @@
 {{ end }}
 
 <div class="{{ $bemClass }}" data-category="{{ $category }}">
-  {{/* Featured Image with Badge */}}
+  {{/* Featured Image with Badge - Clickable */}}
   {{ if $image }}
+    {{ if $link }}
+      <a href="{{ $link | relLangURL }}" class="c-blog-card__image-link">
+    {{ end }}
     <div class="c-blog-card__image-wrapper">
       {{ partial "atoms/image.html" (dict
         "src" $image
@@ -141,12 +144,15 @@
         ) }}
       {{ end }}
     </div>
+    {{ if $link }}
+      </a>
+    {{ end }}
   {{ end }}
 
   {{/* Card Body */}}
   <div class="c-blog-card__body">
-    {{/* Metadata */}}
-    {{ if or $date $author $readTime }}
+    {{/* Metadata (author removed - shown in article) */}}
+    {{ if or $date $readTime }}
       <div class="c-blog-card__meta">
         {{ if $date }}
           <span class="c-blog-card__meta-item">
@@ -157,17 +163,6 @@
               "class" "c-blog-card__meta-icon"
             ) }}
             <span class="c-blog-card__meta-text">{{ $date }}</span>
-          </span>
-        {{ end }}
-        {{ if $author }}
-          <span class="c-blog-card__meta-item">
-            {{ partial "atoms/icon.html" (dict
-              "name" "user"
-              "size" "sm"
-              "variant" "neutral"
-              "class" "c-blog-card__meta-icon"
-            ) }}
-            <span class="c-blog-card__meta-text">{{ $author }}</span>
           </span>
         {{ end }}
         {{ if $readTime }}
@@ -212,11 +207,16 @@
       <p class="c-blog-card__description">{{ $description | markdownify }}</p>
     {{ end }}
 
-    {{/* Read More Link (Text-Only) */}}
+    {{/* Read More Link (Centered with Arrow) */}}
     {{ if $link }}
       <div class="c-blog-card__action">
         <a href="{{ $link | relLangURL }}" class="c-blog-card__read-more">
           {{ i18n "read_more" | default "Citeste mai mult" }}
+          {{ partial "atoms/icon.html" (dict
+            "name" "arrow-right"
+            "size" "sm"
+            "class" "c-blog-card__read-more-icon"
+          ) }}
         </a>
       </div>
     {{ end }}

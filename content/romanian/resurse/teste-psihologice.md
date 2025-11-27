@@ -6,13 +6,22 @@ draft: false
 
 sections:
   - type: "hero-breadcrumb"
+  - type: "test-index"
   - type: "feature-blocks"
-  - type: "cta-standard"
+
+# Test Index Section - simple numbered list linking to tests below
+test_index:
+  enable: true
+  title: "Teste Disponibile"
+
+# Enable numbered titles in feature blocks (1. Scala de Anxietate, 2. Scala de Depresie, etc.)
+feature_blocks_numbered: true
 
 # Hero Breadcrumb Section
 hero_breadcrumb:
   title: "Teste Psihologice"
   subtitle: "Teste și chestionare validate științific pentru auto-evaluare"
+  description: "Accesează instrumente profesionale de auto-evaluare folosite în practica clinică - GAD-7, PHQ-9, PSS-10 și multe altele. Aceste teste îți oferă o imagine obiectivă asupra stării tale psihologice și te pot ajuta să decizi dacă ai nevoie de sprijin profesional."
   breadcrumb:
     - name: "Acasă"
       url: "/"

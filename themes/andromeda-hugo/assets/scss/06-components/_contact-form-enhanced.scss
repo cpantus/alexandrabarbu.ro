@@ -70,6 +70,11 @@
   .c-contact-form-section__grid {
     grid-template-columns: 2fr 3fr; // 40/60 split (redesign spec)
     gap: 0; // No gap - panels touch
+
+    @media (max-width: $breakpoint-md - 1) {
+      grid-template-columns: 1fr; // Single column on mobile
+      gap: var(--contact-form-grid-gap-mobile);
+    }
   }
 }
 

@@ -1,0 +1,26 @@
+{{/*
+  WebSite Schema
+  ==============
+  Generates Schema.org WebSite for the homepage.
+  https://schema.org/WebSite
+*/}}
+
+{{- $schema := dict
+  "@context" "https://schema.org"
+  "@type" "WebSite"
+  "name" site.Title
+  "url" site.BaseURL
+  "inLanguage" site.Language.Lang
+-}}
+
+{{- with site.Params.description -}}
+  {{- $schema = merge $schema (dict "description" .) -}}
+{{- end -}}
+
+{{- with site.Params.metadata.keywords -}}
+  {{- $schema = merge $schema (dict "keywords" (delimit . ", ")) -}}
+{{- end -}}
+
+<script type="application/ld+json">
+{{ $schema | jsonify (dict "indent" "  " "noHTMLEscape" true) | safeJS }}
+</script>

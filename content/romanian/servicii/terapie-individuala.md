@@ -6,6 +6,7 @@ layout: "flexible"
 sections:
   - type: "hero-breadcrumb"
   - type: "feature-blocks"
+  - type: "cta-standard"
   - type: "benefits-results"
   - type: "faq-mini"
 
@@ -13,7 +14,7 @@ sections:
 hero_breadcrumb:
   title: "Terapie Individuală"
   subtitle: "Abordare Personalizată Pentru Vindecarea și Creșterea Ta"
-  description: "Terapie bazată pe dovezi pentru anxietate, depresie, traume și dezvoltare personală. Folosesc TCC, EMDR și Mindfulness pentru rezultate măsurabile."
+  description: "Terapie bazată pe dovezi pentru anxietate, depresie, traume și dezvoltare personală. Folosesc TCC, EMDR și Mindfulness pentru rezultate măsurabile. Fie că te lupți cu atacuri de panică, tristețe persistentă sau vrei să te cunoști mai bine, terapia individuală oferă un spațiu sigur pentru transformare. Progresul este monitorizat obiectiv, cu tehnici practice pe care le poți folosi zilnic."
   image: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?w=1200&h=600&fit=crop"
 
 breadcrumb:
@@ -46,39 +47,6 @@ feature_blocks:
     description: "Nu ai neapărat o problemă, dar simți că stagnezi. Vrei să te cunoști mai bine, să-ți clarifici valorile, să îmbunătățești relațiile, să trăiești mai autentic. Autocunoaștere, stimă de sine, inteligență emoțională și găsirea sensului."
     image: "https://images.unsplash.com/photo-1499728603263-13726abce5fd?w=800&h=600&fit=crop"
 
-# Problem Empathy
-problem_empathy:
-  enable: true
-  title: "Ce Provocări Abordăm În Terapie?"
-  subtitle: "Înțeleg prin ce treci"
-  description: "Aceste provocări sunt reale și afectează calitatea vieții tale. Nu trebuie să le gestionezi singur."
-
-  challenges:
-    - title: "Anxietate Copleșitoare"
-      description: "Te simți constant îngrijorat, tensionat. Poate ai atacuri de panică sau eviți situații din teamă. Anxietatea îți limitează viața."
-      icon: "exclamation-triangle"
-
-    - title: "Depresie și Lipsă de Sens"
-      description: "Tristețe persistentă, lipsă de energie, nimic nu mai are valoare. Izolare socială, dificultăți la muncă, gânduri negre."
-      icon: "cloud-rain"
-
-    - title: "Traume Nerezolvate"
-      description: "Eventi din trecut încă te bântuie. Flashback-uri, coșmaruri, evitări, reacții emoționale intense când ești amintit de traumă."
-      icon: "heart-crack"
-
-    - title: "Stimă de Sine Scăzută"
-      description: "Auto-critică severă, sentimente de inadecvare, comparare constantă cu alții. Dificultăți în a-ți stabili limite."
-      icon: "user-slash"
-
-    - title: "Dificultăți de Reglare Emoțională"
-      description: "Schimbări rapide de dispoziție, reacții emoționale intense greu de controlat. Uneori automutilare sau gânduri suicidale."
-      icon: "wave-square"
-
-    - title: "Blocaj în Dezvoltare"
-      description: "Simți că stagnezi, nu știi ce direcție să iei. Dificultăți în luarea deciziilor, lipsă de claritate asupra obiectivelor."
-      icon: "road"
-
-  empathy_text: "Aceste provocări merită atenție profesională. **Terapia individuală îți oferă suportul, instrumentele și perspectivele necesare pentru vindecare și creștere.**"
 
 # Therapeutic Process
 therapeutic_process:
@@ -364,29 +332,13 @@ testimonials:
 
 # CTA Standard
 cta_standard:
-  enable: true
   title: "Gata Să Faci Primul Pas Spre Vindecare?"
   description: "Nu trebuie să treci prin asta singur. Programează o consultație gratuită de 30 minute și să începem împreună călătoria spre o viață mai bună."
+  background: "gradient"
+  button_text: "Programează Consultație Gratuită"
+  button_url: "/contact/"
+  button_variant: "secondary"
 
-  primary_button:
-    text: "Programează Consultație Gratuită"
-    url: "/contact/"
-    variant: "primary"
-
-  secondary_button:
-    text: "Vezi Alte Servicii"
-    url: "/servicii/"
-    variant: "outline-secondary"
-
-  benefits:
-    - text: "Consultație inițială gratuită 30 minute"
-      icon: "check-circle"
-    - text: "Complet confidențial (cod deontologic + GDPR)"
-      icon: "check-circle"
-    - text: "Cabinet București sau online (Zoom)"
-      icon: "check-circle"
-    - text: "Fără obligații - doar o conversație onestă"
-      icon: "check-circle"
 
 ---
 

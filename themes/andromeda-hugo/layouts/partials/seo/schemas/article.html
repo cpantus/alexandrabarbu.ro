@@ -1,0 +1,104 @@
+{{/*
+  Article Schema
+  ==============
+  Generates Schema.org Article/BlogPosting.
+  https://schema.org/Article
+*/}}
+
+{{- $config := site.Params.seo.article | default dict -}}
+{{- $personConfig := site.Params.seo.person | default dict -}}
+{{- $authorId := $personConfig.default_author | default "default" -}}
+{{- $authorData := index site.Data.authors $authorId | default dict -}}
+
+{{/* Determine article type */}}
+{{- $articleType := $config.type | default "Article" -}}
+{{- with .Params.seo.article_type -}}
+  {{- $articleType = . -}}
+{{- end -}}
+
+{{/* Resolve author name */}}
+{{- $authorName := .Params.author | default $authorData.name | default site.Params.metadata.author | default "Anonymous" -}}
+
+{{/* Resolve dates */}}
+{{- $datePublished := .Date.Format "2006-01-02T15:04:05Z07:00" -}}
+{{- $dateModified := (.Lastmod | default .Date).Format "2006-01-02T15:04:05Z07:00" -}}
+
+{{/* Resolve image */}}
+{{- $image := .Params.image | default .Params.hero_breadcrumb.image | default site.Params.metadata.image -}}
+
+{{/* Build main entity */}}
+{{- $mainEntity := dict
+  "@type" "WebPage"
+  "@id" .Permalink
+-}}
+
+{{/* Build base schema */}}
+{{- $schema := dict
+  "@context" "https://schema.org"
+  "@type" $articleType
+  "headline" .Title
+  "url" .Permalink
+  "mainEntityOfPage" $mainEntity
+  "datePublished" $datePublished
+  "inLanguage" .Lang
+-}}
+
+{{- with .Description | default .Summary -}}
+  {{- $schema = merge $schema (dict "description" (. | plainify | truncate 160)) -}}
+{{- end -}}
+
+{{- if $config.include_date_modified | default true -}}
+  {{- $schema = merge $schema (dict "dateModified" $dateModified) -}}
+{{- end -}}
+
+{{/* Build author */}}
+{{- if $config.include_author | default true -}}
+  {{- $author := dict
+    "@type" "Person"
+    "name" $authorName
+  -}}
+  {{- with $authorData.url -}}
+    {{- $author = merge $author (dict "url" (absURL .)) -}}
+  {{- end -}}
+  {{- with $authorData.image -}}
+    {{- $author = merge $author (dict "image" (absURL .)) -}}
+  {{- end -}}
+  {{- $schema = merge $schema (dict "author" $author) -}}
+{{- end -}}
+
+{{/* Build publisher */}}
+{{- if $config.include_publisher | default true -}}
+  {{- $publisher := dict
+    "@type" "Organization"
+    "name" site.Title
+    "url" site.BaseURL
+  -}}
+  {{- with site.Params.logo -}}
+    {{- $logo := dict
+      "@type" "ImageObject"
+      "url" (absURL .)
+    -}}
+    {{- $publisher = merge $publisher (dict "logo" $logo) -}}
+  {{- end -}}
+  {{- $schema = merge $schema (dict "publisher" $publisher) -}}
+{{- end -}}
+
+{{- with $image -}}
+  {{- $schema = merge $schema (dict "image" (absURL .)) -}}
+{{- end -}}
+
+{{- with .Params.tags -}}
+  {{- $schema = merge $schema (dict "keywords" (delimit . ", ")) -}}
+{{- end -}}
+
+{{- with .Params.categories -}}
+  {{- $schema = merge $schema (dict "articleSection" (index . 0)) -}}
+{{- end -}}
+
+{{- if $config.include_word_count | default true -}}
+  {{- $schema = merge $schema (dict "wordCount" .WordCount) -}}
+{{- end -}}
+
+<script type="application/ld+json">
+{{ $schema | jsonify (dict "indent" "  " "noHTMLEscape" true) | safeJS }}
+</script>

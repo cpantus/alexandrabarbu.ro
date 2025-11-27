@@ -196,10 +196,6 @@
   .c-social__list {
     flex-wrap: nowrap; // Don't wrap items
     justify-content: flex-start;
-
-    @media (max-width: $breakpoint-md - 1) {
-      justify-content: center; // Center on mobile
-    }
   }
 }
 

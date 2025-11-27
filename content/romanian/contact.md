@@ -15,6 +15,7 @@ sections:
 hero_breadcrumb:
   title: "Contact"
   subtitle: "Programează o consultație confidențială. Răspund în maxim 24 de ore."
+  description: "Primul pas spre schimbare este cel mai important. Fie că preferi să vorbim la telefon, prin email sau să programezi direct online, sunt aici să te ajut. Toate conversațiile sunt complet confidențiale, conform codului deontologic și GDPR."
   breadcrumb:
     - name: "Acasă"
       url: "/"
@@ -46,6 +47,16 @@ contact_methods:
 
 # Contact Form Enhanced Section
 contact_form_enhanced:
+  variant: "primary"
+  trust_badges:
+    - icon: "shield-check"
+      text: "Confidențialitate"
+    - icon: "clock"
+      text: "Răspuns rapid"
+    - icon: "calendar-check"
+      text: "Flexibilitate"
+    - icon: "heart"
+      text: "Empatie"
   title: "Programează o **Consultație Gratuită**"
   subtitle: "Prima discuție este fără obligații"
   description: |

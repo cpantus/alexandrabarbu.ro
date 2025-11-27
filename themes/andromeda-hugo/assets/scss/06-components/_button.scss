@@ -46,9 +46,9 @@
     text-decoration: none;
   }
 
-  // Active press effect
+  // Active press effect - must override hover with higher specificity
   &:active {
-    transform: translateY(0) scale(1);
+    transform: translateY(1px) scale(0.98);
   }
 
   // Focus state for accessibility - enhanced focus ring with persistent glow
@@ -126,17 +126,28 @@
   color: var(--btn-primary-text);
   box-shadow: var(--btn-primary-shadow);
 
-  &:hover,
-  &:active {
+  &:hover:not(:active) {
     background: var(--btn-primary-hover);  // Sage green hover (#6B9080)
     box-shadow: var(--btn-primary-shadow-lg);
     color: var(--btn-primary-text);
   }
 
+  // Active state (click) - press effect + original background
+  // Transform creates the press feel, original bg prevents "stuck" appearance
+  // transition: none to prevent color interpolation during click
+  &:active {
+    background: var(--btn-primary-bg);
+    box-shadow: var(--btn-primary-shadow);
+    color: var(--btn-primary-text);
+    transform: translateY(1px) scale(0.98);
+    transition: transform 0.1s ease-out;
+  }
+
   // Focus should NOT change background color - only show focus ring
   // This prevents button staying sage after click (focus persists)
   &:focus {
-    // Keep original background, focus ring is handled by base .c-button
+    background: var(--btn-primary-bg);
+    box-shadow: var(--btn-primary-shadow);
   }
 
   &:disabled,
@@ -155,16 +166,25 @@
   color: var(--btn-secondary-text);  // Dark green text for contrast
   box-shadow: var(--btn-secondary-shadow);
 
-  &:hover,
-  &:active {
+  &:hover:not(:active) {
     background: var(--btn-secondary-hover);  // Darker gold (#B0936B approximate)
     box-shadow: var(--btn-secondary-shadow-lg);
     color: var(--btn-secondary-text);
   }
 
+  // Active state (click) - press effect + original background
+  &:active {
+    background: var(--btn-secondary-bg);
+    box-shadow: var(--btn-secondary-shadow);
+    color: var(--btn-secondary-text);
+    transform: translateY(1px) scale(0.98);
+    transition: transform 0.1s ease-out;
+  }
+
   // Focus should NOT change background color
   &:focus {
-    // Keep original background
+    background: var(--btn-secondary-bg);
+    box-shadow: var(--btn-secondary-shadow);
   }
 
   &:disabled,
@@ -184,12 +204,27 @@
   background-color: transparent;
   box-shadow: none;
 
-  &:hover,
-  &:active {
+  &:hover:not(:active) {
     color: var(--btn-outline-primary-hover-text);
     border-color: var(--btn-outline-primary-border);
     background: var(--btn-outline-primary-hover-bg);
     box-shadow: var(--btn-primary-shadow);
+  }
+
+  // Active - press effect + original state
+  &:active {
+    color: var(--btn-outline-primary-text);
+    border-color: var(--btn-outline-primary-border);
+    background-color: transparent;
+    box-shadow: none;
+    transform: translateY(1px) scale(0.98);
+  }
+
+  // Focus - original state only
+  &:focus {
+    color: var(--btn-outline-primary-text);
+    border-color: var(--btn-outline-primary-border);
+    background-color: transparent;
   }
 
   &:disabled,
@@ -212,12 +247,27 @@
   background-color: transparent;
   box-shadow: none;
 
-  &:hover,
-  &:active {
+  &:hover:not(:active) {
     color: var(--btn-outline-secondary-hover-text);
     border-color: var(--btn-outline-secondary-hover-bg);
     background: var(--btn-outline-secondary-hover-bg);  // Sage green hover (OK for filled state)
     box-shadow: var(--btn-outline-secondary-shadow-hover);
+  }
+
+  // Active - press effect + original state
+  &:active {
+    color: var(--btn-outline-secondary-text);
+    border-color: var(--btn-outline-secondary-border);
+    background-color: transparent;
+    box-shadow: none;
+    transform: translateY(1px) scale(0.98);
+  }
+
+  // Focus - original state only
+  &:focus {
+    color: var(--btn-outline-secondary-text);
+    border-color: var(--btn-outline-secondary-border);
+    background-color: transparent;
   }
 
   &:disabled,
@@ -239,12 +289,27 @@
   background-color: transparent;
   box-shadow: none;
 
-  &:hover,
-  &:active {
+  &:hover:not(:active) {
     color: var(--btn-outline-redesign-hover-color);
     border-color: var(--btn-outline-redesign-hover-color);
     background-color: transparent;
     box-shadow: none;
+  }
+
+  // Active - press effect + original state
+  &:active {
+    color: var(--btn-outline-redesign-text);
+    border-color: var(--btn-outline-redesign-border);
+    background-color: transparent;
+    box-shadow: none;
+    transform: translateY(1px) scale(0.98);
+  }
+
+  // Focus - original state only
+  &:focus {
+    color: var(--btn-outline-redesign-text);
+    border-color: var(--btn-outline-redesign-border);
+    background-color: transparent;
   }
 
   &:disabled,
@@ -457,12 +522,12 @@
 }
 
 /**
- * Arrow slide-replace effect for primary CTAs
+ * Arrow slide-replace effect for all button variants with icons
  * Creates a "pushing forward" momentum feel
  * Targets direct child icons (i tags with line-awesome classes)
+ * Applied to base .c-button so all variants get the animation
  */
-.c-button--primary,
-.c-button--secondary {
+.c-button {
   // Arrow/chevron/angle icons get the slide animation
   .c-button__icon,
   > i[class*="la-arrow"],

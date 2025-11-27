@@ -15,6 +15,7 @@ sections:
 hero_breadcrumb:
   title: "Free Resources"
   subtitle: "Articles, guides, tests and practical exercises for your mental health"
+  description: "Explore a curated collection of educational materials based on research in psychology and psychotherapy. These resources can help you better understand your challenges and discover practical techniques you can use immediately."
   breadcrumb:
     - name: "Home"
       url: "/en/"

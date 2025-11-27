@@ -67,22 +67,22 @@
           {{ .Content }}
         </article>
 
-        {{/* Tags */}}
-        {{- if .Params.tags -}}
+        {{/* Tags - using Hugo's native taxonomy system */}}
+        {{- with .GetTerms "tags" -}}
         <div class="c-article__tags mt-4 pt-4 border-top">
-          <span class="me-2"><strong>{{ i18n "tags" | default "Tags" }}:</strong></span>
-          {{- range .Params.tags -}}
-          <a href="{{ `/tags/` | relLangURL }}{{ . | urlize }}/" class="badge bg-sage-100 text-forest-700 me-1 mb-1">{{ . }}</a>
+          <span class="c-article__taxonomy-label me-2"><strong>{{ i18n "tags" | default "Tags" }}:</strong></span>
+          {{- range . -}}
+          <a href="{{ .RelPermalink }}" class="c-tag c-tag--md c-tag--secondary c-tag--link me-1 mb-1">{{ .Name | title }}</a>
           {{- end -}}
         </div>
         {{- end -}}
 
-        {{/* Categories */}}
-        {{- if .Params.categories -}}
+        {{/* Categories - using Hugo's native taxonomy system */}}
+        {{- with .GetTerms "categories" -}}
         <div class="c-article__categories mt-3">
-          <span class="me-2"><strong>{{ i18n "categories" | default "Categories" }}:</strong></span>
-          {{- range .Params.categories -}}
-          <a href="{{ `/categories/` | relLangURL }}{{ . | urlize }}/" class="badge bg-forest-100 text-forest-800 me-1 mb-1">{{ . }}</a>
+          <span class="c-article__taxonomy-label me-2"><strong>{{ i18n "categories" | default "Categories" }}:</strong></span>
+          {{- range . -}}
+          <a href="{{ .RelPermalink }}" class="c-tag c-tag--md c-tag--primary c-tag--link me-1 mb-1">{{ .Name | title }}</a>
           {{- end -}}
         </div>
         {{- end -}}
@@ -100,13 +100,9 @@
     <div class="row">
       {{- range $related -}}
       <div class="col-md-4 mb-4">
-        {{ partial "molecules/card.html" (dict
-          "title" .Title
-          "description" .Params.description
-          "url" .RelPermalink
-          "image" .Params.image
-          "variant" "feature"
-        ) }}
+        <div class="career-benefits-item text-center">
+          <h4><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
+        </div>
       </div>
       {{- end -}}
     </div>

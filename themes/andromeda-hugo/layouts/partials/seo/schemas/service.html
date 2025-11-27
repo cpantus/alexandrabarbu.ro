@@ -1,0 +1,86 @@
+{{/*
+  Service Schema
+  ==============
+  Generates Schema.org Service/ProfessionalService.
+  https://schema.org/Service
+*/}}
+
+{{- $config := site.Params.seo.service | default dict -}}
+{{- $personConfig := site.Params.seo.person | default dict -}}
+{{- $authorId := $personConfig.default_author | default "default" -}}
+{{- $authorData := index site.Data.authors $authorId | default dict -}}
+
+{{/* Determine service type */}}
+{{- $serviceType := $config.type | default "Service" -}}
+{{- with .Params.seo.service_type -}}
+  {{- $serviceType = . -}}
+{{- end -}}
+
+{{/* Provider info */}}
+{{- $providerName := $authorData.name | default site.Params.metadata.author | default site.Title -}}
+
+{{/* Build provider */}}
+{{- $provider := dict
+  "@type" "Person"
+  "name" $providerName
+-}}
+{{- with $authorData.url -}}
+  {{- $provider = merge $provider (dict "url" (absURL .)) -}}
+{{- end -}}
+
+{{/* Build base schema */}}
+{{- $schema := dict
+  "@context" "https://schema.org"
+  "@type" $serviceType
+  "name" .Title
+  "url" .Permalink
+  "provider" $provider
+-}}
+
+{{- with .Description | default .Params.description -}}
+  {{- $schema = merge $schema (dict "description" .) -}}
+{{- end -}}
+
+{{/* Area served */}}
+{{- with .Params.seo.service.area_served -}}
+  {{- $schema = merge $schema (dict "areaServed" .) -}}
+{{- else -}}
+  {{- $areaServed := dict
+    "@type" "Country"
+    "name" "Romania"
+  -}}
+  {{- $schema = merge $schema (dict "areaServed" $areaServed) -}}
+{{- end -}}
+
+{{/* Pricing */}}
+{{- if $config.include_pricing | default true -}}
+  {{- with .Params.pricing_packages.packages -}}
+    {{- $offers := slice -}}
+    {{- range . -}}
+      {{- $offer := dict
+        "@type" "Offer"
+        "name" .name
+      -}}
+      {{- with .price -}}
+        {{- $offer = merge $offer (dict "price" .) -}}
+        {{- $offer = merge $offer (dict "priceCurrency" ($config.price_currency | default "RON")) -}}
+      {{- end -}}
+      {{- $offers = $offers | append $offer -}}
+    {{- end -}}
+    {{- $catalog := dict
+      "@type" "OfferCatalog"
+      "name" "Pricing"
+      "itemListElement" $offers
+    -}}
+    {{- $schema = merge $schema (dict "hasOfferCatalog" $catalog) -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Image */}}
+{{- with .Params.image | default .Params.hero_breadcrumb.image -}}
+  {{- $schema = merge $schema (dict "image" (absURL .)) -}}
+{{- end -}}
+
+<script type="application/ld+json">
+{{ $schema | jsonify (dict "indent" "  " "noHTMLEscape" true) | safeJS }}
+</script>

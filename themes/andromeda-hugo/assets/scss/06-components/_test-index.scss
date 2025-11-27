@@ -1,0 +1,71 @@
+// ==================================
+// TEST INDEX SECTION
+// ==================================
+//
+// Purpose: Simple numbered index linking to tests below
+// Auto-generates from feature_blocks data
+//
+// BEM Structure:
+// - .c-test-index (nav element)
+// - .c-test-index__list (ol - ordered list)
+// - .c-test-index__item (li)
+// - .c-test-index__link (anchor)
+//
+// Created: 2025-11-27
+// Version: 1.1.0 - Simplified to numbered list
+
+.c-test-index {
+  padding: $spacing-md 0;
+
+  // Callout-style wrapper
+  &__wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: $spacing-md $spacing-lg;
+    background: rgba($color-primary, 0.04);
+    border-left: 4px solid $color-primary;
+    border-radius: $radius-md;
+  }
+
+  // Section title
+  &__title {
+    margin-bottom: $spacing-sm;
+    text-align: center;
+    font-family: $font-heading;
+    font-size: $text-2xl; // 24px - H3 equivalent
+    font-weight: 600;
+    color: $color-primary;
+  }
+
+  // Ordered list with numbers
+  &__list {
+    margin: 0;
+    padding: 0;
+    padding-left: $spacing-lg;
+    list-style-position: outside;
+  }
+
+  // Individual item
+  &__item {
+    margin-bottom: $spacing-xs;
+  }
+
+  // Link styling - simple underlined links
+  &__link {
+    color: $color-primary;
+    text-decoration: underline;
+    text-decoration-color: rgba($color-primary, 0.3);
+    text-underline-offset: 2px;
+    transition: text-decoration-color $duration-fast $animation-easing;
+
+    &:hover,
+    &:focus {
+      text-decoration-color: $color-primary;
+    }
+
+    &:focus {
+      outline: $focus-ring-width solid $focus-ring-color;
+      outline-offset: $focus-ring-offset;
+    }
+  }
+}

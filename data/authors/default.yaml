@@ -1,0 +1,130 @@
+# ===========================================================================
+# Default Author Profile
+# ===========================================================================
+# Hugo standard pattern for author data.
+# Referenced by: params.seo.person.default_author = "default"
+# Front matter: author: "default" (or just use name as string)
+# Access in templates: site.Data.authors.default
+#
+# To add more authors: Create data/authors/{author-id}.yaml
+# ===========================================================================
+
+# ---------------------------------------------------------------------------
+# BASIC INFORMATION (Required)
+# ---------------------------------------------------------------------------
+name: "Alexandra Barbu"
+given_name: "Alexandra"
+family_name: "Barbu"
+honorific_prefix: ""                   # e.g., "Dr.", "Prof."
+
+# Professional title displayed alongside name
+job_title: "Psiholog Clinician"
+
+# Short description (used in schema.org Person)
+description: "Psiholog clinician cu peste 15 ani de experiență în psihoterapie individuală și de cuplu."
+
+# Longer biography (optional, for about pages)
+bio: |
+  Alexandra Barbu este psiholog clinician cu peste 15 ani de experiență în
+  terapia individuală și de cuplu. Specializată în TCC, EMDR și Mindfulness,
+  ea oferă o abordare empatică și bazată pe dovezi pentru clienții săi.
+
+# ---------------------------------------------------------------------------
+# CONTACT & URLS
+# ---------------------------------------------------------------------------
+email: ""                              # Falls back to site.Params.contact_info.email
+telephone: ""                          # Falls back to site.Params.contact_info.phone
+url: "/despre-mine/"                   # Profile/about page URL (relative or absolute)
+
+# ---------------------------------------------------------------------------
+# IMAGE
+# ---------------------------------------------------------------------------
+image: "images/about/alexandra-portrait.jpg"
+
+# ---------------------------------------------------------------------------
+# SOCIAL PROFILES (for sameAs in Schema.org)
+# ---------------------------------------------------------------------------
+# These URLs become the "sameAs" property in Person schema
+# Auto-merged with site.Params.social if present
+same_as: []
+# Example:
+#   - https://linkedin.com/in/alexandrabarbu
+#   - https://facebook.com/alexandrabarbu
+#   - https://instagram.com/alexandrabarbu
+
+# ---------------------------------------------------------------------------
+# PROFESSIONAL CREDENTIALS
+# ---------------------------------------------------------------------------
+# Used in Person schema "hasCredential" property
+# Categories: "license", "certification", "degree", "award"
+credentials: []
+# Example:
+#   - name: "Psiholog Clinician Autorizat"
+#     category: "license"
+#     issued_by: "Colegiul Psihologilor din România"
+#     valid_from: "2010"
+#     identifier: "CPR-12345"
+#
+#   - name: "Certificare EMDR Nivel II"
+#     category: "certification"
+#     issued_by: "EMDR Europe"
+#     valid_from: "2015"
+
+# ---------------------------------------------------------------------------
+# EDUCATION
+# ---------------------------------------------------------------------------
+# Used in Person schema "alumniOf" property
+education: []
+# Example:
+#   - institution: "Universitatea București"
+#     degree: "Licență în Psihologie"
+#     field: "Psihologie Clinică"
+#     year: "2005"
+#
+#   - institution: "Universitatea București"
+#     degree: "Master în Psihologie Clinică"
+#     field: "Psihoterapie Cognitivă"
+#     year: "2007"
+
+# ---------------------------------------------------------------------------
+# PROFESSIONAL AFFILIATIONS
+# ---------------------------------------------------------------------------
+# Used in Person schema "memberOf" property
+affiliations: []
+# Example:
+#   - name: "Colegiul Psihologilor din România"
+#     role: "Membru"
+#     identifier: "CPR-12345"
+#     url: "https://copsi.ro"
+#
+#   - name: "European Association for Psychotherapy"
+#     role: "Membru"
+
+# ---------------------------------------------------------------------------
+# EXPERTISE AREAS
+# ---------------------------------------------------------------------------
+# Used in Person schema "knowsAbout" property
+# List topics, skills, or areas of specialization
+expertise: []
+# Example:
+#   - "Terapie Cognitiv-Comportamentală (TCC)"
+#   - "EMDR"
+#   - "Mindfulness"
+#   - "Tulburări de Anxietate"
+#   - "Depresie"
+#   - "Terapie de Cuplu"
+
+# ---------------------------------------------------------------------------
+# EXPERIENCE
+# ---------------------------------------------------------------------------
+years_experience: 15
+started_practice: "2010"               # Year started professional practice
+
+# ---------------------------------------------------------------------------
+# EMPLOYER / WORKPLACE
+# ---------------------------------------------------------------------------
+# Used in Person schema "worksFor" property
+works_for:
+  name: ""                             # Falls back to site.Title
+  type: "ProfessionalService"          # Schema.org type
+  url: ""                              # Falls back to site.BaseURL

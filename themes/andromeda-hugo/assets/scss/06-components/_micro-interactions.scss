@@ -104,7 +104,7 @@ $duration-slow: 0.4s;
  * custom underline implementation in _navigation.scss with golden color
  * and text-proportional width behavior.
  */
-a:not(.c-button):not(.c-card):not(.c-services-preview__bottom-link-text):not(.c-services-preview__card-title):not(.c-navigation__link):not(.c-navigation__dropdown-link) {
+a:not(.c-button):not(.c-card):not(.c-services-preview__bottom-link-text):not(.c-services-preview__card-title):not(.c-navigation__link):not(.c-navigation__dropdown-link):not(.c-blog-card__title-link) {
   position: relative;
   text-decoration: none;
   transition: color $duration-fast $ease-smooth;
@@ -306,28 +306,11 @@ input[type="radio"] {
 -------------------------------------------------------------------*/
 
 /**
- * CTA section buttons with staggered entrance
+ * CTA section buttons - no entrance animation
+ * Removed fade-in-up animation as it caused visual glitches on click
+ * Button :active states now work correctly via CSS
  */
-.c-cta__buttons {
-  .c-button:nth-child(1) {
-    animation: fade-in-up 0.6s $ease-smooth 0.1s both;
-  }
-
-  .c-button:nth-child(2) {
-    animation: fade-in-up 0.6s $ease-smooth 0.2s both;
-  }
-}
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+// Animation removed - buttons appear immediately
 
 /*------------------------------------------------------------------
   # Scroll Animations (Subtle)

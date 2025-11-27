@@ -42,6 +42,8 @@
   &--premium { @include icon-circle('md', 'premium'); }
   &--sage { @include icon-circle('md', 'sage'); }
   &--info { @include icon-circle('md', 'info'); }
+  &--gold { @include icon-circle('md', 'gold'); }
+  &--primary-gold { @include icon-circle('md', 'primary-gold'); }
 
   // Combined size + color modifiers (common combinations)
   &--sm-primary { @include icon-circle('sm', 'primary'); }

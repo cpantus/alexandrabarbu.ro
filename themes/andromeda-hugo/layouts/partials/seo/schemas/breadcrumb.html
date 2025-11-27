@@ -1,0 +1,78 @@
+{{/*
+  BreadcrumbList Schema
+  =====================
+  Generates Schema.org BreadcrumbList for navigation hierarchy.
+  https://schema.org/BreadcrumbList
+*/}}
+
+{{- $config := site.Params.seo.breadcrumb | default dict -}}
+
+{{/* Skip homepage - no breadcrumb needed */}}
+{{- if .IsHome -}}
+  {{- return -}}
+{{- end -}}
+
+{{/* Build breadcrumb items */}}
+{{- $items := slice -}}
+{{- $position := 1 -}}
+
+{{/* Home item */}}
+{{- $homeTitle := $config.home_title | default (i18n "home") | default site.Title -}}
+{{- $items = $items | append (dict "position" $position "name" $homeTitle "url" site.BaseURL) -}}
+{{- $position = add $position 1 -}}
+
+{{/* Section items - walk up the tree */}}
+{{- $ancestors := slice -}}
+{{- with .Parent -}}
+  {{- $current := . -}}
+  {{- range seq 10 -}}{{/* Max depth of 10 */}}
+    {{- if and $current (not $current.IsHome) -}}
+      {{- $ancestors = $ancestors | append $current -}}
+      {{- $current = $current.Parent -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Reverse ancestors (root to leaf) */}}
+{{- range $ancestors | collections.Reverse -}}
+  {{- $items = $items | append (dict
+    "position" $position
+    "name" (.Title | default .Name)
+    "url" .Permalink
+  ) -}}
+  {{- $position = add $position 1 -}}
+{{- end -}}
+
+{{/* Current page (final item) */}}
+{{- $items = $items | append (dict
+  "position" $position
+  "name" (.Title | default .Name)
+  "url" .Permalink
+) -}}
+
+{{/* Only output if we have more than just home */}}
+{{- if gt (len $items) 1 -}}
+
+{{/* Build itemListElement array */}}
+{{- $listItems := slice -}}
+{{- range $items -}}
+  {{- $listItem := dict
+    "@type" "ListItem"
+    "position" .position
+    "name" .name
+    "item" .url
+  -}}
+  {{- $listItems = $listItems | append $listItem -}}
+{{- end -}}
+
+{{/* Build schema */}}
+{{- $schema := dict
+  "@context" "https://schema.org"
+  "@type" "BreadcrumbList"
+  "itemListElement" $listItems
+-}}
+
+<script type="application/ld+json">
+{{ $schema | jsonify (dict "indent" "  " "noHTMLEscape" true) | safeJS }}
+</script>
+{{- end -}}

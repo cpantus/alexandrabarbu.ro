@@ -1,0 +1,62 @@
+{{/*
+  FAQPage Schema
+  ==============
+  Generates Schema.org FAQPage.
+  https://schema.org/FAQPage
+
+  Auto-detects FAQ content from multiple front matter keys:
+  - faq_items
+  - faq_mini.faqs
+  - faq_content.faqs
+  - service_faq_inline.faqs
+*/}}
+
+{{- $config := site.Params.seo.faq | default dict -}}
+{{- $maxItems := $config.max_items | default 10 -}}
+
+{{/* Collect FAQ items from various front matter locations */}}
+{{- $faqItems := slice -}}
+
+{{- with .Params.faq_items -}}
+  {{- $faqItems = . -}}
+{{- else with .Params.faq_mini.faqs -}}
+  {{- $faqItems = . -}}
+{{- else with .Params.faq_content.faqs -}}
+  {{- $faqItems = . -}}
+{{- else with .Params.service_faq_inline.faqs -}}
+  {{- $faqItems = . -}}
+{{- end -}}
+
+{{/* Exit if no FAQ items found */}}
+{{- if not $faqItems -}}
+  {{- return -}}
+{{- end -}}
+
+{{/* Limit items */}}
+{{- $faqItems = first $maxItems $faqItems -}}
+
+{{/* Build main entity array */}}
+{{- $mainEntity := slice -}}
+{{- range $faqItems -}}
+  {{- $answer := dict
+    "@type" "Answer"
+    "text" (.answer | plainify)
+  -}}
+  {{- $question := dict
+    "@type" "Question"
+    "name" .question
+    "acceptedAnswer" $answer
+  -}}
+  {{- $mainEntity = $mainEntity | append $question -}}
+{{- end -}}
+
+{{/* Build schema */}}
+{{- $schema := dict
+  "@context" "https://schema.org"
+  "@type" "FAQPage"
+  "mainEntity" $mainEntity
+-}}
+
+<script type="application/ld+json">
+{{ $schema | jsonify (dict "indent" "  " "noHTMLEscape" true) | safeJS }}
+</script>

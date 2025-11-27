@@ -58,19 +58,28 @@
   }
 
   .c-blog-grid__filter {
-    border-color: rgba($forest-500, 0.2);
-    color: $forest-700;
+    border: 1px solid rgba($forest-500, 0.2); // Thin border like social icons
+    color: $gold-500; // Gold text always
 
     &:hover {
-      border-color: $forest-600;
-      color: $forest-600;
+      border-color: $gold-500; // Gold outline on hover (like social icons)
+      color: $gold-500; // Keep gold text
+    }
+
+    &:active {
+      color: $gold-500; // Keep gold text on click
     }
   }
 
   .c-blog-grid__filter--active {
     background: $forest-700; // Redesign: dark green background
     border-color: $forest-700;
-    color: $gold-500; // Redesign: gold text
+    color: $gold-500 !important; // Redesign: gold text - always
+
+    &:hover,
+    &:active {
+      color: $gold-500 !important; // Keep gold text on all states
+    }
   }
 }
 
@@ -148,9 +157,9 @@
   font-family: $font-body;
   font-size: $text-base;
   font-weight: $weight-medium;
-  color: $gray-700;
+  color: $gold-500;  // Gold text by default
   background: white;
-  border: 2px solid $gray-300;
+  border: 1px solid $gray-300;  // Thin border like social icons
   border-radius: $radius-full;
   cursor: pointer;
   transition: border-color $duration-fast $easing-subtle,
@@ -159,9 +168,13 @@
               transform $duration-fast $easing-subtle;
 
   &:hover {
-    border-color: $color-primary;
-    color: $color-primary;
+    border-color: $gold-500;  // Gold outline on hover
+    color: $gold-500;  // Keep gold text
     transform: translateY($hover-lift-sm);
+  }
+
+  &:active {
+    color: $gold-500;  // Keep gold text on click
   }
 
   @media (max-width: $breakpoint-sm) {
@@ -173,9 +186,11 @@
 .c-blog-grid__filter--active {
   background: $forest-700;
   border-color: $forest-700;
-  color: $gold-500;
+  color: $gold-500 !important;  // Gold text - forced
 
-  &:hover {
+  &:hover,
+  &:active {
+    color: $gold-500 !important;  // Keep gold on all states
     transform: translateY($hover-lift-sm);
   }
 }

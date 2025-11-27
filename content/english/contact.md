@@ -19,6 +19,7 @@ sections:
 hero_breadcrumb:
   title: "Contact"
   subtitle: "Schedule a confidential consultation. I respond within 24 hours."
+  description: "The first step towards change is the most important one. Whether you prefer to talk by phone, email, or schedule directly online, I'm here to help. All conversations are completely confidential, according to the code of ethics and GDPR."
   breadcrumb:
     - name: "Home"
       url: "/en/"
@@ -86,6 +87,16 @@ contact_options:
 
 # Contact Form Enhanced Section
 contact_form_enhanced:
+  variant: "primary"
+  trust_badges:
+    - icon: "shield-check"
+      text: "Confidentiality"
+    - icon: "clock"
+      text: "Quick Response"
+    - icon: "calendar-check"
+      text: "Flexibility"
+    - icon: "heart"
+      text: "Empathy"
   title: "Schedule a **Free Consultation**"
   subtitle: "The first conversation is without obligations"
   description: |

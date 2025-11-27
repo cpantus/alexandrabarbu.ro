@@ -60,7 +60,7 @@
 {{- end -}}
 
 {{- /* Valid Variants */ -}}
-{{- $valid_variants := slice "primary" "secondary" "tertiary" "neutral" "success" "warning" "error" "info" -}}
+{{- $valid_variants := slice "primary" "secondary" "tertiary" "neutral" "success" "warning" "error" "info" "gold" "primary-gold" -}}
 {{- if not (in $valid_variants $variant) -}}
   {{- warnf "value-card: Invalid variant '%s'. Using 'primary'. Valid options: %s" $variant (delimit $valid_variants ", ") -}}
   {{- $variant = "primary" -}}

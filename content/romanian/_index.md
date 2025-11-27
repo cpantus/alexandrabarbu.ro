@@ -18,6 +18,7 @@ hero_breadcrumb:
   title: "Găsim"
   title_accent: "Nordul Interior"
   subtitle: "Călătoria spre vindecare începe cu un singur pas. Când știi unde ești, poți merge oriunde."
+  description: "Sunt psiholog clinician cu peste 15 ani de experiență, specializată în terapie cognitivă, EMDR și mindfulness. Oferă un spațiu sigur și confidențial pentru a explora provocările tale și a redescoperi echilibrul interior."
   show_breadcrumb: false
   show_compass: true
   cta_buttons:
@@ -191,18 +192,19 @@ approach_preview:
 # ============================================================================
 
 testimonials_section:
-  title: "Ce Spun Clienții Mei"
+  title: "Ecouri ale Călătoriei"
+  subtitle: "Fiecare poveste este unică, dar destinația este aceeași: regăsirea echilibrului interior."
   icon_color: "gold"
   testimonials:
-    - quote: "Terapia m-a ajutat să înțeleg tiparele mele și să construiesc relații mai sănătoase. Am descoperit instrumente care funcționează pentru mine."
-      name: "M.A."
-      role: "Client Terapie Individuală"
-    - quote: "Am învățat tehnici pentru gestionarea anxietății și am găsit pacea pe care nu credeam că e posibilă. Procesul a fost transformator."
-      name: "R.C."
-      role: "Participant Program TCC"
-    - quote: "Abordarea compasională m-a ajutat să vindec traumele din trecut în ritmul meu. Mă simt mai puternică și mai conectată cu mine."
-      name: "S.L."
-      role: "Client Terapie Focusată pe Traumă"
+    - quote: "Am simțit pentru prima dată că sunt ascultată cu adevărat. Alexandra a creat un spațiu în care m-am simțit în siguranță să îmi explorez cele mai profunde temeri."
+      name: "MARIA D."
+      role: "Antreprenor"
+    - quote: "Procesul terapeutic m-a ajutat să îmi găsesc claritatea într-un moment de haos. Am învățat instrumente concrete pe care le folosesc zilnic."
+      name: "ANDREI I."
+      role: "Manager IT"
+    - quote: "O abordare caldă, dar extrem de profesionistă. Am reușit să depășesc blocaje vechi și să îmi reconstruiesc încrederea în sine."
+      name: "ELENA S."
+      role: "Arhitect"
 
 # ============================================================================
 # 7. PROCES SIMPLU

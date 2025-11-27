@@ -1,0 +1,102 @@
+{{/*
+  Organization Schema
+  ===================
+  Generates Schema.org Organization/LocalBusiness/ProfessionalService.
+  https://schema.org/Organization
+*/}}
+
+{{- $config := site.Params.seo.organization | default dict -}}
+{{- $contact := site.Params.contact_info | default dict -}}
+
+{{/* Resolve values with fallbacks */}}
+{{- $orgType := $config.type | default "Organization" -}}
+{{- $name := $config.name | default site.Title -}}
+{{- $description := $config.description | default site.Params.description | default site.Params.metadata.description -}}
+{{- $url := $config.url | default site.BaseURL -}}
+{{- $logo := $config.logo | default site.Params.logo | default "images/logo.svg" -}}
+{{- $email := $config.email | default (index $contact.email 0) -}}
+{{- $phone := $config.telephone | default (index $contact.phone 0) -}}
+
+{{/* Build social profiles array */}}
+{{- $sameAs := slice -}}
+{{- range site.Params.social -}}
+  {{- $sameAs = $sameAs | append .url -}}
+{{- end -}}
+{{- range $config.same_as -}}
+  {{- $sameAs = $sameAs | append . -}}
+{{- end -}}
+
+{{/* Build base schema */}}
+{{- $schema := dict
+  "@context" "https://schema.org"
+  "@type" $orgType
+  "name" $name
+  "url" $url
+-}}
+
+{{- with $description -}}
+  {{- $schema = merge $schema (dict "description" .) -}}
+{{- end -}}
+
+{{- with $config.legal_name -}}
+  {{- $schema = merge $schema (dict "legalName" .) -}}
+{{- end -}}
+
+{{- with $logo -}}
+  {{- $schema = merge $schema (dict "logo" (absURL .)) -}}
+{{- end -}}
+
+{{- with $config.image -}}
+  {{- $schema = merge $schema (dict "image" (absURL .)) -}}
+{{- end -}}
+
+{{- with $email -}}
+  {{- $schema = merge $schema (dict "email" .) -}}
+{{- end -}}
+
+{{- with $phone -}}
+  {{- $schema = merge $schema (dict "telephone" .) -}}
+{{- end -}}
+
+{{- with $config.founding_date -}}
+  {{- $schema = merge $schema (dict "foundingDate" .) -}}
+{{- end -}}
+
+{{- with $config.price_range -}}
+  {{- $schema = merge $schema (dict "priceRange" .) -}}
+{{- end -}}
+
+{{/* Build address if present */}}
+{{- with $config.address -}}
+  {{- if or .street .city .region .postal_code -}}
+    {{- $address := dict "@type" "PostalAddress" -}}
+    {{- with .street -}}
+      {{- $address = merge $address (dict "streetAddress" .) -}}
+    {{- end -}}
+    {{- with .city -}}
+      {{- $address = merge $address (dict "addressLocality" .) -}}
+    {{- end -}}
+    {{- with .region -}}
+      {{- $address = merge $address (dict "addressRegion" .) -}}
+    {{- end -}}
+    {{- with .postal_code -}}
+      {{- $address = merge $address (dict "postalCode" .) -}}
+    {{- end -}}
+    {{- with .country -}}
+      {{- $address = merge $address (dict "addressCountry" .) -}}
+    {{- end -}}
+    {{- $schema = merge $schema (dict "address" $address) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- with $config.opening_hours -}}
+  {{- $schema = merge $schema (dict "openingHours" .) -}}
+{{- end -}}
+
+{{- if $sameAs -}}
+  {{- $schema = merge $schema (dict "sameAs" $sameAs) -}}
+{{- end -}}
+
+<script type="application/ld+json">
+{{ $schema | jsonify (dict "indent" "  " "noHTMLEscape" true) | safeJS }}
+</script>

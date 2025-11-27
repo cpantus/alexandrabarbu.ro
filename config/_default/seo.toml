@@ -1,0 +1,245 @@
+# ===========================================================================
+# Andromeda Hugo Theme - SEO & AI Indexing Configuration
+# ===========================================================================
+# Version: 1.0.0
+#
+# This file controls all Schema.org structured data and AI indexing features.
+# All settings have sensible defaults - customize as needed for your industry.
+#
+# Documentation: themes/andromeda-hugo/docs/SEO-STRUCTURED-DATA.md
+# ===========================================================================
+
+# ---------------------------------------------------------------------------
+# MASTER TOGGLES
+# ---------------------------------------------------------------------------
+[params.seo]
+  # Master switch for all SEO structured data features
+  enable = true
+
+# ---------------------------------------------------------------------------
+# ORGANIZATION / BUSINESS SCHEMA
+# ---------------------------------------------------------------------------
+# Generates Organization, LocalBusiness, or ProfessionalService schema
+# on the homepage. Useful for businesses with a physical location.
+#
+# Schema.org types: https://schema.org/Organization
+# ---------------------------------------------------------------------------
+[params.seo.organization]
+  enable = true
+
+  # Organization type (Schema.org hierarchy)
+  # Common options:
+  #   - "Organization" (generic)
+  #   - "LocalBusiness" (physical location)
+  #   - "ProfessionalService" (service-based business)
+  #   - "MedicalBusiness" (healthcare providers)
+  #   - "LegalService" (law firms)
+  #   - "EducationalOrganization" (schools, training)
+  type = "ProfessionalService"
+
+  # Basic info (falls back to site.Title, site.Params.description)
+  name = ""
+  legal_name = ""
+  description = ""
+  founding_date = ""
+
+  # URLs (falls back to site.BaseURL, site.Params.logo)
+  url = ""
+  logo = ""
+  image = ""
+
+  # Contact (falls back to site.Params.contact_info.*)
+  email = ""
+  telephone = ""
+
+  # Price indicator for Google (e.g., "$", "$$", "$$$")
+  price_range = ""
+
+  # Physical address (for LocalBusiness types)
+  [params.seo.organization.address]
+    street = ""
+    city = ""
+    region = ""
+    postal_code = ""
+    country = "RO"
+
+  # Opening hours (ISO 8601 format)
+  # Examples: ["Mo-Fr 09:00-18:00", "Sa 10:00-14:00"]
+  opening_hours = []
+
+  # Additional social profiles (auto-merged with site.Params.social)
+  same_as = []
+
+# ---------------------------------------------------------------------------
+# PERSON / AUTHOR SCHEMA
+# ---------------------------------------------------------------------------
+# Generates Person schema for the site owner/author.
+# Author profiles stored in: data/authors/*.yaml
+#
+# Schema.org: https://schema.org/Person
+# ---------------------------------------------------------------------------
+[params.seo.person]
+  enable = true
+
+  # Default author file (references data/authors/{name}.yaml)
+  default_author = "default"
+
+  # Include Person schema on homepage
+  show_on_homepage = true
+
+  # Include professional credentials in schema
+  include_credentials = true
+
+  # Include education history in schema
+  include_education = true
+
+# ---------------------------------------------------------------------------
+# ARTICLE SCHEMA
+# ---------------------------------------------------------------------------
+# Generates Article/BlogPosting schema for content pages.
+# Auto-detected based on URL path patterns.
+#
+# Schema.org: https://schema.org/Article
+# ---------------------------------------------------------------------------
+[params.seo.article]
+  enable = true
+
+  # Article type
+  # Options: "Article", "BlogPosting", "NewsArticle", "TechArticle"
+  type = "Article"
+
+  # Include metadata in schema
+  include_word_count = true
+  include_read_time = true
+  include_date_modified = true
+  include_author = true
+  include_publisher = true
+
+  # URL path patterns that trigger Article schema
+  # Content in these paths gets Article schema automatically
+  path_patterns = ["/blog/", "/articole/", "/articles/", "/posts/", "/resurse/"]
+
+# ---------------------------------------------------------------------------
+# SERVICE SCHEMA
+# ---------------------------------------------------------------------------
+# Generates Service/ProfessionalService schema for service pages.
+# Auto-detected based on URL path patterns.
+#
+# Schema.org: https://schema.org/Service
+# ---------------------------------------------------------------------------
+[params.seo.service]
+  enable = true
+
+  # Service type
+  # Options: "Service", "ProfessionalService"
+  type = "Service"
+
+  # Include pricing information in schema
+  include_pricing = true
+
+  # Default currency for pricing
+  price_currency = "RON"
+
+  # URL path patterns that trigger Service schema
+  path_patterns = ["/servicii/", "/services/"]
+
+# ---------------------------------------------------------------------------
+# FAQ SCHEMA
+# ---------------------------------------------------------------------------
+# Generates FAQPage schema for pages with FAQ content.
+# Auto-detects from faq_items, faq_mini.faqs in front matter.
+#
+# Schema.org: https://schema.org/FAQPage
+# ---------------------------------------------------------------------------
+[params.seo.faq]
+  enable = true
+
+  # Auto-detect FAQ content from front matter
+  auto_detect = true
+
+  # Maximum FAQ items to include in schema
+  max_items = 10
+
+# ---------------------------------------------------------------------------
+# BREADCRUMB SCHEMA
+# ---------------------------------------------------------------------------
+# Generates BreadcrumbList schema for navigation.
+# Auto-generated from page hierarchy (.Ancestors).
+#
+# Schema.org: https://schema.org/BreadcrumbList
+# ---------------------------------------------------------------------------
+[params.seo.breadcrumb]
+  enable = true
+
+  # Include home page in breadcrumb trail
+  include_home = true
+
+# ---------------------------------------------------------------------------
+# WEBPAGE SCHEMA
+# ---------------------------------------------------------------------------
+# Generates WebPage schema with appropriate page types.
+# Type determined by URL patterns or explicit front matter.
+#
+# Schema.org: https://schema.org/WebPage
+# ---------------------------------------------------------------------------
+[params.seo.webpage]
+  enable = true
+
+  # Map URL patterns to WebPage subtypes
+  # Patterns are matched against .RelPermalink
+  [params.seo.webpage.types]
+    "/despre" = "AboutPage"
+    "/about" = "AboutPage"
+    "/contact" = "ContactPage"
+    "/servicii" = "ItemPage"
+    "/services" = "ItemPage"
+    "/blog" = "CollectionPage"
+    "/articole" = "CollectionPage"
+    "/resurse" = "CollectionPage"
+    "/faq" = "FAQPage"
+
+# ---------------------------------------------------------------------------
+# LLMS.TXT CONFIGURATION
+# ---------------------------------------------------------------------------
+# Generates /llms.txt file for AI crawler guidance.
+# See: https://llmstxt.org/
+# ---------------------------------------------------------------------------
+[params.seo.llms_txt]
+  enable = true
+
+  # Site information (falls back to site.Title, site.Params.description)
+  site_name = ""
+  site_description = ""
+  primary_language = ""
+
+  # Content sections to include in llms.txt
+  include_services = true
+  include_about = true
+  include_blog = true
+  include_contact = true
+
+  # URL patterns to exclude from llms.txt
+  exclude_patterns = ["**/draft-*", "**/test-*", "**/private/*"]
+
+  # Custom guidelines for AI systems
+  # Example: "This website provides professional services. Content is educational only."
+  guidelines = ""
+
+  # Preferred citation format (e.g., "APA", "MLA", "Chicago")
+  citation_format = ""
+
+# ---------------------------------------------------------------------------
+# VALIDATION (Build-time warnings)
+# ---------------------------------------------------------------------------
+# Enables validation warnings during Hugo build for missing SEO fields.
+# ---------------------------------------------------------------------------
+[params.seo.validation]
+  enable = true
+
+  # Warn if pages are missing key SEO fields
+  warn_missing_description = true
+  warn_missing_author = true
+  warn_missing_image = true
+
+  # Minimum description length to consider valid
+  min_description_length = 120

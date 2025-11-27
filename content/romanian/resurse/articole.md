@@ -7,12 +7,12 @@ draft: false
 sections:
   - type: "hero-breadcrumb"
   - type: "blog-grid"
-  - type: "cta-standard"
 
 # Hero Breadcrumb Section
 hero_breadcrumb:
   title: "Articole de Psihologie"
   subtitle: "Articole validate științific despre sănătate mintală și dezvoltare personală"
+  description: "Descoperă o colecție curatoriată de articole despre anxietate, depresie, relații, mindfulness și dezvoltare personală. Fiecare articol este scris pe baza cercetărilor actuale în psihologie și oferă tehnici practice pe care le poți aplica imediat."
   breadcrumb:
     - name: "Acasă"
       url: "/"

@@ -244,6 +244,28 @@
     box-shadow: none;
     background: var(--nav-dropdown-bg-mobile);
     margin-top: var(--nav-dropdown-gap);
+    padding-left: $space-3;
+    border-left: 2px solid var(--color-primary-200, rgba($forest-500, 0.2));
+
+    // CRITICAL FIX: Mobile dropdown visibility controlled by parent --open class
+    // Default: collapsed (height 0, hidden)
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height $duration-normal $ease-out,
+                opacity $duration-normal $ease-out,
+                visibility $duration-normal step-end;
+
+    // When parent has --open class (added via JS on click), expand dropdown
+    .c-navigation__item--open > & {
+      max-height: 500px; // Generous max for content
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      overflow: visible;
+      transition: max-height $duration-normal $ease-out,
+                  opacity $duration-normal $ease-out,
+                  visibility $duration-normal step-start;
+    }
   }
 
   // Open state (added via JS)

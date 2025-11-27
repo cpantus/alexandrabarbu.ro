@@ -128,10 +128,11 @@
       {{/* Right Column: Method Cards */}}
       <div class="c-methodology-zigzag__visual">
         {{/* Method Cards 2×2 Grid */}}
+        {{/* DESIGN EXCELLENCE 2.1 + 2.2: Card Spotlight + Staggered Reveals */}}
         {{- if $data.methods -}}
-        <div class="c-methodology-zigzag__methods">
+        <div class="c-methodology-zigzag__methods c-card-grid c-card-grid--stagger">
           {{- range $index, $method := $data.methods -}}
-            <div class="c-method-card" data-aos="fade-up" data-aos-delay="{{ mul $index 100 }}">
+            <div class="c-method-card c-card">
 
               {{/* Icon Blob */}}
               {{- if $method.icon -}}

@@ -56,6 +56,24 @@
   }
 }
 
+/* Image Link (Clickable image wrapper)
+   ========================================================================== */
+
+.c-blog-card__image-link {
+  display: block;
+  text-decoration: none;
+
+  /* Hover effect on image */
+  &:hover .c-blog-card__image {
+    transform: scale(1.05);
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
 /* Image Wrapper
    ========================================================================== */
 
@@ -79,8 +97,9 @@
   height: 100%;
   object-fit: cover;
 
-  /* Smooth loading */
-  transition: opacity $duration-base $ease-out;
+  /* Smooth loading + hover scale */
+  transition: opacity $duration-base $ease-out,
+              transform $duration-base $ease-out;
 }
 
 /* Type Badge (overlaid on image)
@@ -170,12 +189,13 @@
   &:focus {
     /* CRITICAL: Override base element a:hover style from 04-elements/_text.scss (line 30-34)
      * That style applies text-decoration: underline to ALL links on hover
-     * We must block it here to prevent double underline (base + component) */
+     * We control underline on the title element instead */
     text-decoration: none !important;
 
     .c-blog-card__title {
-      text-decoration: underline;
-      text-decoration-color: #C5A880 !important;  /* REDESIGN: Gold underline (force exact color) */
+      /* Gold underline on hover - REDESIGN 2025 */
+      text-decoration: underline !important;
+      text-decoration-color: $gold-500 !important;
       text-underline-offset: 4px;
     }
   }
@@ -202,8 +222,8 @@
   line-height: $line-height-tight;
   color: $color-text-primary;
 
-  /* Transition for underline effect */
-  transition: text-decoration-color $duration-base $ease-out;
+  /* No underline by default - gold underline appears on hover */
+  text-decoration: none;
 
   /* Responsive: Smaller font on mobile */
   @media (max-width: $breakpoint-md) {
@@ -238,9 +258,10 @@
    ========================================================================== */
 
 .c-blog-card__action {
-  /* Layout */
+  /* Layout - Centered */
   display: flex;
-  align-items: flex-start;  /* Align to start (left) */
+  justify-content: center;  /* Center horizontally */
+  align-items: center;
 
   /* Spacing (button atoms already have appropriate sizing) */
   margin-top: auto;  /* Push to bottom if description doesn't fill space */
@@ -250,6 +271,11 @@
    ========================================================================== */
 
 .c-blog-card__read-more {
+  /* Layout - Flex for icon alignment */
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;  /* 8px between text and icon */
+
   /* Typography */
   font-family: $font-family-sans;
   font-size: $font-size-base;
@@ -273,6 +299,10 @@
   &:hover {
     color: #C5A880 !important;  /* REDESIGN: Gold hover color (force exact color) */
     text-decoration: none;
+
+    .c-blog-card__read-more-icon {
+      transform: translateX(4px);  /* Arrow slides right on hover */
+    }
   }
 
   /* Focus State (Accessibility) */
@@ -282,6 +312,12 @@
     outline-offset: 2px;
     border-radius: $border-radius-sm;
   }
+}
+
+/* Arrow Icon for Read More */
+.c-blog-card__read-more-icon {
+  flex-shrink: 0;
+  transition: transform $duration-base $ease-out;
 }
 
 /* Color Variant Modifiers

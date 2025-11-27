@@ -26,9 +26,9 @@ $shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0
 $shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !default;
 $shadow-2xl: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
 
-// REDESIGN 2025: Brand-colored shadows (forest/sage instead of forest/sage)
-$shadow-primary: 0 10px 30px -5px rgba($forest-500, 0.2);           // Forest green primary
-$shadow-primary-lg: 0 20px 40px -8px rgba($forest-500, 0.3);        // Forest green large
+// REDESIGN 2025: Brand-colored shadows (forest green glow for primary CTA buttons)
+$shadow-primary: 0 10px 30px -5px rgba($forest-500, 0.3);           // Forest green glow primary
+$shadow-primary-lg: 0 20px 40px -8px rgba($forest-500, 0.4);        // Forest green glow large
 $shadow-secondary: 0 10px 30px -5px rgba($sage-500, 0.2);           // Sage green secondary
 $shadow-secondary-lg: 0 20px 40px -8px rgba($sage-500, 0.3);        // Sage green large
 $shadow-nav-redesign: 0 4px 12px -2px rgba($forest-500, 0.15);      // Navigation scroll

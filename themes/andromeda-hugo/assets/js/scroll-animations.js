@@ -1,6 +1,12 @@
 /**
  * Scroll Animations - Unified parallax and scroll-triggered effects
  * Lightweight, performance-optimized with requestAnimationFrame
+ *
+ * DESIGN EXCELLENCE 3.4: Scroll-Linked Parallax
+ * - Decorative elements move at different rates for depth
+ * - GPU-accelerated (transform only) for 60fps performance
+ * - Respects prefers-reduced-motion
+ * - Desktop only (≥992px)
  */
 
 (function() {
@@ -11,9 +17,17 @@
 
   // Configuration
   const config = {
-    parallaxSpeed: 0.3, // 30% of scroll speed
+    parallaxSpeed: 0.3, // 30% of scroll speed for main content
     parallaxEnabled: !prefersReducedMotion && window.innerWidth >= 992, // Desktop only
-    throttleDelay: 16 // ~60fps
+    throttleDelay: 16, // ~60fps
+
+    // DESIGN EXCELLENCE 3.4: Multi-layer parallax speeds
+    // Different elements move at different rates for depth perception
+    parallaxLayers: {
+      slow: 0.1,    // Background blobs, far elements
+      medium: 0.2,  // Decorative shapes, mid-ground
+      fast: 0.35    // Hero compass, foreground elements
+    }
   };
 
   let ticking = false;
@@ -34,6 +48,7 @@
     }
 
     initParallax();
+    initLayeredParallax(); // DESIGN EXCELLENCE 3.4
     initScrollTriggers();
     initSmoothScroll();
 
@@ -72,6 +87,48 @@
 
     // Store update function for scroll handler
     window._updateParallax = updateParallax;
+  }
+
+  /**
+   * DESIGN EXCELLENCE 3.4: Layered Parallax for Decorative Elements
+   * Different elements move at different speeds based on data-parallax-layer attribute
+   * Layers: slow (0.1), medium (0.2), fast (0.35)
+   *
+   * Usage in HTML:
+   *   <div class="c-hero-breadcrumb__compass-wrapper" data-parallax-layer="fast">
+   *   <div class="c-hero-breadcrumb__shape" data-parallax-layer="slow">
+   */
+  function initLayeredParallax() {
+    if (!config.parallaxEnabled) return;
+
+    const layeredElements = document.querySelectorAll('[data-parallax-layer]');
+
+    if (!layeredElements.length) return;
+
+    function updateLayeredParallax() {
+      layeredElements.forEach(function(element) {
+        const rect = element.getBoundingClientRect();
+        const layer = element.getAttribute('data-parallax-layer');
+        const speed = config.parallaxLayers[layer] || config.parallaxLayers.medium;
+
+        // Only apply parallax when element is in viewport
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          // Calculate offset from center of viewport for smoother effect
+          const viewportCenter = window.innerHeight / 2;
+          const elementCenter = rect.top + rect.height / 2;
+          const offset = (elementCenter - viewportCenter) * speed;
+
+          // GPU-accelerated transform only
+          element.style.transform = `translateY(${offset}px)`;
+        }
+      });
+    }
+
+    // Initial state
+    updateLayeredParallax();
+
+    // Store update function for scroll handler
+    window._updateLayeredParallax = updateLayeredParallax;
   }
 
   /**
@@ -138,6 +195,10 @@
         if (window._updateParallax) {
           window._updateParallax();
         }
+        // DESIGN EXCELLENCE 3.4: Update layered parallax
+        if (window._updateLayeredParallax) {
+          window._updateLayeredParallax();
+        }
         ticking = false;
       });
 
@@ -156,6 +217,12 @@
     if (!config.parallaxEnabled) {
       const parallaxElements = document.querySelectorAll('.parallax-enabled');
       parallaxElements.forEach(function(element) {
+        element.style.transform = '';
+      });
+
+      // DESIGN EXCELLENCE 3.4: Also reset layered parallax on mobile
+      const layeredElements = document.querySelectorAll('[data-parallax-layer]');
+      layeredElements.forEach(function(element) {
         element.style.transform = '';
       });
     }

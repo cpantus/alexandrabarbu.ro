@@ -1,0 +1,128 @@
+{{/*
+  Person Schema
+  =============
+  Generates Schema.org Person for the site owner/author.
+  https://schema.org/Person
+
+  Data source: data/authors/{default_author}.yaml
+*/}}
+
+{{- $config := site.Params.seo.person | default dict -}}
+{{- $authorId := $config.default_author | default "default" -}}
+{{- $author := index site.Data.authors $authorId | default dict -}}
+{{- $contact := site.Params.contact_info | default dict -}}
+
+{{/* Exit if no author data */}}
+{{- if not $author.name -}}
+  {{- return -}}
+{{- end -}}
+
+{{/* Build social profiles array */}}
+{{- $sameAs := $author.same_as | default slice -}}
+{{- if not $sameAs -}}
+  {{- range site.Params.social -}}
+    {{- $sameAs = $sameAs | append .url -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Build base schema */}}
+{{- $schema := dict
+  "@context" "https://schema.org"
+  "@type" "Person"
+  "name" $author.name
+-}}
+
+{{- with $author.given_name -}}
+  {{- $schema = merge $schema (dict "givenName" .) -}}
+{{- end -}}
+
+{{- with $author.family_name -}}
+  {{- $schema = merge $schema (dict "familyName" .) -}}
+{{- end -}}
+
+{{- with $author.honorific_prefix -}}
+  {{- $schema = merge $schema (dict "honorificPrefix" .) -}}
+{{- end -}}
+
+{{- with $author.job_title -}}
+  {{- $schema = merge $schema (dict "jobTitle" .) -}}
+{{- end -}}
+
+{{- with $author.description | default $author.bio -}}
+  {{- $schema = merge $schema (dict "description" (. | plainify | truncate 300)) -}}
+{{- end -}}
+
+{{- with $author.url -}}
+  {{- $schema = merge $schema (dict "url" (absURL .)) -}}
+{{- end -}}
+
+{{- with $author.image -}}
+  {{- $schema = merge $schema (dict "image" (absURL .)) -}}
+{{- end -}}
+
+{{- with $author.email | default (index $contact.email 0) -}}
+  {{- $schema = merge $schema (dict "email" .) -}}
+{{- end -}}
+
+{{- with $author.telephone | default (index $contact.phone 0) -}}
+  {{- $schema = merge $schema (dict "telephone" .) -}}
+{{- end -}}
+
+{{- if $sameAs -}}
+  {{- $schema = merge $schema (dict "sameAs" $sameAs) -}}
+{{- end -}}
+
+{{- with $author.expertise -}}
+  {{- $schema = merge $schema (dict "knowsAbout" .) -}}
+{{- end -}}
+
+{{/* Credentials - if enabled */}}
+{{- if and ($config.include_credentials | default true) $author.credentials -}}
+  {{- $credentials := slice -}}
+  {{- range $author.credentials -}}
+    {{- $cred := dict
+      "@type" "EducationalOccupationalCredential"
+      "credentialCategory" (.category | default "certification")
+      "name" .name
+    -}}
+    {{- with .issued_by -}}
+      {{- $cred = merge $cred (dict "recognizedBy" (dict "@type" "Organization" "name" .)) -}}
+    {{- end -}}
+    {{- $credentials = $credentials | append $cred -}}
+  {{- end -}}
+  {{- $schema = merge $schema (dict "hasCredential" $credentials) -}}
+{{- end -}}
+
+{{/* Education - if enabled */}}
+{{- if and ($config.include_education | default true) $author.education -}}
+  {{- $alumniOf := slice -}}
+  {{- range $author.education -}}
+    {{- $alumniOf = $alumniOf | append (dict "@type" "EducationalOrganization" "name" .institution) -}}
+  {{- end -}}
+  {{- $schema = merge $schema (dict "alumniOf" $alumniOf) -}}
+{{- end -}}
+
+{{/* Affiliations */}}
+{{- with $author.affiliations -}}
+  {{- $memberOf := slice -}}
+  {{- range . -}}
+    {{- $memberOf = $memberOf | append (dict "@type" "Organization" "name" .name) -}}
+  {{- end -}}
+  {{- $schema = merge $schema (dict "memberOf" $memberOf) -}}
+{{- end -}}
+
+{{/* Work info */}}
+{{- with $author.works_for -}}
+  {{- if .name -}}
+    {{- $worksFor := dict
+      "@type" (.type | default "Organization")
+      "name" (.name | default site.Title)
+      "url" (.url | default site.BaseURL)
+    -}}
+    {{- $schema = merge $schema (dict "worksFor" $worksFor) -}}
+  {{- end -}}
+{{- end -}}
+
+<script type="application/ld+json">
+{{ $schema | jsonify (dict "indent" "  " "noHTMLEscape" true) | safeJS }}
+</script>

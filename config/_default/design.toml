@@ -1,0 +1,489 @@
+# ============================================================================
+# Andromeda Hugo Theme - Design System Configuration
+# ============================================================================
+#
+# OVERVIEW:
+# This file controls all visual aspects of your Hugo theme through 85-100
+# design tokens. Edit these values to completely rebrand your site without
+# touching SCSS files or component code.
+#
+# HOW IT WORKS:
+# design.toml → Hugo Pipes → SCSS variables → CSS custom properties → Components
+#
+# USAGE:
+# 1. Edit values below to match your brand
+# 2. Run: hugo server
+# 3. See changes instantly
+#
+# MULTI-CLIENT SETUP:
+# Create environment-specific configs:
+# - config/production/design.toml    (Client A)
+# - config/staging/design.toml       (Client B)
+# - config/development/design.toml   (Testing)
+#
+# Build with: hugo --environment=production
+#
+# ============================================================================
+
+# ============================================================================
+# BRAND COLORS (6 tokens)
+# ============================================================================
+# These are your primary brand colors. They cascade throughout the entire
+# design system and are used by buttons, links, accents, and overlays.
+
+[params.design.brand]
+  # Primary brand color - Used for main CTAs, primary buttons, important links
+  # Default: Forest Green (professional, trustworthy)
+  # Examples: #234E3E (forest), #0066CC (corporate blue), #8B4513 (law firm)
+  primary = "#234E3E"
+
+  # Secondary brand color - Used for secondary buttons, accents, highlights
+  # Default: Sage Green (calm, natural)
+  # Examples: #6B9080 (sage), #4A90E2 (sky blue), #C19A6B (warm tan)
+  secondary = "#6B9080"
+
+  # Accent color - Used for badges, icons, special highlights
+  # Default: Gold (premium, attention)
+  # Examples: #D4AF37 (gold), #FF6B6B (coral), #9B59B6 (purple)
+  accent = "#D4AF37"
+
+  # Success color - Used for success messages, positive feedback
+  success = "#10B981"
+
+  # Warning color - Used for warnings, caution states
+  warning = "#F59E0B"
+
+  # Error color - Used for errors, validation failures
+  error = "#EF4444"
+
+# ============================================================================
+# TYPOGRAPHY (10 tokens)
+# ============================================================================
+# Font families, weights, sizes, and line heights.
+# Google Fonts are loaded automatically if specified.
+
+[params.design.typography]
+  # Heading font - Used for h1, h2, h3, h4, h5, h6, hero titles
+  # Default: Playfair Display (elegant, serif)
+  # Examples: "Playfair Display", "Merriweather", "Lora", "Crimson Pro"
+  # For sans-serif: "Montserrat", "Raleway", "Inter"
+  heading_font = "Playfair Display"
+
+  # Body font - Used for paragraphs, UI text, navigation, buttons
+  # Default: DM Sans (clean, readable)
+  # Examples: "DM Sans", "Work Sans", "Inter", "Open Sans", "Roboto"
+  body_font = "DM Sans"
+
+  # Heading font weight - Normal (400), Medium (500), Semi-bold (600), Bold (700)
+  heading_weight = "700"
+
+  # Body font weight - Light (300), Normal (400), Medium (500)
+  body_weight = "400"
+
+  # Base font size - All other sizes scale from this
+  # Default: 16px (recommended for accessibility)
+  # Range: 14px-18px
+  base_size = "16px"
+
+  # Font scale ratio - How much sizes increase at each step
+  # Default: 1.25 (Major Third)
+  # Options: 1.2 (Minor Third), 1.25 (Major Third), 1.333 (Perfect Fourth), 1.5 (Perfect Fifth)
+  scale = "1.25"
+
+  # Line height for body text
+  # Default: 1.6 (optimal for readability)
+  # Range: 1.4-1.8
+  line_height_body = "1.6"
+
+  # Line height for headings
+  # Default: 1.2 (tighter for visual impact)
+  # Range: 1.1-1.4
+  line_height_heading = "1.2"
+
+# ============================================================================
+# TEXT COLORS (4 tokens)
+# ============================================================================
+# Text colors used throughout the site.
+
+[params.design.colors.text]
+  # Primary text - Used for body copy, paragraphs
+  # Default: Dark gray (high contrast, readable)
+  primary = "#374151"
+
+  # Secondary text - Used for captions, metadata, less important text
+  # Default: Medium gray (reduced emphasis)
+  secondary = "#6B7280"
+
+  # Muted text - Used for placeholders, disabled states
+  # Default: Light gray
+  muted = "#9CA3AF"
+
+  # Inverted text - Used on dark backgrounds
+  # Default: White
+  inverted = "#FFFFFF"
+
+# ============================================================================
+# SPACING SYSTEM (7 tokens)
+# ============================================================================
+# Controls all spacing, padding, margins throughout the site.
+
+[params.design.spacing]
+  # Base spacing unit - All spacing scales from this
+  # Default: 8px (aligns to 8px grid)
+  # The system will generate: 4px, 8px, 16px, 24px, 32px, 48px, 64px, etc.
+  base = "8px"
+
+  # Spacing scale multiplier
+  # Default: 1.5 (generates harmonious spacing)
+  # Each step: base × scale^n
+  scale = "1.5"
+
+  # Section padding (top/bottom)
+  # Default: 80px desktop, 48px mobile
+  section_padding_desktop = "80px"
+  section_padding_mobile = "48px"
+
+  # Container max width
+  # Default: 1200px (optimal reading width)
+  # Options: 1140px (Bootstrap), 1200px, 1280px (Tailwind), 1440px (wide)
+  container_max_width = "1200px"
+
+  # Container padding (left/right)
+  container_padding = "16px"
+
+# ============================================================================
+# BORDERS (6 tokens)
+# ============================================================================
+# Border widths, radius, and colors for UI elements.
+
+[params.design.borders]
+  # Border width
+  # Default: 1px (subtle)
+  # Options: 1px (subtle), 2px (visible), 3px (bold)
+  width = "1px"
+
+  # Border width for focus states
+  focus_width = "2px"
+
+  # Border radius - Controls rounded corners
+  # Default: 8px (moderately rounded)
+  # Options: 0px (sharp), 4px (subtle), 8px (moderate), 16px (very round), 50% (pill)
+  radius_sm = "4px"
+  radius_md = "8px"
+  radius_lg = "16px"
+  radius_full = "9999px"  # For pill-shaped buttons
+
+  # Border color
+  # Default: Light gray
+  color = "#E5E7EB"
+
+# ============================================================================
+# SHADOWS (4 tokens)
+# ============================================================================
+# Elevation and depth through box shadows.
+
+[params.design.shadows]
+  # Small shadow - Subtle depth for cards, buttons
+  sm = "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)"
+
+  # Medium shadow - Default for cards, modals
+  md = "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+
+  # Large shadow - Prominent elements, dropdowns
+  lg = "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
+
+  # Extra large shadow - Hero sections, major CTAs
+  xl = "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+
+# ============================================================================
+# BACKGROUNDS (8 tokens)
+# ============================================================================
+# Gradient backgrounds, glassmorphism effects, and overlays.
+
+[params.design.backgrounds]
+  # Enable gradient backgrounds
+  # Set to false to use solid colors instead
+  enable_gradients = true
+
+  # Gradient type
+  # Options: "linear", "radial", "conic"
+  gradient_type = "linear"
+
+  # Gradient angle (for linear gradients)
+  # Default: 135deg (diagonal from bottom-left to top-right)
+  # Options: 0deg (vertical), 90deg (horizontal), 135deg (diagonal), 180deg (vertical reversed)
+  gradient_angle = "135deg"
+
+  # Gradient color stops
+  # These will blend from primary → secondary
+  # Uses brand.primary and brand.secondary by default
+  gradient_start_opacity = "0.9"
+  gradient_end_opacity = "0.7"
+
+  # Glassmorphism effect
+  # Modern frosted-glass aesthetic
+  enable_glassmorphism = true
+  glassmorphism_blur = "12px"
+  glassmorphism_opacity = "0.8"
+
+  # Dark overlay opacity (for hero images)
+  # Default: 0.4 (40% dark overlay ensures text readability)
+  # Range: 0.2-0.7
+  overlay_opacity = "0.4"
+
+# ============================================================================
+# ANIMATIONS (7 tokens)
+# ============================================================================
+# Control animation speed, easing, and enable/disable specific animation types.
+
+[params.design.animations]
+  # Global animation speed multiplier
+  # Default: 1.0 (normal speed)
+  # Examples: 0.5 (2x faster), 1.0 (normal), 1.5 (slower, more dramatic), 2.0 (very slow)
+  # This affects ALL animations site-wide
+  speed_multiplier = "1.0"
+
+  # Animation easing function
+  # Default: "ease-in-out" (smooth, professional)
+  # Options: "linear", "ease", "ease-in", "ease-out", "ease-in-out"
+  # Custom: "cubic-bezier(0.4, 0.0, 0.2, 1)" (Material Design)
+  easing = "ease-in-out"
+
+  # Enable scroll-triggered animations
+  # Sections fade/slide in as user scrolls
+  enable_scroll_animations = true
+
+  # Enable hover animations
+  # Buttons lift, cards scale slightly on hover
+  enable_hover_animations = true
+
+  # Enable parallax scrolling
+  # Background images move slower than foreground (depth effect)
+  enable_parallax = true
+  parallax_strength = "0.5"  # 0.0 (none) to 1.0 (maximum)
+
+  # Enable entrance animations
+  # Elements animate in on page load
+  enable_entrance_animations = true
+
+# ============================================================================
+# BUTTONS (8 tokens)
+# ============================================================================
+# Button styling across the entire site.
+
+[params.design.components.buttons]
+  # Button padding
+  padding_horizontal = "24px"
+  padding_vertical = "12px"
+
+  # Button font size
+  font_size = "16px"
+
+  # Button font weight
+  font_weight = "600"
+
+  # Button border radius (inherits from borders.radius if not specified)
+  border_radius = "8px"
+
+  # Button hover lift distance
+  # Default: 2px (subtle lift on hover)
+  hover_lift = "2px"
+
+  # Button transition duration
+  # Default: 0.2s (snappy feel)
+  transition = "0.2s"
+
+  # Button text transform
+  # Options: "none", "uppercase", "lowercase", "capitalize"
+  text_transform = "none"
+
+# ============================================================================
+# CARDS (6 tokens)
+# ============================================================================
+# Card component styling (blog cards, feature cards, etc.)
+
+[params.design.components.cards]
+  # Card background
+  background = "#FFFFFF"
+
+  # Card border
+  border_width = "1px"
+  border_color = "#E5E7EB"
+
+  # Card border radius
+  border_radius = "12px"
+
+  # Card padding
+  padding = "24px"
+
+  # Card hover effect
+  # Options: "lift", "glow", "none"
+  hover_effect = "lift"
+  hover_lift = "4px"
+
+# ============================================================================
+# NAVIGATION (5 tokens)
+# ============================================================================
+# Header navigation styling.
+
+[params.design.components.navigation]
+  # Navigation height
+  height = "72px"
+
+  # Navigation background
+  # Default: White with subtle shadow
+  background = "#FFFFFF"
+  backdrop_blur = true  # Glassmorphism effect
+
+  # Navigation link color
+  link_color = "#374151"
+  link_hover_color = "#234E3E"  # Uses brand.primary
+
+  # Mobile menu background
+  mobile_menu_background = "#FFFFFF"
+
+# ============================================================================
+# FORMS (6 tokens)
+# ============================================================================
+# Input fields, textareas, selects.
+
+[params.design.components.forms]
+  # Input background
+  input_background = "#FFFFFF"
+
+  # Input border
+  input_border_color = "#D1D5DB"
+  input_border_width = "1px"
+  input_border_radius = "8px"
+
+  # Input padding
+  input_padding = "12px 16px"
+
+  # Input focus color (uses brand.primary)
+  input_focus_border_color = "#234E3E"
+
+  # Input font size
+  input_font_size = "16px"
+
+# ============================================================================
+# ICONS (3 tokens)
+# ============================================================================
+# Icon sizing and colors.
+
+[params.design.components.icons]
+  # Default icon size
+  size_sm = "16px"
+  size_md = "24px"
+  size_lg = "32px"
+
+  # Icon color (uses brand.primary by default)
+  default_color = "#234E3E"
+
+# ============================================================================
+# BADGES (4 tokens)
+# ============================================================================
+# Small labels and tags.
+
+[params.design.components.badges]
+  # Badge padding
+  padding = "4px 12px"
+
+  # Badge border radius
+  border_radius = "16px"
+
+  # Badge font size
+  font_size = "14px"
+
+  # Badge font weight
+  font_weight = "500"
+
+# ============================================================================
+# HERO SECTION (4 tokens)
+# ============================================================================
+# Hero section specific styling.
+
+[params.design.components.hero]
+  # Hero height
+  # Default: 600px desktop
+  min_height_desktop = "600px"
+  min_height_mobile = "400px"
+
+  # Hero text alignment
+  # Options: "left", "center", "right"
+  text_align = "center"
+
+  # Hero overlay darkness (for background images)
+  overlay_opacity = "0.5"
+
+# ============================================================================
+# FOOTER (3 tokens)
+# ============================================================================
+# Footer styling.
+
+[params.design.components.footer]
+  # Footer background
+  background = "#1F2937"
+
+  # Footer text color
+  text_color = "#D1D5DB"
+
+  # Footer padding
+  padding_top = "64px"
+  padding_bottom = "32px"
+
+# ============================================================================
+# ACCESSIBILITY (4 tokens)
+# ============================================================================
+# Accessibility preferences.
+
+[params.design.accessibility]
+  # Minimum contrast ratio
+  # WCAG AA: 4.5:1 for normal text, 3:1 for large text
+  # WCAG AAA: 7:1 for normal text, 4.5:1 for large text
+  min_contrast_ratio = "4.5"
+
+  # Focus ring color
+  focus_ring_color = "#234E3E"
+  focus_ring_width = "2px"
+  focus_ring_offset = "2px"
+
+  # Respect prefers-reduced-motion
+  # Disables animations for users who prefer reduced motion
+  respect_reduced_motion = true
+
+# ============================================================================
+# PERFORMANCE (2 tokens)
+# ============================================================================
+# Performance optimization preferences.
+
+[params.design.performance]
+  # Enable CSS custom properties
+  # Set to false to use SCSS variables only (slightly smaller CSS)
+  enable_css_variables = true
+
+  # Enable GPU acceleration for animations
+  # Uses transform3d instead of transform for smoother animations
+  enable_gpu_acceleration = true
+
+# ============================================================================
+# CUSTOM OVERRIDES (Optional)
+# ============================================================================
+# Add your own custom variables here. These will be injected into SCSS
+# and available as CSS custom properties.
+
+[params.design.custom]
+  # Example custom variables:
+  # header_logo_height = "40px"
+  # sidebar_width = "280px"
+  # modal_max_width = "600px"
+
+# ============================================================================
+# END OF CONFIGURATION
+# ============================================================================
+# Total tokens: ~95 design tokens
+#
+# Questions? See THEME-CUSTOMIZATION.md for full documentation.
+# Issues? Check that all color values are valid hex codes (#RRGGBB).
+#
+# Happy customizing!
+# ============================================================================
