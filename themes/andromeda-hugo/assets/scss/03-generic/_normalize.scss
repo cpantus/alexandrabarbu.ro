@@ -302,10 +302,22 @@ select {
   *:not(.c-compass-animation):not(.c-compass-animation *),
   *:not(.c-compass-animation):not(.c-compass-animation *)::before,
   *:not(.c-compass-animation):not(.c-compass-animation *)::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
     scroll-behavior: auto !important;
+  }
+
+  // CRITICAL: Ensure elements hidden for animation are visible when animations disabled
+  // Components using staggered-entrance mixin start with opacity: 0
+  .c-feature-blocks__item,
+  .c-values-compass__card,
+  .c-credentials__badge,
+  .c-testimonials__card,
+  .c-problem-empathy__card,
+  [class*="fade-in"],
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
