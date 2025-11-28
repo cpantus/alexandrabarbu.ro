@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Alexandra Barbu - Content Manager</title>
+  <style>
+    [data-slate-editor] {
+      -webkit-user-modify: read-write !important;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .loading {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #234E3E 0%, #6B9080 100%);
+      color: white;
+    }
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .loading-text {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div id="loading" class="loading">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Se incarca Content Manager...</div>
+  </div>
+
+  <!-- Sveltia CMS -->
+  <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+
+  <script>
+    // Determine which config to load based on hostname
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const configPath = isLocal ? '/admin/config.yml' : '/admin/config.production.yml';
+
+    console.log(`Loading ${isLocal ? 'local development' : 'production'} CMS configuration...`);
+    console.log(`Config path: ${configPath}`);
+
+    // Hide loading message once CMS loads
+    window.CMS_MANUAL_INIT = false;
+
+    // Register event listener for when CMS mounts
+    if (window.CMS) {
+      window.CMS.registerEventListener({
+        name: 'mounted',
+        handler: () => {
+          console.log('Sveltia CMS mounted successfully');
+          document.getElementById('loading').style.display = 'none';
+        }
+      });
+    }
+
+    // Fallback: hide loading after timeout
+    setTimeout(() => {
+      const loading = document.getElementById('loading');
+      if (loading) {
+        loading.style.display = 'none';
+      }
+    }, 5000);
+  </script>
+</body>
+</html>

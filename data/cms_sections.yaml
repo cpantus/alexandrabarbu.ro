@@ -1,0 +1,406 @@
+# CMS Section Types Reference
+# This file documents all available section types for the flexible page builder
+# Used by Sveltia CMS to display section descriptions
+
+sections:
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # HEROES (2)
+  # ═══════════════════════════════════════════════════════════════════════════════
+
+  - type: "hero-breadcrumb"
+    label: "Hero cu Breadcrumb"
+    label_en: "Hero with Breadcrumb"
+    category: "heroes"
+    description: "Sectiune hero principala cu titlu, subtitlu, navigare breadcrumb optionala si animatie busola sau imagine. Include butoane CTA."
+    description_en: "Main hero section with title, subtitle, optional breadcrumb navigation and compass animation or image. Includes CTA buttons."
+    config_key: "hero_breadcrumb"
+
+  - type: "hero-about"
+    label: "Hero Despre"
+    label_en: "Hero About"
+    category: "heroes"
+    description: "Hero specializat pentru pagina Despre Mine cu imagine circulara, citat si prezentare personala."
+    description_en: "Specialized hero for About page with circular image, quote and personal introduction."
+    config_key: "hero_about"
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # CORE (5)
+  # ═══════════════════════════════════════════════════════════════════════════════
+
+  - type: "values-intro"
+    label: "Introducere Valori"
+    label_en: "Values Intro"
+    category: "core"
+    description: "Prezentare valori sau caracteristici cu imagine, text si buton CTA. Layout simplu cu imagine si text."
+    description_en: "Values or features presentation with image, text and CTA button. Simple layout with image and text."
+    config_key: "values_section"
+
+  - type: "values-compass"
+    label: "Busola Valorilor"
+    label_en: "Values Compass"
+    category: "core"
+    description: "Afisare valori intr-un layout circular tip busola cu efect glassmorphism si animatii. Ideal pentru valori principale."
+    description_en: "Display values in a circular compass-style layout with glassmorphism effect and animations. Ideal for core values."
+    config_key: "values_compass"
+
+  - type: "feature-blocks"
+    label: "Blocuri Caracteristici"
+    label_en: "Feature Blocks"
+    category: "core"
+    description: "Blocuri alternante stanga-dreapta cu imagine, titlu, descriere si lista caracteristici. Layout zigzag cu parallax pe desktop."
+    description_en: "Alternating left-right blocks with image, title, description and feature list. Zigzag layout with parallax on desktop."
+    config_key: "feature_blocks"
+
+  - type: "cta-standard"
+    label: "CTA Standard"
+    label_en: "Standard CTA"
+    category: "core"
+    description: "Sectiune call-to-action cu fundal colorat, titlu, descriere si butoane. Multiple variante de fundal disponibile."
+    description_en: "Call-to-action section with colored background, title, description and buttons. Multiple background variants available."
+    config_key: "cta_standard"
+
+  - type: "cta-split"
+    label: "CTA Split"
+    label_en: "Split CTA"
+    category: "core"
+    description: "CTA cu layout impartit - text pe o parte, imagine sau continut pe cealalta."
+    description_en: "CTA with split layout - text on one side, image or content on the other."
+    config_key: "cta_split"
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # INTERACTIVE (4)
+  # ═══════════════════════════════════════════════════════════════════════════════
+
+  - type: "video-popup"
+    label: "Video Popup"
+    label_en: "Video Popup"
+    category: "interactive"
+    description: "Sectiune video cu thumbnail si popup modal pentru redare. Suporta YouTube, Vimeo sau fisiere directe."
+    description_en: "Video section with thumbnail and modal popup for playback. Supports YouTube, Vimeo or direct files."
+    config_key: "video_section"
+
+  - type: "faq-mini"
+    label: "FAQ Mini"
+    label_en: "Mini FAQ"
+    category: "interactive"
+    description: "Lista scurta de intrebari frecvente cu accordion. Ideal pentru 3-6 intrebari pe o pagina de serviciu."
+    description_en: "Short list of frequently asked questions with accordion. Ideal for 3-6 questions on a service page."
+    config_key: "faq_items"
+
+  - type: "method-tabs"
+    label: "Taburi Metode"
+    label_en: "Method Tabs"
+    category: "interactive"
+    description: "Prezentare metode terapeutice in format taburi. Fiecare tab contine detalii, beneficii si tehnici."
+    description_en: "Therapeutic methods presentation in tab format. Each tab contains details, benefits and techniques."
+    config_key: "method_tabs"
+
+  - type: "blog-grid"
+    label: "Grid Blog"
+    label_en: "Blog Grid"
+    category: "interactive"
+    description: "Grid cu articole recente de blog. Afiseaza automat ultimele postari cu imagine, titlu si rezumat."
+    description_en: "Grid with recent blog articles. Automatically displays latest posts with image, title and excerpt."
+    config_key: "blog_grid"
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # FORMS (3)
+  # ═══════════════════════════════════════════════════════════════════════════════
+
+  - type: "contact-form-enhanced"
+    label: "Formular Contact"
+    label_en: "Contact Form"
+    category: "forms"
+    description: "Formular de contact complet cu informatii contact, badge-uri incredere si nota confidentialitate."
+    description_en: "Complete contact form with contact info, trust badges and privacy note."
+    config_key: "contact_form_enhanced"
+
+  - type: "signup-form-enhanced"
+    label: "Formular Inscriere"
+    label_en: "Signup Form"
+    category: "forms"
+    description: "Formular pentru inscriere la servicii sau programare prima consultatie."
+    description_en: "Form for service signup or booking first consultation."
+    config_key: "signup_form_enhanced"
+
+  - type: "newsletter-signup"
+    label: "Newsletter"
+    label_en: "Newsletter"
+    category: "forms"
+    description: "Sectiune abonare newsletter cu titlu, beneficii si formular email. Include text GDPR."
+    description_en: "Newsletter subscription section with title, benefits and email form. Includes GDPR text."
+    config_key: "newsletter_signup"
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # TRUST (6)
+  # ═══════════════════════════════════════════════════════════════════════════════
+
+  - type: "contact-info-cards"
+    label: "Carduri Info Contact"
+    label_en: "Contact Info Cards"
+    category: "trust"
+    description: "Carduri cu informatii contact (telefon, email, adresa, program). Layout grid responsive."
+    description_en: "Cards with contact information (phone, email, address, schedule). Responsive grid layout."
+    config_key: "contact_methods"
+
+  - type: "contact-options"
+    label: "Optiuni Contact"
+    label_en: "Contact Options"
+    category: "trust"
+    description: "Afisare optiuni de contact intr-un format compact. Alternative la carduri mari."
+    description_en: "Display contact options in a compact format. Alternative to large cards."
+    config_key: "contact_options"
+
+  - type: "onboarding-steps"
+    label: "Pasi Onboarding"
+    label_en: "Onboarding Steps"
+    category: "trust"
+    description: "Ghid pas cu pas pentru procesul de inceput. Ideal pentru a explica cum functioneaza colaborarea."
+    description_en: "Step by step guide for the onboarding process. Ideal to explain how collaboration works."
+    config_key: "onboarding_steps"
+
+  - type: "privacy-guarantee"
+    label: "Garantie Confidentialitate"
+    label_en: "Privacy Guarantee"
+    category: "trust"
+    description: "Sectiune dedicata garantiei de confidentialitate si protectie date."
+    description_en: "Dedicated section for privacy guarantee and data protection."
+    config_key: "privacy_guarantee"
+
+  - type: "confidentiality-notice"
+    label: "Notificare Confidentialitate"
+    label_en: "Confidentiality Notice"
+    category: "trust"
+    description: "Banner sau nota scurta despre confidentialitatea sesiunilor de terapie."
+    description_en: "Banner or short note about therapy session confidentiality."
+    config_key: "confidentiality_notice"
+
+  - type: "credentials-showcase"
+    label: "Prezentare Credentiale"
+    label_en: "Credentials Showcase"
+    category: "trust"
+    description: "Afisare certificari, membri asociatii, ani experienta in format badge-uri. Multiple variante de culori."
+    description_en: "Display certifications, association memberships, years of experience in badge format. Multiple color variants."
+    config_key: "credentials_showcase"
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # PRICING (2)
+  # ═══════════════════════════════════════════════════════════════════════════════
+
+  - type: "pricing-tables"
+    label: "Tabele Preturi"
+    label_en: "Pricing Tables"
+    category: "pricing"
+    description: "Tabele comparative de preturi cu servicii, caracteristici si butoane CTA. Suporta evidentierea unui plan."
+    description_en: "Comparative pricing tables with services, features and CTA buttons. Supports highlighting one plan."
+    config_key: "pricing_section"
+
+  - type: "pricing-packages"
+    label: "Pachete Preturi"
+    label_en: "Pricing Packages"
+    category: "pricing"
+    description: "Pachete de servicii cu preturi. Layout alternativ la tabelele de preturi."
+    description_en: "Service packages with prices. Alternative layout to pricing tables."
+    config_key: "pricing_packages"
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # STATS (1)
+  # ═══════════════════════════════════════════════════════════════════════════════
+
+  - type: "stats-numbers"
+    label: "Numere Statistici"
+    label_en: "Stats Numbers"
+    category: "stats"
+    description: "Afisare numere statistici (clienti, ani experienta, etc) cu animatie numarare si inele SVG optionale."
+    description_en: "Display statistics numbers (clients, years experience, etc) with counting animation and optional SVG rings."
+    config_key: "stats_numbers"
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # TESTIMONIALS (1)
+  # ═══════════════════════════════════════════════════════════════════════════════
+
+  - type: "testimonials-enhanced"
+    label: "Testimoniale"
+    label_en: "Testimonials"
+    category: "testimonials"
+    description: "Carousel sau grid cu testimoniale de la clienti. Include nota confidentialitate pentru context terapeutic."
+    description_en: "Carousel or grid with client testimonials. Includes privacy note for therapeutic context."
+    config_key: "testimonials_enhanced"
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # ABOUT/BIO (6)
+  # ═══════════════════════════════════════════════════════════════════════════════
+
+  - type: "about-preview"
+    label: "Preview Despre"
+    label_en: "About Preview"
+    category: "about"
+    description: "Scurta prezentare Despre cu imagine si text, link catre pagina completa. Pentru homepage."
+    description_en: "Short About preview with image and text, link to full page. For homepage."
+    config_key: "about_preview"
+
+  - type: "approach-preview"
+    label: "Preview Abordare"
+    label_en: "Approach Preview"
+    category: "about"
+    description: "Prezentare scurta a abordarii terapeutice cu link catre detalii."
+    description_en: "Short presentation of therapeutic approach with link to details."
+    config_key: "approach_preview"
+
+  - type: "services-preview"
+    label: "Preview Servicii"
+    label_en: "Services Preview"
+    category: "about"
+    description: "Grid cu serviciile principale (terapie individuala, cuplu, etc) cu icoane si linkuri."
+    description_en: "Grid with main services (individual therapy, couples, etc) with icons and links."
+    config_key: "services_preview"
+
+  - type: "my-story"
+    label: "Povestea Mea"
+    label_en: "My Story"
+    category: "about"
+    description: "Sectiune narativa cu povestea personala a terapeutului. Format text lung cu imagine."
+    description_en: "Narrative section with therapist's personal story. Long text format with image."
+    config_key: "my_story"
+
+  - type: "credentials-education"
+    label: "Educatie Credentiale"
+    label_en: "Credentials Education"
+    category: "about"
+    description: "Lista educatie formala si calificari academice."
+    description_en: "List of formal education and academic qualifications."
+    config_key: "credentials_education"
+
+  - type: "training-certifications"
+    label: "Training Certificari"
+    label_en: "Training Certifications"
+    category: "about"
+    description: "Lista traininguri si certificari profesionale cu detalii."
+    description_en: "List of professional trainings and certifications with details."
+    config_key: "training_certifications"
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # METHODOLOGY (5)
+  # ═══════════════════════════════════════════════════════════════════════════════
+
+  - type: "therapeutic-process"
+    label: "Proces Terapeutic"
+    label_en: "Therapeutic Process"
+    category: "methodology"
+    description: "Prezentare procesului terapeutic in etape. Vizualizare timeline sau steps."
+    description_en: "Therapeutic process presentation in stages. Timeline or steps visualization."
+    config_key: "therapeutic_process"
+
+  - type: "methodology-zigzag"
+    label: "Metodologie Zigzag"
+    label_en: "Methodology Zigzag"
+    category: "methodology"
+    description: "Prezentare metodologie in format zigzag alternant cu imagini si text."
+    description_en: "Methodology presentation in zigzag alternating format with images and text."
+    config_key: "methodology_zigzag"
+
+  - type: "scientific-approach"
+    label: "Abordare Stiintifica"
+    label_en: "Scientific Approach"
+    category: "methodology"
+    description: "Sectiune care evidentiaza baza stiintifica a metodelor folosite."
+    description_en: "Section highlighting the scientific basis of methods used."
+    config_key: "scientific_approach"
+
+  - type: "methods-used"
+    label: "Metode Folosite"
+    label_en: "Methods Used"
+    category: "methodology"
+    description: "Lista metodelor terapeutice folosite cu scurte descrieri."
+    description_en: "List of therapeutic methods used with short descriptions."
+    config_key: "methods_used"
+
+  - type: "simple-process"
+    label: "Proces Simplu"
+    label_en: "Simple Process"
+    category: "methodology"
+    description: "Prezentare proces simplificata in 3-4 pasi pentru vizitatori noi."
+    description_en: "Simplified process presentation in 3-4 steps for new visitors."
+    config_key: "simple_process"
+
+  # ═══════════════════════════════════════════════════════════════════════════════
+  # SPECIALIZED (2)
+  # ═══════════════════════════════════════════════════════════════════════════════
+
+  - type: "problem-empathy"
+    label: "Empatie Probleme"
+    label_en: "Problem Empathy"
+    category: "specialized"
+    description: "Sectiune care arata intelegerea problemelor clientilor potentiali. Conectare emotionala."
+    description_en: "Section showing understanding of potential clients' problems. Emotional connection."
+    config_key: "problem_empathy"
+
+  - type: "benefits-results"
+    label: "Beneficii Rezultate"
+    label_en: "Benefits Results"
+    category: "specialized"
+    description: "Prezentare beneficii si rezultate asteptate din terapie."
+    description_en: "Presentation of expected benefits and results from therapy."
+    config_key: "benefits_results"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CATEGORIES SUMMARY
+# ═══════════════════════════════════════════════════════════════════════════════
+
+categories:
+  - id: "heroes"
+    label: "Heroes"
+    label_ro: "Hero-uri"
+    count: 2
+
+  - id: "core"
+    label: "Core"
+    label_ro: "Principale"
+    count: 5
+
+  - id: "interactive"
+    label: "Interactive"
+    label_ro: "Interactive"
+    count: 4
+
+  - id: "forms"
+    label: "Forms"
+    label_ro: "Formulare"
+    count: 3
+
+  - id: "trust"
+    label: "Trust"
+    label_ro: "Incredere"
+    count: 6
+
+  - id: "pricing"
+    label: "Pricing"
+    label_ro: "Preturi"
+    count: 2
+
+  - id: "stats"
+    label: "Stats"
+    label_ro: "Statistici"
+    count: 1
+
+  - id: "testimonials"
+    label: "Testimonials"
+    label_ro: "Testimoniale"
+    count: 1
+
+  - id: "about"
+    label: "About/Bio"
+    label_ro: "Despre/Biografie"
+    count: 6
+
+  - id: "methodology"
+    label: "Methodology"
+    label_ro: "Metodologie"
+    count: 5
+
+  - id: "specialized"
+    label: "Specialized"
+    label_ro: "Specializate"
+    count: 2
+
+# Total: 37 sections (not 38 - test-index excluded from production use)
