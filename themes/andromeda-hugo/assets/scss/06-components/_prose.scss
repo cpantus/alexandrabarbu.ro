@@ -32,23 +32,25 @@
 // ==================================
 // Apply prose styling to common BEM element patterns
 // that typically receive markdownify content
+// IMPORTANT: Exclude footer, header, nav, and CTA contexts to prevent
+// overriding their specific link/button styling
 
-// Description elements across sections
-[class*="__description"] {
+// Description elements across sections (exclude footer/header/nav/cta)
+[class*="__description"]:not([class*="c-footer"]):not([class*="c-header"]):not([class*="c-nav"]):not([class*="c-cta"]) {
   @include prose;
 }
 
 // Subtitle elements (inline only - no block elements expected)
-[class*="__subtitle"] {
+[class*="__subtitle"]:not([class*="c-footer"]):not([class*="c-header"]):not([class*="c-nav"]):not([class*="c-cta"]) {
   @include prose-inline;
 }
 
-// Intro text elements
-[class*="__intro"] {
+// Intro text elements (exclude footer/header/nav/cta)
+[class*="__intro"]:not([class*="c-footer"]):not([class*="c-header"]):not([class*="c-nav"]):not([class*="c-cta"]) {
   @include prose;
 }
 
-// Content wrapper elements
-[class*="__content"] {
-  @include prose;
-}
+// Content wrapper elements - REMOVED due to being too broad
+// The __content pattern matches too many things (footer, header, CTA, etc.)
+// Use explicit .c-prose class or specific component styling instead
+// [class*="__content"] - DISABLED

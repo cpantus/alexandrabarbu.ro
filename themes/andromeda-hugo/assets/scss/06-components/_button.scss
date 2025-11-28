@@ -454,6 +454,44 @@
   }
 }
 
+/**
+ * Light button - white/cream background for dark contexts
+ * Used in CTA sections with dark/sage backgrounds
+ */
+.c-button--light {
+  background: $color-cream-100;
+  color: $color-forest-700;
+  box-shadow: var(--shadow-sm);
+
+  &:hover:not(:active) {
+    background: $color-white;
+    box-shadow: var(--shadow-md);
+    color: $color-forest-800;
+  }
+
+  &:active {
+    background: $color-cream-100;
+    box-shadow: var(--shadow-sm);
+    color: $color-forest-700;
+  }
+
+  &:focus {
+    background: $color-cream-100;
+  }
+
+  &:disabled,
+  &[disabled] {
+    background: $color-cream-100;
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+// Legacy compatibility
+.btn-light {
+  @extend .c-button;
+  @extend .c-button--light;
+}
+
 /*------------------------------------------------------------------
   # Button Size Modifiers
 -------------------------------------------------------------------*/
