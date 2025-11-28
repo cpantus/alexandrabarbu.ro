@@ -9,7 +9,7 @@
 backend:
   name: github
   repo: cpantus/alexandrabarbu.ro
-  branch: redesign-2025
+  branch: main
 
 local_backend: true
 
