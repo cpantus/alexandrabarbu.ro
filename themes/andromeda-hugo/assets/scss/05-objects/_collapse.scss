@@ -45,12 +45,17 @@
   // Inner wrapper for grid animation
   > * {
     min-height: 0; // Required for grid-template-rows animation
+    overflow: hidden; // Ensure content is clipped when collapsed
   }
 
   // When shown, content is visible
   &.show {
     grid-template-rows: 1fr;
     overflow: hidden; // Keep hidden during animation to prevent overlap
+
+    > * {
+      overflow: visible; // Allow content to display normally when expanded
+    }
   }
 }
 

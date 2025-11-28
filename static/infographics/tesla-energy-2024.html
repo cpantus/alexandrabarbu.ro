@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesla Energy Revenue 2020-2024</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e82127 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .chart-container {
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .year-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .year-label {
+            width: 80px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .bar-wrapper {
+            flex: 1;
+            position: relative;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .bar {
+            height: 100%;
+            background: linear-gradient(90deg, #e82127 0%, #ff4444 100%);
+            border-radius: 8px;
+            position: relative;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 20px rgba(232, 33, 39, 0.4);
+        }
+
+        .bar.animate {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 20px rgba(232, 33, 39, 0.4);
+            }
+            to {
+                box-shadow: 0 0 30px rgba(232, 33, 39, 0.6);
+            }
+        }
+
+        .bar-content {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            opacity: 0;
+            transition: opacity 0.5s ease 1s;
+        }
+
+        .bar.show-content .bar-content {
+            opacity: 1;
+        }
+
+        .revenue {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .growth {
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            color: #ffffff;
+        }
+
+        .growth.positive {
+            background: rgba(76, 175, 80, 0.3);
+            color: #4caf50;
+        }
+
+        .insights {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(232, 33, 39, 0.1) 0%, rgba(232, 33, 39, 0.05) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(232, 33, 39, 0.2);
+        }
+
+        .insight-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #e82127;
+        }
+
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .insight-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .insight-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #e82127;
+            margin-bottom: 0.5rem;
+        }
+
+        .insight-label {
+            font-size: 0.9rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer {
+            margin-top: 2rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .year-label {
+                width: 60px;
+                font-size: 1rem;
+            }
+
+            .bar-wrapper {
+                height: 50px;
+            }
+
+            .revenue {
+                font-size: 1rem;
+            }
+
+            .growth {
+                font-size: 0.8rem;
+                padding: 0.2rem 0.6rem;
+            }
+
+            .insight-value {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Tesla Energy Revenue</h1>
+            <p class="subtitle">Exponential Growth 2020-2024</p>
+        </div>
+
+        <div class="chart-container">
+            <div class="year-bar">
+                <div class="year-label">2020</div>
+                <div class="bar-wrapper">
+                    <div class="bar" data-width="20" data-revenue="$2.0B" data-growth="Baseline">
+                        <div class="bar-content">
+                            <span class="revenue">$2.0B</span>
+                            <span class="growth">Baseline</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="year-bar">
+                <div class="year-label">2021</div>
+                <div class="bar-wrapper">
+                    <div class="bar" data-width="28" data-revenue="$2.8B" data-growth="+40%">
+                        <div class="bar-content">
+                            <span class="revenue">$2.8B</span>
+                            <span class="growth positive">+40%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="year-bar">
+                <div class="year-label">2022</div>
+                <div class="bar-wrapper">
+                    <div class="bar" data-width="39" data-revenue="$3.9B" data-growth="+40%">
+                        <div class="bar-content">
+                            <span class="revenue">$3.9B</span>
+                            <span class="growth positive">+40%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="year-bar">
+                <div class="year-label">2023</div>
+                <div class="bar-wrapper">
+                    <div class="bar" data-width="60" data-revenue="$6.0B" data-growth="+54%">
+                        <div class="bar-content">
+                            <span class="revenue">$6.0B</span>
+                            <span class="growth positive">+54%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="year-bar">
+                <div class="year-label">2024</div>
+                <div class="bar-wrapper">
+                    <div class="bar" data-width="100" data-revenue="$10.1B" data-growth="+67%">
+                        <div class="bar-content">
+                            <span class="revenue">$10.1B</span>
+                            <span class="growth positive">+67%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="insights">
+            <h2 class="insight-title">Key Insights</h2>
+            <div class="insight-grid">
+                <div class="insight-item">
+                    <div class="insight-value">5x</div>
+                    <div class="insight-label">Growth Multiplier</div>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-value">$8.1B</div>
+                    <div class="insight-label">Total Increase</div>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-value">67%</div>
+                    <div class="insight-label">2024 YoY Growth</div>
+                </div>
+                <div class="insight-item">
+                    <div class="insight-value">48%</div>
+                    <div class="insight-label">Avg Annual Growth</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Data Source: Tesla Financial Reports | Created 2025
+        </div>
+    </div>
+
+    <script>
+        // Animate bars on load
+        window.addEventListener('load', function() {
+            const bars = document.querySelectorAll('.bar');
+
+            bars.forEach((bar, index) => {
+                setTimeout(() => {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width + '%';
+
+                    // Add glow animation to the last bar
+                    if (index === bars.length - 1) {
+                        bar.classList.add('animate');
+                    }
+
+                    // Show content after bar animation
+                    setTimeout(() => {
+                        bar.classList.add('show-content');
+                    }, 1000);
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

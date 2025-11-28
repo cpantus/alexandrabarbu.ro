@@ -195,7 +195,13 @@
     visibility: hidden;
   }
 
-  &:not([hidden]) {
+  // Collapsed state (no .show class) - ensure content is fully hidden
+  &.collapse:not(.show) {
+    visibility: hidden;
+  }
+
+  // Expanded state - content visible
+  &.collapse.show {
     visibility: visible;
   }
 }
