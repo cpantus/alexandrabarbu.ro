@@ -182,18 +182,8 @@
   # Accessibility
 -------------------------------------------------------------------*/
 
-// Reduced motion support - disable all animations
-@media (prefers-reduced-motion: reduce) {
-  .c-compass-animation__ring,
-  .c-compass-animation__needle {
-    animation: none;
-  }
-
-  // Set needle to static NORTH position
-  .c-compass-animation__needle {
-    transform: rotate(0deg);
-  }
-}
+// Note: Compass animation runs regardless of reduced-motion preference
+// as it's a core visual element of the design
 
 /*------------------------------------------------------------------
   # Print Styles
