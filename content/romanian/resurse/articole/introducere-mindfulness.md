@@ -12,6 +12,8 @@ draft: false
 
 Mindfulness a devenit unul dintre cele mai studiate și recomandate instrumente pentru sănătatea mintală. Cu toate acestea, termenul este adesea înconjurat de misticism sau confundat cu alte practici. În acest ghid, voi clarifica ce este de fapt mindfulness, cum funcționează din perspectivă științifică și cum poți începe să îl practici de astăzi.
 
+{{< toc >}}
+
 ## Ce Este Mindfulness?
 
 Mindfulness, tradus uneori ca "atenție conștientă" sau "prezență atentă", reprezintă capacitatea de a fi pe deplin prezent în momentul actual, observând experiențele interne și externe fără judecată.
@@ -32,6 +34,8 @@ Pentru a înțelege mai bine conceptul, este util să clarificăm ce NU este:
 - **Nu este evadare** - Dimpotrivă, este o confruntare directă cu experiența prezentă
 - **Nu este specific unei religii** - Deși are origini budiste, practica modernă este seculară și bazată pe evidențe
 {{< /callout >}}
+
+{{< toc >}}
 
 ---
 

@@ -1,20 +1,27 @@
 ---
-title: "5 Tehnici Eficiente pentru Gestionarea Anxietății"
-description: "Descoperă 5 tehnici validate științific pentru gestionarea anxietății: respirație diafragmatică, grounding, restructurare cognitivă, expunere graduală și body scan."
+title: 5 Tehnici Eficiente pentru Gestionarea Anxietății
+description: 'Descoperă 5 tehnici validate științific pentru gestionarea anxietății: respirație diafragmatică, grounding, restructurare cognitivă, expunere graduală și body scan.'
 date: 2025-11-25
-author: "Psiholog Alexandra Barbu"
-categories: ["anxietate"]
-tags: ["anxietate", "tehnici", "respirație", "grounding", "mindfulness"]
-image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800"
-readTime: "8 min"
+author: Psiholog Alexandra Barbu
+categories:
+  - anxietate
+tags:
+  - anxietate
+  - tehnici
+  - respirație
+  - grounding
+  - mindfulness
+image: https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800
+readTime: 8 min
 draft: false
 ---
-
 Anxietatea este o reacție naturală a organismului la situații percepute ca amenințătoare. Cu toate acestea, atunci când devine excesivă sau persistentă, poate afecta semnificativ calitatea vieții. În acest articol, prezint cinci tehnici validate științific care te pot ajuta să gestionezi anxietatea în mod eficient.
 
 {{< highlight-box title="De reținut" >}}
 Aceste tehnici funcționează cel mai bine când sunt practicate regulat, nu doar în momentele de criză. Consideră-le exerciții de "fitness emoțional" - cu cât le practici mai des, cu atât devin mai eficiente.
 {{< /highlight-box >}}
+
+{{< toc >}}
 
 ## 1. Respirația Diafragmatică
 
@@ -27,6 +34,7 @@ Atunci când suntem anxioși, tendința naturală este să respirăm superficial
 ### Exercițiu practic
 
 {{< exercise title="Respirația diafragmatică - Ghid pas cu pas" >}}
+
 1. Găsește o poziție confortabilă, așezat sau întins
 2. Plasează o mână pe piept și una pe abdomen
 3. Inspiră lent pe nas timp de 4 secunde, simțind cum abdomenul se ridică
@@ -86,7 +94,7 @@ Atunci când observi un gând anxios, pune-ți următoarele întrebări:
 ### Exemplu practic
 
 | Gând anxios | Evaluare obiectivă |
-|-------------|-------------------|
+| --- | --- |
 | "Voi eșua sigur la prezentare" | "Am mai ținut prezentări înainte și au mers bine. Chiar dacă nu va fi perfectă, nu înseamnă că voi eșua complet." |
 | "Toată lumea va observa că sunt nervos" | "Oamenii sunt de obicei concentrați pe conținut, nu pe starea mea. Chiar dacă ar observa, este normal să fii emoționat." |
 
@@ -113,7 +121,7 @@ Expunerea graduală implică confruntarea treptată cu situațiile temute, înce
 ### Exemplu de ierarhie pentru anxietatea socială
 
 | Nivel | Situație |
-|-------|----------|
+| --- | --- |
 | 2 | Salutul unui vecin pe hol |
 | 4 | Conversație scurtă cu un coleg |
 | 6 | Participare la o întâlnire de grup |
@@ -137,16 +145,19 @@ Anxietatea se manifestă adesea prin tensiuni musculare de care nu suntem conșt
 ### Exercițiu ghidat
 
 {{< exercise title="Body Scan - 10 minute" >}}
+
 1. Întinde-te într-o poziție confortabilă și închide ochii
 2. Începe cu atenția la vârful capului
 3. Mută-ți lent atenția în jos prin corp:
-   - Frunte și față
-   - Gât și umeri
-   - Brațe și mâini
-   - Piept și abdomen
-   - Spate
-   - Șolduri și coapse
-   - Gambe și picioare
+
+- Frunte și față
+- Gât și umeri
+- Brațe și mâini
+- Piept și abdomen
+- Spate
+- Șolduri și coapse
+- Gambe și picioare
+
 4. La fiecare zonă, observă orice senzație fără a încerca să o schimbi
 5. Dacă găsești tensiune, inspiră adânc și expiră imaginându-ți cum tensiunea se dizolvă
 {{< /exercise >}}
@@ -177,4 +188,4 @@ Amintește-ți: anxietatea este o reacție normală a organismului. Obiectivul n
 
 ---
 
-*Acest articol oferă informații educaționale și nu înlocuiește consultația cu un specialist în sănătate mintală. Dacă te confrunți cu anxietate persistentă, te încurajez să programezi o consultație.*
+_Acest articol oferă informații educaționale și nu înlocuiește consultația cu un specialist în sănătate mintală. Dacă te confrunți cu anxietate persistentă, te încurajez să programezi o consultație._

@@ -1,0 +1,210 @@
+// ==================================
+// COMPONENT: Table of Contents (TOC)
+// ==================================
+//
+// Purpose: In-article navigation for long-form content
+// BEM: .c-toc
+//
+// Design: Matches callout styling with forest/sage theme
+//
+// Version: 1.0.0
+// Created: 2025-11-28
+//
+
+.c-toc {
+  margin: 2rem 0;
+  padding: 0;
+  background: linear-gradient(135deg, $color-forest-50, rgba($color-sage-50, 0.5));
+  border: 1px solid $color-forest-200;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba($color-forest-900, 0.04);
+
+  // Header with icon and title
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(135deg, $color-forest-500, $color-sage-500);
+  }
+
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($color-white, 0.15);
+    border-radius: 50%;
+    color: $color-gold-400;
+    font-size: 1rem;
+  }
+
+  &__title {
+    font-family: $font-heading;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $color-white;
+  }
+
+  // Content area with links
+  &__content {
+    padding: 1rem 1.25rem;
+
+    // Style Hugo's generated TOC
+    nav#TableOfContents,
+    #TableOfContents {
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        // First level - H2 headings
+        > li {
+          margin-bottom: 0.5rem;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          > a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            color: $color-forest-700;
+            font-weight: 500;
+            font-size: 0.9375rem;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+
+            &::before {
+              content: '';
+              display: block;
+              width: 6px;
+              height: 6px;
+              background: $color-sage-400;
+              border-radius: 50%;
+              flex-shrink: 0;
+              transition: background-color 0.2s ease;
+            }
+
+            &:hover {
+              background: rgba($color-forest-500, 0.1);
+              color: $color-forest-600;
+
+              &::before {
+                background: $color-forest-500;
+              }
+            }
+          }
+        }
+
+        // Nested levels - H3+ headings
+        ul {
+          margin-top: 0.25rem;
+          margin-left: 1.25rem;
+
+          > li {
+            margin-bottom: 0.25rem;
+
+            > a {
+              padding: 0.375rem 0.75rem;
+              font-size: 0.875rem;
+              font-weight: 400;
+              color: $color-text-secondary;
+
+              &::before {
+                width: 4px;
+                height: 4px;
+                background: $color-sage-300;
+              }
+
+              &:hover {
+                color: $color-forest-600;
+
+                &::before {
+                  background: $color-sage-500;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Collapsed variant for mobile
+  &--collapsible {
+    .c-toc__header {
+      cursor: pointer;
+
+      &::after {
+        content: '\f107'; // la-angle-down
+        font-family: 'Line Awesome Free';
+        font-weight: 900;
+        margin-left: auto;
+        color: $color-gold-400;
+        transition: transform 0.3s ease;
+      }
+    }
+
+    &.is-collapsed {
+      .c-toc__header::after {
+        transform: rotate(-90deg);
+      }
+
+      .c-toc__content {
+        display: none;
+      }
+    }
+  }
+}
+
+// ==================================
+// RESPONSIVE
+// ==================================
+
+@media (max-width: 767px) {
+  .c-toc {
+    border-radius: 12px;
+
+    &__header {
+      padding: 0.875rem 1rem;
+    }
+
+    &__icon {
+      width: 1.75rem;
+      height: 1.75rem;
+      font-size: 0.875rem;
+    }
+
+    &__title {
+      font-size: 0.9375rem;
+    }
+
+    &__content {
+      padding: 0.875rem 1rem;
+
+      nav#TableOfContents ul > li > a {
+        padding: 0.375rem 0.5rem;
+        font-size: 0.875rem;
+      }
+    }
+  }
+}
+
+// ==================================
+// REDUCED MOTION
+// ==================================
+
+@media (prefers-reduced-motion: reduce) {
+  .c-toc {
+    &__content a,
+    &__content a::before {
+      transition: none;
+    }
+  }
+}

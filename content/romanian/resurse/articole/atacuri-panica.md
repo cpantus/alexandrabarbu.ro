@@ -12,6 +12,8 @@ draft: false
 
 Un atac de panică poate fi una dintre cele mai înspăimântătoare experiențe pe care le poate avea o persoană. Senzația de pierdere a controlului, simptomele fizice intense și convingerea că se întâmplă ceva grav pot fi copleșitoare. Cu toate acestea, înțelegerea a ceea ce se petrece în corpul tău și învățarea unor tehnici specifice poate transforma modul în care experimentezi și gestionezi aceste episoade.
 
+{{< toc >}}
+
 ## Ce Este un Atac de Panică?
 
 Un atac de panică este o undă bruscă de frică sau disconfort intens care atinge intensitatea maximă în câteva minute. În timpul episodului, apar patru sau mai multe dintre următoarele simptome:
@@ -38,6 +40,8 @@ Un atac de panică este o undă bruscă de frică sau disconfort intens care ati
 {{< callout type="important" title="Prima dată? Consultă un medic" >}}
 Simptomele atacului de panică pot mima condiții medicale grave. Dacă experimentezi pentru prima dată astfel de simptome, este esențial să consulți un medic pentru a exclude cauzele cardiace sau alte condiții medicale.
 {{< /callout >}}
+
+{{< toc >}}
 
 ---
 

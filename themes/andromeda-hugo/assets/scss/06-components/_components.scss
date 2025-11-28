@@ -46,6 +46,7 @@
 @import 'article';                 // ✅ 2025-11-26: Article content styles - callouts, blockquotes, enhanced typography
 @import 'prose';                   // ✅ 2025-11-28: Prose/markdown utility class for markdownify content
 @import 'callout';                 // ✅ 2025-11-26: Unified callout/notice/blockquote system (Redesign 2025)
+@import 'toc';                     // ✅ 2025-11-28: Article table of contents navigation
 @import 'back-to-top';             // ✅ Phase 3: BEM refactored - floating scroll-to-top button with 4 variants + auto-show
 @import 'cookie-consent';          // ✅ Phase 3: BEM refactored - GDPR cookie banner with 4 variants + localStorage
 @import 'emergency-banner';        // ✅ Phase 3: BEM refactored - crisis resources banner with 4 variants + sessionStorage

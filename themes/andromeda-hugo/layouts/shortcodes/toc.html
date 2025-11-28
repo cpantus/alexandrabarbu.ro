@@ -1,0 +1,34 @@
+{{- /*
+  Table of Contents Shortcode
+  ===========================
+  Generates a navigation index from H2 headings in the article.
+
+  Usage: {{< toc >}}
+
+  Optional parameters:
+  - title: Custom title (default: i18n "toc_title" or "În acest articol")
+  - class: Additional CSS class
+
+  Example: {{< toc title="Cuprins" >}}
+*/ -}}
+
+{{- $title := .Get "title" | default (i18n "toc_title" | default "În acest articol") -}}
+{{- $class := .Get "class" | default "" -}}
+
+{{- /* Get the table of contents from Hugo */ -}}
+{{- $toc := .Page.TableOfContents -}}
+
+{{- /* Only render if there are headings */ -}}
+{{- if $toc -}}
+<nav class="c-toc{{ with $class }} {{ . }}{{ end }}" aria-label="{{ i18n "toc_aria_label" | default "Cuprins articol" }}">
+  <div class="c-toc__header">
+    <span class="c-toc__icon">
+      <i class="las la-list-ul"></i>
+    </span>
+    <span class="c-toc__title">{{ $title }}</span>
+  </div>
+  <div class="c-toc__content">
+    {{ $toc }}
+  </div>
+</nav>
+{{- end -}}

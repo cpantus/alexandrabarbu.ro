@@ -1,20 +1,26 @@
 ---
-title: "Comunicarea Asertivă în Relații: Tehnici Practice"
-description: "Învață să comunici nevoile și limitele tale într-un mod respectuos și eficient. Tehnici de comunicare asertivă pentru relații mai sănătoase."
+title: 'Comunicarea Asertivă în Relații: Tehnici Practice'
+description: Învață să comunici nevoile și limitele tale într-un mod respectuos și eficient. Tehnici de comunicare asertivă pentru relații mai sănătoase.
 date: 2025-11-24
-author: "Psiholog Alexandra Barbu"
-categories: ["relatii"]
-tags: ["comunicare", "asertivitate", "relații", "limite"]
-image: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800"
-readTime: "7 min"
+author: Psiholog Alexandra Barbu
+categories:
+  - relatii
+tags:
+  - comunicare
+  - asertivitate
+  - relații
+  - limite
+image: https://images.unsplash.com/photo-1517842645767-c639042777db?w=800
+readTime: 7 min
 draft: false
 ---
-
 Comunicarea este fundamentul oricărei relații sănătoase. Cu toate acestea, mulți dintre noi nu am învățat cum să ne exprimăm nevoile și limitele într-un mod care să fie respectuos atât față de noi, cât și față de celălalt. Comunicarea asertivă este abilitatea de a-ți exprima gândurile, sentimentele și nevoile în mod direct și onest, respectând în același timp drepturile și sentimentele celorlalți.
 
 {{< highlight-box title="Ce este asertivitatea?" >}}
 Asertivitatea reprezintă punctul de echilibru dintre pasivitate (ignorarea propriilor nevoi) și agresivitate (ignorarea nevoilor celorlalți). Este o abilitate care se poate învăța și dezvolta.
 {{< /highlight-box >}}
+
+{{< toc >}}
 
 ## Cele Trei Stiluri de Comunicare
 
@@ -24,6 +30,7 @@ Asertivitatea reprezintă punctul de echilibru dintre pasivitate (ignorarea prop
 
 {{< callout type="note" title="Stilul pasiv" >}}
 **Caracteristici:**
+
 - Evitarea conflictelor cu orice preț
 - Dificultăți în a spune "nu"
 - Minimizarea propriilor nevoi și dorințe
@@ -33,6 +40,7 @@ Asertivitatea reprezintă punctul de echilibru dintre pasivitate (ignorarea prop
 **Exemplu:** "Nu contează ce vreau eu, fă cum crezi tu..."
 
 **Consecințe pe termen lung:**
+
 - Resentimente acumulate
 - Stimă de sine scăzută
 - Relații dezechilibrate
@@ -43,6 +51,7 @@ Asertivitatea reprezintă punctul de echilibru dintre pasivitate (ignorarea prop
 
 {{< callout type="warning" title="Stilul agresiv" >}}
 **Caracteristici:**
+
 - Ignorarea nevoilor și drepturilor celorlalți
 - Ton ridicat, gesturi amenințătoare
 - Critici, acuzații, blamare
@@ -52,6 +61,7 @@ Asertivitatea reprezintă punctul de echilibru dintre pasivitate (ignorarea prop
 **Exemplu:** "Întotdeauna faci totul greșit! Nu îți pasă de nimeni!"
 
 **Consecințe pe termen lung:**
+
 - Relații deteriorate
 - Izolare socială
 - Vinovăție după episoade agresive
@@ -62,6 +72,7 @@ Asertivitatea reprezintă punctul de echilibru dintre pasivitate (ignorarea prop
 
 {{< callout type="tip" title="Stilul asertiv" >}}
 **Caracteristici:**
+
 - Exprimarea directă și onestă a nevoilor
 - Respectarea propriilor drepturi și ale celorlalți
 - Contact vizual adecvat, postură deschisă
@@ -71,6 +82,7 @@ Asertivitatea reprezintă punctul de echilibru dintre pasivitate (ignorarea prop
 **Exemplu:** "Mă simt neglijat când nu primesc răspuns la mesaje timp de zile. Aș aprecia să știu când ești ocupat."
 
 **Consecințe pe termen lung:**
+
 - Relații echilibrate și satisfăcătoare
 - Stimă de sine sănătoasă
 - Rezolvarea eficientă a conflictelor
@@ -130,7 +142,7 @@ Limitele sunt esențiale pentru relații sănătoase. Ele definesc unde "eu" se 
 ### Tipuri de limite
 
 | Tip | Exemplu de limită sănătoasă |
-|-----|----------------------------|
+| --- | --- |
 | **Fizice** | "Am nevoie de spațiul meu personal când lucrez." |
 | **Emoționale** | "Nu sunt confortabil să discut despre asta acum." |
 | **De timp** | "Pot ajuta sâmbătă, dar duminica am alte planuri." |
@@ -174,6 +186,7 @@ Multe persoane evită comunicarea asertivă din cauza unor convingeri eronate:
 ### Realitatea
 
 {{< callout type="tip" title="Adevăruri despre asertivitate" >}}
+
 - A spune "nu" nu te face o persoană rea
 - Nevoile tale sunt la fel de valide ca ale celorlalți
 - Conflictul gestionat sănătos întărește relațiile
@@ -191,6 +204,7 @@ Timp de o săptămână, notează situațiile în care ai comunicat pasiv sau ag
 
 {{< exercise title="Exercițiul 2: Practica în oglindă" >}}
 Alege o situație în care trebuie să stabilești o limită. Exersează în fața oglinzii:
+
 - Postură dreaptă, deschisă
 - Contact vizual
 - Voce calmă și fermă
@@ -199,6 +213,7 @@ Alege o situație în care trebuie să stabilești o limită. Exersează în fa�
 
 {{< exercise title="Exercițiul 3: Începe mic" >}}
 Nu începe cu cea mai dificilă conversație. Practică asertivitatea în situații cu miză mică:
+
 - Returnarea unui produs defect
 - Exprimarea preferinței la restaurant
 - Refuzul politicos al unei solicitări minore
@@ -225,6 +240,7 @@ Nu începe cu cea mai dificilă conversație. Practică asertivitatea în situa�
 ### Dacă tu devii anxios
 
 {{< callout type="tip" title="Este normal să simți disconfort inițial" >}}
+
 - Respiră adânc înainte de conversație
 - Amintește-ți că ai dreptul să-ți exprimi nevoile
 - Celebrează fiecare pas, indiferent de rezultat
@@ -242,4 +258,4 @@ Amintește-ți: asertivitatea nu garantează că vei obține întotdeauna ce dor
 
 ---
 
-*Acest articol oferă informații educaționale. Dacă te confrunți cu dificultăți persistente în comunicare sau relații, te încurajez să consulți un psihoterapeut specializat.*
+_Acest articol oferă informații educaționale. Dacă te confrunți cu dificultăți persistente în comunicare sau relații, te încurajez să consulți un psihoterapeut specializat._

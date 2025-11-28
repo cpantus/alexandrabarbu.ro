@@ -12,6 +12,8 @@ draft: false
 
 Reziliența este una dintre cele mai valoroase abilități pe care le putem dezvolta. Nu pentru că ne ferește de dificultăți - acestea fac parte din viață - ci pentru că ne permite să le traversăm fără a ne pierde direcția. În acest articol, voi explica ce este reziliența din perspectivă psihologică și voi oferi strategii concrete pentru a o cultiva.
 
+{{< toc >}}
+
 ## Ce Este Reziliența?
 
 Reziliența este capacitatea de a te adapta și de a te recupera în fața adversității, traumei, tragediei, amenințărilor sau stresului semnificativ. Nu este o trăsătură fixă cu care te naști sau nu, ci un set de abilități care pot fi învățate și dezvoltate de-a lungul vieții.
@@ -28,6 +30,8 @@ Reziliența este capacitatea de a te adapta și de a te recupera în fața adver
 **Mit:** Dacă nu ești rezilent, ești slab.
 **Realitate:** Reziliența se dezvoltă adesea ca răspuns la experiențe dificile, nu în absența lor.
 {{< /callout >}}
+
+{{< toc >}}
 
 ---
 
