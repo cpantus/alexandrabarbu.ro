@@ -21,8 +21,7 @@ sections:
 # ============================================================================
 
 hero_breadcrumb:
-  title: "Finding Your"
-  title_accent: "Inner North"
+  title: "Finding Your *Inner North*"
   subtitle: "The journey to healing begins with a single step. Explore the path to inner balance and authentic transformation through integrative therapy."
   description: "I am a clinical psychologist with over 15 years of experience, specialized in cognitive therapy, EMDR, and mindfulness. I provide a safe and confidential space to explore your challenges and rediscover your inner balance."
   show_breadcrumb: false
@@ -91,8 +90,7 @@ services_preview:
 
 methodology_section:
   badge: "METHODOLOGY"
-  title: "An Integrative"
-  title_accent: "Approach"
+  title: "An Integrative *Approach*"
   description: "I combine the most effective scientifically validated therapeutic methods for lasting results and authentic transformation. Each technique is adapted to your unique needs."
   image: "images/methodology/integrative-approach.jpg"
   image_alt: "Integrative therapeutic approach - combining methods for optimal results"
@@ -120,8 +118,7 @@ methodology_section:
 
 cta_evaluation:
   badge: "SELF-REFLECTION"
-  title: "Is therapy the"
-  title_accent: "right solution for you?"
+  title: "Is therapy the *right solution for you?*"
   checklist:
     - "You feel overwhelmed by negative emotions and don't know how to manage them"
     - "Your relationships are suffering and you want to improve them"

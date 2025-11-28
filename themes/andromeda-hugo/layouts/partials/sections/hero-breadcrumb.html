@@ -111,12 +111,9 @@
           <p class="c-hero-breadcrumb__kicker">{{ $kicker | markdownify }}</p>
         {{- end -}}
 
-        {{/* Page title - custom title structure with optional accent */}}
+        {{/* Page title - supports markdown for emphasis */}}
         <h1 class="c-hero-breadcrumb__title c-heading c-heading--h1 c-heading--{{ $variant }}">
-          <span class="c-hero-breadcrumb__title-main">{{ $title }}</span>
-          {{- if $titleAccent -}}
-            {" "}<span class="c-hero-breadcrumb__title-accent c-heading__accent">{{ $titleAccent }}</span>
-          {{- end -}}
+          {{ $title | markdownify }}
         </h1>
 
         {{/* Optional subtitle */}}

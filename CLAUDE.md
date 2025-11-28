@@ -7,6 +7,8 @@
 3. **Flexible layout**: Pages = Header + Sections (2-7) + Footer. 36 section types available
 4. **Reuse components**: 9 atoms → 24 molecules → 2 organisms → 36 sections = 71 components
 5. **Test both languages**: Verify `/{page}` (RO) and `/en/{page}` (EN)
+6. **Before Editing**: Verify actual behavior first. Check compiled/rendered output (`curl URL | grep`) and search ALL files affecting the target (`rg "selector"` across layers). Never edit based on assumptions about which file controls behavior.
+7. **One Question, Not Generic Solutions**: When unsure about scope or approach, ask one clarifying question upfront - never present a generic/incomplete solution that requires follow-up refinement.
 
 ---
 

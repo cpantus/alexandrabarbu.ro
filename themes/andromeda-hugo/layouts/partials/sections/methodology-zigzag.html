@@ -99,13 +99,10 @@
           <span class="c-methodology-zigzag__badge">{{ $data.badge }}</span>
         {{- end -}}
 
-        {{/* Section Title with Accent */}}
+        {{/* Section Title - supports markdown for emphasis */}}
         {{- if $data.title -}}
-          <h2 class="c-methodology-zigzag__title">
-            {{ $data.title }}
-            {{- if $data.title_accent -}}
-              <span class="c-methodology-zigzag__title-accent">{{ $data.title_accent }}</span>
-            {{- end -}}
+          <h2 class="c-methodology-zigzag__title c-heading">
+            {{ $data.title | markdownify }}
           </h2>
         {{- end -}}
 

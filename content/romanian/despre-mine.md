@@ -14,10 +14,9 @@ sections:
 
 hero_about:
   kicker: "CINE SUNT EU"
-  title: "Alexandra Barbu"
+  title: "Alexandra *Barbu*"
   subtitle: "Psiholog clinician cu abordare integrativă și bazată pe evidențe"
   description: "Cu peste 15 ani de experiență și mii de ore de terapie oferite, ghidez fiecare persoană să descopere propriile resurse interioare pentru vindecare. Cred în puterea empatiei și a metodelor validate științific."
-  name_variant: "split"
   paragraphs:
     - "Sunt psiholog clinician cu peste 15 ani de experiență în terapia individuală și de cuplu. Misiunea mea este să te ajut să găsești claritate, echilibru și puterea de a-ți înfrunta provocările."
     - "Am lucrat cu sute de clienți din diverse medii, și fiecare călătorie terapeutică m-a învățat că nu există o rețetă universală pentru vindecare. Abordarea mea este personalizată, combinând metode validate științific cu empatie profundă."
@@ -94,8 +93,7 @@ credentials_education:
 
 scientific_approach:
   label: "ABORDARE ȘTIINȚIFICĂ"
-  title: "Unde Știința întâlnește"
-  title_accent: "Empatia"
+  title: "Unde Știința întâlnește *Empatia*"
   description: "Abordarea mea combină rigoarea metodelor științifice validate cu căldura empatiei umane. Fiecare sesiune este personalizată după nevoile tale unice, într-un spațiu sigur și lipsit de judecată."
   button_text: "Descoperă Metodologia Completă"
   button_url: "/abordare/"

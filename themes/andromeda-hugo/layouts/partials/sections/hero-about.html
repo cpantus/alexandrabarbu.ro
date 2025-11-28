@@ -67,25 +67,11 @@
           <p class="c-hero-about__kicker">{{ $section.kicker }}</p>
         {{- end -}}
 
-        {{/* Title - with optional name formatting */}}
+        {{/* Title - supports markdown for emphasis */}}
         {{- if $section.title -}}
-          {{- if eq $section.name_variant "split" -}}
-            {{/* Split name: first regular, last italic */}}
-            {{- $nameParts := split $section.title " " -}}
-            {{- $firstName := index $nameParts 0 -}}
-            {{- $lastName := index $nameParts 1 -}}
-            <h1 class="c-hero-about__title c-heading c-heading--h1">
-              <span class="c-hero-about__name-first">{{ $firstName }}</span>
-              {" "}<span class="c-hero-about__name-last c-heading__accent">{{ $lastName }}</span>
-            </h1>
-          {{- else -}}
-            {{/* Standard title */}}
-            {{ partial "atoms/heading.html" (dict
-              "text" $section.title
-              "level" "h1"
-              "class" "c-hero-about__title"
-            ) }}
-          {{- end -}}
+          <h1 class="c-hero-about__title c-heading c-heading--h1">
+            {{ $section.title | markdownify }}
+          </h1>
         {{- end -}}
 
         {{/* Body Paragraphs */}}

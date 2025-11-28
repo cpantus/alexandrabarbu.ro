@@ -62,13 +62,10 @@
           <span class="c-scientific-approach__label">{{ $section.label }}</span>
         {{- end -}}
 
-        {{/* Title with optional accent */}}
+        {{/* Title - supports markdown for emphasis */}}
         {{- if $section.title -}}
           <h2 class="c-scientific-approach__title c-heading c-heading--h2">
-            {{ $section.title }}
-            {{- if $section.title_accent -}}
-              {" "}<span class="c-heading__accent">{{ $section.title_accent }}</span>
-            {{- end -}}
+            {{ $section.title | markdownify }}
           </h2>
         {{- end -}}
 

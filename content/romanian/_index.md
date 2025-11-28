@@ -15,8 +15,7 @@ sections:
 # ============================================================================
 
 hero_breadcrumb:
-  title: "Găsim"
-  title_accent: "Nordul Interior"
+  title: "Găsim *Nordul Interior*"
   subtitle: "Călătoria spre vindecare începe cu un singur pas. Când știi unde ești, poți merge oriunde."
   description: "Sunt psiholog clinician cu peste 15 ani de experiență, specializată în terapie cognitivă, EMDR și mindfulness. Oferă un spațiu sigur și confidențial pentru a explora provocările tale și a redescoperi echilibrul interior."
   show_breadcrumb: false
@@ -89,8 +88,7 @@ services_preview:
 
 methodology_section:
   badge: "METODOLOGIE"
-  title: "O Abordare"
-  title_accent: "Integrativă"
+  title: "O Abordare *Integrativă*"
   description: "Combin cele mai eficiente metode terapeutice validate științific pentru rezultate durabile și transformare autentică. Fiecare tehnică este adaptată nevoilor tale unice."
   image: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=2000&auto=format&fit=crop"
   image_alt: "Abordare terapeutică integrativă - combinarea metodelor pentru rezultate optime"
@@ -118,8 +116,7 @@ methodology_section:
 
 cta_evaluation:
   badge: "AUTO-REFLECȚIE"
-  title: "Este terapia"
-  title_accent: "soluția potrivită pentru tine?"
+  title: "Este terapia *soluția potrivită pentru tine?*"
   checklist:
     - "Te simți copleșit de emoții negative și nu știi cum să le gestionezi"
     - "Relațiile tale suferă și vrei să le îmbunătățești"

@@ -103,8 +103,24 @@
     border-radius: var(--contact-form-panel-border-radius-redesign); // 48px left corners only
     padding: $space-8; // 64px
 
+    // Desktop: flex to enable vertical centering
+    @media (min-width: $breakpoint-md) {
+      display: flex;
+      flex-direction: column;
+    }
+
     @media (max-width: $breakpoint-md - 1) {
       border-radius: $radius-2xl; // 32px all corners on mobile
+    }
+  }
+
+  // Desktop only: center content vertically in panel
+  .c-contact-form-section__panel-content {
+    @media (min-width: $breakpoint-md) {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
   }
 }

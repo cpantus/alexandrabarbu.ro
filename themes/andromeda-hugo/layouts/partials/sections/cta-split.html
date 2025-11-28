@@ -112,11 +112,8 @@
 
         {{/* Section Title with Accent */}}
         {{- if $data.title -}}
-          <h2 class="c-cta-split__title">
-            {{ $data.title }}
-            {{- if $data.title_accent -}}
-              <span class="c-cta-split__title-accent"> {{ $data.title_accent }}</span>
-            {{- end -}}
+          <h2 class="c-cta-split__title c-heading">
+            {{ $data.title | markdownify }}
           </h2>
         {{- end -}}
 

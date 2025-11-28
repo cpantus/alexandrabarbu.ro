@@ -2,7 +2,7 @@
 
 **System**: Hugo + Atomic Design + ITCSS | **Purpose**: Enable Claude Code to understand and extend project
 
-**Version**: 5.3.0 | **Updated**: 2025-11-26 | **Structure**: Hugo standard (theme directory)
+**Version**: 5.3.1 | **Updated**: 2025-11-28 | **Structure**: Hugo standard (theme directory)
 
 ---
 
@@ -98,6 +98,22 @@ Page (content/*.md) → flexible.html → Header → Sections → Footer → HTM
 **Variants**: `{{ if eq .variant "primary" }}...{{ else if eq .variant "secondary" }}...{{ end }}`
 **Image Processing**: `{{- $img := resources.Get .src -}}{{- $webp := $img.Resize "800x webp q85" -}}`
 **Props**: `{{ partial "path/component.html" (dict "key1" "val1" "key2" .PageVar) }}`
+**Markdownify**: Use `| markdownify` for text fields that may contain markdown (titles, descriptions)
+
+### Text Emphasis Pattern (v5.3.1)
+
+Use markdown `*text*` for emphasis in front matter instead of separate `title_accent` fields:
+
+```yaml
+# ✅ Preferred - native markdown
+title: "Finding Your *Inner North*"
+
+# ❌ Deprecated - custom fields
+title: "Finding Your"
+title_accent: "Inner North"
+```
+
+Templates use `| markdownify` to render `<em>` tags, styled via `.c-heading em` (italic + sage green).
 
 ---
 

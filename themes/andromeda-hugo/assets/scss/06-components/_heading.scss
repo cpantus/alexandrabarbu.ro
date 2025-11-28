@@ -94,8 +94,11 @@ h6.c-heading {
  * Accent element - italic highlighted text within heading
  * REDESIGN 2025: For sage green italic accent text (e.g., "Nordul Interior")
  * Usage: <h1>Găsim <span class="c-heading__accent">Nordul Interior</span></h1>
+ * Or with markdownify: title: "Găsim *Nordul Interior*"
  */
-.c-heading__accent {
+.c-heading__accent,
+.c-heading em,
+.c-heading i {
   font-style: italic;  // Italic variant of Playfair Display
   color: var(--heading-accent-color);    // Sage green (#6B9080)
   font-weight: inherit;  // Inherit weight from parent heading
