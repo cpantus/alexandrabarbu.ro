@@ -115,10 +115,9 @@
         {{- if $isCurrentLang -}}
           {{- $langURL = $context.RelPermalink -}}
         {{- else -}}
-          {{/* Try to find translation - must be same Kind (page/home/section) */}}
-          {{- $contextKind := $context.Kind -}}
+          {{/* Try to find translation */}}
           {{- range $context.Translations -}}
-            {{- if and (eq .Lang $langCode) (eq .Kind $contextKind) -}}
+            {{- if eq .Lang $langCode -}}
               {{- $langURL = .RelPermalink -}}
             {{- end -}}
           {{- end -}}
