@@ -179,11 +179,32 @@
 // The compass should animate smoothly and continuously without interruption
 
 /*------------------------------------------------------------------
-  # Accessibility
+  # Accessibility - Force Animation Override
 -------------------------------------------------------------------*/
 
-// Note: Compass animation runs regardless of reduced-motion preference
-// as it's a core visual element of the design
+// CRITICAL: Compass MUST animate regardless of reduced-motion preference
+// Override the global * { animation: none } rule with !important
+// This runs AFTER normalize.scss so it wins the cascade
+@media (prefers-reduced-motion: reduce) {
+  .c-compass-animation__ring {
+    &--outer {
+      animation: rotateClockwiseSlow 60s linear infinite !important;
+    }
+    &--second {
+      animation: rotateCounterClockwiseSlow 50s linear infinite !important;
+    }
+    &--third {
+      animation: rotateClockwise 40s linear infinite !important;
+    }
+    &--inner {
+      animation: rotateCounterClockwise 25s linear infinite !important;
+    }
+  }
+
+  .c-compass-animation__needle {
+    animation: needleOscillateNorth 4s ease-in-out infinite !important;
+  }
+}
 
 /*------------------------------------------------------------------
   # Print Styles

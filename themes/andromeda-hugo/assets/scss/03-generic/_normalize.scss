@@ -293,15 +293,15 @@ select {
 }
 
 // Remove all animations, transitions and smooth scroll for people that prefer not to see them
-// Exception: .c-compass-animation elements always animate (core visual element)
+// Note: .c-compass-animation has its own override in _compass-animation.scss
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;
   }
 
-  *:not(.c-compass-animation):not(.c-compass-animation *),
-  *:not(.c-compass-animation):not(.c-compass-animation *)::before,
-  *:not(.c-compass-animation):not(.c-compass-animation *)::after {
+  *,
+  *::before,
+  *::after {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
