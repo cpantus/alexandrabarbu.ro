@@ -15,9 +15,25 @@ hugo --gc --minify                            # Build production
 
 ---
 
+## CMS Access
+
+**Sveltia CMS** is integrated for visual content editing:
+
+```bash
+# Start Hugo dev server
+hugo server --buildDrafts
+
+# Access CMS at
+http://localhost:1313/admin
+```
+
+Authenticate with GitHub OAuth. Create, edit, and publish pages using the flexible section builder with 37 section types.
+
+---
+
 ## Core Concept
 
-Pages = Header + Sections (2-7) + Footer. Choose from 36 active section types (5 enhanced v4.0):
+Pages = Header + Sections (2-7) + Footer. Choose from 37 active section types (5 enhanced v4.0):
 
 ```yaml
 # content/page.md
@@ -31,19 +47,19 @@ sections:
 
 ---
 
-## Available Sections (36 active)
+## Available Sections (37 active)
 
-**Core (5)**: hero-breadcrumb, values-intro, blog-grid, cta-standard, feature-details
-**Interactive (4)**: video-popup, faq-mini-section, faq-content, method-tabs
-**Forms (3)**: contact-form-enhanced, signup-section, newsletter-section
-**Info & Trust (7)**: contact-info-cards, contact-options, privacy-guarantee, confidentiality-notice, onboarding-steps, professional-affiliations, job-listings
-**Enhanced v4.0 (5)** ⭐:
-- `values-compass` (NEW) - Compass-pattern layout with glassmorphism
-- `feature-blocks` - Zigzag layout with parallax scrolling
-- `pricing-tables` - Featured tier elevation with tooltips
-- `stats-numbers` - SVG progress rings with animated counting
-- `credentials-showcase` - Gradient icons with circular grid
-**Specialized Therapy (2)**: first-session-timeline, service-faq-inline, testimonials-enhanced
+**Heroes (2)**: hero-breadcrumb, hero-about
+**Core (5)**: values-intro, values-compass, feature-blocks, cta-standard, cta-split
+**Interactive (4)**: video-popup, faq-mini, method-tabs, blog-grid
+**Forms (3)**: contact-form-enhanced, signup-form-enhanced, newsletter-signup
+**Trust (6)**: contact-info-cards, contact-options, onboarding-steps, privacy-guarantee, confidentiality-notice, credentials-showcase
+**Pricing (2)**: pricing-tables, pricing-packages
+**Stats (1)**: stats-numbers
+**Testimonials (1)**: testimonials-enhanced
+**About/Bio (6)**: about-preview, approach-preview, services-preview, my-story, credentials-education, training-certifications
+**Methodology (5)**: therapeutic-process, methodology-zigzag, scientific-approach, methods-used, simple-process
+**Specialized (2)**: problem-empathy, benefits-results
 
 ---
 
@@ -81,9 +97,9 @@ benefits_section:
 Atoms (9)        → button, heading, icon, image, tag, divider, link, spinner, avatar
 Molecules (24)   → card, form-field, accordion, nav, breadcrumb, social-links, video-embed, etc.
 Organisms (2)    → header, footer
-Sections (36)    → Page sections (hero, cta, pricing, testimonials, faq, contact, etc.)
+Sections (37)    → Page sections (hero, cta, pricing, testimonials, faq, contact, etc.)
 
-Total: 71 components | Page = Header + Sections + Footer
+Total: 72 components | Page = Header + Sections + Footer
 ```
 
 ---
@@ -97,9 +113,9 @@ alexandrabarbu.ro/              # ← Project root
 │   │   ├── _default/           # Layout files (flexible.html, list.html, etc.)
 │   │   └── partials/           # Component partials
 │   │       ├── atoms/          # 9 atomic components
-│   │       ├── molecules/      # 29 composite components
+│   │       ├── molecules/      # 24 composite components
 │   │       ├── organisms/      # 2 structural components (header, footer)
-│   │       └── sections/       # 26 page sections
+│   │       └── sections/       # 37 page sections
 │   ├── assets/                 # Theme assets
 │   │   ├── scss/               # ITCSS architecture (01-settings through 07-utilities)
 │   │   └── js/                 # Vanilla JS (no Bootstrap/jQuery dependencies)
@@ -110,11 +126,17 @@ alexandrabarbu.ro/              # ← Project root
 ├── assets/                     # Project-level assets (sparse)
 ├── content/                    # Site content (multilingual: romanian/, english/)
 ├── config/                     # Hugo configuration (_default/, menus)
-├── data/                       # Data files (shared_sections.yaml, etc.)
-└── i18n/                       # Translation files (ro.yaml, en.yaml)
+├── data/                       # Data files (shared_sections.yaml, cms_sections.yaml, etc.)
+├── i18n/                       # Translation files (ro.yaml, en.yaml)
+├── static/admin/               # Sveltia CMS interface
+│   ├── index.html              # CMS entry point
+│   ├── config.yml              # Dev CMS configuration
+│   └── config.production.yml    # Production CMS configuration
+└── static/images/              # Media folder (managed by CMS)
 
 NOTE: Hugo's lookup order: project root → theme directory. Theme provides defaults,
 project root provides overrides. Main implementation is in themes/andromeda-hugo/.
+CMS accessible at /admin after running `hugo server`.
 ```
 
 ---
@@ -157,11 +179,14 @@ Supports RO/EN/FR via `content/ro/`, `content/en/`, `content/fr/`
 
 ## Documentation
 
-- **ARCHITECTURE.md** - Technical architecture (read for development)
+- **ARCHITECTURE.md** - Technical architecture (includes CMS Integration section)
+- **README.md** - Quick start and overview (this file)
 - **themes/andromeda-hugo/CLAUDE.md** - Instructions for AI assistants
 - **themes/andromeda-hugo/PROJECT.md** - Project-specific documentation
 - **themes/andromeda-hugo/docs/components/** - Component API
 - **themes/andromeda-hugo/docs/DATA-CONVENTIONS.md** - Data structure guidelines
+- **data/cms_sections.yaml** - CMS section types reference with 11 categories
+- **static/admin/config.yml** - Sveltia CMS configuration (for curious developers)
 
 ---
 
@@ -238,6 +263,6 @@ scripts/test-components.sh                      # Test
 hugo --gc --minify                              # Build
 ```
 
-**Status**: Production Ready ✅ | 71 components (9+24+2+36) | ITCSS + BEM + v4.0 Design | <520KB pages | Hugo standard theme
+**Status**: Production Ready ✅ | 72 components (9+24+2+37) | ITCSS + BEM + v4.0 Design | <520KB pages | Sveltia CMS Integrated | Hugo standard theme
 
-**Next**: Read `CLAUDE.md` (instructions) | `ARCHITECTURE.md` (Hugo components) | `CLAUDE-ITCSS-ADDENDUM.md` (ITCSS architecture)
+**Next**: Access CMS at `/admin` | Read `CLAUDE.md` (instructions) | `ARCHITECTURE.md` (Hugo + CMS) | `CLAUDE-ITCSS-ADDENDUM.md` (ITCSS architecture)

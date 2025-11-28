@@ -11,6 +11,7 @@ tags:
   - respirație
   - grounding
   - mindfulness
+  - sănătate mintală
 image: https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800
 readTime: 8 min
 draft: false

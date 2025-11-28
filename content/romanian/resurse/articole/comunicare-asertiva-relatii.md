@@ -10,6 +10,7 @@ tags:
   - asertivitate
   - relații
   - limite
+  - sănătate mintală
 image: https://images.unsplash.com/photo-1517842645767-c639042777db?w=800
 readTime: 7 min
 draft: false

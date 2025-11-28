@@ -16,6 +16,8 @@ Depresia este una dintre cele mai frecvente tulburări de sănătate mintală, a
 Depresia afectează peste 280 de milioane de oameni la nivel global. Este a doua cauză de dizabilitate în lume.
 {{< /key-fact >}}
 
+{{< toc >}}
+
 ## Tristețe vs. Depresie: Care Este Diferența?
 
 Este esențial să înțelegem că tristețea este o emoție normală și sănătoasă. Toți trecem prin perioade dificile care ne provoacă tristețe - pierderea unui loc de muncă, sfârșitul unei relații, decesul unei persoane dragi.

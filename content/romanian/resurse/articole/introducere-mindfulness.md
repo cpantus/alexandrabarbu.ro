@@ -4,7 +4,7 @@ description: "Primul tău pas către o viață mai prezentă și mai echilibrat�
 date: 2025-11-23
 author: "Psiholog Alexandra Barbu"
 categories: ["mindfulness"]
-tags: ["mindfulness", "meditație", "prezență", "începători"]
+tags: ["mindfulness", "meditație", "prezență", "începători", "sănătate mintală"]
 image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=800"
 readTime: "6 min"
 draft: false

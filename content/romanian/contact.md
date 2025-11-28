@@ -23,7 +23,7 @@ hero_breadcrumb:
       url: "/contact/"
 
 # Contact Info Cards Section
-contact_info_title: "Cum Mă *Poți Contacta*"
+contact_info_title: "Cum Mă Poți *Contacta*"
 contact_info_subtitle: "Alege modalitatea care ți se potrivește cel mai bine"
 contact_methods:
   - icon: "phone"

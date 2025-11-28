@@ -10,9 +10,11 @@
 
 Component-based Hugo site with standard theme architecture: Pages = Header + Sections (2-7) + Footer
 
-**Hierarchy**: Atoms (9) → Molecules (24) → Organisms (2) → Sections (36) = **71 components**
+**Hierarchy**: Atoms (9) → Molecules (24) → Organisms (2) → Sections (37) = **72 components**
 
 **Note**: Hugo follows standard lookup order: project root overrides → theme defaults. Main implementation in `themes/andromeda-hugo/` directory.
+
+**CMS**: Sveltia CMS integrated at `/admin` for headless content management (see CMS Integration section below).
 
 ---
 
@@ -48,8 +50,8 @@ header.html, footer.html (cached by language for 30-50% build time reduction)
 
 **Usage**: `{{ partialCached "organisms/header.html" . .Language }}`
 
-### Sections (36 active) - `themes/andromeda-hugo/layouts/partials/sections/`
-about-preview.html, approach-preview.html, benefits-results.html, blog-grid.html, confidentiality-notice.html, contact-form-enhanced.html, contact-info-cards.html, contact-options.html, credentials-showcase.html, cta-standard.html, faq-content.html, faq-mini.html, feature-blocks.html, feature-details.html, first-session-timeline.html, hero-breadcrumb.html, methods-used.html, method-tabs.html, my-story.html, newsletter-signup.html, onboarding-steps.html, pricing-packages.html, pricing-tables.html, privacy-guarantee.html, problem-empathy.html, service-faq-inline.html, services-preview.html, signup-form-enhanced.html, simple-process.html, stats-numbers.html, testimonials-enhanced.html, therapeutic-process.html, training-certifications.html, values-compass.html, values-intro.html, video-popup.html
+### Sections (37 active) - `themes/andromeda-hugo/layouts/partials/sections/`
+about-preview.html, approach-preview.html, benefits-results.html, blog-grid.html, confidentiality-notice.html, contact-form-enhanced.html, contact-info-cards.html, contact-options.html, credentials-showcase.html, cta-standard.html, cta-split.html, faq-content.html, faq-mini.html, feature-blocks.html, feature-details.html, first-session-timeline.html, hero-breadcrumb.html, hero-about.html, methods-used.html, method-tabs.html, my-story.html, newsletter-signup.html, onboarding-steps.html, pricing-packages.html, pricing-tables.html, privacy-guarantee.html, problem-empathy.html, service-faq-inline.html, services-preview.html, signup-form-enhanced.html, simple-process.html, stats-numbers.html, testimonials-enhanced.html, therapeutic-process.html, training-certifications.html, values-compass.html, values-intro.html, video-popup.html
 
 **Data from front matter**:
 ```yaml
@@ -339,6 +341,69 @@ curl -s http://localhost:1313/ | grep -A 20 'application/ld+json'
 
 ---
 
+## CMS Integration
+
+**Sveltia CMS** provides headless content management for this Hugo site with visual editing capabilities.
+
+### Access & Authentication
+
+**Local Development**:
+- URL: `http://localhost:1313/admin` (after running `hugo server`)
+- Authentication: GitHub OAuth
+- Repository: `cpantus/alexandrabarbu.ro`
+- Branch: `redesign-2025` (dev) | `main` (production)
+
+**Production (GitHub Pages)**:
+- Domain: `https://alexandrabarbu.ro/admin`
+- OAuth Authenticator: Sveltia CMS Authenticator on Cloudflare Workers (required for GitHub Pages)
+- Backend: GitHub repository
+
+### Collections Structure
+
+Collections mirror content directory structure for both languages:
+
+**Romanian**:
+- Servicii (`content/romanian/servicii`)
+- Resurse (`content/romanian/resurse`)
+- Articole (`content/romanian/resurse/articole`)
+- Pagini Principale (`content/romanian`)
+
+**English**:
+- Services (`content/english/services`)
+- Resources (`content/english/resources`)
+- Pages (`content/english`)
+
+**Site Configuration**:
+- Navigation (RO + EN menus)
+- Settings (social media links)
+- Section Reference (CMS sections catalog)
+
+### Flexible Page Building
+
+All pages use the **flexible layout** with section-based composition. CMS provides:
+
+1. **Section Selector**: Choose from 37 available section types
+2. **Section Configuration**: Collapsible form fields for each section
+3. **Preview**: Live preview in Hugo dev server
+4. **Git Integration**: Auto-commits changes to GitHub
+
+Supported section types documented in `data/cms_sections.yaml` (11 categories: heroes, core, interactive, forms, trust, pricing, stats, testimonials, about, methodology, specialized).
+
+### Files
+
+**Configuration**:
+- `static/admin/config.yml` - Main CMS configuration
+- `static/admin/config.production.yml` - Production CMS configuration
+- `static/admin/index.html` - CMS interface entry point
+- `data/cms_sections.yaml` - Section type catalog with descriptions
+
+**Media**:
+- Folder: `static/images`
+- Public: `/images`
+- Formats: WebP, PNG, JPG, SVG
+
+---
+
 ## Troubleshooting
 
 **Section not rendering**: Check spelling, verify file exists, check registration in flexible.html
@@ -351,13 +416,14 @@ curl -s http://localhost:1313/ | grep -A 20 'application/ld+json'
 
 **Understand**: README.md → ARCHITECTURE.md → themes/andromeda-hugo/docs/components/
 **Add features**: New page (archetypes) | New section (sections/) | New molecule (molecules/)
-**Verify**: `ls themes/andromeda-hugo/layouts/partials/atoms/ | wc -l` (9), molecules (24), organisms (2), sections (36)
+**Verify**: `ls themes/andromeda-hugo/layouts/partials/atoms/ | wc -l` (9), molecules (24), organisms (2), sections (37)
+**CMS**: Access at `/admin` for visual page building
 
 ---
 
 ## Success Metrics ✅
 
-Build <3s | Pages <500KB | CSS <50KB gzipped | Reusability >80% | Duplication <10% | New page <30s | 71 components total | No Bootstrap/jQuery (vanilla JS)
+Build <3s | Pages <500KB | CSS <50KB gzipped | Reusability >80% | Duplication <10% | New page <30s | 72 components total | No Bootstrap/jQuery (vanilla JS) | Sveltia CMS integrated
 
 ---
 

@@ -4,7 +4,7 @@ description: "Reziliența nu înseamnă să nu simți durere, ci să te adaptezi
 date: 2025-11-22
 author: "Psiholog Alexandra Barbu"
 categories: ["dezvoltare"]
-tags: ["reziliență", "dezvoltare personală", "adaptare", "coping"]
+tags: ["reziliență", "dezvoltare personală", "adaptare", "coping", "sănătate mintală"]
 image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800"
 readTime: "9 min"
 draft: false

@@ -167,3 +167,9 @@
   translation: "Înțelegem nevoile tale specifice, Creăm un plan terapeutic personalizat, Ședințe săptămânale de terapie, Menținerea progresului pe termen lung."
 - id: footer_cta_button
   translation: "Programeaza o evaluare de 15 minute"
+
+- id: toc_title
+  translation: În acest articol
+
+- id: toc_aria_label
+  translation: Cuprins articol

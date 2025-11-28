@@ -30,278 +30,22 @@ logo_url: /images/logo.svg
 search: false
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# COLLECTIONS
+# COLLECTIONS - Ordered by language (RO first) and menu structure
 # ═══════════════════════════════════════════════════════════════════════════════
 
 collections:
 
-  # ═══════════════════════════════════════════
-  # 🇷🇴 SERVICII (Romanian Services)
-  # ═══════════════════════════════════════════
-
-  - name: servicii_ro
-    label: "🇷🇴 Servicii"
-    label_singular: "Serviciu"
-    icon: "medical_services"
-    folder: content/romanian/servicii
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    extension: md
-    format: yaml-frontmatter
-    sortable_fields:
-      - name: title
-        label: Titlu
-    fields:
-      - { label: "Titlu", name: "title", widget: "string" }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "flexible" }
-      - { label: "Draft", name: "draft", widget: "boolean", default: false }
-      - label: "Descriere SEO"
-        name: "description"
-        widget: "text"
-        required: false
-      - label: "Sectiuni"
-        name: "sections"
-        widget: "list"
-        collapsed: false
-        fields:
-          - label: "Tip"
-            name: "type"
-            widget: "select"
-            options:
-              - { label: "Hero Breadcrumb", value: "hero-breadcrumb" }
-              - { label: "Values Compass", value: "values-compass" }
-              - { label: "Feature Blocks", value: "feature-blocks" }
-              - { label: "FAQ Mini", value: "faq-mini" }
-              - { label: "CTA Standard", value: "cta-standard" }
-              - { label: "Pricing Tables", value: "pricing-tables" }
-              - { label: "Testimonials", value: "testimonials-enhanced" }
-              - { label: "Method Tabs", value: "method-tabs" }
-
-      # HERO BREADCRUMB CONFIG
-      - label: "Config: Hero Breadcrumb"
-        name: "hero_breadcrumb"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Titlu", name: "title", widget: "string", required: false }
-          - { label: "Subtitlu", name: "subtitle", widget: "text", required: false }
-          - { label: "Descriere", name: "description", widget: "text", required: false }
-          - { label: "Kicker", name: "kicker", widget: "string", required: false }
-          - { label: "Arata Breadcrumb", name: "show_breadcrumb", widget: "boolean", default: false, required: false }
-          - { label: "Arata Busola", name: "show_compass", widget: "boolean", default: true, required: false }
-          - label: "Butoane CTA"
-            name: "cta_buttons"
-            widget: "list"
-            required: false
-            fields:
-              - { label: "Text", name: "text", widget: "string" }
-              - { label: "URL", name: "url", widget: "string" }
-              - label: "Varianta"
-                name: "variant"
-                widget: "select"
-                default: "primary"
-                options: ["primary", "secondary", "outline-primary", "outline-secondary"]
-
-      # VALUES COMPASS CONFIG
-      - label: "Config: Busola Valorilor"
-        name: "values_compass"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Activare", name: "enable", widget: "boolean", default: true }
-          - { label: "Titlu", name: "title", widget: "string", required: false }
-          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-          - { label: "Descriere", name: "description", widget: "text", required: false }
-          - label: "Beneficii/Valori"
-            name: "benefits"
-            widget: "list"
-            fields:
-              - { label: "Titlu", name: "title", widget: "string" }
-              - { label: "Icoana", name: "icon", widget: "string" }
-              - { label: "Descriere", name: "description", widget: "text" }
-
-      # FEATURE BLOCKS CONFIG
-      - label: "Config: Blocuri Caracteristici"
-        name: "feature_blocks"
-        widget: "list"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-          - { label: "Titlu", name: "title", widget: "string" }
-          - { label: "Descriere", name: "description", widget: "text" }
-          - { label: "Imagine", name: "image", widget: "image" }
-          - label: "Caracteristici"
-            name: "features"
-            widget: "list"
-            required: false
-            field: { label: "Caracteristica", name: "feature", widget: "string" }
-
-      # FAQ MINI CONFIG
-      - label: "Config: FAQ Mini"
-        name: "faq_items"
-        widget: "list"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Intrebare", name: "question", widget: "string" }
-          - { label: "Raspuns", name: "answer", widget: "markdown" }
-      - { label: "FAQ Titlu", name: "faq_mini_title", widget: "string", required: false }
-      - { label: "FAQ Subtitlu", name: "faq_mini_subtitle", widget: "string", required: false }
-
-      # CTA STANDARD CONFIG
-      - label: "Config: CTA Standard"
-        name: "cta_standard"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Titlu", name: "title", widget: "string" }
-          - { label: "Descriere", name: "description", widget: "text" }
-          - { label: "Text Buton", name: "button_text", widget: "string" }
-          - { label: "URL Buton", name: "button_url", widget: "string" }
-          - label: "Varianta"
-            name: "variant"
-            widget: "select"
-            default: "primary"
-            options: ["primary", "secondary", "tertiary", "neutral"]
-
-      # PRICING TABLES CONFIG
-      - label: "Config: Tabele Preturi"
-        name: "pricing_section"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Activare", name: "enable", widget: "boolean", default: true }
-          - { label: "Titlu", name: "title", widget: "string", required: false }
-          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-      - label: "Carduri Preturi"
-        name: "pricing_card"
-        widget: "list"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Nume Serviciu", name: "name", widget: "string" }
-          - { label: "Descriere", name: "content", widget: "text", required: false }
-          - { label: "Moneda", name: "currency", widget: "string", default: "RON" }
-          - { label: "Pret", name: "monthly_price", widget: "string" }
-          - { label: "Card Evidentiat", name: "featured", widget: "boolean", default: false }
-          - { label: "Text Buton", name: "button_label", widget: "string" }
-          - { label: "Link Buton", name: "button_link", widget: "string" }
-          - label: "Lista Servicii"
-            name: "services"
-            widget: "list"
-            field: { label: "Serviciu", name: "service", widget: "string" }
-
-      # TESTIMONIALS CONFIG
-      - label: "Config: Testimoniale"
-        name: "testimonials_enhanced"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Titlu", name: "title", widget: "string", required: false }
-          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-          - label: "Testimoniale"
-            name: "testimonials"
-            widget: "list"
-            fields:
-              - { label: "Citat", name: "quote", widget: "text" }
-              - { label: "Nume", name: "name", widget: "string" }
-              - { label: "Rol", name: "role", widget: "string", required: false }
-
-      # METHOD TABS CONFIG
-      - label: "Config: Taburi Metode"
-        name: "method_tabs"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Activare", name: "enable", widget: "boolean", default: true }
-          - { label: "Titlu", name: "title", widget: "string", required: false }
-          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-          - label: "Metode"
-            name: "methods"
-            widget: "list"
-            fields:
-              - { label: "Nume Scurt", name: "short_name", widget: "string" }
-              - { label: "Titlu Complet", name: "title", widget: "string" }
-              - { label: "Icoana", name: "icon", widget: "string", required: false }
-              - { label: "Descriere", name: "description", widget: "text" }
-              - label: "Beneficii"
-                name: "benefits"
-                widget: "list"
-                required: false
-                field: { label: "Beneficiu", name: "benefit", widget: "string" }
+  # ╔═══════════════════════════════════════════════════════════════════════════╗
+  # ║  🇷🇴 ROMANIAN CONTENT                                                      ║
+  # ╚═══════════════════════════════════════════════════════════════════════════╝
 
   # ═══════════════════════════════════════════
-  # 🇷🇴 RESURSE (Romanian Resources)
-  # ═══════════════════════════════════════════
-
-  - name: resurse_ro
-    label: "🇷🇴 Resurse"
-    label_singular: "Resursa"
-    icon: "library_books"
-    folder: content/romanian/resurse
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    extension: md
-    format: yaml-frontmatter
-    fields:
-      - { label: "Titlu", name: "title", widget: "string" }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "flexible" }
-      - { label: "Draft", name: "draft", widget: "boolean", default: false }
-      - label: "Descriere SEO"
-        name: "description"
-        widget: "text"
-        required: false
-      - label: "Sectiuni"
-        name: "sections"
-        widget: "list"
-        collapsed: false
-        fields:
-          - label: "Tip"
-            name: "type"
-            widget: "select"
-            options:
-              - { label: "Hero Breadcrumb", value: "hero-breadcrumb" }
-              - { label: "Blog Grid", value: "blog-grid" }
-              - { label: "CTA Standard", value: "cta-standard" }
-
-      # HERO BREADCRUMB CONFIG
-      - label: "Config: Hero Breadcrumb"
-        name: "hero_breadcrumb"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Titlu", name: "title", widget: "string", required: false }
-          - { label: "Subtitlu", name: "subtitle", widget: "text", required: false }
-          - { label: "Descriere", name: "description", widget: "text", required: false }
-
-      # CTA STANDARD CONFIG
-      - label: "Config: CTA Standard"
-        name: "cta_standard"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Titlu", name: "title", widget: "string" }
-          - { label: "Descriere", name: "description", widget: "text" }
-          - { label: "Text Buton", name: "button_text", widget: "string" }
-          - { label: "URL Buton", name: "button_url", widget: "string" }
-
-  # ═══════════════════════════════════════════
-  # 🇷🇴 ROMANIAN PAGES (Root level)
+  # 🇷🇴 PAGINI PRINCIPALE (Despre, Contact, etc.)
+  # Menu order: Despre (2), Contact (7)
   # ═══════════════════════════════════════════
 
   - name: pages_ro
-    label: "🇷🇴 Pagini Principale"
+    label: "🇷🇴 Pagini"
     label_singular: "Pagina"
     icon: "home"
     folder: content/romanian
@@ -334,9 +78,7 @@ collections:
         required: false
         field: { label: "Cuvant Cheie", name: "keyword", widget: "string" }
 
-      # ─────────────────────────────────────────
       # SECTIONS SELECTOR
-      # ─────────────────────────────────────────
       - label: "Sectiuni Pagina"
         name: "sections"
         widget: "list"
@@ -347,60 +89,45 @@ collections:
             name: "type"
             widget: "select"
             options:
-              # Heroes
               - { label: "Hero cu Breadcrumb", value: "hero-breadcrumb" }
               - { label: "Hero Despre", value: "hero-about" }
-              # Core
               - { label: "Introducere Valori", value: "values-intro" }
               - { label: "Busola Valorilor", value: "values-compass" }
               - { label: "Blocuri Caracteristici", value: "feature-blocks" }
               - { label: "CTA Standard", value: "cta-standard" }
               - { label: "CTA Split", value: "cta-split" }
-              # Interactive
               - { label: "Video Popup", value: "video-popup" }
               - { label: "FAQ Mini", value: "faq-mini" }
               - { label: "Taburi Metode", value: "method-tabs" }
               - { label: "Grid Blog", value: "blog-grid" }
-              # Forms
               - { label: "Formular Contact", value: "contact-form-enhanced" }
               - { label: "Formular Inscriere", value: "signup-form-enhanced" }
               - { label: "Newsletter", value: "newsletter-signup" }
-              # Trust
               - { label: "Carduri Info Contact", value: "contact-info-cards" }
               - { label: "Optiuni Contact", value: "contact-options" }
               - { label: "Pasi Onboarding", value: "onboarding-steps" }
               - { label: "Garantie Confidentialitate", value: "privacy-guarantee" }
               - { label: "Notificare Confidentialitate", value: "confidentiality-notice" }
               - { label: "Prezentare Credentiale", value: "credentials-showcase" }
-              # Pricing
               - { label: "Tabele Preturi", value: "pricing-tables" }
               - { label: "Pachete Preturi", value: "pricing-packages" }
-              # Stats
               - { label: "Numere Statistici", value: "stats-numbers" }
-              # Testimonials
               - { label: "Testimoniale", value: "testimonials-enhanced" }
-              # About/Bio
               - { label: "Preview Despre", value: "about-preview" }
               - { label: "Preview Abordare", value: "approach-preview" }
               - { label: "Preview Servicii", value: "services-preview" }
               - { label: "Povestea Mea", value: "my-story" }
               - { label: "Educatie Credentiale", value: "credentials-education" }
               - { label: "Training Certificari", value: "training-certifications" }
-              # Methodology
               - { label: "Proces Terapeutic", value: "therapeutic-process" }
               - { label: "Metodologie Zigzag", value: "methodology-zigzag" }
               - { label: "Abordare Stiintifica", value: "scientific-approach" }
               - { label: "Metode Folosite", value: "methods-used" }
               - { label: "Proces Simplu", value: "simple-process" }
-              # Specialized
               - { label: "Empatie Probleme", value: "problem-empathy" }
               - { label: "Beneficii Rezultate", value: "benefits-results" }
 
-      # ─────────────────────────────────────────
-      # SECTION CONFIGURATIONS (Collapsible)
-      # ─────────────────────────────────────────
-
-      # HERO BREADCRUMB
+      # SECTION CONFIGURATIONS
       - label: "Config: Hero Breadcrumb"
         name: "hero_breadcrumb"
         widget: "object"
@@ -410,16 +137,11 @@ collections:
           - { label: "Titlu", name: "title", widget: "string", required: false }
           - { label: "Subtitlu", name: "subtitle", widget: "text", required: false }
           - { label: "Descriere", name: "description", widget: "text", required: false }
-          - { label: "Kicker (text deasupra)", name: "kicker", widget: "string", required: false }
-          - label: "Varianta"
-            name: "variant"
-            widget: "select"
-            required: false
-            default: "primary"
-            options: ["primary", "secondary", "tertiary", "neutral"]
+          - { label: "Kicker", name: "kicker", widget: "string", required: false }
+          - { label: "Varianta", name: "variant", widget: "select", required: false, default: "primary", options: ["primary", "secondary", "tertiary", "neutral"] }
           - { label: "Arata Breadcrumb", name: "show_breadcrumb", widget: "boolean", default: false, required: false }
           - { label: "Arata Busola", name: "show_compass", widget: "boolean", default: true, required: false }
-          - { label: "Imagine Hero", name: "hero_image", widget: "image", required: false, hint: "Alternativa la animatia busola" }
+          - { label: "Imagine Hero", name: "hero_image", widget: "image", required: false }
           - { label: "Text Citat", name: "quote_text", widget: "text", required: false }
           - { label: "Autor Citat", name: "quote_author", widget: "string", required: false }
           - label: "Butoane CTA"
@@ -429,14 +151,9 @@ collections:
             fields:
               - { label: "Text", name: "text", widget: "string" }
               - { label: "URL", name: "url", widget: "string" }
-              - label: "Varianta"
-                name: "variant"
-                widget: "select"
-                default: "primary"
-                options: ["primary", "secondary", "outline-primary", "outline-secondary"]
-              - { label: "Icoana", name: "icon", widget: "string", required: false, hint: "Ex: las la-arrow-right" }
+              - { label: "Varianta", name: "variant", widget: "select", default: "primary", options: ["primary", "secondary", "outline-primary", "outline-secondary"] }
+              - { label: "Icoana", name: "icon", widget: "string", required: false }
 
-      # VALUES COMPASS
       - label: "Config: Busola Valorilor"
         name: "values_compass"
         widget: "object"
@@ -447,24 +164,15 @@ collections:
           - { label: "Titlu", name: "title", widget: "string", required: false }
           - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
           - { label: "Descriere", name: "description", widget: "text", required: false }
-          - label: "Varianta"
-            name: "variant"
-            widget: "select"
-            required: false
-            default: "primary"
-            options: ["primary", "secondary", "tertiary", "neutral"]
+          - { label: "Varianta", name: "variant", widget: "select", required: false, default: "primary", options: ["primary", "secondary", "tertiary", "neutral"] }
           - label: "Beneficii/Valori"
             name: "benefits"
             widget: "list"
             fields:
               - { label: "Titlu", name: "title", widget: "string" }
-              - { label: "Icoana", name: "icon", widget: "string", hint: "Ex: flask, heart, brain" }
+              - { label: "Icoana", name: "icon", widget: "string" }
               - { label: "Descriere", name: "description", widget: "text" }
-              - label: "Varianta"
-                name: "variant"
-                widget: "select"
-                required: false
-                options: ["primary", "secondary", "tertiary", "neutral"]
+              - { label: "Varianta", name: "variant", widget: "select", required: false, options: ["primary", "secondary", "tertiary", "neutral"] }
           - label: "CTA"
             name: "cta"
             widget: "object"
@@ -473,13 +181,8 @@ collections:
             fields:
               - { label: "Text", name: "text", widget: "string" }
               - { label: "URL", name: "url", widget: "string" }
-          - label: "Varianta Buton"
-            name: "button_variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary", "tertiary", "neutral"]
+          - { label: "Varianta Buton", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary", "tertiary", "neutral"] }
 
-      # VALUES INTRO
       - label: "Config: Introducere Valori"
         name: "values_section"
         widget: "object"
@@ -493,13 +196,8 @@ collections:
           - { label: "Imagine", name: "image", widget: "image", required: false }
           - { label: "Text Buton", name: "button_label", widget: "string", required: false }
           - { label: "Link Buton", name: "button_link", widget: "string", required: false }
-          - label: "Varianta Buton"
-            name: "button_variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary", "tertiary", "neutral"]
+          - { label: "Varianta Buton", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary", "tertiary", "neutral"] }
 
-      # FEATURE BLOCKS
       - label: "Config: Blocuri Caracteristici"
         name: "feature_blocks"
         widget: "list"
@@ -518,7 +216,6 @@ collections:
 
       - { label: "Numerotare Blocuri", name: "feature_blocks_numbered", widget: "boolean", default: false, required: false }
 
-      # CTA STANDARD
       - label: "Config: CTA Standard"
         name: "cta_standard"
         widget: "object"
@@ -529,25 +226,12 @@ collections:
           - { label: "Descriere", name: "description", widget: "text" }
           - { label: "Text Buton", name: "button_text", widget: "string" }
           - { label: "URL Buton", name: "button_url", widget: "string" }
-          - label: "Varianta"
-            name: "variant"
-            widget: "select"
-            default: "primary"
-            options: ["primary", "secondary", "tertiary", "neutral", "success", "warning", "info"]
-          - label: "Fundal"
-            name: "background"
-            widget: "select"
-            default: "solid"
-            options: ["solid", "gradient", "light", "none"]
-          - label: "Varianta Buton"
-            name: "button_variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary", "tertiary", "neutral"]
+          - { label: "Varianta", name: "variant", widget: "select", default: "primary", options: ["primary", "secondary", "tertiary", "neutral", "success", "warning", "info"] }
+          - { label: "Fundal", name: "background", widget: "select", default: "solid", options: ["solid", "gradient", "light", "none"] }
+          - { label: "Varianta Buton", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary", "tertiary", "neutral"] }
           - { label: "Text Buton Secundar", name: "secondary_button_text", widget: "string", required: false }
           - { label: "URL Buton Secundar", name: "secondary_button_url", widget: "string", required: false }
 
-      # VIDEO POPUP
       - label: "Config: Video Popup"
         name: "video_section"
         widget: "object"
@@ -558,15 +242,10 @@ collections:
           - { label: "Titlu", name: "title", widget: "string" }
           - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
           - { label: "Descriere", name: "description", widget: "text", required: false }
-          - { label: "URL Video", name: "video_url", widget: "string", hint: "YouTube, Vimeo sau fisier direct" }
+          - { label: "URL Video", name: "video_url", widget: "string" }
           - { label: "Thumbnail Video", name: "video_thumbnail", widget: "image", required: false }
-          - label: "Varianta"
-            name: "variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary", "tertiary", "neutral"]
+          - { label: "Varianta", name: "variant", widget: "select", required: false, options: ["primary", "secondary", "tertiary", "neutral"] }
 
-      # FAQ MINI
       - label: "Config: FAQ Mini"
         name: "faq_items"
         widget: "list"
@@ -582,7 +261,6 @@ collections:
       - { label: "FAQ Link Text", name: "faq_mini_link_text", widget: "string", required: false }
       - { label: "FAQ Link URL", name: "faq_mini_link_url", widget: "string", required: false }
 
-      # METHOD TABS
       - label: "Config: Taburi Metode"
         name: "method_tabs"
         widget: "object"
@@ -593,16 +271,12 @@ collections:
           - { label: "Titlu", name: "title", widget: "string", required: false }
           - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
           - { label: "Descriere", name: "description", widget: "text", required: false }
-          - label: "Varianta"
-            name: "variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary", "tertiary", "neutral"]
+          - { label: "Varianta", name: "variant", widget: "select", required: false, options: ["primary", "secondary", "tertiary", "neutral"] }
           - label: "Metode"
             name: "methods"
             widget: "list"
             fields:
-              - { label: "Nume Scurt", name: "short_name", widget: "string", hint: "Afisat pe tab" }
+              - { label: "Nume Scurt", name: "short_name", widget: "string" }
               - { label: "Titlu Complet", name: "title", widget: "string" }
               - { label: "Icoana", name: "icon", widget: "string", required: false }
               - { label: "Descriere", name: "description", widget: "text" }
@@ -621,26 +295,18 @@ collections:
               - { label: "Durata", name: "duration", widget: "string", required: false }
               - { label: "Rata Succes", name: "success_rate", widget: "string", required: false }
 
-      # CONTACT FORM ENHANCED
       - label: "Config: Formular Contact"
         name: "contact_form_enhanced"
         widget: "object"
         collapsed: true
         required: false
         fields:
-          - label: "Varianta"
-            name: "variant"
-            widget: "select"
-            default: "primary"
-            options: ["primary", "secondary", "tertiary", "neutral"]
+          - { label: "Varianta", name: "variant", widget: "select", default: "primary", options: ["primary", "secondary", "tertiary", "neutral"] }
           - label: "Info Contact"
             name: "contact_info"
             widget: "list"
             fields:
-              - label: "Tip"
-                name: "type"
-                widget: "select"
-                options: ["phone", "email", "location"]
+              - { label: "Tip", name: "type", widget: "select", options: ["phone", "email", "location"] }
               - { label: "Icoana", name: "icon", widget: "string" }
               - { label: "Titlu", name: "title", widget: "string" }
               - { label: "Valoare", name: "value", widget: "string" }
@@ -655,36 +321,23 @@ collections:
           - { label: "Descriere Formular", name: "form_description", widget: "text", required: false }
           - { label: "Nota Confidentialitate", name: "privacy_note", widget: "text", required: false }
 
-      # CONTACT INFO CARDS
       - label: "Config: Carduri Contact"
         name: "contact_methods"
         widget: "list"
         collapsed: true
         required: false
         fields:
-          - label: "Icoana"
-            name: "icon"
-            widget: "select"
-            options: ["phone", "envelope", "map-marker", "clock", "calendar"]
+          - { label: "Icoana", name: "icon", widget: "select", options: ["phone", "envelope", "map-marker", "clock", "calendar"] }
           - { label: "Eticheta", name: "label", widget: "string" }
           - { label: "Valoare", name: "value", widget: "string" }
           - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-          - { label: "Link", name: "link", widget: "string", required: false, hint: "tel:, mailto:, https://" }
-          - label: "Varianta"
-            name: "variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary", "tertiary"]
-          - label: "Marime"
-            name: "size"
-            widget: "select"
-            required: false
-            options: ["sm", "md", "lg"]
+          - { label: "Link", name: "link", widget: "string", required: false }
+          - { label: "Varianta", name: "variant", widget: "select", required: false, options: ["primary", "secondary", "tertiary"] }
+          - { label: "Marime", name: "size", widget: "select", required: false, options: ["sm", "md", "lg"] }
 
       - { label: "Titlu Info Contact", name: "contact_info_title", widget: "string", required: false }
       - { label: "Subtitlu Info Contact", name: "contact_info_subtitle", widget: "string", required: false }
 
-      # PRICING TABLES
       - label: "Config: Tabele Preturi"
         name: "pricing_section"
         widget: "object"
@@ -709,24 +362,15 @@ collections:
           - { label: "Card Evidentiat", name: "featured", widget: "boolean", default: false }
           - { label: "Text Buton", name: "button_label", widget: "string" }
           - { label: "Link Buton", name: "button_link", widget: "string" }
-          - label: "Varianta Buton"
-            name: "button_variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary"]
+          - { label: "Varianta Buton", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary"] }
           - label: "Lista Servicii"
             name: "services"
             widget: "list"
             field: { label: "Serviciu", name: "service", widget: "string" }
 
       - { label: "Oferta Speciala", name: "offer", widget: "string", required: false }
-      - label: "Toggle Lunar/Anual"
-        name: "monthly_yearly_toggle"
-        widget: "select"
-        required: false
-        options: ["monthly", "yearly", "toggle"]
+      - { label: "Toggle Lunar/Anual", name: "monthly_yearly_toggle", widget: "select", required: false, options: ["monthly", "yearly", "toggle"] }
 
-      # STATS NUMBERS
       - label: "Config: Numere Statistici"
         name: "stats_numbers"
         widget: "object"
@@ -741,12 +385,11 @@ collections:
             widget: "list"
             fields:
               - { label: "Valoare", name: "value", widget: "number" }
-              - { label: "Sufix", name: "suffix", widget: "string", required: false, hint: "+, %, k" }
+              - { label: "Sufix", name: "suffix", widget: "string", required: false }
               - { label: "Eticheta", name: "label", widget: "string" }
               - { label: "Icoana", name: "icon", widget: "string", required: false }
-              - { label: "Progres", name: "progress", widget: "number", required: false, hint: "0-100 pentru ring" }
+              - { label: "Progres", name: "progress", widget: "number", required: false }
 
-      # CREDENTIALS SHOWCASE
       - label: "Config: Prezentare Credentiale"
         name: "credentials_showcase"
         widget: "object"
@@ -757,35 +400,19 @@ collections:
           - { label: "Titlu", name: "title", widget: "string", required: false }
           - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
           - { label: "Descriere", name: "description", widget: "text", required: false }
-          - label: "Fundal"
-            name: "background"
-            widget: "select"
-            required: false
-            options: ["light", "compact"]
+          - { label: "Fundal", name: "background", widget: "select", required: false, options: ["light", "compact"] }
           - { label: "Arata Text Incredere", name: "show_trust_text", widget: "boolean", default: false, required: false }
           - { label: "Text Incredere", name: "trust_text", widget: "string", required: false }
           - label: "Credentiale"
             name: "credentials"
             widget: "list"
             fields:
-              - label: "Icoana"
-                name: "icon"
-                widget: "select"
-                options: ["certificate", "award", "users", "shield-check", "graduation-cap", "star"]
+              - { label: "Icoana", name: "icon", widget: "select", options: ["certificate", "award", "users", "shield-check", "graduation-cap", "star"] }
               - { label: "Eticheta", name: "label", widget: "string" }
               - { label: "Valoare", name: "value", widget: "string", required: false }
-              - label: "Varianta"
-                name: "variant"
-                widget: "select"
-                required: false
-                options: ["primary", "secondary", "coral", "premium", "sage", "info", "success", "warning"]
-              - label: "Marime"
-                name: "size"
-                widget: "select"
-                required: false
-                options: ["sm", "md", "lg"]
+              - { label: "Varianta", name: "variant", widget: "select", required: false, options: ["primary", "secondary", "coral", "premium", "sage", "info", "success", "warning"] }
+              - { label: "Marime", name: "size", widget: "select", required: false, options: ["sm", "md", "lg"] }
 
-      # TESTIMONIALS ENHANCED
       - label: "Config: Testimoniale"
         name: "testimonials_enhanced"
         widget: "object"
@@ -794,11 +421,7 @@ collections:
         fields:
           - { label: "Titlu", name: "title", widget: "string", required: false }
           - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-          - label: "Culoare Icoana"
-            name: "icon_color"
-            widget: "select"
-            required: false
-            options: ["gold", "emerald", "sage"]
+          - { label: "Culoare Icoana", name: "icon_color", widget: "select", required: false, options: ["gold", "emerald", "sage"] }
           - { label: "Nota Confidentialitate", name: "privacy_note", widget: "string", required: false }
           - label: "Testimoniale"
             name: "testimonials"
@@ -815,13 +438,9 @@ collections:
             fields:
               - { label: "Text", name: "text", widget: "string" }
               - { label: "URL", name: "url", widget: "string" }
-              - label: "Varianta"
-                name: "variant"
-                widget: "select"
-                options: ["primary", "secondary"]
+              - { label: "Varianta", name: "variant", widget: "select", options: ["primary", "secondary"] }
               - { label: "Icoana", name: "icon", widget: "string", required: false }
 
-      # ONBOARDING STEPS
       - label: "Config: Pasi Onboarding"
         name: "onboarding_steps"
         widget: "object"
@@ -831,11 +450,7 @@ collections:
           - { label: "Titlu", name: "title", widget: "string", required: false }
           - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
           - { label: "Intro", name: "intro", widget: "text", required: false }
-          - label: "Varianta"
-            name: "variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary", "tertiary", "neutral"]
+          - { label: "Varianta", name: "variant", widget: "select", required: false, options: ["primary", "secondary", "tertiary", "neutral"] }
           - label: "Pasi"
             name: "steps"
             widget: "list"
@@ -851,12 +466,8 @@ collections:
             fields:
               - { label: "Text", name: "text", widget: "string" }
               - { label: "URL", name: "url", widget: "string" }
-              - label: "Varianta"
-                name: "variant"
-                widget: "select"
-                options: ["primary", "secondary"]
+              - { label: "Varianta", name: "variant", widget: "select", options: ["primary", "secondary"] }
 
-      # SERVICES PREVIEW
       - label: "Config: Preview Servicii"
         name: "services_preview"
         widget: "object"
@@ -872,10 +483,9 @@ collections:
             fields:
               - { label: "Titlu", name: "title", widget: "string" }
               - { label: "Descriere", name: "description", widget: "text" }
-              - { label: "Icoana", name: "icon", widget: "string", hint: "brain, heart, users, etc." }
+              - { label: "Icoana", name: "icon", widget: "string" }
               - { label: "URL", name: "url", widget: "string" }
 
-      # PROBLEM EMPATHY
       - label: "Config: Empatie Probleme"
         name: "problem_empathy"
         widget: "object"
@@ -895,7 +505,6 @@ collections:
               - { label: "Descriere", name: "description", widget: "text" }
               - { label: "Icoana", name: "icon", widget: "string", required: false }
 
-      # NEWSLETTER SIGNUP
       - label: "Config: Newsletter"
         name: "newsletter_signup"
         widget: "object"
@@ -913,11 +522,375 @@ collections:
             field: { label: "Beneficiu", name: "benefit", widget: "string" }
           - { label: "Text GDPR", name: "gdpr_text", widget: "text", required: false }
           - { label: "Text Buton", name: "button_text", widget: "string", default: "Aboneaza-te" }
-          - label: "Varianta Buton"
-            name: "button_variant"
+          - { label: "Varianta Buton", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary"] }
+
+  # ═══════════════════════════════════════════
+  # 🇷🇴 SERVICII (Menu order: 3)
+  # ═══════════════════════════════════════════
+
+  - name: servicii_ro
+    label: "🇷🇴 Servicii"
+    label_singular: "Serviciu"
+    icon: "medical_services"
+    folder: content/romanian/servicii
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: md
+    format: yaml-frontmatter
+    sortable_fields:
+      - name: title
+        label: Titlu
+    fields:
+      - { label: "Titlu", name: "title", widget: "string" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "flexible" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Descriere SEO", name: "description", widget: "text", required: false }
+      - label: "Sectiuni"
+        name: "sections"
+        widget: "list"
+        collapsed: false
+        fields:
+          - label: "Tip"
+            name: "type"
             widget: "select"
+            options:
+              - { label: "Hero Breadcrumb", value: "hero-breadcrumb" }
+              - { label: "Values Compass", value: "values-compass" }
+              - { label: "Feature Blocks", value: "feature-blocks" }
+              - { label: "FAQ Mini", value: "faq-mini" }
+              - { label: "CTA Standard", value: "cta-standard" }
+              - { label: "Pricing Tables", value: "pricing-tables" }
+              - { label: "Testimonials", value: "testimonials-enhanced" }
+              - { label: "Method Tabs", value: "method-tabs" }
+
+      - label: "Config: Hero Breadcrumb"
+        name: "hero_breadcrumb"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Titlu", name: "title", widget: "string", required: false }
+          - { label: "Subtitlu", name: "subtitle", widget: "text", required: false }
+          - { label: "Descriere", name: "description", widget: "text", required: false }
+          - { label: "Kicker", name: "kicker", widget: "string", required: false }
+          - { label: "Arata Breadcrumb", name: "show_breadcrumb", widget: "boolean", default: false, required: false }
+          - { label: "Arata Busola", name: "show_compass", widget: "boolean", default: true, required: false }
+          - label: "Butoane CTA"
+            name: "cta_buttons"
+            widget: "list"
             required: false
-            options: ["primary", "secondary"]
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Varianta", name: "variant", widget: "select", default: "primary", options: ["primary", "secondary", "outline-primary", "outline-secondary"] }
+
+      - label: "Config: Busola Valorilor"
+        name: "values_compass"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Activare", name: "enable", widget: "boolean", default: true }
+          - { label: "Titlu", name: "title", widget: "string", required: false }
+          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+          - { label: "Descriere", name: "description", widget: "text", required: false }
+          - label: "Beneficii/Valori"
+            name: "benefits"
+            widget: "list"
+            fields:
+              - { label: "Titlu", name: "title", widget: "string" }
+              - { label: "Icoana", name: "icon", widget: "string" }
+              - { label: "Descriere", name: "description", widget: "text" }
+
+      - label: "Config: Blocuri Caracteristici"
+        name: "feature_blocks"
+        widget: "list"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Imagine", name: "image", widget: "image" }
+          - label: "Caracteristici"
+            name: "features"
+            widget: "list"
+            required: false
+            field: { label: "Caracteristica", name: "feature", widget: "string" }
+
+      - label: "Config: FAQ Mini"
+        name: "faq_items"
+        widget: "list"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Intrebare", name: "question", widget: "string" }
+          - { label: "Raspuns", name: "answer", widget: "markdown" }
+      - { label: "FAQ Titlu", name: "faq_mini_title", widget: "string", required: false }
+      - { label: "FAQ Subtitlu", name: "faq_mini_subtitle", widget: "string", required: false }
+
+      - label: "Config: CTA Standard"
+        name: "cta_standard"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Text Buton", name: "button_text", widget: "string" }
+          - { label: "URL Buton", name: "button_url", widget: "string" }
+          - { label: "Varianta", name: "variant", widget: "select", default: "primary", options: ["primary", "secondary", "tertiary", "neutral"] }
+
+      - label: "Config: Tabele Preturi"
+        name: "pricing_section"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Activare", name: "enable", widget: "boolean", default: true }
+          - { label: "Titlu", name: "title", widget: "string", required: false }
+          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+      - label: "Carduri Preturi"
+        name: "pricing_card"
+        widget: "list"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Nume Serviciu", name: "name", widget: "string" }
+          - { label: "Descriere", name: "content", widget: "text", required: false }
+          - { label: "Moneda", name: "currency", widget: "string", default: "RON" }
+          - { label: "Pret", name: "monthly_price", widget: "string" }
+          - { label: "Card Evidentiat", name: "featured", widget: "boolean", default: false }
+          - { label: "Text Buton", name: "button_label", widget: "string" }
+          - { label: "Link Buton", name: "button_link", widget: "string" }
+          - label: "Lista Servicii"
+            name: "services"
+            widget: "list"
+            field: { label: "Serviciu", name: "service", widget: "string" }
+
+      - label: "Config: Testimoniale"
+        name: "testimonials_enhanced"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Titlu", name: "title", widget: "string", required: false }
+          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+          - label: "Testimoniale"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Citat", name: "quote", widget: "text" }
+              - { label: "Nume", name: "name", widget: "string" }
+              - { label: "Rol", name: "role", widget: "string", required: false }
+
+      - label: "Config: Taburi Metode"
+        name: "method_tabs"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Activare", name: "enable", widget: "boolean", default: true }
+          - { label: "Titlu", name: "title", widget: "string", required: false }
+          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+          - label: "Metode"
+            name: "methods"
+            widget: "list"
+            fields:
+              - { label: "Nume Scurt", name: "short_name", widget: "string" }
+              - { label: "Titlu Complet", name: "title", widget: "string" }
+              - { label: "Icoana", name: "icon", widget: "string", required: false }
+              - { label: "Descriere", name: "description", widget: "text" }
+              - label: "Beneficii"
+                name: "benefits"
+                widget: "list"
+                required: false
+                field: { label: "Beneficiu", name: "benefit", widget: "string" }
+
+  # ═══════════════════════════════════════════
+  # 🇷🇴 RESURSE (Menu order: 6)
+  # ═══════════════════════════════════════════
+
+  - name: resurse_ro
+    label: "🇷🇴 Resurse"
+    label_singular: "Resursa"
+    icon: "library_books"
+    folder: content/romanian/resurse
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: md
+    format: yaml-frontmatter
+    filter: { field: "layout", pattern: "flexible" }
+    fields:
+      - { label: "Titlu", name: "title", widget: "string" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "flexible" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Descriere SEO", name: "description", widget: "text", required: false }
+      - label: "Sectiuni"
+        name: "sections"
+        widget: "list"
+        collapsed: false
+        fields:
+          - label: "Tip"
+            name: "type"
+            widget: "select"
+            options:
+              - { label: "Hero Breadcrumb", value: "hero-breadcrumb" }
+              - { label: "Test Index", value: "test-index" }
+              - { label: "Feature Blocks", value: "feature-blocks" }
+              - { label: "Blog Grid", value: "blog-grid" }
+              - { label: "CTA Standard", value: "cta-standard" }
+
+      - label: "Config: Hero Breadcrumb"
+        name: "hero_breadcrumb"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Titlu", name: "title", widget: "string", required: false }
+          - { label: "Subtitlu", name: "subtitle", widget: "text", required: false }
+          - { label: "Descriere", name: "description", widget: "text", required: false }
+          - label: "Breadcrumb"
+            name: "breadcrumb"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Nume", name: "name", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+
+      - label: "Config: Index Teste"
+        name: "test_index"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Activare", name: "enable", widget: "boolean", default: true }
+          - { label: "Titlu", name: "title", widget: "string", required: false }
+
+      - label: "Config: Blocuri Teste"
+        name: "feature_blocks"
+        widget: "list"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Imagine", name: "image", widget: "image", required: false }
+          - { label: "Text Buton", name: "button_text", widget: "string", required: false }
+          - { label: "URL Buton", name: "button_url", widget: "string", required: false }
+
+      - { label: "Blocuri Numerotate", name: "feature_blocks_numbered", widget: "boolean", default: false, required: false }
+
+      - label: "Config: CTA Standard"
+        name: "cta_standard"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Titlu", name: "title", widget: "string" }
+          - { label: "Descriere", name: "description", widget: "text" }
+          - { label: "Text Buton", name: "button_text", widget: "string" }
+          - { label: "URL Buton", name: "button_url", widget: "string" }
+          - { label: "Varianta Buton", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary", "outline-primary", "outline-secondary"] }
+          - { label: "Text Buton Secundar", name: "secondary_button_text", widget: "string", required: false }
+          - { label: "URL Buton Secundar", name: "secondary_button_url", widget: "string", required: false }
+          - { label: "Varianta Buton Secundar", name: "secondary_button_variant", widget: "select", required: false, options: ["primary", "secondary", "outline-primary", "outline-secondary"] }
+
+  # ═══════════════════════════════════════════
+  # 🇷🇴 ARTICOLE (sub Resurse)
+  # ═══════════════════════════════════════════
+
+  - name: articole_ro
+    label: "🇷🇴 Articole"
+    label_singular: "Articol"
+    icon: "article"
+    folder: content/romanian/resurse/articole
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: md
+    format: yaml-frontmatter
+    filter: { field: "title", pattern: "^(?!Articole$).*" }
+    sortable_fields:
+      - name: date
+        label: Data
+      - name: title
+        label: Titlu
+    summary: "{{title}} - {{date | date('DD MMM YYYY')}}"
+    fields:
+      - { label: "Titlu", name: "title", widget: "string" }
+      - { label: "Descriere SEO", name: "description", widget: "text", hint: "150-160 caractere" }
+      - { label: "Data Publicarii", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Autor", name: "author", widget: "string", default: "Psiholog Alexandra Barbu" }
+      - label: "Categorii"
+        name: "categories"
+        widget: "list"
+        hint: "Ex: anxietate, depresie, relatii"
+        field: { label: "Categorie", name: "category", widget: "string" }
+      - label: "Etichete"
+        name: "tags"
+        widget: "list"
+        hint: "Cuvinte cheie"
+        field: { label: "Eticheta", name: "tag", widget: "string" }
+      - { label: "Imagine", name: "image", widget: "image", required: false }
+      - { label: "Timp Citire", name: "readTime", widget: "string", default: "5 min" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Continut", name: "body", widget: "markdown" }
+
+  # ╔═══════════════════════════════════════════════════════════════════════════╗
+  # ║  🇬🇧 ENGLISH CONTENT                                                       ║
+  # ╚═══════════════════════════════════════════════════════════════════════════╝
+
+  # ═══════════════════════════════════════════
+  # 🇬🇧 PAGES (English)
+  # ═══════════════════════════════════════════
+
+  - name: pages_en
+    label: "🇬🇧 Pages"
+    label_singular: "Page"
+    icon: "article"
+    folder: content/english
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: md
+    format: yaml-frontmatter
+    sortable_fields:
+      - name: title
+        label: Title
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "flexible" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "SEO Description", name: "description", widget: "text", required: false }
+      - { label: "Keywords", name: "keywords", widget: "list", required: false, field: { label: "Keyword", name: "keyword", widget: "string" } }
+      - label: "Page Sections"
+        name: "sections"
+        widget: "list"
+        collapsed: false
+        fields:
+          - label: "Section Type"
+            name: "type"
+            widget: "select"
+            options:
+              - { label: "Hero with Breadcrumb", value: "hero-breadcrumb" }
+              - { label: "Hero About", value: "hero-about" }
+              - { label: "Values Intro", value: "values-intro" }
+              - { label: "Values Compass", value: "values-compass" }
+              - { label: "Feature Blocks", value: "feature-blocks" }
+              - { label: "CTA Standard", value: "cta-standard" }
+              - { label: "FAQ Mini", value: "faq-mini" }
+              - { label: "Method Tabs", value: "method-tabs" }
+              - { label: "Contact Form", value: "contact-form-enhanced" }
+              - { label: "Testimonials", value: "testimonials-enhanced" }
+              - { label: "Pricing Tables", value: "pricing-tables" }
+              - { label: "Stats Numbers", value: "stats-numbers" }
+              - { label: "Credentials Showcase", value: "credentials-showcase" }
+              - { label: "Onboarding Steps", value: "onboarding-steps" }
+              - { label: "Services Preview", value: "services-preview" }
 
   # ═══════════════════════════════════════════
   # 🇬🇧 SERVICES (English)
@@ -937,10 +910,7 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Layout", name: "layout", widget: "hidden", default: "flexible" }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
-      - label: "SEO Description"
-        name: "description"
-        widget: "text"
-        required: false
+      - { label: "SEO Description", name: "description", widget: "text", required: false }
       - label: "Sections"
         name: "sections"
         widget: "list"
@@ -960,618 +930,47 @@ collections:
               - { label: "Method Tabs", value: "method-tabs" }
 
   # ═══════════════════════════════════════════
-  # 🇬🇧 ENGLISH PAGES (Root level)
+  # 🇬🇧 ARTICLES (English)
   # ═══════════════════════════════════════════
 
-  - name: pages_en
-    label: "🇬🇧 Pages (English)"
-    label_singular: "Page"
+  - name: articles_en
+    label: "🇬🇧 Articles"
+    label_singular: "Article"
     icon: "article"
-    folder: content/english
+    folder: content/english/resources/articles
     create: true
     delete: true
     slug: "{{slug}}"
     extension: md
     format: yaml-frontmatter
+    filter: { field: "title", pattern: "^(?!Articles$).*" }
     sortable_fields:
-      - name: title
-        label: Title
       - name: date
         label: Date
+      - name: title
+        label: Title
+    summary: "{{title}} - {{date | date('DD MMM YYYY')}}"
     fields:
-      # Basic Fields
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Layout", name: "layout", widget: "hidden", default: "flexible" }
+      - { label: "SEO Description", name: "description", widget: "text", hint: "150-160 characters" }
+      - { label: "Publish Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Author", name: "author", widget: "string", default: "Psychologist Alexandra Barbu" }
+      - label: "Categories"
+        name: "categories"
+        widget: "list"
+        field: { label: "Category", name: "category", widget: "string" }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        field: { label: "Tag", name: "tag", widget: "string" }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Read Time", name: "readTime", widget: "string", default: "5 min" }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Content", name: "body", widget: "markdown" }
 
-      # SEO Fields
-      - label: "SEO Description"
-        name: "description"
-        widget: "text"
-        required: false
-        hint: "150-160 characters for search engines"
-
-      - label: "Keywords"
-        name: "keywords"
-        widget: "list"
-        required: false
-        field: { label: "Keyword", name: "keyword", widget: "string" }
-
-      # SECTIONS SELECTOR (same options as Romanian)
-      - label: "Page Sections"
-        name: "sections"
-        widget: "list"
-        hint: "Add section types. Configure each section below."
-        collapsed: false
-        fields:
-          - label: "Section Type"
-            name: "type"
-            widget: "select"
-            options:
-              # Heroes
-              - { label: "Hero with Breadcrumb", value: "hero-breadcrumb" }
-              - { label: "Hero About", value: "hero-about" }
-              # Core
-              - { label: "Values Intro", value: "values-intro" }
-              - { label: "Values Compass", value: "values-compass" }
-              - { label: "Feature Blocks", value: "feature-blocks" }
-              - { label: "CTA Standard", value: "cta-standard" }
-              - { label: "CTA Split", value: "cta-split" }
-              # Interactive
-              - { label: "Video Popup", value: "video-popup" }
-              - { label: "FAQ Mini", value: "faq-mini" }
-              - { label: "Method Tabs", value: "method-tabs" }
-              - { label: "Blog Grid", value: "blog-grid" }
-              # Forms
-              - { label: "Contact Form", value: "contact-form-enhanced" }
-              - { label: "Signup Form", value: "signup-form-enhanced" }
-              - { label: "Newsletter", value: "newsletter-signup" }
-              # Trust
-              - { label: "Contact Info Cards", value: "contact-info-cards" }
-              - { label: "Contact Options", value: "contact-options" }
-              - { label: "Onboarding Steps", value: "onboarding-steps" }
-              - { label: "Privacy Guarantee", value: "privacy-guarantee" }
-              - { label: "Confidentiality Notice", value: "confidentiality-notice" }
-              - { label: "Credentials Showcase", value: "credentials-showcase" }
-              # Pricing
-              - { label: "Pricing Tables", value: "pricing-tables" }
-              - { label: "Pricing Packages", value: "pricing-packages" }
-              # Stats
-              - { label: "Stats Numbers", value: "stats-numbers" }
-              # Testimonials
-              - { label: "Testimonials", value: "testimonials-enhanced" }
-              # About/Bio
-              - { label: "About Preview", value: "about-preview" }
-              - { label: "Approach Preview", value: "approach-preview" }
-              - { label: "Services Preview", value: "services-preview" }
-              - { label: "My Story", value: "my-story" }
-              - { label: "Credentials Education", value: "credentials-education" }
-              - { label: "Training Certifications", value: "training-certifications" }
-              # Methodology
-              - { label: "Therapeutic Process", value: "therapeutic-process" }
-              - { label: "Methodology Zigzag", value: "methodology-zigzag" }
-              - { label: "Scientific Approach", value: "scientific-approach" }
-              - { label: "Methods Used", value: "methods-used" }
-              - { label: "Simple Process", value: "simple-process" }
-              # Specialized
-              - { label: "Problem Empathy", value: "problem-empathy" }
-              - { label: "Benefits Results", value: "benefits-results" }
-
-      # Section configs - same structure as Romanian but with English labels
-      - label: "Config: Hero Breadcrumb"
-        name: "hero_breadcrumb"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Title", name: "title", widget: "string", required: false }
-          - { label: "Subtitle", name: "subtitle", widget: "text", required: false }
-          - { label: "Description", name: "description", widget: "text", required: false }
-          - { label: "Kicker", name: "kicker", widget: "string", required: false }
-          - label: "Variant"
-            name: "variant"
-            widget: "select"
-            required: false
-            default: "primary"
-            options: ["primary", "secondary", "tertiary", "neutral"]
-          - { label: "Show Breadcrumb", name: "show_breadcrumb", widget: "boolean", default: false, required: false }
-          - { label: "Show Compass", name: "show_compass", widget: "boolean", default: true, required: false }
-          - { label: "Hero Image", name: "hero_image", widget: "image", required: false }
-          - label: "CTA Buttons"
-            name: "cta_buttons"
-            widget: "list"
-            required: false
-            fields:
-              - { label: "Text", name: "text", widget: "string" }
-              - { label: "URL", name: "url", widget: "string" }
-              - label: "Variant"
-                name: "variant"
-                widget: "select"
-                default: "primary"
-                options: ["primary", "secondary", "outline-primary", "outline-secondary"]
-
-      # VALUES COMPASS
-      - label: "Config: Values Compass"
-        name: "values_compass"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Enable", name: "enable", widget: "boolean", default: true }
-          - { label: "Title", name: "title", widget: "string", required: false }
-          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-          - { label: "Description", name: "description", widget: "text", required: false }
-          - label: "Variant"
-            name: "variant"
-            widget: "select"
-            required: false
-            default: "primary"
-            options: ["primary", "secondary", "tertiary", "neutral"]
-          - label: "Benefits/Values"
-            name: "benefits"
-            widget: "list"
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Icon", name: "icon", widget: "string", hint: "e.g. flask, heart, brain" }
-              - { label: "Description", name: "description", widget: "text" }
-              - label: "Variant"
-                name: "variant"
-                widget: "select"
-                required: false
-                options: ["primary", "secondary", "tertiary", "neutral"]
-          - label: "CTA"
-            name: "cta"
-            widget: "object"
-            required: false
-            collapsed: true
-            fields:
-              - { label: "Text", name: "text", widget: "string" }
-              - { label: "URL", name: "url", widget: "string" }
-          - label: "Button Variant"
-            name: "button_variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary", "tertiary", "neutral"]
-
-      # VALUES INTRO
-      - label: "Config: Values Intro"
-        name: "values_section"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Enable", name: "enable", widget: "boolean", default: true }
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Image", name: "image", widget: "image", required: false }
-          - { label: "Button Label", name: "button_label", widget: "string", required: false }
-          - { label: "Button Link", name: "button_link", widget: "string", required: false }
-          - label: "Button Variant"
-            name: "button_variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary", "tertiary", "neutral"]
-
-      # FEATURE BLOCKS
-      - label: "Config: Feature Blocks"
-        name: "feature_blocks"
-        widget: "list"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Image", name: "image", widget: "image" }
-          - label: "Features"
-            name: "features"
-            widget: "list"
-            required: false
-            field: { label: "Feature", name: "feature", widget: "string" }
-
-      - { label: "Numbered Blocks", name: "feature_blocks_numbered", widget: "boolean", default: false, required: false }
-
-      # CTA STANDARD
-      - label: "Config: CTA Standard"
-        name: "cta_standard"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Button Text", name: "button_text", widget: "string" }
-          - { label: "Button URL", name: "button_url", widget: "string" }
-          - label: "Variant"
-            name: "variant"
-            widget: "select"
-            default: "primary"
-            options: ["primary", "secondary", "tertiary", "neutral", "success", "warning", "info"]
-          - label: "Background"
-            name: "background"
-            widget: "select"
-            default: "solid"
-            options: ["solid", "gradient", "light", "none"]
-          - label: "Button Variant"
-            name: "button_variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary", "tertiary", "neutral"]
-          - { label: "Secondary Button Text", name: "secondary_button_text", widget: "string", required: false }
-          - { label: "Secondary Button URL", name: "secondary_button_url", widget: "string", required: false }
-
-      # VIDEO POPUP
-      - label: "Config: Video Popup"
-        name: "video_section"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Enable", name: "enable", widget: "boolean", default: true }
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-          - { label: "Description", name: "description", widget: "text", required: false }
-          - { label: "Video URL", name: "video_url", widget: "string", hint: "YouTube, Vimeo or direct file" }
-          - { label: "Video Thumbnail", name: "video_thumbnail", widget: "image", required: false }
-          - label: "Variant"
-            name: "variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary", "tertiary", "neutral"]
-
-      # FAQ MINI
-      - label: "Config: FAQ Mini"
-        name: "faq_items"
-        widget: "list"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Question", name: "question", widget: "string" }
-          - { label: "Answer", name: "answer", widget: "markdown" }
-
-      - { label: "FAQ Title", name: "faq_mini_title", widget: "string", required: false }
-      - { label: "FAQ Subtitle", name: "faq_mini_subtitle", widget: "string", required: false }
-      - { label: "FAQ Footer", name: "faq_mini_footer", widget: "string", required: false }
-      - { label: "FAQ Link Text", name: "faq_mini_link_text", widget: "string", required: false }
-      - { label: "FAQ Link URL", name: "faq_mini_link_url", widget: "string", required: false }
-
-      # METHOD TABS
-      - label: "Config: Method Tabs"
-        name: "method_tabs"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Enable", name: "enable", widget: "boolean", default: true }
-          - { label: "Title", name: "title", widget: "string", required: false }
-          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-          - { label: "Description", name: "description", widget: "text", required: false }
-          - label: "Variant"
-            name: "variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary", "tertiary", "neutral"]
-          - label: "Methods"
-            name: "methods"
-            widget: "list"
-            fields:
-              - { label: "Short Name", name: "short_name", widget: "string", hint: "Shown on tab" }
-              - { label: "Full Title", name: "title", widget: "string" }
-              - { label: "Icon", name: "icon", widget: "string", required: false }
-              - { label: "Description", name: "description", widget: "text" }
-              - { label: "What Is It", name: "what_is", widget: "text", required: false }
-              - { label: "How It Works", name: "how_works", widget: "text", required: false }
-              - label: "Benefits"
-                name: "benefits"
-                widget: "list"
-                required: false
-                field: { label: "Benefit", name: "benefit", widget: "string" }
-              - label: "Techniques"
-                name: "techniques"
-                widget: "list"
-                required: false
-                field: { label: "Technique", name: "technique", widget: "string" }
-              - { label: "Duration", name: "duration", widget: "string", required: false }
-              - { label: "Success Rate", name: "success_rate", widget: "string", required: false }
-
-      # CONTACT FORM ENHANCED
-      - label: "Config: Contact Form"
-        name: "contact_form_enhanced"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - label: "Variant"
-            name: "variant"
-            widget: "select"
-            default: "primary"
-            options: ["primary", "secondary", "tertiary", "neutral"]
-          - label: "Contact Info"
-            name: "contact_info"
-            widget: "list"
-            fields:
-              - label: "Type"
-                name: "type"
-                widget: "select"
-                options: ["phone", "email", "location"]
-              - { label: "Icon", name: "icon", widget: "string" }
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Value", name: "value", widget: "string" }
-              - { label: "Metadata", name: "metadata", widget: "string", required: false }
-          - label: "Trust Badges"
-            name: "trust_badges"
-            widget: "list"
-            required: false
-            fields:
-              - { label: "Icon", name: "icon", widget: "string" }
-              - { label: "Text", name: "text", widget: "string" }
-          - { label: "Form Description", name: "form_description", widget: "text", required: false }
-          - { label: "Privacy Note", name: "privacy_note", widget: "text", required: false }
-
-      # CONTACT INFO CARDS
-      - label: "Config: Contact Cards"
-        name: "contact_methods"
-        widget: "list"
-        collapsed: true
-        required: false
-        fields:
-          - label: "Icon"
-            name: "icon"
-            widget: "select"
-            options: ["phone", "envelope", "map-marker", "clock", "calendar"]
-          - { label: "Label", name: "label", widget: "string" }
-          - { label: "Value", name: "value", widget: "string" }
-          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-          - { label: "Link", name: "link", widget: "string", required: false, hint: "tel:, mailto:, https://" }
-          - label: "Variant"
-            name: "variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary", "tertiary"]
-          - label: "Size"
-            name: "size"
-            widget: "select"
-            required: false
-            options: ["sm", "md", "lg"]
-
-      - { label: "Contact Info Title", name: "contact_info_title", widget: "string", required: false }
-      - { label: "Contact Info Subtitle", name: "contact_info_subtitle", widget: "string", required: false }
-
-      # PRICING TABLES
-      - label: "Config: Pricing Tables"
-        name: "pricing_section"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Enable", name: "enable", widget: "boolean", default: true }
-          - { label: "Title", name: "title", widget: "string", required: false }
-          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-
-      - label: "Pricing Cards"
-        name: "pricing_card"
-        widget: "list"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Service Name", name: "name", widget: "string" }
-          - { label: "Description", name: "content", widget: "text", required: false }
-          - { label: "Currency", name: "currency", widget: "string", default: "RON" }
-          - { label: "Monthly Price", name: "monthly_price", widget: "string", required: false }
-          - { label: "Yearly Price", name: "yearly_price", widget: "string", required: false }
-          - { label: "Featured Card", name: "featured", widget: "boolean", default: false }
-          - { label: "Button Label", name: "button_label", widget: "string" }
-          - { label: "Button Link", name: "button_link", widget: "string" }
-          - label: "Button Variant"
-            name: "button_variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary"]
-          - label: "Services List"
-            name: "services"
-            widget: "list"
-            field: { label: "Service", name: "service", widget: "string" }
-
-      - { label: "Special Offer", name: "offer", widget: "string", required: false }
-      - label: "Monthly/Yearly Toggle"
-        name: "monthly_yearly_toggle"
-        widget: "select"
-        required: false
-        options: ["monthly", "yearly", "toggle"]
-
-      # STATS NUMBERS
-      - label: "Config: Stats Numbers"
-        name: "stats_numbers"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Enable", name: "enable", widget: "boolean", default: true }
-          - { label: "Title", name: "title", widget: "string", required: false }
-          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-          - label: "Stats"
-            name: "stats"
-            widget: "list"
-            fields:
-              - { label: "Value", name: "value", widget: "number" }
-              - { label: "Suffix", name: "suffix", widget: "string", required: false, hint: "+, %, k" }
-              - { label: "Label", name: "label", widget: "string" }
-              - { label: "Icon", name: "icon", widget: "string", required: false }
-              - { label: "Progress", name: "progress", widget: "number", required: false, hint: "0-100 for ring" }
-
-      # CREDENTIALS SHOWCASE
-      - label: "Config: Credentials Showcase"
-        name: "credentials_showcase"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Enable", name: "enable", widget: "boolean", default: true }
-          - { label: "Title", name: "title", widget: "string", required: false }
-          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-          - { label: "Description", name: "description", widget: "text", required: false }
-          - label: "Background"
-            name: "background"
-            widget: "select"
-            required: false
-            options: ["light", "compact"]
-          - { label: "Show Trust Text", name: "show_trust_text", widget: "boolean", default: false, required: false }
-          - { label: "Trust Text", name: "trust_text", widget: "string", required: false }
-          - label: "Credentials"
-            name: "credentials"
-            widget: "list"
-            fields:
-              - label: "Icon"
-                name: "icon"
-                widget: "select"
-                options: ["certificate", "award", "users", "shield-check", "graduation-cap", "star"]
-              - { label: "Label", name: "label", widget: "string" }
-              - { label: "Value", name: "value", widget: "string", required: false }
-              - label: "Variant"
-                name: "variant"
-                widget: "select"
-                required: false
-                options: ["primary", "secondary", "coral", "premium", "sage", "info", "success", "warning"]
-              - label: "Size"
-                name: "size"
-                widget: "select"
-                required: false
-                options: ["sm", "md", "lg"]
-
-      # TESTIMONIALS ENHANCED
-      - label: "Config: Testimonials"
-        name: "testimonials_enhanced"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Title", name: "title", widget: "string", required: false }
-          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-          - label: "Icon Color"
-            name: "icon_color"
-            widget: "select"
-            required: false
-            options: ["gold", "emerald", "sage"]
-          - { label: "Privacy Note", name: "privacy_note", widget: "string", required: false }
-          - label: "Testimonials"
-            name: "testimonials"
-            widget: "list"
-            fields:
-              - { label: "Quote", name: "quote", widget: "text" }
-              - { label: "Name", name: "name", widget: "string" }
-              - { label: "Role", name: "role", widget: "string", required: false }
-          - label: "CTA Button"
-            name: "cta_button"
-            widget: "object"
-            required: false
-            collapsed: true
-            fields:
-              - { label: "Text", name: "text", widget: "string" }
-              - { label: "URL", name: "url", widget: "string" }
-              - label: "Variant"
-                name: "variant"
-                widget: "select"
-                options: ["primary", "secondary"]
-              - { label: "Icon", name: "icon", widget: "string", required: false }
-
-      # ONBOARDING STEPS
-      - label: "Config: Onboarding Steps"
-        name: "onboarding_steps"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Title", name: "title", widget: "string", required: false }
-          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-          - { label: "Intro", name: "intro", widget: "text", required: false }
-          - label: "Variant"
-            name: "variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary", "tertiary", "neutral"]
-          - label: "Steps"
-            name: "steps"
-            widget: "list"
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Description", name: "description", widget: "text" }
-              - { label: "Icon", name: "icon", widget: "string", required: false }
-          - label: "CTA"
-            name: "cta"
-            widget: "object"
-            required: false
-            collapsed: true
-            fields:
-              - { label: "Text", name: "text", widget: "string" }
-              - { label: "URL", name: "url", widget: "string" }
-              - label: "Variant"
-                name: "variant"
-                widget: "select"
-                options: ["primary", "secondary"]
-
-      # SERVICES PREVIEW
-      - label: "Config: Services Preview"
-        name: "services_preview"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Title", name: "title", widget: "string", required: false }
-          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-          - { label: "Description", name: "description", widget: "text", required: false }
-          - label: "Services"
-            name: "services"
-            widget: "list"
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Description", name: "description", widget: "text" }
-              - { label: "Icon", name: "icon", widget: "string", hint: "brain, heart, users, etc." }
-              - { label: "URL", name: "url", widget: "string" }
-
-      # PROBLEM EMPATHY
-      - label: "Config: Problem Empathy"
-        name: "problem_empathy"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Enable", name: "enable", widget: "boolean", default: true }
-          - { label: "Title", name: "title", widget: "string", required: false }
-          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-          - { label: "Description", name: "description", widget: "text", required: false }
-          - { label: "Empathy Text", name: "empathy_text", widget: "text", required: false }
-          - label: "Challenges"
-            name: "challenges"
-            widget: "list"
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Description", name: "description", widget: "text" }
-              - { label: "Icon", name: "icon", widget: "string", required: false }
-
-      # NEWSLETTER SIGNUP
-      - label: "Config: Newsletter"
-        name: "newsletter_signup"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Enable", name: "enable", widget: "boolean", default: true }
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Icon", name: "icon", widget: "string", required: false }
-          - { label: "Description", name: "description", widget: "text", required: false }
-          - label: "Benefits"
-            name: "benefits"
-            widget: "list"
-            required: false
-            field: { label: "Benefit", name: "benefit", widget: "string" }
-          - { label: "GDPR Text", name: "gdpr_text", widget: "text", required: false }
-          - { label: "Button Text", name: "button_text", widget: "string", default: "Subscribe" }
-          - label: "Button Variant"
-            name: "button_variant"
-            widget: "select"
-            required: false
-            options: ["primary", "secondary"]
+  # ╔═══════════════════════════════════════════════════════════════════════════╗
+  # ║  ⚙️ SETTINGS & NAVIGATION                                                  ║
+  # ╚═══════════════════════════════════════════════════════════════════════════╝
 
   # ═══════════════════════════════════════════
   # 🧭 NAVIGATION

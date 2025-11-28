@@ -4,7 +4,7 @@ description: "Înțelege ce se întâmplă în corpul tău în timpul unui atac 
 date: 2025-11-21
 author: "Psiholog Alexandra Barbu"
 categories: ["anxietate"]
-tags: ["atacuri de panică", "anxietate", "tehnici", "urgență"]
+tags: ["atacuri de panică", "anxietate", "tehnici", "urgență", "sănătate mintală"]
 image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800"
 readTime: "8 min"
 draft: false

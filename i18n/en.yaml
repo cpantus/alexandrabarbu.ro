@@ -167,3 +167,9 @@
   translation: "We understand your specific needs, Create a personalized therapy plan, Weekly therapy sessions, Maintaining long-term progress."
 - id: footer_cta_button
   translation: "Schedule a 15-minute evaluation"
+
+- id: toc_title
+  translation: In this article
+
+- id: toc_aria_label
+  translation: Article table of contents

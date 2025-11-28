@@ -123,26 +123,30 @@ includeNewer = true
 
 # Lower threshold = more related pages
 # Higher threshold = stricter matching (fewer results)
-threshold = 80
+threshold = 20
 
 # Show up to 5 related pages
 toLower = true
 
 [[related.indices]]
+name = "categories"
+weight = 100  # Highest priority: same category (articles use this)
+
+[[related.indices]]
 name = "therapies"
-weight = 100  # Highest priority: same therapy modality
+weight = 90   # Second priority: same therapy modality (services)
 
 [[related.indices]]
 name = "conditions"
-weight = 80   # Second priority: treats same conditions
-
-[[related.indices]]
-name = "service_types"
-weight = 60   # Third priority: same service type
+weight = 80   # Third priority: treats same conditions
 
 [[related.indices]]
 name = "tags"
-weight = 40   # Fourth priority: shared tags
+weight = 70   # Fourth priority: shared tags
+
+[[related.indices]]
+name = "service_types"
+weight = 50   # Fifth priority: same service type
 
 [[related.indices]]
 name = "date"
