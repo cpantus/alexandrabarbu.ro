@@ -119,7 +119,7 @@
 
   @media (max-width: $breakpoint-md-max) {
     font-size: 1.5rem; // 24px on mobile
-    padding: $space-2 $space-5; // 8px 20px on mobile
+    padding: $space-2 $space-5 3rem; // 8px 20px 48px on mobile (extra bottom padding)
     // On mobile, position at top of section instead of 50%
     // This ensures badge appears above cards
     top: $space-6; // 24px from top
