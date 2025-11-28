@@ -62,9 +62,10 @@ LAST UPDATED: 2025-11-20
           "level" 2
           "text" .
           "class" "c-contact-info-section__title"
+          "markdown" true
         ) }}
         {{ with $.Params.contact_info_subtitle }}
-        <p class="c-contact-info-section__subtitle">{{ . }}</p>
+        <p class="c-contact-info-section__subtitle">{{ . | markdownify }}</p>
         {{ end }}
       </div>
       {{ end }}

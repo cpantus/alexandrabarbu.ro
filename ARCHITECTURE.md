@@ -100,20 +100,23 @@ Page (content/*.md) → flexible.html → Header → Sections → Footer → HTM
 **Props**: `{{ partial "path/component.html" (dict "key1" "val1" "key2" .PageVar) }}`
 **Markdownify**: Use `| markdownify` for text fields that may contain markdown (titles, descriptions)
 
-### Text Emphasis Pattern (v5.3.1)
+### Text Emphasis Pattern (v5.3.2)
 
-Use markdown `*text*` for emphasis in front matter instead of separate `title_accent` fields:
+Use markdown for emphasis in front matter instead of separate `title_accent` fields:
 
 ```yaml
 # ✅ Preferred - native markdown
-title: "Finding Your *Inner North*"
+title: "Finding Your *Inner North*"    # Italic + sage green
+title: "Cum Mă **Poți Contacta**"      # Bold + sage green
 
 # ❌ Deprecated - custom fields
 title: "Finding Your"
 title_accent: "Inner North"
 ```
 
-Templates use `| markdownify` to render `<em>` tags, styled via `.c-heading em` (italic + sage green).
+Templates use `| markdownify` to render tags, styled via:
+- `.c-heading em` / `.c-heading i` → italic + sage green
+- `.c-heading strong` / `.c-heading b` → bold + sage green
 
 ---
 

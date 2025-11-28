@@ -41,6 +41,11 @@
 @import 'mixins-animations';      // Animation mixins (staggered-entrance, progressive-disclosure, etc.)
 
 // ----------------------------------
+// Mixins - Prose/Markdown Content
+// ----------------------------------
+@import 'mixins-prose';           // Markdown content styling mixin
+
+// ----------------------------------
 // ✅ PHASE 8 COMPLETE: All mixins extracted
 // ----------------------------------
 // - ✅ Glassmorphism mixins → _mixins-glassmorphism.scss

@@ -1,0 +1,54 @@
+// ==================================
+// COMPONENT: Prose / Markdown Content
+// ==================================
+//
+// Purpose: Utility class for markdown-rendered content
+// Use on any container that receives | markdownify output
+//
+// BEM: .c-prose (utility component)
+//
+// Usage in HTML:
+//   <div class="c-prose">{{ .description | markdownify }}</div>
+//
+// Usage in SCSS (as mixin):
+//   .my-description { @include prose; }
+//
+// Version: 1.0.0
+// Created: 2025-11-28
+//
+
+// Full prose - for descriptions, content blocks
+.c-prose {
+  @include prose;
+}
+
+// Inline prose - for single-line contexts (subtitles, short text)
+.c-prose--inline {
+  @include prose-inline;
+}
+
+// ==================================
+// Common section element patterns
+// ==================================
+// Apply prose styling to common BEM element patterns
+// that typically receive markdownify content
+
+// Description elements across sections
+[class*="__description"] {
+  @include prose;
+}
+
+// Subtitle elements (inline only - no block elements expected)
+[class*="__subtitle"] {
+  @include prose-inline;
+}
+
+// Intro text elements
+[class*="__intro"] {
+  @include prose;
+}
+
+// Content wrapper elements
+[class*="__content"] {
+  @include prose;
+}

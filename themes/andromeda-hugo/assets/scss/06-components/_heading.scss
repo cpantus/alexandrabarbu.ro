@@ -104,6 +104,45 @@ h6.c-heading {
   font-weight: inherit;  // Inherit weight from parent heading
 }
 
+/**
+ * Bold accent - sage green highlight for **text** markdown
+ * Usage with markdownify: title: "Cum Mă **Poți Contacta**"
+ */
+.c-heading strong,
+.c-heading b {
+  color: var(--heading-accent-color);    // Sage green (#6B9080)
+  font-weight: inherit;  // Keep heading's natural weight
+}
+
+/**
+ * Additional markdown inline elements
+ * Strikethrough: ~~text~~ → <del>
+ * Inline code: `code` → <code>
+ * Mark/highlight: <mark> (non-standard but useful)
+ */
+.c-heading del,
+.c-heading s {
+  color: var(--heading-accent-color);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.c-heading code {
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 0.9em;
+  color: var(--heading-accent-color);
+  background-color: rgba($color-secondary, 0.1);
+  padding: 0.1em 0.3em;
+  border-radius: $border-radius-sm;
+}
+
+.c-heading mark {
+  color: inherit;
+  background-color: rgba($color-accent, 0.3);
+  padding: 0.1em 0.2em;
+  border-radius: $border-radius-sm;
+}
+
 /*------------------------------------------------------------------
   # Color Variant Modifiers
 -------------------------------------------------------------------*/

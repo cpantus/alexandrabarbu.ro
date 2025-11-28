@@ -92,16 +92,13 @@
   right: 0;
   z-index: 1000;
   background: rgba($cream-50, 0.95); // Redesign 2025: Clean white/cream background
-  border-bottom: 1px solid $cream-200; // Redesign 2025: Subtle cream border
   transition: background $duration-normal $easing-default,
-              box-shadow $duration-normal $easing-default,
-              border-color $duration-normal $easing-default;
+              box-shadow $duration-normal $easing-default;
 
   &--sticky {
     background: rgba($cream-50, 0.98); // Redesign 2025: Slightly more opaque on scroll
     backdrop-filter: blur(12px);
     box-shadow: $shadow-md;
-    border-bottom: 1px solid $cream-300; // Redesign 2025: Slightly darker border on scroll
   }
 
   @media (prefers-reduced-motion: reduce) {
