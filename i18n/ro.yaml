@@ -159,3 +159,11 @@
   translation: "Telefonul Sufletului: 0800 801 200 (gratuit, 24/7)"
 - id: close
   translation: "Închide"
+
+# Footer CTA Section
+- id: footer_cta_title
+  translation: "O Hartă Personalizată pentru Fiecare Călătorie"
+- id: footer_cta_content
+  translation: "Înțelegem nevoile tale specifice, Creăm un plan terapeutic personalizat, Ședințe săptămânale de terapie, Menținerea progresului pe termen lung."
+- id: footer_cta_button
+  translation: "Programeaza o evaluare de 15 minute"

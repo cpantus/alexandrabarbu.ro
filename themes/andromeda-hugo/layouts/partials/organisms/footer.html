@@ -52,16 +52,16 @@
     <div class="c-footer__cta-content">
       {{ partial "atoms/heading.html" (dict
         "level" "h2"
-        "text" site.Params.cta.title
+        "text" (i18n "footer_cta_title" | default site.Params.cta.title)
         "variant" "gradient"
         "alignment" "center"
         "context" .
       ) }}
-      <p class="c-footer__cta-text">{{ site.Params.cta.content | markdownify }}</p>
+      <p class="c-footer__cta-text">{{ (i18n "footer_cta_content" | default site.Params.cta.content) | markdownify }}</p>
       <div class="c-footer__cta-button">
         {{ partial "atoms/button.html" (dict
-          "text" site.Params.cta.button
-          "url" site.Params.cta.button_link
+          "text" (i18n "footer_cta_button" | default site.Params.cta.button)
+          "href" site.Params.cta.button_link
           "variant" "primary"
           "size" "lg"
         ) }}

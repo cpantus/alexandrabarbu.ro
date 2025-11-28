@@ -72,28 +72,23 @@ url = "despre-mine/"
 weight = 1
 
 [[footer]]
-name = "Servicii"
-url = "servicii/"
-weight = 2
-
-[[footer]]
 name = "Abordare"
 url = "abordare/"
-weight = 3
+weight = 2
 
 [[footer]]
 name = "Resurse"
 url = "resurse/"
-weight = 4
+weight = 3
 
 [[footer]]
 name = "Contact"
 url = "contact/"
-weight = 5
+weight = 4
 
 [[footer]]
 name = "Termeni & Condiții"
 url = "termeni-si-conditii/"
-weight = 6
+weight = 5
 
 

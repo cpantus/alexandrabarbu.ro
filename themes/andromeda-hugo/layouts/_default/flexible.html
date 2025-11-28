@@ -1,21 +1,28 @@
 {{/* Flexible Layout Template - Sequential Section Rendering */}}
 {{ define "main" }}
-  
-  {{/* ALWAYS render page header first - regardless of section order */}}
+
+  {{/* Check for hero sections */}}
   {{ $hasHeroBreadcrumb := false }}
+  {{ $hasOtherHero := false }}
   {{ range .Params.sections }}
     {{ if eq .type "hero-breadcrumb" }}
       {{ $hasHeroBreadcrumb = true }}
     {{ end }}
+    {{/* Skip auto hero-breadcrumb if page has its own hero section */}}
+    {{ if or (eq .type "hero-about") (eq .type "hero-home") (eq .type "hero-service") }}
+      {{ $hasOtherHero = true }}
+    {{ end }}
   {{ end }}
-  
-  {{/* Render page header - either from sections or default */}}
-  {{ if $hasHeroBreadcrumb }}
-    <!-- Page Header: hero-breadcrumb (from sections) -->
-    {{ partial "sections/hero-breadcrumb.html" . }}
-  {{ else }}
-    <!-- Page Header: default (auto-generated) -->
-    {{ partial "sections/hero-breadcrumb.html" . }}
+
+  {{/* Render page header - only if no other hero section exists */}}
+  {{ if not $hasOtherHero }}
+    {{ if $hasHeroBreadcrumb }}
+      <!-- Page Header: hero-breadcrumb (from sections) -->
+      {{ partial "sections/hero-breadcrumb.html" . }}
+    {{ else }}
+      <!-- Page Header: default (auto-generated) -->
+      {{ partial "sections/hero-breadcrumb.html" . }}
+    {{ end }}
   {{ end }}
   
   {{/* Process remaining sections in the EXACT order defined in front matter */}}

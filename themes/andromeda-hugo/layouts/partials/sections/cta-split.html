@@ -169,7 +169,7 @@
         {{- if and $data.button_text $data.button_url -}}
           {{ partial "atoms/button.html" (dict
             "text" $data.button_text
-            "url" $data.button_url
+            "href" $data.button_url
             "variant" "light"
             "icon" "las la-arrow-right"
           ) }}

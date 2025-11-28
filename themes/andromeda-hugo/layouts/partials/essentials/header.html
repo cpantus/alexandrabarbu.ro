@@ -1,6 +1,9 @@
 {{/*
-  Header Wrapper - Delegates to organism with caching
+  Header Wrapper - Delegates to organism
   This partial exists to maintain compatibility with existing theme structure
   while using the new atomic design organism
+
+  Note: Cannot use partialCached because language selector needs page-specific URLs
+  to enable switching between translations of the current page.
 */}}
-{{ partialCached "organisms/header.html" . .Language }}
+{{ partial "organisms/header.html" . }}

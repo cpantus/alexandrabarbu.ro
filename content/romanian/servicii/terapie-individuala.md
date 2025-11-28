@@ -336,7 +336,7 @@ cta_standard:
   description: "Nu trebuie să treci prin asta singur. Programează o consultație gratuită de 30 minute și să începem împreună călătoria spre o viață mai bună."
   background: "gradient"
   button_text: "Programează Consultație Gratuită"
-  button_url: "/contact/"
+  button_url: "https://cal.com/gigi-frana-uvymh4/15min"
   button_variant: "secondary"
 
 

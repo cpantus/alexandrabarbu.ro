@@ -194,6 +194,6 @@ cta_standard:
     Prima ședință este întotdeauna de cunoaștere, fără obligații. Putem discuta despre provocările tale și
     cum te pot ajuta, într-un cadru sigur și confidențial.
   button_text: "Programează Consultație"
-  button_url: "/contact/"
+  button_url: "https://cal.com/gigi-frana-uvymh4/15min"
   button_variant: "secondary"
 ---

@@ -159,3 +159,11 @@
   translation: "Telefonul Sufletului (Soul Hotline): 0800 801 200 (free, 24/7)"
 - id: close
   translation: "Close"
+
+# Footer CTA Section
+- id: footer_cta_title
+  translation: "A Personalized Map for Every Journey"
+- id: footer_cta_content
+  translation: "We understand your specific needs, Create a personalized therapy plan, Weekly therapy sessions, Maintaining long-term progress."
+- id: footer_cta_button
+  translation: "Schedule a 15-minute evaluation"

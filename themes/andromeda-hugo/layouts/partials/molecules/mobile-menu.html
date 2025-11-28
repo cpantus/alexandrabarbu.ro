@@ -74,7 +74,7 @@
     {{ if site.Params.navigation_button.enable }}
       {{ partial "atoms/button.html" (dict
         "text" site.Params.navigation_button.label
-        "url" (site.Params.navigation_button.link | relURL)
+        "href" site.Params.navigation_button.link
         "variant" "primary"
         "class" "c-mobile-menu__cta"
       ) }}

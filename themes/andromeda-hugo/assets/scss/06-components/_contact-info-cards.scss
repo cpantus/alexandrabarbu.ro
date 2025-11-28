@@ -61,6 +61,12 @@
   @media (min-width: 768px) {
     font-size: var(--font-size-4xl);
   }
+
+  // Gold accent for emphasized text (e.g., "Poți Contacta")
+  em, i {
+    font-style: italic;
+    color: $gold-500;
+  }
 }
 
 .c-contact-info-section__subtitle {

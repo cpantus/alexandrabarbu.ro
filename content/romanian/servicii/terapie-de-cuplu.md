@@ -108,7 +108,7 @@ cta_standard:
   description: "Nu așteptați până este prea târziu. Cu cât începeți terapia mai devreme, cu atât șansele de succes sunt mai mari. Programează o consultație gratuită de 30 minute."
 
   button_text: "Programează Consultație Gratuită"
-  button_url: "/contact/"
+  button_url: "https://cal.com/gigi-frana-uvymh4/15min"
 
 
 

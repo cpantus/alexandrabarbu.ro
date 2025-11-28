@@ -160,7 +160,7 @@ headings_brand_color = true
 ## Design System
 
 **Colors**: Primary `#234E3E` (forest), Secondary `#6B9080` (sage), Accent `#D4AF37` (gold), Text `#374151`
-**Typography**: Crimson Pro (headings), Work Sans (body), 16px base
+**Typography**: Playfair Display (headings), DM Sans (body), 16px base
 **Breakpoints**: sm:576px, md:768px, lg:992px, xl:1200px
 
 ---
@@ -292,4 +292,4 @@ image: "/assets/images/feature.png"
 
 ---
 
-**Status**: Production Ready ✅ | 71 components | <3s builds | <520KB pages | ITCSS + BEM | Crimson Pro + Work Sans
+**Status**: Production Ready ✅ | 71 components | <3s builds | <520KB pages | ITCSS + BEM | Playfair Display + DM Sans

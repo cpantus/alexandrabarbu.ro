@@ -409,7 +409,7 @@
 // =============================================================================
 // Override logo colors specifically in the header context
 // - Text elements: Dark teal/gray (#374A51)
-// - Icon element: Emerald (brand primary color)
+// - Icon element: Default mint (#4db380), hover to emerald (brand primary)
 // - Footer logo remains unchanged (uses default colors)
 // =============================================================================
 
@@ -427,7 +427,19 @@
     }
 
     .c-logo__icon {
-      fill: $color-primary !important; // Keep leaf icon emerald
+      fill: #4db380 !important; // Default: mint green
+      transition: fill $duration-normal $easing-default;
+
+      path {
+        fill: #4db380 !important;
+        transition: fill $duration-normal $easing-default;
+      }
+    }
+
+    // Hover state: transition to forest green (brand primary)
+    &:hover .c-logo__icon,
+    .c-logo__link:hover .c-logo__icon {
+      fill: $color-primary !important;
 
       path {
         fill: $color-primary !important;

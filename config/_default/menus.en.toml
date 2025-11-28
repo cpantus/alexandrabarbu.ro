@@ -3,19 +3,9 @@
 # main menu
 
 [[main]]
-name = "Home"
-url = "/"
-weight = 1
-
-[[main]]
 name = "About"
 url = "about/"
 weight = 2
-
-[[main]]
-name = "Approach"
-url = "approach/"
-weight = 4
 
 [[main]]
 weight = 3
@@ -41,11 +31,10 @@ hasChildren = true
   url = "services/family-therapy/"
   weight = 3
 
-  [[main]]
-  parent = "Services"
-  name = "Organizational Psychology"
-  url = "services/organizational-psychology/"
-  weight = 4
+[[main]]
+name = "Corporate"
+url = "services/organizational-psychology/"
+weight = 4
 
 [[main]]
 weight = 6
@@ -78,26 +67,21 @@ url = "about/"
 weight = 1
 
 [[footer]]
-name = "Services"
-url = "services/"
-weight = 2
-
-[[footer]]
 name = "Approach"
 url = "approach/"
-weight = 3
+weight = 2
 
 [[footer]]
 name = "Resources"
 url = "resources/"
-weight = 4
+weight = 3
 
 [[footer]]
 name = "Contact"
 url = "contact/"
-weight = 5
+weight = 4
 
 [[footer]]
 name = "Terms & Conditions"
 url = "terms-and-conditions/"
-weight = 6
+weight = 5

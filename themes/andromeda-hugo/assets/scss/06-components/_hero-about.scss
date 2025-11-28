@@ -81,6 +81,12 @@
 
 .c-hero-about__title {
   margin-bottom: $space-12;
+
+  // Support markdown emphasis (italic) in title
+  em, i {
+    font-style: italic;
+    color: var(--heading-accent-color);
+  }
 }
 
 /* Name variant (first name regular, last name italic) */

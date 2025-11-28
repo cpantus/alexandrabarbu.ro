@@ -115,15 +115,23 @@
         {{- if $isCurrentLang -}}
           {{- $langURL = $context.RelPermalink -}}
         {{- else -}}
-          {{/* Try to find translation */}}
+          {{/* Try to find translation - must be same Kind (page/home/section) */}}
+          {{- $contextKind := $context.Kind -}}
           {{- range $context.Translations -}}
-            {{- if eq .Lang $langCode -}}
+            {{- if and (eq .Lang $langCode) (eq .Kind $contextKind) -}}
               {{- $langURL = .RelPermalink -}}
             {{- end -}}
           {{- end -}}
           {{/* Fallback to homepage if no translation exists */}}
           {{- if not $langURL -}}
-            {{- $langURL = printf "/%s/" $langCode | absLangURL -}}
+            {{/* For RO (default language) go to root, for EN go to /en/ */}}
+            {{- if eq $langCode "ro" -}}
+              {{- $langURL = "/" -}}
+            {{- else if eq $langCode "en" -}}
+              {{- $langURL = "/en/" -}}
+            {{- else -}}
+              {{- $langURL = printf "/%s/" $langCode -}}
+            {{- end -}}
           {{- end -}}
         {{- end -}}
 

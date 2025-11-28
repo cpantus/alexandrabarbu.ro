@@ -142,7 +142,7 @@
             {{- range $ctaButtons -}}
               {{ partial "atoms/button.html" (dict
                 "text" .text
-                "url" .url
+                "href" .url
                 "variant" (.variant | default "primary")
                 "icon" .icon
                 "size" "lg"

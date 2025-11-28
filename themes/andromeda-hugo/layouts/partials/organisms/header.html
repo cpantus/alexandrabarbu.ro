@@ -118,7 +118,7 @@
             <div class="c-header__cta">
               {{ partial "atoms/button.html" (dict
                 "text" site.Params.navigation_button.label
-                "url" (site.Params.navigation_button.link | relURL)
+                "href" site.Params.navigation_button.link
                 "variant" "primary"
                 "size" "md"
               ) }}
