@@ -39,6 +39,66 @@
       font-size: 18px;
       font-weight: 500;
     }
+
+    /* Custom Toast Notification System */
+    .cms-toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      pointer-events: none;
+    }
+    .cms-toast {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      background: #234E3E;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      font-size: 14px;
+      font-weight: 500;
+      transform: translateX(120%);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: auto;
+      max-width: 360px;
+    }
+    .cms-toast.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    .cms-toast.success { background: #234E3E; }
+    .cms-toast.info { background: #2563eb; }
+    .cms-toast.warning { background: #d97706; }
+    .cms-toast.error { background: #dc2626; }
+    .cms-toast-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+    }
+    .cms-toast-message {
+      flex: 1;
+      line-height: 1.4;
+    }
+    .cms-toast-close {
+      flex-shrink: 0;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      padding: 4px;
+      font-size: 18px;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .cms-toast-close:hover {
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -46,6 +106,9 @@
     <div class="loading-spinner"></div>
     <div class="loading-text">Se incarca Content Manager...</div>
   </div>
+
+  <!-- Toast Container -->
+  <div id="cms-toast-container" class="cms-toast-container"></div>
 
   <script>
     // Determine which config to load based on hostname
@@ -59,6 +122,143 @@
   <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 
   <script>
+    // ========================================
+    // Custom Toast Notification System
+    // ========================================
+    const CmsToast = {
+      container: null,
+
+      init() {
+        this.container = document.getElementById('cms-toast-container');
+      },
+
+      icons: {
+        success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+        info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
+        warning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+        error: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>'
+      },
+
+      show(message, type = 'success', duration = 4000) {
+        if (!this.container) this.init();
+
+        const toast = document.createElement('div');
+        toast.className = `cms-toast ${type}`;
+        toast.innerHTML = `
+          <span class="cms-toast-icon">${this.icons[type] || this.icons.info}</span>
+          <span class="cms-toast-message">${message}</span>
+          <button class="cms-toast-close" onclick="this.parentElement.remove()">&times;</button>
+        `;
+
+        this.container.appendChild(toast);
+
+        // Trigger animation
+        requestAnimationFrame(() => {
+          toast.classList.add('show');
+        });
+
+        // Auto-remove after duration
+        if (duration > 0) {
+          setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 300);
+          }, duration);
+        }
+
+        return toast;
+      },
+
+      success(message, duration) { return this.show(message, 'success', duration); },
+      info(message, duration) { return this.show(message, 'info', duration); },
+      warning(message, duration) { return this.show(message, 'warning', duration); },
+      error(message, duration) { return this.show(message, 'error', duration); }
+    };
+
+    // ========================================
+    // Save Detection via Network Interception
+    // ========================================
+    (function() {
+      // Track recent saves to avoid duplicate notifications
+      let lastSaveTime = 0;
+      const DEBOUNCE_MS = 1000;
+
+      // Intercept fetch to detect GitHub API save operations
+      const originalFetch = window.fetch;
+      window.fetch = async function(...args) {
+        const response = await originalFetch.apply(this, args);
+
+        try {
+          const url = args[0]?.url || args[0];
+          const options = args[1] || {};
+          const method = options.method?.toUpperCase() || 'GET';
+
+          // Detect GitHub API mutations (PUT/POST to contents or git endpoints)
+          if (typeof url === 'string' && url.includes('api.github.com')) {
+            const now = Date.now();
+
+            if ((method === 'PUT' || method === 'POST') && response.ok) {
+              // Debounce multiple rapid saves
+              if (now - lastSaveTime < DEBOUNCE_MS) {
+                return response;
+              }
+              lastSaveTime = now;
+
+              // Determine what was saved
+              let message = 'Modificarile au fost salvate!';
+
+              if (url.includes('/contents/static/images') || url.includes('/contents/images')) {
+                message = 'Imaginea a fost salvata cu succes!';
+              } else if (url.includes('/contents/content/')) {
+                message = 'Continutul a fost salvat cu succes!';
+              } else if (url.includes('/contents/data/')) {
+                message = 'Setarile au fost salvate cu succes!';
+              } else if (url.includes('/contents/config/')) {
+                message = 'Configuratia a fost salvata!';
+              }
+
+              CmsToast.success(message);
+              console.log('[CMS Toast] Save detected:', url);
+            }
+          }
+        } catch (e) {
+          // Silent fail - don't break CMS functionality
+          console.warn('[CMS Toast] Error detecting save:', e);
+        }
+
+        return response;
+      };
+
+      // Also intercept GraphQL mutations (Sveltia uses these too)
+      const originalXHR = window.XMLHttpRequest.prototype.send;
+      window.XMLHttpRequest.prototype.send = function(...args) {
+        this.addEventListener('load', function() {
+          try {
+            if (this.status >= 200 && this.status < 300) {
+              const url = this.responseURL || '';
+              if (url.includes('api.github.com/graphql')) {
+                const now = Date.now();
+                if (now - lastSaveTime < DEBOUNCE_MS) return;
+
+                // Check if this looks like a mutation response
+                const response = this.responseText;
+                if (response && (response.includes('"createCommitOnBranch"') || response.includes('"sha"'))) {
+                  lastSaveTime = now;
+                  CmsToast.success('Modificarile au fost salvate!');
+                  console.log('[CMS Toast] GraphQL save detected');
+                }
+              }
+            }
+          } catch (e) {
+            console.warn('[CMS Toast] XHR error:', e);
+          }
+        });
+        return originalXHR.apply(this, args);
+      };
+    })();
+
+    // ========================================
+    // CMS Event Listeners
+    // ========================================
     // Hide loading message once CMS loads
     if (window.CMS) {
       window.CMS.registerEventListener({
@@ -68,6 +268,20 @@
           document.getElementById('loading').style.display = 'none';
         }
       });
+
+      // Try to register postSave event (may not be supported yet)
+      try {
+        window.CMS.registerEventListener({
+          name: 'postSave',
+          handler: ({ entry }) => {
+            const title = entry?.get?.('data')?.get?.('title') || 'Continut';
+            CmsToast.success(`"${title}" a fost salvat!`);
+            console.log('[CMS] postSave event:', title);
+          }
+        });
+      } catch (e) {
+        console.log('[CMS] postSave event not supported yet');
+      }
     }
 
     // Fallback: hide loading after timeout
