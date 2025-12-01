@@ -1,5 +1,8 @@
 {{- /* Favicon configuration for all browsers */ -}}
-{{- /* PNG favicons for modern browsers (Chrome, Firefox, Edge) - these take priority */ -}}
+{{- /* SVG favicon for modern browsers - scales perfectly at any size */ -}}
+<link rel="icon" type="image/svg+xml" href="{{ "images/favicon.svg" | relURL }}">
+
+{{- /* PNG fallback for browsers that don't support SVG favicons */ -}}
 <link rel="icon" type="image/png" sizes="32x32" href="{{ "images/favicon-32x32.png" | relURL }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ "images/favicon-16x16.png" | relURL }}">
 
