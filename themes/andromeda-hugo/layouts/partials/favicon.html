@@ -1,24 +1,11 @@
-{{- /* Favicon configuration - uses ICO for best compatibility */ -}}
-{{- $faviconIco := "images/favicon.ico" -}}
-{{- $favicon16 := "images/favicon-16x16.png" -}}
-{{- $favicon32 := "images/favicon-32x32.png" -}}
-{{- $appleTouch := "images/apple-touch-icon.png" -}}
+{{- /* Favicon configuration for all browsers */ -}}
+{{- /* PNG favicons for modern browsers (Chrome, Firefox, Edge) - these take priority */ -}}
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "images/favicon-32x32.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "images/favicon-16x16.png" | relURL }}">
 
-{{- /* ICO file for legacy browsers and default favicon */ -}}
-{{- if fileExists (path.Join "static" $faviconIco) -}}
-<link rel="icon" href="{{ $faviconIco | relURL }}" sizes="48x48">
-<link rel="shortcut icon" href="{{ $faviconIco | relURL }}">
-{{- end -}}
-
-{{- /* PNG favicons for modern browsers */ -}}
-{{- if fileExists (path.Join "static" $favicon16) -}}
-<link rel="icon" type="image/png" sizes="16x16" href="{{ $favicon16 | relURL }}">
-{{- end -}}
-{{- if fileExists (path.Join "static" $favicon32) -}}
-<link rel="icon" type="image/png" sizes="32x32" href="{{ $favicon32 | relURL }}">
-{{- end -}}
+{{- /* ICO fallback for legacy browsers */ -}}
+<link rel="icon" href="{{ "images/favicon.ico" | relURL }}" sizes="48x48">
+<link rel="shortcut icon" href="{{ "images/favicon.ico" | relURL }}">
 
 {{- /* Apple Touch Icon for iOS */ -}}
-{{- if fileExists (path.Join "static" $appleTouch) -}}
-<link rel="apple-touch-icon" sizes="180x180" href="{{ $appleTouch | relURL }}">
-{{- end -}}
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "images/apple-touch-icon.png" | relURL }}">
