@@ -10,6 +10,7 @@ backend:
   name: github
   repo: cpantus/alexandrabarbu.ro
   branch: main
+  base_url: https://sveltia-cms-auth-alexandrabarbu.cpantus.workers.dev
   # Optional: Use editorial workflow for draft/review/publish stages
   # publish_mode: editorial_workflow
 
