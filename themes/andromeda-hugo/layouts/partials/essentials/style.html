@@ -15,9 +15,14 @@
 <link rel="dns-prefetch" href="//platform.linkedin.com" />
 <link rel="dns-prefetch" href="//platform.twitter.com" />
 
-<!-- Self-hosted fonts for better performance (eliminates render-blocking external requests) -->
-<link rel="stylesheet" href="/css/fonts.css" />
-<link rel="stylesheet" href="/css/line-awesome.min.css" />
+<!-- Self-hosted fonts - loaded async to eliminate render-blocking -->
+<!-- fonts.css: Google Fonts (Playfair Display + DM Sans) -->
+<link rel="preload" href="/css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/css/fonts.css"></noscript>
+
+<!-- line-awesome: Icon fonts - loaded async -->
+<link rel="preload" href="/css/line-awesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/css/line-awesome.min.css"></noscript>
 
 <!-- plugins + stylesheet -->
 {{ $styles := slice }}
