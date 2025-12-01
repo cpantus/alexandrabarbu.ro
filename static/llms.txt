@@ -1,0 +1,50 @@
+# Alexandra Barbu - Psiholog Clinician
+
+> Psihoterapie individuala si de cuplu in Bucuresti. Alexandra Barbu ofera servicii profesionale de psihologie clinica pentru adulti.
+
+## About the Author
+
+Alexandra Barbu - Psiholog Clinician
+Psiholog clinician cu peste 15 ani de experienta in psihoterapie individuala si de cuplu.
+
+## Site Structure
+
+This website is organized into the following main sections:
+
+- [Acasa](https://alexandrabarbu.ro/): Homepage
+- [Despre Mine](https://alexandrabarbu.ro/despre-mine/): About the therapist
+- [Servicii](https://alexandrabarbu.ro/servicii/): Therapy services
+- [Resurse](https://alexandrabarbu.ro/resurse/): Articles and resources
+- [Contact](https://alexandrabarbu.ro/contact/): Contact information
+
+## Services
+
+- [Terapie Individuala](https://alexandrabarbu.ro/servicii/terapie-individuala/): Individual psychotherapy for adults
+- [Terapie de Cuplu](https://alexandrabarbu.ro/servicii/terapie-de-cuplu/): Couples therapy
+- [Consiliere Psihologica](https://alexandrabarbu.ro/servicii/consiliere-psihologica/): Psychological counseling
+
+## Key Topics Covered
+
+- Anxiety disorders and management
+- Depression treatment
+- Couples therapy and relationship issues
+- Stress management
+- Panic attacks
+- Self-esteem and personal development
+- Grief and loss counseling
+
+## Contact Information
+
+- Location: Bucuresti, Romania
+- Website: https://alexandrabarbu.ro
+- Appointment booking: https://alexandrabarbu.ro/contact/
+
+## Language
+
+This site is available in:
+- Romanian (ro) - primary
+- English (en) - /en/
+
+---
+
+*Generated for AI assistants. For full site experience, visit [https://alexandrabarbu.ro](https://alexandrabarbu.ro)*

@@ -1,0 +1,43 @@
+# robots.txt for alexandrabarbu.ro
+# Generated: 2025-12-01
+# Purpose: SEO optimization + AI crawler guidance
+
+# General crawlers
+User-agent: *
+Allow: /
+Disallow: /admin/
+Sitemap: https://alexandrabarbu.ro/sitemap.xml
+
+# AI Training Crawlers - ALLOWED
+# OpenAI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Google AI crawler
+User-agent: Google-Extended
+Allow: /
+
+# Anthropic crawlers
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity crawler
+User-agent: PerplexityBot
+Allow: /
+
+# Common Crawl (used by many AI systems)
+User-agent: CCBot
+Allow: /
+
+# Apple AI crawler
+User-agent: Applebot-Extended
+Allow: /
+
+# Rate limiting for all bots
+Crawl-delay: 1
