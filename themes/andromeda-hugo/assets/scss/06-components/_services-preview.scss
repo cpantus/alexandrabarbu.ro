@@ -99,6 +99,7 @@
 
 // Section badge pill - positioned at border between dark/light sections
 .c-services-preview__badge {
+  // Desktop: absolute positioning at 50% border
   position: absolute;
   left: 50%;
   top: 50%; // Position at exactly 50% (border between sections)
@@ -116,14 +117,21 @@
   letter-spacing: 0.02em; // Adjusted tracking for larger serif font
   border-radius: $radius-full; // Pill shape
   box-shadow: 0 4px 16px rgba($forest-900, 0.15); // Deeper shadow for larger element
+  white-space: nowrap; // Prevent text wrapping that distorts pill shape
 
+  // Mobile: flow in document, positioned between compass and cards
   @media (max-width: $breakpoint-md-max) {
+    position: relative; // Flow in document
+    top: auto;
+    left: auto;
+    transform: none;
+    display: block; // Block for centering
+    width: fit-content;
+    margin: 0 auto; // Center horizontally
+    margin-top: -$space-6; // Pull up to overlap section edge slightly
+    margin-bottom: $space-8; // Space before grid
     font-size: 1.5rem; // 24px on mobile
-    padding: 3rem $space-5 $space-2; // 48px 20px 8px on mobile (extra top padding)
-    // On mobile, position at top of section instead of 50%
-    // This ensures badge appears above cards
-    top: $space-6; // 24px from top
-    transform: translateX(-50%); // Only center horizontally
+    padding: $space-2 $space-5; // 8px 20px - consistent padding for pill shape
   }
 }
 
