@@ -42,15 +42,15 @@
     <div class="c-footer__cta-content">
       {{ partial "atoms/heading.html" (dict
         "level" "h2"
-        "text" (i18n "footer_cta_title" | default $cta.title)
+        "text" ($cta.title | default (i18n "footer_cta_title"))
         "variant" "gradient"
         "alignment" "center"
         "context" .
       ) }}
-      <p class="c-footer__cta-text">{{ (i18n "footer_cta_content" | default $cta.content) | markdownify }}</p>
+      <p class="c-footer__cta-text">{{ ($cta.content | default (i18n "footer_cta_content")) | markdownify }}</p>
       <div class="c-footer__cta-button">
         {{ partial "atoms/button.html" (dict
-          "text" (i18n "footer_cta_button" | default $cta.button_text | default $cta.button)
+          "text" ($cta.button_text | default $cta.button | default (i18n "footer_cta_button"))
           "href" ($cta.button_url | default $cta.button_link)
           "variant" "primary"
           "size" "lg"
