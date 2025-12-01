@@ -21,15 +21,15 @@ feature_blocks:
   - subtitle: Depresie și Lipsă de Energie
     title: Suferi de Depresie
     description: Tristețe persistentă, lipsă de energie și motivație, pierderea plăcerii în activități, izolare socială, gânduri negative recurente, probleme de somn. Depresie majoră, distimie, lipsă de sens, auto-critică severă sau burnout.
-    image: https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&h=600&fit=crop
+    image: /images/depresie.jpeg
   - subtitle: Traume Nerezolvate
     title: Ai Trecut Prin Traume
     description: Eventi traumatice (abuz, violență, accident, pierdere) care încă te afectează. Flashback-uri, coșmaruri, evitarea amintirilor, reacții emoționale intense. Abuz, violență domestică, accidente, pierderi sau traume din copilărie.
-    image: https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&h=600&fit=crop
+    image: /images/trauma.jpeg
   - subtitle: Creștere și Autocunoaștere
     title: Vrei Dezvoltare Personală
     description: Nu ai neapărat o problemă, dar simți că stagnezi. Vrei să te cunoști mai bine, să-ți clarifici valorile, să îmbunătățești relațiile, să trăiești mai autentic. Autocunoaștere, stimă de sine, inteligență emoțională și găsirea sensului.
-    image: https://images.unsplash.com/photo-1499728603263-13726abce5fd?w=800&h=600&fit=crop
+    image: /images/dezvoltare personala.jpeg
 faq_items:
   - question: Cât timp durează terapia individuală?
     answer: Depinde de complexitatea problemei. Pentru anxietate sau depresie ușoară-moderată, 12-20 sesiuni (3-5 luni) sunt de obicei suficiente. Pentru traume complexe sau tulburări de personalitate, poate dura 6-24 luni. În prima sesiune stabilim o estimare realistă bazată pe situația ta.
@@ -52,49 +52,75 @@ cta_standard:
   description: Nu trebuie să treci prin asta singur. Programează o consultație gratuită de 30 minute și să începem împreună călătoria spre o viață mai bună.
   button_text: Programează Consultație Gratuită
   button_url: https://cal.com/gigi-frana-uvymh4/15min
-  button_variant: secondary
   background: gradient
+  button_variant: secondary
+breadcrumb:
+  - name: Acasă
+    url: /
+  - name: Servicii
+    url: /servicii/
+  - name: Terapie Individuală
+    url: /servicii/terapie-individuala/
+benefits_results:
+  enable: true
+  title: Ce Vei Obține Din Terapia Individuală
+  subtitle: Rezultate măsurabile și transformare reală
+  description: Terapia nu este doar despre rezolvarea problemelor. Este despre creștere, autocunoaștere și trăirea unei vieți mai autentice.
+  items:
+    - title: Tehnici Práctice pe Viață
+      description: Înveți instrumente concrete (respirație diafragmatică, restructurare cognitivă, mindfulness, expunere graduală) pe care le poți folosi oricând.
+      icon: toolbox
+      timeline: După 4-6 sesiuni
+    - title: Reducerea Simptomelor
+      description: Scădere semnificativă (30-80%) în anxietate, depresie, atacuri de panică, flashback-uri. Rezultate măsurate obiectiv prin chestionare.
+      icon: arrow-down
+      timeline: După 10-15 sesiuni
+    - title: Sens și Direcție în Viață
+      description: Claritate asupra valorilor, obiectivelor și sensului vieții. Știi ce vrei și cum să ajungi acolo. Trăiești mai autentic și împlinit.
+      icon: compass
+      timeline: După 20+ sesiuni
 pricing_packages:
-  notes:
-    - text: '**Plată:** Cash, card sau transfer bancar. Pachete se plătesc integral înainte de prima sesiune.'
-    - text: '**Anulare:** Anunță cu 24h înainte pentru reprogramare gratuită. Altfel, sesiunea se consideră consumată.'
-    - text: '**Tarif social:** Oferă tarife reduse (180 RON/sesiune) pentru studenți și situații financiare dificile. Contactează-mă pentru detalii.'
-    - text: '**Decontare:** Unele asigurări private de sănătate decontează parțial terapia. Verific cu asiguratorul tău.'
+  enable: true
+  title: Tarife și Pachete
+  subtitle: Investiție în sănătatea ta mentală
+  description: Oferă pachete flexibile adaptate nevoilor și bugetului tău.
   packages:
-    - featured: false
-      button_variant: outline-primary
-      button_url: /contact/
-      button_text: Programează Sesiune
+    - name: Sesiune Individuală
+      price: '250'
+      currency: RON
+      period: sesiune
+      description: Perfect pentru testare sau sesiuni ocazionale.
       features:
         - 50 minute sesiune față în față sau online
         - Acces la chestionare de evaluare
         - Suport între sesiuni prin email (răspuns în 24h)
         - Flexibilitate totală (fără angajament)
-      description: Perfect pentru testare sau sesiuni ocazionale.
-      period: sesiune
-      currency: RON
-      price: '250'
-      name: Sesiune Individuală
-    - featured: false
-      button_variant: primary
+      button_text: Programează Sesiune
       button_url: /contact/
-      button_text: Alege Pachet
+      button_variant: outline-primary
+      featured: false
+    - name: Pachet Starter
+      price: '900'
+      currency: RON
+      period: 4 sesiuni
+      description: Ideal pentru probleme ușoare sau explorare inițială.
+      discount: Economisești 100 RON (10%)
       features:
         - 4 sesiuni x 50 minute
         - Evaluare completă + 3 sesiuni active
         - Chestionare validate pentru progres
         - Plan terapeutic personalizat
         - Toate materialele terapeutice incluse
-      discount: Economisești 100 RON (10%)
-      description: Ideal pentru probleme ușoare sau explorare inițială.
-      period: 4 sesiuni
-      currency: RON
-      price: '900'
-      name: Pachet Starter
-    - featured: true
-      button_variant: primary
-      button_url: /contact/
       button_text: Alege Pachet
+      button_url: /contact/
+      button_variant: primary
+      featured: false
+    - name: Pachet Standard
+      price: '1700'
+      currency: RON
+      period: 8 sesiuni
+      description: Cel mai popular. Terapie completă pe termen scurt.
+      discount: Economisești 300 RON (15%)
       features:
         - 8 sesiuni x 50 minute
         - Terapie completă pentru anxietate/depresie moderată
@@ -102,16 +128,16 @@ pricing_packages:
         - Acces prioritar pentru programare
         - Suport extins între sesiuni
         - Toate materialele + ghid de autoajutorare
-      discount: Economisești 300 RON (15%)
-      description: Cel mai popular. Terapie completă pe termen scurt.
-      period: 8 sesiuni
-      currency: RON
-      price: '1700'
-      name: Pachet Standard
-    - featured: false
-      button_variant: outline-primary
-      button_url: /contact/
       button_text: Alege Pachet
+      button_url: /contact/
+      button_variant: primary
+      featured: true
+    - name: Pachet Intensiv
+      price: '2550'
+      currency: RON
+      period: 12 sesiuni
+      description: Pentru probleme complexe sau transformare profundă.
+      discount: Economisești 450 RON (15%)
       features:
         - 12 sesiuni x 50 minute
         - Abordare profundă și susținută
@@ -119,41 +145,15 @@ pricing_packages:
         - Monitorizare progres la 4 și 8 sesiuni
         - Acces prioritar + disponibilitate urgențe
         - Toate materialele + sesiune follow-up gratuită (după 3 luni)
-      discount: Economisești 450 RON (15%)
-      description: Pentru probleme complexe sau transformare profundă.
-      period: 12 sesiuni
-      currency: RON
-      price: '2550'
-      name: Pachet Intensiv
-  description: Oferă pachete flexibile adaptate nevoilor și bugetului tău.
-  subtitle: Investiție în sănătatea ta mentală
-  title: Tarife și Pachete
-  enable: true
-benefits_results:
-  items:
-    - timeline: După 4-6 sesiuni
-      icon: toolbox
-      description: Înveți instrumente concrete (respirație diafragmatică, restructurare cognitivă, mindfulness, expunere graduală) pe care le poți folosi oricând.
-      title: Tehnici Práctice pe Viață
-    - timeline: După 10-15 sesiuni
-      icon: arrow-down
-      description: Scădere semnificativă (30-80%) în anxietate, depresie, atacuri de panică, flashback-uri. Rezultate măsurate obiectiv prin chestionare.
-      title: Reducerea Simptomelor
-    - timeline: După 20+ sesiuni
-      icon: compass
-      description: Claritate asupra valorilor, obiectivelor și sensului vieții. Știi ce vrei și cum să ajungi acolo. Trăiești mai autentic și împlinit.
-      title: Sens și Direcție în Viață
-  description: Terapia nu este doar despre rezolvarea problemelor. Este despre creștere, autocunoaștere și trăirea unei vieți mai autentice.
-  subtitle: Rezultate măsurabile și transformare reală
-  title: Ce Vei Obține Din Terapia Individuală
-  enable: true
-breadcrumb:
-  - url: /
-    name: Acasă
-  - url: /servicii/
-    name: Servicii
-  - url: /servicii/terapie-individuala/
-    name: Terapie Individuală
+      button_text: Alege Pachet
+      button_url: /contact/
+      button_variant: outline-primary
+      featured: false
+  notes:
+    - text: '**Plată:** Cash, card sau transfer bancar. Pachete se plătesc integral înainte de prima sesiune.'
+    - text: '**Anulare:** Anunță cu 24h înainte pentru reprogramare gratuită. Altfel, sesiunea se consideră consumată.'
+    - text: '**Tarif social:** Oferă tarife reduse (180 RON/sesiune) pentru studenți și situații financiare dificile. Contactează-mă pentru detalii.'
+    - text: '**Decontare:** Unele asigurări private de sănătate decontează parțial terapia. Verific cu asiguratorul tău.'
 therapeutic_process:
   enable: true
   title: 'Procesul Terapeutic: Cum Lucrăm Împreună'
