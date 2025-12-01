@@ -101,6 +101,14 @@
   {{- $schema = merge $schema (dict "openingHours" .) -}}
 {{- end -}}
 
+{{/* Build geo coordinates if present */}}
+{{- with $config.geo -}}
+  {{- if and .latitude .longitude -}}
+    {{- $geo := dict "@type" "GeoCoordinates" "latitude" .latitude "longitude" .longitude -}}
+    {{- $schema = merge $schema (dict "geo" $geo) -}}
+  {{- end -}}
+{{- end -}}
+
 {{- if $sameAs -}}
   {{- $schema = merge $schema (dict "sameAs" $sameAs) -}}
 {{- end -}}

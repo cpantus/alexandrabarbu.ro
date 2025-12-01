@@ -11,7 +11,7 @@ mainSections = [ "blog" ]
 
 [contact_info]
 address = "Bucuresti, Sector 3, L-V: 10:00-20:00"
-phone = [ "+1111111-555-0127", "+999902-569-6969" ]
+phone = [ "+40 770 200 834" ]
 email = [ "alexandra.barbu@gmail.com" ]
 
 # Social Media Links
@@ -188,3 +188,24 @@ shadow_md = "0 10px 15px -3px rgba(0, 0, 0, 0.1)"
 shadow_lg = "0 20px 25px -5px rgba(0, 0, 0, 0.1)"
 shadow_primary = "0 10px 30px -5px rgba(35, 78, 62, 0.2)"
 shadow_secondary = "0 10px 30px -5px rgba(107, 144, 128, 0.2)"
+
+# SEO Organization Schema (Local Business)
+[seo.organization]
+type = "ProfessionalService"
+name = "Cabinet Psihologie Alexandra Barbu"
+legal_name = "Cabinet Individual de Psihologie Alexandra Barbu"
+description = "Cabinet de psihologie clinică specializat în terapie cognitiv-comportamentală (CBT), terapie de cuplu și familie în București."
+founding_date = "2018"
+price_range = "$$"
+opening_hours = "Mo-Fr 10:00-20:00"
+
+[seo.organization.address]
+street = "Strada Zemes Nr. 1A, Bloc M29B"
+city = "București"
+region = "Sector 3"
+postal_code = "032181"
+country = "RO"
+
+[seo.organization.geo]
+latitude = 44.4268
+longitude = 26.1025

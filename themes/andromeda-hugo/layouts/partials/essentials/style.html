@@ -60,4 +60,6 @@
 
 
 <!-- External CSS for caching + better Core Web Vitals (SEO fix 2025-12-01) -->
+<!-- Preload CSS to reduce render-blocking time -->
+<link rel="preload" href="{{ $styles.RelPermalink }}" as="style">
 <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
