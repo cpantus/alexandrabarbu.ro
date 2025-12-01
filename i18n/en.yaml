@@ -173,3 +173,15 @@
 
 - id: toc_aria_label
   translation: Article table of contents
+
+# 404 Error Page
+- id: 404_title
+  translation: "Page Not Found"
+- id: 404_description
+  translation: "Sorry, the page you're looking for doesn't exist or has been moved."
+- id: 404_message
+  translation: "Let the compass guide you back to the right path."
+- id: 404_home_button
+  translation: "Back Home"
+- id: 404_contact_button
+  translation: "Contact Me"

@@ -1,0 +1,290 @@
+// ==================================
+// 404 Error Page Component
+// ==================================
+// BEM Structure: .c-404
+// Purpose: Custom 404 error page styling
+// Created: 2025-12-01
+
+.c-404 {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  padding: $space-16 0;
+  background: linear-gradient(
+    135deg,
+    $color-cream-50 0%,
+    $color-cream-100 50%,
+    $color-sage-50 100%
+  );
+  position: relative;
+  overflow: hidden;
+
+  // Subtle background pattern
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(
+      circle at 25% 25%,
+      rgba($color-forest-500, 0.02) 0%,
+      transparent 50%
+    );
+    pointer-events: none;
+  }
+
+  // Grid Layout
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-12;
+    align-items: center;
+
+    @media (min-width: $breakpoint-lg) {
+      grid-template-columns: 1fr 1fr;
+      gap: $space-16;
+    }
+  }
+
+  // Content Column
+  &__content {
+    text-align: center;
+    z-index: 1;
+
+    @media (min-width: $breakpoint-lg) {
+      text-align: left;
+    }
+  }
+
+  // Error Code
+  &__code {
+    display: inline-block;
+    font-family: $font-family-heading;
+    font-size: clamp(6rem, 15vw, 10rem);
+    font-weight: $font-weight-bold;
+    line-height: 1;
+    color: transparent;
+    background: linear-gradient(
+      135deg,
+      $color-forest-200 0%,
+      $color-sage-200 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    margin-bottom: $space-4;
+    opacity: 0.6;
+  }
+
+  // Title
+  &__title {
+    margin-bottom: $space-6;
+    color: $color-forest-700;
+  }
+
+  // Description
+  &__description {
+    font-size: $font-size-lg;
+    color: $color-text-secondary;
+    margin-bottom: $space-4;
+    max-width: 480px;
+
+    @media (min-width: $breakpoint-lg) {
+      margin-left: 0;
+      margin-right: auto;
+    }
+
+    @media (max-width: $breakpoint-lg - 1) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  // Helpful message
+  &__message {
+    font-size: $font-size-base;
+    color: $color-text-muted;
+    margin-bottom: $space-8;
+    max-width: 480px;
+
+    @media (min-width: $breakpoint-lg) {
+      margin-left: 0;
+      margin-right: auto;
+    }
+
+    @media (max-width: $breakpoint-lg - 1) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  // Buttons Container
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-4;
+    justify-content: center;
+
+    @media (min-width: $breakpoint-lg) {
+      justify-content: flex-start;
+    }
+  }
+
+  // Media Column (Compass)
+  &__media {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+
+    @media (min-width: $breakpoint-lg) {
+      min-height: 400px;
+    }
+  }
+
+  // Compass wrapper
+  &__compass-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    opacity: 0.85;
+    animation: float-404 6s ease-in-out infinite;
+
+    @media (min-width: $breakpoint-lg) {
+      max-width: 450px;
+    }
+
+    // Subtle glow effect
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      height: 80%;
+      background: radial-gradient(
+        circle,
+        rgba($color-sage-300, 0.15) 0%,
+        transparent 70%
+      );
+      border-radius: 50%;
+      z-index: -1;
+    }
+  }
+
+  // Decorative shapes
+  &__shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &__shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.4;
+
+    &--1 {
+      width: 80px;
+      height: 80px;
+      top: 10%;
+      right: 15%;
+      background: linear-gradient(
+        135deg,
+        rgba($color-sage-300, 0.3),
+        rgba($color-sage-200, 0.1)
+      );
+      animation: float-shape-1 8s ease-in-out infinite;
+    }
+
+    &--2 {
+      width: 50px;
+      height: 50px;
+      bottom: 20%;
+      left: 10%;
+      background: linear-gradient(
+        135deg,
+        rgba($color-gold-300, 0.3),
+        rgba($color-gold-200, 0.1)
+      );
+      animation: float-shape-2 10s ease-in-out infinite;
+    }
+
+    &--3 {
+      width: 30px;
+      height: 30px;
+      top: 40%;
+      left: 5%;
+      background: linear-gradient(
+        135deg,
+        rgba($color-forest-200, 0.3),
+        rgba($color-forest-100, 0.1)
+      );
+      animation: float-shape-3 7s ease-in-out infinite;
+    }
+  }
+}
+
+// Animations
+@keyframes float-404 {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+}
+
+@keyframes float-shape-1 {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  33% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  66% {
+    transform: translateY(10px) translateX(-5px);
+  }
+}
+
+@keyframes float-shape-2 {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(20px) translateX(15px);
+  }
+}
+
+@keyframes float-shape-3 {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.1);
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .c-404 {
+    &__compass-wrapper {
+      animation: none;
+    }
+
+    &__shape {
+      animation: none;
+    }
+  }
+}

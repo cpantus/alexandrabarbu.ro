@@ -173,3 +173,15 @@
 
 - id: toc_aria_label
   translation: Cuprins articol
+
+# 404 Error Page
+- id: 404_title
+  translation: "Pagina nu a fost gasita"
+- id: 404_description
+  translation: "Ne pare rau, dar pagina pe care o cautati nu exista sau a fost mutata."
+- id: 404_message
+  translation: "Poate ca busola te poate ghida inapoi pe drumul cel bun."
+- id: 404_home_button
+  translation: "Inapoi Acasa"
+- id: 404_contact_button
+  translation: "Contacteaza-ma"

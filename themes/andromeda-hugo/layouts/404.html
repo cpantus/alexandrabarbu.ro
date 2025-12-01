@@ -1,0 +1,77 @@
+{{/*
+  404 Error Page - Custom Not Found page
+
+  Features:
+  - Compass animation from theme design language
+  - Responsive design with centered content
+  - Multilingual support (RO/EN)
+  - CTA buttons to homepage and contact
+  - Clean, calm aesthetic appropriate for therapy site
+
+  Created: 2025-12-01
+*/}}
+{{ define "main" }}
+<section class="c-404">
+  <div class="o-container">
+    <div class="c-404__grid">
+      {{/* Content Column */}}
+      <div class="c-404__content">
+        {{/* Error code with subtle styling */}}
+        <span class="c-404__code">404</span>
+
+        {{/* Main heading */}}
+        {{ partial "atoms/heading.html" (dict
+          "level" 1
+          "text" (i18n "404_title")
+          "class" "c-404__title"
+          "variant" "primary"
+        ) }}
+
+        {{/* Description */}}
+        <p class="c-404__description">
+          {{ i18n "404_description" }}
+        </p>
+
+        {{/* Helpful message */}}
+        <p class="c-404__message">
+          {{ i18n "404_message" }}
+        </p>
+
+        {{/* CTA Buttons */}}
+        <div class="c-404__buttons">
+          {{ partial "atoms/button.html" (dict
+            "text" (i18n "404_home_button")
+            "href" (site.Home.RelPermalink)
+            "variant" "primary"
+            "size" "lg"
+            "icon" "las la-home"
+            "iconPosition" "left"
+          ) }}
+
+          {{ partial "atoms/button.html" (dict
+            "text" (i18n "404_contact_button")
+            "href" (printf "%scontact" site.Home.RelPermalink)
+            "variant" "outline-primary"
+            "size" "lg"
+            "icon" "las la-envelope"
+            "iconPosition" "left"
+          ) }}
+        </div>
+      </div>
+
+      {{/* Decorative Column - Compass Animation */}}
+      <div class="c-404__media">
+        <div class="c-404__compass-wrapper">
+          {{ partial "atoms/compass-animation.html" }}
+        </div>
+        {{/* Decorative floating shapes */}}
+        <div class="c-404__shapes" aria-hidden="true">
+          <div class="c-404__shape c-404__shape--1"></div>
+          <div class="c-404__shape c-404__shape--2"></div>
+          <div class="c-404__shape c-404__shape--3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
