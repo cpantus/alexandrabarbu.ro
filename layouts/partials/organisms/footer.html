@@ -1,0 +1,211 @@
+{{/*
+  Footer Organism - CMS-Managed Version
+
+  Main site footer composition using atomic design molecules
+  Data source: data/footer.yaml (RO) or data/en/footer.yaml (EN)
+
+  Features:
+  - Optional CTA section before footer
+  - Logo and site info (footer-info molecule)
+  - Social links and quick links (footer-nav molecule)
+  - Copyright notice with legal links
+  - 8pt spacing grid throughout
+
+  Usage:
+    {{ partial "organisms/footer.html" . }}
+
+  Version: 5.0.2 (CMS-Managed)
+  Last Updated: 2025-12-01
+*/}}
+
+{{- $currentLang := site.Language.Lang -}}
+{{- $footerData := site.Data.footer -}}
+{{- if eq $currentLang "en" -}}
+  {{- with site.Data.en.footer -}}
+    {{- $footerData = . -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Fallback to site.Params if data file is empty */}}
+{{- $hasCTA := false -}}
+{{- if $footerData -}}
+  {{- $hasCTA = and $footerData.cta $footerData.cta.enable -}}
+{{- else -}}
+  {{- $hasCTA = and site.Params.cta site.Params.cta.enable -}}
+{{- end -}}
+
+{{/* Optional CTA Section */}}
+{{ if $hasCTA }}
+{{- $cta := $footerData.cta | default site.Params.cta -}}
+<section class="c-footer__cta">
+  <div class="c-footer__cta-container">
+    <div class="c-footer__cta-content">
+      {{ partial "atoms/heading.html" (dict
+        "level" "h2"
+        "text" (i18n "footer_cta_title" | default $cta.title)
+        "variant" "gradient"
+        "alignment" "center"
+        "context" .
+      ) }}
+      <p class="c-footer__cta-text">{{ (i18n "footer_cta_content" | default $cta.content) | markdownify }}</p>
+      <div class="c-footer__cta-button">
+        {{ partial "atoms/button.html" (dict
+          "text" (i18n "footer_cta_button" | default $cta.button_text | default $cta.button)
+          "href" ($cta.button_url | default $cta.button_link)
+          "variant" "primary"
+          "size" "lg"
+        ) }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* Main Footer */}}
+<footer class="c-footer {{ if $hasCTA }}c-footer--with-cta{{ end }}">
+  <div class="c-footer__main">
+    <div class="c-footer__container">
+      <div class="c-footer__divider"></div>
+      <div class="c-footer__content">
+        {{/* Column 1: Logo & Description (wider) */}}
+        <div class="c-footer-info">
+          <div class="c-footer-info__logo-section">
+            <a
+              class="c-footer-info__logo-link"
+              href="{{ site.BaseURL | relLangURL }}"
+              aria-label="{{ site.Title }}">
+              {{ partial "molecules/logo.html" (dict "color" "primary" "size" "md" "link" false "context" .) }}
+            </a>
+            {{- $description := "" -}}
+            {{- if $footerData -}}
+              {{- $description = $footerData.description -}}
+            {{- else -}}
+              {{- $description = site.Params.footer_info -}}
+            {{- end -}}
+            {{ with $description }}
+              <p class="c-footer-info__description">
+                {{ . | markdownify }}
+              </p>
+            {{ end }}
+          </div>
+        </div>
+
+        {{/* Column 2: Contact Info */}}
+        {{- $contact := cond (and $footerData $footerData.contact) $footerData.contact site.Params.contact_info -}}
+        {{ with $contact }}
+          <div class="c-footer-nav__section c-footer-nav__section--contact">
+            {{ partial "atoms/heading.html" (dict
+              "text" (i18n "location_contact" | default "Contact")
+              "level" 4
+              "variant" "primary"
+              "class" "c-footer-nav__title"
+            ) }}
+            <ul class="c-footer-nav__links">
+              {{ with .address }}
+                <li class="c-footer-nav__item">
+                  {{ . | markdownify }}
+                </li>
+              {{ end }}
+              {{/* Handle phone - can be string or array */}}
+              {{- $phone := .phone -}}
+              {{- if reflect.IsSlice $phone -}}
+                {{ range first 1 $phone }}
+                  {{ if . }}
+                    <li class="c-footer-nav__item">
+                      <a href="tel:{{ . }}" class="c-footer-nav__link">{{ . }}</a>
+                    </li>
+                  {{ end }}
+                {{ end }}
+              {{- else if $phone -}}
+                <li class="c-footer-nav__item">
+                  <a href="tel:{{ $phone }}" class="c-footer-nav__link">{{ $phone }}</a>
+                </li>
+              {{- end -}}
+              {{/* Handle email - can be string or array */}}
+              {{- $email := .email -}}
+              {{- if reflect.IsSlice $email -}}
+                {{ range first 1 $email }}
+                  {{ if . }}
+                    <li class="c-footer-nav__item">
+                      <a href="mailto:{{ . }}" class="c-footer-nav__link">{{ . }}</a>
+                    </li>
+                  {{ end }}
+                {{ end }}
+              {{- else if $email -}}
+                <li class="c-footer-nav__item">
+                  <a href="mailto:{{ $email }}" class="c-footer-nav__link">{{ $email }}</a>
+                </li>
+              {{- end -}}
+            </ul>
+          </div>
+        {{ end }}
+
+        {{/* Column 3: Social Links Only */}}
+        <div class="c-footer-nav__section c-footer-nav__section--social">
+          {{ partial "atoms/heading.html" (dict
+            "text" (i18n "socials" | default "Social Media")
+            "level" 4
+            "variant" "primary"
+            "class" "c-footer-nav__title"
+          ) }}
+
+          {{/* Social Media Links - from data file or site.Params */}}
+          {{- $social := cond (and $footerData $footerData.social) $footerData.social site.Params.social -}}
+          {{ with $social }}
+            <div class="c-footer-nav__social">
+              {{ partial "molecules/social-links.html" (dict
+                "links" .
+                "variant" "primary"
+                "layout" "inline"
+                "size" "lg"
+                "class" "c-footer-nav__social-links"
+              ) }}
+            </div>
+          {{ end }}
+        </div>
+
+        {{/* Column 4: Quick Links */}}
+        <div class="c-footer-nav__section c-footer-nav__section--links">
+          {{ partial "atoms/heading.html" (dict
+            "text" (i18n "quick_links" | default "Link-uri Rapide")
+            "level" 4
+            "variant" "primary"
+            "class" "c-footer-nav__title"
+          ) }}
+
+          {{/* Quick Links - from data file or footer menu */}}
+          {{- $quickLinks := cond (and $footerData $footerData.quick_links) $footerData.quick_links nil -}}
+          {{ if $quickLinks }}
+            <ul class="c-footer-nav__links">
+              {{ range $quickLinks }}
+                <li class="c-footer-nav__item">
+                  <a href="{{ .url | relLangURL }}" class="c-footer-nav__link">
+                    {{ .name }}
+                  </a>
+                </li>
+              {{ end }}
+            </ul>
+          {{ else if site.Menus.footer }}
+            <ul class="c-footer-nav__links">
+              {{ range site.Menus.footer }}
+                <li class="c-footer-nav__item">
+                  <a href="{{ .URL | relLangURL }}" class="c-footer-nav__link">
+                    {{ .Name }}
+                  </a>
+                </li>
+              {{ end }}
+            </ul>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{{/* Copyright */}}
+<div class="c-footer__copyright">
+  <div class="c-footer__copyright-container">
+    {{- $copyright := cond (and $footerData $footerData.copyright) $footerData.copyright site.Params.copyright -}}
+    <p class="c-footer__copyright-text">{{ $copyright | markdownify }}</p>
+  </div>
+</div>

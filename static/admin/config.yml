@@ -1007,6 +1007,104 @@ collections:
               - { label: "Parent", name: "parent", widget: "string", required: false }
 
   # ═══════════════════════════════════════════
+  # 🦶 FOOTER SETTINGS
+  # ═══════════════════════════════════════════
+
+  - name: footer
+    label: "🦶 Footer"
+    icon: "vertical_align_bottom"
+    files:
+      - name: footer_ro
+        label: "Footer Romana"
+        file: data/footer.yaml
+        fields:
+          - { label: "Descriere", name: "description", widget: "text", hint: "Text afisat sub logo in footer" }
+
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Adresa", name: "address", widget: "string" }
+              - { label: "Telefon", name: "phone", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+
+          - label: "Social Media"
+            name: "social"
+            widget: "list"
+            collapsed: true
+            fields:
+              - { label: "Nume", name: "name", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Icoana", name: "icon", widget: "select", options: ["facebook-f", "instagram", "linkedin-in", "twitter", "youtube", "tiktok"] }
+
+          - label: "Link-uri Rapide"
+            name: "quick_links"
+            widget: "list"
+            collapsed: true
+            fields:
+              - { label: "Nume", name: "name", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+
+          - label: "CTA (Apel la Actiune)"
+            name: "cta"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Activat", name: "enable", widget: "boolean", default: true }
+              - { label: "Titlu", name: "title", widget: "string" }
+              - { label: "Continut", name: "content", widget: "text" }
+              - { label: "Text Buton", name: "button_text", widget: "string" }
+              - { label: "URL Buton", name: "button_url", widget: "string" }
+
+          - { label: "Copyright", name: "copyright", widget: "string" }
+
+      - name: footer_en
+        label: "Footer English"
+        file: data/en/footer.yaml
+        fields:
+          - { label: "Description", name: "description", widget: "text", hint: "Text displayed under logo in footer" }
+
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Address", name: "address", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+
+          - label: "Social Media"
+            name: "social"
+            widget: "list"
+            collapsed: true
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Icon", name: "icon", widget: "select", options: ["facebook-f", "instagram", "linkedin-in", "twitter", "youtube", "tiktok"] }
+
+          - label: "Quick Links"
+            name: "quick_links"
+            widget: "list"
+            collapsed: true
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+
+          - label: "CTA (Call to Action)"
+            name: "cta"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Enabled", name: "enable", widget: "boolean", default: true }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Content", name: "content", widget: "text" }
+              - { label: "Button Text", name: "button_text", widget: "string" }
+              - { label: "Button URL", name: "button_url", widget: "string" }
+
+          - { label: "Copyright", name: "copyright", widget: "string" }
+
+  # ═══════════════════════════════════════════
   # ⚙️ SITE SETTINGS
   # ═══════════════════════════════════════════
 

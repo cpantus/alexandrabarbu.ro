@@ -1,0 +1,47 @@
+# Footer Configuration (English)
+# Managed via CMS at /admin/
+
+# Footer description (under logo)
+description: "Clinical psychologist dedicated to transforming lives through professional therapy and empathy"
+
+# Contact Information
+contact:
+  address: "Bucharest, Sector 3, M-F: 10:00-20:00"
+  phone: "+40 123 456 789"
+  email: "alexandra.barbu@gmail.com"
+
+# Social Media Links
+social:
+  - name: "Facebook"
+    url: "https://facebook.com/alexandrabarbu"
+    icon: "facebook-f"
+  - name: "Instagram"
+    url: "https://instagram.com/alexandrabarbu"
+    icon: "instagram"
+  - name: "LinkedIn"
+    url: "https://linkedin.com/in/alexandrabarbu"
+    icon: "linkedin-in"
+
+# Quick Links (Footer Menu)
+quick_links:
+  - name: "About"
+    url: "/en/about/"
+  - name: "Approach"
+    url: "/en/approach/"
+  - name: "Resources"
+    url: "/en/resources/"
+  - name: "Contact"
+    url: "/en/contact/"
+  - name: "Terms & Conditions"
+    url: "/en/terms-and-conditions/"
+
+# CTA Section (above footer)
+cta:
+  enable: true
+  title: "A Personalized Map for Every Journey"
+  content: "We understand your specific needs, Create a personalized therapeutic plan, Weekly therapy sessions, Maintaining long-term progress."
+  button_text: "Schedule a 15-minute evaluation"
+  button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+
+# Copyright text
+copyright: "© 2025 Alexandra Barbu. All rights reserved."

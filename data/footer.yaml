@@ -1,0 +1,33 @@
+description: Psiholog clinician dedicat transformarii vietilor prin terapie profesionala si empatie
+contact:
+  address: 'Bucuresti, Sector 3, L-V: 10:00-20:00'
+  phone: +40 123 456 789
+  email: alexandra.barbu@gmail.com
+social:
+  - name: Facebook
+    url: https://facebook.com/alexandrabarbu
+    icon: facebook-f
+  - name: Instagram
+    url: https://instagram.com/alexandrabarbu
+    icon: instagram
+  - name: LinkedIn
+    url: https://linkedin.com/in/alexandrabarbu
+    icon: linkedin-in
+quick_links:
+  - name: Despre
+    url: /despre-mine/
+  - name: Abordare
+    url: /abordare/
+  - name: Resurse
+    url: /resurse/
+  - name: Contact
+    url: /contact/
+  - name: Termeni & Conditii
+    url: /termeni-si-conditii/
+cta:
+  enable: true
+  title: O Harta Personalizata pentru Fiecare Calatorie
+  content: Intelegem nevoile tale specifice, cream un plan terapeutic personalizat, sedinte saptamanale de terapie, mentinerea progresului pe termen lung.
+  button_text: Programeaza o evaluare de 15 minute
+  button_url: https://cal.com/gigi-frana-uvymh4/15min
+copyright: © 2025 Alexandra Barbu. Toate drepturile rezervate.
