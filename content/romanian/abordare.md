@@ -94,6 +94,11 @@ cta_standard:
   button_text: Programează Consultație
   button_url: https://cal.com/gigi-frana-uvymh4/15min
   button_variant: secondary
+faq_mini_title: ''
+faq_mini_subtitle: ''
+faq_mini_footer: ''
+faq_mini_link_text: ''
+faq_mini_link_url: ''
 method_tabs:
   title: Metode Terapeutice **Bazate pe Evidențe**
   description: Folosesc o combinație flexibilă de metode validate științific, adaptate nevoilor tale specifice
@@ -145,6 +150,9 @@ method_tabs:
         - Clarificarea valorilor și acțiune îndreptată spre valori
       name: Mindfulness și ACT
       slug: mindfulness-act
+contact_info_title: ''
+contact_info_subtitle: ''
+offer: ''
 onboarding_steps:
   title: Cum Decurge **Prima Ședință**?
   intro: Procesul terapeutic începe cu o întâlnire inițială de cunoaștere și evaluare
