@@ -15,7 +15,9 @@
 // ----------------------------------
 // REDESIGN 2025: Playfair Display (headings) + DM Sans (body)
 // NEW: Elegant serif with more character + clean modern sans
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;700&display=swap');
+// NOTE: Fonts are now self-hosted in /static/fonts/ for better performance
+// The @font-face declarations are in /static/css/fonts.css
+// @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;700&display=swap');
 
 // LEGACY: Crimson Pro (headings) + Work Sans (body) - Variable fonts
 // Psychology practice branding: Elegant, professional, warm, trustworthy

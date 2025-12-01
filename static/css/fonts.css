@@ -1,0 +1,110 @@
+/* Self-hosted Google Fonts - Playfair Display + DM Sans */
+/* This replaces external Google Fonts for better performance */
+
+/* Playfair Display - Regular */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/playfair-display/playfair-display-400.woff2') format('woff2');
+}
+
+/* Playfair Display - Regular Italic */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/playfair-display/playfair-display-400-italic.woff2') format('woff2');
+}
+
+/* Playfair Display - Medium */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/playfair-display/playfair-display-500.woff2') format('woff2');
+}
+
+/* Playfair Display - Medium Italic */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/playfair-display/playfair-display-500-italic.woff2') format('woff2');
+}
+
+/* Playfair Display - SemiBold */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/playfair-display/playfair-display-600.woff2') format('woff2');
+}
+
+/* Playfair Display - SemiBold Italic */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/playfair-display/playfair-display-600-italic.woff2') format('woff2');
+}
+
+/* Playfair Display - Bold */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/playfair-display/playfair-display-700.woff2') format('woff2');
+}
+
+/* Playfair Display - Bold Italic */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/playfair-display/playfair-display-700-italic.woff2') format('woff2');
+}
+
+/* DM Sans - Light */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/dm-sans/dm-sans-300.woff2') format('woff2');
+}
+
+/* DM Sans - Regular */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/dm-sans/dm-sans-400.woff2') format('woff2');
+}
+
+/* DM Sans - Medium */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/dm-sans/dm-sans-500.woff2') format('woff2');
+}
+
+/* DM Sans - Bold */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/dm-sans/dm-sans-700.woff2') format('woff2');
+}

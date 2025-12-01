@@ -1,25 +1,23 @@
 <!-- DNS preconnect -->
 <meta http-equiv="x-dns-prefetch-control" content="on" />
 <link rel="preconnect" href="//ajax.googleapis.com" />
-<link
-  rel="preconnect"
-  href="https://fonts.gstatic.com"
-  crossorigin="anonymous" />
+<!-- Removed preconnect to fonts.gstatic.com - fonts are now self-hosted -->
 <link rel="preconnect" href="//cdnjs.cloudflare.com" />
 <link rel="preconnect" href="//www.googletagmanager.com" />
 <link rel="preconnect" href="//www.google-analytics.com" />
-<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+<!-- Removed dns-prefetch to fonts.gstatic.com - fonts are now self-hosted -->
 <link rel="dns-prefetch" href="//ajax.googleapis.com" />
 <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
 <link rel="dns-prefetch" href="//www.googletagmanager.com" />
 <link rel="dns-prefetch" href="//www.google-analytics.com" />
-<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+<!-- Removed dns-prefetch to fonts.googleapis.com - fonts are now self-hosted -->
 <link rel="dns-prefetch" href="//connect.facebook.net" />
 <link rel="dns-prefetch" href="//platform.linkedin.com" />
 <link rel="dns-prefetch" href="//platform.twitter.com" />
 
-<!-- Line Awesome Icons (self-contained, no modules) -->
-<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" crossorigin="anonymous" />
+<!-- Self-hosted fonts for better performance (eliminates render-blocking external requests) -->
+<link rel="stylesheet" href="/css/fonts.css" />
+<link rel="stylesheet" href="/css/line-awesome.min.css" />
 
 <!-- plugins + stylesheet -->
 {{ $styles := slice }}
