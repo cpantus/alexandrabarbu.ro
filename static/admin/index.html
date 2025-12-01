@@ -47,21 +47,19 @@
     <div class="loading-text">Se incarca Content Manager...</div>
   </div>
 
+  <script>
+    // Determine which config to load based on hostname
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    window.CMS_CONFIG_URL = isLocal ? '/admin/config.yml' : '/admin/config.production.yml';
+    console.log(`Loading ${isLocal ? 'local development' : 'production'} CMS configuration...`);
+    console.log(`Config path: ${window.CMS_CONFIG_URL}`);
+  </script>
+
   <!-- Sveltia CMS -->
   <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 
   <script>
-    // Determine which config to load based on hostname
-    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    const configPath = isLocal ? '/admin/config.yml' : '/admin/config.production.yml';
-
-    console.log(`Loading ${isLocal ? 'local development' : 'production'} CMS configuration...`);
-    console.log(`Config path: ${configPath}`);
-
     // Hide loading message once CMS loads
-    window.CMS_MANUAL_INIT = false;
-
-    // Register event listener for when CMS mounts
     if (window.CMS) {
       window.CMS.registerEventListener({
         name: 'mounted',
