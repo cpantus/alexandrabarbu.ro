@@ -10,6 +10,7 @@ backend:
   name: github
   repo: cpantus/alexandrabarbu.ro
   branch: main
+  base_url: https://sveltia-cms-auth-alexandrabarbu.cpantus.workers.dev
 
 local_backend: true
 
