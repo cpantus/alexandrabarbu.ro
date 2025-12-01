@@ -1112,16 +1112,85 @@ collections:
     label: "⚙️ Setari Site"
     icon: "settings"
     files:
-      - name: social
-        label: "Social Media"
-        file: data/social.yml
+      - name: site_settings
+        label: "Setari Generale"
+        file: data/settings.yaml
         fields:
-          - { label: "Facebook", name: "facebook", widget: "string", required: false }
-          - { label: "Instagram", name: "instagram", widget: "string", required: false }
-          - { label: "TikTok", name: "tiktok", widget: "string", required: false }
-          - { label: "YouTube", name: "youtube", widget: "string", required: false }
-          - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
-          - { label: "Twitter/X", name: "twitter", widget: "string", required: false }
+          # Site Identity
+          - { label: "Nume Site", name: "site_name", widget: "string" }
+          - { label: "Slogan", name: "tagline", widget: "string", required: false }
+
+          # Logo Settings
+          - label: "Logo"
+            name: "logo"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Fisier Logo", name: "logo", widget: "image", default: "images/logo.svg" }
+              - { label: "Text Logo", name: "logo_text", widget: "string", default: "Alexandra Barbu" }
+              - { label: "Favicon", name: "favicon", widget: "image", default: "images/favicon.png" }
+
+          # Social Media Links
+          - label: "Social Media"
+            name: "social"
+            widget: "list"
+            hint: "Link-urile catre profilurile de social media"
+            collapsed: false
+            fields:
+              - { label: "Nume", name: "name", widget: "string", hint: "Ex: Facebook, Instagram" }
+              - { label: "URL", name: "url", widget: "string", hint: "Link-ul complet catre profil" }
+              - label: "Icoana"
+                name: "icon"
+                widget: "select"
+                options:
+                  - { label: "Facebook", value: "facebook-f" }
+                  - { label: "Instagram", value: "instagram" }
+                  - { label: "LinkedIn", value: "linkedin-in" }
+                  - { label: "TikTok", value: "tiktok" }
+                  - { label: "YouTube", value: "youtube" }
+                  - { label: "Twitter/X", value: "twitter" }
+
+          # Contact Information
+          - label: "Informatii Contact"
+            name: "contact"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Telefon", name: "phone", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Adresa / Program", name: "address", widget: "string" }
+
+          # Navigation Button (Header CTA)
+          - label: "Buton Header (CTA)"
+            name: "nav_button"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Activat", name: "enable", widget: "boolean", default: true }
+              - { label: "Text Buton", name: "text", widget: "string" }
+              - { label: "URL Buton", name: "url", widget: "string" }
+
+          # Contact Form Settings
+          - label: "Formular Contact"
+            name: "contact_form"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Action URL (Google Script)", name: "action", widget: "string", hint: "URL-ul Google Apps Script pentru trimitere formular" }
+
+          # SEO Defaults
+          - label: "SEO (Motoare de Cautare)"
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Descriere Site", name: "description", widget: "text" }
+              - { label: "Autor", name: "author", widget: "string" }
+              - { label: "Imagine OG", name: "image", widget: "image" }
+              - label: "Cuvinte Cheie"
+                name: "keywords"
+                widget: "list"
+                field: { label: "Cuvant Cheie", name: "keyword", widget: "string" }
 
   # ═══════════════════════════════════════════
   # 📋 SECTION REFERENCE

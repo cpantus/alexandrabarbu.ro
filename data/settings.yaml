@@ -1,0 +1,33 @@
+site_name: Alexandra Barbu
+tagline: Psiholog Clinician
+logo: images/logo.svg
+social:
+  - name: Facebook
+    url: https://facebook.com/alexandrabarbu
+    icon: facebook-f
+  - name: Instagram
+    url: https://instagram.com/alexandrabarbu
+    icon: instagram
+  - name: LinkedIn
+    url: https://linkedin.com/in/alexandrabarbu
+    icon: linkedin-in
+contact:
+  phone: +40 123 456 789
+  email: alexandra.barbu@gmail.com
+  address: 'Bucuresti, Sector 3, L-V: 10:00-20:00'
+nav_button:
+  enable: true
+  text: Fa o programare
+  url: https://cal.com/gigi-frana-uvymh4/50min
+contact_form:
+  action: https://script.google.com/macros/s/AKfycbwdGDM3B3V5GhT6GNftvtKFAAuGzGdswUo2x3QGX0C4bNPl_GS8y6eUbWV5MQPAl-wObg/exec
+seo:
+  description: Cabinet Alexandra Barbu - Psiholog Clinician
+  author: Alexandra Barbu
+  image: images/og-image.jpg
+  keywords:
+    - Psihoterapie
+    - Terapie CBT
+    - Terapie de familie
+logo_text: Alexandra Barbu
+favicon: images/favicon.png

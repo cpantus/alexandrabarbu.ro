@@ -1,0 +1,110 @@
+{{/*
+  Organization Schema - CMS-Managed Version
+
+  Generates Schema.org Organization/LocalBusiness/ProfessionalService.
+  https://schema.org/Organization
+
+  Project-level override that adds support for CMS data file (data/settings.yaml)
+  Fallback chain: site.Data.settings > site.Params
+
+  Version: 5.1.0 (CMS-Managed)
+  Last Updated: 2025-12-01
+*/}}
+
+{{- $settings := site.Data.settings | default dict -}}
+{{- $config := site.Params.seo.organization | default dict -}}
+{{- $contact := $settings.contact | default site.Params.contact_info | default dict -}}
+
+{{/* Resolve values with fallbacks - CMS data takes priority */}}
+{{- $orgType := $config.type | default "Organization" -}}
+{{- $name := $settings.site_name | default $config.name | default site.Title -}}
+{{- $description := $settings.seo.description | default $config.description | default site.Params.description | default site.Params.metadata.description -}}
+{{- $url := $config.url | default site.BaseURL -}}
+{{- $logo := $settings.logo | default $config.logo | default site.Params.logo | default "images/logo.svg" -}}
+{{- $email := $contact.email | default (index $contact.email 0) -}}
+{{- $phone := $contact.phone | default (index $contact.phone 0) -}}
+
+{{/* Build social profiles array - from CMS data or params */}}
+{{- $sameAs := slice -}}
+{{- $social := $settings.social | default site.Params.social -}}
+{{- range $social -}}
+  {{- $sameAs = $sameAs | append .url -}}
+{{- end -}}
+{{- range $config.same_as -}}
+  {{- $sameAs = $sameAs | append . -}}
+{{- end -}}
+
+{{/* Build base schema */}}
+{{- $schema := dict
+  "@context" "https://schema.org"
+  "@type" $orgType
+  "name" $name
+  "url" $url
+-}}
+
+{{- with $description -}}
+  {{- $schema = merge $schema (dict "description" .) -}}
+{{- end -}}
+
+{{- with $config.legal_name -}}
+  {{- $schema = merge $schema (dict "legalName" .) -}}
+{{- end -}}
+
+{{- with $logo -}}
+  {{- $schema = merge $schema (dict "logo" (absURL .)) -}}
+{{- end -}}
+
+{{- with $config.image -}}
+  {{- $schema = merge $schema (dict "image" (absURL .)) -}}
+{{- end -}}
+
+{{- with $email -}}
+  {{- $schema = merge $schema (dict "email" .) -}}
+{{- end -}}
+
+{{- with $phone -}}
+  {{- $schema = merge $schema (dict "telephone" .) -}}
+{{- end -}}
+
+{{- with $config.founding_date -}}
+  {{- $schema = merge $schema (dict "foundingDate" .) -}}
+{{- end -}}
+
+{{- with $config.price_range -}}
+  {{- $schema = merge $schema (dict "priceRange" .) -}}
+{{- end -}}
+
+{{/* Build address if present */}}
+{{- with $config.address -}}
+  {{- if or .street .city .region .postal_code -}}
+    {{- $address := dict "@type" "PostalAddress" -}}
+    {{- with .street -}}
+      {{- $address = merge $address (dict "streetAddress" .) -}}
+    {{- end -}}
+    {{- with .city -}}
+      {{- $address = merge $address (dict "addressLocality" .) -}}
+    {{- end -}}
+    {{- with .region -}}
+      {{- $address = merge $address (dict "addressRegion" .) -}}
+    {{- end -}}
+    {{- with .postal_code -}}
+      {{- $address = merge $address (dict "postalCode" .) -}}
+    {{- end -}}
+    {{- with .country -}}
+      {{- $address = merge $address (dict "addressCountry" .) -}}
+    {{- end -}}
+    {{- $schema = merge $schema (dict "address" $address) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- with $config.opening_hours -}}
+  {{- $schema = merge $schema (dict "openingHours" .) -}}
+{{- end -}}
+
+{{- if $sameAs -}}
+  {{- $schema = merge $schema (dict "sameAs" $sameAs) -}}
+{{- end -}}
+
+<script type="application/ld+json">
+{{ $schema | jsonify (dict "indent" "  " "noHTMLEscape" true) | safeJS }}
+</script>
