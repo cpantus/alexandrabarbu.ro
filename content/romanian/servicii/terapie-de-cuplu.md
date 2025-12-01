@@ -19,19 +19,19 @@ feature_blocks:
   - subtitle: Certuri și Retragere
     title: Comunicare Disfuncțională
     description: Certurile escaladează rapid, vă criticați reciproc, evitați conversațiile dificile, sau unul din voi se retrage în tăcere (stonewalling). Certuri frecvente, critică, defensivitate, neînțelegeri și lipsă de ascultare activă.
-    image: https://images.unsplash.com/photo-1515169273894-7e876dcf13da?w=800&h=600&fit=crop
+    image: /images/comunicare.jpeg
   - subtitle: Reconstruirea Încrederii
     title: Infidelitate și Încredere Pierdută
     description: Unul sau ambii parteneri au trecut prin infidelitate (emoțională sau fizică). Încrederea este distrusă și nu știți cum să reconstruiți relația. Aventură, suspiciune, dificultăți în a ierta și pierderea intimității.
-    image: https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop
+    image: /images/incredere pierduta.jpeg
   - subtitle: Distanță Emoțională
     title: Lipsa Intimității și Conexiunii
     description: Vă simțiți ca doi străini sub același acoperiș. Distanță emoțională, lipsă de afecțiune, viață sexuală nesatisfăcătoare sau inexistentă. Nu mai împărtășiți timpul de calitate și sentimentul că nu vă mai înțelegeți.
-    image: https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800&h=600&fit=crop
+    image: /images/lipsa intimitatii.jpeg
   - subtitle: Navigarea Deciziilor
     title: Decizii Importante în Relație
     description: 'Vă gândiți la căsătorie, divorț, copii, sau relocare și nu sunteți pe aceeași pagină. Terapia vă poate ajuta să navigați aceste decizii împreună: căsătorie, divorț, copii, carieră vs. familie, familii recompuse.'
-    image: https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=600&fit=crop
+    image: /images/decizii importante.jpeg
 faq_items:
   - question: Cât durează terapia de cuplu?
     answer: Depinde de gravitatea problemelor. Pentru conflicte moderate și îmbunătățirea comunicării, 12-20 sesiuni (3-5 luni) sunt de obicei suficiente. Pentru infidelitate sau probleme mai profunde, poate dura 6-12 luni (20-30 sesiuni). În prima sesiune stabilim o estimare realistă.
@@ -55,30 +55,30 @@ cta_standard:
   button_text: Programează Consultație Gratuită
   button_url: https://cal.com/gigi-frana-uvymh4/15min
   enable: true
-benefits_results:
-  items:
-    - timeline: După 6-8 sesiuni
-      icon: comment-dots
-      description: Învățați să vă ascultați cu adevărat, să validați emoțiile celuilalt, să discutați probleme dificile fără escaladare. Comunicare mai clară, mai empatică.
-      title: Comunicare Îmbunătățită
-    - timeline: După 20-30 sesiuni (infidelitate)
-      icon: handshake
-      description: Dacă ați trecut prin infidelitate, învățați să iertați (dacă alegeți), să reconstruiți transparența și să creați o relație nouă, mai puternică.
-      title: Reconstruirea Încrederii
-    - timeline: După 12-16 sesiuni
-      icon: heartbeat
-      description: Revenirea conexiunii emoționale și fizice. Afecțiune, sex, timp de calitate împreună. Vă simțiți din nou apropiați.
-      title: Creșterea Intimității
-  description: Terapia de cuplu nu este doar despre rezolvarea conflictelor. Este despre construirea unei relații mai profunde, mai sănătoase și mai împlinite.
-  subtitle: Schimbări reale, relație mai puternică
-  title: Ce Veți Obține Din Terapia de Cuplu
-  enable: true
 breadcrumb:
-  - url: /
-    name: Acasă
-  - url: /servicii/
-    name: Servicii
-  - url: /servicii/terapie-de-cuplu/
-    name: Terapie de Cuplu
+  - name: Acasă
+    url: /
+  - name: Servicii
+    url: /servicii/
+  - name: Terapie de Cuplu
+    url: /servicii/terapie-de-cuplu/
+benefits_results:
+  enable: true
+  title: Ce Veți Obține Din Terapia de Cuplu
+  subtitle: Schimbări reale, relație mai puternică
+  description: Terapia de cuplu nu este doar despre rezolvarea conflictelor. Este despre construirea unei relații mai profunde, mai sănătoase și mai împlinite.
+  items:
+    - title: Comunicare Îmbunătățită
+      description: Învățați să vă ascultați cu adevărat, să validați emoțiile celuilalt, să discutați probleme dificile fără escaladare. Comunicare mai clară, mai empatică.
+      icon: comment-dots
+      timeline: După 6-8 sesiuni
+    - title: Reconstruirea Încrederii
+      description: Dacă ați trecut prin infidelitate, învățați să iertați (dacă alegeți), să reconstruiți transparența și să creați o relație nouă, mai puternică.
+      icon: handshake
+      timeline: După 20-30 sesiuni (infidelitate)
+    - title: Creșterea Intimității
+      description: Revenirea conexiunii emoționale și fizice. Afecțiune, sex, timp de calitate împreună. Vă simțiți din nou apropiați.
+      icon: heartbeat
+      timeline: După 12-16 sesiuni
 ---
 
