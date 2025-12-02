@@ -1,0 +1,343 @@
+/*
+========================================================================
+  CRITICAL CSS - Above-the-fold styles for instant first paint
+========================================================================
+
+  Purpose: Inline-able CSS for immediate render without FOUC
+  Target size: <20KB minified
+
+  Contains:
+  - Config bridge (Hugo → SCSS)
+  - Essential design tokens
+  - Critical CSS custom properties
+  - Header/navigation base styles
+  - Button base + primary variant
+  - Container layout
+  - Typography base
+
+  Last Updated: 2025-12-02
+========================================================================
+*/
+
+// ==================================
+// LAYER 0: CONFIG BRIDGE (Hugo → SCSS)
+// ==================================
+// Copied from main-new.scss - Hugo replaces these at build time
+
+// Brand Colors
+$color-primary: {{ site.Params.design.brand.primary | default "#234E3E" }};
+$color-secondary: {{ site.Params.design.brand.secondary | default "#6B9080" }};
+$color-accent: {{ site.Params.design.brand.accent | default "#D4AF37" }};
+
+// Typography
+$font-heading: {{ site.Params.design.typography.heading_font | default "Playfair Display" }}, serif;
+$font-body: {{ site.Params.design.typography.body_font | default "DM Sans" }}, sans-serif;
+$font-weight-heading: {{ site.Params.design.typography.heading_weight | default "700" }};
+$font-weight-body: {{ site.Params.design.typography.body_weight | default "400" }};
+$font-size-base: {{ site.Params.design.typography.base_size | default "16px" }};
+
+// Text Colors
+$text-primary: {{ site.Params.design.colors.text.primary | default "#374151" }};
+$text-secondary: {{ site.Params.design.colors.text.secondary | default "#6B7280" }};
+$text-inverted: {{ site.Params.design.colors.text.inverted | default "#FFFFFF" }};
+
+// Spacing
+$container-max-width: {{ site.Params.design.spacing.container_max_width | default "1200px" }};
+$container-padding: {{ site.Params.design.spacing.container_padding | default "16px" }};
+
+// Borders
+$border-radius-md: {{ site.Params.design.borders.radius_md | default "8px" }};
+$border-radius-full: {{ site.Params.design.borders.radius_full | default "9999px" }};
+
+// Navigation
+$nav-height: {{ site.Params.design.components.navigation.height | default "72px" }};
+$nav-background: {{ site.Params.design.components.navigation.background | default "#FFFFFF" }};
+
+// Buttons
+$button-padding-horizontal: {{ site.Params.design.components.buttons.padding_horizontal | default "24px" }};
+$button-padding-vertical: {{ site.Params.design.components.buttons.padding_vertical | default "12px" }};
+$button-font-weight: {{ site.Params.design.components.buttons.font_weight | default "600" }};
+$button-border-radius: {{ site.Params.design.components.buttons.border_radius | default "8px" }};
+
+// ==================================
+// CRITICAL DESIGN TOKENS
+// ==================================
+
+// Core colors (inline to avoid import chain)
+$forest-500: #234E3E;
+$forest-600: #1a3b2f;
+$forest-700: #122a21;
+$sage-500: #6B9080;
+$gold-500: #D4AF37;
+$cream-50: #FEFDFB;
+$white: #FFFFFF;
+
+// Spacing scale (8px grid)
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 16px;
+$space-4: 24px;
+$space-5: 32px;
+
+// Shadows
+$shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+// Breakpoints
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+
+// Z-index
+$z-header: 1000;
+
+// ==================================
+// CRITICAL CSS CUSTOM PROPERTIES
+// ==================================
+
+:root {
+  // Button base properties
+  --btn-font-family: #{$font-body};
+  --btn-font-weight: #{$button-font-weight};
+  --btn-border-radius: #{$border-radius-full};
+  --btn-padding-y: #{$button-padding-vertical};
+  --btn-padding-x: #{$button-padding-horizontal};
+  --btn-transition: all 0.2s ease-in-out;
+  --btn-min-height: 44px;
+  --btn-min-width: 44px;
+
+  // Primary button
+  --btn-primary-bg: #{$forest-500};
+  --btn-primary-hover: #{$sage-500};
+  --btn-primary-text: #{$white};
+  --btn-primary-shadow: 0 4px 14px -3px rgba(35, 78, 62, 0.3);
+  --btn-primary-shadow-lg: 0 8px 20px -4px rgba(35, 78, 62, 0.4);
+
+  // Focus ring
+  --btn-focus-ring-color: rgba(107, 144, 128, 0.15);
+}
+
+// ==================================
+// CRITICAL GENERIC STYLES
+// ==================================
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: $font-body;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: $text-primary;
+  background-color: $cream-50;
+}
+
+// ==================================
+// CRITICAL LAYOUT: CONTAINER
+// ==================================
+
+.o-container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $container-padding;
+  padding-right: $container-padding;
+}
+
+// ==================================
+// CRITICAL COMPONENT: HEADER
+// ==================================
+
+.c-header__spacer {
+  height: 80px;
+
+  @media (max-width: $breakpoint-md - 1) {
+    height: 64px;
+  }
+}
+
+.c-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-header;
+  background: rgba($cream-50, 0.95);
+
+  &--sticky {
+    background: rgba($cream-50, 0.98);
+    backdrop-filter: blur(12px);
+    box-shadow: $shadow-md;
+  }
+}
+
+.c-header__container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 $space-4;
+
+  @media (max-width: $breakpoint-md - 1) {
+    padding: 0 $space-3;
+  }
+}
+
+.c-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80px;
+  gap: $space-4;
+
+  @media (max-width: $breakpoint-lg - 1) {
+    min-height: 64px;
+    gap: $space-2;
+  }
+}
+
+.c-header__brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+
+  &, &:hover, &:focus, &:active {
+    text-decoration: none !important;
+    border-bottom: none !important;
+  }
+}
+
+.c-header__nav-controller {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+
+  @media (min-width: $breakpoint-lg) {
+    display: none;
+  }
+}
+
+.c-header__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.c-header__collapse {
+  @media (max-width: $breakpoint-lg - 1) {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: $white;
+    box-shadow: $shadow-md;
+
+    &.show {
+      display: block;
+    }
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    display: flex;
+    align-items: center;
+    gap: $space-4;
+  }
+}
+
+.c-header__nav {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: $space-3;
+
+  @media (min-width: $breakpoint-lg) {
+    flex-direction: row;
+    align-items: center;
+    gap: $space-4;
+    padding: 0;
+  }
+}
+
+.c-header__actions {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+}
+
+// ==================================
+// CRITICAL COMPONENT: BUTTON BASE
+// ==================================
+
+.c-button {
+  font-family: var(--btn-font-family);
+  font-weight: var(--btn-font-weight);
+  border-radius: var(--btn-border-radius);
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  transition: var(--btn-transition);
+  border: 0;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 1.5;
+  min-height: var(--btn-min-height);
+  min-width: var(--btn-min-width);
+}
+
+.c-button--primary {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  box-shadow: var(--btn-primary-shadow);
+}
+
+// ==================================
+// CRITICAL TYPOGRAPHY
+// ==================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  font-weight: $font-weight-heading;
+  line-height: 1.2;
+  margin-top: 0;
+  color: $forest-700;
+}
+
+a {
+  color: $forest-500;
+  text-decoration: none;
+}
+
+// ==================================
+// CRITICAL SECTION BACKGROUNDS
+// ==================================
+
+.section {
+  padding-top: 48px;
+  padding-bottom: 48px;
+
+  @media (min-width: $breakpoint-md) {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+
+.section--alt {
+  background-color: rgba($sage-500, 0.05);
+}

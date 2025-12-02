@@ -58,8 +58,20 @@
   {{ $styles = $styles | resources.PostProcess }}
 {{ end }}
 
+{{/* ============================================================
+    CRITICAL CSS - Inlined for instant first paint (no FOUC)
+    Contains: header, buttons, container, typography base
+    Target: <20KB minified
+    ============================================================ */}}
+{{- $criticalSCSS := resources.Get "scss/critical.scss" -}}
+{{- $criticalCSS := $criticalSCSS | resources.ExecuteAsTemplate "critical.scss" . | toCSS (dict "outputStyle" "compressed") -}}
+<style>{{ $criticalCSS.Content | safeCSS }}</style>
 
-<!-- External CSS for caching + better Core Web Vitals (SEO fix 2025-12-01) -->
-<!-- Preload CSS to reduce render-blocking time -->
-<link rel="preload" href="{{ $styles.RelPermalink }}" as="style">
-<link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
+<!-- Full CSS - async loaded (non-blocking) for better Core Web Vitals -->
+<!-- Uses media="print" trick: browser downloads but doesn't block rendering -->
+<!-- onload switches to media="all" once fully loaded -->
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}"
+      integrity="{{ $styles.Data.Integrity }}"
+      media="print"
+      onload="this.media='all';this.onload=null;">
+<noscript><link rel="stylesheet" href="{{ $styles.RelPermalink }}"></noscript>
