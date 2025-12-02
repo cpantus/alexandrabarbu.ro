@@ -2,7 +2,7 @@
 
 **System**: Hugo + Atomic Design + ITCSS | **Purpose**: Enable Claude Code to understand and extend project
 
-**Version**: 5.3.1 | **Updated**: 2025-11-28 | **Structure**: Hugo standard (theme directory)
+**Version**: 5.4.0 | **Updated**: 2025-12-02 | **Structure**: Hugo standard (theme directory)
 
 ---
 
@@ -10,7 +10,7 @@
 
 Component-based Hugo site with standard theme architecture: Pages = Header + Sections (2-7) + Footer
 
-**Hierarchy**: Atoms (9) → Molecules (24) → Organisms (2) → Sections (37) = **72 components**
+**Hierarchy**: Atoms (9) → Molecules (24) → Organisms (2) → Sections (18) = **53 components**
 
 **Note**: Hugo follows standard lookup order: project root overrides → theme defaults. Main implementation in `themes/andromeda-hugo/` directory.
 
@@ -50,8 +50,8 @@ header.html, footer.html (cached by language for 30-50% build time reduction)
 
 **Usage**: `{{ partialCached "organisms/header.html" . .Language }}`
 
-### Sections (37 active) - `themes/andromeda-hugo/layouts/partials/sections/`
-about-preview.html, approach-preview.html, benefits-results.html, blog-grid.html, confidentiality-notice.html, contact-form-enhanced.html, contact-info-cards.html, contact-options.html, credentials-showcase.html, cta-standard.html, cta-split.html, faq-content.html, faq-mini.html, feature-blocks.html, feature-details.html, first-session-timeline.html, hero-breadcrumb.html, hero-about.html, methods-used.html, method-tabs.html, my-story.html, newsletter-signup.html, onboarding-steps.html, pricing-packages.html, pricing-tables.html, privacy-guarantee.html, problem-empathy.html, service-faq-inline.html, services-preview.html, signup-form-enhanced.html, simple-process.html, stats-numbers.html, testimonials-enhanced.html, therapeutic-process.html, training-certifications.html, values-compass.html, values-intro.html, video-popup.html
+### Sections (18 active) - `themes/andromeda-hugo/layouts/partials/sections/`
+benefits-results.html, blog-grid.html, contact-form-enhanced.html, contact-info-cards.html, credentials-education.html, cta-split.html, cta-standard.html, faq-mini.html, feature-blocks.html, hero-about.html, hero-breadcrumb.html, methodology-zigzag.html, onboarding-steps.html, scientific-approach.html, services-preview.html, testimonials-enhanced.html, test-index.html, values-intro.html
 
 **Data from front matter**:
 ```yaml
@@ -382,12 +382,12 @@ Collections mirror content directory structure for both languages:
 
 All pages use the **flexible layout** with section-based composition. CMS provides:
 
-1. **Section Selector**: Choose from 37 available section types
+1. **Section Selector**: Choose from 18 core section types
 2. **Section Configuration**: Collapsible form fields for each section
 3. **Preview**: Live preview in Hugo dev server
 4. **Git Integration**: Auto-commits changes to GitHub
 
-Supported section types documented in `data/cms_sections.yaml` (11 categories: heroes, core, interactive, forms, trust, pricing, stats, testimonials, about, methodology, specialized).
+Supported section types documented in `data/cms_sections.yaml` (pruned to core sections: heroes, core, interactive, forms, trust, about, methodology).
 
 ### Files
 
@@ -416,20 +416,46 @@ Supported section types documented in `data/cms_sections.yaml` (11 categories: h
 
 **Understand**: README.md → ARCHITECTURE.md → themes/andromeda-hugo/docs/components/
 **Add features**: New page (archetypes) | New section (sections/) | New molecule (molecules/)
-**Verify**: `ls themes/andromeda-hugo/layouts/partials/atoms/ | wc -l` (9), molecules (24), organisms (2), sections (37)
+**Verify**: `ls themes/andromeda-hugo/layouts/partials/atoms/ | wc -l` (9), molecules (24), organisms (2), sections (18)
 **CMS**: Access at `/admin` for visual page building
 
 ---
 
 ## Success Metrics ✅
 
-Build <3s | Pages <500KB | CSS <50KB gzipped | Reusability >80% | Duplication <10% | New page <30s | 72 components total | No Bootstrap/jQuery (vanilla JS) | Sveltia CMS integrated
+Build <3s | Pages <500KB | CSS <50KB gzipped | Reusability >80% | Duplication <10% | New page <30s | 53 components total | Critical CSS inlining | No Bootstrap/jQuery (vanilla JS) | Sveltia CMS integrated
+
+---
+
+## Recent Changes (Week of 2025-12-02)
+
+### Major Refactoring
+- **Section Cleanup** (v5.4.0): Removed 20 unused section templates to reduce maintenance burden
+  - Deleted: about-preview, approach-preview, confidentiality-notice, contact-options, credentials-showcase, method-tabs, methods-used, my-story, newsletter-signup, pricing-packages, pricing-tables, privacy-guarantee, problem-empathy, service-faq-inline, simple-process, stats-numbers, therapeutic-process, training-certifications, values-compass, video-popup
+  - Retained: 18 core sections focused on active site needs
+  - Impact: Cleaner component selection in CMS, reduced codebase complexity
+
+### Performance Enhancements
+- **Critical CSS Inlining** (82a6136): Eliminate render-blocking CSS by inlining critical above-fold styles
+  - Added: `themes/andromeda-hugo/assets/scss/critical.scss`
+  - Updated: Style loading in `essentials/style.html`
+  - Impact: Faster first paint, improved Core Web Vitals
+
+### UX Improvements
+- **CMS Toast Notifications** (79486a8): Added visual feedback for save operations in Sveltia CMS
+- **Page Updates**: Enhanced approach, resources, contact, and service pages with improved imagery
+
+### Component Naming Changes
+- `credentials-showcase.html` → Removed (replaced by credentials-education.html)
+- `problem-empathy.html` → Removed (content consolidated)
+- New: `credentials-education.html`, `methodology-zigzag.html`, `scientific-approach.html`
 
 ---
 
 ## Critical Files
 
 - `themes/andromeda-hugo/layouts/_default/flexible.html` - Layout engine (lines 22-82: section loop)
+- `themes/andromeda-hugo/assets/scss/critical.scss` - Critical CSS for above-fold rendering (NEW)
 - `layouts/partials/organisms/header.html` - Header composition
 - `layouts/partials/organisms/footer.html` - Footer composition
 - `archetypes/*.md` - Page templates

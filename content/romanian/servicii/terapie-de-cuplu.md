@@ -14,7 +14,6 @@ hero_breadcrumb:
   subtitle: Reconstruiește Conexiunea, Comunicarea și Intimitatea
   description: Terapie bazată pe Metoda Gottman și TCC pentru rezolvarea conflictelor, reconstruirea încrederii și întărirea relației voastre. Fie că vă confruntați cu comunicare disfuncțională, infidelitate sau pur și simplu vă simțiți distanțați, terapia de cuplu vă oferă instrumentele pentru a regăsi conexiunea. 70%+ din cupluri raportează îmbunătățiri semnificative după procesul terapeutic.
   kicker: ''
-  image: https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1200&h=600&fit=crop
 feature_blocks:
   - subtitle: Certuri și Retragere
     title: Comunicare Disfuncțională

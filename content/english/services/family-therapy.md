@@ -15,7 +15,6 @@ hero_breadcrumb:
   title: "Family Therapy"
   subtitle: "Healing and Harmonizing Family Dynamics"
   description: "Systemic therapy for resolving family conflicts, improving communication and building healthier relationships between all family members. Whether you're navigating a divorce, facing issues with adolescents, or going through a difficult transition, family therapy transforms the entire system for lasting harmony. All members learn to truly listen and validate each other's emotions."
-  image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=1200&h=600&fit=crop"
 
 breadcrumb:
   - name: "Home"
@@ -30,22 +29,22 @@ feature_blocks:
   - title: "Conflicts with Adolescents"
     subtitle: "Rebellion and Challenges"
     description: "Rebellion, authority challenges, lack of communication, isolation in room, risky behaviors (alcohol, drugs, promiscuity). Constant defiance, closed communication, self-destructive behaviors, school problems."
-    image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=800&h=600&fit=crop"
+    image: "/images/conflicte cu adolescenti.jpeg"
 
   - title: "Divorce and Blended Families"
     subtitle: "Family Transitions"
     description: "Children suffering from divorce, conflicts between biological and step-parents, step-siblings, custody, adaptation to new family. Children's adaptation, parent-stepparent conflicts, divided loyalties."
-    image: "https://images.unsplash.com/photo-1593398373726-2c96afb09f79?w=800&h=600&fit=crop"
+    image: "/images/divort.jpeg"
 
   - title: "Caring for Aging Parents"
     subtitle: "Responsibilities and Burnout"
     description: "Conflicts between siblings about care, primary caregiver burnout, guilt feelings, difficult decisions about nursing home placement. Disagreements, exhaustion, guilt, financial conflicts."
-    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=600&fit=crop"
+    image: "/images/parinti in varsta.jpeg"
 
   - title: "Family Traumas and Losses"
     subtitle: "Collective Healing"
     description: "Death in family, serious illness, abuse, addictions, traumatic events affecting all family members and you don't know how to process together. Complicated grief, chronic illness, abuse, addictions, collective trauma."
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=600&fit=crop"
+    image: "/images/traume si pierderi familiale.jpeg"
 
 # Problem Empathy
 problem_empathy:

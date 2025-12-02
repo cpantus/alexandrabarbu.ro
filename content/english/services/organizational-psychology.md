@@ -14,7 +14,6 @@ hero_breadcrumb:
   title: "Organizational Psychology"
   subtitle: "Team Optimization, Leadership and Organizational Culture"
   description: "Consulting, training and coaching for companies that want to invest in people, prevent burnout and build healthy organizational cultures."
-  image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=600&fit=crop"
 
 breadcrumb:
   - name: "Home"
@@ -29,22 +28,22 @@ feature_blocks:
   - title: "Recruitment and Psychological Assessments"
     subtitle: "Selection and Development"
     description: "You need to evaluate candidates for key positions or better understand psychological profiles of current employees for development or promotion. Pre-employment assessments, personality testing, assessment center, 360-degree evaluation."
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=600&fit=crop"
+    image: "/images/recrutare.jpeg"
 
   - title: "Burnout Prevention and Management"
     subtitle: "Organizational Wellbeing"
     description: "Employees are exhausted, productivity is declining, turnover is increasing. You need burnout prevention programs and occupational stress management. Burnout screening, workshops, wellbeing programs, individual coaching."
-    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&h=600&fit=crop"
+    image: "/images/burnout.jpeg"
 
   - title: "Leadership and Management Development"
     subtitle: "Executive Coaching"
     description: "Your managers need development in leadership, communication, constructive feedback, conflict management, decision-making under pressure. Leadership training, executive coaching, emotional intelligence, change management."
-    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop"
+    image: "/images/leadership.jpeg"
 
   - title: "Team Building and Organizational Culture"
     subtitle: "Cohesion and Healthy Culture"
     description: "Teams function in silos, communication is dysfunctional, organizational culture is toxic. You need to build cohesion and healthy culture. Strategic team building, culture diagnosis, inter-team conflict resolution."
-    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=600&fit=crop"
+    image: "/images/team building.jpeg"
 
 # Problem Empathy
 problem_empathy:

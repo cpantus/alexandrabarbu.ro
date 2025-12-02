@@ -12,7 +12,6 @@ hero_breadcrumb:
   title: Terapie Individuală
   subtitle: Abordare Personalizată Pentru Vindecarea și Creșterea Ta
   description: Terapie bazată pe dovezi pentru anxietate, depresie, traume și dezvoltare personală. Folosesc TCC, EMDR și Mindfulness pentru rezultate măsurabile. Fie că te lupți cu atacuri de panică, tristețe persistentă sau vrei să te cunoști mai bine, terapia individuală oferă un spațiu sigur pentru transformare. Progresul este monitorizat obiectiv, cu tehnici practice pe care le poți folosi zilnic.
-  image: https://images.unsplash.com/photo-1573497491208-6b1acb260507?w=1200&h=600&fit=crop
 feature_blocks:
   - subtitle: Anxietate și Panică
     title: Te Confrunți Cu Anxietate

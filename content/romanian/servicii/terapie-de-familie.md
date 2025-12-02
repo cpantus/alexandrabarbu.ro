@@ -12,7 +12,6 @@ hero_breadcrumb:
   title: Terapie de Familie
   subtitle: Vindecare și Armonizare a Dinamicii Familiale
   description: Terapie sistemică pentru rezolvarea conflictelor familiale, îmbunătățirea comunicării și construirea relațiilor mai sănătoase între toți membrii familiei. Fie că navigați printr-un divorț, vă confruntați cu probleme ale adolescenților sau treceți printr-o tranziție dificilă, terapia de familie transformă întregul sistem pentru armonie durabilă. Toți membrii învață să se asculte cu adevărat și să valideze emoțiile celorlalți.
-  image: https://images.unsplash.com/photo-1511895426328-dc8714191300?w=1200&h=600&fit=crop
 feature_blocks:
   - subtitle: Rebeli și Provocări
     title: Conflicte cu Adolescenții

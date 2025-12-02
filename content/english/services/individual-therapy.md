@@ -30,22 +30,22 @@ feature_blocks:
   - title: "You're Dealing With Anxiety"
     subtitle: "Anxiety and Panic"
     description: "Constant worry, tension, palpitations, panic attacks, avoiding social situations, obsessive thoughts, fear of losing control. Generalized anxiety, panic attacks, social phobia, OCD, or PTSD."
-    image: "https://images.unsplash.com/photo-1494253109108-2e30c049369b?w=800&h=600&fit=crop"
+    image: "/images/anxietate.jpeg"
 
   - title: "You Suffer From Depression"
     subtitle: "Depression and Low Energy"
     description: "Persistent sadness, lack of energy and motivation, loss of pleasure in activities, social isolation, recurring negative thoughts, sleep problems. Major depression, dysthymia, lack of meaning, severe self-criticism, or burnout."
-    image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&h=600&fit=crop"
+    image: "/images/depresie.jpeg"
 
   - title: "You've Experienced Trauma"
     subtitle: "Unresolved Trauma"
     description: "Traumatic events (abuse, violence, accident, loss) that still affect you. Flashbacks, nightmares, memory avoidance, intense emotional reactions. Abuse, domestic violence, accidents, losses, or childhood trauma."
-    image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&h=600&fit=crop"
+    image: "/images/trauma.jpeg"
 
   - title: "You Want Personal Development"
     subtitle: "Growth and Self-Knowledge"
     description: "You don't necessarily have a problem, but feel stagnant. Want to know yourself better, clarify values, improve relationships, live more authentically. Self-knowledge, self-esteem, emotional intelligence, and finding meaning."
-    image: "https://images.unsplash.com/photo-1499728603263-13726abce5fd?w=800&h=600&fit=crop"
+    image: "/images/dezvoltare personala.jpeg"
 
 # Problem Empathy
 problem_empathy:

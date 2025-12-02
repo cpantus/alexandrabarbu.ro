@@ -16,7 +16,6 @@ hero_breadcrumb:
   title: "Couples Therapy"
   subtitle: "Rebuild Connection, Communication and Intimacy"
   description: "Therapy based on Gottman Method and CBT for conflict resolution, rebuilding trust and strengthening your relationship. Whether you're facing dysfunctional communication, infidelity, or simply feel disconnected, couples therapy provides the tools to rediscover your connection. 70%+ of couples report significant improvements after the therapeutic process."
-  image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1200&h=600&fit=crop"
 
 breadcrumb:
   - name: "Home"
@@ -31,22 +30,22 @@ feature_blocks:
   - title: "Dysfunctional Communication"
     subtitle: "Arguments and Withdrawal"
     description: "Arguments escalate quickly, you criticize each other, avoid difficult conversations, or one of you withdraws into silence (stonewalling). Frequent fights, criticism, defensiveness, misunderstandings and lack of active listening."
-    image: "https://images.unsplash.com/photo-1515169273894-7e876dcf13da?w=800&h=600&fit=crop"
+    image: "/images/comunicare.jpeg"
 
   - title: "Infidelity and Lost Trust"
     subtitle: "Rebuilding Trust"
     description: "One or both partners have experienced infidelity (emotional or physical). Trust is destroyed and you don't know how to rebuild the relationship. Affair, suspicion, difficulty forgiving and loss of intimacy."
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=600&fit=crop"
+    image: "/images/incredere pierduta.jpeg"
 
   - title: "Lack of Intimacy and Connection"
     subtitle: "Emotional Distance"
     description: "You feel like two strangers under the same roof. Emotional distance, lack of affection, unsatisfying or non-existent sex life. You no longer share quality time and feel you don't understand each other anymore."
-    image: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800&h=600&fit=crop"
+    image: "/images/lipsa intimitatii.jpeg"
 
   - title: "Important Relationship Decisions"
     subtitle: "Navigating Decisions"
     description: "You're thinking about marriage, divorce, children, or relocation and you're not on the same page. Therapy can help you navigate these decisions together: marriage, divorce, children, career vs. family, blended families."
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=600&fit=crop"
+    image: "/images/decizii importante.jpeg"
 
 # Problem Empathy
 problem_empathy:
