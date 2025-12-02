@@ -44,8 +44,10 @@ jobs:
           cache-dependency-path: 'themes/andromeda-hugo/package-lock.json'
 
       - name: Install PostCSS dependencies
-        run: npm ci
-        working-directory: themes/andromeda-hugo
+        run: |
+          cd themes/andromeda-hugo && npm ci
+          # Symlink node_modules to project root so Hugo can find postcss via npx
+          ln -s themes/andromeda-hugo/node_modules node_modules
 
       - name: Setup Pages
         id: pages
