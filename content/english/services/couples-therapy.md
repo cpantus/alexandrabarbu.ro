@@ -210,26 +210,32 @@ benefits_results:
     - title: "Improved Communication"
       description: "Learn to truly listen, validate each other's emotions, discuss difficult issues without escalation. Clearer, more empathetic communication."
       timeline: "After 6-8 sessions"
+      icon: comment-dots
 
     - title: "Reduced Conflicts"
       description: "Arguments become less frequent and less intense. When they occur, you know how to manage them constructively. Less defensiveness and criticism."
       timeline: "After 10-12 sessions"
+      icon: peace
 
     - title: "Rebuilding Trust"
       description: "If you've experienced infidelity, learn to forgive (if you choose), rebuild transparency and create a new, stronger relationship."
       timeline: "After 20-30 sessions (infidelity)"
+      icon: handshake
 
     - title: "Increased Intimacy"
       description: "Return of emotional and physical connection. Affection, sex, quality time together. You feel close again."
       timeline: "After 12-16 sessions"
+      icon: heartbeat
 
     - title: "Problem-Solving Together"
       description: "Approach problems as a team, not as adversaries. Find compromises and solutions that work for both."
       timeline: "After 10-15 sessions"
+      icon: puzzle-piece
 
     - title: "Clarity and Decisions"
       description: "If you're thinking about divorce or marriage, gain clarity. Make informed decisions about the relationship's future, not from fear or anger."
       timeline: "After 8-12 sessions"
+      icon: lightbulb
 
 # Pricing Packages
 pricing_packages:

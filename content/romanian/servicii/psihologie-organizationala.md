@@ -48,7 +48,7 @@ faq_mini_subtitle: Tot ce trebuie să știți
 benefits_results:
   items:
     - timeline: După 6-12 luni
-      icon: user-check
+      icon: user-tie
       description: Scădere 20-40% în fluctuația angajaților după implementarea programelor. Economii masive (costul de înlocuire a unui angajat = 6-9 luni salariu).
       title: Reducerea Turnover-ului
     - timeline: După 3-6 luni
@@ -56,7 +56,7 @@ benefits_results:
       description: Angajați mai engaged, mai puțin burnout, procese optimizate = creștere productivitate cu 15-25%. Măsurat prin KPI-uri specifice industriei.
       title: Creșterea Productivității
     - timeline: După 6-9 luni de coaching
-      icon: users-cog
+      icon: users
       description: Manageri care comunică mai bine, dau feedback constructiv, inspiră echipele. Scor NPS manager crește cu 20-30 puncte. Echipele lor performează semnificativ mai bine.
       title: Leadership Mai Eficient
   description: 'Investiția în capitalul uman are cel mai bun ROI pe termen lung. Iată ce veți vedea:'

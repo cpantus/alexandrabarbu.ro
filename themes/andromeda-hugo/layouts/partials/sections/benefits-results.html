@@ -105,11 +105,9 @@
 
           {{/* Benefit Icon */}}
           {{- if $item.icon -}}
-            {{ partial "atoms/icon.html" (dict
-              "icon" $item.icon
-              "class" "c-benefits-results__icon"
-              "size" "2x"
-            ) }}
+            <div class="c-benefits-results__icon">
+              <i class="las la-{{ $item.icon }}"></i>
+            </div>
           {{- end -}}
 
           {{/* Benefit Content */}}

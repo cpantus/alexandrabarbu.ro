@@ -199,26 +199,32 @@ benefits_results:
     - title: "Symptom Reduction"
       description: "Significant decrease (30-80%) in anxiety, depression, panic attacks, flashbacks. Results measured objectively through questionnaires."
       timeline: "After 8-12 sessions"
+      icon: arrow-down
 
     - title: "Practical Lifelong Techniques"
       description: "Learn concrete tools (diaphragmatic breathing, cognitive restructuring, mindfulness, gradual exposure) you can use anytime."
       timeline: "After 4-6 sessions"
+      icon: toolbox
 
     - title: "Deep Self-Knowledge"
       description: "Understand why you think, feel, and act the way you do. Discover unconscious patterns sabotaging you. Clarity about your real values."
       timeline: "After 10-15 sessions"
+      icon: brain
 
     - title: "Increased Self-Esteem"
       description: "Develop a healthier relationship with yourself. Reduce severe self-criticism. Increase self-compassion and self-acceptance."
       timeline: "After 12-20 sessions"
+      icon: heart
 
     - title: "Healthier Relationships"
       description: "When you heal yourself, relationships improve. Communicate more clearly, set healthy boundaries, choose partners better."
       timeline: "After 15-20 sessions"
+      icon: users
 
     - title: "Meaning and Direction in Life"
       description: "Clarity about values, goals, and life meaning. Know what you want and how to get there. Live more authentically and fulfilled."
       timeline: "After 20+ sessions"
+      icon: compass
 
 # Pricing Packages
 pricing_packages:

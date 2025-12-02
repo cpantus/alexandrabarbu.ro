@@ -197,14 +197,17 @@ benefits_results:
     - title: "Reduced Turnover"
       description: "20-40% decrease in employee turnover after program implementation. Massive savings (cost of replacing employee = 6-9 months salary)."
       timeline: "After 6-12 months"
+      icon: user-tie
 
     - title: "Increased Productivity"
       description: "More engaged employees, less burnout, optimized processes = 15-25% productivity increase. Measured through industry-specific KPIs."
       timeline: "After 3-6 months"
+      icon: chart-line
 
     - title: "More Effective Leadership"
       description: "Managers who communicate better, give constructive feedback, inspire teams. Manager NPS score increases 20-30 points. Their teams perform significantly better."
       timeline: "After 6-9 months of coaching"
+      icon: users
 
     - title: "Healthy Organizational Culture"
       description: "Values lived (not just on paper), increased trust between teams, collaboration instead of competition. Company becomes 'great place to work'."

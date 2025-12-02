@@ -147,6 +147,13 @@
   // Single smooth transition matching credentials-education pattern
   transition: $transition-base;
 
+  // Ensure icon inside inherits color (Line Awesome uses ::before pseudo-element)
+  i {
+    color: inherit;
+    font-size: inherit;
+    line-height: 1;
+  }
+
   // GPU-accelerated hover effect - transform only (scale + rotate)
   .c-benefits-results__item:hover & {
     transform: scale(1.1) rotate(5deg); // Reduced rotation from 8deg to 5deg for smoother feel
