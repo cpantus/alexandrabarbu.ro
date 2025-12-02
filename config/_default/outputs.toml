@@ -1,16 +1,8 @@
 # Output Formats Configuration
 # Defines what formats Hugo generates for different page types
-
-# ---------------------------------------------------------------------------
-# Custom Output Formats
-# ---------------------------------------------------------------------------
-
-# llms.txt - AI crawler guidance (https://llmstxt.org/)
-[outputFormats.LlmsTxt]
-  mediaType = "text/plain"
-  baseName = "llms"
-  isPlainText = true
-  notAlternative = true
+#
+# Note: Custom format DEFINITIONS are in outputFormats.toml
+# This file only assigns formats to page types
 
 # ---------------------------------------------------------------------------
 # Page Type Outputs
@@ -19,9 +11,8 @@
 # Homepage outputs
 # HTML: Main website
 # RSS: Feed for blog/news readers
-# WebAppManifest: Progressive Web App support
-# LlmsTxt: AI crawler guidance file
-home = ["HTML", "RSS", "WebAppManifest", "LlmsTxt"]
+# LlmsTxt: AI crawler guidance file (defined in outputFormats.toml)
+home = ["HTML", "RSS", "LlmsTxt"]
 
 # Section pages (e.g., /services/, /blog/)
 section = ["HTML", "RSS"]

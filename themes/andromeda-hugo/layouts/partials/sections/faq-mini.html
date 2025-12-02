@@ -5,16 +5,17 @@
   Centered layout with optional title/subtitle and footer link.
 
   Front Matter Parameters:
-  - .Params.faq_items (array, required): FAQ items array
-    - question (string, required): FAQ question
-    - answer (string, required): FAQ answer (markdown supported)
-  - .Params.faq_mini_title (string, optional): Section title (default: i18n "faq_title")
-  - .Params.faq_mini_subtitle (string, optional): Section subtitle (default: i18n "faq_subtitle")
-  - .Params.faq_mini_heading_variant (string, optional): Heading color variant (default: primary)
-  - .Params.faq_mini_footer (string, optional): Footer text (default: i18n "faq_footer")
-  - .Params.faq_mini_link_text (string, optional): Footer link text (default: i18n "contact_us")
-  - .Params.faq_mini_link_url (string, optional): Footer link URL (default: #contact-form)
-  - .Params.faq_mini_variant (string, optional): Color variant (primary/secondary/tertiary/neutral, default: primary)
+  - .Params.faq_mini (object, required)
+    - items (array, required): FAQ items array
+      - question (string, required): FAQ question
+      - answer (string, required): FAQ answer (markdown supported)
+    - title (string, optional): Section title (default: i18n "faq_title")
+    - subtitle (string, optional): Section subtitle (default: i18n "faq_subtitle")
+    - heading_variant (string, optional): Heading color variant (default: primary)
+    - footer (string, optional): Footer text (default: i18n "faq_footer")
+    - link_text (string, optional): Footer link text (default: i18n "contact_us")
+    - link_url (string, optional): Footer link URL (default: #contact-form)
+    - variant (string, optional): Color variant (primary/secondary/tertiary/neutral, default: primary)
 
   BEM Structure:
   - .c-faq-mini-section (section block)
@@ -31,21 +32,21 @@
   sections:
     - type: "faq-mini"
 
-  faq_items:
-    - question: "How long is a therapy session?"
-      answer: "Sessions are 50 minutes long, the standard duration for individual therapy."
-    - question: "How many sessions will I need?"
-      answer: "This varies by individual. Most clients see progress in 8-12 sessions."
-    - question: "Is everything confidential?"
-      answer: "Yes, all sessions are completely confidential under professional ethics guidelines."
-
-  faq_mini_title: "Frequently Asked Questions"
-  faq_mini_subtitle: "Quick answers to common questions"
-  faq_mini_heading_variant: "primary"
-  faq_mini_footer: "Have more questions?"
-  faq_mini_link_text: "Contact us directly"
-  faq_mini_link_url: "/contact"
-  faq_mini_variant: "primary"
+  faq_mini:
+    items:
+      - question: "How long is a therapy session?"
+        answer: "Sessions are 50 minutes long, the standard duration for individual therapy."
+      - question: "How many sessions will I need?"
+        answer: "This varies by individual. Most clients see progress in 8-12 sessions."
+      - question: "Is everything confidential?"
+        answer: "Yes, all sessions are completely confidential under professional ethics guidelines."
+    title: "Frequently Asked Questions"
+    subtitle: "Quick answers to common questions"
+    heading_variant: "primary"
+    footer: "Have more questions?"
+    link_text: "Contact us directly"
+    link_url: "/contact"
+    variant: "primary"
   ```
 
   Features:
@@ -63,14 +64,17 @@
   Version: 1.0.0 (BEM)
 */}}
 
-{{- with .Params.faq_items -}}
-  {{- $variant := $.Params.faq_mini_variant | default "primary" -}}
-  {{- $faqTitle := $.Params.faq_mini_title | default (i18n "faq_title" | default "Frequently Asked Questions") -}}
-  {{- $faqSubtitle := $.Params.faq_mini_subtitle | default (i18n "faq_subtitle" | default "Quick answers to common questions") -}}
-  {{- $headingVariant := $.Params.faq_mini_heading_variant | default $variant -}}
-  {{- $faqFooter := $.Params.faq_mini_footer | default (i18n "faq_footer" | default "Have more questions?") -}}
-  {{- $faqLink := $.Params.faq_mini_link_text | default (i18n "contact_us" | default "Contact us directly") -}}
-  {{- $faqLinkUrl := $.Params.faq_mini_link_url | default "#contact-form" -}}
+{{- with .Params.faq_mini -}}
+  {{- $faqData := . -}}
+  {{- /* Support both 'items' and 'faqs' keys for FAQ items */ -}}
+  {{- $faqItems := .items | default .faqs -}}
+  {{- $variant := .variant | default "primary" -}}
+  {{- $faqTitle := .title | default (i18n "faq_title" | default "Frequently Asked Questions") -}}
+  {{- $faqSubtitle := .subtitle | default (i18n "faq_subtitle" | default "Quick answers to common questions") -}}
+  {{- $headingVariant := .heading_variant | default $variant -}}
+  {{- $faqFooter := .footer | default (i18n "faq_footer" | default "Have more questions?") -}}
+  {{- $faqLink := .link_text | default (i18n "contact_us" | default "Contact us directly") -}}
+  {{- $faqLinkUrl := .link_url | default "#contact-form" -}}
 
   <section class="c-faq-mini-section c-faq-mini-section--{{ $variant }} c-faq-mini-section--redesign">
     <div class="c-faq-mini-section__container">
@@ -90,15 +94,17 @@
         {{- end -}}
       </div>
 
+      {{- if $faqItems -}}
       <div class="c-faq-mini-section__accordion-wrapper">
         {{ partial "molecules/accordion.html" (dict
-          "items" .
+          "items" $faqItems
           "id" "faqAccordion"
           "defaultOpen" 0
           "variant" "redesign"
           "class" "c-faq-mini-section__accordion"
         ) }}
       </div>
+      {{- end -}}
 
       {{- if or $faqFooter $faqLink -}}
         <div class="c-faq-mini-section__footer">

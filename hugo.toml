@@ -91,11 +91,6 @@ keepEndTags = true
 keepQuotes = false
 keepWhitespace = false
 
-############################# Outputs ##############################
-# Note: Moved to config/_default/outputs.toml for better organization
-[outputs]
-home = ["HTML", "RSS", "WebAppManifest"]
-
 ############################# Imaging ##############################
 # Note: Moved to config/_default/imaging.toml for detailed configuration
 [imaging]

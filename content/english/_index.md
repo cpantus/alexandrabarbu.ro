@@ -2,6 +2,7 @@
 title: "Psychotherapist Alexandra Barbu - Therapy for Mental Health"
 description: "Psychotherapy practice in Bucharest. Individual, couples and family therapy. Integrative approach: CBT, Mindfulness, EMDR. Online and in-person appointments."
 layout: "flexible"
+is_home: true
 
 sections:
   - type: "hero-breadcrumb"
@@ -31,30 +32,7 @@ hero_breadcrumb:
       icon: "las la-arrow-right"
 
 # ============================================================================
-# 2. PROBLEM/EMPATHY SECTION
-# ============================================================================
-
-problem_empathy:
-  title: "Do You Recognize These Signs?"
-  subtitle: "You're Not Alone"
-  description: "Many people face similar challenges. The first step toward healing is recognizing the need for help."
-  challenges:
-    - title: "You feel overwhelmed by anxiety"
-      description: "Constant worries, unexplained tension, panic attacks, difficulty concentrating."
-      icon: "brain"
-    - title: "Your relationships are suffering"
-      description: "Recurring conflicts, communication difficulties, feelings of loneliness or misunderstanding."
-      icon: "heart-broken"
-    - title: "You no longer find joy in life"
-      description: "Lack of energy, loss of pleasure in activities, sleep disturbances, feeling of inner emptiness."
-      icon: "sad-tear"
-    - title: "You feel stuck in the past"
-      description: "Unresolved trauma, painful memories, flashbacks, intense emotional reactions."
-      icon: "clock"
-  empathy_text: "I understand what you're going through. These challenges are real and deserve professional attention. **Therapy can be the turning point** toward a more balanced and fulfilling life."
-
-# ============================================================================
-# 3. SERVICES PREVIEW (Redesign 2025)
+# 2. SERVICES PREVIEW (Redesign 2025)
 # ============================================================================
 
 services_preview:
@@ -79,10 +57,10 @@ services_preview:
       url: "/en/services/family-therapy/"
 
 # ============================================================================
-# 4. METHODOLOGY ZIGZAG (Redesign 2025)
+# 3. METHODOLOGY ZIGZAG (Redesign 2025)
 # ============================================================================
 
-methodology_section:
+methodology_zigzag:
   badge: "METHODOLOGY"
   title: "An Integrative *Approach*"
   description: "I combine the most effective scientifically validated therapeutic methods for lasting results and authentic transformation. Each technique is adapted to your unique needs."
@@ -107,10 +85,10 @@ methodology_section:
       icon_color: "coral"
 
 # ============================================================================
-# 5. CTA EVALUATION (Redesign 2025)
+# 4. CTA EVALUATION (Redesign 2025)
 # ============================================================================
 
-cta_evaluation:
+cta_split:
   badge: "SELF-REFLECTION"
   title: "Is therapy the *right solution for you?*"
   checklist:
@@ -122,67 +100,17 @@ cta_evaluation:
     text: "The first step is the hardest, but the most important. The free evaluation helps you discover if therapy is right for you."
     author: "Alexandra Barbu"
   right_icon: "clock"
-  right_title: "Free 30-Min Evaluation"
-  right_description: "Discover if therapy is right for you through a free 30-minute consultation. No obligations, completely confidential."
+  right_title: "Free 15-Min Evaluation"
+  right_description: "Discover if therapy is right for you through a free 15-minute consultation. No obligations, completely confidential."
   button_text: "Start Evaluation"
   button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
-  disclaimer: "Completely confidential • No obligations • Online or in-person"
+  disclaimer: "Completely confidential | No obligations | Online or in-person"
 
 # ============================================================================
-# 6. ABOUT PREVIEW
+# 5. TESTIMONIALS (Redesign 2025 - Dark Background)
 # ============================================================================
 
-about_preview:
-  title: "About Me"
-  subtitle: "Your Therapist"
-  image: "images/about/alexandra-barbu-portrait.jpg"
-  bio: |
-    I'm a clinical psychologist with over 15 years of experience in individual and couple therapy. I believe in the power of healing through compassion, understanding, and evidence-based techniques.
-
-    My approach is based on **empathy, respect and collaboration**. Every person has inner resources for healing - my role is to guide you in discovering and activating them.
-  credentials:
-    - text: "Licensed Clinical Psychologist"
-      icon: "certificate"
-    - text: "15+ years experience"
-      icon: "clock"
-    - text: "Certifications: CBT, EMDR, Mindfulness"
-      icon: "award"
-    - text: "Member of Romanian College of Psychologists"
-      icon: "graduation-cap"
-  button_text: "Read My Story"
-  button_url: "/en/about/"
-  button_variant: "secondary"
-
-# ============================================================================
-# 5. APPROACH PREVIEW
-# ============================================================================
-
-approach_preview:
-  title: "My Therapeutic Approach"
-  subtitle: "Core Principles"
-  description: "I combine the most effective therapeutic methods for lasting results and real transformation."
-  principles:
-    - title: "Evidence-Based"
-      description: "I use scientifically validated methods: CBT, DBT, ACT, EMDR. Proven techniques for measurable results."
-      icon: "flask"
-    - title: "Personalized"
-      description: "Every therapy plan is adapted to your unique needs. No two healing journeys are identical."
-      icon: "user-circle"
-    - title: "Compassion"
-      description: "I create a safe, judgment-free space where you can express yourself freely and be vulnerable."
-      icon: "heart"
-    - title: "Measurable Results"
-      description: "We track progress together and adjust the approach for optimal results. Total transparency."
-      icon: "chart-line"
-  button_text: "Discover Complete Approach"
-  button_url: "/en/approach/"
-  button_variant: "primary"
-
-# ============================================================================
-# 6. TESTIMONIALS (Redesign 2025 - Dark Background)
-# ============================================================================
-
-testimonials_section:
+testimonials_enhanced:
   title: "What My Clients Say"
   icon_color: "gold"
   testimonials:
@@ -195,63 +123,4 @@ testimonials_section:
     - quote: "The compassionate approach helped me heal from past trauma at my own pace. I feel stronger and more connected to myself."
       name: "S.L."
       role: "Trauma-Focused Therapy Client"
-
-# ============================================================================
-# 7. SIMPLE PROCESS
-# ============================================================================
-
-simple_process:
-  title: "3 Steps to Healing"
-  subtitle: "Getting Started"
-  steps:
-    - number: "1"
-      title: "Book Free Consultation"
-      description: "30 minutes to get to know each other and see if I can help. No obligations, completely confidential."
-      icon: "calendar"
-    - number: "2"
-      title: "Assessment and Personalized Plan"
-      description: "We understand your challenges and create an action plan adapted to your goals together."
-      icon: "clipboard-list"
-    - number: "3"
-      title: "Begin Healing Journey"
-      description: "We work together toward your mental health goals. Concrete steps, measurable results."
-      icon: "seedling"
-
-# ============================================================================
-# 8. FAQ PREVIEW
-# ============================================================================
-
-faq_mini:
-  title: "Frequently Asked Questions"
-  subtitle: "Quick Answers"
-  faqs:
-    - question: "How long is a session?"
-      answer: "A session lasts 50-60 minutes. The first session can be longer (90 minutes) for complete assessment."
-    - question: "How much does therapy cost?"
-      answer: "The rate for an individual session is 250 lei. Package discounts available. See complete details on the Contact page."
-    - question: "Is it confidential?"
-      answer: "Yes, completely confidential. We strictly adhere to GDPR confidentiality standards and professional ethics."
-    - question: "How many sessions are needed?"
-      answer: "It varies by needs. Some clients benefit from 6-10 sessions, others from longer-term therapy (3-6 months). We determine together."
-  link_text: "See All Questions"
-  link_url: "/en/contact/#faq"
-
-# ============================================================================
-# 9. CTA FINAL
-# ============================================================================
-
-cta_standard:
-  title: "Ready to Take the First Step?"
-  subtitle: "Start Today"
-  description: "You don't have to go through this alone. Book a free consultation today and let's begin the journey to healing together."
-  button_text: "Book Free Consultation"
-  button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
-  button_variant: "primary"
-  guarantees:
-    - text: "Free 30-minute initial consultation"
-      icon: "check-circle"
-    - text: "Completely confidential"
-      icon: "shield-alt"
-    - text: "Online or in-office"
-      icon: "laptop-house"
 ---

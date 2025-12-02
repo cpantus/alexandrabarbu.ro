@@ -16,7 +16,7 @@
 
   Data Structure:
   ---------------
-  cta_evaluation:
+  cta_split:
     badge: "AUTO-REFLECȚIE"              # Section badge (optional)
     title: "Este terapia"                # Main title
     title_accent: "soluția potrivită"   # Italic accent phrase (sage green)
@@ -43,7 +43,7 @@
   sections:
     - type: "cta-split"
 
-  cta_evaluation:
+  cta_split:
     badge: "AUTO-REFLECȚIE"
     title: "Este terapia"
     title_accent: "soluția potrivită pentru tine?"
@@ -90,9 +90,9 @@
   ============================================================================
 */}}
 
-{{- $data := .Params.cta_evaluation -}}
+{{- $data := .Params.cta_split -}}
 {{- if not $data -}}
-  {{- $data = site.Data.shared_sections.cta_evaluation -}}
+  {{- $data = site.Data.shared_sections.cta_split -}}
 {{- end -}}
 
 {{- if $data -}}

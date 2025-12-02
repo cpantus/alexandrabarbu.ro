@@ -15,7 +15,7 @@
 
   Data Structure:
   ---------------
-  methodology_section:
+  methodology_zigzag:
     badge: "METODOLOGIE"                  # Section badge (optional, uppercase)
     title: "O Abordare"                   # Main title
     title_accent: "Integrativă"          # Italic accent word (optional, sage green)
@@ -38,7 +38,7 @@
   sections:
     - type: "methodology-zigzag"
 
-  methodology_section:
+  methodology_zigzag:
     badge: "METODOLOGIE"
     title: "O Abordare"
     title_accent: "Integrativă"
@@ -80,9 +80,9 @@
   ============================================================================
 */}}
 
-{{- $data := .Params.methodology_section -}}
+{{- $data := .Params.methodology_zigzag -}}
 {{- if not $data -}}
-  {{- $data = site.Data.shared_sections.methodology_section -}}
+  {{- $data = site.Data.shared_sections.methodology_zigzag -}}
 {{- end -}}
 
 {{- if $data -}}

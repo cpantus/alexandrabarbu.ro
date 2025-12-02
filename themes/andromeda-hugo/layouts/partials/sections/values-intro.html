@@ -5,7 +5,7 @@
   Two-column layout: left text content + right image.
 
   Front Matter Parameters:
-  - .Params.values_section OR .Params.our_values (object)
+  - .Params.values_intro (object)
     - enable (bool, required): Enable/disable section
     - subtitle (string, optional): Small text above title (e.g., "OUR VALUES")
     - title (string, required): Main section heading
@@ -29,7 +29,7 @@
   sections:
     - type: "values-intro"
 
-  values_section:
+  values_intro:
     enable: true
     subtitle: "Our Values"
     title: "Science-Based Therapy"
@@ -54,10 +54,7 @@
   Version: 1.0.0 (BEM)
 */}}
 
-{{- $section := .Params.values_section -}}
-{{- if not $section -}}
-  {{- $section = .Params.our_values -}}
-{{- end -}}
+{{- $section := .Params.values_intro -}}
 
 {{- with $section -}}
   {{- if .enable -}}

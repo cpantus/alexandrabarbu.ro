@@ -25,7 +25,7 @@ hero_breadcrumb:
 # Contact Info Cards Section
 contact_info_title: "How to *Contact Me*"
 contact_info_subtitle: "Choose the method that works best for you"
-contact_methods:
+contact_info_cards:
   - icon: "phone"
     label: "Phone"
     value: "+40 721 234 567"
@@ -130,27 +130,27 @@ feature_blocks:
 
 
 # FAQ Mini Section
-faq_items:
-  - question: "How long does it take to get a response?"
-    answer: |
-      I respond to all messages within 24 business hours (usually the same day). If you send a message Friday evening or during the weekend, I will respond Monday morning.
-  - question: "Can I schedule an online session?"
-    answer: |
-      Absolutely! I offer sessions both face-to-face at the office and online through secure, encrypted platforms (Zoom, Google Meet). The effectiveness of online therapy is scientifically proven.
-  - question: "How much does a therapy session cost?"
-    answer: |
-      The fee for an individual session (50 minutes) is 250 RON. For couples/family therapy (75 minutes) it is 350 RON. Discounted packages available: 5 sessions for 1,150 RON.
-  - question: "Is the information I share secure?"
-    answer: |
-      Absolutely. Confidentiality is protected by psychologists' professional ethics codes and GDPR legislation. Nothing discussed leaves the office without your explicit written consent.
-  - question: "How do I prepare for my first session?"
-    answer: |
-      No special preparation is needed. Come as you are, with your questions and concerns. In the first session, we'll discuss why you're seeking therapy and establish our goals together.
-
-faq_mini_title: "Frequently **Asked Questions**"
-faq_mini_subtitle: "Quick answers to common questions"
-faq_mini_footer: "More questions?"
-faq_mini_link_text: "View all questions"
-faq_mini_link_url: "/en/faq"
+faq_mini:
+  items:
+    - question: "How long does it take to get a response?"
+      answer: |
+        I respond to all messages within 24 business hours (usually the same day). If you send a message Friday evening or during the weekend, I will respond Monday morning.
+    - question: "Can I schedule an online session?"
+      answer: |
+        Absolutely! I offer sessions both face-to-face at the office and online through secure, encrypted platforms (Zoom, Google Meet). The effectiveness of online therapy is scientifically proven.
+    - question: "How much does a therapy session cost?"
+      answer: |
+        The fee for an individual session (50 minutes) is 250 RON. For couples/family therapy (75 minutes) it is 350 RON. Discounted packages available: 5 sessions for 1,150 RON.
+    - question: "Is the information I share secure?"
+      answer: |
+        Absolutely. Confidentiality is protected by psychologists' professional ethics codes and GDPR legislation. Nothing discussed leaves the office without your explicit written consent.
+    - question: "How do I prepare for my first session?"
+      answer: |
+        No special preparation is needed. Come as you are, with your questions and concerns. In the first session, we'll discuss why you're seeking therapy and establish our goals together.
+  title: "Frequently **Asked Questions**"
+  subtitle: "Quick answers to common questions"
+  footer: "More questions?"
+  link_text: "View all questions"
+  link_url: "/en/faq"
 
 ---
