@@ -1,0 +1,14 @@
+# Custom Output Formats Configuration
+# Defines new output formats for Hugo
+#
+# Note: These are format DEFINITIONS only.
+# Page type assignments (home, section, etc.) are in outputs.toml
+
+# ---------------------------------------------------------------------------
+# llms.txt - AI crawler guidance (https://llmstxt.org/)
+# ---------------------------------------------------------------------------
+[LlmsTxt]
+mediaType = "text/plain"
+baseName = "llms"
+isPlainText = true
+notAlternative = true
