@@ -52,6 +52,7 @@ collections:
     label_singular: "Pagina"
     icon: "home"
     folder: content/romanian
+    index_file: "_index"
     create: true
     delete: true
     slug: "{{slug}}"
@@ -516,6 +517,7 @@ collections:
     label_singular: "Serviciu"
     icon: "medical_services"
     folder: content/romanian/servicii
+    index_file: "_index"
     create: true
     delete: true
     slug: "{{slug}}"
@@ -836,6 +838,7 @@ collections:
     label_singular: "Page"
     icon: "article"
     folder: content/english
+    index_file: "_index"
     create: true
     delete: true
     slug: "{{slug}}"
@@ -884,6 +887,7 @@ collections:
     label_singular: "Service"
     icon: "medical_services"
     folder: content/english/services
+    index_file: "_index"
     create: true
     delete: true
     slug: "{{slug}}"
