@@ -1,5 +1,6 @@
 const purgecss = require("@fullhuman/postcss-purgecss")({
-  content: ["./hugo_stats.json"],
+  // Look for hugo_stats.json at project root (2 levels up from theme)
+  content: ["./hugo_stats.json", "../../hugo_stats.json"],
   defaultExtractor: (content) => {
     const els = JSON.parse(content).htmlElements;
     return [...(els.tags || []), ...(els.classes || []), ...(els.ids || [])];
@@ -33,6 +34,9 @@ const purgecss = require("@fullhuman/postcss-purgecss")({
     /--visible$/,
     /--loading$/,
     /--expanded$/,
+    /--end$/,
+    /--scrolled$/,
+    /collapsed/,
     // Animation and transition states
     /^aos-/,
     /^animate-/,
@@ -41,6 +45,17 @@ const purgecss = require("@fullhuman/postcss-purgecss")({
     /^invalid$/,
     /^touched$/,
     /^pristine$/,
+    // Line Awesome icons (external font library)
+    /^la$/,
+    /^la-/,
+    /^lab$/,
+    /^las$/,
+    /^lar$/,
+    /^lad$/,
+    // Screen reader utilities
+    /^sr-only$/,
+    // Dropdown utilities (Bootstrap-like)
+    /dropdown-menu-end/,
   ],
 });
 

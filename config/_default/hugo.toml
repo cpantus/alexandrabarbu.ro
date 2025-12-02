@@ -49,3 +49,8 @@ weight = 40  # For blog posts
 [[related.indices]]
 name = "date"
 weight = 10  # Slight preference for recent content
+
+# Build statistics for PurgeCSS
+# Generates hugo_stats.json with all HTML classes/tags/ids used
+[build.buildStats]
+enable = true
