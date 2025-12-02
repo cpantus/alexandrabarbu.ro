@@ -468,7 +468,55 @@ collections:
               - { label: "Titlu", name: "title", widget: "string" }
               - { label: "Descriere", name: "description", widget: "text" }
               - { label: "Icoana", name: "icon", widget: "string" }
+              - { label: "Culoare Icoana", name: "icon_color", widget: "select", required: false, options: ["blue", "sage", "coral", "gold", "purple"] }
               - { label: "URL", name: "url", widget: "string" }
+
+      - label: "Config: Metodologie Zigzag"
+        name: "methodology_zigzag"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Badge", name: "badge", widget: "string", required: false }
+          - { label: "Titlu", name: "title", widget: "string", required: false, hint: "Foloseste *text* pentru italic" }
+          - { label: "Descriere", name: "description", widget: "text", required: false }
+          - { label: "Imagine", name: "image", widget: "image", required: false }
+          - { label: "Alt Imagine", name: "image_alt", widget: "string", required: false }
+          - label: "Metode"
+            name: "methods"
+            widget: "list"
+            fields:
+              - { label: "Titlu", name: "title", widget: "string" }
+              - { label: "Descriere", name: "description", widget: "text" }
+              - { label: "Icoana", name: "icon", widget: "string" }
+              - { label: "Culoare Icoana", name: "icon_color", widget: "select", required: false, options: ["blue", "sage", "coral", "gold", "purple"] }
+
+      - label: "Config: CTA Split"
+        name: "cta_split"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Badge", name: "badge", widget: "string", required: false }
+          - { label: "Titlu", name: "title", widget: "string", required: false, hint: "Foloseste *text* pentru italic" }
+          - label: "Lista Verificare"
+            name: "checklist"
+            widget: "list"
+            field: { label: "Item", name: "item", widget: "string" }
+          - label: "Citat"
+            name: "quote"
+            widget: "object"
+            required: false
+            collapsed: true
+            fields:
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Autor", name: "author", widget: "string" }
+          - { label: "Icoana Dreapta", name: "right_icon", widget: "string", required: false }
+          - { label: "Titlu Dreapta", name: "right_title", widget: "string", required: false }
+          - { label: "Descriere Dreapta", name: "right_description", widget: "text", required: false }
+          - { label: "Text Buton", name: "button_text", widget: "string", required: false }
+          - { label: "URL Buton", name: "button_url", widget: "string", required: false }
+          - { label: "Disclaimer", name: "disclaimer", widget: "string", required: false }
 
       - label: "Config: Empatie Probleme"
         name: "problem_empathy"
