@@ -53,7 +53,7 @@ cta_standard:
   title: Gata Să Reconstruiți Relația?
   description: Nu așteptați până este prea târziu. Cu cât începeți terapia mai devreme, cu atât șansele de succes sunt mai mari. Programează o consultație gratuită de 30 minute.
   button_text: Programează Consultație Gratuită
-  button_url: https://cal.com/gigi-frana-uvymh4/15min
+  button_url: https://cal.com/alexandra-barbu-ras8xc/15min
   enable: true
 breadcrumb:
   - name: Acasă

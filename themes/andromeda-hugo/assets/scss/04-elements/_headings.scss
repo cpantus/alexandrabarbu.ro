@@ -31,6 +31,16 @@ h1 {
   line-height: $leading-tight;
 }
 
+// Fix H1UserAgentFontSizeInSection deprecation warning
+// Browsers apply smaller font-size to h1 in sectioning contexts
+// This override ensures consistent h1 size regardless of nesting
+section h1,
+article h1,
+aside h1,
+nav h1 {
+  font-size: $text-4xl;
+}
+
 h2 {
   font-size: $text-3xl;  // 30px
   font-weight: $font-weight-heading-bold;  // v5.1: 600 for authority (was 500)

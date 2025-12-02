@@ -239,7 +239,7 @@ pricing_packages:
         - "Findings presentation (optional)"
         - "Recommendations for recruitment/development"
       button_text: "Request Quote"
-      button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+      button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
       button_variant: "outline-primary"
       featured: false
 
@@ -256,7 +256,7 @@ pricing_packages:
         - "Tasks and reflections between sessions"
         - "Progress measurement at 3 and 6 months"
       button_text: "Request Quote"
-      button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+      button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
       button_variant: "primary"
       featured: false
 
@@ -273,7 +273,7 @@ pricing_packages:
         - "Participation certificates"
         - "Follow-up after 1 month (optional)"
       button_text: "Request Quote"
-      button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+      button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
       button_variant: "primary"
       featured: true
 
@@ -291,7 +291,7 @@ pricing_packages:
         - "Results and ROI measurement"
         - "Ongoing support during project"
       button_text: "Request Quote"
-      button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+      button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
       button_variant: "outline-primary"
       featured: false
 
@@ -362,7 +362,7 @@ cta_standard:
   description: "People are the company's most valuable asset. Investment in human capital brings the best long-term ROI. Book a free 60-minute consultation to discuss your company's needs."
 
   button_text: "Book Free Consultation"
-  button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+  button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
   secondary_button_text: "See Other Services"
   secondary_button_url: "/en/services/"
   secondary_button_variant: "outline-secondary"

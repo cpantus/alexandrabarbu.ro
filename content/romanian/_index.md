@@ -22,7 +22,7 @@ hero_breadcrumb:
   show_compass: true
   cta_buttons:
     - text: "Programează Consultație"
-      url: "https://cal.com/gigi-frana-uvymh4/50min"
+      url: "https://cal.com/alexandra-barbu-ras8xc/50min"
       variant: "primary"
       icon: "las la-calendar"
     - text: "Află mai multe"
@@ -129,7 +129,7 @@ cta_evaluation:
   right_title: "Evaluare Gratuită 15 Min"
   right_description: "Descoperă dacă terapia este potrivită pentru tine printr-o consultație gratuită de 15 de minute. Fără obligații, complet confidențial."
   button_text: "Începe Evaluarea"
-  button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+  button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
   disclaimer: "Complet confidențial • Fără obligații • Online sau la cabinet"
 
 # ============================================================================
@@ -252,7 +252,7 @@ cta_standard:
   subtitle: "Începe Astăzi"
   description: "Nu trebuie să treci prin asta singur. Programează o consultație gratuită astăzi și să începem împreună călătoria spre vindecare."
   button_text: "Programează Consultație Gratuită"
-  button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+  button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
   button_variant: "primary"
   guarantees:
     - text: "Consultație inițială gratuită 30 minute"

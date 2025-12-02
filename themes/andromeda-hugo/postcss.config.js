@@ -25,11 +25,37 @@ const purgecss = require("@fullhuman/postcss-purgecss")({
     /visible/,
     /current/,
     /active/,
+    // State classes for interactive components
+    /^is-/,
+    /^has-/,
+    /--open$/,
+    /--active$/,
+    /--visible$/,
+    /--loading$/,
+    /--expanded$/,
+    // Animation and transition states
+    /^aos-/,
+    /^animate-/,
+    // Form states
+    /^valid$/,
+    /^invalid$/,
+    /^touched$/,
+    /^pristine$/,
   ],
+});
+
+const cssnano = require("cssnano")({
+  preset: ["default", {
+    discardComments: { removeAll: true },
+    normalizeWhitespace: true,
+    minifyFontValues: { removeQuotes: false },
+    // Preserve calc() functions as-is
+    calc: false,
+  }],
 });
 
 module.exports = {
   plugins: [
-    ...(process.env.HUGO_ENVIRONMENT === "production" ? [purgecss] : []),
+    ...(process.env.HUGO_ENVIRONMENT === "production" ? [purgecss, cssnano] : []),
   ],
 };

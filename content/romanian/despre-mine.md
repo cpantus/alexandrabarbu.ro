@@ -10,7 +10,7 @@ cta_standard:
   title: Hai Să Ne Cunoaștem
   description: Programează o consultație gratuită de 30 de minute pentru a vedea dacă putem lucra împreună. Fără obligații, complet confidențial.
   button_text: Programează Consultație
-  button_url: https://cal.com/gigi-frana-uvymh4/15min
+  button_url: https://cal.com/alexandra-barbu-ras8xc/15min
   button_variant: secondary
 credentials_education:
   credentials:

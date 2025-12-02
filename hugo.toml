@@ -73,6 +73,24 @@ source = 'assets/.*\.(.*)$'
 target = '$1'
 
 
+############################# Minify ##############################
+[minify]
+disableCSS = false
+disableHTML = false
+disableJS = false
+minifyOutput = true
+
+[minify.tdewolff]
+[minify.tdewolff.css]
+precision = 0
+
+[minify.tdewolff.html]
+keepDefaultAttrVals = true
+keepDocumentTags = true
+keepEndTags = true
+keepQuotes = false
+keepWhitespace = false
+
 ############################# Outputs ##############################
 # Note: Moved to config/_default/outputs.toml for better organization
 [outputs]

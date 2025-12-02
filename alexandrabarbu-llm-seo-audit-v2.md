@@ -260,7 +260,7 @@ Comprehensive FAQs available at:
 # Contact
 - Phone: +40 123 456 789
 - Email: alexandra.barbu@gmail.com
-- Booking: https://cal.com/gigi-frana-uvymh4/50min
+- Booking: https://cal.com/alexandra-barbu-ras8xc/50min
 - Free 15-minute consultation available
 
 # Ethical Guidelines

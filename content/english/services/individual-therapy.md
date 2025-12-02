@@ -239,7 +239,7 @@ pricing_packages:
         - "Support between sessions via email (24h response)"
         - "Total flexibility (no commitment)"
       button_text: "Book Session"
-      button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+      button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
       button_variant: "outline-primary"
       featured: false
 
@@ -256,7 +256,7 @@ pricing_packages:
         - "Personalized therapeutic plan"
         - "All therapeutic materials included"
       button_text: "Choose Package"
-      button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+      button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
       button_variant: "primary"
       featured: false
 
@@ -274,7 +274,7 @@ pricing_packages:
         - "Extended support between sessions"
         - "All materials + self-help guide"
       button_text: "Choose Package"
-      button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+      button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
       button_variant: "primary"
       featured: true
 
@@ -292,7 +292,7 @@ pricing_packages:
         - "Priority access + emergency availability"
         - "All materials + free follow-up session (after 3 months)"
       button_text: "Choose Package"
-      button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+      button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
       button_variant: "outline-primary"
       featured: false
 
@@ -363,7 +363,7 @@ cta_standard:
   description: "You don't have to go through this alone. Book a free 30-minute consultation and let's begin the journey to a better life together."
 
   button_text: "Book Free Consultation"
-  button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+  button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
   secondary_button_text: "See Other Services"
   secondary_button_url: "/en/services/"
   secondary_button_variant: "outline-secondary"

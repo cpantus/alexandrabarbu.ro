@@ -18,7 +18,7 @@ contact:
 nav_button:
   enable: true
   text: Fa o programare
-  url: https://cal.com/gigi-frana-uvymh4/50min
+  url: https://cal.com/alexandra-barbu-ras8xc/50min
 contact_form:
   action: https://script.google.com/macros/s/AKfycbwdGDM3B3V5GhT6GNftvtKFAAuGzGdswUo2x3QGX0C4bNPl_GS8y6eUbWV5MQPAl-wObg/exec
 seo:
@@ -30,4 +30,4 @@ seo:
     - Terapie CBT
     - Terapie de familie
 logo_text: Alexandra Barbu
-favicon: images/favicon.png
+favicon: images/favicon.svg

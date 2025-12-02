@@ -125,7 +125,7 @@ cta_evaluation:
   right_title: "Free 30-Min Evaluation"
   right_description: "Discover if therapy is right for you through a free 30-minute consultation. No obligations, completely confidential."
   button_text: "Start Evaluation"
-  button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+  button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
   disclaimer: "Completely confidential • No obligations • Online or in-person"
 
 # ============================================================================
@@ -245,7 +245,7 @@ cta_standard:
   subtitle: "Start Today"
   description: "You don't have to go through this alone. Book a free consultation today and let's begin the journey to healing together."
   button_text: "Book Free Consultation"
-  button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+  button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
   button_variant: "primary"
   guarantees:
     - text: "Free 30-minute initial consultation"

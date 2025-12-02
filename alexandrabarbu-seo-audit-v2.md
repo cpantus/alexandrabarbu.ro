@@ -487,7 +487,7 @@ Specializations: CBT, EMDR, Mindfulness, Schema Therapy
 # Contact
 Email: alexandra.barbu@gmail.com
 Phone: +40 123 456 789
-Booking: https://cal.com/gigi-frana-uvymh4/50min
+Booking: https://cal.com/alexandra-barbu-ras8xc/50min
 
 # Languages
 Romanian (Primary), English

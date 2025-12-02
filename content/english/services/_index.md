@@ -140,7 +140,7 @@ cta_standard:
   description: "The first step is the most important. Book a free 30-minute consultation to discuss your situation and identify the right service."
 
   button_text: "Book Free Consultation"
-  button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+  button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
   secondary_button_text: "See All Services"
   secondary_button_url: "#services-preview"
   secondary_button_variant: "outline-secondary"

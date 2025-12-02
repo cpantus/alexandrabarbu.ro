@@ -191,6 +191,6 @@ cta_standard:
     The first session is always about getting to know each other, with no obligations. We can discuss your
     challenges and how I can help you, in a safe and confidential setting.
   button_text: "Schedule a Consultation"
-  button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+  button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
   button_variant: "secondary"
 ---

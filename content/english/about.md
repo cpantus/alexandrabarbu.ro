@@ -97,6 +97,6 @@ cta_standard:
   title: "Let's Get to Know Each Other"
   description: "Schedule a free 30-minute consultation to see if we can work together. No obligations, completely confidential."
   button_text: "Schedule a Consultation"
-  button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+  button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
   button_variant: "secondary"
 ---

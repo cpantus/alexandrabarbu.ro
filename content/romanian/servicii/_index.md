@@ -140,7 +140,7 @@ cta_standard:
   description: "Primul pas este cel mai important. Programează o consultație gratuită de 30 minute pentru a discuta despre situația ta și a identifica serviciul potrivit."
 
   button_text: "Programează Consultație Gratuită"
-  button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+  button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
   secondary_button_text: "Vezi Toate Serviciile"
   secondary_button_url: "#services-preview"
   secondary_button_variant: "outline-secondary"

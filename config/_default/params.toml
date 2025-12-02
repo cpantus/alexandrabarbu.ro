@@ -31,13 +31,13 @@ url = "https://linkedin.com/in/alexandrabarbu"
 icon = "linkedin-in"
 
 [cta]
-button_link = "https://cal.com/gigi-frana-uvymh4/15min"
+button_link = "https://cal.com/alexandra-barbu-ras8xc/15min"
 button = "Programeaza o evaluare de 15 minute"
 content = "Înțelegem nevoile tale specifice, Creăm un plan terapeutic personalizat, Ședințe săptămânale de terapie, Menținerea progresului pe termen lung. "
 title = "O Hartă Personalizată pentru Fiecare Călătorie"
 enable = true
 calendly_enabled = true
-calendly_url = "https://cal.com/gigi-frana-uvymh4/15min"
+calendly_url = "https://cal.com/alexandra-barbu-ras8xc/15min"
 calendly_primary_color = "#234E3E"
 
 [cookies]
@@ -59,7 +59,7 @@ enable = true
 [navigation_button]
 enable = true
 label = "Fa o programare!"
-link = "https://cal.com/gigi-frana-uvymh4/50min"
+link = "https://cal.com/alexandra-barbu-ras8xc/50min"
 
 [metadata]
 keywords = [ "Psihoterapie", "Terapie CBT", "Terapie de familie" ]

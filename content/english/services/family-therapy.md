@@ -251,7 +251,7 @@ pricing_packages:
         - "Support between sessions via email"
         - "Total flexibility"
       button_text: "Book Session"
-      button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+      button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
       button_variant: "outline-primary"
       featured: false
 
@@ -268,7 +268,7 @@ pricing_packages:
         - "Personalized therapeutic plan for your family"
         - "Materials and homework"
       button_text: "Choose Package"
-      button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+      button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
       button_variant: "primary"
       featured: false
 
@@ -286,7 +286,7 @@ pricing_packages:
         - "Priority access for scheduling"
         - "All materials + family guide"
       button_text: "Choose Package"
-      button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+      button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
       button_variant: "primary"
       featured: true
 
@@ -304,7 +304,7 @@ pricing_packages:
         - "Priority access + emergency availability"
         - "All materials + 1 free follow-up session (after 3 months)"
       button_text: "Choose Package"
-      button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+      button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
       button_variant: "outline-primary"
       featured: false
 
@@ -375,7 +375,7 @@ cta_standard:
   description: "Family problems don't disappear on their own - they usually worsen. The earlier you intervene, the easier it is to rebuild. Book a free 30-minute consultation."
 
   button_text: "Book Free Consultation"
-  button_url: "https://cal.com/gigi-frana-uvymh4/15min"
+  button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
   secondary_button_text: "See Other Services"
   secondary_button_url: "/en/services/"
   secondary_button_variant: "outline-secondary"

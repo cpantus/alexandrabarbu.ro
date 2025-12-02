@@ -51,7 +51,7 @@ cta_standard:
   title: Gata Să Faci Primul Pas Spre Vindecare?
   description: Nu trebuie să treci prin asta singur. Programează o consultație gratuită de 30 minute și să începem împreună călătoria spre o viață mai bună.
   button_text: Programează Consultație Gratuită
-  button_url: https://cal.com/gigi-frana-uvymh4/15min
+  button_url: https://cal.com/alexandra-barbu-ras8xc/15min
   background: gradient
   button_variant: secondary
 breadcrumb:
