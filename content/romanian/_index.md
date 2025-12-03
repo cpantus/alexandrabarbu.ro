@@ -11,7 +11,7 @@ sections:
 hero_breadcrumb:
   title: Găsim *Nordul Interior*
   subtitle: Călătoria spre vindecare începe cu un singur pas. Când știi unde ești, poți merge oriunde.
-  description: Sunt psiholog clinician cu peste 15 ani de experiență, specializată în terapie cognitivă, EMDR și mindfulness. Oferă un spațiu sigur și confidențial pentru a explora provocările tale și a redescoperi echilibrul interior.
+  description: Sunt psiholog clinician cu peste 10 ani de experiență, specializată în terapie cognitivă, EMDR și mindfulness. Oferă un spațiu sigur și confidențial pentru a explora provocările tale și a redescoperi echilibrul interior.
   kicker: ''
   show_breadcrumb: false
   show_compass: true
@@ -33,7 +33,6 @@ faq_mini_link_text: ''
 faq_mini_link_url: ''
 contact_info_title: ''
 contact_info_subtitle: ''
-offer: ''
 testimonials_enhanced:
   title: Ecouri ale Călătoriei
   subtitle: 'Fiecare poveste este unică, dar destinația este aceeași: regăsirea echilibrului interior.'
@@ -115,5 +114,6 @@ cta_split:
   button_url: https://cal.com/alexandra-barbu-ras8xc/15min
   disclaimer: Complet confidențial • Fără obligații • Online sau la cabinet
 is_home: true
+offer: ''
 ---
 
