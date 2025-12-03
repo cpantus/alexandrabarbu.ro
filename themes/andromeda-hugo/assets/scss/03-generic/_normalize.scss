@@ -42,6 +42,19 @@ main {
 }
 
 // ----------------------------------
+// H1 Sectioning Context Fix (Chrome 119+)
+// ----------------------------------
+// Silence H1UserAgentFontSizeInSection deprecation warning.
+// Browsers historically reduced h1 font-size when nested in
+// <section>, <article>, <aside>, or <nav>. This is deprecated.
+// We explicitly set font-size to prevent UA stylesheet interference.
+// Reference: https://developer.chrome.com/blog/h1-heading-algorithm
+:where(article, aside, nav, section) h1 {
+  font-size: 2em;
+  margin-block: 0.67em;
+}
+
+// ----------------------------------
 // Grouping content
 // ----------------------------------
 // 1. Add the correct box sizing in Firefox
