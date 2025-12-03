@@ -11,7 +11,8 @@ sections:
 hero_breadcrumb:
   title: Abordarea Mea Terapeutică
   subtitle: O abordare integrativă, centrată pe client, bazată pe evidențe științifice
-  description: Combin cele mai eficiente metode terapeutice - TCC, EFT, Mindfulness și terapia focalizată pe soluții - pentru a crea un plan personalizat nevoilor tale. Fiecare sesiune este adaptată ritmului și obiectivelor tale unice.
+  description: Combin cele mai eficiente metode terapeutice - TCC, IFT, Mindfulness și terapia focalizată pe soluții - pentru a crea un plan personalizat nevoilor tale. Fiecare sesiune este adaptată ritmului și obiectivelor tale unice.
+  kicker: ''
   breadcrumb:
     - name: Acasă
       url: /
@@ -74,7 +75,6 @@ faq_mini_subtitle: ''
 faq_mini_footer: ''
 faq_mini_link_text: ''
 faq_mini_link_url: ''
-
 onboarding_steps:
   title: Cum Decurge **Prima Ședință**?
   intro: Procesul terapeutic începe cu o întâlnire inițială de cunoaștere și evaluare
