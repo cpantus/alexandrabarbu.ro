@@ -1,47 +1,33 @@
-# Footer Configuration (English)
-# Managed via CMS at /admin/
-
-# Footer description (under logo)
-description: "Clinical psychologist dedicated to transforming lives through professional therapy and empathy"
-
-# Contact Information
+description: Psychotherapist dedicated to transforming lives through professional therapy and empathy
 contact:
-  address: "Bucharest, Sector 3, M-F: 10:00-20:00"
-  phone: "+40 770 200 834"
-  email: "alexandra.barbu@gmail.com"
-
-# Social Media Links (synced with RO version)
+  address: Bucharest, Sector 3, M-F:18:00-20:00
+  phone: +40 770 200 834
+  email: alexandra.barbu@gmail.com
 social:
-  - name: "Facebook"
-    url: "https://www.facebook.com/share/1DSV3Y1uhX"
-    icon: "facebook-f"
-  - name: "Instagram"
-    url: "https://www.instagram.com/alexandrabarbupsiholog2025?igsh=eTIxZTI1NmxmM3pk"
-    icon: "instagram"
-  - name: "LinkedIn"
-    url: "https://www.linkedin.com/in/alexandra-b-7162a559/"
-    icon: "linkedin-in"
-
-# Quick Links (Footer Menu)
+  - name: Facebook
+    url: https://www.facebook.com/share/1DSV3Y1uhX
+    icon: facebook-f
+  - name: Instagram
+    url: https://www.instagram.com/alexandrabarbupsiholog2025?igsh=eTIxZTI1NmxmM3pk
+    icon: instagram
+  - name: LinkedIn
+    url: https://www.linkedin.com/in/alexandra-b-7162a559/
+    icon: linkedin-in
 quick_links:
-  - name: "About"
-    url: "/en/about/"
-  - name: "Approach"
-    url: "/en/approach/"
-  - name: "Resources"
-    url: "/en/resources/"
-  - name: "Contact"
-    url: "/en/contact/"
-  - name: "Terms & Conditions"
-    url: "/en/terms-and-conditions/"
-
-# CTA Section (above footer)
+  - name: About
+    url: /en/about/
+  - name: Approach
+    url: /en/approach/
+  - name: Resources
+    url: /en/resources/
+  - name: Contact
+    url: /en/contact/
+  - name: Terms & Conditions
+    url: /en/terms-and-conditions/
 cta:
   enable: true
-  title: "A Personalized Map for Every Journey"
-  content: "We understand your specific needs, Create a personalized therapeutic plan, Weekly therapy sessions, Maintaining long-term progress."
-  button_text: "Schedule a 15-minute evaluation"
-  button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
-
-# Copyright text
-copyright: "© 2025 Alexandra Barbu. All rights reserved."
+  title: A Personalized Map for Every Journey
+  content: We understand your specific needs, Create a personalized therapeutic plan, Weekly therapy sessions, Maintaining long-term progress.
+  button_text: Schedule a 15-minute evaluation
+  button_url: https://cal.com/alexandra-barbu-ras8xc/15min
+copyright: © 2025 Alexandra Barbu. All rights reserved.
