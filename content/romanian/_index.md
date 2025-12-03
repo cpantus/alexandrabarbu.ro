@@ -78,7 +78,7 @@ methodology_zigzag:
   badge: METODOLOGIE
   title: O Abordare *Integrativă*
   description: Combin cele mai eficiente metode terapeutice validate științific pentru rezultate durabile și transformare autentică. Fiecare tehnică este adaptată nevoilor tale unice.
-  image: /images/abordare-integrativa.jpeg
+  image: images/abordare-integrativa.jpeg
   image_alt: Abordare terapeutică integrativă - combinarea metodelor pentru rezultate optime
   methods:
     - title: Cognitiv-Comportamentală
