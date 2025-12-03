@@ -1,5 +1,6 @@
 ---
 title: Resurse Gratuite
+translationKey: resources
 layout: flexible
 draft: false
 description: Articole, ghiduri, exerciții practice și resurse gratuite pentru sănătatea ta mintală și dezvoltarea personală

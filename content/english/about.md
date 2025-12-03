@@ -1,5 +1,6 @@
 ---
 title: About Me - Psychotherapist Alexandra Barbu
+translationKey: about
 layout: flexible
 description: 15+ years of experience in psychotherapy. Specialization in CBT, Family Therapy, Schema Therapy. Empathetic and evidence-based approach.
 sections:

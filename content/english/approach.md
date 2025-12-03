@@ -1,5 +1,6 @@
 ---
 title: "My Therapeutic Approach"
+translationKey: approach
 description: "An integrative, client-centered approach based on scientific evidence and tailored to your unique needs"
 layout: "flexible"
 draft: false

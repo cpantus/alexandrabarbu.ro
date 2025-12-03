@@ -1,5 +1,6 @@
 ---
 title: Despre Mine - Psihoterapeut Alexandra Barbu
+translationKey: about
 layout: flexible
 description: 10+ ani experiență în psihoterapie. Specializare TCC, EMDR, Mindfulness. Abordare empatică și bazată pe dovezi.
 sections:
