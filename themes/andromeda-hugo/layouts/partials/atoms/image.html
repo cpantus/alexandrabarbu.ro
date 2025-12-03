@@ -102,9 +102,14 @@
   {{/* Generate WebP and AVIF versions if requested (skip for SVG) */}}
   {{ $webpImage := "" }}
   {{ $avifImage := "" }}
+  {{ $avifSupported := false }}
   {{ if and $webp (not $isSVG) }}
     {{ $webpImage = $processedImage.Process (printf "webp q%d" $quality) }}
     {{ $avifImage = $processedImage.Process (printf "avif q%d" $quality) }}
+    {{/* Check if AVIF was actually created (not silently falling back to original) */}}
+    {{ if eq $avifImage.MediaType.SubType "avif" }}
+      {{ $avifSupported = true }}
+    {{ end }}
   {{ end }}
 
   {{/* Generate blur-up placeholder if requested (skip for SVG) */}}
@@ -138,8 +143,10 @@
         {{ $responsiveWebp := $responsiveImg.Process (printf "webp q%d" $quality) }}
         {{ $srcsetWebpParts = $srcsetWebpParts | append (printf "%s %dw" $responsiveWebp.RelPermalink $w) }}
 
-        {{ $responsiveAvif := $responsiveImg.Process (printf "avif q%d" $quality) }}
-        {{ $srcsetAvifParts = $srcsetAvifParts | append (printf "%s %dw" $responsiveAvif.RelPermalink $w) }}
+        {{ if $avifSupported }}
+          {{ $responsiveAvif := $responsiveImg.Process (printf "avif q%d" $quality) }}
+          {{ $srcsetAvifParts = $srcsetAvifParts | append (printf "%s %dw" $responsiveAvif.RelPermalink $w) }}
+        {{ end }}
       {{ end }}
     {{ end }}
 
@@ -160,14 +167,18 @@
     {{/* Raster with WebP/AVIF: picture element with modern formats */}}
     <picture>
       {{ if $responsive }}
-        {{/* AVIF first (best compression, 76% browser support) */}}
+        {{/* AVIF first (best compression, 76% browser support) - only if supported */}}
+        {{ if and $avifSupported $srcsetAvif }}
         <source type="image/avif" srcset="{{ $srcsetAvif }}" sizes="{{ $sizes }}">
+        {{ end }}
         {{/* WebP second (good compression, 96% browser support) */}}
         <source type="image/webp" srcset="{{ $srcsetWebp }}" sizes="{{ $sizes }}">
         {{/* Original format fallback (100% browser support) */}}
         <source type="{{ $processedImage.MediaType }}" srcset="{{ $srcset }}" sizes="{{ $sizes }}">
       {{ else }}
+        {{ if $avifSupported }}
         <source type="image/avif" srcset="{{ $avifImage.RelPermalink }}">
+        {{ end }}
         <source type="image/webp" srcset="{{ $webpImage.RelPermalink }}">
       {{ end }}
       <img
