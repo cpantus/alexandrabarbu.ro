@@ -40,7 +40,7 @@
 {{ $webp := .webp | default true }}
 {{ $responsive := .responsive | default true }}
 {{ $sizes := .sizes | default "(min-width: 768px) 800px, 100vw" }}
-{{ $quality := .quality | default 90 }}
+{{ $quality := .quality | default 100 }}
 {{ $fit := .fit | default "resize" }}
 {{ $objectFit := .objectFit | default "" }}
 {{ $aspectRatio := .aspectRatio | default "" }}
@@ -103,8 +103,8 @@
   {{ $webpImage := "" }}
   {{ $avifImage := "" }}
   {{ if and $webp (not $isSVG) }}
-    {{ $webpImage = $processedImage.Process "webp" }}
-    {{ $avifImage = $processedImage.Process "avif q85" }}
+    {{ $webpImage = $processedImage.Process (printf "webp q%d" $quality) }}
+    {{ $avifImage = $processedImage.Process (printf "avif q%d" $quality) }}
   {{ end }}
 
   {{/* Generate blur-up placeholder if requested (skip for SVG) */}}
@@ -135,10 +135,10 @@
       {{ $srcsetParts = $srcsetParts | append (printf "%s %dw" $responsiveImg.RelPermalink $w) }}
 
       {{ if $webp }}
-        {{ $responsiveWebp := $responsiveImg.Process "webp" }}
+        {{ $responsiveWebp := $responsiveImg.Process (printf "webp q%d" $quality) }}
         {{ $srcsetWebpParts = $srcsetWebpParts | append (printf "%s %dw" $responsiveWebp.RelPermalink $w) }}
 
-        {{ $responsiveAvif := $responsiveImg.Process "avif q85" }}
+        {{ $responsiveAvif := $responsiveImg.Process (printf "avif q%d" $quality) }}
         {{ $srcsetAvifParts = $srcsetAvifParts | append (printf "%s %dw" $responsiveAvif.RelPermalink $w) }}
       {{ end }}
     {{ end }}

@@ -113,12 +113,19 @@
 
         {{/* Image with Heavy Rounding (moved under text) */}}
         {{- if $data.image -}}
-          <img
-            src="{{ $data.image | relURL }}"
-            alt="{{ default $data.title $data.image_alt }}"
-            class="c-methodology-zigzag__image"
-            loading="lazy"
-          >
+          <div class="c-methodology-zigzag__image-wrapper">
+            {{- partial "atoms/image.html" (dict
+              "src" $data.image
+              "alt" (default $data.title $data.image_alt)
+              "class" "c-methodology-zigzag__image"
+              "width" 800
+              "lazy" true
+              "webp" true
+              "responsive" true
+              "sizes" "(min-width: 992px) 45vw, 100vw"
+              "Page" $
+            ) -}}
+          </div>
         {{- end -}}
       </div>
 
