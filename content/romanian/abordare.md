@@ -23,44 +23,44 @@ feature_blocks:
     description: |-
       În primele ședințe, vom explora împreună provocările tale, istoricul tău, resursele disponibile și
       obiectivele tale. Această evaluare ne ajută să stabilim cea mai potrivită abordare terapeutică pentru tine.
-    image: /images/evaluare initiala.jpeg
+    image: /images/evaluare-initiala.jpeg
   - subtitle: Abordare Personalizată
     title: Plan Terapeutic Personalizat
     description: |-
       Pe baza evaluării inițiale, vom crea împreună un plan terapeutic adaptat nevoilor tale, combinând metode
       și tehnici care funcționează cel mai bine pentru tine. Acest plan este flexibil și se ajustează pe măsură
       ce progresăm.
-    image: /images/plan terapeutic personalizat.jpeg
+    image: /images/plan-terapeutic-personalizat.jpeg
   - subtitle: Progres Măsurabil
     title: Monitorizare și Ajustare Continuă
     description: |-
       Progresul tău este prioritatea mea. Evaluăm regulat eficacitatea abordării noastre și ajustăm strategiile
       după nevoie. Feedback-ul tău este esențial pentru a ne asigura că terapia funcționează pentru tine.
-    image: /images/monitorizare continua.jpeg
+    image: /images/monitorizare-continua.jpeg
   - subtitle: Ce Mă Diferențiază
     title: Integrare Metodologică
     description: |-
       Combin CBT, EFT, SFT, mindfulness și alte metode validate, în funcție de nevoile tale. Nu sunt limitată
       de o singură școală de gândire - folosesc ceea ce funcționează cel mai bine pentru tine.
-    image: /images/integrare metodologica.jpeg
+    image: /images/integrare-metodologica.jpeg
   - subtitle: Baza Succesului
     title: Focus pe Relația Terapeutică
     description: |-
       Cercetările arată că calitatea relației terapeutice este cel mai puternic predictor al succesului în
       terapie. Investesc timp și energie în construirea unei relații bazate pe încredere, empatie și respect mutual.
-    image: /images/focus pe relatia terapeutica.jpeg
+    image: /images/focus-pe-relatia-terapeutica.jpeg
   - subtitle: Siguranță și Grijă
     title: Abordare Trauma-Informată
     description: |-
       Înțeleg impactul traumei asupra vieții tale și folosesc metode delicate, sigure și validate pentru
       a te ajuta să procesezi experiențe dificile, fără retraumatizare.
-    image: /images/abordare trauma informata.jpeg
+    image: /images/abordare-trauma-informata.jpeg
   - subtitle: Cunoaștere de Sine
     title: Educație Psihologică Continuă
     description: |-
       Te ajut să înțelegi ce se întâmplă cu tine - de ce reacționezi într-un anumit fel, de unde vin emoțiile
       tale, cum funcționează mintea și corpul. Cunoașterea de sine este o bază puternică pentru schimbare.
-    image: /images/educatie continua.jpeg
+    image: /images/educatie-continua.jpeg
 cta_standard:
   title: Pregătit să Începi Călătoria Ta Terapeutică?
   description: |-

@@ -16,7 +16,7 @@ feature_blocks:
   - subtitle: Rebeli și Provocări
     title: Conflicte cu Adolescenții
     description: Rebeli, provocări de autoritate, lipsa de comunicare, izolare în cameră, comportamente riscante (alcool, droguri, promiscuitate). Defiere constantă, comunicare închisă, comportamente autodistructive, probleme la școală.
-    image: /images/conflicte cu adolescenti.jpeg
+    image: /images/conflicte-cu-adolescenti.jpeg
   - subtitle: Tranziții Familiale
     title: Divorț și Familii Recompuse
     description: Copii care suferă din cauza divorțului, conflicte între părinții biologici și părinții vitregi, frații vitregi, custodie, adaptare la noua familie. Adaptarea copiilor, conflicte părinți-părinți vitregi, loialități divizate.
@@ -24,11 +24,11 @@ feature_blocks:
   - subtitle: Responsabilități și Burnout
     title: Îngrijirea Părinților în Vârstă
     description: Conflicte între frați despre îngrijire, burnout al îngrijitorului principal, sentimente de vinovăție, decizii dificile despre plasarea în cămin. Dezacorduri, epuizare, vinovăție, conflicte financiare.
-    image: /images/parinti in varsta.jpeg
+    image: /images/parinti-in-varsta.jpeg
   - subtitle: Vindecare Colectivă
     title: Traume și Pierderi Familiale
     description: Deces în familie, boală gravă, abuz, dependențe, evenimente traumatice care afectează toți membrii familiei și nu știți cum să procesați împreună. Doliu complicat, boală cronică, abuz, dependențe, traume colective.
-    image: /images/traume si pierderi familiale.jpeg
+    image: /images/traume-si-pierderi-familiale.jpeg
 faq_items:
   - question: Trebuie să fie prezenți TOȚI membrii familiei?
     answer: 'Ideal da, dar nu întotdeauna necesar. De obicei lucrăm cu membrii care locuiesc împreună (părinți + copii). Copii foarte mici (sub 5 ani) pot lipsi la unele sesiuni. Uneori începem fără un membru reticent și încercăm să-l atragem ulterior. Important: ambii părinți ar trebui să fie prezenți dacă e posibil.'

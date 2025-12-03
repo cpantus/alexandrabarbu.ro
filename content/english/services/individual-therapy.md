@@ -45,7 +45,7 @@ feature_blocks:
   - title: "You Want Personal Development"
     subtitle: "Growth and Self-Knowledge"
     description: "You don't necessarily have a problem, but feel stagnant. Want to know yourself better, clarify values, improve relationships, live more authentically. Self-knowledge, self-esteem, emotional intelligence, and finding meaning."
-    image: "/images/dezvoltare personala.jpeg"
+    image: "/images/dezvoltare-personala.jpeg"
 
 # Problem Empathy
 problem_empathy:

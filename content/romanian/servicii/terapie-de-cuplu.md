@@ -22,15 +22,15 @@ feature_blocks:
   - subtitle: Reconstruirea Încrederii
     title: Infidelitate și Încredere Pierdută
     description: Unul sau ambii parteneri au trecut prin infidelitate (emoțională sau fizică). Încrederea este distrusă și nu știți cum să reconstruiți relația. Aventură, suspiciune, dificultăți în a ierta și pierderea intimității.
-    image: /images/incredere pierduta.jpeg
+    image: /images/incredere-pierduta.jpeg
   - subtitle: Distanță Emoțională
     title: Lipsa Intimității și Conexiunii
     description: Vă simțiți ca doi străini sub același acoperiș. Distanță emoțională, lipsă de afecțiune, viață sexuală nesatisfăcătoare sau inexistentă. Nu mai împărtășiți timpul de calitate și sentimentul că nu vă mai înțelegeți.
-    image: /images/lipsa intimitatii.jpeg
+    image: /images/lipsa-intimitatii.jpeg
   - subtitle: Navigarea Deciziilor
     title: Decizii Importante în Relație
     description: 'Vă gândiți la căsătorie, divorț, copii, sau relocare și nu sunteți pe aceeași pagină. Terapia vă poate ajuta să navigați aceste decizii împreună: căsătorie, divorț, copii, carieră vs. familie, familii recompuse.'
-    image: /images/decizii importante.jpeg
+    image: /images/decizii-importante.jpeg
 faq_items:
   - question: Cât durează terapia de cuplu?
     answer: Depinde de gravitatea problemelor. Pentru conflicte moderate și îmbunătățirea comunicării, 12-20 sesiuni (3-5 luni) sunt de obicei suficiente. Pentru infidelitate sau probleme mai profunde, poate dura 6-12 luni (20-30 sesiuni). În prima sesiune stabilim o estimare realistă.

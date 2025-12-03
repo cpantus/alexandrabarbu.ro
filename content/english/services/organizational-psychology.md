@@ -43,7 +43,7 @@ feature_blocks:
   - title: "Team Building and Organizational Culture"
     subtitle: "Cohesion and Healthy Culture"
     description: "Teams function in silos, communication is dysfunctional, organizational culture is toxic. You need to build cohesion and healthy culture. Strategic team building, culture diagnosis, inter-team conflict resolution."
-    image: "/images/team building.jpeg"
+    image: "/images/team-building.jpeg"
 
 # Problem Empathy
 problem_empathy:

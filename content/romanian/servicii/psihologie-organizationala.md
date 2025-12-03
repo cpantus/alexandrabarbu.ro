@@ -27,7 +27,7 @@ feature_blocks:
   - subtitle: Coeziune și Cultură Sănătoasă
     title: Team Building și Cultură Organizațională
     description: Echipele funcționează în silozuri, comunicarea este disfuncțională, cultura organizațională e toxică. Aveți nevoie să construiți coeziune și cultură sănătoasă. Team building strategic, diagnostic cultură, rezolvarea conflictelor inter-echipe.
-    image: /images/team building.jpeg
+    image: /images/team-building.jpeg
 faq_items:
   - question: Cât costă un program complet de consultanță organizațională?
     answer: Depinde de mărimea companiei și complexitatea problemelor. Pentru o companie mică (10-30 angajați), un program de 6 luni (diagnostic + intervenții + măsurare) costă orientativ 15.000-25.000 RON. Pentru companii mari (100+ angajați), proiecte complexe pot ajunge la 50.000-150.000 RON. ROI-ul este de obicei 3-5x în primul an (prin reducerea turnover-ului și creșterea productivității).

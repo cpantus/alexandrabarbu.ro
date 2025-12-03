@@ -28,7 +28,7 @@ feature_blocks:
   - subtitle: Creștere și Autocunoaștere
     title: Vrei Dezvoltare Personală
     description: Nu ai neapărat o problemă, dar simți că stagnezi. Vrei să te cunoști mai bine, să-ți clarifici valorile, să îmbunătățești relațiile, să trăiești mai autentic. Autocunoaștere, stimă de sine, inteligență emoțională și găsirea sensului.
-    image: /images/dezvoltare personala.jpeg
+    image: /images/dezvoltare-personala.jpeg
 faq_items:
   - question: Cât timp durează terapia individuală?
     answer: Depinde de complexitatea problemei. Pentru anxietate sau depresie ușoară-moderată, 12-20 sesiuni (3-5 luni) sunt de obicei suficiente. Pentru traume complexe sau tulburări de personalitate, poate dura 6-24 luni. În prima sesiune stabilim o estimare realistă bazată pe situația ta.

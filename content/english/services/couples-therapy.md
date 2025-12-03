@@ -35,17 +35,17 @@ feature_blocks:
   - title: "Infidelity and Lost Trust"
     subtitle: "Rebuilding Trust"
     description: "One or both partners have experienced infidelity (emotional or physical). Trust is destroyed and you don't know how to rebuild the relationship. Affair, suspicion, difficulty forgiving and loss of intimacy."
-    image: "/images/incredere pierduta.jpeg"
+    image: "/images/incredere-pierduta.jpeg"
 
   - title: "Lack of Intimacy and Connection"
     subtitle: "Emotional Distance"
     description: "You feel like two strangers under the same roof. Emotional distance, lack of affection, unsatisfying or non-existent sex life. You no longer share quality time and feel you don't understand each other anymore."
-    image: "/images/lipsa intimitatii.jpeg"
+    image: "/images/lipsa-intimitatii.jpeg"
 
   - title: "Important Relationship Decisions"
     subtitle: "Navigating Decisions"
     description: "You're thinking about marriage, divorce, children, or relocation and you're not on the same page. Therapy can help you navigate these decisions together: marriage, divorce, children, career vs. family, blended families."
-    image: "/images/decizii importante.jpeg"
+    image: "/images/decizii-importante.jpeg"
 
 # Problem Empathy
 problem_empathy:

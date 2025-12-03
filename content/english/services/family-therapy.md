@@ -29,7 +29,7 @@ feature_blocks:
   - title: "Conflicts with Adolescents"
     subtitle: "Rebellion and Challenges"
     description: "Rebellion, authority challenges, lack of communication, isolation in room, risky behaviors (alcohol, drugs, promiscuity). Constant defiance, closed communication, self-destructive behaviors, school problems."
-    image: "/images/conflicte cu adolescenti.jpeg"
+    image: "/images/conflicte-cu-adolescenti.jpeg"
 
   - title: "Divorce and Blended Families"
     subtitle: "Family Transitions"
@@ -39,12 +39,12 @@ feature_blocks:
   - title: "Caring for Aging Parents"
     subtitle: "Responsibilities and Burnout"
     description: "Conflicts between siblings about care, primary caregiver burnout, guilt feelings, difficult decisions about nursing home placement. Disagreements, exhaustion, guilt, financial conflicts."
-    image: "/images/parinti in varsta.jpeg"
+    image: "/images/parinti-in-varsta.jpeg"
 
   - title: "Family Traumas and Losses"
     subtitle: "Collective Healing"
     description: "Death in family, serious illness, abuse, addictions, traumatic events affecting all family members and you don't know how to process together. Complicated grief, chronic illness, abuse, addictions, collective trauma."
-    image: "/images/traume si pierderi familiale.jpeg"
+    image: "/images/traume-si-pierderi-familiale.jpeg"
 
 # Problem Empathy
 problem_empathy:
