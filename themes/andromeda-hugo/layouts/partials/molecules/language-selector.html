@@ -110,28 +110,18 @@
         {{- $langName := .LanguageName | default $langCode -}}
         {{- $isCurrentLang := eq $langCode $pageLang -}}
 
-        {{/* Get the URL for this language version of the page */}}
+        {{/*
+          Language URL: Always use homepage for each language.
+          This is necessary because the header is cached per-language (partialCached),
+          so we can't use page-specific translations here.
+        */}}
         {{- $langURL := "" -}}
-        {{- if $isCurrentLang -}}
-          {{- $langURL = $context.RelPermalink -}}
+        {{- if eq $langCode "ro" -}}
+          {{- $langURL = "/" -}}
+        {{- else if eq $langCode "en" -}}
+          {{- $langURL = "/en/" -}}
         {{- else -}}
-          {{/* Try to find translation */}}
-          {{- range $context.Translations -}}
-            {{- if eq .Lang $langCode -}}
-              {{- $langURL = .RelPermalink -}}
-            {{- end -}}
-          {{- end -}}
-          {{/* Fallback to homepage if no translation exists */}}
-          {{- if not $langURL -}}
-            {{/* For RO (default language) go to root, for EN go to /en/ */}}
-            {{- if eq $langCode "ro" -}}
-              {{- $langURL = "/" -}}
-            {{- else if eq $langCode "en" -}}
-              {{- $langURL = "/en/" -}}
-            {{- else -}}
-              {{- $langURL = printf "/%s/" $langCode -}}
-            {{- end -}}
-          {{- end -}}
+          {{- $langURL = printf "/%s/" $langCode -}}
         {{- end -}}
 
         <option

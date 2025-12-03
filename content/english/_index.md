@@ -1,5 +1,6 @@
 ---
 title: "Psychotherapist Alexandra Barbu - Therapy for Mental Health"
+translationKey: home
 description: "Psychotherapy practice in Bucharest. Individual, couples and family therapy. Integrative approach: CBT, Mindfulness, EMDR. Online and in-person appointments."
 layout: "flexible"
 is_home: true
