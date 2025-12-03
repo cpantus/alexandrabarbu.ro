@@ -138,35 +138,6 @@ collections:
               - { label: "Varianta", name: "variant", widget: "select", default: "primary", options: ["primary", "secondary", "outline-primary", "outline-secondary"] }
               - { label: "Icoana", name: "icon", widget: "string", required: false }
 
-      - label: "Config: Busola Valorilor"
-        name: "values_compass"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Activare", name: "enable", widget: "boolean", default: true }
-          - { label: "Titlu", name: "title", widget: "string", required: false }
-          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-          - { label: "Descriere", name: "description", widget: "text", required: false }
-          - { label: "Varianta", name: "variant", widget: "select", required: false, default: "primary", options: ["primary", "secondary", "tertiary", "neutral"] }
-          - label: "Beneficii/Valori"
-            name: "benefits"
-            widget: "list"
-            fields:
-              - { label: "Titlu", name: "title", widget: "string" }
-              - { label: "Icoana", name: "icon", widget: "string" }
-              - { label: "Descriere", name: "description", widget: "text" }
-              - { label: "Varianta", name: "variant", widget: "select", required: false, options: ["primary", "secondary", "tertiary", "neutral"] }
-          - label: "CTA"
-            name: "cta"
-            widget: "object"
-            required: false
-            collapsed: true
-            fields:
-              - { label: "Text", name: "text", widget: "string" }
-              - { label: "URL", name: "url", widget: "string" }
-          - { label: "Varianta Buton", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary", "tertiary", "neutral"] }
-
       - label: "Config: Introducere Valori"
         name: "values_section"
         widget: "object"
@@ -216,20 +187,6 @@ collections:
           - { label: "Text Buton Secundar", name: "secondary_button_text", widget: "string", required: false }
           - { label: "URL Buton Secundar", name: "secondary_button_url", widget: "string", required: false }
 
-      - label: "Config: Video Popup"
-        name: "video_section"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Activare", name: "enable", widget: "boolean", default: true }
-          - { label: "Titlu", name: "title", widget: "string" }
-          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-          - { label: "Descriere", name: "description", widget: "text", required: false }
-          - { label: "URL Video", name: "video_url", widget: "string" }
-          - { label: "Thumbnail Video", name: "video_thumbnail", widget: "image", required: false }
-          - { label: "Varianta", name: "variant", widget: "select", required: false, options: ["primary", "secondary", "tertiary", "neutral"] }
-
       - label: "Config: FAQ Mini"
         name: "faq_items"
         widget: "list"
@@ -244,40 +201,6 @@ collections:
       - { label: "FAQ Footer", name: "faq_mini_footer", widget: "string", required: false }
       - { label: "FAQ Link Text", name: "faq_mini_link_text", widget: "string", required: false }
       - { label: "FAQ Link URL", name: "faq_mini_link_url", widget: "string", required: false }
-
-      - label: "Config: Taburi Metode"
-        name: "method_tabs"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Activare", name: "enable", widget: "boolean", default: true }
-          - { label: "Titlu", name: "title", widget: "string", required: false }
-          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-          - { label: "Descriere", name: "description", widget: "text", required: false }
-          - { label: "Varianta", name: "variant", widget: "select", required: false, options: ["primary", "secondary", "tertiary", "neutral"] }
-          - label: "Metode"
-            name: "methods"
-            widget: "list"
-            fields:
-              - { label: "Nume Scurt", name: "short_name", widget: "string" }
-              - { label: "Titlu Complet", name: "title", widget: "string" }
-              - { label: "Icoana", name: "icon", widget: "string", required: false }
-              - { label: "Descriere", name: "description", widget: "text" }
-              - { label: "Ce Este", name: "what_is", widget: "text", required: false }
-              - { label: "Cum Functioneaza", name: "how_works", widget: "text", required: false }
-              - label: "Beneficii"
-                name: "benefits"
-                widget: "list"
-                required: false
-                field: { label: "Beneficiu", name: "benefit", widget: "string" }
-              - label: "Tehnici"
-                name: "techniques"
-                widget: "list"
-                required: false
-                field: { label: "Tehnica", name: "technique", widget: "string" }
-              - { label: "Durata", name: "duration", widget: "string", required: false }
-              - { label: "Rata Succes", name: "success_rate", widget: "string", required: false }
 
       - label: "Config: Formular Contact"
         name: "contact_form_enhanced"
@@ -321,81 +244,6 @@ collections:
 
       - { label: "Titlu Info Contact", name: "contact_info_title", widget: "string", required: false }
       - { label: "Subtitlu Info Contact", name: "contact_info_subtitle", widget: "string", required: false }
-
-      - label: "Config: Tabele Preturi"
-        name: "pricing_section"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Activare", name: "enable", widget: "boolean", default: true }
-          - { label: "Titlu", name: "title", widget: "string", required: false }
-          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-
-      - label: "Carduri Preturi"
-        name: "pricing_card"
-        widget: "list"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Nume Serviciu", name: "name", widget: "string" }
-          - { label: "Descriere", name: "content", widget: "text", required: false }
-          - { label: "Moneda", name: "currency", widget: "string", default: "RON" }
-          - { label: "Pret Lunar", name: "monthly_price", widget: "string", required: false }
-          - { label: "Pret Anual", name: "yearly_price", widget: "string", required: false }
-          - { label: "Card Evidentiat", name: "featured", widget: "boolean", default: false }
-          - { label: "Text Buton", name: "button_label", widget: "string" }
-          - { label: "Link Buton", name: "button_link", widget: "string" }
-          - { label: "Varianta Buton", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary"] }
-          - label: "Lista Servicii"
-            name: "services"
-            widget: "list"
-            field: { label: "Serviciu", name: "service", widget: "string" }
-
-      - { label: "Oferta Speciala", name: "offer", widget: "string", required: false }
-      - { label: "Toggle Lunar/Anual", name: "monthly_yearly_toggle", widget: "select", required: false, options: ["monthly", "yearly", "toggle"] }
-
-      - label: "Config: Numere Statistici"
-        name: "stats_numbers"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Activare", name: "enable", widget: "boolean", default: true }
-          - { label: "Titlu", name: "title", widget: "string", required: false }
-          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-          - label: "Statistici"
-            name: "stats"
-            widget: "list"
-            fields:
-              - { label: "Valoare", name: "value", widget: "number" }
-              - { label: "Sufix", name: "suffix", widget: "string", required: false }
-              - { label: "Eticheta", name: "label", widget: "string" }
-              - { label: "Icoana", name: "icon", widget: "string", required: false }
-              - { label: "Progres", name: "progress", widget: "number", required: false }
-
-      - label: "Config: Prezentare Credentiale"
-        name: "credentials_showcase"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Activare", name: "enable", widget: "boolean", default: true }
-          - { label: "Titlu", name: "title", widget: "string", required: false }
-          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-          - { label: "Descriere", name: "description", widget: "text", required: false }
-          - { label: "Fundal", name: "background", widget: "select", required: false, options: ["light", "compact"] }
-          - { label: "Arata Text Incredere", name: "show_trust_text", widget: "boolean", default: false, required: false }
-          - { label: "Text Incredere", name: "trust_text", widget: "string", required: false }
-          - label: "Credentiale"
-            name: "credentials"
-            widget: "list"
-            fields:
-              - { label: "Icoana", name: "icon", widget: "select", options: ["certificate", "award", "users", "shield-check", "graduation-cap", "star"] }
-              - { label: "Eticheta", name: "label", widget: "string" }
-              - { label: "Valoare", name: "value", widget: "string", required: false }
-              - { label: "Varianta", name: "variant", widget: "select", required: false, options: ["primary", "secondary", "coral", "premium", "sage", "info", "success", "warning"] }
-              - { label: "Marime", name: "size", widget: "select", required: false, options: ["sm", "md", "lg"] }
 
       - label: "Config: Testimoniale"
         name: "testimonials_enhanced"
@@ -518,44 +366,6 @@ collections:
           - { label: "URL Buton", name: "button_url", widget: "string", required: false }
           - { label: "Disclaimer", name: "disclaimer", widget: "string", required: false }
 
-      - label: "Config: Empatie Probleme"
-        name: "problem_empathy"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Activare", name: "enable", widget: "boolean", default: true }
-          - { label: "Titlu", name: "title", widget: "string", required: false }
-          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-          - { label: "Descriere", name: "description", widget: "text", required: false }
-          - { label: "Text Empatie", name: "empathy_text", widget: "text", required: false }
-          - label: "Provocari"
-            name: "challenges"
-            widget: "list"
-            fields:
-              - { label: "Titlu", name: "title", widget: "string" }
-              - { label: "Descriere", name: "description", widget: "text" }
-              - { label: "Icoana", name: "icon", widget: "string", required: false }
-
-      - label: "Config: Newsletter"
-        name: "newsletter_signup"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Activare", name: "enable", widget: "boolean", default: true }
-          - { label: "Titlu", name: "title", widget: "string" }
-          - { label: "Icoana", name: "icon", widget: "string", required: false }
-          - { label: "Descriere", name: "description", widget: "text", required: false }
-          - label: "Beneficii"
-            name: "benefits"
-            widget: "list"
-            required: false
-            field: { label: "Beneficiu", name: "benefit", widget: "string" }
-          - { label: "Text GDPR", name: "gdpr_text", widget: "text", required: false }
-          - { label: "Text Buton", name: "button_text", widget: "string", default: "Aboneaza-te" }
-          - { label: "Varianta Buton", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary"] }
-
   # ═══════════════════════════════════════════
   # 🇷🇴 SERVICII (Menu order: 3)
   # ═══════════════════════════════════════════
@@ -589,13 +399,10 @@ collections:
             widget: "select"
             options:
               - { label: "Hero Breadcrumb", value: "hero-breadcrumb" }
-              - { label: "Values Compass", value: "values-compass" }
               - { label: "Feature Blocks", value: "feature-blocks" }
               - { label: "FAQ Mini", value: "faq-mini" }
               - { label: "CTA Standard", value: "cta-standard" }
-              - { label: "Pricing Tables", value: "pricing-tables" }
               - { label: "Testimonials", value: "testimonials-enhanced" }
-              - { label: "Method Tabs", value: "method-tabs" }
 
       - label: "Config: Hero Breadcrumb"
         name: "hero_breadcrumb"
@@ -617,24 +424,6 @@ collections:
               - { label: "Text", name: "text", widget: "string" }
               - { label: "URL", name: "url", widget: "string" }
               - { label: "Varianta", name: "variant", widget: "select", default: "primary", options: ["primary", "secondary", "outline-primary", "outline-secondary"] }
-
-      - label: "Config: Busola Valorilor"
-        name: "values_compass"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Activare", name: "enable", widget: "boolean", default: true }
-          - { label: "Titlu", name: "title", widget: "string", required: false }
-          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-          - { label: "Descriere", name: "description", widget: "text", required: false }
-          - label: "Beneficii/Valori"
-            name: "benefits"
-            widget: "list"
-            fields:
-              - { label: "Titlu", name: "title", widget: "string" }
-              - { label: "Icoana", name: "icon", widget: "string" }
-              - { label: "Descriere", name: "description", widget: "text" }
 
       - label: "Config: Blocuri Caracteristici"
         name: "feature_blocks"
@@ -675,33 +464,6 @@ collections:
           - { label: "URL Buton", name: "button_url", widget: "string" }
           - { label: "Varianta", name: "variant", widget: "select", default: "primary", options: ["primary", "secondary", "tertiary", "neutral"] }
 
-      - label: "Config: Tabele Preturi"
-        name: "pricing_section"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Activare", name: "enable", widget: "boolean", default: true }
-          - { label: "Titlu", name: "title", widget: "string", required: false }
-          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-      - label: "Carduri Preturi"
-        name: "pricing_card"
-        widget: "list"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Nume Serviciu", name: "name", widget: "string" }
-          - { label: "Descriere", name: "content", widget: "text", required: false }
-          - { label: "Moneda", name: "currency", widget: "string", default: "RON" }
-          - { label: "Pret", name: "monthly_price", widget: "string" }
-          - { label: "Card Evidentiat", name: "featured", widget: "boolean", default: false }
-          - { label: "Text Buton", name: "button_label", widget: "string" }
-          - { label: "Link Buton", name: "button_link", widget: "string" }
-          - label: "Lista Servicii"
-            name: "services"
-            widget: "list"
-            field: { label: "Serviciu", name: "service", widget: "string" }
-
       - label: "Config: Testimoniale"
         name: "testimonials_enhanced"
         widget: "object"
@@ -717,29 +479,6 @@ collections:
               - { label: "Citat", name: "quote", widget: "text" }
               - { label: "Nume", name: "name", widget: "string" }
               - { label: "Rol", name: "role", widget: "string", required: false }
-
-      - label: "Config: Taburi Metode"
-        name: "method_tabs"
-        widget: "object"
-        collapsed: true
-        required: false
-        fields:
-          - { label: "Activare", name: "enable", widget: "boolean", default: true }
-          - { label: "Titlu", name: "title", widget: "string", required: false }
-          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
-          - label: "Metode"
-            name: "methods"
-            widget: "list"
-            fields:
-              - { label: "Nume Scurt", name: "short_name", widget: "string" }
-              - { label: "Titlu Complet", name: "title", widget: "string" }
-              - { label: "Icoana", name: "icon", widget: "string", required: false }
-              - { label: "Descriere", name: "description", widget: "text" }
-              - label: "Beneficii"
-                name: "benefits"
-                widget: "list"
-                required: false
-                field: { label: "Beneficiu", name: "benefit", widget: "string" }
 
   # ═══════════════════════════════════════════
   # 🇷🇴 RESURSE (Menu order: 6)
@@ -913,18 +652,20 @@ collections:
               - { label: "Hero with Breadcrumb", value: "hero-breadcrumb" }
               - { label: "Hero About", value: "hero-about" }
               - { label: "Values Intro", value: "values-intro" }
-              - { label: "Values Compass", value: "values-compass" }
               - { label: "Feature Blocks", value: "feature-blocks" }
               - { label: "CTA Standard", value: "cta-standard" }
+              - { label: "CTA Split", value: "cta-split" }
               - { label: "FAQ Mini", value: "faq-mini" }
-              - { label: "Method Tabs", value: "method-tabs" }
               - { label: "Contact Form", value: "contact-form-enhanced" }
+              - { label: "Contact Info Cards", value: "contact-info-cards" }
               - { label: "Testimonials", value: "testimonials-enhanced" }
-              - { label: "Pricing Tables", value: "pricing-tables" }
-              - { label: "Stats Numbers", value: "stats-numbers" }
-              - { label: "Credentials Showcase", value: "credentials-showcase" }
               - { label: "Onboarding Steps", value: "onboarding-steps" }
               - { label: "Services Preview", value: "services-preview" }
+              - { label: "Credentials Education", value: "credentials-education" }
+              - { label: "Methodology Zigzag", value: "methodology-zigzag" }
+              - { label: "Scientific Approach", value: "scientific-approach" }
+              - { label: "Benefits Results", value: "benefits-results" }
+              - { label: "Blog Grid", value: "blog-grid" }
 
   # ═══════════════════════════════════════════
   # 🇬🇧 SERVICES (English)
@@ -956,13 +697,10 @@ collections:
             widget: "select"
             options:
               - { label: "Hero Breadcrumb", value: "hero-breadcrumb" }
-              - { label: "Values Compass", value: "values-compass" }
               - { label: "Feature Blocks", value: "feature-blocks" }
               - { label: "FAQ Mini", value: "faq-mini" }
               - { label: "CTA Standard", value: "cta-standard" }
-              - { label: "Pricing Tables", value: "pricing-tables" }
               - { label: "Testimonials", value: "testimonials-enhanced" }
-              - { label: "Method Tabs", value: "method-tabs" }
 
   # ═══════════════════════════════════════════
   # 🇬🇧 ARTICLES (English)
