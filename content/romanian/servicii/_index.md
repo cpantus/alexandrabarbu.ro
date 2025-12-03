@@ -1,161 +1,135 @@
 ---
-title: "Servicii de Terapie Psihologică - Cabinet Alexandra Barbu București"
-description: "Terapie individuală, de cuplu, de familie și psihologie organizațională. Metode bazate pe dovezi: TCC, EMDR, Mindfulness. Cabinet București și online."
-layout: "flexible"
-
+title: Servicii de Terapie Psihologică - Cabinet Alexandra Barbu București
+layout: flexible
+description: 'Terapie individuală, de cuplu, de familie și psihologie organizațională. Metode bazate pe dovezi: TCC, EMDR, Mindfulness. Cabinet București și online.'
 sections:
-  - type: "hero-breadcrumb"
-  - type: "services-preview"
-  - type: "feature-blocks"
-  - type: "values-intro"
-  - type: "cta-standard"
-
-# Hero Breadcrumb
+  - type: hero-breadcrumb
+  - type: services-preview
+  - type: feature-blocks
+  - type: values-intro
+  - type: cta-standard
 hero_breadcrumb:
-  title: "Servicii de Terapie"
-  subtitle: "Găsește Serviciul Potrivit Pentru Tine"
-  description: "Oferă terapie psihologică specializată pentru indivizi, cupluri, familii și organizații. Toate serviciile folosesc metode validate științific și sunt adaptate nevoilor tale unice. Fie că te confrunți cu anxietate, depresie, probleme în relații sau cauți dezvoltare personală, există un serviciu creat special pentru tine. Prima consultație este gratuită și fără obligații."
-  image: "images/services/hero-services.jpg"
-
+  title: Servicii de Terapie
+  subtitle: Găsește Serviciul Potrivit Pentru Tine
+  description: Oferă terapie psihologică specializată pentru indivizi, cupluri, familii și organizații. Toate serviciile folosesc metode validate științific și sunt adaptate nevoilor tale unice. Fie că te confrunți cu anxietate, depresie, probleme în relații sau cauți dezvoltare personală, există un serviciu creat special pentru tine. Prima consultație este gratuită și fără obligații.
+  image: images/services/hero-services.jpg
+feature_blocks:
+  - subtitle: Terapie Individuală
+    title: Problemele Sunt Legate de Mine?
+    description: Dacă te confrunți cu anxietate, depresie, traume din trecut, stimă de sine scăzută sau vrei să crești personal, **terapia individuală** este alegerea potrivită.
+    image: images/services/individual-guide.jpg
+  - subtitle: Terapie de Cuplu
+    title: Problemele Sunt în Relația Mea de Cuplu?
+    description: Dacă tu și partenerul vă certați frecvent, comunicarea este disfuncțională, ați trecut prin infidelitate sau vă gândiți la despărțire, **terapia de cuplu** vă poate ajuta.
+    image: images/services/couple-guide.jpg
+  - subtitle: Terapie de Familie
+    title: Problemele Sunt în Familie?
+    description: Dacă conflictele familiale afectează toți membrii, copiii au probleme comportamentale, sau familia trece printr-o tranziție dificilă, **terapia de familie** este soluția.
+    image: images/services/family-guide.jpg
+  - subtitle: Psihologie Organizațională
+    title: Problemele Sunt La Locul de Muncă?
+    description: Dacă ești manager sau HR și vrei să îmbunătățești cultura organizațională, să dezvolți leadership sau să previi burnout-ul angajaților, **psihologia organizațională** oferă soluții.
+    image: images/services/organizational-guide.jpg
+faq_mini_title: ''
+faq_mini_subtitle: ''
+cta_standard:
+  title: Gata Să Începi?
+  description: Primul pas este cel mai important. Programează o consultație gratuită de 15 minute pentru a discuta despre situația ta și a identifica serviciul potrivit.
+  button_text: Programează Consultație Gratuită
+  button_url: https://cal.com/alexandra-barbu-ras8xc/15min
+  benefits:
+    - icon: check-circle
+      text: Consultație inițială gratuită 30 minute
+    - icon: check-circle
+      text: Complet confidențial (GDPR compliant)
+    - icon: check-circle
+      text: Cabinet București sau online (Zoom)
+    - icon: check-circle
+      text: Fără obligații - doar o conversație
+  secondary_button_variant: outline-secondary
+  secondary_button_url: '#services-preview'
+  secondary_button_text: Vezi Toate Serviciile
+  enable: true
 breadcrumb:
-  - name: "Acasă"
-    url: "/"
-  - name: "Servicii"
-    url: "/servicii/"
-
-# Services Preview Section
+  - url: /
+    name: Acasă
+  - url: /servicii/
+    name: Servicii
 services_preview:
   enable: true
-  title: "Cum Te Pot Ajuta"
-  subtitle: "Servicii specializate"
-  description: "Oferă patru tipuri principale de servicii terapeutice, fiecare adaptat provocărilor specifice cu care te confrunți."
-
+  title: Cum Te Pot Ajuta
+  subtitle: Servicii specializate
+  description: Oferă patru tipuri principale de servicii terapeutice, fiecare adaptat provocărilor specifice cu care te confrunți.
   services:
-    - title: "Terapie Individuală"
-      description: "Abordare personalizată pentru anxietate, depresie, traume și dezvoltare personală. TCC, EMDR, Mindfulness."
-      icon: "user"
+    - title: Terapie Individuală
+      description: Abordare personalizată pentru anxietate, depresie, traume și dezvoltare personală. TCC, EMDR, Mindfulness.
+      icon: user
       features:
-        - "Anxietate și atacuri de panică"
-        - "Depresie și lipsă de motivație"
-        - "Traume și PTSD"
-        - "Stimă de sine și creștere personală"
-      link: "/servicii/terapie-individuala/"
-      button_text: "Explorează Terapia Individuală"
-      button_variant: "secondary"
-
-    - title: "Terapie de Cuplu"
-      description: "Reconstruiește conexiunea, comunicarea și intimitatea în relație. Abordare Gottman și TCC."
-      icon: "heart"
+        - Anxietate și atacuri de panică
+        - Depresie și lipsă de motivație
+        - Traume și PTSD
+        - Stimă de sine și creștere personală
+      link: /servicii/terapie-individuala/
+      button_text: Explorează Terapia Individuală
+      button_variant: secondary
+    - title: Terapie de Cuplu
+      description: Reconstruiește conexiunea, comunicarea și intimitatea în relație. Abordare Gottman și TCC.
+      icon: heart
       features:
-        - "Conflicte și comunicare disfuncțională"
-        - "Infidelitate și reconstruire încredere"
-        - "Intimitate și conexiune emoțională"
-        - "Decizii despre relație"
-      link: "/servicii/terapie-de-cuplu/"
-      button_text: "Descoperă Terapia de Cuplu"
-      button_variant: "primary"
-
-    - title: "Terapie de Familie"
-      description: "Vindecă și armonizează dinamica familială. Lucrăm împreună pentru relații mai sănătoase."
-      icon: "users"
+        - Conflicte și comunicare disfuncțională
+        - Infidelitate și reconstruire încredere
+        - Intimitate și conexiune emoțională
+        - Decizii despre relație
+      link: /servicii/terapie-de-cuplu/
+      button_text: Descoperă Terapia de Cuplu
+      button_variant: primary
+    - title: Terapie de Familie
+      description: Vindecă și armonizează dinamica familială. Lucrăm împreună pentru relații mai sănătoase.
+      icon: users
       features:
-        - "Conflicte familiale persistente"
-        - "Probleme cu adolescenții"
-        - "Divorț și familii recompuse"
-        - "Îngrijirea părinților în vârstă"
-      link: "/servicii/terapie-de-familie/"
-      button_text: "Vezi Terapia de Familie"
-      button_variant: "secondary"
-
-    - title: "Psihologie Organizațională"
-      description: "Optimizează echipe și cultură organizațională. Coaching, evaluare, dezvoltare leadership."
-      icon: "briefcase"
+        - Conflicte familiale persistente
+        - Probleme cu adolescenții
+        - Divorț și familii recompuse
+        - Îngrijirea părinților în vârstă
+      link: /servicii/terapie-de-familie/
+      button_text: Vezi Terapia de Familie
+      button_variant: secondary
+    - title: Psihologie Organizațională
+      description: Optimizează echipe și cultură organizațională. Coaching, evaluare, dezvoltare leadership.
+      icon: briefcase
       features:
-        - "Burnout și stress ocupațional"
-        - "Dezvoltare leadership"
-        - "Team building și cultură"
-        - "Evaluare psihologică angajați"
-      link: "/servicii/psihologie-organizationala/"
-      button_text: "Servicii pentru Companii"
-      button_variant: "outline-primary"
-
-# Feature Blocks - How to Choose
-feature_blocks:
-  - title: "Problemele Sunt Legate de Mine?"
-    subtitle: "Terapie Individuală"
-    description: "Dacă te confrunți cu anxietate, depresie, traume din trecut, stimă de sine scăzută sau vrei să crești personal, **terapia individuală** este alegerea potrivită."
-    image: "images/services/individual-guide.jpg"
-
-  - title: "Problemele Sunt în Relația Mea de Cuplu?"
-    subtitle: "Terapie de Cuplu"
-    description: "Dacă tu și partenerul vă certați frecvent, comunicarea este disfuncțională, ați trecut prin infidelitate sau vă gândiți la despărțire, **terapia de cuplu** vă poate ajuta."
-    image: "images/services/couple-guide.jpg"
-
-  - title: "Problemele Sunt în Familie?"
-    subtitle: "Terapie de Familie"
-    description: "Dacă conflictele familiale afectează toți membrii, copiii au probleme comportamentale, sau familia trece printr-o tranziție dificilă, **terapia de familie** este soluția."
-    image: "images/services/family-guide.jpg"
-
-  - title: "Problemele Sunt La Locul de Muncă?"
-    subtitle: "Psihologie Organizațională"
-    description: "Dacă ești manager sau HR și vrei să îmbunătățești cultura organizațională, să dezvolți leadership sau să previi burnout-ul angajaților, **psihologia organizațională** oferă soluții."
-    image: "images/services/organizational-guide.jpg"
-
-# Values Intro - General Benefits
+        - Burnout și stress ocupațional
+        - Dezvoltare leadership
+        - Team building și cultură
+        - Evaluare psihologică angajați
+      link: /servicii/psihologie-organizationala/
+      button_text: Servicii pentru Companii
+      button_variant: outline-primary
 values_intro:
   enable: true
-  title: "De Ce Terapia Funcționează"
-  subtitle: "Beneficii generale"
-  lead: "Indiferent de serviciul ales, toate abordările mele se bazează pe aceleași principii fundamentale care garantează rezultate."
-
+  title: De Ce Terapia Funcționează
+  subtitle: Beneficii generale
+  lead: Indiferent de serviciul ales, toate abordările mele se bazează pe aceleași principii fundamentale care garantează rezultate.
   values:
-    - title: "Bazat pe Dovezi Științifice"
-      description: "Folosesc doar metode validate prin cercetare (TCC, EMDR, Gottman, Mindfulness). Nu improvizez - urmez protocoale dovedite."
-      icon: "flask"
-
-    - title: "Personalizat Pentru Tine"
-      description: "Nu există o abordare universală. Fiecare plan terapeutic este construit specific pentru situația, resursele și personalitatea ta unică."
-      icon: "user-cog"
-
-    - title: "Spațiu Sigur și Confidențial"
-      description: "Tot ce discutăm rămâne confidențial (cod deontologic + GDPR). Poți fi vulnerabil fără teamă de judecată sau critica."
-      icon: "shield-check"
-
-    - title: "Progres Măsurat Obiectiv"
-      description: "Folosim chestionare validate științific pentru a măsura îmbunătățirea. Știi exact unde ești și cât ai progresat."
-      icon: "chart-line-up"
-
-    - title: "Flexibilitate: Cabinet sau Online"
-      description: "Toate serviciile sunt disponibile atât față în față (cabinet București) cât și online (Zoom). Alegi ce ți se potrivește."
-      icon: "video"
-
-    - title: "Experiență Diversificată"
-      description: "15+ ani de lucru cu probleme variate (anxietate, depresie, traume, relații, organizații). Am văzut și rezolvat situații complexe."
-      icon: "star"
-
-# CTA Standard
-cta_standard:
-  enable: true
-  title: "Gata Să Începi?"
-  description: "Primul pas este cel mai important. Programează o consultație gratuită de 30 minute pentru a discuta despre situația ta și a identifica serviciul potrivit."
-
-  button_text: "Programează Consultație Gratuită"
-  button_url: "https://cal.com/alexandra-barbu-ras8xc/15min"
-  secondary_button_text: "Vezi Toate Serviciile"
-  secondary_button_url: "#services-preview"
-  secondary_button_variant: "outline-secondary"
-
-  benefits:
-    - text: "Consultație inițială gratuită 30 minute"
-      icon: "check-circle"
-    - text: "Complet confidențial (GDPR compliant)"
-      icon: "check-circle"
-    - text: "Cabinet București sau online (Zoom)"
-      icon: "check-circle"
-    - text: "Fără obligații - doar o conversație"
-      icon: "check-circle"
+    - title: Bazat pe Dovezi Științifice
+      description: Folosesc doar metode validate prin cercetare (TCC, EMDR, Gottman, Mindfulness). Nu improvizez - urmez protocoale dovedite.
+      icon: flask
+    - title: Personalizat Pentru Tine
+      description: Nu există o abordare universală. Fiecare plan terapeutic este construit specific pentru situația, resursele și personalitatea ta unică.
+      icon: user-cog
+    - title: Spațiu Sigur și Confidențial
+      description: Tot ce discutăm rămâne confidențial (cod deontologic + GDPR). Poți fi vulnerabil fără teamă de judecată sau critica.
+      icon: shield-check
+    - title: Progres Măsurat Obiectiv
+      description: Folosim chestionare validate științific pentru a măsura îmbunătățirea. Știi exact unde ești și cât ai progresat.
+      icon: chart-line-up
+    - title: 'Flexibilitate: Cabinet sau Online'
+      description: Toate serviciile sunt disponibile atât față în față (cabinet București) cât și online (Zoom). Alegi ce ți se potrivește.
+      icon: video
+    - title: Experiență Diversificată
+      description: 15+ ani de lucru cu probleme variate (anxietate, depresie, traume, relații, organizații). Am văzut și rezolvat situații complexe.
+      icon: star
 ---
-
 ## De Ce Să Alegi Serviciile Mele?
 
 ### Experiență Vastă și Diversă
