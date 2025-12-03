@@ -1,6 +1,5 @@
 ---
 title: Despre Mine - Psihoterapeut Alexandra Barbu
-translationKey: about
 layout: flexible
 description: 10+ ani experiență în psihoterapie. Specializare TCC, EMDR, Mindfulness. Abordare empatică și bazată pe dovezi.
 sections:
@@ -9,36 +8,45 @@ sections:
   - type: scientific-approach
 cta_standard:
   title: Hai Să Ne Cunoaștem
-  description: Programează o consultație gratuită de 30 de minute pentru a vedea dacă putem lucra împreună. Fără obligații, complet confidențial.
+  description: Programează o consultație gratuită de 15 de minute pentru a vedea dacă putem lucra împreună. Fără obligații, complet confidențial.
   button_text: Programează Consultație
   button_url: https://cal.com/alexandra-barbu-ras8xc/15min
   button_variant: secondary
+  secondary_button_text: ''
+  secondary_button_url: ''
+faq_mini_title: ''
+faq_mini_subtitle: ''
+faq_mini_footer: ''
+faq_mini_link_text: ''
+faq_mini_link_url: ''
+contact_info_title: ''
+contact_info_subtitle: ''
 credentials_education:
+  title: Pregătire și *Acreditări*
+  subtitle: CREDENȚIALE PROFESIONALE
+  description: Educația continuă este fundamentală pentru a oferi cele mai bune servicii terapeutice. Iată pregătirea mea profesională.
   credentials:
-    - variant: primary
+    - icon: graduation-cap
+      title: Studii Universitare
       items:
         - Doctorat în Psihologie Clinică, Universitatea București
         - Master în Terapie Cognitivă și Comportamentală, UBB Cluj
         - Licență în Psihologie, Universitatea București
-      title: Studii Universitare
-      icon: graduation-cap
-    - variant: secondary
+      variant: primary
+    - icon: user-md
+      title: Acreditări
       items:
         - Membru Colegiul Psihologilor din România (CPR)
         - Certificat EMDR Europe - Nivel Practitioner
         - Membru European Association for Psychotherapy
-      title: Acreditări
-      icon: user-md
-    - variant: coral
+      variant: secondary
+    - icon: book
+      title: Specializări
       items:
         - Terapie Cognitiv-Comportamentală (CBT) - 300 ore
         - Dialectical Behavior Therapy (DBT) - 200 ore
         - Acceptance and Commitment Therapy (ACT)
-      title: Specializări
-      icon: book
-  description: Educația continuă este fundamentală pentru a oferi cele mai bune servicii terapeutice. Iată pregătirea mea profesională.
-  subtitle: CREDENȚIALE PROFESIONALE
-  title: Pregătire și *Acreditări*
+      variant: coral
 hero_about:
   kicker: CINE SUNT EU
   title: Alexandra *Barbu*
