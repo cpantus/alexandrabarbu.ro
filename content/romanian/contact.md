@@ -104,21 +104,21 @@ contact_form_enhanced:
 contact_info_title: Cum Mă Poți *Contacta*
 contact_info_subtitle: Alege modalitatea care ți se potrivește cel mai bine
 contact_info_cards:
-  - link: tel:+40721234567
+  - link: tel:+40770200834
     subtitle: 'Luni - Vineri: 09:00 - 20:00 | Sâmbătă: 10:00 - 14:00'
-    value: +40 721 234 567
+    value: +40 770 200 834
     label: Telefon
     icon: phone
   - icon_prefix: lab
-    link: https://wa.me/40721234567
+    link: https://wa.me/40770200834
     subtitle: Mesaje text sau vocale, răspund rapid
-    value: +40 721 234 567
+    value: +40 770 200 834
     label: WhatsApp
     icon: whatsapp
-  - description: Cabinet privat în centrul Bucureștiului, ușor accesibil cu transportul în comun sau mașina personală. Parcare disponibilă în zonă.
-    link: https://maps.google.com/?q=Str.+Doamnei+12+Bucuresti
-    subtitle: bucuresti 030167, România
-    value: Str. Doamnei nr. 12, Sector 3
+  - description: Cabinet privat în Sector 3, ușor accesibil cu transportul în comun sau mașina personală. Parcare disponibilă în zonă.
+    link: https://maps.google.com/?q=Strada+Zemes+1A+Bucuresti+Sector+3
+    subtitle: București, Sector 3, România
+    value: Str. Zemes nr. 1A, Bl. M29B, Sc. A
     label: Cabinet București
     icon: map-marker-alt
 faq_mini:
