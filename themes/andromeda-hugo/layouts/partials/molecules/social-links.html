@@ -93,6 +93,10 @@
     {{- range $links -}}
       {{- $name := .name -}}
       {{- $url := .url -}}
+      {{/* Auto-fix URLs missing protocol (e.g., www.facebook.com → https://www.facebook.com) */}}
+      {{- if and $url (not (hasPrefix $url "http")) -}}
+        {{- $url = printf "https://%s" $url -}}
+      {{- end -}}
       {{- $icon := .icon | default $name -}}
       {{- $label := .label | default (printf "Follow us on %s" (title $name)) -}}
 
