@@ -1,18 +1,15 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# FOOTER DATA - Romanian (Footer-Specific Content Only)
+# ═══════════════════════════════════════════════════════════════════════════════
+# Social links and contact info are in data/settings.yaml (single source of truth)
+# This file contains ONLY footer-specific content: description, quick_links, cta, copyright
+# CMS: Managed via Footer > Footer Romana
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Footer description (shown under logo)
 description: Psihoterapeut dedicat transformarii vietilor prin terapie profesionala si empatie
-contact:
-  address: 'Bucuresti, Sector 3, L-V: 18:00-20:00'
-  phone: +40 770 200 834
-  email: alexandra.barbu@gmail.com
-social:
-  - name: Facebook
-    url: https://www.facebook.com/share/1DSV3Y1uhX
-    icon: facebook-f
-  - name: Instagram
-    url: https://www.instagram.com/alexandrabarbupsiholog2025?igsh=eTIxZTI1NmxmM3pk
-    icon: instagram
-  - name: LinkedIn
-    url: https://www.linkedin.com/in/alexandra-b-7162a559/
-    icon: linkedin-in
+
+# Quick Links (footer navigation)
 quick_links:
   - name: Despre
     url: /despre-mine/
@@ -24,10 +21,14 @@ quick_links:
     url: /contact/
   - name: Termeni & Conditii
     url: /termeni-si-conditii/
+
+# Footer CTA Section
 cta:
   enable: true
   title: O Harta Personalizata pentru Fiecare Calatorie
   content: Intelegem nevoile tale specifice, cream un plan terapeutic personalizat, sedinte saptamanale de terapie, mentinerea progresului pe termen lung.
   button_text: Programeaza o evaluare de 15 minute
   button_url: https://cal.com/alexandra-barbu-ras8xc/15min
-copyright: © 2025 Alexandra Barbu. Toate drepturile rezervate.
+
+# Copyright notice
+copyright: "\u00A9 2025 Alexandra Barbu. Toate drepturile rezervate."

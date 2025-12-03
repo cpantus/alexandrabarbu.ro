@@ -780,6 +780,7 @@ collections:
 
   # ═══════════════════════════════════════════
   # 🦶 FOOTER SETTINGS
+  # Footer-specific content only (social/contact are in Site Settings)
   # ═══════════════════════════════════════════
 
   - name: footer
@@ -792,28 +793,11 @@ collections:
         fields:
           - { label: "Descriere", name: "description", widget: "text", hint: "Text afisat sub logo in footer" }
 
-          - label: "Contact"
-            name: "contact"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Adresa", name: "address", widget: "string" }
-              - { label: "Telefon", name: "phone", widget: "string" }
-              - { label: "Email", name: "email", widget: "string" }
-
-          - label: "Social Media"
-            name: "social"
-            widget: "list"
-            collapsed: true
-            fields:
-              - { label: "Nume", name: "name", widget: "string" }
-              - { label: "URL", name: "url", widget: "string" }
-              - { label: "Icoana", name: "icon", widget: "select", options: ["facebook-f", "instagram", "linkedin-in", "twitter", "youtube", "tiktok"] }
-
           - label: "Link-uri Rapide"
             name: "quick_links"
             widget: "list"
-            collapsed: true
+            collapsed: false
+            hint: "Link-uri afisate in footer pentru navigare rapida"
             fields:
               - { label: "Nume", name: "name", widget: "string" }
               - { label: "URL", name: "url", widget: "string" }
@@ -837,28 +821,11 @@ collections:
         fields:
           - { label: "Description", name: "description", widget: "text", hint: "Text displayed under logo in footer" }
 
-          - label: "Contact"
-            name: "contact"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Address", name: "address", widget: "string" }
-              - { label: "Phone", name: "phone", widget: "string" }
-              - { label: "Email", name: "email", widget: "string" }
-
-          - label: "Social Media"
-            name: "social"
-            widget: "list"
-            collapsed: true
-            fields:
-              - { label: "Name", name: "name", widget: "string" }
-              - { label: "URL", name: "url", widget: "string" }
-              - { label: "Icon", name: "icon", widget: "select", options: ["facebook-f", "instagram", "linkedin-in", "twitter", "youtube", "tiktok"] }
-
           - label: "Quick Links"
             name: "quick_links"
             widget: "list"
-            collapsed: true
+            collapsed: false
+            hint: "Links displayed in footer for quick navigation"
             fields:
               - { label: "Name", name: "name", widget: "string" }
               - { label: "URL", name: "url", widget: "string" }
@@ -877,7 +844,8 @@ collections:
           - { label: "Copyright", name: "copyright", widget: "string" }
 
   # ═══════════════════════════════════════════
-  # ⚙️ SITE SETTINGS
+  # ⚙️ SITE SETTINGS (Single Source of Truth)
+  # Social links and contact info managed here, used site-wide
   # ═══════════════════════════════════════════
 
   - name: settings
@@ -885,28 +853,23 @@ collections:
     icon: "settings"
     files:
       - name: site_settings
-        label: "Setari Generale"
+        label: "Setari Generale (Social, Contact, Logo)"
         file: data/settings.yaml
         fields:
           # Site Identity
           - { label: "Nume Site", name: "site_name", widget: "string" }
           - { label: "Slogan", name: "tagline", widget: "string", required: false }
 
-          # Logo Settings
-          - label: "Logo"
-            name: "logo"
-            widget: "object"
-            collapsed: true
-            fields:
-              - { label: "Fisier Logo", name: "logo", widget: "image", default: "images/logo.svg" }
-              - { label: "Text Logo", name: "logo_text", widget: "string", default: "Alexandra Barbu" }
-              - { label: "Favicon", name: "favicon", widget: "image", default: "images/favicon.png" }
+          # Logo & Branding (flat structure)
+          - { label: "Logo", name: "logo", widget: "image", default: "images/logo.svg", hint: "Logo-ul site-ului (SVG recomandat)" }
+          - { label: "Text Logo", name: "logo_text", widget: "string", default: "Alexandra Barbu" }
+          - { label: "Favicon", name: "favicon", widget: "image", default: "images/favicon.svg" }
 
-          # Social Media Links
+          # Social Media Links (SINGLE SOURCE - used in footer, header, SEO)
           - label: "Social Media"
             name: "social"
             widget: "list"
-            hint: "Link-urile catre profilurile de social media"
+            hint: "Link-urile catre profilurile de social media (apar in footer si SEO)"
             collapsed: false
             fields:
               - { label: "Nume", name: "name", widget: "string", hint: "Ex: Facebook, Instagram" }
@@ -922,15 +885,17 @@ collections:
                   - { label: "YouTube", value: "youtube" }
                   - { label: "Twitter/X", value: "twitter" }
 
-          # Contact Information
+          # Contact Information (SINGLE SOURCE - used in footer, contact pages)
           - label: "Informatii Contact"
             name: "contact"
             widget: "object"
-            collapsed: true
+            collapsed: false
+            hint: "Informatii de contact afisate in footer si pagini contact"
             fields:
               - { label: "Telefon", name: "phone", widget: "string" }
               - { label: "Email", name: "email", widget: "string" }
-              - { label: "Adresa / Program", name: "address", widget: "string" }
+              - { label: "Adresa", name: "address", widget: "string", hint: "Ex: Bucuresti, Sector 3" }
+              - { label: "Program", name: "hours", widget: "string", hint: "Ex: L-V: 10:00-20:00" }
 
           # Navigation Button (Header CTA)
           - label: "Buton Header (CTA)"

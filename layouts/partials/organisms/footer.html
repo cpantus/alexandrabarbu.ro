@@ -2,7 +2,11 @@
   Footer Organism - CMS-Managed Version
 
   Main site footer composition using atomic design molecules
-  Data source: data/footer.yaml (RO) or data/en/footer.yaml (EN)
+
+  Data Sources (Single Source of Truth architecture):
+  - data/settings.yaml: social links, contact info (site-wide)
+  - data/footer.yaml: description, quick_links, cta, copyright (RO)
+  - data/en/footer.yaml: description, quick_links, cta, copyright (EN)
 
   Features:
   - Optional CTA section before footer
@@ -14,11 +18,12 @@
   Usage:
     {{ partial "organisms/footer.html" . }}
 
-  Version: 5.0.2 (CMS-Managed)
-  Last Updated: 2025-12-01
+  Version: 5.1.0 (Single Source of Truth)
+  Last Updated: 2025-12-03
 */}}
 
 {{- $currentLang := site.Language.Lang -}}
+{{- $settings := site.Data.settings | default dict -}}
 {{- $footerData := site.Data.footer -}}
 {{- if eq $currentLang "en" -}}
   {{- with site.Data.en.footer -}}
@@ -90,8 +95,8 @@
           </div>
         </div>
 
-        {{/* Column 2: Contact Info */}}
-        {{- $contact := cond (and $footerData $footerData.contact) $footerData.contact site.Params.contact_info -}}
+        {{/* Column 2: Contact Info - from settings.yaml (single source of truth) */}}
+        {{- $contact := $settings.contact | default site.Params.contact_info -}}
         {{ with $contact }}
           <div class="c-footer-nav__section c-footer-nav__section--contact">
             {{ partial "atoms/heading.html" (dict
@@ -101,7 +106,13 @@
               "class" "c-footer-nav__title"
             ) }}
             <ul class="c-footer-nav__links">
+              {{/* Address and hours - can be combined or separate */}}
               {{ with .address }}
+                <li class="c-footer-nav__item">
+                  {{ . | markdownify }}
+                </li>
+              {{ end }}
+              {{ with .hours }}
                 <li class="c-footer-nav__item">
                   {{ . | markdownify }}
                 </li>
@@ -149,8 +160,8 @@
             "class" "c-footer-nav__title"
           ) }}
 
-          {{/* Social Media Links - from data file or site.Params */}}
-          {{- $social := cond (and $footerData $footerData.social) $footerData.social site.Params.social -}}
+          {{/* Social Media Links - from settings.yaml (single source of truth) */}}
+          {{- $social := $settings.social | default site.Params.social -}}
           {{ with $social }}
             <div class="c-footer-nav__social">
               {{ partial "molecules/social-links.html" (dict

@@ -1,20 +1,23 @@
 site_name: Alexandra Barbu
 tagline: Psiholog Clinician
 logo: images/logo.svg
+logo_text: Alexandra Barbu
+favicon: images/favicon.svg
 social:
   - name: Facebook
-    url: https://facebook.com/alexandrabarbu
+    url: https://www.facebook.com/share/1DSV3Y1uhX
     icon: facebook-f
   - name: Instagram
-    url: https://instagram.com/alexandrabarbu
+    url: https://www.instagram.com/alexandrabarbupsiholog2025?igsh=eTIxZTI1NmxmM3pk
     icon: instagram
   - name: LinkedIn
-    url: https://linkedin.com/in/alexandrabarbu
+    url: https://www.linkedin.com/in/alexandra-b-7162a559/
     icon: linkedin-in
 contact:
   phone: +40 770 200 834
   email: alexandra.barbu@gmail.com
-  address: 'Bucuresti, Sector 3, L-V: 10:00-20:00'
+  address: Bucuresti, Sector 3
+  hours: 'L-V: 10:00-19:00'
 nav_button:
   enable: true
   text: Fa o programare
@@ -29,5 +32,3 @@ seo:
     - Psihoterapie
     - Terapie CBT
     - Terapie de familie
-logo_text: Alexandra Barbu
-favicon: images/favicon.svg

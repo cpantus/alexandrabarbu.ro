@@ -1,74 +1,42 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# HUGO PARAMS - Hugo-specific configuration only
+# ═══════════════════════════════════════════════════════════════════════════════
+# NOTE: Site-wide settings (social, contact, logo, seo) are in data/settings.yaml
+# This file contains ONLY Hugo-specific params that can't be in data files
+# ═══════════════════════════════════════════════════════════════════════════════
+
 # CSS Optimization
 purge_css = true  # Enable PurgeCSS in production builds
 
-footer_info = "Psiholog clinician dedicat transformării vieților prin terapie profesională și empatie"
+# Hugo-specific settings
 custom_script = ""
-contact_form_action = "https://script.google.com/macros/s/AKfycbwdGDM3B3V5GhT6GNftvtKFAAuGzGdswUo2x3QGX0C4bNPl_GS8y6eUbWV5MQPAl-wObg/exec"
-logo_text = "Alexandra Barbu"
 logo_webp = true
 logo_width = "257px"
-logo = "images/logo.svg"
-favicon = "images/favicon.png"
 career_form_action = "#"
 mainSections = [ "blog" ]
 
-[contact_info]
-address = "Bucuresti, Sector 3, L-V: 10:00-20:00"
-phone = [ "+40 770 200 834" ]
-email = [ "alexandra.barbu@gmail.com" ]
-
-# Social Media Links
-[[social]]
-name = "facebook"
-url = "https://facebook.com/alexandrabarbu"
-icon = "facebook-f"
-
-[[social]]
-name = "instagram"
-url = "https://instagram.com/alexandrabarbu"
-icon = "instagram"
-
-[[social]]
-name = "linkedin"
-url = "https://linkedin.com/in/alexandrabarbu"
-icon = "linkedin-in"
-
-[cta]
-button_link = "https://cal.com/alexandra-barbu-ras8xc/15min"
-button = "Programeaza o evaluare de 15 minute"
-content = "Înțelegem nevoile tale specifice, Creăm un plan terapeutic personalizat, Ședințe săptămânale de terapie, Menținerea progresului pe termen lung. "
-title = "O Hartă Personalizată pentru Fiecare Călătorie"
-enable = true
-calendly_enabled = true
-calendly_url = "https://cal.com/alexandra-barbu-ras8xc/15min"
-calendly_primary_color = "#234E3E"
-
+# Cookies banner (Hugo-specific functionality)
 [cookies]
 button = "De Acord"
 content = "Acest site NU foloseste cookies. Continuand stii ca nu te urmarim."
 expire_days = 2
 enable = true
 
-
-
+# Site counter (Hugo-specific)
 [counter]
 username = ""
 enable = false
 
+# Preloader (Hugo-specific)
 [preloader]
 preloader = "images/favicon.png"
 enable = true
 
-[navigation_button]
-enable = true
-label = "Fa o programare!"
-link = "https://cal.com/alexandra-barbu-ras8xc/50min"
-
-[metadata]
-keywords = [ "Psihoterapie", "Terapie CBT", "Terapie de familie" ]
-description = "Cabinet Alexandra Barbu"
-author = "Alexandra Barbu"
-image = "images/og-image.jpg"
+# Calendly integration settings (Hugo-specific widget config)
+[calendly]
+enabled = true
+url = "https://cal.com/alexandra-barbu-ras8xc/15min"
+primary_color = "#234E3E"
 
 [matomo]
 enable = false
