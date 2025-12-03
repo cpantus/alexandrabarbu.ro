@@ -30,7 +30,6 @@ public_folder: /images
 site_url: http://localhost:1313
 display_url: http://localhost:1313
 logo_url: /images/logo.svg
-search: false
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # COLLECTIONS - Ordered by language (RO first) and menu structure

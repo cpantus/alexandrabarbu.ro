@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
   <title>Alexandra Barbu - Content Manager</title>
   <style>
     [data-slate-editor] {
@@ -257,40 +258,32 @@
     })();
 
     // ========================================
-    // CMS Event Listeners
+    // CMS Loading Detection
     // ========================================
-    // Hide loading message once CMS loads
-    if (window.CMS) {
-      window.CMS.registerEventListener({
-        name: 'mounted',
-        handler: () => {
-          console.log('Sveltia CMS mounted successfully');
-          document.getElementById('loading').style.display = 'none';
-        }
-      });
+    // Hide loading message once CMS renders (poll for CMS UI)
+    (function detectCmsLoaded() {
+      let attempts = 0;
+      const maxAttempts = 50; // 5 seconds max
 
-      // Try to register postSave event (may not be supported yet)
-      try {
-        window.CMS.registerEventListener({
-          name: 'postSave',
-          handler: ({ entry }) => {
-            const title = entry?.get?.('data')?.get?.('title') || 'Continut';
-            CmsToast.success(`"${title}" a fost salvat!`);
-            console.log('[CMS] postSave event:', title);
+      const checkCms = setInterval(() => {
+        attempts++;
+        // Sveltia CMS renders a main element or specific UI
+        const cmsLoaded = document.querySelector('[data-sveltia-cms]') ||
+                          document.querySelector('main') ||
+                          document.querySelector('.cms-root');
+
+        if (cmsLoaded || attempts >= maxAttempts) {
+          clearInterval(checkCms);
+          const loading = document.getElementById('loading');
+          if (loading) {
+            loading.style.display = 'none';
           }
-        });
-      } catch (e) {
-        console.log('[CMS] postSave event not supported yet');
-      }
-    }
-
-    // Fallback: hide loading after timeout
-    setTimeout(() => {
-      const loading = document.getElementById('loading');
-      if (loading) {
-        loading.style.display = 'none';
-      }
-    }, 5000);
+          if (cmsLoaded) {
+            console.log('Sveltia CMS loaded successfully');
+          }
+        }
+      }, 100);
+    })();
   </script>
 </body>
 </html>
