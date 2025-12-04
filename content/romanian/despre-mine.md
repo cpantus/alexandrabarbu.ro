@@ -1,7 +1,7 @@
 ---
 title: Despre Mine - Psihoterapeut Alexandra Barbu
 layout: flexible
-description: 10+ ani experiență în psihoterapie. Specializare TCC, Psihoterapie de Familie, Schema Therapy. Abordare empatică și bazată pe dovezi stiintifice.
+description: 10+ ani experiență în psihoterapie. Specializare Terapie Cognitiv Comportamentala, Psihoterapie de Familie, Schema Therapy. Abordare empatică și bazată pe dovezi stiintifice.
 sections:
   - type: hero-about
   - type: credentials-education
@@ -50,16 +50,16 @@ credentials_education:
     - icon: user-md
       title: Acreditări
       items:
-        - Membru Colegiul Psihologilor din România (CPR, cod psiholog 05550))
+        - Membru Colegiul Psihologilor din România (CPR, cod psiholog 05550)
         - Atestat de liberă practică – Psihoterapie
         - Atestat de liberă practică - Psihologie Organizațională
       variant: secondary
     - icon: book
       title: Specializări
       items:
-        - Formare Schema Therapy
-        - Formare Psihoterapie Cuplu si Familie
-        - Formare Psihoterapie Cognitiv-Comportamentala
+        - Schema Therapy
+        - Psihoterapie Cuplu si Familie
+        - Psihoterapie Cognitiv-Comportamentala
       variant: coral
 scientific_approach:
   label: ABORDARE ȘTIINȚIFICĂ
