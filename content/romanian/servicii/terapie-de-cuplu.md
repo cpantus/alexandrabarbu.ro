@@ -1,7 +1,7 @@
 ---
 title: Terapie de Cuplu - Cabinet Alexandra Barbu București
 layout: flexible
-description: Reconstruiește comunicarea, intimitatea și încrederea în relație. Metoda Gottman și TCC pentru cupluri. Cabinet București și online.
+description: Reconstruiește comunicarea, intimitatea și încrederea în relație. Metoda Imago și TCC pentru cupluri. Cabinet București și online.
 sections:
   - type: hero-breadcrumb
   - type: feature-blocks
@@ -12,7 +12,7 @@ sections:
 hero_breadcrumb:
   title: Terapie de Cuplu
   subtitle: Reconstruiește Conexiunea, Comunicarea și Intimitatea
-  description: Terapie bazată pe Metoda Gottman și TCC pentru rezolvarea conflictelor, reconstruirea încrederii și întărirea relației voastre. Fie că vă confruntați cu comunicare disfuncțională, infidelitate sau pur și simplu vă simțiți distanțați, terapia de cuplu vă oferă instrumentele pentru a regăsi conexiunea. 70%+ din cupluri raportează îmbunătățiri semnificative după procesul terapeutic.
+  description: Terapie bazată pe Metoda Imago și TCC pentru rezolvarea conflictelor, reconstruirea încrederii și întărirea relației voastre. Fie că vă confruntați cu comunicare disfuncțională, infidelitate sau pur și simplu vă simțiți distanțați, terapia de cuplu vă oferă instrumente pentru a regăsi conexiunea. 70%+ din cupluri raportează îmbunătățiri semnificative după procesul terapeutic.
   kicker: ''
 feature_blocks:
   - subtitle: Certuri și Retragere
@@ -25,7 +25,7 @@ feature_blocks:
     image: /images/incredere-pierduta.jpeg
   - subtitle: Distanță Emoțională
     title: Lipsa Intimității și Conexiunii
-    description: Vă simțiți ca doi străini sub același acoperiș. Distanță emoțională, lipsă de afecțiune, viață sexuală nesatisfăcătoare sau inexistentă. Nu mai împărtășiți timpul de calitate și sentimentul că nu vă mai înțelegeți.
+    description: Vă simțiți ca doi străini sub același acoperiș. Distanță emoțională, lipsă de afecțiune, viață sexuală nesatisfăcătoare sau inexistentă. Nu mai petreceți timp de calitate și a încolțit gândul că nu vă mai înțelegeți.
     image: /images/lipsa-intimitatii.jpeg
   - subtitle: Navigarea Deciziilor
     title: Decizii Importante în Relație
@@ -54,13 +54,6 @@ cta_standard:
   button_text: Programează Consultație Gratuită
   button_url: https://cal.com/alexandra-barbu-ras8xc/15min
   enable: true
-breadcrumb:
-  - name: Acasă
-    url: /
-  - name: Servicii
-    url: /servicii/
-  - name: Terapie de Cuplu
-    url: /servicii/terapie-de-cuplu/
 benefits_results:
   enable: true
   title: Ce Veți Obține Din Terapia de Cuplu
@@ -79,5 +72,12 @@ benefits_results:
       description: Revenirea conexiunii emoționale și fizice. Afecțiune, sex, timp de calitate împreună. Vă simțiți din nou apropiați.
       icon: heartbeat
       timeline: După 12-16 sesiuni
+breadcrumb:
+  - url: /
+    name: Acasă
+  - url: /servicii/
+    name: Servicii
+  - url: /servicii/terapie-de-cuplu/
+    name: Terapie de Cuplu
 ---
 
