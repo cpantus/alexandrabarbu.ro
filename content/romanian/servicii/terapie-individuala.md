@@ -57,9 +57,9 @@ benefits_results:
   enable: true
   title: Ce Vei Obține Din Terapia Individuală
   subtitle: Rezultate măsurabile și transformare reală
-  description: Terapia nu este doar despre rezolvarea problemelor. Este despre creștere, autocunoaștere și trăirea unei vieți mai autentice.
+  description: Terapia nu este doar despre rezolvarea problemelor. Este despre creștere, autocunoaștere și trăirea unei vieți autentice.
   items:
-    - title: Tehnici Práctice pe Viață
+    - title: Tehnici Practice pe Viață
       description: Înveți instrumente concrete (respirație diafragmatică, restructurare cognitivă, mindfulness, expunere graduală) pe care le poți folosi oricând.
       icon: toolbox
       timeline: După 4-6 sesiuni
@@ -68,7 +68,7 @@ benefits_results:
       icon: arrow-down
       timeline: După 10-15 sesiuni
     - title: Sens și Direcție în Viață
-      description: Claritate asupra valorilor, obiectivelor și sensului vieții. Știi ce vrei și cum să ajungi acolo. Trăiești mai autentic și împlinit.
+      description: Claritate asupra valorilor, obiectivelor și sensului vieții. Știi ce vrei și cum să ajungi acolo. Trăiești autentic și împlinit.
       icon: compass
       timeline: După 20+ sesiuni
 pricing_packages:
