@@ -44,28 +44,29 @@ credentials_education:
     - icon: graduation-cap
       title: Studii Universitare
       items:
-        - Doctorat în Psihologie Clinică, Universitatea București
-        - Master în Terapie Cognitivă și Comportamentală, UBB Cluj
+        - Formare Schema Therapy
+        - Formare Psihoterapie Cuplu si Familie
+        - Formare Psihoterapie Cognitiv-Comportamentala
         - Licență în Psihologie, Universitatea București
+        - Psihologie Organizațională,  Universitatea București
       variant: primary
     - icon: user-md
       title: Acreditări
       items:
-        - Membru Colegiul Psihologilor din România (CPR)
-        - Certificat EMDR Europe - Nivel Practitioner
-        - Membru European Association for Psychotherapy
+        - Membru Colegiul Psihologilor din România (CPR, cod psiholog 05550))
+        - Atestat de liberă practică – Psihoterapie
+        - Atestat de liberă practică - Psihologie Organizațională
       variant: secondary
     - icon: book
       title: Specializări
       items:
-        - Terapie Cognitiv-Comportamentală (CBT) - 300 ore
-        - Dialectical Behavior Therapy (DBT) - 200 ore
-        - Acceptance and Commitment Therapy (ACT)
+        - Terapie Cognitiv-Comportamentală (TCC) - 300 ore
+        - Dezvoltare personală - 300 ore
       variant: coral
 scientific_approach:
   label: ABORDARE ȘTIINȚIFICĂ
   title: Unde Știința întâlnește *Empatia*
-  description: Abordarea mea combină rigoarea metodelor științifice validate cu căldura empatiei umane. Fiecare sesiune este personalizată după nevoile tale unice, într-un spațiu sigur și lipsit de judecată.
+  description: Abordarea mea combină rigoarea metodelor validate științific cu căldura empatiei umane. Fiecare sesiune este personalizată după nevoile tale unice, într-un spațiu sigur și lipsit de judecată.
   button_text: Descoperă Metodologia Completă
   button_url: /abordare/
   button_variant: primary
@@ -76,7 +77,7 @@ scientific_approach:
       variant: primary
     - icon: microscope
       title: Validare Clinică
-      description: Folosesc exclusiv metode validate științific, cu eficacitate dovedită în studii internaționale și ghiduri clinice recunoscute.
+      description: Folosesc exclusiv metode validate științific, cu eficacitate dovedită în studii internaționale și protocoale recunoscute.
       variant: secondary
     - icon: heart
       title: Alianța Terapeutică
