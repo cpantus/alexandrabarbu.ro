@@ -24,17 +24,19 @@ feature_blocks:
   - subtitle: Fără Obligații
     title: Prima Consultație **Este Gratuită**
     description: |-
-      Înțeleg că a căuta ajutor poate fi un pas dificil. De aceea, îți ofer prima întâlnire gratuit (20-30 minute)
-      pentru a ne cunoaște, a discuta despre provocările tale și a vedea dacă abordarea mea ți se potrivește.
+      Înțeleg că a căuta ajutor poate fi un pas dificil. De aceea, îți ofer prima întâlnire gratuit (15 minute) pentru a ne cunoaște, a discuta despre provocările tale și a vedea dacă abordarea mea ți se potrivește.
       Fără presiune, fără obligații.
     image: /images/contact.jpeg
     features:
-      - Evaluare inițială gratuită (20-30 minute)
+      - Evaluare inițială gratuită (15 minute)
       - Confort și confidențialitate garantată
       - Decizie informată, fără presiune
       - Răspuns rapid în maxim 24 de ore
 faq_mini_title: ''
 faq_mini_subtitle: ''
+faq_mini_footer: ''
+faq_mini_link_text: ''
+faq_mini_link_url: ''
 contact_form_enhanced:
   variant: primary
   trust_badges:
@@ -46,31 +48,33 @@ contact_form_enhanced:
       text: Flexibilitate
     - icon: heart
       text: Empatie
-  title: Programează o **Consultație Gratuită**
-  subtitle: Prima discuție este fără obligații
+  form_description: ''
+  privacy_note: ''
   description: |-
     Completează formularul de mai jos și te voi contacta în maxim 24 de ore pentru a stabili împreună
     primul pas către o viață mai echilibrată. Toate informațiile sunt confidențiale.
+  subtitle: Prima discuție este fără obligații
+  title: Programează o **Consultație Gratuită**
 contact_info_title: Cum Mă Poți *Contacta*
 contact_info_subtitle: Alege modalitatea care ți se potrivește cel mai bine
 contact_info_cards:
-  - link: tel:+40770200834
-    subtitle: 'Luni - Vineri: 09:00 - 20:00 | Sâmbătă: 10:00 - 14:00'
-    value: +40 770 200 834
+  - icon: phone
     label: Telefon
-    icon: phone
-  - icon_prefix: lab
-    link: https://wa.me/40770200834
-    subtitle: Mesaje text sau vocale, răspund rapid
     value: +40 770 200 834
+    subtitle: 'Luni - Vineri: 09:00 - 20:00 | Sâmbătă: 10:00 - 14:00'
+    link: tel:+40770200834
+  - icon: whatsapp
     label: WhatsApp
-    icon: whatsapp
-  - description: Cabinet privat în Sector 3, ușor accesibil cu transportul în comun sau mașina personală. Parcare disponibilă în zonă.
-    link: https://maps.google.com/?q=Strada+Zemes+1A+Bucuresti+Sector+3
-    subtitle: București, Sector 3, România
-    value: Str. Zemes nr. 1A, Bl. M29B, Sc. A
+    value: +40 770 200 834
+    subtitle: Mesaje text sau vocale, răspund rapid
+    link: https://wa.me/40770200834
+    icon_prefix: lab
+  - icon: map-marker-alt
     label: Cabinet București
-    icon: map-marker-alt
+    value: Str. Zemes nr. 1A, Bl. M29B, Sc. A
+    subtitle: București, Sector 3, România
+    link: https://maps.google.com/?q=Strada+Zemes+1A+Bucuresti+Sector+3
+    description: Cabinet privat în Sector 3, ușor accesibil cu transportul în comun sau mașina personală. Parcare disponibilă în zonă.
 faq_mini:
   items:
     - question: Cât durează până primesc un răspuns?
