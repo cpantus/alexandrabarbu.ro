@@ -365,6 +365,120 @@ collections:
           - { label: "URL Buton", name: "button_url", widget: "string", required: false }
           - { label: "Disclaimer", name: "disclaimer", widget: "string", required: false }
 
+      # ─────────────────────────────────────────────
+      # NEW: Widget configs for previously missing sections
+      # ─────────────────────────────────────────────
+
+      - label: "Config: Hero Despre"
+        name: "hero_about"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Kicker", name: "kicker", widget: "string", required: false }
+          - { label: "Titlu", name: "title", widget: "string", required: false, hint: "Foloseste *text* pentru italic" }
+          - { label: "Subtitlu", name: "subtitle", widget: "text", required: false }
+          - { label: "Descriere", name: "description", widget: "text", required: false }
+          - label: "Paragrafe"
+            name: "paragraphs"
+            widget: "list"
+            required: false
+            field: { label: "Paragraf", name: "paragraph", widget: "text" }
+          - label: "Citat"
+            name: "quote"
+            widget: "object"
+            required: false
+            collapsed: true
+            fields:
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Autor", name: "author", widget: "string" }
+          - { label: "Imagine", name: "image", widget: "image", required: false }
+          - { label: "Text Buton", name: "button_text", widget: "string", required: false }
+          - { label: "URL Buton", name: "button_url", widget: "string", required: false }
+          - { label: "Varianta Buton", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary", "outline-primary", "outline-secondary"] }
+
+      - label: "Config: Credentiale Educatie"
+        name: "credentials_education"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Titlu", name: "title", widget: "string", required: false, hint: "Foloseste *text* pentru italic" }
+          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+          - { label: "Descriere", name: "description", widget: "text", required: false }
+          - label: "Credentiale"
+            name: "credentials"
+            widget: "list"
+            fields:
+              - { label: "Icoana", name: "icon", widget: "string", hint: "Ex: graduation-cap, user-md, book" }
+              - { label: "Titlu", name: "title", widget: "string" }
+              - label: "Elemente"
+                name: "items"
+                widget: "list"
+                field: { label: "Element", name: "item", widget: "string" }
+              - { label: "Varianta", name: "variant", widget: "select", options: ["primary", "secondary", "coral", "sage", "gold"] }
+
+      - label: "Config: Abordare Stiintifica"
+        name: "scientific_approach"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Eticheta", name: "label", widget: "string", required: false }
+          - { label: "Titlu", name: "title", widget: "string", required: false, hint: "Foloseste *text* pentru italic" }
+          - { label: "Descriere", name: "description", widget: "text", required: false }
+          - { label: "Text Buton", name: "button_text", widget: "string", required: false }
+          - { label: "URL Buton", name: "button_url", widget: "string", required: false }
+          - { label: "Varianta Buton", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary", "outline-primary", "outline-secondary"] }
+          - label: "Caracteristici"
+            name: "features"
+            widget: "list"
+            fields:
+              - { label: "Icoana", name: "icon", widget: "string", hint: "Ex: brain, microscope, heart, book-open" }
+              - { label: "Titlu", name: "title", widget: "string" }
+              - { label: "Descriere", name: "description", widget: "text" }
+              - { label: "Varianta", name: "variant", widget: "select", options: ["primary", "secondary", "coral", "sage"] }
+
+      - label: "Config: Beneficii Rezultate"
+        name: "benefits_results"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Activare", name: "enable", widget: "boolean", default: true }
+          - { label: "Titlu", name: "title", widget: "string", required: false }
+          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+          - { label: "Descriere", name: "description", widget: "text", required: false }
+          - label: "Elemente"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Titlu", name: "title", widget: "string" }
+              - { label: "Descriere", name: "description", widget: "text" }
+              - { label: "Icoana", name: "icon", widget: "string", hint: "Ex: toolbox, arrow-down, compass, check-circle" }
+              - { label: "Timeline", name: "timeline", widget: "string", required: false, hint: "Ex: După 4-6 sesiuni" }
+
+      - label: "Config: Grid Blog"
+        name: "blog_grid"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Activare", name: "enable", widget: "boolean", default: true }
+          - { label: "Titlu", name: "title", widget: "string", required: false }
+          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+          - { label: "Descriere", name: "description", widget: "text", required: false }
+          - { label: "Coloane", name: "columns", widget: "number", default: 3, value_type: "int", min: 2, max: 4 }
+          - label: "Categorii"
+            name: "categories"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Nume", name: "name", widget: "string" }
+              - { label: "Slug", name: "slug", widget: "string" }
+          - { label: "Arata Load More", name: "show_load_more", widget: "boolean", default: false }
+          - { label: "Varianta Buton", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary"] }
+
   # ═══════════════════════════════════════════
   # 🇷🇴 SERVICII (Menu order: 3)
   # ═══════════════════════════════════════════
@@ -402,6 +516,7 @@ collections:
               - { label: "FAQ Mini", value: "faq-mini" }
               - { label: "CTA Standard", value: "cta-standard" }
               - { label: "Testimonials", value: "testimonials-enhanced" }
+              - { label: "Beneficii Rezultate", value: "benefits-results" }
 
       - label: "Config: Hero Breadcrumb"
         name: "hero_breadcrumb"
@@ -478,6 +593,25 @@ collections:
               - { label: "Citat", name: "quote", widget: "text" }
               - { label: "Nume", name: "name", widget: "string" }
               - { label: "Rol", name: "role", widget: "string", required: false }
+
+      - label: "Config: Beneficii Rezultate"
+        name: "benefits_results"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Activare", name: "enable", widget: "boolean", default: true }
+          - { label: "Titlu", name: "title", widget: "string", required: false }
+          - { label: "Subtitlu", name: "subtitle", widget: "string", required: false }
+          - { label: "Descriere", name: "description", widget: "text", required: false }
+          - label: "Elemente"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Titlu", name: "title", widget: "string" }
+              - { label: "Descriere", name: "description", widget: "text" }
+              - { label: "Icoana", name: "icon", widget: "string", hint: "Ex: toolbox, arrow-down, compass, check-circle" }
+              - { label: "Timeline", name: "timeline", widget: "string", required: false, hint: "Ex: După 4-6 sesiuni" }
 
   # ═══════════════════════════════════════════
   # 🇷🇴 RESURSE (Menu order: 6)
@@ -666,6 +800,374 @@ collections:
               - { label: "Benefits Results", value: "benefits-results" }
               - { label: "Blog Grid", value: "blog-grid" }
 
+      # ─────────────────────────────────────────────
+      # SECTION CONFIGURATIONS (English)
+      # ─────────────────────────────────────────────
+
+      - label: "Config: Hero Breadcrumb"
+        name: "hero_breadcrumb"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Subtitle", name: "subtitle", widget: "text", required: false }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - { label: "Kicker", name: "kicker", widget: "string", required: false }
+          - { label: "Variant", name: "variant", widget: "select", required: false, default: "primary", options: ["primary", "secondary", "tertiary", "neutral"] }
+          - { label: "Show Breadcrumb", name: "show_breadcrumb", widget: "boolean", default: false, required: false }
+          - { label: "Show Compass", name: "show_compass", widget: "boolean", default: true, required: false }
+          - { label: "Hero Image", name: "hero_image", widget: "image", required: false }
+          - { label: "Quote Text", name: "quote_text", widget: "text", required: false }
+          - { label: "Quote Author", name: "quote_author", widget: "string", required: false }
+          - label: "CTA Buttons"
+            name: "cta_buttons"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Variant", name: "variant", widget: "select", default: "primary", options: ["primary", "secondary", "outline-primary", "outline-secondary"] }
+              - { label: "Icon", name: "icon", widget: "string", required: false }
+
+      - label: "Config: Hero About"
+        name: "hero_about"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Kicker", name: "kicker", widget: "string", required: false }
+          - { label: "Title", name: "title", widget: "string", required: false, hint: "Use *text* for italic" }
+          - { label: "Subtitle", name: "subtitle", widget: "text", required: false }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - label: "Paragraphs"
+            name: "paragraphs"
+            widget: "list"
+            required: false
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - label: "Quote"
+            name: "quote"
+            widget: "object"
+            required: false
+            collapsed: true
+            fields:
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Author", name: "author", widget: "string" }
+          - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Button Text", name: "button_text", widget: "string", required: false }
+          - { label: "Button URL", name: "button_url", widget: "string", required: false }
+          - { label: "Button Variant", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary", "outline-primary", "outline-secondary"] }
+
+      - label: "Config: Values Intro"
+        name: "values_section"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Enable", name: "enable", widget: "boolean", default: true }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Button Label", name: "button_label", widget: "string", required: false }
+          - { label: "Button Link", name: "button_link", widget: "string", required: false }
+          - { label: "Button Variant", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary", "tertiary", "neutral"] }
+
+      - label: "Config: Feature Blocks"
+        name: "feature_blocks"
+        widget: "list"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Image", name: "image", widget: "image" }
+          - label: "Features"
+            name: "features"
+            widget: "list"
+            required: false
+            field: { label: "Feature", name: "feature", widget: "string" }
+
+      - { label: "Numbered Blocks", name: "feature_blocks_numbered", widget: "boolean", default: false, required: false }
+
+      - label: "Config: CTA Standard"
+        name: "cta_standard"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Button Text", name: "button_text", widget: "string" }
+          - { label: "Button URL", name: "button_url", widget: "string" }
+          - { label: "Variant", name: "variant", widget: "select", default: "primary", options: ["primary", "secondary", "tertiary", "neutral", "success", "warning", "info"] }
+          - { label: "Background", name: "background", widget: "select", default: "solid", options: ["solid", "gradient", "light", "none"] }
+          - { label: "Button Variant", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary", "tertiary", "neutral"] }
+          - { label: "Secondary Button Text", name: "secondary_button_text", widget: "string", required: false }
+          - { label: "Secondary Button URL", name: "secondary_button_url", widget: "string", required: false }
+
+      - label: "Config: CTA Split"
+        name: "cta_split"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Badge", name: "badge", widget: "string", required: false }
+          - { label: "Title", name: "title", widget: "string", required: false, hint: "Use *text* for italic" }
+          - label: "Checklist"
+            name: "checklist"
+            widget: "list"
+            field: { label: "Item", name: "item", widget: "string" }
+          - label: "Quote"
+            name: "quote"
+            widget: "object"
+            required: false
+            collapsed: true
+            fields:
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Author", name: "author", widget: "string" }
+          - { label: "Right Icon", name: "right_icon", widget: "string", required: false }
+          - { label: "Right Title", name: "right_title", widget: "string", required: false }
+          - { label: "Right Description", name: "right_description", widget: "text", required: false }
+          - { label: "Button Text", name: "button_text", widget: "string", required: false }
+          - { label: "Button URL", name: "button_url", widget: "string", required: false }
+          - { label: "Disclaimer", name: "disclaimer", widget: "string", required: false }
+
+      - label: "Config: FAQ Mini"
+        name: "faq_items"
+        widget: "list"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Question", name: "question", widget: "string" }
+          - { label: "Answer", name: "answer", widget: "markdown" }
+
+      - { label: "FAQ Title", name: "faq_mini_title", widget: "string", required: false }
+      - { label: "FAQ Subtitle", name: "faq_mini_subtitle", widget: "string", required: false }
+      - { label: "FAQ Footer", name: "faq_mini_footer", widget: "string", required: false }
+      - { label: "FAQ Link Text", name: "faq_mini_link_text", widget: "string", required: false }
+      - { label: "FAQ Link URL", name: "faq_mini_link_url", widget: "string", required: false }
+
+      - label: "Config: Contact Form"
+        name: "contact_form_enhanced"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Variant", name: "variant", widget: "select", default: "primary", options: ["primary", "secondary", "tertiary", "neutral"] }
+          - label: "Contact Info"
+            name: "contact_info"
+            widget: "list"
+            fields:
+              - { label: "Type", name: "type", widget: "select", options: ["phone", "email", "location"] }
+              - { label: "Icon", name: "icon", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Value", name: "value", widget: "string" }
+              - { label: "Metadata", name: "metadata", widget: "string", required: false }
+          - label: "Trust Badges"
+            name: "trust_badges"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Icon", name: "icon", widget: "string" }
+              - { label: "Text", name: "text", widget: "string" }
+          - { label: "Form Description", name: "form_description", widget: "text", required: false }
+          - { label: "Privacy Note", name: "privacy_note", widget: "text", required: false }
+
+      - label: "Config: Contact Info Cards"
+        name: "contact_methods"
+        widget: "list"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Icon", name: "icon", widget: "select", options: ["phone", "envelope", "map-marker", "clock", "calendar"] }
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "Value", name: "value", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Link", name: "link", widget: "string", required: false }
+          - { label: "Variant", name: "variant", widget: "select", required: false, options: ["primary", "secondary", "tertiary"] }
+          - { label: "Size", name: "size", widget: "select", required: false, options: ["sm", "md", "lg"] }
+
+      - { label: "Contact Info Title", name: "contact_info_title", widget: "string", required: false }
+      - { label: "Contact Info Subtitle", name: "contact_info_subtitle", widget: "string", required: false }
+
+      - label: "Config: Testimonials"
+        name: "testimonials_enhanced"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Icon Color", name: "icon_color", widget: "select", required: false, options: ["gold", "emerald", "sage"] }
+          - { label: "Privacy Note", name: "privacy_note", widget: "string", required: false }
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Quote", name: "quote", widget: "text" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string", required: false }
+          - label: "CTA Button"
+            name: "cta_button"
+            widget: "object"
+            required: false
+            collapsed: true
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Variant", name: "variant", widget: "select", options: ["primary", "secondary"] }
+              - { label: "Icon", name: "icon", widget: "string", required: false }
+
+      - label: "Config: Onboarding Steps"
+        name: "onboarding_steps"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Intro", name: "intro", widget: "text", required: false }
+          - { label: "Variant", name: "variant", widget: "select", required: false, options: ["primary", "secondary", "tertiary", "neutral"] }
+          - label: "Steps"
+            name: "steps"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Icon", name: "icon", widget: "string", required: false }
+          - label: "CTA"
+            name: "cta"
+            widget: "object"
+            required: false
+            collapsed: true
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Variant", name: "variant", widget: "select", options: ["primary", "secondary"] }
+
+      - label: "Config: Services Preview"
+        name: "services_preview"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Icon", name: "icon", widget: "string" }
+              - { label: "Icon Color", name: "icon_color", widget: "select", required: false, options: ["blue", "sage", "coral", "gold", "purple"] }
+              - { label: "URL", name: "url", widget: "string" }
+
+      - label: "Config: Credentials Education"
+        name: "credentials_education"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: false, hint: "Use *text* for italic" }
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - label: "Credentials"
+            name: "credentials"
+            widget: "list"
+            fields:
+              - { label: "Icon", name: "icon", widget: "string", hint: "Ex: graduation-cap, user-md, book" }
+              - { label: "Title", name: "title", widget: "string" }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                field: { label: "Item", name: "item", widget: "string" }
+              - { label: "Variant", name: "variant", widget: "select", options: ["primary", "secondary", "coral", "sage", "gold"] }
+
+      - label: "Config: Methodology Zigzag"
+        name: "methodology_zigzag"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Badge", name: "badge", widget: "string", required: false }
+          - { label: "Title", name: "title", widget: "string", required: false, hint: "Use *text* for italic" }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - { label: "Image", name: "image", widget: "image", required: false }
+          - { label: "Image Alt", name: "image_alt", widget: "string", required: false }
+          - label: "Methods"
+            name: "methods"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Icon", name: "icon", widget: "string" }
+              - { label: "Icon Color", name: "icon_color", widget: "select", required: false, options: ["blue", "sage", "coral", "gold", "purple"] }
+
+      - label: "Config: Scientific Approach"
+        name: "scientific_approach"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Label", name: "label", widget: "string", required: false }
+          - { label: "Title", name: "title", widget: "string", required: false, hint: "Use *text* for italic" }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - { label: "Button Text", name: "button_text", widget: "string", required: false }
+          - { label: "Button URL", name: "button_url", widget: "string", required: false }
+          - { label: "Button Variant", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary", "outline-primary", "outline-secondary"] }
+          - label: "Features"
+            name: "features"
+            widget: "list"
+            fields:
+              - { label: "Icon", name: "icon", widget: "string", hint: "Ex: brain, microscope, heart, book-open" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Variant", name: "variant", widget: "select", options: ["primary", "secondary", "coral", "sage"] }
+
+      - label: "Config: Benefits Results"
+        name: "benefits_results"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Enable", name: "enable", widget: "boolean", default: true }
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Icon", name: "icon", widget: "string", hint: "Ex: toolbox, arrow-down, compass, check-circle" }
+              - { label: "Timeline", name: "timeline", widget: "string", required: false, hint: "Ex: After 4-6 sessions" }
+
+      - label: "Config: Blog Grid"
+        name: "blog_grid"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Enable", name: "enable", widget: "boolean", default: true }
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - { label: "Columns", name: "columns", widget: "number", default: 3, value_type: "int", min: 2, max: 4 }
+          - label: "Categories"
+            name: "categories"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Slug", name: "slug", widget: "string" }
+          - { label: "Show Load More", name: "show_load_more", widget: "boolean", default: false }
+          - { label: "Button Variant", name: "button_variant", widget: "select", required: false, options: ["primary", "secondary"] }
+
   # ═══════════════════════════════════════════
   # 🇬🇧 SERVICES (English)
   # ═══════════════════════════════════════════
@@ -700,6 +1202,106 @@ collections:
               - { label: "FAQ Mini", value: "faq-mini" }
               - { label: "CTA Standard", value: "cta-standard" }
               - { label: "Testimonials", value: "testimonials-enhanced" }
+              - { label: "Benefits Results", value: "benefits-results" }
+
+      # ─────────────────────────────────────────────
+      # SECTION CONFIGURATIONS (English Services)
+      # ─────────────────────────────────────────────
+
+      - label: "Config: Hero Breadcrumb"
+        name: "hero_breadcrumb"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Subtitle", name: "subtitle", widget: "text", required: false }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - { label: "Kicker", name: "kicker", widget: "string", required: false }
+          - { label: "Show Breadcrumb", name: "show_breadcrumb", widget: "boolean", default: false, required: false }
+          - { label: "Show Compass", name: "show_compass", widget: "boolean", default: true, required: false }
+          - label: "CTA Buttons"
+            name: "cta_buttons"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Variant", name: "variant", widget: "select", default: "primary", options: ["primary", "secondary", "outline-primary", "outline-secondary"] }
+
+      - label: "Config: Feature Blocks"
+        name: "feature_blocks"
+        widget: "list"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Image", name: "image", widget: "image" }
+          - label: "Features"
+            name: "features"
+            widget: "list"
+            required: false
+            field: { label: "Feature", name: "feature", widget: "string" }
+
+      - label: "Config: FAQ Mini"
+        name: "faq_items"
+        widget: "list"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Question", name: "question", widget: "string" }
+          - { label: "Answer", name: "answer", widget: "markdown" }
+      - { label: "FAQ Title", name: "faq_mini_title", widget: "string", required: false }
+      - { label: "FAQ Subtitle", name: "faq_mini_subtitle", widget: "string", required: false }
+
+      - label: "Config: CTA Standard"
+        name: "cta_standard"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Button Text", name: "button_text", widget: "string" }
+          - { label: "Button URL", name: "button_url", widget: "string" }
+          - { label: "Variant", name: "variant", widget: "select", default: "primary", options: ["primary", "secondary", "tertiary", "neutral"] }
+
+      - label: "Config: Testimonials"
+        name: "testimonials_enhanced"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Quote", name: "quote", widget: "text" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string", required: false }
+
+      - label: "Config: Benefits Results"
+        name: "benefits_results"
+        widget: "object"
+        collapsed: true
+        required: false
+        fields:
+          - { label: "Enable", name: "enable", widget: "boolean", default: true }
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Description", name: "description", widget: "text", required: false }
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Icon", name: "icon", widget: "string", hint: "Ex: toolbox, arrow-down, compass, check-circle" }
+              - { label: "Timeline", name: "timeline", widget: "string", required: false, hint: "Ex: After 4-6 sessions" }
 
   # ═══════════════════════════════════════════
   # 🇬🇧 ARTICLES (English)
