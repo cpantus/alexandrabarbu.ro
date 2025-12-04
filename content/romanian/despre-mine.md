@@ -44,11 +44,8 @@ credentials_education:
     - icon: graduation-cap
       title: Studii Universitare
       items:
-        - Formare Schema Therapy
-        - Formare Psihoterapie Cuplu si Familie
-        - Formare Psihoterapie Cognitiv-Comportamentala
         - Licență în Psihologie, Universitatea București
-        - Psihologie Organizațională,  Universitatea București
+        - Master, Psihologie Organizațională,  Universitatea București
       variant: primary
     - icon: user-md
       title: Acreditări
@@ -60,8 +57,9 @@ credentials_education:
     - icon: book
       title: Specializări
       items:
-        - Terapie Cognitiv-Comportamentală (TCC) - 300 ore
-        - Dezvoltare personală - 300 ore
+        - Formare Schema Therapy
+        - Formare Psihoterapie Cuplu si Familie
+        - Formare Psihoterapie Cognitiv-Comportamentala
       variant: coral
 scientific_approach:
   label: ABORDARE ȘTIINȚIFICĂ
