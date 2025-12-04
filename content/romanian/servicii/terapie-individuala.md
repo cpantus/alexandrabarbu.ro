@@ -23,11 +23,11 @@ feature_blocks:
     image: /images/depresie.jpeg
   - subtitle: Traume Nerezolvate
     title: Ai Trecut Prin Traume
-    description: Eventi traumatice (abuz, violență, accident, pierdere) care încă te afectează. Flashback-uri, coșmaruri, evitarea amintirilor, reacții emoționale intense. Abuz, violență domestică, accidente, pierderi sau traume din copilărie.
+    description: Evenimente traumatice (abuz, violență, accident, pierdere, neglijare) care încă te afectează. Flashback-uri, coșmaruri, evitarea amintirilor, reacții emoționale intense.
     image: /images/trauma.jpeg
   - subtitle: Creștere și Autocunoaștere
     title: Vrei Dezvoltare Personală
-    description: Nu ai neapărat o problemă, dar simți că stagnezi. Vrei să te cunoști mai bine, să-ți clarifici valorile, să îmbunătățești relațiile, să trăiești mai autentic. Autocunoaștere, stimă de sine, inteligență emoțională și găsirea sensului.
+    description: Nu ai neapărat o problemă, dar simți că stagnezi. Vrei să te cunoști mai bine, să-ți clarifici valorile, să îmbunătățești relațiile, să trăiești autentic. Autocunoaștere, stimă de sine, inteligență emoțională și găsirea sensului.
     image: /images/dezvoltare-personala.jpeg
 faq_items:
   - question: Cât timp durează terapia individuală?
@@ -48,7 +48,7 @@ faq_mini_title: Întrebări Frecvente Despre Terapia Individuală
 faq_mini_subtitle: Tot ce trebuie să știi
 cta_standard:
   title: Gata Să Faci Primul Pas Spre Vindecare?
-  description: Nu trebuie să treci prin asta singur. Programează o consultație gratuită de 30 minute și să începem împreună călătoria spre o viață mai bună.
+  description: Nu trebuie să treci prin asta singur. Programează o consultație gratuită de 15 minute și începe călătoria spre o viață mai bună!
   button_text: Programează Consultație Gratuită
   button_url: https://cal.com/alexandra-barbu-ras8xc/15min
   button_variant: secondary
@@ -68,7 +68,7 @@ benefits_results:
       icon: arrow-down
       timeline: După 10-15 sesiuni
     - title: Sens și Direcție în Viață
-      description: Claritate asupra valorilor, obiectivelor și sensului vieții. Știi ce vrei și cum să ajungi acolo. Trăiești autentic și împlinit.
+      description: Claritate asupra valorilor, obiectivelor și sensului vieții. Știi ce vrei și cum să ajungi acolo. Trăiești autentic și împlinit!
       icon: compass
       timeline: După 20+ sesiuni
 pricing_packages:
