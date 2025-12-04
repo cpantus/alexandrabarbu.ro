@@ -9,7 +9,8 @@ sections:
 hero_breadcrumb:
   title: Resurse *Gratuite*
   subtitle: Articole, ghiduri și exerciții practice pentru sănătatea ta mintală
-  description: Explorează o colecție curatoriată de materiale educaționale bazate pe cercetări în psihologie și psihoterapie. Aceste resurse te pot ajuta să înțelegi mai bine provocările tale și să descoperi tehnici practice pe care le poți folosi imediat.
+  description: Explorează o colecție de materiale bazate pe cercetări în psihologie și psihoterapie. Aceste resurse te pot ajuta să înțelegi mai bine provocările tale și să descoperi tehnici practice pe care le poți folosi imediat.
+  kicker: ''
   breadcrumb:
     - name: Acasă
       url: /
