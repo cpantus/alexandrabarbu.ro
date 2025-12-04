@@ -64,7 +64,7 @@ benefits_results:
       description: Toți membrii învață să se asculte cu adevărat, să valideze emoțiile celorlalți, să exprime nevoile constructiv. Mai multă înțelegere, comunicare clară, respect si o viata de familie imbunătățită.
       icon: comments
       timeline: După 8-10 sesiuni
-    - title: Limite Sănătoase și Roluri Claire
+    - title: Limite Sănătoase și Roluri Clare
       description: Părinții sunt părinți (nu prieteni sau rivali). Copiii sunt copii (nu confidenți sau mediatori). Fiecare știe ce rol are și respectă limitele.
       icon: shield-alt
       timeline: După 12-16 sesiuni
