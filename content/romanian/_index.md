@@ -1,8 +1,7 @@
 ---
 title: Psihoterapeut Alexandra Barbu - Terapie pentru Sănătate Mintală
-translationKey: home
 layout: flexible
-description: 'Cabinet de psihoterapie în București. Terapie individuală, de cuplu și de familie. Abordare integrativă: TCC, Mindfulness, EMDR. Programări online și fizic.'
+description: 'Cabinet de psihoterapie în București. Terapie individuală, de cuplu și de familie. Abordare integrativă: Terapie Cognitiv Comportamentala, Schema Therapy, Terapie de cuplu si Familie'
 sections:
   - type: hero-breadcrumb
   - type: services-preview
