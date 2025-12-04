@@ -39,7 +39,7 @@ hero_about:
 credentials_education:
   title: Pregătire și *Acreditări*
   subtitle: CREDENȚIALE PROFESIONALE
-  description: Educația continuă este fundamentală pentru a oferi cele mai bune servicii terapeutice. Iată pregătirea mea profesională.
+  description: Educația continuă este fundamentală și obligatorie în această profesie. Iată pregătirea mea profesională, care îmi permite să ofer servicii terapeutice de calitate.
   credentials:
     - icon: graduation-cap
       title: Studii Universitare
