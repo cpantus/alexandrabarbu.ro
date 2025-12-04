@@ -27,7 +27,7 @@ hero_about:
   subtitle: Psihoterapeut cu abordare integrativă și bazată pe dovezi stiintifice
   description: Cu peste 10 ani de experiență și mii de ore de terapie oferite, ghidez fiecare persoană să-și descopere resursele interioare pentru vindecare. Cred în puterea empatiei și a metodelor validate științific.
   paragraphs:
-    - Sunt psihoterapeut cu peste 10 ani de experiență în terapia individuală și de cuplu. Misiunea mea este să te ajut să-ți adresezi acele întrebări care să-ți aducă echilibru, claritate, și puterea de a-ți înfrunta provocările.
+    - Sunt psihoterapeut cu peste 10 ani de experiență în terapia individuală și de cuplu. Misiunea mea este să te ajut să-ți adresezi acele întrebări care să-ți aducă echilibru, claritate și puterea de a-ți înfrunta provocările.
     - Am lucrat cu zeci de clienți din diverse medii, și fiecare călătorie terapeutică m-a învățat că nu există o rețetă universală pentru vindecare. Abordarea mea este personalizată, combinând metode validate științific cu empatie profundă.
     - Cred că fiecare persoană are în ea resursele necesare pentru schimbare. Rolul meu este să te ghidez în descoperirea lor, într-un spațiu sigur, confidențial și lipsit de judecată.
   quote:
