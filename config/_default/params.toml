@@ -13,7 +13,7 @@ custom_script = ""
 logo_webp = true
 logo_width = "257px"
 career_form_action = "#"
-contact_form_action = "https://script.google.com/macros/s/AKfycbwdGDM3B3V5GhT6GNftvtKFAAuGzGdswUo2x3QGX0C4bNPl_GS8y6eUbWV5MQPAl-wObg/exec"
+contact_form_action = "https://script.google.com/macros/s/AKfycbyAjHrem6Jyzy2Ilw5AlKHakdCTaDUVs1_E3rwCCZLy-R9AZmQnHfVW2B2tV-4U9fhgyw/exec"
 mainSections = [ "blog" ]
 
 # Cookies banner (Hugo-specific functionality)
