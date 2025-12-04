@@ -23,7 +23,7 @@ feature_blocks:
     title: Infidelitate și Încredere Pierdută
     description: Unul sau ambii parteneri au trecut prin infidelitate (emoțională sau fizică). Încrederea este distrusă și nu știți cum să reconstruiți relația. Aventură, suspiciune, dificultăți în a ierta și pierderea intimității.
     image: /images/incredere-pierduta.jpeg
-  - subtitle: Distanță Emoțională
+  - subtitle: Distanțare Emoțională
     title: Lipsa Intimității și Conexiunii
     description: Vă simțiți ca doi străini sub același acoperiș. Distanță emoțională, lipsă de afecțiune, viață sexuală nesatisfăcătoare sau inexistentă. Nu mai petreceți timp de calitate și a încolțit gândul că nu vă mai înțelegeți.
     image: /images/lipsa-intimitatii.jpeg
