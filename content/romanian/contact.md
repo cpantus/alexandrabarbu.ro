@@ -51,56 +51,6 @@ contact_form_enhanced:
   description: |-
     Completează formularul de mai jos și te voi contacta în maxim 24 de ore pentru a stabili împreună
     primul pas către o viață mai echilibrată. Toate informațiile sunt confidențiale.
-  form_action: https://formspree.io/f/your-form-id
-  fields:
-    - name: name
-      label: Nume complet
-      type: text
-      placeholder: Ion Popescu
-      required: true
-    - name: email
-      label: Email
-      type: email
-      placeholder: ion.popescu@exemplu.ro
-      required: true
-    - name: phone
-      label: Telefon
-      type: tel
-      placeholder: +40 712 345 678
-      required: false
-    - name: service
-      label: Tipul de serviciu
-      type: select
-      options:
-        - Terapie Individuală
-        - Terapie de Cuplu
-        - Terapie de Familie
-        - Psihologie Organizațională
-        - Nu sunt sigur - aș dori o consultație
-      required: true
-    - name: preferred_contact
-      label: Mod preferat de contact
-      type: radio
-      options:
-        - Email
-        - Telefon
-        - WhatsApp
-      required: true
-    - name: message
-      label: Mesajul tău (opțional)
-      type: textarea
-      placeholder: Descrie pe scurt motivul pentru care dorești terapie și orice întrebări ai...
-      required: false
-    - name: privacy
-      label: Sunt de acord cu <a href='/termeni-si-conditii/'>politica de confidențialitate</a> și prelucrarea datelor conform GDPR
-      type: checkbox
-      required: true
-  submit_button_text: Trimite Cererea
-  success_message: Mulțumesc pentru mesaj! Voi răspunde în maxim 24 de ore.
-  calendly:
-    enable: true
-    url: https://calendly.com/alexandrabarbu/consultatie
-    button_text: Sau Programează Direct Online
 contact_info_title: Cum Mă Poți *Contacta*
 contact_info_subtitle: Alege modalitatea care ți se potrivește cel mai bine
 contact_info_cards:

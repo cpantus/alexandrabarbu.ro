@@ -61,7 +61,7 @@ Parameters:
 
     {{/* Value (with optional link) */}}
     {{- if $link -}}
-      <a href="{{ $link }}" class="c-contact-method__value c-contact-method__value--link">
+      <a href="{{ $link | safeURL }}" class="c-contact-method__value c-contact-method__value--link">
         {{ $value }}
         {{ partial "atoms/icon.html" (dict
           "name" "external-link-alt"

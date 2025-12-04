@@ -13,6 +13,7 @@ custom_script = ""
 logo_webp = true
 logo_width = "257px"
 career_form_action = "#"
+contact_form_action = "https://script.google.com/macros/s/AKfycbwdGDM3B3V5GhT6GNftvtKFAAuGzGdswUo2x3QGX0C4bNPl_GS8y6eUbWV5MQPAl-wObg/exec"
 mainSections = [ "blog" ]
 
 # Cookies banner (Hugo-specific functionality)
@@ -32,8 +33,8 @@ enable = false
 preloader = "images/favicon.png"
 enable = true
 
-# Calendly integration settings (Hugo-specific widget config)
-[calendly]
+# Booking integration settings (Cal.com - Hugo-specific widget config)
+[booking]
 enabled = true
 url = "https://cal.com/alexandra-barbu-ras8xc/15min"
 primary_color = "#234E3E"

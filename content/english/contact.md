@@ -62,56 +62,6 @@ contact_form_enhanced:
   description: |
     Fill out the form below and I will contact you within 24 hours to arrange your first step toward
     a more balanced life. All information is confidential.
-  form_action: "https://formspree.io/f/your-form-id"
-  fields:
-    - name: "name"
-      label: "Full Name"
-      type: "text"
-      placeholder: "John Smith"
-      required: true
-    - name: "email"
-      label: "Email"
-      type: "email"
-      placeholder: "john.smith@example.com"
-      required: true
-    - name: "phone"
-      label: "Phone"
-      type: "tel"
-      placeholder: "+40 712 345 678"
-      required: false
-    - name: "service"
-      label: "Type of Service"
-      type: "select"
-      options:
-        - "Individual Therapy"
-        - "Couples Therapy"
-        - "Family Therapy"
-        - "Organizational Psychology"
-        - "Not sure - I'd like a consultation"
-      required: true
-    - name: "preferred_contact"
-      label: "Preferred Contact Method"
-      type: "radio"
-      options:
-        - "Email"
-        - "Phone"
-        - "WhatsApp"
-      required: true
-    - name: "message"
-      label: "Your Message (optional)"
-      type: "textarea"
-      placeholder: "Briefly describe why you're seeking therapy and any questions you have..."
-      required: false
-    - name: "privacy"
-      label: "I agree to the <a href='/en/terms-and-conditions/'>privacy policy</a> and data processing according to GDPR"
-      type: "checkbox"
-      required: true
-  submit_button_text: "Send Request"
-  success_message: "Thank you for your message! I will respond within 24 hours."
-  calendly:
-    enable: true
-    url: "https://calendly.com/alexandrabarbu/consultatie"
-    button_text: "Or Schedule Directly Online"
 
 # Feature Blocks Section - Free Consultation
 feature_blocks:
