@@ -1,9 +1,8 @@
 ---
 title: Abordarea Mea Terapeutică
-translationKey: approach
 layout: flexible
 draft: false
-description: O abordare integrativă, centrată pe client, bazată pe evidențe științifice și adaptată nevoilor tale unice
+description: O abordare integrativă, centrată pe client, bazată pe dovezi științifice și adaptată nevoilor tale unice
 sections:
   - type: hero-breadcrumb
   - type: cta-standard
