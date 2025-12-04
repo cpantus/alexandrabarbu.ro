@@ -11,7 +11,7 @@ sections:
 hero_breadcrumb:
   title: Găsim *Nordul Interior*
   subtitle: Călătoria spre vindecare începe cu un singur pas. Când știi unde ești, poți merge oriunde.
-  description: Sunt psiholog clinician cu peste 10 ani de experiență, specializată în terapie cognitivă, Schema Therapy si Psihoterapie de Cuplu si Familie. Ofer un spațiu sigur și confidențial pentru a explora provocările tale și a redescoperi echilibrul interior.
+  description: Sunt psihoterapeut cu peste 10 ani de experiență, specializată în terapie cognitiv-comportamentală, Schema Therapy și Psihoterapie de Cuplu și Familie. Creez un spațiu sigur și confidențial în care să-ți poți explora provocările și să-ți regăsești echilibrul interior.
   kicker: ''
   show_breadcrumb: false
   show_compass: true
@@ -41,13 +41,16 @@ testimonials_enhanced:
   testimonials:
     - quote: Am simțit pentru prima dată că sunt ascultată cu adevărat. Alexandra a creat un spațiu în care m-am simțit în siguranță să îmi explorez cele mai profunde temeri.
       name: MARIA D.
-      role: Antreprenor
+      role: ''
     - quote: Procesul terapeutic m-a ajutat să îmi găsesc claritatea într-un moment de haos. Am învățat instrumente concrete pe care le folosesc zilnic.
       name: ANDREI I.
-      role: Manager IT
-    - quote: O abordare caldă, dar extrem de profesionistă. Am reușit să depășesc blocaje vechi și să îmi reconstruiesc încrederea în sine.
-      name: ELENA S.
-      role: Arhitect
+      role: ''
+    - quote: |-
+        Alexandra m-a ajutat să-mi înțeleg temerile și rănile din copilărie, pas cu pas, și să învăț să lucrez cu ele. Recomandările ei de cărți și exerciții au completat perfect ședințele, iar sprijinul ei a continuat ori de câte ori am avut nevoie, inclusiv prin mesaje sau telefoane.
+
+        O recomand din suflet. Rezultatele apar în timp, cu răbdare și implicare din partea amândurora, însă schimbările sunt reale și valoroase. Pe mine m-a ajutat să îmi recapăt încrederea în mine. Mulțumesc!
+      name: ELENA P.
+      role: ''
 services_preview:
   title: Începe Călătoria Ta
   subtitle: ''
