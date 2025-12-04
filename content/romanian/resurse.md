@@ -1,6 +1,5 @@
 ---
 title: Resurse Gratuite
-translationKey: resources
 layout: flexible
 draft: false
 description: Articole, ghiduri, exerciții practice și resurse gratuite pentru sănătatea ta mintală și dezvoltarea personală
@@ -19,10 +18,7 @@ hero_breadcrumb:
 feature_blocks:
   - subtitle: Conținut Educațional
     title: Articole de Psihologie
-    description: |-
-      Explorează o colecție de articole validate științific despre sănătate mintală, terapie și
-      dezvoltare personală. Articole despre anxietate, depresie, relații, mindfulness și multe altele, organizate
-      pe categorii pentru acces rapid. Conținut informativ bazat pe cercetări în psihologie și psihoterapie.
+    description: Explorează o colecție de articole despre sănătate mintală, terapie și dezvoltare personală. Articole despre anxietate, depresie, relații, mindfulness și multe altele, organizate pe categorii pentru acces rapid. Conținut informativ bazat pe cercetări în psihologie și psihoterapie.
     image: /images/articole.jpeg
     button_text: Citește Articole
     button_url: /resurse/articole/
