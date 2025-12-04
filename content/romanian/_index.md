@@ -11,7 +11,7 @@ sections:
 hero_breadcrumb:
   title: Găsim *Nordul Interior*
   subtitle: Călătoria spre vindecare începe cu un singur pas. Când știi unde ești, poți merge oriunde.
-  description: Sunt psiholog clinician cu peste 10 ani de experiență, specializată în terapie cognitivă, EMDR și mindfulness. Oferă un spațiu sigur și confidențial pentru a explora provocările tale și a redescoperi echilibrul interior.
+  description: Sunt psiholog clinician cu peste 10 ani de experiență, specializată în terapie cognitivă, Schema Therapy si Psihoterapie de Cuplu si Familie. Ofer un spațiu sigur și confidențial pentru a explora provocările tale și a redescoperi echilibrul interior.
   kicker: ''
   show_breadcrumb: false
   show_compass: true
