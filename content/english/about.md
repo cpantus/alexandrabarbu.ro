@@ -1,48 +1,15 @@
 ---
 title: About Me - Psychotherapist Alexandra Barbu
-translationKey: about
 layout: flexible
 description: 15+ years of experience in psychotherapy. Specialization in CBT, Family Therapy, Schema Therapy. Empathetic and evidence-based approach.
 sections:
   - type: hero-about
   - type: credentials-education
   - type: scientific-approach
-cta_standard:
-  button_variant: secondary
-  button_url: https://cal.com/alexandra-barbu-ras8xc/15min
-  button_text: Schedule a Consultation
-  description: Schedule a free 30-minute consultation to see if we can work together. No obligations, completely confidential.
-  title: Let's Get to Know Each Other
-credentials_education:
-  credentials:
-    - variant: primary
-      items:
-        - Doctorate in Clinical Psychology, University of Bucharest
-        - Master's in Cognitive Behavioral Therapy, UBB Cluj
-        - Bachelor's in Psychology, University of Bucharest
-      title: University Studies
-      icon: graduation-cap
-    - variant: secondary
-      items:
-        - Member of the College of Psychologists of Romania (CPR)
-        - EMDR Europe Certificate - Practitioner Level
-        - Member of the European Association for Psychotherapy
-      title: Certifications
-      icon: user-md
-    - variant: coral
-      items:
-        - Cognitive Behavioral Therapy (CBT) - 300 hours
-        - Dialectical Behavior Therapy (DBT) - 200 hours
-        - Acceptance and Commitment Therapy (ACT)
-      title: Specializations
-      icon: book
-  description: Continuous education is fundamental to providing the best therapeutic services. Here is my professional training.
-  subtitle: PROFESSIONAL CREDENTIALS
-  title: Education and *Credentials*
 hero_about:
   kicker: WHO I AM
   title: Alexandra *Barbu*
-  subtitle: Clinical psychologist with an integrative, evidence-based approach
+  subtitle: Psychologist with an integrative, evidence-based approach
   description: With over 10 years of experience and thousands of therapy hours delivered, I guide each person to discover their own inner resources for healing. I believe in the power of empathy and scientifically validated methods.
   paragraphs:
     - I am a clinical psychologist with over 10 years of experience in individual and couples therapy. My mission is to help you find clarity, balance, and the power to face your challenges.
@@ -51,7 +18,41 @@ hero_about:
   quote:
     text: Every person has within them the resources necessary for healing. My role is to guide you in discovering them.
     author: Alexandra Barbu
-  image: images/about/alexandra-portrait.jpg
+  image: /images/alexandra barbu psiholog.png
+  button_text: ''
+  button_url: ''
+cta_standard:
+  title: Let's Get to Know Each Other
+  description: Schedule a free 30-minute consultation to see if we can work together. No obligations, completely confidential.
+  button_text: Schedule a Consultation
+  button_url: https://cal.com/alexandra-barbu-ras8xc/15min
+  button_variant: secondary
+credentials_education:
+  title: Education and *Credentials*
+  subtitle: PROFESSIONAL CREDENTIALS
+  description: Continuous education is fundamental to providing the best therapeutic services. Here is my professional training.
+  credentials:
+    - icon: graduation-cap
+      title: University Studies
+      items:
+        - Doctorate in Clinical Psychology, University of Bucharest
+        - Master's in Cognitive Behavioral Therapy, UBB Cluj
+        - Bachelor's in Psychology, University of Bucharest
+      variant: primary
+    - icon: user-md
+      title: Certifications
+      items:
+        - Member of the College of Psychologists of Romania (CPR)
+        - EMDR Europe Certificate - Practitioner Level
+        - Member of the European Association for Psychotherapy
+      variant: secondary
+    - icon: book
+      title: Specializations
+      items:
+        - Cognitive Behavioral Therapy (CBT) - 300 hours
+        - Dialectical Behavior Therapy (DBT) - 200 hours
+        - Acceptance and Commitment Therapy (ACT)
+      variant: coral
 scientific_approach:
   label: SCIENTIFIC APPROACH
   title: Where Science Meets *Empathy*
