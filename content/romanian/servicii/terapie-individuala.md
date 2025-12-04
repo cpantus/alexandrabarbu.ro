@@ -1,7 +1,7 @@
 ---
 title: Terapie Individuală - Psihoterapeut Alexandra Barbu București
 layout: flexible
-description: Terapie personalizată pentru anxietate, depresie, traume și dezvoltare personală. TCC, EMDR, Mindfulness. Cabinet București și online.
+description: Terapie personalizată pentru anxietate, tulburari de somn, depresie, traume și dezvoltare personală. TCC, EMDR, Mindfulness. Cabinet București și online.
 sections:
   - type: hero-breadcrumb
   - type: feature-blocks
