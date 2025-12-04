@@ -1,5 +1,5 @@
 site_name: Alexandra Barbu
-tagline: Psiholog Clinician
+tagline: Psihoterapeut
 logo: images/logo.svg
 logo_text: Alexandra Barbu
 favicon: images/favicon.svg
@@ -17,7 +17,7 @@ contact:
   phone: +40 770 200 834
   email: alexandra.barbu@gmail.com
   address: Bucuresti, Sector 3
-  hours: 'L-V: 10:00-19:00'
+  hours: 'L-V: 18:00 -20:00'
 nav_button:
   enable: true
   text: Fa o programare
@@ -25,10 +25,13 @@ nav_button:
 contact_form:
   action: https://script.google.com/macros/s/AKfycbwdGDM3B3V5GhT6GNftvtKFAAuGzGdswUo2x3QGX0C4bNPl_GS8y6eUbWV5MQPAl-wObg/exec
 seo:
-  description: Cabinet Alexandra Barbu - Psiholog Clinician
+  description: Cabinet Alexandra Barbu - Psiholog
   author: Alexandra Barbu
   image: images/og-image.jpg
   keywords:
     - Psihoterapie
     - Terapie CBT
     - Terapie de familie
+    - Anxietate
+    - Atac de panica
+    - Depresie
