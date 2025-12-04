@@ -1,7 +1,7 @@
 ---
 title: Despre Mine - Psihoterapeut Alexandra Barbu
 layout: flexible
-description: 10+ ani experiență în psihoterapie. Specializare TCC, EMDR, Mindfulness. Abordare empatică și bazată pe dovezi.
+description: 10+ ani experiență în psihoterapie. Specializare TCC, Psihoterapie de Familie, Schema Therapy. Abordare empatică și bazată pe dovezi stiintifice.
 sections:
   - type: hero-about
   - type: credentials-education
@@ -25,7 +25,7 @@ hero_about:
   kicker: CINE SUNT EU
   title: Alexandra *Barbu*
   subtitle: Psihoterapeut cu abordare integrativă și bazată pe dovezi stiintifice
-  description: Cu peste 10 ani de experiență și mii de ore de terapie oferite, ghidez fiecare persoană să-și descopere resurse interioare pentru vindecare. Cred în puterea empatiei și a metodelor validate științific.
+  description: Cu peste 10 ani de experiență și mii de ore de terapie oferite, ghidez fiecare persoană să-și descopere resursele interioare pentru vindecare. Cred în puterea empatiei și a metodelor validate științific.
   paragraphs:
     - Sunt psihoterapeut cu peste 10 ani de experiență în terapia individuală și de cuplu. Misiunea mea este să te ajut să găsești claritate, echilibru și puterea de a-ți înfrunta provocările.
     - Am lucrat cu zeci de clienți din diverse medii, și fiecare călătorie terapeutică m-a învățat că nu există o rețetă universală pentru vindecare. Abordarea mea este personalizată, combinând metode validate științific cu empatie profundă.
