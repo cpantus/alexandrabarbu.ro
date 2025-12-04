@@ -34,7 +34,7 @@ faq_items:
     answer: Depinde de complexitatea problemei. Pentru anxietate sau depresie ușoară-moderată, 12-20 sesiuni (3-5 luni) sunt de obicei suficiente. Pentru traume complexe sau tulburări de personalitate, poate dura 6-24 luni. În prima sesiune stabilim o estimare realistă bazată pe situația ta.
   - question: Cât de des trebuie să vin la terapie?
     answer: Inițial recomandam sesiuni săptămânale pentru a construi momentum și a vedea rezultate rapide. Pe măsură ce progresezi, distanțăm sesiunile (bilunar, lunar). Frecvența se adaptează nevoilor și disponibilității tale.
-  - question: Ce se întâmplă dacă nu mă înțeleg cu terapeutal?
+  - question: Ce se întâmplă dacă nu mă înțeleg cu terapeutul?
     answer: Relația terapeutică este esențială pentru succes. Dacă după 2-3 sesiuni simți că nu este o potrivire bună (stil diferit, lipsă de conexiune), discutăm deschis. Dacă e cazul, te pot referi la un coleg mai potrivit. Nu lua personal - fiecare terapeut are un stil diferit, și e important să găsești potrivirea.
   - question: Pot face terapie online sau doar față în față?
     answer: '**Ambele!** Terapia online (Zoom, Google Meet, Skype) este la fel de eficientă ca cea față în față, conform studiilor recente. Mulți clienți preferă online pentru flexibilitate (nu pierd timp cu transportul, pot face terapie din orice locație). Alegi ce ți se potrivește mai bine.'
@@ -42,7 +42,7 @@ faq_items:
     answer: 'Folosim chestionare validate științific (GAD-7 pentru anxietate, PHQ-9 pentru depresie, PCL-5 pentru traume) pe care le completezi la fiecare 4-6 sesiuni. Comparăm scorurile pentru a vedea progresul obiectiv. Plus, vei simți diferența în viața de zi cu zi: dormi mai bine, te simți mai calm, funcționezi mai bine la muncă/relații.'
   - question: Este sigur să împărtășesc informații foarte personale?
     answer: '**Absolut.** Confidențialitatea este sacră în psihoterapie și protejată de lege. Tot ce discutăm rămâne între noi, conform codului deontologic al psihologilor și GDPR. Singurele excepții legale (extrem de rare): risc iminent de suicid/omucidere sau abuz de copii. În rest, NIMIC din ce discutăm nu iese din cabinet.'
-  - question: Ce diferă terapia de a vorbi cu un prieten?
+  - question: Care este diferența dintre terapie și a vorbi cu un prieten?
     answer: Prietenii oferă suport, dar nu au pregătirea profesională pentru a identifica tiparele profunde, a oferi tehnici validate, a măsura progresul obiectiv. Terapia este structurată, bazată pe dovezi, confidențială și focusată pe schimbare reală. Plus, terapeutal nu este implicat emoțional în viața ta, deci poate oferi perspective obiective.
 faq_mini_title: Întrebări Frecvente Despre Terapia Individuală
 faq_mini_subtitle: Tot ce trebuie să știi
@@ -51,15 +51,8 @@ cta_standard:
   description: Nu trebuie să treci prin asta singur. Programează o consultație gratuită de 30 minute și să începem împreună călătoria spre o viață mai bună.
   button_text: Programează Consultație Gratuită
   button_url: https://cal.com/alexandra-barbu-ras8xc/15min
-  background: gradient
   button_variant: secondary
-breadcrumb:
-  - name: Acasă
-    url: /
-  - name: Servicii
-    url: /servicii/
-  - name: Terapie Individuală
-    url: /servicii/terapie-individuala/
+  background: gradient
 benefits_results:
   enable: true
   title: Ce Vei Obține Din Terapia Individuală
@@ -79,47 +72,46 @@ benefits_results:
       icon: compass
       timeline: După 20+ sesiuni
 pricing_packages:
-  enable: true
-  title: Tarife și Pachete
-  subtitle: Investiție în sănătatea ta mentală
-  description: Oferă pachete flexibile adaptate nevoilor și bugetului tău.
+  notes:
+    - text: '**Plată:** Cash, card sau transfer bancar. Pachete se plătesc integral înainte de prima sesiune.'
+    - text: '**Anulare:** Anunță cu 24h înainte pentru reprogramare gratuită. Altfel, sesiunea se consideră consumată.'
+    - text: '**Tarif social:** Oferă tarife reduse (180 RON/sesiune) pentru studenți și situații financiare dificile. Contactează-mă pentru detalii.'
+    - text: '**Decontare:** Unele asigurări private de sănătate decontează parțial terapia. Verific cu asiguratorul tău.'
   packages:
-    - name: Sesiune Individuală
-      price: '250'
-      currency: RON
-      period: sesiune
-      description: Perfect pentru testare sau sesiuni ocazionale.
+    - featured: false
+      button_variant: outline-primary
+      button_url: /contact/
+      button_text: Programează Sesiune
       features:
         - 50 minute sesiune față în față sau online
         - Acces la chestionare de evaluare
         - Suport între sesiuni prin email (răspuns în 24h)
         - Flexibilitate totală (fără angajament)
-      button_text: Programează Sesiune
-      button_url: /contact/
-      button_variant: outline-primary
-      featured: false
-    - name: Pachet Starter
-      price: '900'
+      description: Perfect pentru testare sau sesiuni ocazionale.
+      period: sesiune
       currency: RON
-      period: 4 sesiuni
-      description: Ideal pentru probleme ușoare sau explorare inițială.
-      discount: Economisești 100 RON (10%)
+      price: '250'
+      name: Sesiune Individuală
+    - featured: false
+      button_variant: primary
+      button_url: /contact/
+      button_text: Alege Pachet
       features:
         - 4 sesiuni x 50 minute
         - Evaluare completă + 3 sesiuni active
         - Chestionare validate pentru progres
         - Plan terapeutic personalizat
         - Toate materialele terapeutice incluse
-      button_text: Alege Pachet
-      button_url: /contact/
-      button_variant: primary
-      featured: false
-    - name: Pachet Standard
-      price: '1700'
+      discount: Economisești 100 RON (10%)
+      description: Ideal pentru probleme ușoare sau explorare inițială.
+      period: 4 sesiuni
       currency: RON
-      period: 8 sesiuni
-      description: Cel mai popular. Terapie completă pe termen scurt.
-      discount: Economisești 300 RON (15%)
+      price: '900'
+      name: Pachet Starter
+    - featured: true
+      button_variant: primary
+      button_url: /contact/
+      button_text: Alege Pachet
       features:
         - 8 sesiuni x 50 minute
         - Terapie completă pentru anxietate/depresie moderată
@@ -127,16 +119,16 @@ pricing_packages:
         - Acces prioritar pentru programare
         - Suport extins între sesiuni
         - Toate materialele + ghid de autoajutorare
-      button_text: Alege Pachet
-      button_url: /contact/
-      button_variant: primary
-      featured: true
-    - name: Pachet Intensiv
-      price: '2550'
+      discount: Economisești 300 RON (15%)
+      description: Cel mai popular. Terapie completă pe termen scurt.
+      period: 8 sesiuni
       currency: RON
-      period: 12 sesiuni
-      description: Pentru probleme complexe sau transformare profundă.
-      discount: Economisești 450 RON (15%)
+      price: '1700'
+      name: Pachet Standard
+    - featured: false
+      button_variant: outline-primary
+      button_url: /contact/
+      button_text: Alege Pachet
       features:
         - 12 sesiuni x 50 minute
         - Abordare profundă și susținută
@@ -144,15 +136,23 @@ pricing_packages:
         - Monitorizare progres la 4 și 8 sesiuni
         - Acces prioritar + disponibilitate urgențe
         - Toate materialele + sesiune follow-up gratuită (după 3 luni)
-      button_text: Alege Pachet
-      button_url: /contact/
-      button_variant: outline-primary
-      featured: false
-  notes:
-    - text: '**Plată:** Cash, card sau transfer bancar. Pachete se plătesc integral înainte de prima sesiune.'
-    - text: '**Anulare:** Anunță cu 24h înainte pentru reprogramare gratuită. Altfel, sesiunea se consideră consumată.'
-    - text: '**Tarif social:** Oferă tarife reduse (180 RON/sesiune) pentru studenți și situații financiare dificile. Contactează-mă pentru detalii.'
-    - text: '**Decontare:** Unele asigurări private de sănătate decontează parțial terapia. Verific cu asiguratorul tău.'
+      discount: Economisești 450 RON (15%)
+      description: Pentru probleme complexe sau transformare profundă.
+      period: 12 sesiuni
+      currency: RON
+      price: '2550'
+      name: Pachet Intensiv
+  description: Oferă pachete flexibile adaptate nevoilor și bugetului tău.
+  subtitle: Investiție în sănătatea ta mentală
+  title: Tarife și Pachete
+  enable: true
+breadcrumb:
+  - url: /
+    name: Acasă
+  - url: /servicii/
+    name: Servicii
+  - url: /servicii/terapie-individuala/
+    name: Terapie Individuală
 therapeutic_process:
   enable: true
   title: 'Procesul Terapeutic: Cum Lucrăm Împreună'
