@@ -1307,23 +1307,155 @@ collections:
               - { label: "Parent", name: "parent", widget: "string", required: false }
 
   # ===========================================
-  # SITE SETTINGS
+  # FOOTER SETTINGS
+  # Footer-specific content only (social/contact are in Site Settings)
+  # ===========================================
+
+  - name: footer
+    label: "Footer"
+    icon: "vertical_align_bottom"
+    files:
+      - name: footer_ro
+        label: "Footer Romana"
+        file: data/footer.yaml
+        fields:
+          - { label: "Descriere", name: "description", widget: "text", hint: "Text afisat sub logo in footer" }
+
+          - label: "Link-uri Rapide"
+            name: "quick_links"
+            widget: "list"
+            collapsed: false
+            hint: "Link-uri afisate in footer pentru navigare rapida"
+            fields:
+              - { label: "Nume", name: "name", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+
+          - label: "CTA (Apel la Actiune)"
+            name: "cta"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Activat", name: "enable", widget: "boolean", default: true }
+              - { label: "Titlu", name: "title", widget: "string" }
+              - { label: "Continut", name: "content", widget: "text" }
+              - { label: "Text Buton", name: "button_text", widget: "string" }
+              - { label: "URL Buton", name: "button_url", widget: "string" }
+
+          - { label: "Copyright", name: "copyright", widget: "string" }
+
+      - name: footer_en
+        label: "Footer English"
+        file: data/en/footer.yaml
+        fields:
+          - { label: "Description", name: "description", widget: "text", hint: "Text displayed under logo in footer" }
+
+          - label: "Quick Links"
+            name: "quick_links"
+            widget: "list"
+            collapsed: false
+            hint: "Links displayed in footer for quick navigation"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+
+          - label: "CTA (Call to Action)"
+            name: "cta"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Enabled", name: "enable", widget: "boolean", default: true }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Content", name: "content", widget: "text" }
+              - { label: "Button Text", name: "button_text", widget: "string" }
+              - { label: "Button URL", name: "button_url", widget: "string" }
+
+          - { label: "Copyright", name: "copyright", widget: "string" }
+
+  # ===========================================
+  # SITE SETTINGS (Single Source of Truth)
+  # Social links and contact info managed here, used site-wide
   # ===========================================
 
   - name: settings
     label: "Setari Site"
     icon: "settings"
     files:
-      - name: social
-        label: "Social Media"
-        file: data/social.yml
+      - name: site_settings
+        label: "Setari Generale (Social, Contact, Logo)"
+        file: data/settings.yaml
         fields:
-          - { label: "Facebook", name: "facebook", widget: "string", required: false }
-          - { label: "Instagram", name: "instagram", widget: "string", required: false }
-          - { label: "TikTok", name: "tiktok", widget: "string", required: false }
-          - { label: "YouTube", name: "youtube", widget: "string", required: false }
-          - { label: "LinkedIn", name: "linkedin", widget: "string", required: false }
-          - { label: "Twitter/X", name: "twitter", widget: "string", required: false }
+          # Site Identity
+          - { label: "Nume Site", name: "site_name", widget: "string" }
+          - { label: "Slogan", name: "tagline", widget: "string", required: false }
+
+          # Logo & Branding (flat structure)
+          - { label: "Logo", name: "logo", widget: "image", default: "images/logo.svg", hint: "Logo-ul site-ului (SVG recomandat)" }
+          - { label: "Text Logo", name: "logo_text", widget: "string", default: "Alexandra Barbu" }
+          - { label: "Favicon", name: "favicon", widget: "image", default: "images/favicon.svg" }
+
+          # Social Media Links (SINGLE SOURCE - used in footer, header, SEO)
+          - label: "Social Media"
+            name: "social"
+            widget: "list"
+            hint: "Link-urile catre profilurile de social media (apar in footer si SEO)"
+            collapsed: false
+            fields:
+              - { label: "Nume", name: "name", widget: "string", hint: "Ex: Facebook, Instagram" }
+              - { label: "URL", name: "url", widget: "string", hint: "Link-ul complet catre profil" }
+              - label: "Icoana"
+                name: "icon"
+                widget: "select"
+                options:
+                  - { label: "Facebook", value: "facebook-f" }
+                  - { label: "Instagram", value: "instagram" }
+                  - { label: "LinkedIn", value: "linkedin-in" }
+                  - { label: "TikTok", value: "tiktok" }
+                  - { label: "YouTube", value: "youtube" }
+                  - { label: "Twitter/X", value: "twitter" }
+
+          # Contact Information (SINGLE SOURCE - used in footer, contact pages)
+          - label: "Informatii Contact"
+            name: "contact"
+            widget: "object"
+            collapsed: false
+            hint: "Informatii de contact afisate in footer si pagini contact"
+            fields:
+              - { label: "Telefon", name: "phone", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Adresa", name: "address", widget: "string", hint: "Ex: Bucuresti, Sector 3" }
+              - { label: "Program", name: "hours", widget: "string", hint: "Ex: L-V: 10:00-20:00" }
+
+          # Navigation Button (Header CTA)
+          - label: "Buton Header (CTA)"
+            name: "nav_button"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Activat", name: "enable", widget: "boolean", default: true }
+              - { label: "Text Buton", name: "text", widget: "string" }
+              - { label: "URL Buton", name: "url", widget: "string" }
+
+          # Contact Form Settings
+          - label: "Formular Contact"
+            name: "contact_form"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Action URL (Google Script)", name: "action", widget: "string", hint: "URL-ul Google Apps Script pentru trimitere formular" }
+
+          # SEO Defaults
+          - label: "SEO (Motoare de Cautare)"
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Descriere Site", name: "description", widget: "text" }
+              - { label: "Autor", name: "author", widget: "string" }
+              - { label: "Imagine OG", name: "image", widget: "image" }
+              - label: "Cuvinte Cheie"
+                name: "keywords"
+                widget: "list"
+                field: { label: "Cuvant Cheie", name: "keyword", widget: "string" }
 
   # ===========================================
   # SECTION REFERENCE
