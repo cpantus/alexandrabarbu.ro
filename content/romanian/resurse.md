@@ -32,5 +32,12 @@ feature_blocks:
     image: /images/teste.jpeg
     button_text: Explorează Teste
     button_url: /resurse/teste-psihologice/
+faq_mini_title: ''
+faq_mini_subtitle: ''
+faq_mini_footer: ''
+faq_mini_link_text: ''
+faq_mini_link_url: ''
+contact_info_title: ''
+contact_info_subtitle: ''
 ---
 
