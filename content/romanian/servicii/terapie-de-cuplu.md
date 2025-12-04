@@ -1,7 +1,7 @@
 ---
 title: Terapie de Cuplu - Cabinet Alexandra Barbu București
 layout: flexible
-description: Reconstruiește comunicarea, intimitatea și încrederea în relație. Metoda Imago și TCC pentru cupluri. Cabinet București și online.
+description: Reconstruiește comunicarea, intimitatea și încrederea în voi si in relație. Metoda Imago și TCC pentru cupluri. Cabinet București și online.
 sections:
   - type: hero-breadcrumb
   - type: feature-blocks
@@ -33,15 +33,15 @@ feature_blocks:
     image: /images/decizii-importante.jpeg
 faq_items:
   - question: Cât durează terapia de cuplu?
-    answer: Depinde de gravitatea problemelor. Pentru conflicte moderate și îmbunătățirea comunicării, 12-20 sesiuni (3-5 luni) sunt de obicei suficiente. Pentru infidelitate sau probleme mai profunde, poate dura 6-12 luni (20-30 sesiuni). În prima sesiune stabilim o estimare realistă.
+    answer: Depinde de complexitatea situațiilor cu care vă confruntați. Pentru conflicte moderate și îmbunătățirea comunicării, 12–20 sesiuni (3–5 luni) sunt de obicei suficiente. Pentru infidelitate sau probleme mai profunde, poate dura 6–12 luni (20–30 sesiuni). În prima sesiune stabilim o estimare realistă.
   - question: Ce dacă doar unul din noi vrea terapie?
     answer: E ideal să vină amândoi, dar înțelegem că uneori un partener este reticent. Poti începe singur cu terapie individuală focalizată pe relație, sau vii la o primă sesiune singur și vedem cum îl atragem pe partener. Multe cupluri încep așa și partenerul reticent se alătură după ce vede beneficiile.
   - question: Terapia ne va salva relația sau ne va ajuta să ne despărțim?
     answer: Scopul terapiei de cuplu nu este neapărat să vă țină împreună, ci să vă ajute să luați cea mai bună decizie pentru amândoi. Unele cupluri își salvează relația, altele realizează că divorțul este mai sănătos. Ambele rezultate sunt valide dacă sunt conștiente și mature, nu din furie sau frică.
   - question: Ce dacă terapeutal ia partea unui partener?
-    answer: Un terapeut bun de cuplu este NEUTRU și nu ia părți. Rolul meu este să înțeleg perspectiva fiecăruia, să validez ambele părți și să vă ajut să găsiți soluții împreună. Dacă simțiți vreodată că iau partea cuiva, vă rog să spuneți - este important să discutăm.
+    answer: Un terapeut bun de cuplu este NEUTRU! Rolul meu este să înțeleg perspectiva fiecăruia, să validez ambele părți și să vă ajut să găsiți soluții împreună. Dacă simțiți vreodată că iau partea cuiva, vă rog să spuneți - este important să discutăm.
   - question: Putem face terapie de cuplu online?
-    answer: '**Da!** Terapia de cuplu online (Zoom) este la fel de eficientă ca cea față în față, conform studiilor. Mulți preferă online pentru confort (faceți terapia de acasă, fără stres cu transportul). Important: ambii să fiți în aceeași cameră, nu fiecare în alt loc.'
+    answer: '**Da!** Terapia de cuplu online  este la fel de eficientă ca cea față în față, conform studiilor. Mulți preferă online pentru confort (faceți terapia de acasă, fără stres cu transportul). Important: ambii să fiți în aceeași cameră, nu fiecare în alt loc.'
   - question: Ce dacă unul din noi are o aventură în continuare?
     answer: Pentru ca terapia de infidelitate să funcționeze, aventura TREBUIE să se oprească complet. Dacă partenerul infidel nu este pregătit să încheie aventura, nu putem lucra la reconstruirea încrederii. Transparență totală este esențială.
   - question: Cât de des trebuie să venim?
@@ -50,7 +50,7 @@ faq_mini_title: Întrebări Frecvente Despre Terapia de Cuplu
 faq_mini_subtitle: Tot ce trebuie să știți
 cta_standard:
   title: Gata Să Reconstruiți Relația?
-  description: Nu așteptați până este prea târziu. Cu cât începeți terapia mai devreme, cu atât șansele de succes sunt mai mari. Programează o consultație gratuită de 30 minute.
+  description: Nu așteptați până este prea târziu. Cu cât începeți terapia mai devreme, cu atât șansele de succes sunt mai mari. Programează o consultație gratuită de 15 minute.
   button_text: Programează Consultație Gratuită
   button_url: https://cal.com/alexandra-barbu-ras8xc/15min
   enable: true
@@ -58,7 +58,7 @@ benefits_results:
   enable: true
   title: Ce Veți Obține Din Terapia de Cuplu
   subtitle: Schimbări reale, relație mai puternică
-  description: Terapia de cuplu nu este doar despre rezolvarea conflictelor. Este despre construirea unei relații mai profunde, mai sănătoase și mai împlinite.
+  description: Terapia de cuplu nu este doar despre rezolvarea conflictelor. Este despre construirea unei relații profunde, mai sănătoase și mai împlinite.
   items:
     - title: Comunicare Îmbunătățită
       description: Învățați să vă ascultați cu adevărat, să validați emoțiile celuilalt, să discutați probleme dificile fără escaladare. Comunicare mai clară, mai empatică.
