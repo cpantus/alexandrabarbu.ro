@@ -154,10 +154,12 @@
 
 /* Quote Overlay Box */
 .c-hero-about__quote {
-  position: absolute;
-  bottom: 10%;
-  left: -5%;
-  max-width: 280px;
+  // Mobile: display below image
+  position: relative;
+  bottom: auto;
+  left: auto;
+  max-width: 100%;
+  margin-top: $space-6;
   padding: $space-6 $space-8;
   background: var(--hero-about-quote-bg);
   border-radius: 12px;
@@ -165,9 +167,13 @@
   z-index: 3;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
+  // Desktop: overlay on image
   @media (min-width: $breakpoint-lg) {
+    position: absolute;
+    bottom: 10%;
     left: -10%;
     max-width: 320px;
+    margin-top: 0;
   }
 
   &:hover {
