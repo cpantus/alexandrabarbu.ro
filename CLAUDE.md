@@ -266,6 +266,22 @@ image: "/assets/images/feature.png"
 
 ---
 
+## CMS Authentication
+
+**Two-layer auth**: Cloudflare Access (Gmail whitelist + PIN) → Sveltia CMS (GitHub PAT via Worker)
+
+**Security**: Worker validates Cloudflare Access JWT before returning PAT. Unauthenticated requests are rejected with 403.
+
+**If login screen appears**: Click "Sign In with GitHub" once. Token cached in localStorage for future visits.
+
+**Worker**: `sveltia-cms-auth-alexandrabarbu.cpantus.workers.dev`
+- `GITHUB_TOKEN` (Secret): GitHub PAT for repo access
+- `CF_ACCESS_AUD` (Plaintext): Cloudflare Access application audience tag
+
+**Full details**: See `ARCHITECTURE.md` → CMS Integration section
+
+---
+
 ## Documentation
 
 **Read**: `PROJECT.md` (architecture), `README.md` (quick start), `ARCHITECTURE.md` (technical), `docs/components/`, `docs/DATA-CONVENTIONS.md`

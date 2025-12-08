@@ -33,7 +33,7 @@ hero_about:
   quote:
     text: Fiecare persoană are în ea resursele necesare pentru vindecare. Rolul meu este să te ghidez în descoperirea lor.
     author: Alexandra Barbu
-  image: images/about/alexandra-portrait.jpg
+  image: images/about/alexandra-portrait-v2.jpg
   button_text: ''
   button_url: ''
 credentials_education:

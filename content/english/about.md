@@ -18,7 +18,7 @@ hero_about:
   quote:
     text: Every person has within them the resources necessary for healing. My role is to guide you in discovering them.
     author: Alexandra Barbu
-  image: images/about/alexandra-portrait.jpg
+  image: images/about/alexandra-portrait-v2.jpg
   button_text: ''
   button_url: ''
 cta_standard:

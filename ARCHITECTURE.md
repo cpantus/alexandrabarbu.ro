@@ -345,18 +345,107 @@ curl -s http://localhost:1313/ | grep -A 20 'application/ld+json'
 
 **Sveltia CMS** provides headless content management for this Hugo site with visual editing capabilities.
 
-### Access & Authentication
+### Access & Authentication (Two-Layer)
 
-**Local Development**:
-- URL: `http://localhost:1313/admin` (after running `hugo server`)
-- Authentication: GitHub OAuth
-- Repository: `cpantus/alexandrabarbu.ro`
-- Branch: `redesign-2025` (dev) | `main` (production)
+**Layer 1: Cloudflare Access (Zero Trust)**
+- Protects `/admin/*` path before reaching CMS
+- Authentication: Whitelisted Gmail addresses via email PIN code
+- Configuration: Cloudflare Zero Trust dashboard
+- Session: Cloudflare Access cookie (persists across browser sessions)
 
-**Production (GitHub Pages)**:
-- Domain: `https://alexandrabarbu.ro/admin`
-- OAuth Authenticator: Sveltia CMS Authenticator on Cloudflare Workers (required for GitHub Pages)
-- Backend: GitHub repository
+**Layer 2: Sveltia CMS → GitHub API**
+- After passing Cloudflare Access, CMS needs GitHub token to read/write repository
+- Authentication: Custom Cloudflare Worker returns hardcoded PAT
+- Token storage: Browser localStorage (per-browser, not synced across devices)
+
+**Production URLs**:
+- CMS: `https://alexandrabarbu.ro/admin`
+- Auth Worker: `https://sveltia-cms-auth-alexandrabarbu.cpantus.workers.dev`
+- Repository: `cpantus/alexandrabarbu.ro` (branch: `main`)
+
+### Authentication Flow
+
+```
+User → Cloudflare Access (email PIN) → /admin → Sveltia CMS
+                                                     ↓
+                                          Click "Sign In with GitHub"
+                                                     ↓
+                                          Popup → Worker /auth endpoint
+                                                     ↓
+                                          Worker returns PAT via postMessage
+                                                     ↓
+                                          CMS stores in localStorage
+                                                     ↓
+                                          Authenticated (cached for future visits)
+```
+
+### Cloudflare Worker Configuration
+
+**Worker**: `sveltia-cms-auth-alexandrabarbu`
+
+**Environment Variables** (Cloudflare Dashboard → Workers → Settings → Variables):
+| Variable | Type | Purpose |
+|----------|------|---------|
+| `GITHUB_TOKEN` | Secret | PAT for GitHub API access (scoped to repo) |
+| `CF_ACCESS_AUD` | Plaintext | Cloudflare Access application audience tag |
+| `ALLOWED_DOMAINS` | Plaintext | `alexandrabarbu.ro` (legacy, optional) |
+
+**Security Model**:
+```
+Request → Worker checks for CF_Authorization cookie/header
+                ↓
+        Validates JWT signature against Cloudflare public keys
+                ↓
+        Checks JWT expiration and audience (CF_ACCESS_AUD)
+                ↓
+        If valid → returns PAT | If invalid → 403 Forbidden
+```
+
+**Worker Code** (with JWT validation):
+```javascript
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    if (url.pathname === '/auth' || url.pathname === '/callback') {
+      // Extract CF Access JWT from cookie or header
+      const jwt = request.headers.get('Cf-Access-Jwt-Assertion') ||
+                  getCookieValue(request.headers.get('Cookie'), 'CF_Authorization');
+
+      if (!jwt) {
+        return new Response('Forbidden: CF Access required', { status: 403 });
+      }
+
+      // Validate JWT (signature, expiration, audience)
+      const isValid = await validateCFAccessJWT(jwt, env.CF_ACCESS_AUD);
+      if (!isValid) {
+        return new Response('Forbidden: Invalid token', { status: 403 });
+      }
+
+      // Only authenticated users reach here
+      const token = env.GITHUB_TOKEN;
+      // Returns HTML that sends token via window.opener.postMessage()
+      return new Response(html, { headers: { 'Content-Type': 'text/html' } });
+    }
+    return new Response('Sveltia CMS Auth', { status: 200 });
+  },
+};
+```
+
+**Testing Worker Security**:
+```bash
+# Should return 403 Forbidden (no CF Access cookie)
+curl -i https://sveltia-cms-auth-alexandrabarbu.cpantus.workers.dev/auth
+```
+
+### Troubleshooting: "Login Screen Appears"
+
+If users see the Sveltia CMS login screen instead of auto-authenticating:
+
+1. **Cause**: Browser localStorage was cleared (browser update, cache clear, incognito mode)
+2. **Fix**: Click "Sign In with GitHub" button once
+3. **Result**: Token cached in localStorage, auto-auth restored for future visits
+
+**Note**: Each browser/device needs to authenticate once. Tokens are stored per-browser, not synced across devices.
 
 ### Collections Structure
 
