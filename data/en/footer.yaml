@@ -1,15 +1,4 @@
-# ═══════════════════════════════════════════════════════════════════════════════
-# FOOTER DATA - English (Footer-Specific Content Only)
-# ═══════════════════════════════════════════════════════════════════════════════
-# Social links and contact info are in data/settings.yaml (single source of truth)
-# This file contains ONLY footer-specific content: description, quick_links, cta, copyright
-# CMS: Managed via Footer > Footer English
-# ═══════════════════════════════════════════════════════════════════════════════
-
-# Footer description (shown under logo)
 description: Psychotherapist dedicated to transforming lives through professional therapy and empathy
-
-# Quick Links (footer navigation)
 quick_links:
   - name: About
     url: /en/about/
@@ -21,14 +10,10 @@ quick_links:
     url: /en/contact/
   - name: Terms & Conditions
     url: /en/terms-and-conditions/
-
-# Footer CTA Section
 cta:
   enable: true
   title: A Personalized Map for Every Journey
   content: We understand your specific needs, Create a personalized therapeutic plan, Weekly therapy sessions, Maintaining long-term progress.
   button_text: Schedule a 15-minute evaluation
   button_url: https://cal.com/alexandra-barbu-ras8xc/15min
-
-# Copyright notice
-copyright: "\u00A9 2025 Alexandra Barbu. All rights reserved."
+copyright: © 2026 Alexandra Barbu. All rights reserved.
