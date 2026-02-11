@@ -1,0 +1,138 @@
+{{/*
+  Cookie Consent Modal — GDPR-compliant per-category cookie preferences
+  BEM Component: .c-cookie-modal
+
+  Data source: data/cookies.yaml (categories with bilingual names, descriptions, cookies)
+  JS controller: assets/js/cookie-modal.js
+
+  BEM Structure:
+    .c-cookie-modal              - Root (backdrop overlay, hidden by default)
+    .c-cookie-modal--visible     - Visible state (added by JS)
+    .c-cookie-modal__dialog      - Centered modal card
+    .c-cookie-modal__header      - Title + close button
+    .c-cookie-modal__description - Intro text with "show more"
+    .c-cookie-modal__categories  - Accordion list of cookie categories
+    .c-cookie-modal__category    - Individual category item
+    .c-cookie-modal__toggle      - Toggle switch per category
+    .c-cookie-modal__details     - Expandable cookie table per category
+    .c-cookie-modal__footer      - Save button + privacy link
+*/}}
+
+{{ $lang := .Language.Lang | default "ro" }}
+
+{{/* Privacy policy URL per language */}}
+{{ $privacyURL := "/politica-de-confidentialitate/" }}
+{{ if eq $lang "en" }}
+  {{ $privacyURL = "/en/privacy-policy/" }}
+{{ end }}
+
+<div id="cookie-modal" class="c-cookie-modal" role="dialog" aria-modal="true" aria-labelledby="cookie-modal-title">
+  <div class="c-cookie-modal__dialog">
+
+    {{/* Header */}}
+    <div class="c-cookie-modal__header">
+      <h3 id="cookie-modal-title" class="c-cookie-modal__title">
+        {{ i18n "cookie_modal_title" | default "Confidențialitate" }}
+      </h3>
+      <button type="button" class="c-cookie-modal__close" id="cookie-modal-close" aria-label="{{ i18n "close" | default "Închide" }}">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    {{/* Description with show more */}}
+    <div class="c-cookie-modal__description">
+      <p class="c-cookie-modal__description-text">
+        {{ i18n "cookie_modal_description" | default "Acest site folosește cookie-uri și tehnologii similare pentru a funcționa corect și pentru a-ți îmbunătăți experiența." }}
+        <span class="c-cookie-modal__description-more" id="cookie-modal-more-text" style="display: none;">
+          {{ i18n "cookie_modal_description_more" | default "Poți alege ce categorii de cookie-uri permiți. Cookie-urile necesare sunt activate permanent deoarece sunt esențiale pentru funcționarea site-ului. Pentru mai multe informații, consultă" }}
+          <a href="{{ $privacyURL }}">{{ i18n "cookie_modal_privacy_link" | default "Politica de Confidențialitate" }}</a>.
+        </span>
+      </p>
+      <button type="button" class="c-cookie-modal__show-more" id="cookie-modal-show-more"
+        data-show-more="{{ i18n "cookie_modal_show_more" | default "Arată mai mult" }}"
+        data-show-less="{{ i18n "cookie_modal_show_less" | default "Arată mai puțin" }}">
+        {{ i18n "cookie_modal_show_more" | default "Arată mai mult" }}
+      </button>
+    </div>
+
+    {{/* Category list */}}
+    <div class="c-cookie-modal__categories" id="cookie-modal-categories">
+      {{ range $i, $cat := site.Data.cookies.categories }}
+        {{ $catName := index $cat.name $lang | default (index $cat.name "ro") }}
+        {{ $catDesc := index $cat.description $lang | default (index $cat.description "ro") }}
+        {{ $catId := $cat.id }}
+        {{ $panelId := printf "cookie-cat-%s" $catId }}
+
+        <div class="c-cookie-modal__category" data-category="{{ $catId }}">
+          {{/* Category header: name + toggle/always-active */}}
+          <div class="c-cookie-modal__category-header">
+            <button type="button"
+              class="c-cookie-modal__category-trigger collapsed"
+              data-toggle="collapse"
+              data-target="#{{ $panelId }}"
+              data-parent="#cookie-modal-categories"
+              aria-expanded="false"
+              aria-controls="{{ $panelId }}">
+              <span class="c-cookie-modal__category-name">{{ $catName }}</span>
+              <svg class="c-cookie-modal__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            {{ if $cat.always_on }}
+              <span class="c-cookie-modal__always-active">
+                {{ i18n "cookie_modal_always_active" | default "Mereu activ" }}
+              </span>
+            {{ else }}
+              <label class="c-cookie-modal__toggle">
+                <input type="checkbox" class="c-cookie-modal__toggle-input" data-category="{{ $catId }}" />
+                <span class="c-cookie-modal__toggle-slider"></span>
+              </label>
+            {{ end }}
+          </div>
+
+          {{/* Category description */}}
+          <p class="c-cookie-modal__category-desc">{{ $catDesc }}</p>
+
+          {{/* Expandable cookie details */}}
+          <div id="{{ $panelId }}" class="c-cookie-modal__details collapse">
+            <div class="c-cookie-modal__details-inner">
+              <table class="c-cookie-modal__table">
+                <thead>
+                  <tr>
+                    <th>{{ i18n "cookie_modal_cookie_name" | default "Cookie" }}</th>
+                    <th>{{ i18n "cookie_modal_cookie_provider" | default "Furnizor" }}</th>
+                    <th>{{ i18n "cookie_modal_cookie_purpose" | default "Scop" }}</th>
+                    <th>{{ i18n "cookie_modal_cookie_duration" | default "Durată" }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{ range $cat.cookies }}
+                    <tr>
+                      <td><code>{{ .name }}</code></td>
+                      <td>{{ .provider }}</td>
+                      <td>{{ index .purpose $lang | default (index .purpose "ro") }}</td>
+                      <td>{{ index .duration $lang | default (index .duration "ro") }}</td>
+                    </tr>
+                  {{ end }}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+
+    {{/* Footer */}}
+    <div class="c-cookie-modal__footer">
+      <button type="button" class="c-cookie-modal__save" id="cookie-modal-save">
+        {{ i18n "cookie_modal_save" | default "Salvează și Acceptă" }}
+      </button>
+      <a href="{{ $privacyURL }}" class="c-cookie-modal__privacy-link">
+        {{ i18n "cookie_modal_privacy_link" | default "Politica de Confidențialitate" }}
+      </a>
+    </div>
+  </div>
+</div>

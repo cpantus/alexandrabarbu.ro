@@ -1,0 +1,90 @@
+# Cookie Category Definitions — Data-driven GDPR consent system
+# Used by: cookie-modal.html partial
+# Format: categories[] with bilingual names, descriptions, and individual cookie details
+
+categories:
+  - id: necessary
+    name:
+      ro: "Necesare"
+      en: "Necessary"
+    description:
+      ro: "Cookie-uri esențiale pentru funcționarea de bază a site-ului. Nu pot fi dezactivate."
+      en: "Essential cookies for basic site functionality. Cannot be disabled."
+    always_on: true
+    cookies:
+      - name: "_GRECAPTCHA"
+        provider: "Google reCAPTCHA"
+        purpose:
+          ro: "Protecție anti-spam pentru formulare"
+          en: "Anti-spam protection for forms"
+        duration:
+          ro: "6 luni"
+          en: "6 months"
+      - name: "cookie-consent"
+        provider: "localStorage"
+        purpose:
+          ro: "Salvează preferințele tale de cookie-uri"
+          en: "Saves your cookie preferences"
+        duration:
+          ro: "Permanent"
+          en: "Permanent"
+
+  - id: functional
+    name:
+      ro: "Funcționale"
+      en: "Functional"
+    description:
+      ro: "Cookie-uri care permit funcționalități suplimentare, cum ar fi preferința de limbă și programarea ședințelor."
+      en: "Cookies that enable additional features like language preference and session scheduling."
+    always_on: false
+    cookies:
+      - name: "preferredLanguage"
+        provider: "localStorage"
+        purpose:
+          ro: "Salvează limba preferată (RO/EN)"
+          en: "Saves preferred language (RO/EN)"
+        duration:
+          ro: "Permanent"
+          en: "Permanent"
+      - name: "Cal.com cookies"
+        provider: "Cal.com"
+        purpose:
+          ro: "Programarea și gestionarea ședințelor de terapie"
+          en: "Scheduling and managing therapy sessions"
+        duration:
+          ro: "Sesiune"
+          en: "Session"
+
+  - id: analytics
+    name:
+      ro: "Analitice"
+      en: "Analytics"
+    description:
+      ro: "Cookie-uri care ne ajută să înțelegem cum folosești site-ul, pentru a-l îmbunătăți. Datele sunt anonimizate."
+      en: "Cookies that help us understand how you use the site, to improve it. Data is anonymized."
+    always_on: false
+    cookies:
+      - name: "_ga"
+        provider: "Google Analytics"
+        purpose:
+          ro: "Identificator unic anonim pentru statistici"
+          en: "Anonymous unique identifier for statistics"
+        duration:
+          ro: "2 ani"
+          en: "2 years"
+      - name: "_ga_<ID>"
+        provider: "Google Analytics"
+        purpose:
+          ro: "Menține starea sesiunii de analiză"
+          en: "Maintains analytics session state"
+        duration:
+          ro: "2 ani"
+          en: "2 years"
+      - name: "_gid"
+        provider: "Google Analytics"
+        purpose:
+          ro: "Identificator de sesiune pentru statistici"
+          en: "Session identifier for statistics"
+        duration:
+          ro: "24 ore"
+          en: "24 hours"

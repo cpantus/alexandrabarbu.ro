@@ -150,9 +150,37 @@
 - id: cookie_message
   translation: "Folosim cookies esențiale pentru funcționarea site-ului și cookie-uri de analiză pentru a îmbunătăți experiența ta. Nu folosim cookies de marketing. Datele tale sunt protejate conform GDPR."
 - id: cookie_accept
-  translation: "Accept"
+  translation: "Accept Toate"
+- id: cookie_customize
+  translation: "Personalizează"
 - id: cookie_decline
   translation: "Doar Esențiale"
+
+# Cookie Modal
+- id: cookie_modal_title
+  translation: "Confidențialitate"
+- id: cookie_modal_description
+  translation: "Acest site folosește cookie-uri și tehnologii similare pentru a funcționa corect și pentru a-ți îmbunătăți experiența."
+- id: cookie_modal_description_more
+  translation: "Poți alege ce categorii de cookie-uri permiți. Cookie-urile necesare sunt activate permanent deoarece sunt esențiale pentru funcționarea site-ului. Pentru mai multe informații, consultă"
+- id: cookie_modal_show_more
+  translation: "Arată mai mult"
+- id: cookie_modal_show_less
+  translation: "Arată mai puțin"
+- id: cookie_modal_always_active
+  translation: "Mereu activ"
+- id: cookie_modal_save
+  translation: "Salvează și Acceptă"
+- id: cookie_modal_cookie_name
+  translation: "Cookie"
+- id: cookie_modal_cookie_provider
+  translation: "Furnizor"
+- id: cookie_modal_cookie_purpose
+  translation: "Scop"
+- id: cookie_modal_cookie_duration
+  translation: "Durată"
+- id: cookie_modal_privacy_link
+  translation: "Politica de Confidențialitate"
 - id: emergency_title
   translation: "Criză? Ai nevoie de ajutor urgent?"
 - id: emergency_message

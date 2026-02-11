@@ -1,62 +1,138 @@
 /**
- * Cookie Consent Banner - GDPR Compliance
- * Version: 2.0.0 (BEM Refactored 2025-11-20)
+ * Cookie Consent Banner — GDPR Compliance
+ * Version: 3.0.0 (Granular consent with cookie-modal integration)
  *
  * Features:
  * - GDPR compliant (explicit consent required)
- * - localStorage preference storage
- * - Two consent levels: Accept all vs Essential only
+ * - Granular per-category consent stored as JSON in localStorage
+ * - Three consent options: Accept All / Customize / Essential Only
+ * - Backward-compatible migration from old string format
+ * - Public API: window.CookieConsent.getConsent(categoryId)
+ * - Dispatches per-category events for script loading
  * - Auto-show after 1s delay (if no preference exists)
  * - Fade + slide-up animation
  * - Respects prefers-reduced-motion
- * - Psychology practice-specific messaging
- * - Analytics opt-in support
- *
- * Supports both legacy (.cookie-consent) and BEM (.c-cookie-consent) classes
  */
 
 (function() {
   'use strict';
 
-  // Get elements
-  const banner = document.getElementById('cookie-consent');
-  const acceptBtn = document.getElementById('cookie-accept');
-  const declineBtn = document.getElementById('cookie-decline');
+  // Elements
+  var banner = document.getElementById('cookie-consent');
+  var acceptBtn = document.getElementById('cookie-accept');
+  var customizeBtn = document.getElementById('cookie-customize');
+  var declineBtn = document.getElementById('cookie-decline');
 
   if (!banner || !acceptBtn || !declineBtn) return;
 
   // Configuration
-  const STORAGE_KEY = 'cookie-consent';
-  const SHOW_DELAY = 1000;       // Show banner after 1s
-  const ANIMATION_DURATION = 300; // Match SCSS transition duration
-  const VISIBLE_CLASS = 'visible';
-  const BEM_VISIBLE_CLASS = 'c-cookie-consent--visible';
+  var STORAGE_KEY = 'cookie-consent';
+  var SHOW_DELAY = 1000;
+  var ANIMATION_DURATION = 300;
+  var VISIBLE_CLASS = 'visible';
+  var BEM_VISIBLE_CLASS = 'c-cookie-consent--visible';
 
-  // Check if user prefers reduced motion
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // All category IDs (must match data/cookies.yaml)
+  var ALL_CATEGORIES = ['necessary', 'functional', 'analytics'];
 
   /**
-   * Check for existing consent preference
-   * @returns {string|null} - 'accepted', 'essential-only', or null
+   * Build a consent object with all categories set to a value
    */
-  function getConsentPreference() {
+  function buildConsent(value) {
+    var consent = { necessary: true, timestamp: new Date().toISOString() };
+    ALL_CATEGORIES.forEach(function(cat) {
+      if (cat !== 'necessary') {
+        consent[cat] = value;
+      }
+    });
+    return consent;
+  }
+
+  /**
+   * Migrate old string format to new JSON format
+   * Old: 'accepted' | 'essential-only'
+   * New: { necessary: true, functional: true/false, analytics: true/false, timestamp: '...' }
+   */
+  function migrateOldFormat(raw) {
+    if (raw === 'accepted') {
+      return buildConsent(true);
+    }
+    if (raw === 'essential-only') {
+      return buildConsent(false);
+    }
+    return null;
+  }
+
+  /**
+   * Read consent from localStorage (with migration)
+   * @returns {object|null}
+   */
+  function readConsent() {
     try {
-      return localStorage.getItem(STORAGE_KEY);
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+
+      // Try JSON parse first (new format)
+      try {
+        var parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === 'object' && parsed.necessary !== undefined) {
+          return parsed;
+        }
+      } catch (e) {
+        // Not JSON — try old string migration
+      }
+
+      // Migrate old format
+      var migrated = migrateOldFormat(raw);
+      if (migrated) {
+        saveConsent(migrated);
+        return migrated;
+      }
+
+      return null;
     } catch (e) {
-      console.error('Cookie consent: localStorage not available', e);
       return null;
     }
   }
 
   /**
-   * Save consent preference
-   * @param {string} preference - 'accepted' or 'essential-only'
+   * Save consent to localStorage
+   * @param {object} consent
    */
-  function saveConsentPreference(preference) {
+  function saveConsent(consent) {
     try {
-      localStorage.setItem(STORAGE_KEY, preference);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
     } catch (e) {
-      console.error('Cookie consent: Failed to save preference', e);
+      // localStorage not available
+    }
+  }
+
+  /**
+   * Apply consent — dispatch events and update gtag
+   */
+  function applyConsent(consent) {
+    if (!consent) return;
+
+    // Analytics
+    if (consent.analytics && window.gtag) {
+      window.gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+
+    // Dispatch per-category events
+    ALL_CATEGORIES.forEach(function(cat) {
+      if (consent[cat]) {
+        window.dispatchEvent(new CustomEvent('cookieConsent:' + cat, { detail: { granted: true } }));
+      }
+    });
+
+    // Legacy events for backward compat
+    var allEnabled = ALL_CATEGORIES.every(function(cat) { return consent[cat]; });
+    if (allEnabled) {
+      window.dispatchEvent(new CustomEvent('cookieConsentAccepted'));
+    } else if (!consent.functional && !consent.analytics) {
+      window.dispatchEvent(new CustomEvent('cookieConsentEssentialOnly'));
     }
   }
 
@@ -64,13 +140,8 @@
    * Show banner with animation
    */
   function showBanner() {
-    // Make banner visible (but transparent)
     banner.style.display = 'block';
-
-    // Trigger reflow to ensure display:block applies before animation
     void banner.offsetHeight;
-
-    // Add visible class to trigger fade-in animation
     banner.classList.add(VISIBLE_CLASS);
     banner.classList.add(BEM_VISIBLE_CLASS);
   }
@@ -79,89 +150,102 @@
    * Hide banner with animation
    */
   function hideBanner() {
-    // Remove visible class to trigger fade-out animation
     banner.classList.remove(VISIBLE_CLASS);
     banner.classList.remove(BEM_VISIBLE_CLASS);
-
-    // Hide banner after animation completes
-    setTimeout(() => {
+    setTimeout(function() {
       banner.style.display = 'none';
     }, prefersReducedMotion ? 0 : ANIMATION_DURATION);
   }
 
   /**
-   * Handle Accept All Cookies
+   * Handle Accept All
    */
   function handleAccept() {
-    // Save preference
-    saveConsentPreference('accepted');
-
-    // Hide banner
+    var consent = buildConsent(true);
+    saveConsent(consent);
     hideBanner();
-
-    // Enable analytics (if gtag is available)
-    if (window.gtag) {
-      window.gtag('consent', 'update', {
-        analytics_storage: 'granted'
-      });
-    }
-
-    // Trigger custom event for analytics initialization
-    window.dispatchEvent(new CustomEvent('cookieConsentAccepted'));
+    applyConsent(consent);
   }
 
   /**
    * Handle Essential Only
    */
   function handleDecline() {
-    // Save preference
-    saveConsentPreference('essential-only');
-
-    // Hide banner
+    var consent = buildConsent(false);
+    saveConsent(consent);
     hideBanner();
+    applyConsent(consent);
+  }
 
-    // Deny analytics (if gtag is available)
-    if (window.gtag) {
-      window.gtag('consent', 'update', {
-        analytics_storage: 'denied'
-      });
+  /**
+   * Handle Customize → open modal
+   */
+  function handleCustomize() {
+    if (window.CookieModal) {
+      window.CookieModal.open();
     }
-
-    // Trigger custom event
-    window.dispatchEvent(new CustomEvent('cookieConsentEssentialOnly'));
   }
 
   /**
    * Initialize banner
    */
   function init() {
-    // Check for existing preference
-    const consent = getConsentPreference();
+    var consent = readConsent();
 
     if (!consent) {
-      // No preference exists - show banner after delay
-      setTimeout(() => {
+      setTimeout(function() {
         showBanner();
       }, prefersReducedMotion ? 0 : SHOW_DELAY);
     } else {
-      // Preference exists - apply it
-      if (consent === 'accepted' && window.gtag) {
-        window.gtag('consent', 'update', {
-          analytics_storage: 'granted'
-        });
-      }
+      applyConsent(consent);
     }
   }
 
   // Event listeners
   acceptBtn.addEventListener('click', handleAccept);
   declineBtn.addEventListener('click', handleDecline);
+  if (customizeBtn) {
+    customizeBtn.addEventListener('click', handleCustomize);
+  }
 
-  // Initialize on load
+  // Initialize
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
   }
+
+  // Public API
+  window.CookieConsent = {
+    /**
+     * Get consent for a specific category
+     * @param {string} categoryId - e.g. 'analytics', 'functional'
+     * @returns {boolean}
+     */
+    getConsent: function(categoryId) {
+      var consent = readConsent();
+      if (!consent) return false;
+      if (categoryId === 'necessary') return true;
+      return !!consent[categoryId];
+    },
+
+    /**
+     * Get all consent values
+     * @returns {object|null}
+     */
+    getAll: function() {
+      return readConsent();
+    },
+
+    /**
+     * Save consent object and apply it
+     * @param {object} consent
+     */
+    save: function(consent) {
+      consent.necessary = true; // always enforce
+      saveConsent(consent);
+      applyConsent(consent);
+    }
+  };
 
 })();

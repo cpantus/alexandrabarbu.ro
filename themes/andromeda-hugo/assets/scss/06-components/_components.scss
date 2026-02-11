@@ -49,6 +49,7 @@
 @import 'toc';                     // ✅ 2025-11-28: Article table of contents navigation
 @import 'back-to-top';             // ✅ Phase 3: BEM refactored - floating scroll-to-top button with 4 variants + auto-show
 @import 'cookie-consent';          // ✅ Phase 3: BEM refactored - GDPR cookie banner with 4 variants + localStorage
+@import 'cookie-modal';            // ✅ GDPR per-category cookie consent modal with toggle switches + accordion
 @import 'emergency-banner';        // ✅ Phase 3: BEM refactored - crisis resources banner with 4 variants + sessionStorage
 @import 'footer-info';             // ✅ Phase 3: BEM refactored - footer logo, description & contact with 4 variants + heading atom
 @import 'footer-nav';              // ✅ Phase 3: BEM refactored - footer navigation with social-links molecule + quick links + 4 variants

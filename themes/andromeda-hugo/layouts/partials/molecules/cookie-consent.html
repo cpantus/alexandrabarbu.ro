@@ -98,9 +98,16 @@
     </div>
     <div class="c-cookie-consent__actions">
       {{ partial "atoms/button.html" (dict
-        "text" (i18n "cookie_accept" | default "Accept")
+        "text" (i18n "cookie_accept" | default "Accept Toate")
         "id" "cookie-accept"
         "variant" $variant
+        "size" "sm"
+        "class" "c-cookie-consent__button"
+      ) }}
+      {{ partial "atoms/button.html" (dict
+        "text" (i18n "cookie_customize" | default "Personalizează")
+        "id" "cookie-customize"
+        "variant" (printf "outline-%s" $variant)
         "size" "sm"
         "class" "c-cookie-consent__button"
       ) }}

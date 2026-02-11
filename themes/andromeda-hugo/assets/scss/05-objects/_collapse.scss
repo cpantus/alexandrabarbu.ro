@@ -35,6 +35,7 @@
 .c-accordion__panel.collapse,
 .c-service-faq__answer.collapse,
 .c-methods-used__method-content.collapse,
+.c-cookie-modal__details.collapse,
 .accordion-collapse.collapse {
   display: grid;
   grid-template-rows: 0fr;
@@ -64,6 +65,7 @@
   .c-accordion__panel.collapse,
   .c-service-faq__answer.collapse,
   .c-methods-used__method-content.collapse,
+  .c-cookie-modal__details.collapse,
   .accordion-collapse.collapse {
     transition: none;
   }

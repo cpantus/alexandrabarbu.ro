@@ -150,9 +150,37 @@
 - id: cookie_message
   translation: "We use essential cookies for site functionality and analytics cookies to improve your experience. We don't use marketing cookies. Your data is GDPR-protected."
 - id: cookie_accept
-  translation: "Accept"
+  translation: "Accept All"
+- id: cookie_customize
+  translation: "Customize"
 - id: cookie_decline
   translation: "Essential Only"
+
+# Cookie Modal
+- id: cookie_modal_title
+  translation: "Privacy"
+- id: cookie_modal_description
+  translation: "This site uses cookies and similar technologies to function properly and to improve your experience."
+- id: cookie_modal_description_more
+  translation: "You can choose which cookie categories to allow. Necessary cookies are always active because they are essential for site functionality. For more information, see our"
+- id: cookie_modal_show_more
+  translation: "Show more"
+- id: cookie_modal_show_less
+  translation: "Show less"
+- id: cookie_modal_always_active
+  translation: "Always active"
+- id: cookie_modal_save
+  translation: "Save & Accept"
+- id: cookie_modal_cookie_name
+  translation: "Cookie"
+- id: cookie_modal_cookie_provider
+  translation: "Provider"
+- id: cookie_modal_cookie_purpose
+  translation: "Purpose"
+- id: cookie_modal_cookie_duration
+  translation: "Duration"
+- id: cookie_modal_privacy_link
+  translation: "Privacy Policy"
 - id: emergency_title
   translation: "Crisis? Need urgent help?"
 - id: emergency_message
