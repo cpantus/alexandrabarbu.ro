@@ -117,9 +117,16 @@
       <ul class="c-footer-nav__links">
         {{ range site.Menus.footer }}
           <li class="c-footer-nav__item">
-            <a href="{{ .URL | relLangURL }}" class="c-footer-nav__link">
-              {{ .Name }}
-            </a>
+            {{ if eq (index (.Params | default dict) "onclick") "cookieSettings" }}
+              <a href="#cookie-settings" class="c-footer-nav__link" role="button"
+                onclick="event.preventDefault(); if(window.CookieModal) window.CookieModal.open();">
+                {{ .Name }}
+              </a>
+            {{ else }}
+              <a href="{{ .URL | relLangURL }}" class="c-footer-nav__link">
+                {{ .Name }}
+              </a>
+            {{ end }}
           </li>
         {{ end }}
       </ul>

@@ -95,3 +95,10 @@ weight = 5
 name = "Politica de Confidențialitate"
 url = "politica-de-confidentialitate/"
 weight = 6
+
+[[footer]]
+name = "Setări Cookie-uri"
+url = "#cookie-settings"
+weight = 7
+[footer.params]
+  onclick = "cookieSettings"
