@@ -172,6 +172,13 @@
                   </a>
                 </li>
               {{ end }}
+              {{/* Cookie Settings — opens modal via JS */}}
+              <li class="c-footer-nav__item">
+                <a href="#cookie-settings" class="c-footer-nav__link" role="button"
+                  onclick="event.preventDefault(); if(window.CookieModal) window.CookieModal.open();">
+                  {{ i18n "cookie_modal_footer_link" | default "Setări Cookie-uri" }}
+                </a>
+              </li>
             </ul>
           {{ end }}
         </div>

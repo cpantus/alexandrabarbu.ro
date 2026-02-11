@@ -97,27 +97,18 @@
       </p>
     </div>
     <div class="c-cookie-consent__actions">
-      {{ partial "atoms/button.html" (dict
-        "text" (i18n "cookie_accept" | default "Accept Toate")
-        "id" "cookie-accept"
-        "variant" $variant
-        "size" "sm"
-        "class" "c-cookie-consent__button"
-      ) }}
-      {{ partial "atoms/button.html" (dict
-        "text" (i18n "cookie_customize" | default "Personalizează")
-        "id" "cookie-customize"
-        "variant" (printf "outline-%s" $variant)
-        "size" "sm"
-        "class" "c-cookie-consent__button"
-      ) }}
-      {{ partial "atoms/button.html" (dict
-        "text" (i18n "cookie_decline" | default "Doar Esențiale")
-        "id" "cookie-decline"
-        "variant" (printf "outline-%s" $variant)
-        "size" "sm"
-        "class" "c-cookie-consent__button"
-      ) }}
+      <button type="button" id="cookie-accept"
+        class="c-button c-button--{{ $variant }} c-button--sm c-cookie-consent__button">
+        <span class="c-button__text">{{ i18n "cookie_accept" | default "Accept Toate" }}</span>
+      </button>
+      <button type="button" id="cookie-customize"
+        class="c-button c-button--outline-{{ $variant }} c-button--sm c-cookie-consent__button">
+        <span class="c-button__text">{{ i18n "cookie_customize" | default "Personalizează" }}</span>
+      </button>
+      <button type="button" id="cookie-decline"
+        class="c-button c-button--outline-{{ $variant }} c-button--sm c-cookie-consent__button">
+        <span class="c-button__text">{{ i18n "cookie_decline" | default "Doar Esențiale" }}</span>
+      </button>
     </div>
   </div>
 </div>

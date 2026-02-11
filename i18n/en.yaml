@@ -181,6 +181,8 @@
   translation: "Duration"
 - id: cookie_modal_privacy_link
   translation: "Privacy Policy"
+- id: cookie_modal_footer_link
+  translation: "Cookie Settings"
 - id: emergency_title
   translation: "Crisis? Need urgent help?"
 - id: emergency_message

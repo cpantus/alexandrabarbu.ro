@@ -181,6 +181,8 @@
   translation: "Durată"
 - id: cookie_modal_privacy_link
   translation: "Politica de Confidențialitate"
+- id: cookie_modal_footer_link
+  translation: "Setări Cookie-uri"
 - id: emergency_title
   translation: "Criză? Ai nevoie de ajutor urgent?"
 - id: emergency_message

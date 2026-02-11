@@ -91,9 +91,3 @@ name = "Privacy Policy"
 url = "privacy-policy/"
 weight = 6
 
-[[footer]]
-name = "Cookie Settings"
-url = "#cookie-settings"
-weight = 7
-[footer.params]
-  onclick = "cookieSettings"

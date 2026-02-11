@@ -51,6 +51,12 @@
       {{ block "main" . }}{{ end }}
     </main>
 
+    {{/* Global Floating Elements — all pages */}}
+    {{ partial "molecules/emergency-banner.html" . }}
+    {{ partial "molecules/back-to-top.html" (dict) }}
+    {{ partial "molecules/cookie-consent.html" (dict) }}
+    {{ partial "molecules/cookie-modal.html" . }}
+
     <!-- Cache footer and scripts with proper keys -->
     {{ if hugo.IsProduction }}
       {{ partialCached "essentials/script.html" . "global-scripts" }}
