@@ -10,6 +10,8 @@ quick_links:
     url: /en/contact/
   - name: Terms & Conditions
     url: /en/terms-and-conditions/
+  - name: Privacy Policy
+    url: /en/privacy-policy/
 cta:
   enable: true
   title: A Personalized Map for Every Journey

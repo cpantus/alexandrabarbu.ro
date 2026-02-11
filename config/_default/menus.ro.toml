@@ -91,4 +91,7 @@ name = "Termeni & Condiții"
 url = "termeni-si-conditii/"
 weight = 5
 
-
+[[footer]]
+name = "Politica de Confidențialitate"
+url = "politica-de-confidentialitate/"
+weight = 6
