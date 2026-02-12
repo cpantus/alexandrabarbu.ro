@@ -29,9 +29,9 @@
 {{ partialCached "custom-script.html" . }}
 
 
-<!-- google analytics -->
-{{ if and site.Config.Services.GoogleAnalytics.ID (ne site.Config.Services.GoogleAnalytics.ID "UA-123456-78") }}
-  {{ template "_internal/google_analytics.html" . }}
+<!-- google analytics (Consent Mode v2 — GDPR compliant) -->
+{{ with site.Params.google_analytics_id }}
+  {{ partial "google-analytics.html" $ }}
 {{ end }}
 
 <!-- google tag manager -->

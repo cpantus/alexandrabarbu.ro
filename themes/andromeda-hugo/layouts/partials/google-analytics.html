@@ -1,0 +1,16 @@
+<!-- GA4 with Google Consent Mode v2 (GDPR compliant) -->
+<!-- Default: analytics_storage denied. Updated to granted via cookie-consent.js -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // Set default consent BEFORE loading gtag.js
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'wait_for_update': 500
+  });
+
+  gtag('js', new Date());
+  gtag('config', '{{ site.Params.google_analytics_id }}');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.Params.google_analytics_id }}"></script>
