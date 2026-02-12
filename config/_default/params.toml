@@ -15,7 +15,7 @@ logo_width = "257px"
 career_form_action = "#"
 
 # Google Analytics 4 (Consent Mode v2 — GDPR compliant)
-google_analytics_id = "G-4Z00Y0LEG"
+google_analytics_id = "G-4Z00Y0LEGL"
 contact_form_action = "https://script.google.com/macros/s/AKfycbyAjHrem6Jyzy2Ilw5AlKHakdCTaDUVs1_E3rwCCZLy-R9AZmQnHfVW2B2tV-4U9fhgyw/exec"
 mainSections = [ "blog" ]
 
