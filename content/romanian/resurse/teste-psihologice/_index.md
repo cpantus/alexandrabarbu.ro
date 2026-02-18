@@ -1,6 +1,6 @@
 ---
 title: "Teste Psihologice"
-description: "Teste și chestionare validate științific pentru auto-evaluare și dezvoltare personală"
+description: "Teste și chestionare validate științific pentru auto-evaluare: GAD-7, PHQ-9, ASRS, CBI, ECR-RS"
 layout: "flexible"
 draft: false
 
@@ -21,7 +21,7 @@ feature_blocks_numbered: true
 hero_breadcrumb:
   title: "Teste Psihologice"
   subtitle: "Teste și chestionare validate științific pentru auto-evaluare"
-  description: "Accesează instrumente profesionale de auto-evaluare folosite în practica clinică - GAD-7, PHQ-9, PSS-10 și multe altele. Aceste teste îți oferă o imagine obiectivă asupra stării tale psihologice și te pot ajuta să decizi dacă ai nevoie de sprijin profesional."
+  description: "Accesează instrumente profesionale de auto-evaluare folosite în practica clinică - GAD-7, PHQ-9, ASRS, CBI și ECR-RS. Aceste teste îți oferă o imagine obiectivă asupra stării tale psihologice și te pot ajuta să decizi dacă ai nevoie de sprijin profesional."
   breadcrumb:
     - name: "Acasă"
       url: "/"
@@ -47,47 +47,40 @@ feature_blocks:
     description: |
       Patient Health Questionnaire-9 este instrumentul standard pentru evaluarea depresiei. Cele 9 întrebări
       evaluează simptomele depresive din ultimele 2 săptămâni. Folosit frecvent în practică clinică.
-      Durată: 2-3 minute.
+      Durată: 3-4 minute.
     image: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&h=600&fit=crop"
     button_text: "Completează Testul"
     button_url: "/resurse/teste-psihologice/phq9/"
 
-  - title: "Scala de Stres Perceput PSS-10"
-    subtitle: "Test de Stres"
+  - title: "Screening ADHD - ASRS v1.1"
+    subtitle: "Screening Validat"
     description: |
-      Perceived Stress Scale evaluează cât de stresant percepi diferite situații din viața ta. Un instrument
-      util pentru a înțelege cum gestionezi stresul și unde ai nevoie de suport. Durată: 3-4 minute.
-    image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&h=600&fit=crop"
+      Adult ADHD Self-Report Scale este un instrument dezvoltat de OMS pentru screeningul ADHD la adulți.
+      Partea A (6 întrebări) funcționează ca screening rapid, iar Partea B (12 întrebări) oferă un profil
+      complet al simptomelor. Durată: 5-7 minute.
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop"
     button_text: "Completează Testul"
-    button_url: "/resurse/teste-psihologice/pss10/"
+    button_url: "/resurse/teste-psihologice/asrs/"
 
-  - title: "Inventarul de Burnout MBI"
+  - title: "Inventarul de Burnout CBI"
     subtitle: "Epuizare Profesională"
     description: |
-      Maslach Burnout Inventory evaluează nivelul de burnout profesional pe trei dimensiuni: epuizare emoțională,
-      depersonalizare și realizare personală. Ideal pentru profesioniști care simt că sunt copleșiți.
-      Durată: 5-7 minute.
+      Copenhagen Burnout Inventory evaluează nivelul de burnout pe trei dimensiuni: burnout personal,
+      burnout legat de muncă și burnout legat de clienți. Un instrument gratuit și validat științific
+      pentru profesioniști care simt că sunt copleșiți. Durată: 5-7 minute.
     image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&q=80"
     button_text: "Completează Testul"
-    button_url: "/resurse/teste-psihologice/mbi/"
+    button_url: "/resurse/teste-psihologice/cbi/"
 
-  - title: "Scala de Autocompasiune SCS"
-    subtitle: "Atitudine față de Sine"
+  - title: "Stilul de Atașament ECR-RS"
+    subtitle: "Relații și Atașament"
     description: |
-      Self-Compassion Scale măsoară cât de compasiv și îngăduitor ești cu tine însuți. Un predictor important
-      al bunăstării psihologice și resilienței. Durată: 5-7 minute.
-    image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80"
+      Experiences in Close Relationships - Relationship Structures evaluează stilul tău de atașament
+      în relații pe două dimensiuni: anxietate și evitare. Descoperă dacă ai un stil de atașament
+      securizant, anxios, evitant sau dezorganizat. Durată: 3-4 minute.
+    image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&q=80"
     button_text: "Completează Testul"
-    button_url: "/resurse/teste-psihologice/scs/"
-
-  - title: "Chestionarul de Abilități Sociale SSI"
-    subtitle: "Competențe Sociale"
-    description: |
-      Social Skills Inventory evaluează abilitățile tale de comunicare, empatie, asertivitate și control emoțional
-      în situații sociale. Util pentru dezvoltarea relațiilor interpersonale. Durată: 8-10 minute.
-    image: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&q=80"
-    button_text: "Completează Testul"
-    button_url: "/resurse/teste-psihologice/ssi/"
+    button_url: "/resurse/teste-psihologice/ecr-rs/"
 
 # CTA Standard Section
 cta_standard:

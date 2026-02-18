@@ -1,6 +1,6 @@
 ---
 title: "Psychological Tests"
-description: "Scientifically validated tests and questionnaires for self-assessment and personal development"
+description: "Scientifically validated tests and questionnaires for self-assessment: GAD-7, PHQ-9, ASRS, CBI, ECR-RS"
 layout: "flexible"
 draft: false
 
@@ -21,7 +21,7 @@ test_index:
 hero_breadcrumb:
   title: "Psychological Tests"
   subtitle: "Scientifically validated tests and questionnaires for self-assessment"
-  description: "Access professional self-assessment tools used in clinical practice - GAD-7, PHQ-9, PSS-10, and many more. These tests provide an objective picture of your psychological state and can help you decide if you need professional support."
+  description: "Access professional self-assessment tools used in clinical practice - GAD-7, PHQ-9, ASRS, CBI, and ECR-RS. These tests provide an objective picture of your psychological state and can help you decide if you need professional support."
   breadcrumb:
     - name: "Home"
       url: "/en/"
@@ -36,8 +36,8 @@ values_intro:
   title: "Scientifically **Validated Tests** for Your Understanding"
   description: |
     We provide access to a collection of scientifically validated psychological tests and questionnaires used by
-    professionals in practice. These tools can help you better understand your level of anxiety, depression, stress
-    or other aspects of your mental health. The tests are informative and educational, they do not represent a
+    professionals in practice. These tools can help you better understand your level of anxiety, depression, ADHD
+    symptoms, burnout, or attachment style. The tests are informative and educational, they do not represent a
     clinical diagnosis.
   button_text: "Explore Tests"
   button_url: "#tests"
@@ -52,38 +52,48 @@ feature_blocks:
       Complete 7 questions to evaluate your anxiety level over the past 2 weeks.
       Duration: 2-3 minutes.
     image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=600&fit=crop"
+    button_text: "Take the Test"
+    button_url: "/en/resources/psychological-tests/gad7/"
+
   - title: "PHQ-9 Depression Scale"
     subtitle: "Clinical Test"
     description: |
       Patient Health Questionnaire-9 is the standard instrument for depression assessment. The 9 questions
       evaluate depressive symptoms over the past 2 weeks. Frequently used in clinical practice.
-      Duration: 2-3 minutes.
+      Duration: 3-4 minutes.
     image: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&h=600&fit=crop"
-  - title: "PSS-10 Perceived Stress Scale"
-    subtitle: "Stress Test"
+    button_text: "Take the Test"
+    button_url: "/en/resources/psychological-tests/phq9/"
+
+  - title: "ADHD Screening - ASRS v1.1"
+    subtitle: "Validated Screening"
     description: |
-      Perceived Stress Scale evaluates how stressful you perceive different situations in your life. A useful
-      instrument to understand how you manage stress and where you need support. Duration: 3-4 minutes.
-    image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&h=600&fit=crop"
-  - title: "MBI Burnout Inventory"
+      Adult ADHD Self-Report Scale is an instrument developed by the WHO for screening ADHD in adults.
+      Part A (6 questions) serves as a quick screener, while Part B (12 questions) provides a complete
+      symptom profile. Duration: 5-7 minutes.
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop"
+    button_text: "Take the Test"
+    button_url: "/en/resources/psychological-tests/asrs/"
+
+  - title: "CBI Burnout Inventory"
     subtitle: "Professional Exhaustion"
     description: |
-      Maslach Burnout Inventory evaluates the level of professional burnout on three dimensions: emotional exhaustion,
-      depersonalization and personal accomplishment. Ideal for professionals who feel overwhelmed.
-      Duration: 5-7 minutes.
+      Copenhagen Burnout Inventory evaluates the level of burnout on three dimensions: personal burnout,
+      work-related burnout, and client-related burnout. A free and scientifically validated instrument
+      for professionals who feel overwhelmed. Duration: 5-7 minutes.
     image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&q=80"
-  - title: "SCS Self-Compassion Scale"
-    subtitle: "Attitude towards Self"
+    button_text: "Take the Test"
+    button_url: "/en/resources/psychological-tests/cbi/"
+
+  - title: "ECR-RS Attachment Style"
+    subtitle: "Relationships & Attachment"
     description: |
-      Self-Compassion Scale measures how compassionate and forgiving you are with yourself. An important predictor
-      of psychological wellbeing and resilience. Duration: 5-7 minutes.
-    image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80"
-  - title: "SSI Social Skills Questionnaire"
-    subtitle: "Social Competencies"
-    description: |
-      Social Skills Inventory evaluates your communication skills, empathy, assertiveness and emotional control
-      in social situations. Useful for developing interpersonal relationships. Duration: 8-10 minutes.
-    image: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&q=80"
+      Experiences in Close Relationships - Relationship Structures evaluates your attachment style
+      in relationships on two dimensions: anxiety and avoidance. Discover whether you have a secure,
+      anxious, avoidant, or disorganized attachment style. Duration: 3-4 minutes.
+    image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&q=80"
+    button_text: "Take the Test"
+    button_url: "/en/resources/psychological-tests/ecr-rs/"
 
 # FAQ Mini Section
 faq_mini:

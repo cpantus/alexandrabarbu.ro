@@ -121,6 +121,7 @@
 @import 'feature-blocks';          // ✅ Phase 3: BEM refactored with legacy compat
 @import 'pricing';                 // ✅ Phase 3: BEM refactored with legacy compat
 @import 'test-index';              // ✅ 2025-11-27: Scannable test index section for psychological tests page
+@import 'assessment';              // ✅ 2026-02-18: Interactive self-assessment questionnaire UI (GAD-7, PHQ-9, ASRS, CBI, ECR-RS)
 @import '404';                     // ✅ 2025-12-01: Custom 404 error page with compass animation
 
 // Section Components (TODO Phase 3: BEM refactoring - Future)

@@ -1,0 +1,314 @@
+// ==================================
+// COMPONENT: Assessment App
+// ==================================
+// Purpose: Interactive self-assessment questionnaire UI
+// Uses: Alpine.js wizard-style flow with progress bar
+// BEM Block: .c-assessment
+
+.c-assessment {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0;
+
+  // Progress bar
+  &__progress {
+    background: var(--color-gray-200, #e5e7eb);
+    border-radius: 999px;
+    height: 8px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+
+  &__progress-bar {
+    height: 100%;
+    background: var(--color-primary, #4a7c59);
+    border-radius: 999px;
+    transition: width 0.4s ease;
+  }
+
+  // Question card
+  &__question {
+    background: var(--color-white, #fff);
+    border: 1px solid var(--color-gray-200, #e5e7eb);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+
+  &__question-number {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary, #4a7c59);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  &__question-text {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--color-gray-900, #111827);
+    margin-bottom: 1.5rem;
+  }
+
+  // Answer options
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 1.125rem;
+    border: 2px solid var(--color-gray-200, #e5e7eb);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: var(--color-white, #fff);
+
+    &:hover {
+      border-color: var(--color-primary, #4a7c59);
+      background: rgba(74, 124, 89, 0.04);
+    }
+
+    &--selected {
+      border-color: var(--color-primary, #4a7c59);
+      background: rgba(74, 124, 89, 0.08);
+    }
+  }
+
+  &__option-radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-gray-300, #d1d5db);
+    border-radius: 50%;
+    margin-right: 0.875rem;
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.2s ease;
+
+    .c-assessment__option--selected & {
+      border-color: var(--color-primary, #4a7c59);
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 10px;
+        height: 10px;
+        background: var(--color-primary, #4a7c59);
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &__option-label {
+    font-size: 0.95rem;
+    color: var(--color-gray-700, #374151);
+    line-height: 1.4;
+  }
+
+  // Navigation buttons
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 1rem;
+  }
+
+  &__btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+
+    &--primary {
+      background: var(--color-primary, #4a7c59);
+      color: #fff;
+
+      &:hover:not(:disabled) {
+        background: var(--color-primary-dark, #3d6849);
+        transform: translateY(-1px);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+
+    &--secondary {
+      background: transparent;
+      color: var(--color-gray-600, #4b5563);
+      border: 1px solid var(--color-gray-300, #d1d5db);
+
+      &:hover {
+        background: var(--color-gray-50, #f9fafb);
+      }
+    }
+  }
+
+  &__counter {
+    font-size: 0.85rem;
+    color: var(--color-gray-500, #6b7280);
+    text-align: center;
+  }
+
+  // Results section
+  &__results {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  &__score-display {
+    margin: 2rem 0;
+  }
+
+  &__score-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  &__score-max {
+    font-size: 1rem;
+    color: var(--color-gray-500, #6b7280);
+    margin-bottom: 1rem;
+  }
+
+  &__severity {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+
+    &--minimal {
+      background: #22c55e;
+    }
+
+    &--mild {
+      background: #84cc16;
+    }
+
+    &--moderate {
+      background: #eab308;
+      color: #1a1a1a;
+    }
+
+    &--moderate-severe {
+      background: #f97316;
+    }
+
+    &--severe {
+      background: #ef4444;
+    }
+  }
+
+  &__interpretation {
+    max-width: 560px;
+    margin: 1.5rem auto;
+    text-align: left;
+    background: var(--color-gray-50, #f9fafb);
+    border-radius: 12px;
+    padding: 1.5rem;
+    line-height: 1.6;
+    color: var(--color-gray-700, #374151);
+  }
+
+  &__subscales {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__subscale {
+    background: var(--color-white, #fff);
+    border: 1px solid var(--color-gray-200, #e5e7eb);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  &__subscale-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-gray-500, #6b7280);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+
+  &__subscale-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-gray-900, #111827);
+  }
+
+  // Disclaimer
+  &__disclaimer {
+    margin-top: 2rem;
+    padding: 1.25rem;
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #92400e;
+  }
+
+  // CTA
+  &__cta {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  &__cta-link {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background: var(--color-primary, #4a7c59);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: var(--color-primary-dark, #3d6849);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+  }
+
+  // Restart button
+  &__restart {
+    margin-top: 1rem;
+    background: transparent;
+    border: 1px solid var(--color-gray-300, #d1d5db);
+    color: var(--color-gray-600, #4b5563);
+    padding: 0.625rem 1.25rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+
+    &:hover {
+      background: var(--color-gray-50, #f9fafb);
+    }
+  }
+}
