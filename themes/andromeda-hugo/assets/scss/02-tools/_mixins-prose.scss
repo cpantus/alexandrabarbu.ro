@@ -54,7 +54,7 @@
   }
 
   // Links - exclude buttons, nav links, footer links, and other styled components
-  a:not(.c-button):not(.btn):not([class*="btn-"]):not(.c-nav__link):not(.c-footer__link):not(.c-footer-nav__link):not(.c-footer-info__logo-link):not([class*="c-social"]) {
+  a:not(.c-button):not(.btn):not([class*="btn-"]):not(.c-nav__link):not(.c-footer__link):not(.c-footer-nav__link):not(.c-footer-info__logo-link):not([class*="c-social"]):not([class*="c-assessment"]) {
     color: $color-forest-500;
     text-decoration: underline;
     text-decoration-color: $color-sage-300;
