@@ -47,7 +47,6 @@ draft: false
       <div class="c-assessment__score-display">
         <span class="c-assessment__score-value" x-text="attachmentStyle"></span>
       </div>
-
       <div class="c-assessment__subscales">
         <div class="c-assessment__subscale">
           <span class="c-assessment__subscale-label">Evitare</span>
@@ -64,9 +63,7 @@ draft: false
           <span x-text="anxietyScore < 3.5 ? 'Scăzut' : 'Ridicat'"></span>
         </div>
       </div>
-
       <div class="c-assessment__interpretation" x-html="interpretation"></div>
-
       <div class="c-assessment__disclaimer">
         ⚠️ Acest rezultat este orientativ. Stilul de atașament nu este fix — poate evolua prin experiențe de viață și terapie. Pentru o înțelegere completă a tiparelor tale relaționale, consultă un psiholog.
       </div>

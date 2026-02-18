@@ -52,7 +52,6 @@ draft: false
         <div :class="'c-assessment__severity--' + personalSeverity" style="margin-bottom: 1rem;">
           <span x-text="personalLabel"></span>
         </div>
-
         <div class="c-assessment__subscale">
           <span class="c-assessment__subscale-label">Work-Related Burnout</span>
           <span class="c-assessment__subscale-value" x-text="workScore.toFixed(0) + ' / 100'"></span>
@@ -60,7 +59,6 @@ draft: false
         <div :class="'c-assessment__severity--' + workSeverity" style="margin-bottom: 1rem;">
           <span x-text="workLabel"></span>
         </div>
-
         <div class="c-assessment__subscale">
           <span class="c-assessment__subscale-label">Client/Patient-Related Burnout</span>
           <span class="c-assessment__subscale-value" x-text="clientScore.toFixed(0) + ' / 100'"></span>
@@ -69,9 +67,7 @@ draft: false
           <span x-text="clientLabel"></span>
         </div>
       </div>
-
       <div class="c-assessment__interpretation" x-html="interpretation"></div>
-
       <div class="c-assessment__disclaimer">
         ⚠️ This result is indicative and does not constitute a diagnosis. Burnout is a complex phenomenon that requires professional assessment for effective management. If your scores are moderate or high, please consult a specialist.
       </div>

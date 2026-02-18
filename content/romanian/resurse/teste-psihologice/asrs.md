@@ -52,7 +52,6 @@ draft: false
         <span x-text="severityLabel"></span>
       </div>
       <div class="c-assessment__interpretation" x-html="interpretation"></div>
-
       <div class="c-assessment__subscales">
         <h4>Profil Simptomatic (Partea B)</h4>
         <div class="c-assessment__subscale">
@@ -64,7 +63,6 @@ draft: false
           <span class="c-assessment__subscale-value" x-text="hyperAvg.toFixed(1) + ' / 4'"></span>
         </div>
       </div>
-
       <div class="c-assessment__disclaimer">
         ⚠️ Acest rezultat este orientativ și nu constituie un diagnostic. ADHD necesită o evaluare completă de către un specialist. Rezultatele screening-ului indică doar dacă o evaluare suplimentară este recomandată.
       </div>

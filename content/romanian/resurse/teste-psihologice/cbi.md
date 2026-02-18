@@ -52,7 +52,6 @@ draft: false
         <div :class="'c-assessment__severity--' + personalSeverity" style="margin-bottom: 1rem;">
           <span x-text="personalLabel"></span>
         </div>
-
         <div class="c-assessment__subscale">
           <span class="c-assessment__subscale-label">Burnout Profesional</span>
           <span class="c-assessment__subscale-value" x-text="workScore.toFixed(0) + ' / 100'"></span>
@@ -60,7 +59,6 @@ draft: false
         <div :class="'c-assessment__severity--' + workSeverity" style="margin-bottom: 1rem;">
           <span x-text="workLabel"></span>
         </div>
-
         <div class="c-assessment__subscale">
           <span class="c-assessment__subscale-label">Burnout legat de Clienți/Pacienți</span>
           <span class="c-assessment__subscale-value" x-text="clientScore.toFixed(0) + ' / 100'"></span>
@@ -69,9 +67,7 @@ draft: false
           <span x-text="clientLabel"></span>
         </div>
       </div>
-
       <div class="c-assessment__interpretation" x-html="interpretation"></div>
-
       <div class="c-assessment__disclaimer">
         ⚠️ Acest rezultat este orientativ și nu constituie un diagnostic. Burnout-ul este un fenomen complex care necesită o evaluare profesională pentru a fi abordat eficient. Dacă scorurile tale sunt moderate sau ridicate, consultă un specialist.
       </div>

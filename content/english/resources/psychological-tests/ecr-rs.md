@@ -47,7 +47,6 @@ draft: false
       <div class="c-assessment__score-display">
         <span class="c-assessment__score-value" x-text="attachmentStyle"></span>
       </div>
-
       <div class="c-assessment__subscales">
         <div class="c-assessment__subscale">
           <span class="c-assessment__subscale-label">Avoidance</span>
@@ -64,9 +63,7 @@ draft: false
           <span x-text="anxietyScore < 3.5 ? 'Low' : 'High'"></span>
         </div>
       </div>
-
       <div class="c-assessment__interpretation" x-html="interpretation"></div>
-
       <div class="c-assessment__disclaimer">
         ⚠️ This result is indicative. Attachment style is not fixed — it can evolve through life experiences and therapy. For a complete understanding of your relational patterns, please consult a psychologist.
       </div>

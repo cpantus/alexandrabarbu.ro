@@ -52,7 +52,6 @@ draft: false
         <span x-text="severityLabel"></span>
       </div>
       <div class="c-assessment__interpretation" x-html="interpretation"></div>
-
       <div class="c-assessment__subscales">
         <h4>Symptom Profile (Part B)</h4>
         <div class="c-assessment__subscale">
@@ -64,7 +63,6 @@ draft: false
           <span class="c-assessment__subscale-value" x-text="hyperAvg.toFixed(1) + ' / 4'"></span>
         </div>
       </div>
-
       <div class="c-assessment__disclaimer">
         ⚠️ This result is indicative and does not constitute a diagnosis. ADHD requires a comprehensive evaluation by a specialist. Screening results only indicate whether further assessment is recommended.
       </div>
