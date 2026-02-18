@@ -145,7 +145,7 @@
   }
 
   // Links
-  a:not(.c-tag) {
+  a:not(.c-tag):not(.c-button) {
     color: $color-forest-500;
     text-decoration: underline;
     text-decoration-color: $color-sage-300;
