@@ -68,18 +68,6 @@
     position: relative;
     overflow: hidden;
 
-    // Gold accent left border
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 20px;
-      bottom: 20px;
-      width: 3px;
-      background: linear-gradient(180deg, $gold-400, $gold-600);
-      border-radius: 0 $radius-xs $radius-xs 0;
-    }
-
     @media (max-width: $breakpoint-md - 1) {
       padding: 1.75rem 1.5rem;
       border-radius: $radius-xl;
@@ -453,16 +441,15 @@
   // Disclaimer (amber warning style)
   // ----------------------------------
   &__disclaimer {
-    margin: 2rem auto 0;
+    margin: 1.75rem auto 0;
     max-width: 580px;
-    padding: 1.125rem 1.375rem;
+    padding: 1rem 1.25rem;
     background: $amber-50;
     border: 1px solid $amber-200;
-    border-left: 4px solid $amber-400;
-    border-radius: 4px $radius-sm $radius-sm 4px;
+    border-radius: $radius-sm;
     font-family: $font-family-sans;
     font-size: 0.8rem;
-    line-height: 1.65;
+    line-height: 1.6;
     color: $amber-800;
     text-align: left;
   }
@@ -494,6 +481,7 @@
       transform: translateY(-2px);
       box-shadow: 0 10px 28px -5px rgba($forest-500, 0.45);
       color: $cream-50 !important;
+      text-decoration: none !important;
     }
 
     &:active {

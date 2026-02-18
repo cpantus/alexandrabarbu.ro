@@ -53,7 +53,7 @@ draft: false
         ⚠️ This result is indicative and does not constitute a diagnosis. For a complete evaluation, please consult a mental health professional.
       </div>
       <div class="c-assessment__cta">
-        <a href="/en/contact/" class="c-assessment__cta-link">Schedule a Consultation</a>
+        <a href="https://cal.com/alexandra-barbu-ras8xc/50min" class="c-assessment__cta-link">Schedule a Consultation</a>
       </div>
       <button class="c-assessment__restart" @click="restart()">Retake the Test</button>
   </div>

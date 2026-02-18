@@ -64,7 +64,7 @@ draft: false
         ⚠️ Acest rezultat este orientativ și nu constituie un diagnostic. ADHD necesită o evaluare completă de către un specialist. Rezultatele screening-ului indică doar dacă o evaluare suplimentară este recomandată.
       </div>
       <div class="c-assessment__cta">
-        <a href="/contact/" class="c-assessment__cta-link">Programează o Consultație</a>
+        <a href="https://cal.com/alexandra-barbu-ras8xc/50min" class="c-assessment__cta-link">Programează o Consultație</a>
       </div>
       <button class="c-assessment__restart" @click="restart()">Reia Testul</button>
   </div>

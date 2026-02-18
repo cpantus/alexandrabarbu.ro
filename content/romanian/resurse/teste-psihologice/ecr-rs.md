@@ -65,7 +65,7 @@ draft: false
         ⚠️ Acest rezultat este orientativ. Stilul de atașament nu este fix — poate evolua prin experiențe de viață și terapie. Pentru o înțelegere completă a tiparelor tale relaționale, consultă un psiholog.
       </div>
       <div class="c-assessment__cta">
-        <a href="/contact/" class="c-assessment__cta-link">Programează o Consultație</a>
+        <a href="https://cal.com/alexandra-barbu-ras8xc/50min" class="c-assessment__cta-link">Programează o Consultație</a>
       </div>
       <button class="c-assessment__restart" @click="restart()">Reia Testul</button>
   </div>

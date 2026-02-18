@@ -69,7 +69,7 @@ draft: false
         ⚠️ Acest rezultat este orientativ și nu constituie un diagnostic. Burnout-ul este un fenomen complex care necesită o evaluare profesională pentru a fi abordat eficient. Dacă scorurile tale sunt moderate sau ridicate, consultă un specialist.
       </div>
       <div class="c-assessment__cta">
-        <a href="/contact/" class="c-assessment__cta-link">Programează o Consultație</a>
+        <a href="https://cal.com/alexandra-barbu-ras8xc/50min" class="c-assessment__cta-link">Programează o Consultație</a>
       </div>
       <button class="c-assessment__restart" @click="restart()">Reia Testul</button>
   </div>
