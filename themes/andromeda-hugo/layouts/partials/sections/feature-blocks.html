@@ -128,6 +128,13 @@
               {{- end -}}
             </ul>
           {{- end -}}
+
+          {{/* Optional CTA Button */}}
+          {{- if and $item.button_text $item.button_url -}}
+            <div class="c-feature-blocks__cta">
+              <a href="{{ $item.button_url }}" class="c-btn c-btn--primary">{{ $item.button_text }}</a>
+            </div>
+          {{- end -}}
         </div>
 
         {{/* Image Side */}}
