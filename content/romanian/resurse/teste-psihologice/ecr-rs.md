@@ -16,8 +16,7 @@ draft: false
     <div class="c-assessment__progress-bar" :style="'width:' + progress + '%'"></div>
   </div>
 
-  <template x-if="!showResults">
-    <div>
+  <div x-show="!showResults">
       <div class="c-assessment__question">
         <div class="c-assessment__question-number" x-text="'Întrebarea ' + (currentIndex + 1) + ' din ' + questions.length"></div>
         <div class="c-assessment__question-text" x-text="questions[currentIndex].text"></div>
@@ -39,11 +38,9 @@ draft: false
           <span x-text="currentIndex === questions.length - 1 ? 'Vezi Rezultatele' : 'Următoarea'"></span>
         </button>
       </div>
-    </div>
-  </template>
+  </div>
 
-  <template x-if="showResults">
-    <div class="c-assessment__results">
+  <div x-show="showResults" class="c-assessment__results">
       <div class="c-assessment__score-display">
         <span class="c-assessment__score-value" x-text="attachmentStyle"></span>
       </div>
@@ -71,8 +68,7 @@ draft: false
         <a href="/contact/" class="c-assessment__cta-link">Programează o Consultație</a>
       </div>
       <button class="c-assessment__restart" @click="restart()">Reia Testul</button>
-    </div>
-  </template>
+  </div>
 </div>
 
 <script>

@@ -16,11 +16,9 @@ draft: false
     <div class="c-assessment__progress-bar" :style="'width:' + progress + '%'"></div>
   </div>
 
-  <template x-if="!showResults">
-    <div>
+  <div x-show="!showResults">
       <div class="c-assessment__question">
-        <template x-if="!showFunctional">
-          <div>
+        <div x-show="!showFunctional">
             <div class="c-assessment__question-number" x-text="'Question ' + (currentIndex + 1) + ' of ' + questions.length"></div>
             <div class="c-assessment__question-text" x-text="'Over the last 2 weeks, how often have you been bothered by: ' + questions[currentIndex].text"></div>
             <div class="c-assessment__options">
@@ -33,10 +31,8 @@ draft: false
                 </div>
               </template>
             </div>
-          </div>
-        </template>
-        <template x-if="showFunctional">
-          <div>
+        </div>
+        <div x-show="showFunctional">
             <div class="c-assessment__question-number">Additional Question</div>
             <div class="c-assessment__question-text">If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?</div>
             <div class="c-assessment__options">
@@ -49,8 +45,7 @@ draft: false
                 </div>
               </template>
             </div>
-          </div>
-        </template>
+        </div>
       </div>
       <div class="c-assessment__nav">
         <button class="c-assessment__btn c-assessment__btn--secondary" @click="showFunctional ? backFromFunctional() : prev()" x-show="currentIndex > 0 || showFunctional">Back</button>
@@ -61,11 +56,9 @@ draft: false
           <span x-text="showFunctional ? 'See Results' : (currentIndex === questions.length - 1 ? 'Continue' : 'Next')"></span>
         </button>
       </div>
-    </div>
-  </template>
+  </div>
 
-  <template x-if="showResults">
-    <div class="c-assessment__results">
+  <div x-show="showResults" class="c-assessment__results">
       <div class="c-assessment__score-display">
         <span class="c-assessment__score-value" x-text="score"></span>
         <span class="c-assessment__score-max">/ 27</span>
@@ -74,9 +67,7 @@ draft: false
         <span x-text="severityLabel"></span>
       </div>
       <div class="c-assessment__interpretation" x-html="interpretation"></div>
-      <template x-if="functionalText">
-        <div class="c-assessment__interpretation" x-html="functionalText"></div>
-      </template>
+      <div x-show="functionalText" class="c-assessment__interpretation" x-html="functionalText"></div>
       <div class="c-assessment__disclaimer">
         ⚠️ This result is indicative and does not constitute a diagnosis. For a complete evaluation, please consult a mental health professional. If you are having thoughts of self-harm, please contact emergency services immediately.
       </div>
@@ -84,8 +75,7 @@ draft: false
         <a href="/en/contact/" class="c-assessment__cta-link">Schedule a Consultation</a>
       </div>
       <button class="c-assessment__restart" @click="restart()">Retake the Test</button>
-    </div>
-  </template>
+  </div>
 </div>
 
 <script>

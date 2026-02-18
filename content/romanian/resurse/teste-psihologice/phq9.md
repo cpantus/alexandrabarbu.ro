@@ -16,11 +16,9 @@ draft: false
     <div class="c-assessment__progress-bar" :style="'width:' + progress + '%'"></div>
   </div>
 
-  <template x-if="!showResults">
-    <div>
+  <div x-show="!showResults">
       <div class="c-assessment__question">
-        <template x-if="!showFunctional">
-          <div>
+        <div x-show="!showFunctional">
             <div class="c-assessment__question-number" x-text="'Întrebarea ' + (currentIndex + 1) + ' din ' + questions.length"></div>
             <div class="c-assessment__question-text" x-text="'În ultimele 2 săptămâni, cât de des ai fost deranjat(ă) de: ' + questions[currentIndex].text"></div>
             <div class="c-assessment__options">
@@ -33,10 +31,8 @@ draft: false
                 </div>
               </template>
             </div>
-          </div>
-        </template>
-        <template x-if="showFunctional">
-          <div>
+        </div>
+        <div x-show="showFunctional">
             <div class="c-assessment__question-number">Întrebare suplimentară</div>
             <div class="c-assessment__question-text">Dacă ai bifat oricare dintre probleme, cât de dificil ți-au făcut ele munca, treburile casnice sau relațiile cu alte persoane?</div>
             <div class="c-assessment__options">
@@ -49,8 +45,7 @@ draft: false
                 </div>
               </template>
             </div>
-          </div>
-        </template>
+        </div>
       </div>
       <div class="c-assessment__nav">
         <button class="c-assessment__btn c-assessment__btn--secondary" @click="showFunctional ? backFromFunctional() : prev()" x-show="currentIndex > 0 || showFunctional">Înapoi</button>
@@ -61,11 +56,9 @@ draft: false
           <span x-text="showFunctional ? 'Vezi Rezultatele' : (currentIndex === questions.length - 1 ? 'Continuă' : 'Următoarea')"></span>
         </button>
       </div>
-    </div>
-  </template>
+  </div>
 
-  <template x-if="showResults">
-    <div class="c-assessment__results">
+  <div x-show="showResults" class="c-assessment__results">
       <div class="c-assessment__score-display">
         <span class="c-assessment__score-value" x-text="score"></span>
         <span class="c-assessment__score-max">/ 27</span>
@@ -74,9 +67,7 @@ draft: false
         <span x-text="severityLabel"></span>
       </div>
       <div class="c-assessment__interpretation" x-html="interpretation"></div>
-      <template x-if="functionalText">
-        <div class="c-assessment__interpretation" x-html="functionalText"></div>
-      </template>
+      <div x-show="functionalText" class="c-assessment__interpretation" x-html="functionalText"></div>
       <div class="c-assessment__disclaimer">
         ⚠️ Acest rezultat este orientativ și nu constituie un diagnostic. Pentru o evaluare completă, consultă un specialist în sănătate mintală. Dacă ai gânduri de auto-vătămare, contactează imediat un serviciu de urgență.
       </div>
@@ -84,8 +75,7 @@ draft: false
         <a href="/contact/" class="c-assessment__cta-link">Programează o Consultație</a>
       </div>
       <button class="c-assessment__restart" @click="restart()">Reia Testul</button>
-    </div>
-  </template>
+  </div>
 </div>
 
 <script>

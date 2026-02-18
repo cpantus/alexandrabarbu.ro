@@ -16,8 +16,7 @@ draft: false
     <div class="c-assessment__progress-bar" :style="'width:' + progress + '%'"></div>
   </div>
 
-  <template x-if="!showResults">
-    <div>
+  <div x-show="!showResults">
       <div class="c-assessment__question">
         <div class="c-assessment__question-number" x-text="(currentIndex < 6 ? 'Part A — ' : 'Part B — ') + 'Question ' + (currentIndex + 1) + ' of ' + questions.length"></div>
         <div class="c-assessment__question-text" x-text="questions[currentIndex].text"></div>
@@ -39,11 +38,9 @@ draft: false
           <span x-text="currentIndex === questions.length - 1 ? 'See Results' : 'Next'"></span>
         </button>
       </div>
-    </div>
-  </template>
+  </div>
 
-  <template x-if="showResults">
-    <div class="c-assessment__results">
+  <div x-show="showResults" class="c-assessment__results">
       <div class="c-assessment__score-display">
         <span class="c-assessment__score-value" x-text="partAPositive"></span>
         <span class="c-assessment__score-max">/ 6 positive (Part A)</span>
@@ -70,8 +67,7 @@ draft: false
         <a href="/en/contact/" class="c-assessment__cta-link">Schedule a Consultation</a>
       </div>
       <button class="c-assessment__restart" @click="restart()">Retake the Test</button>
-    </div>
-  </template>
+  </div>
 </div>
 
 <script>
