@@ -53,7 +53,7 @@ draft: false
         ⚠️ Acest rezultat este orientativ și nu constituie un diagnostic. Pentru o evaluare completă, consultă un specialist în sănătate mintală.
       </div>
       <div class="c-assessment__cta">
-        <a href="https://cal.com/alexandra-barbu-ras8xc/50min" class="c-assessment__cta-link">Programează o Consultație</a>
+        <a href="https://cal.com/alexandra-barbu-ras8xc/50min" class="c-button c-button--primary">Programează o Consultație</a>
       </div>
       <button class="c-assessment__restart" @click="restart()">Reia Testul</button>
   </div>

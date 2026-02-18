@@ -65,7 +65,7 @@ draft: false
         ⚠️ This result is indicative. Attachment style is not fixed — it can evolve through life experiences and therapy. For a complete understanding of your relational patterns, please consult a psychologist.
       </div>
       <div class="c-assessment__cta">
-        <a href="https://cal.com/alexandra-barbu-ras8xc/50min" class="c-assessment__cta-link">Schedule a Consultation</a>
+        <a href="https://cal.com/alexandra-barbu-ras8xc/50min" class="c-button c-button--primary">Schedule a Consultation</a>
       </div>
       <button class="c-assessment__restart" @click="restart()">Retake the Test</button>
   </div>

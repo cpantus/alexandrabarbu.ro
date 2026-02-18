@@ -462,33 +462,8 @@
     text-align: center;
   }
 
-  &__cta-link {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    background: linear-gradient(135deg, $forest-500 0%, $forest-600 100%);
-    color: $cream-50 !important;
-    text-decoration: none !important;
-    border-radius: $radius-md;
-    font-family: $font-family-sans;
-    font-weight: 600;
-    font-size: 1rem;
-    letter-spacing: 0.01em;
-    transition: all 0.3s $ease-in-out;
-    box-shadow: 0 6px 20px -4px rgba($forest-500, 0.4);
-
-    &:hover {
-      background: linear-gradient(135deg, $forest-600 0%, $forest-700 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 28px -5px rgba($forest-500, 0.45);
-      color: $cream-50 !important;
-      text-decoration: none !important;
-    }
-
-    &:active {
-      transform: translateY(0);
-      box-shadow: 0 3px 12px -3px rgba($forest-500, 0.4);
-    }
-  }
+  // CTA uses site's .c-button.c-button--primary component
+  // (excluded from article/prose link underline rules)
 
   // ----------------------------------
   // Restart Button

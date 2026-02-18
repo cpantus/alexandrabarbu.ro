@@ -145,7 +145,7 @@
   }
 
   // Links
-  a:not(.c-tag):not([class*="c-assessment"]) {
+  a:not(.c-tag) {
     color: $color-forest-500;
     text-decoration: underline;
     text-decoration-color: $color-sage-300;

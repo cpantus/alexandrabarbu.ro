@@ -69,7 +69,7 @@ draft: false
         ⚠️ This result is indicative and does not constitute a diagnosis. Burnout is a complex phenomenon that requires professional assessment for effective management. If your scores are moderate or high, please consult a specialist.
       </div>
       <div class="c-assessment__cta">
-        <a href="https://cal.com/alexandra-barbu-ras8xc/50min" class="c-assessment__cta-link">Schedule a Consultation</a>
+        <a href="https://cal.com/alexandra-barbu-ras8xc/50min" class="c-button c-button--primary">Schedule a Consultation</a>
       </div>
       <button class="c-assessment__restart" @click="restart()">Retake the Test</button>
   </div>
