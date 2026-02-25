@@ -1,12 +1,17 @@
 ---
-title: "What Is Psychological Trauma and How It Affects Us"
-description: "A comprehensive guide to psychological trauma, its mechanisms, and the path to healing"
+title: What Is Psychological Trauma and How It Affects Us
+description: A comprehensive guide to psychological trauma, its mechanisms, and the path to healing
 date: 2026-02-09
-author: "Psychologist Alexandra Barbu"
-categories: ["trauma"]
-tags: ["psychological trauma", "trauma response", "healing", "mental health"]
-image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800"
-readTime: "11 min read"
+author: Psychologist Alexandra Barbu
+categories:
+  - trauma
+tags:
+  - psychological trauma
+  - trauma response
+  - healing
+  - mental health
+image: /images/Trauma.png
+readTime: 11 min read
 draft: false
 ---
 
@@ -29,7 +34,9 @@ Research by van der Kolk (2014) and Porges (2011) demonstrates that trauma alter
 ## Types of Traumatic Experiences
 
 ### Acute trauma (Type I)
+
 A single event with major impact:
+
 - Serious accidents
 - Natural disasters
 - Physical or sexual assault
@@ -37,7 +44,9 @@ A single event with major impact:
 - Witnessing violence
 
 ### Chronic trauma (Type II)
+
 Repeated, prolonged experiences:
+
 - Repeated physical, emotional, or sexual abuse
 - Childhood neglect
 - Domestic violence
@@ -45,7 +54,9 @@ Repeated, prolonged experiences:
 - Persistent harassment
 
 ### Complex trauma
+
 A special category of chronic trauma, usually with onset in childhood, within attachment relationships:
+
 - Abuse by attachment figures (parents, caregivers)
 - Chronic emotional neglect
 - Unstable or unpredictable family environment
@@ -82,18 +93,21 @@ Neuroimaging research by Shin et al. (2006) shows that during traumatic flashbac
 ## Symptoms of Trauma
 
 ### Re-experiencing
+
 - Flashbacks (reliving the event as if it were happening now)
 - Recurring nightmares
 - Intense physical reactions to stimuli reminiscent of the trauma
 - Intrusive, unwanted thoughts
 
 ### Avoidance
+
 - Avoiding places, people, or activities associated with the trauma
 - Emotional numbness or detachment
 - Difficulty discussing the experience
 - Avoiding thoughts or feelings related to the event
 
 ### Hyperarousal
+
 - Sleep difficulties
 - Irritability or outbursts of anger
 - Concentration difficulties
@@ -101,6 +115,7 @@ Neuroimaging research by Shin et al. (2006) shows that during traumatic flashbac
 - Exaggerated startle response
 
 ### Cognitive and emotional changes
+
 - Negative beliefs about oneself ("I am broken," "the world is dangerous")
 - Excessive guilt or shame
 - Loss of interest in activities
@@ -131,6 +146,7 @@ Not everyone who experiences potentially traumatic events develops disorders. Se
 ## When to Seek Professional Help
 
 {{< callout type="warning" title="Signs it's time to consult a specialist" >}}
+
 - Symptoms persist for more than one month after the traumatic event
 - Daily functioning (work, relationships, activities) is significantly affected
 - You use alcohol, substances, or risky behaviors to cope
@@ -149,6 +165,6 @@ Trauma is an invisible wound, but its effects are profoundly real. Understanding
 Trauma does not define who you are. It is something that happened to you — not something you are. And healing is possible, at any age and at any stage of life.
 {{< /pullquote >}}
 
----
+***
 
 _This article provides educational information and does not replace consultation with a mental health professional. If you are experiencing persistent difficulties, I encourage you to schedule a consultation._
