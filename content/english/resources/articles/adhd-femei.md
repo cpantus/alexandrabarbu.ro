@@ -1,12 +1,17 @@
 ---
 title: "ADHD in Women: Why It's Underdiagnosed and What You Need to Know"
-description: "Why ADHD in women is often overlooked and how it presents differently than in men."
+description: Why ADHD in women is often overlooked and how it presents differently than in men.
 date: 2026-01-27
-author: "Psychologist Alexandra Barbu"
-categories: ["adhd"]
-tags: ["ADHD", "women", "diagnosis", "mental health"]
-image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800"
-readTime: "10 min read"
+author: Psychologist Alexandra Barbu
+categories:
+  - adhd
+tags:
+  - ADHD
+  - women
+  - diagnosis
+  - mental health
+image: /images/ADHDW.png
+readTime: 10 min read
 draft: false
 ---
 
@@ -31,6 +36,7 @@ Early ADHD studies (1970s-1990s) predominantly included boys, creating diagnosti
 Women with ADHD often develop sophisticated masking strategies:
 
 {{< callout type="info" title="What masking looks like" >}}
+
 - **Double effort:** Expending twice as much effort as peers for the same results
 - **Compensatory hyper-organization:** Obsessive lists, elaborate systems that consume enormous energy
 - **Perfectionism:** Impossibly high standards to compensate for feelings of inadequacy
@@ -40,7 +46,7 @@ Women with ADHD often develop sophisticated masking strategies:
 The result: they appear to cope on the outside; on the inside, they are exhausted.
 {{< /callout >}}
 
----
+***
 
 ## How ADHD Presents in Women
 
@@ -49,6 +55,7 @@ The result: they appear to cope on the outside; on the inside, they are exhauste
 Although diagnostic criteria are the same, the presentation differs significantly:
 
 **Inattention (primary presentation):**
+
 - Difficulty following long conversations or meetings
 - Tendency to daydream (mind wandering)
 - Frequent forgetfulness (keys, phone, appointments, deadlines)
@@ -56,12 +63,14 @@ Although diagnostic criteria are the same, the presentation differs significantl
 - The sensation of "brain fog" — thinking feels clouded
 
 **Emotional regulation:**
+
 - Intense emotional sensitivity (easy crying, strong reactions to criticism)
 - Rejection Sensitive Dysphoria (RSD) — intense emotional pain at the perception of rejection
 - Rapid mood fluctuations, especially related to the menstrual cycle
 - Overwhelm from multiple stimuli (noise, lights, simultaneous demands)
 
 **Internalized hyperactivity:**
+
 - Constant inner restlessness, not necessarily physical
 - Thoughts that "won't stop" (accelerated internal speech)
 - Difficulty relaxing and "turning off" the brain at night
@@ -71,7 +80,7 @@ Although diagnostic criteria are the same, the presentation differs significantl
 Research by Hinshaw et al. (2012) demonstrated that women with ADHD have significantly higher rates of anxiety (47% vs. 29%), depression (42% vs. 25%), and eating disorders compared to women without ADHD. These comorbidities are often diagnosed first, masking the underlying ADHD.
 {{< /key-fact >}}
 
----
+***
 
 ## Hormonal Impact
 
@@ -88,7 +97,7 @@ Estrogens directly influence dopamine levels in the brain. When estrogen drops, 
 Discuss the interaction between hormones and ADHD with your doctor.
 {{< /callout >}}
 
----
+***
 
 ## The Invisible Burden
 
@@ -114,7 +123,7 @@ This exercise does not solve the problem, but it makes it visible — the first 
 {{< step >}}**The rebuilding phase:** With the correct diagnosis, they can begin building adapted strategies and letting go of masking{{< /step >}}
 {{< /steps >}}
 
----
+***
 
 ## Steps Toward Diagnosis
 
@@ -127,11 +136,12 @@ If you recognize yourself in this article, here is what you can do:
 4. **Involve someone:** Ask your partner, a friend, or a family member to complete a questionnaire about the behaviors they observe
 {{< /callout >}}
 
----
+***
 
 ## When to Seek Professional Help
 
 {{< callout type="warning" title="Signs it's time to consult a specialist" >}}
+
 - You recognize yourself in most symptoms described and they affect your life
 - You have been diagnosed with anxiety or depression, but treatment does not fully work
 - You feel you expend enormous effort just to function normally
@@ -140,7 +150,7 @@ If you recognize yourself in this article, here is what you can do:
 - You are exhausted from masking and compensating
 {{< /callout >}}
 
----
+***
 
 ## Conclusion
 
@@ -150,6 +160,6 @@ ADHD in women is not a milder form of ADHD — it is a different form, often har
 You are not lazy. You are not disorganized by choice. You are not "too sensitive." It is possible that you have a brain that works differently — and when you find that out, everything starts to make sense.
 {{< /pullquote >}}
 
----
+***
 
 _This article provides educational information and does not replace consultation with a mental health specialist. If you are experiencing persistent difficulties, I encourage you to schedule a consultation._
