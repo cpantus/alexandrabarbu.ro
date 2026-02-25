@@ -1,12 +1,17 @@
 ---
-title: "Ce Este Trauma Psihologică și Cum Ne Afectează"
-description: "Un ghid complet despre trauma psihologică, mecanismele ei și drumul spre vindecare"
+title: Ce Este Trauma Psihologică și Cum Ne Afectează
+description: Un ghid complet despre trauma psihologică, mecanismele ei și drumul spre vindecare
 date: 2026-02-09
-author: "Psiholog Alexandra Barbu"
-categories: ["trauma"]
-tags: ["trauma psihologică", "răspuns traumatic", "vindecare", "sănătate mintală"]
-image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800"
-readTime: "11 min"
+author: Psiholog Alexandra Barbu
+categories:
+  - trauma
+tags:
+  - trauma psihologică
+  - răspuns traumatic
+  - vindecare
+  - sănătate mintală
+image: /images/Trauma.png
+readTime: 11 min
 draft: false
 ---
 
@@ -29,7 +34,9 @@ Cercetările lui van der Kolk (2014) și ale lui Porges (2011) demonstrează că
 ## Tipuri de Experiențe Traumatice
 
 ### Trauma acută (tip I)
+
 Un singur eveniment cu impact major:
+
 - Accidente grave
 - Catastrofe naturale
 - Agresiuni fizice sau sexuale
@@ -37,7 +44,9 @@ Un singur eveniment cu impact major:
 - Experiența de a fi martor la violență
 
 ### Trauma cronică (tip II)
+
 Experiențe repetate, prelungite:
+
 - Abuz fizic, emoțional sau sexual repetat
 - Neglijare în copilărie
 - Violența domestică
@@ -45,7 +54,9 @@ Experiențe repetate, prelungite:
 - Hărțuirea persistentă
 
 ### Trauma complexă
+
 O categorie specială de traumă cronică, de obicei cu debut în copilărie, în relațiile de atașament:
+
 - Abuz din partea figurilor de atașament (părinți, îngrijitori)
 - Neglijare emoțională cronică
 - Mediu familial instabil sau imprevizibil
@@ -82,18 +93,21 @@ Cercetările de neuroimagistică ale lui Shin et al. (2006) arată că, în timp
 ## Simptomele Traumei
 
 ### Reexperimentarea
+
 - Flashback-uri (retrăirea evenimentului ca și cum s-ar întâmpla acum)
 - Coșmaruri recurente
 - Reacții fizice intense la stimuli care amintesc de traumă
 - Gânduri intruzive, nedorite
 
 ### Evitarea
+
 - Evitarea locurilor, persoanelor sau activităților asociate cu trauma
 - Amorțeală emoțională sau detașare
 - Dificultăți în a discuta despre experiență
 - Evitarea gândurilor sau sentimentelor legate de eveniment
 
 ### Hiperactivare
+
 - Dificultăți de somn
 - Iritabilitate sau izbucniri de furie
 - Dificultăți de concentrare
@@ -101,6 +115,7 @@ Cercetările de neuroimagistică ale lui Shin et al. (2006) arată că, în timp
 - Reacție exagerată de tresărire
 
 ### Modificări cognitive și emoționale
+
 - Convingeri negative despre sine ("sunt defect/ă", "lumea este periculoasă")
 - Vinovăție sau rușine excesivă
 - Pierderea interesului pentru activități
@@ -131,6 +146,7 @@ Nu toți oamenii care experimentează evenimente potențial traumatice dezvoltă
 ## Când Să Ceri Ajutor Profesional
 
 {{< callout type="warning" title="Semne că este timpul să consulți un specialist" >}}
+
 - Simptomele persistă mai mult de o lună după evenimentul traumatic
 - Funcționarea zilnică (muncă, relații, activități) este semnificativ afectată
 - Folosești alcoolul, substanțele sau comportamente de risc pentru a face față
@@ -149,6 +165,6 @@ Trauma este o rană invizibilă, dar efectele sale sunt profund reale. Înțeleg
 Trauma nu definește cine ești. Este ceva ce ți s-a întâmplat — nu ceva ce ești. Iar vindecarea este posibilă, la orice vârstă și în orice stadiu al vieții.
 {{< /pullquote >}}
 
----
+***
 
 _Acest articol oferă informații educaționale și nu înlocuiește consultația cu un specialist în sănătate mintală. Dacă te confrunți cu dificultăți persistente, te încurajez să programezi o consultație._
